@@ -555,24 +555,6 @@ import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
 
-### Optimized images
-
-For large images, `IdealImage` generates responsive sizes at build time and lazy-loads them with a low-quality placeholder. Import the image as a module and pass it to the component:
-
-```jsx
-import Image from '@theme/IdealImage';
-import plutusLogo from './img/logo-plutus.png';
-
-<Image img={plutusLogo} />
-```
-
-import Image from '@theme/IdealImage';
-import plutusLogo from './img/logo-plutus.png';
-
-<Image img={plutusLogo} />
-
-Plain Markdown images stay fine for icons and small screenshots.
-
 ## Concepts, code, and tools
 
 Most pages teach a concept and then show it in code. Keep those two jobs separate, and in that order.

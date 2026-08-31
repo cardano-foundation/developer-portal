@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Layout from "@theme/Layout";
 import { PageMetadata } from "@docusaurus/theme-common";
 import ogCards from "@site/static/img/og/pages/manifest.json";
@@ -7,30 +7,30 @@ import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from "lodash/debounce";
 import clsx from "clsx";
 
-import IntentChips from "@site/src/components/showcase/IntentChips";
+import IntentChips from "@site/src/components/tools/IntentChips";
 import PageCTA from "@site/src/components/PageCTA";
-import ShowcaseSort, {
+import ToolSort, {
   readSortOption,
   DEFAULT_SORT,
   SORT_IDS,
-} from "@site/src/components/showcase/ShowcaseSort";
-import { readSearchTags } from "@site/src/components/showcase/tagQueryString";
-import SiteHero from "@site/src/components/Layout/SiteHero";
-import AppTileCarousel from "@site/src/components/AppTileCarousel";
+} from "@site/src/components/tools/ToolSort";
+import { readSearchTags } from "@site/src/components/tools/tagQueryString";
+import SiteHero from "@site/src/components/SiteHero";
+import ToolTileCarousel from "@site/src/components/ToolTileCarousel";
 import CategoryPanelsCarousel from "@site/src/components/CategoryPanelsCarousel";
-import AppRow from "@site/src/components/AppRow";
-import AppFilterPanel from "@site/src/components/AppFilterPanel";
-import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
+import ToolRow from "@site/src/components/ToolRow";
+import ToolFilterPanel from "@site/src/components/ToolFilterPanel";
+import ContributeButton from "@site/src/components/ContributeButton";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 import {
-  SortedShowcases,
-  Showcases,
+  SortedTools,
+  Tools,
   Categories,
   CategoryList,
   LanguageList,
   InterfaceList,
-} from "@site/src/data/builder-tools/showcase";
+} from "@site/src/data/builder-tools/catalog";
 
 import styles from "./styles.module.css";
 
@@ -47,15 +47,17 @@ function restoreUserState(userState) {
   window.scrollTo({ top: scrollTopPosition });
 }
 
-const maintainerPicks = SortedShowcases.filter((t) => t.maintainerPick);
+const maintainerPicks = SortedTools.filter((t) => t.maintainerPick);
 
 const isProminentCategory = (c) => Categories[c]?.prominent === true;
-const isCompactCategory = (c) => Categories[c]?.prominent === false;
+// Everything not prominent is compact, so a category missing the flag still
+// shows up instead of silently falling out of both carousels.
+const isCompactCategory = (c) => !isProminentCategory(c);
 
 // Category order is derived by how many tools sit in each category (desc).
 function deriveCategoryOrder(predicate) {
   const countByCat = {};
-  Showcases.forEach((tool) => {
+  Tools.forEach((tool) => {
     if (!predicate(tool.category)) return;
     countByCat[tool.category] = (countByCat[tool.category] || 0) + 1;
   });
@@ -80,25 +82,25 @@ function readSearchName(search) {
   return new URLSearchParams(search).get(SearchNameQueryKey);
 }
 
-// Insertion rank per tool: `Showcases` keeps the order entries were appended
+// Insertion rank per tool: `Tools` keeps the order entries were appended
 // to tools.js, so a higher index is a more recent addition. Built once.
-const INSERTION_RANK = new Map(Showcases.map((tool, i) => [tool.slug, i]));
+const INSERTION_RANK = new Map(Tools.map((tool, i) => [tool.slug, i]));
 
-function sortProjects(projects, sortOption) {
+function sortTools(tools, sortOption) {
   if (sortOption === SORT_IDS.ALPHABETICAL) {
-    return [...projects].sort((a, b) => a.title.localeCompare(b.title));
+    return [...tools].sort((a, b) => a.title.localeCompare(b.title));
   }
   if (sortOption === SORT_IDS.NEWEST) {
-    return [...projects].sort(
+    return [...tools].sort(
       (a, b) => (INSERTION_RANK.get(b.slug) ?? 0) - (INSERTION_RANK.get(a.slug) ?? 0)
     );
   }
-  // FEATURED: SortedShowcases order (maintainer picks first, then alphabetical).
-  return projects;
+  // FEATURED: SortedTools order (maintainer picks first, then alphabetical).
+  return tools;
 }
 
-function filterProjects(projects, selectedTags, searchName) {
-  let result = projects;
+function filterTools(tools, selectedTags, searchName) {
+  let result = tools;
   if (searchName) {
     result = result.filter((p) =>
       p.title.toLowerCase().includes(searchName.toLowerCase())
@@ -121,7 +123,7 @@ function filterProjects(projects, selectedTags, searchName) {
   });
 }
 
-function useFilteredProjects() {
+function useFilteredTools() {
   const location = useLocation();
   const [selectedTags, setSelectedTags] = useState([]);
   const [searchName, setSearchName] = useState(null);
@@ -145,8 +147,8 @@ function useFilteredProjects() {
 
   const filtered = useMemo(
     () =>
-      sortProjects(
-        filterProjects(SortedShowcases, selectedTags, searchName),
+      sortTools(
+        filterTools(SortedTools, selectedTags, searchName),
         sortOption
       ),
     [selectedTags, searchName, sortOption]
@@ -170,7 +172,7 @@ function HeroRings() {
   );
 }
 
-function ShowcaseHeader() {
+function ToolsHero() {
   return <SiteHero title={TITLE} description={HERO_DESCRIPTION} art={<HeroRings />} />;
 }
 
@@ -192,16 +194,20 @@ function SearchBar() {
     }
   }, [location]);
 
-  const debouncedHistoryPush = useCallback(
-    _debounce((newSearchString) => {
-      history.push({
-        ...location,
-        search: newSearchString,
-        state: { isSearch: true },
-      });
-    }, 300),
-    [history, location]
+  // Stable across keystrokes (reading the current path off `history` itself),
+  // so pending pushes are debounced for real and cancelled on unmount.
+  const debouncedHistoryPush = useMemo(
+    () =>
+      _debounce((newSearchString) => {
+        history.push({
+          pathname: history.location.pathname,
+          search: newSearchString,
+          state: { isSearch: true },
+        });
+      }, 300),
+    [history]
   );
+  useEffect(() => () => debouncedHistoryPush.cancel(), [debouncedHistoryPush]);
 
   const handleInput = (e) => {
     const currentInputValue = e.currentTarget.value;
@@ -234,7 +240,7 @@ function SearchControls() {
     <section className={styles.controls}>
       <SearchBar />
       <div className={styles.controlsRight}>
-        <ShowcaseSort />
+        <ToolSort />
       </div>
     </section>
   );
@@ -242,12 +248,12 @@ function SearchControls() {
 
 // Renders inside the browse column, which already supplies the container.
 // Adding another one indents this section past the controls above it.
-function HighlightsSection({ apps, title, subtitle }) {
-  if (apps.length === 0) return null;
+function HighlightsSection({ tools, title, subtitle }) {
+  if (tools.length === 0) return null;
   return (
     <section className={styles.section}>
-      <AppTileCarousel
-        apps={apps}
+      <ToolTileCarousel
+        tools={tools}
         labelledBy="tools-highlights-title"
         header={
           <>
@@ -340,13 +346,13 @@ function MoreToolsSection() {
 
 // The template's full-bleed Cardano Blue band, identical in both themes.
 // The section itself marks these as picks, so the tiles carry no star.
-function MaintainerPicksSection({ apps }) {
-  if (apps.length === 0) return null;
+function MaintainerPicksSection({ tools }) {
+  if (tools.length === 0) return null;
   return (
     <section className={styles.picksBand}>
       <div className="container">
-        <AppTileCarousel
-          apps={apps}
+        <ToolTileCarousel
+          tools={tools}
           labelledBy="tools-picks-title"
           variant="pick"
           onBlue
@@ -371,14 +377,14 @@ function MaintainerPicksSection({ apps }) {
 
 // `bare` drops the container for the in-column use; the full-width reveal
 // below the browse grid still needs its own.
-function AllToolsSection({ apps, sortOption, isUnfiltered, heading, bare = false }) {
+function AllToolsSection({ tools, sortOption, isUnfiltered, heading, bare = false }) {
   const visible = useMemo(
-    () => (isUnfiltered ? sortProjects(SortedShowcases, sortOption) : apps),
-    [isUnfiltered, sortOption, apps]
+    () => (isUnfiltered ? sortTools(SortedTools, sortOption) : tools),
+    [isUnfiltered, sortOption, tools]
   );
   return (
     <section className={clsx(!bare && "container", styles.section)}>
-      <header className={clsx(styles.sectionHeader, styles.allAppsHeader)}>
+      <header className={clsx(styles.sectionHeader, styles.allToolsHeader)}>
         <h2 className={styles.sectionTitle}>
           {heading}
           <span className={styles.countMuted}>
@@ -390,7 +396,7 @@ function AllToolsSection({ apps, sortOption, isUnfiltered, heading, bare = false
       <ul className={styles.rowGrid}>
         {visible.map((tool) => (
           <li key={tool.slug}>
-            <AppRow app={tool} />
+            <ToolRow tool={tool} />
           </li>
         ))}
       </ul>
@@ -403,21 +409,21 @@ function AllToolsReveal() {
   if (shown) {
     return (
       <AllToolsSection
-        apps={null}
+        tools={null}
         sortOption={SORT_IDS.ALPHABETICAL}
         isUnfiltered={true}
-        heading={`All ${SortedShowcases.length} tools, A to Z`}
+        heading="All tools, A to Z"
       />
     );
   }
   return (
-    <section className={clsx("container", styles.section, styles.allAppsReveal)}>
+    <section className={clsx("container", styles.section, styles.allToolsReveal)}>
       <button
         type="button"
-        className={clsx("button button--secondary", styles.showAllButton)}
+        className="button button--outline button--primary"
         onClick={() => setShown(true)}
       >
-        {`View all ${SortedShowcases.length} tools alphabetically`}
+        {`View all ${SortedTools.length} tools alphabetically`}
       </button>
     </section>
   );
@@ -428,8 +434,9 @@ function SubmitCTA() {
     <PageCTA
       title="Built a tool for Cardano?"
       description="Add it to this page. The submission process is open and lightweight."
-      href="/docs/contribute/portal-contribute"
-      buttonText="Add your tool"
+      buttons={[
+        { href: "/docs/contribute/portal-contribute", label: "Add your tool" },
+      ]}
     />
   );
 }
@@ -437,10 +444,10 @@ function SubmitCTA() {
 // The page splits in two: a browse column that sits beside the filter rail
 // (controls, intents, the primary result set) and the full-width sections
 // below it. Both read the same filter state, so it is derived once here
-// rather than by each half calling useFilteredProjects separately.
+// rather than by each half calling useFilteredTools separately.
 function useSectionData() {
   const { filtered, sortOption, isUnfiltered, selectedTags } =
-    useFilteredProjects();
+    useFilteredTools();
 
   const filteredSlugs = useMemo(
     () => new Set(filtered.map((a) => a.slug)),
@@ -449,12 +456,12 @@ function useSectionData() {
 
   // Was a fixed "newest 5" constant that ignored sortOption entirely, which
   // left the sort control inert on the default view.
-  const primaryApps = useMemo(
+  const primaryTools = useMemo(
     () => filtered.slice(0, PRIMARY_COUNT),
     [filtered]
   );
 
-  const pickApps = useMemo(
+  const pickTools = useMemo(
     () =>
       isUnfiltered
         ? maintainerPicks
@@ -475,10 +482,10 @@ function useSectionData() {
     filtered,
     sortOption,
     isUnfiltered,
-    primaryApps,
+    primaryTools,
     primaryTitle,
     primarySubtitle,
-    pickApps,
+    pickTools,
     restHeading: scopeLabel ? `All ${scopeLabel}` : "All tools",
   };
 }
@@ -494,13 +501,13 @@ function PrimaryResults({ data }) {
   }
   return data.isUnfiltered ? (
     <HighlightsSection
-      apps={data.primaryApps}
+      tools={data.primaryTools}
       title={data.primaryTitle}
       subtitle={data.primarySubtitle}
     />
   ) : (
     <AllToolsSection
-      apps={data.filtered}
+      tools={data.filtered}
       sortOption={data.sortOption}
       isUnfiltered={false}
       heading={data.restHeading}
@@ -516,7 +523,7 @@ function SecondarySections({ data }) {
     <>
       {data.isUnfiltered && <GuidedPathsBanner />}
       {data.isUnfiltered && <BrowseByCategorySection />}
-      <MaintainerPicksSection apps={data.pickApps} />
+      <MaintainerPicksSection tools={data.pickTools} />
       {data.isUnfiltered && <MoreToolsSection />}
       {data.isUnfiltered && <AllToolsReveal />}
       <SubmitCTA />
@@ -524,20 +531,20 @@ function SecondarySections({ data }) {
   );
 }
 
-function Showcase() {
+function ToolsPage() {
   const data = useSectionData();
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <PageMetadata image={ogCards.tools} />
       {/* The hero is the page banner and stays outside the main landmark;
-          everything else, including the CTA band ShowcaseSections renders and
+          everything else, including the CTA band SecondarySections renders and
           the sticky submit button, belongs inside it. The page had no <main>
           at all before, which left every section outside a landmark. */}
-      <ShowcaseHeader />
+      <ToolsHero />
       <main>
         <div className={clsx("container", styles.browse)}>
-          <AppFilterPanel />
+          <ToolFilterPanel />
           <div className={styles.browseMain}>
             <SearchControls />
             <IntentChips />
@@ -545,10 +552,10 @@ function Showcase() {
           </div>
         </div>
         <SecondarySections data={data} />
-        <OpenStickyButton />
+        <ContributeButton />
       </main>
     </Layout>
   );
 }
 
-export default Showcase;
+export default ToolsPage;

@@ -1832,17 +1832,6 @@
     chalk "^4.1.2"
     tslib "^2.6.0"
 
-"@docusaurus/lqip-loader@3.10.1":
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/@docusaurus/lqip-loader/-/lqip-loader-3.10.1.tgz#1bc30fbd7a4429274ae0000d0b1bda604d324c53"
-  integrity sha512-ushByv88FWxsh3BS9QccWcEbKsW0QnNvWnl0+NCLe7weL5AkHS4HnSDszGMSzn2v5jidT4QjOVHacNVsU5I9Lw==
-  dependencies:
-    "@docusaurus/logger" "3.10.1"
-    file-loader "^6.2.0"
-    lodash "^4.17.21"
-    sharp "^0.32.3"
-    tslib "^2.6.0"
-
 "@docusaurus/mdx-loader@3.10.1":
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/@docusaurus/mdx-loader/-/mdx-loader-3.10.1.tgz#050ae9bc614158a4ec07a628aa75fa9ae90d7e82"
@@ -2018,21 +2007,6 @@
     "@docusaurus/utils-validation" "3.10.1"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-ideal-image@3.10.1":
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-ideal-image/-/plugin-ideal-image-3.10.1.tgz#807437a80e8fff875284129620b0d8447e61c4b3"
-  integrity sha512-zIjQ/BtFS6YwEgnk9ypZxuSnA/Z011Z9cuaawKVfgyT7T+vuGx6T6ZgKur0IFnOkpI7EfI1DhbfdABCtfEzWFA==
-  dependencies:
-    "@docusaurus/core" "3.10.1"
-    "@docusaurus/lqip-loader" "3.10.1"
-    "@docusaurus/responsive-loader" "^1.7.0"
-    "@docusaurus/theme-translations" "3.10.1"
-    "@docusaurus/types" "3.10.1"
-    "@docusaurus/utils-validation" "3.10.1"
-    sharp "^0.32.3"
-    tslib "^2.6.0"
-    webpack "^5.88.1"
-
 "@docusaurus/plugin-sitemap@3.10.1":
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-sitemap/-/plugin-sitemap-3.10.1.tgz#66a6974bb2fd1b9d8f5cb0f3c5ecd2201c118565"
@@ -2082,13 +2056,6 @@
     "@docusaurus/theme-common" "3.10.1"
     "@docusaurus/theme-search-algolia" "3.10.1"
     "@docusaurus/types" "3.10.1"
-
-"@docusaurus/responsive-loader@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@docusaurus/responsive-loader/-/responsive-loader-1.7.0.tgz#508df2779e04311aa2a38efb67cf743109afd681"
-  integrity sha512-N0cWuVqTRXRvkBxeMQcy/OF2l7GN8rmni5EzR3HpwR+iU2ckYPnziceojcxvvxQ5NqZg1QfEW0tycQgHp+e+Nw==
-  dependencies:
-    loader-utils "^2.0.0"
 
 "@docusaurus/theme-classic@3.10.1":
   version "3.10.1"
@@ -4461,11 +4428,6 @@ clone-deep@^4.0.1:
     is-plain-object "^2.0.4"
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
-
-clsx@^1.1.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
-  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
 clsx@^2.0.0:
   version "2.1.1"
@@ -9772,7 +9734,7 @@ shallowequal@^1.1.0:
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
-sharp@^0.32.3, sharp@^0.35.3:
+sharp@^0.35.3:
   version "0.35.3"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.35.3.tgz#41ed21a46406be163eacd0be7b364b42fcf2885f"
   integrity sha512-ej0zVHuZGHCiABXcNxeYhpRnPNPAcvbG8RMdBAhDAxLKkCRVSpK3Iyu7qbqw3JMzoj0REeM6f3tJLtVwl0023Q==

@@ -1,0 +1,9 @@
+/* Sized from the surrounding text so the same glyph fits a footer link, a
+   chip, and a button. Flex parents space it with their gap; inline text
+   parents put a literal space before it. */
+.arrow {
+  width: 0.7em;
+  height: 0.7em;
+  flex: none;
+  vertical-align: 0;
+}

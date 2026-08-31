@@ -5,7 +5,7 @@ import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
-import FileIcon from "@site/static/img/icons/file-outline.svg";
+import PageCTA from "@site/src/components/PageCTA";
 import styles from "./styles.module.css";
 
 const TITLE = "Cardano Developer Talent Pool";
@@ -104,55 +104,14 @@ function HowItWorksSection() {
             </p>
             <p>Low frequency. Unsubscribe at any time.</p>
             <div className={styles.chipRow}>
-              <a className={styles.chip} href="#subscribe">
+              <a className="button button--primary" href="#subscribe">
                 Join the Talent Pool
-                <span aria-hidden="true">→</span>
               </a>
-              <Link className={styles.chip} to="/docs/community/cardano-developer-community/">
+              <Link className="button button--primary" to="/docs/community/cardano-developer-community/">
                 Connect with Developers
-                <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StartBuildingSection() {
-  return (
-    <section className={styles.bandSection}>
-      <div className="container">
-        <div className={styles.band}>
-          <FileIcon className={styles.bandIcon} aria-hidden="true" />
-          <div className={styles.bandContent}>
-            <h2 className={styles.bandTitle}>Ready to Start Building?</h2>
-            <p className={styles.bandText}>
-              Explore Cardano development today with guides, tutorials,
-              and builder tools.
-            </p>
-            <div className={styles.pillRow}>
-              <Link className={styles.pill} to="/docs/developers/">
-                Get Started
-                <span className={styles.pillArrow} aria-hidden="true">→</span>
-              </Link>
-              <Link className={styles.pill} to="/docs/developers/curriculum/start-building/choose-your-tools/">
-                Client SDKs
-                <span className={styles.pillArrow} aria-hidden="true">→</span>
-              </Link>
-              <Link className={styles.pill} to="/docs/developers/curriculum/smart-contracts/overview/">
-                Smart Contracts
-                <span className={styles.pillArrow} aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </div>
-          <img
-            className={styles.bandArt}
-            src={useBaseUrl("img/talent/start-building-cubes.webp")}
-            alt=""
-            aria-hidden="true"
-          />
         </div>
       </div>
     </section>
@@ -160,6 +119,7 @@ function StartBuildingSection() {
 }
 
 export default function TalentPoolPage() {
+  const bandArt = useBaseUrl("img/talent/start-building-cubes.webp");
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <PageMetadata image={ogCards.talent} />
@@ -167,7 +127,22 @@ export default function TalentPoolPage() {
         <HeroSection />
         <JoinSection />
         <HowItWorksSection />
-        <StartBuildingSection />
+        <PageCTA
+          title="Ready to Start Building?"
+          description="Explore Cardano development today with guides, tutorials, and builder tools."
+          buttons={[
+            { href: "/docs/developers/", label: "Get Started" },
+            {
+              href: "/docs/developers/curriculum/start-building/choose-your-tools/",
+              label: "Client SDKs",
+            },
+            {
+              href: "/docs/developers/curriculum/smart-contracts/overview/",
+              label: "Smart Contracts",
+            },
+          ]}
+          art={bandArt}
+        />
       </main>
     </Layout>
   );

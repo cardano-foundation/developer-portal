@@ -12,9 +12,10 @@
   "scripts": {
     "build-stats": "node scripts/generate-stats.js",
     "build-og": "node scripts/generate-og.js",
+    "fix-llms": "node scripts/fix-llms-paths.js",
     "docusaurus": "docusaurus",
     "start": "yarn build-stats && yarn build-og && docusaurus start",
-    "build": "yarn build-stats && yarn build-og && docusaurus build && node scripts/fix-llms-paths.js",
+    "build": "yarn build-stats && yarn build-og && docusaurus build && yarn fix-llms",
     "swizzle": "docusaurus swizzle",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"
@@ -23,16 +24,17 @@
     "@docusaurus/core": "3.10.1",
     "@docusaurus/plugin-client-redirects": "3.10.1",
     "@docusaurus/plugin-content-docs": "3.10.1",
-    "@docusaurus/plugin-ideal-image": "3.10.1",
     "@docusaurus/preset-classic": "3.10.1",
     "@docusaurus/theme-mermaid": "3.10.1",
-    "@docusaurus/theme-search-algolia": "3.10.1",
     "@mdx-js/react": "^3.1.0",
     "@popperjs/core": "^2.11.2",
-    "clsx": "^1.1.1",
+    "clsx": "^2.0.0",
+    "docusaurus-plugin-llms": "0.4.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-popper": "^2.2.5"
+    "react-popper": "^2.2.5",
+    "satori": "^0.26.0",
+    "sharp": "^0.35.3"
   },
   "browserslist": {
     "production": [
@@ -47,13 +49,9 @@
     ]
   },
   "devDependencies": {
-    "docusaurus-plugin-llms": "0.4.0",
-    "raw-loader": "^4.0.2",
-    "satori": "^0.26.0",
-    "sharp": "^0.35.3"
+    "raw-loader": "^4.0.2"
   },
-  "//": "resolutions: sharp is pinned so plugin-ideal-image's transitive sharp stays off the flaky prebuild line (PR #1883). Drop the pin once plugin-ideal-image ships sharp >= 0.33, tracked in #1884.",
-  "resolutions": {
-    "sharp": "^0.35.3"
+  "engines": {
+    "node": ">=22"
   }
 }

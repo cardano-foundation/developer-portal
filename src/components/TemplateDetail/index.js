@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { PageMetadata } from "@docusaurus/theme-common";
@@ -7,41 +7,28 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
 
-import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
+import ExternalArrow from "@site/src/components/ExternalArrow";
+import GitHubIcon from "@site/src/components/GitHubIcon";
 import PageCTA from "@site/src/components/PageCTA";
+import MaintainerPickBadge from "@site/src/components/MaintainerPickBadge";
 import {
-  TemplateShowcases,
+  Templates,
   Frameworks,
   Sdks,
   Wallets,
-} from "@site/src/data/templates/showcase";
+} from "@site/src/data/templates/catalog";
 
 import styles from "./styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
-
+import useCopyToClipboard from "@site/src/utils/useCopyToClipboard";
 
 function CopyButton({ text }) {
-  const [copied, setCopied] = useState(false);
-  const timerRef = useRef(null);
-  useEffect(() => () => clearTimeout(timerRef.current), []);
-
-  const onClick = async () => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      try {
-        await navigator.clipboard.writeText(text);
-        setCopied(true);
-        clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => setCopied(false), 1500);
-      } catch {
-        // clipboard blocked: fail silently
-      }
-    }
-  };
+  const [copied, copy] = useCopyToClipboard();
 
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={() => copy(text)}
       className={styles.copyButton}
       aria-label="Copy to clipboard"
     >
@@ -56,7 +43,7 @@ function CodeBlock({ code }) {
   return (
     <div className={styles.codeBlock}>
       <div className={styles.codeBar}>
-        <span className={styles.codeLang}>Terminal</span>
+        <span className="monoKicker">Terminal</span>
         <CopyButton text={code} />
       </div>
       <pre className={styles.codePre}>
@@ -92,7 +79,7 @@ function NotFound() {
 
 export default function TemplateDetail({ slug }) {
   const { siteConfig } = useDocusaurusContext();
-  const template = TemplateShowcases.find((t) => t.slug === slug);
+  const template = Templates.find((t) => t.slug === slug);
 
   if (!template) return <NotFound />;
 
@@ -124,15 +111,7 @@ export default function TemplateDetail({ slug }) {
 
           <header className={styles.header}>
             {template.maintainerPick && (
-              <span className={styles.pickBadge}>
-                <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable={false}>
-                  <path
-                    fill="currentColor"
-                    d="M12 2.5l2.9 6.5 7.1.8-5.3 4.9 1.5 7-6.2-3.6L5.8 21.7l1.5-7L2 9.8l7.1-.8z"
-                  />
-                </svg>
-                Maintainer pick
-              </span>
+              <MaintainerPickBadge className={styles.pickBadge} starSize={14} />
             )}
             <h1 className={styles.title}>{template.title}</h1>
           </header>
@@ -152,7 +131,7 @@ export default function TemplateDetail({ slug }) {
               <h2 className={styles.sectionHeading}>Get started</h2>
               <p className={styles.guideNote}>
                 You need Node.js 20.19+, a Cardano wallet browser extension, and a
-                free <Link href="https://blockfrost.io">Blockfrost</Link> project
+                free <Link href="https://blockfrost.io" {...EXTERNAL_LINK_PROPS}>Blockfrost</Link> project
                 ID. Get test ADA from the{" "}
                 <Link to="/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada">
                   faucet
@@ -179,6 +158,7 @@ export default function TemplateDetail({ slug }) {
               >
                 <GitHubIcon size={16} />
                 Read the template README on GitHub
+                <ExternalArrow />
               </Link>
             </div>
 
@@ -188,11 +168,12 @@ export default function TemplateDetail({ slug }) {
               <MetaRow label="Wallet" value={Wallets[template.wallet]?.label} />
               <Link
                 href={template.githubUrl}
-                className={styles.sourceButton}
+                className={clsx("button button--outline button--primary button--block", styles.sourceButton)}
                 {...EXTERNAL_LINK_PROPS}
               >
                 <GitHubIcon size={18} />
                 View source on GitHub
+                <ExternalArrow />
               </Link>
             </aside>
           </div>
@@ -201,8 +182,7 @@ export default function TemplateDetail({ slug }) {
           <PageCTA
             title="Spotted something off?"
             description="This directory is open source. Open a pull request to update or correct this entry."
-            href={editUrl}
-            buttonText={`Edit ${template.title} on GitHub`}
+            buttons={[{ href: editUrl, label: `Edit ${template.title} on GitHub` }]}
           />
         )}
       </main>

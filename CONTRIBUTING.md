@@ -46,6 +46,14 @@ Two more curated surfaces live under [/templates](https://developers.cardano.org
 - Don't include `yarn.lock` changes in your PR. We pin it as a baseline; if some slipped in, see the FAQ below.
 - Follow the [style guide](https://developers.cardano.org/docs/contribute/portal-style-guide/). Write clearly, describe what your project does, skip the marketing language.
 
+## Maintainer notes: social-preview cards
+
+Every doc, blog post, and site page gets a social-preview card generated at build time; contributors never make one. For whoever maintains the generator, three conventions live in `scripts/generate-og.js`:
+
+- **Backgrounds** are the `bg-*-composed.jpg` files in `static/img/og/_template/`. Each is a finished frame exported from the design template, already carrying the Cardano lockup, the DEVELOPER PORTAL pill, and the left-side scrim that keeps the text readable. Add a frame by dropping in another composed export; raw artwork without that chrome produces unbranded cards.
+- **Eyebrows** (the small label above the headline) come from the doc's path: curriculum docs show their track (`developers/curriculum/<track>/...`), other nested docs their sub-section, flat docs their top-level folder. Brand casing lives in one map in the script (`dapps` renders as dApps).
+- **Standalone pages** under `src/pages/` are not discovered: each needs an entry in the script's `PAGES` array, or the page falls back to the site-wide home card.
+
 ## FAQ
 
 **Q: I accidentally committed yarn.lock changes, how do I fix it?**

@@ -1,7 +1,7 @@
 import React from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
-import SiteHero from "@site/src/components/Layout/SiteHero";
+import SiteHero from "@site/src/components/SiteHero";
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
 
 import styles from "./styles.module.css";

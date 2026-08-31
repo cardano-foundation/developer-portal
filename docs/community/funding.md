@@ -19,7 +19,7 @@ Good fit for new ideas, prototypes, and community-facing projects that can rally
 
 Cardano's treasury is governed on-chain under [CIP-1694](https://cips.cardano.org/cip/CIP-1694). Anyone can submit a treasury withdrawal as a governance action, which [DReps](https://cardano.org/governance) and the Constitutional Committee then vote on. This is the route for larger, ecosystem-level work with clear community benefit.
 
-Draft and submit an action with [GovTool](https://gov.tools), and see [staking and governance](/docs/developers/curriculum/staking-governance/governance) for how the process works under the hood. Organizations like [Intersect](https://www.intersectmbo.org/) and [PRAGMA](https://pragma.builders) often help coordinate due diligence and disbursement for approved proposals.
+Draft and submit an action with a [governance app](https://cardano.org/apps/?tags=governance), and see [staking and governance](/docs/developers/curriculum/staking-governance/governance) for how the process works under the hood. Organizations like [Intersect](https://www.intersectmbo.org/) and [PRAGMA](https://pragma.builders) often help coordinate due diligence and disbursement for approved proposals.
 
 Good fit for mature projects, shared infrastructure, and protocol-level improvements.
 

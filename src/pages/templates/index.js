@@ -6,20 +6,22 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
+import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
-import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
-import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
+import FilterSection from "@site/src/components/browse/FilterSection";
+import ChipRow from "@site/src/components/browse/ChipRow";
+import useFacetSelection from "@site/src/components/browse/useFacetSelection";
 import {
-  SortedTemplateShowcases,
+  SortedTemplates,
   Frameworks,
   Sdks,
   Wallets,
   FrameworkList,
   SdkList,
   WalletList,
-} from "@site/src/data/templates/showcase";
+} from "@site/src/data/templates/catalog";
 
-import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
+import styles from "@site/src/components/browse/browser.module.css";
 import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
@@ -60,28 +62,14 @@ function TemplateCard({ template }) {
 
 export default function Templates() {
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState({
-    frameworks: [],
-    sdks: [],
-    wallets: [],
-  });
-
-  const toggle = (group) => (id) =>
-    setSelected((prev) => {
-      const has = prev[group].includes(id);
-      return {
-        ...prev,
-        [group]: has ? prev[group].filter((x) => x !== id) : [...prev[group], id],
-      };
-    });
-
-  const activeCount =
-    selected.frameworks.length + selected.sdks.length + selected.wallets.length;
-
-  const clearAll = () => setSelected({ frameworks: [], sdks: [], wallets: [] });
+  const { selected, toggle, activeCount, clearAll } = useFacetSelection([
+    "frameworks",
+    "sdks",
+    "wallets",
+  ]);
 
   const filtered = useMemo(
-    () => filterTemplates(SortedTemplateShowcases, selected, search),
+    () => filterTemplates(SortedTemplates, selected, search),
     [selected, search]
   );
 
@@ -97,8 +85,8 @@ export default function Templates() {
         description={HERO_DESCRIPTION}
         meta={
           <span className={heroStyles.metaText}>
-            {SortedTemplateShowcases.length}{" "}
-            {SortedTemplateShowcases.length === 1 ? "template" : "templates"}
+            {SortedTemplates.length}{" "}
+            {SortedTemplates.length === 1 ? "template" : "templates"}
           </span>
         }
       />
@@ -125,12 +113,12 @@ export default function Templates() {
               aria-label="Search templates"
             />
             <a
-              className={styles.contributeButton}
+              className={clsx("button button--primary button--block", styles.contributeButton)}
               href="https://github.com/cardano-foundation/developer-portal/blob/staging/examples/templates/README.md"
               {...EXTERNAL_LINK_PROPS}
             >
-              <span aria-hidden="true">+</span>
               Contribute a template
+              <ExternalArrow />
             </a>
             <FilterSection
               heading="Frameworks"
@@ -174,7 +162,7 @@ export default function Templates() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="button button--secondary"
+                    className="button button--outline button--primary"
                   >
                     Clear filters
                   </button>

@@ -47,7 +47,7 @@ For a full governance state dump (includes vote tallies):
 cardano-cli conway query gov-state
 ```
 
-You can also browse active proposals on [Cardano GovTool](https://gov.tools), [CardanoScan](https://cardanoscan.io/govActions), [Adastat](https://adastat.net/governances) or [CGOV](https://app.cgov.io/).
+You can also browse active proposals in any of the [governance apps](https://cardano.org/apps/?tags=governance).
 
 :::tip Check every action you can vote on before you start
 If several proposals requiring SPO votes are live at the same time, you can vote on all of them in a **single transaction** — one trip to the air-gapped machine, one cold key signature. Take stock of the full list here, so you only unlock your cold key once.
@@ -213,7 +213,7 @@ Create the DRep delegation certificate using the reward account stake key (uses 
 ```bash
 cardano-cli conway stake-address vote-delegation-certificate \
     --stake-verification-key-file reward-stake.vkey \
-    --drep-always-abstain \
+    --always-abstain \
     --out-file drep-abstain.cert
 ```
 
@@ -262,4 +262,4 @@ See [Calidus Keys](../../operator-tools/calidus-keys) for setup instructions.
 - [Submitting votes (cardano-cli full reference)](/docs/developers/curriculum/staking-governance/vote-and-propose#vote-on-an-action)
 - [Governance queries](/docs/developers/curriculum/staking-governance/governance-operations#query-governance-state)
 - [CIP-1694 specification](https://cips.cardano.org/cip/CIP-1694)
-- [Cardano GovTool](https://gov.tools)
+- [Governance apps](https://cardano.org/apps/?tags=governance)

@@ -5,7 +5,8 @@ import footer from '@site/src/data/footer';
 import DiscordIcon from '@site/static/img/icons/discord.svg';
 import GithubIcon from '@site/static/img/icons/github.svg';
 import styles from './styles.module.css';
-import {externalLinkProps} from "@site/src/utils/externalLink";
+import {linkPropsFor} from "@site/src/utils/externalLink";
+import ExternalArrow from "@site/src/components/ExternalArrow";
 
 const socialIcons = {
   discord: DiscordIcon,
@@ -18,9 +19,14 @@ function FooterLink({item}) {
       className={styles.link}
       to={item.to}
       href={item.href}
-      {...externalLinkProps(item.href)}>
+      {...linkPropsFor(item.href)}>
       {item.label}
-      {item.href && <span aria-hidden="true"> ↗</span>}
+      {item.href && (
+        <>
+          {" "}
+          <ExternalArrow />
+        </>
+      )}
     </Link>
   );
 }
@@ -56,7 +62,7 @@ function Footer() {
                   className={styles.socialLink}
                   href={social.href}
                   aria-label={social.label}
-                  {...externalLinkProps(social.href)}>
+                  {...linkPropsFor(social.href)}>
                   <Icon className={styles.socialIcon} aria-hidden="true" />
                 </Link>
               );
@@ -66,10 +72,7 @@ function Footer() {
 
         <div className={styles.columns}>
           {footer.columns.map((column) => (
-            <nav
-              key={column.title}
-              className={styles.column}
-              aria-label={`${column.title} links`}>
+            <nav key={column.title} aria-label={`${column.title} links`}>
               <div className={styles.columnTitle}>{column.title}</div>
               <ul className={styles.linkList}>
                 {column.items.map((item) => (

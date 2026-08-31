@@ -1,13 +1,15 @@
-/* The shared brand CTA band: navy in both themes with amber pill buttons.
-   The recipe is kept in lockstep by hand with the talent page's band
-   (src/pages/talent/styles.module.css) until a global utility exists;
-   this version carries no artwork. */
+/* The shared brand CTA band: navy in both themes. Its buttons are the shared
+   primary primitive, turned amber by the band's context; the talent page
+   passes its artwork through the art slot. */
 
 .ctaSection {
   padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
 }
 
 .band {
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
+  --site-button-ring: var(--site-color-cream);
   display: flex;
   align-items: center;
   gap: clamp(1.5rem, 2.5vw, 2.7rem);
@@ -15,6 +17,15 @@
   border-radius: 20px;
   background: var(--site-color-card-surface);
   color: var(--site-color-card-text);
+}
+
+/* With artwork the band reserves height for it, tightens its padding, and
+   crops the image at the rounded corners. */
+.bandWithArt {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(230px, 19vw, 370px);
+  padding: clamp(1.5rem, 2vw, 1.875rem);
 }
 
 /* Stroked glyph, colored through currentColor */
@@ -27,6 +38,18 @@
 
 .bandContent {
   max-width: 811px;
+}
+
+/* Lifted above the absolutely positioned artwork; the percentage cap keeps
+   the copy clear of it, which flex layout does not reserve space for. */
+.bandWithArt .bandIcon,
+.bandWithArt .bandContent {
+  position: relative;
+  z-index: 1;
+}
+
+.bandWithArt .bandContent {
+  max-width: min(55%, 811px);
 }
 
 /* Tight title-to-text pairing, then air before the buttons */
@@ -46,8 +69,6 @@
   color: var(--site-color-cream);
 }
 
-/* Amber pill buttons with navy text: uppercase regular Chivo, the brand's
-   band-CTA button family */
 .pillRow {
   display: flex;
   flex-wrap: wrap;
@@ -55,43 +76,29 @@
   margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
 }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75em;
-  min-height: 48px;
-  padding: 0 1.1em 0 1.35em;
-  border-radius: 999px;
-  background: var(--site-color-amber);
-  color: var(--site-color-navy);
-  font-size: 1.05rem;
-  font-weight: var(--ifm-font-weight-normal);
-  line-height: 1.4;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.pill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
-  color: var(--site-color-navy);
-}
-
-.pillArrow {
-  font-size: 1.2em;
-  line-height: 1;
-}
-
-/* Cream ring on the navy band; amber-on-amber would vanish */
-.pill:focus-visible {
-  outline: 2px solid var(--site-color-cream);
-  outline-offset: 2px;
+/* The artwork sits in the band's right ~40%, vertically centered and
+   cropped by the rounded corners, with clear navy between it and the copy */
+.bandArt {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 41%;
+  height: auto;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 996px) {
   .band {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .bandWithArt .bandContent {
+    max-width: 100%;
+  }
+
+  .bandArt {
+    display: none;
   }
 }

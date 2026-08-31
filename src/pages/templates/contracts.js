@@ -7,12 +7,14 @@ import Link from "@docusaurus/Link";
 import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
+import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
-import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
-import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
-import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
+import FilterSection from "@site/src/components/browse/FilterSection";
+import ChipRow from "@site/src/components/browse/ChipRow";
+import useFacetSelection from "@site/src/components/browse/useFacetSelection";
+import GitHubIcon from "@site/src/components/GitHubIcon";
 import {
-  SortedContractShowcases,
+  SortedContracts,
   ContractSources,
   MAX_SOURCE_AVATARS,
   OnchainLangs,
@@ -21,9 +23,9 @@ import {
   OnchainList,
   OffchainList,
   CategoryList,
-} from "@site/src/data/contracts/showcase";
+} from "@site/src/data/contracts/catalog";
 
-import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
+import styles from "@site/src/components/browse/browser.module.css";
 import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
@@ -112,7 +114,7 @@ function SourcesStrip() {
         </a>
       )}
       <span className={heroStyles.metaText}>
-        {SortedContractShowcases.length} contracts
+        {SortedContracts.length} contracts
       </span>
     </>
   );
@@ -139,7 +141,7 @@ function ContractCard({ contract }) {
       {isReference ? (
         <div className={styles.chipGroup}>
           <div className={styles.chips}>
-            <span className={clsx(styles.chip, styles.chipMuted)}>Reference</span>
+            <span className={clsx("badge badge--secondary", styles.chipMuted)}>Reference</span>
           </div>
         </div>
       ) : (
@@ -162,29 +164,14 @@ function ContractCard({ contract }) {
 
 export default function Contracts() {
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState({
-    categories: [],
-    onchain: [],
-    offchain: [],
-  });
-
-  const toggle = (group) => (id) =>
-    setSelected((prev) => {
-      const has = prev[group].includes(id);
-      return {
-        ...prev,
-        [group]: has ? prev[group].filter((x) => x !== id) : [...prev[group], id],
-      };
-    });
-
-  const activeCount =
-    selected.categories.length + selected.onchain.length + selected.offchain.length;
-
-  const clearAll = () =>
-    setSelected({ categories: [], onchain: [], offchain: [] });
+  const { selected, toggle, activeCount, clearAll } = useFacetSelection([
+    "categories",
+    "onchain",
+    "offchain",
+  ]);
 
   const filtered = useMemo(
-    () => filterContracts(SortedContractShowcases, selected, search),
+    () => filterContracts(SortedContracts, selected, search),
     [selected, search]
   );
 
@@ -223,12 +210,12 @@ export default function Contracts() {
               aria-label="Search contracts"
             />
             <a
-              className={styles.contributeButton}
+              className={clsx("button button--primary button--block", styles.contributeButton)}
               href={CONTRIBUTE_DOC}
               {...EXTERNAL_LINK_PROPS}
             >
-              <span aria-hidden="true">+</span>
               Contribute a contract
+              <ExternalArrow />
             </a>
             <FilterSection
               heading="Category"
@@ -269,7 +256,7 @@ export default function Contracts() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="button button--secondary"
+                    className="button button--outline button--primary"
                   >
                     Clear filters
                   </button>
