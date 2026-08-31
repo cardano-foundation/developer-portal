@@ -1,9 +1,8 @@
 import React from "react";
 import Link from "@docusaurus/Link";
-import isInternalUrl from "@docusaurus/isInternalUrl";
 import clsx from "clsx";
 import ExternalArrow from "@site/src/components/ExternalArrow";
-import { externalLinkProps } from "@site/src/utils/externalLink";
+import { EXTERNAL_LINK_PROPS, isExternalHref } from "@site/src/utils/externalLink";
 import FileIcon from "@site/static/img/icons/file-outline.svg";
 
 import styles from "./styles.module.css";
@@ -13,12 +12,12 @@ import styles from "./styles.module.css";
 // external arrow. `buttons` is a list of { href, label }; `art` is an optional
 // image URL drawn into the band's right side on wide screens.
 function CtaLink({ href, children }) {
-  const external = !isInternalUrl(href);
+  const external = isExternalHref(href);
   return (
     <Link
       className="button button--primary"
       to={href}
-      {...(external ? externalLinkProps(href) : {})}
+      {...(external ? EXTERNAL_LINK_PROPS : {})}
     >
       {children}
       {external && <ExternalArrow />}

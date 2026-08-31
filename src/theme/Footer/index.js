@@ -5,7 +5,7 @@ import footer from '@site/src/data/footer';
 import DiscordIcon from '@site/static/img/icons/discord.svg';
 import GithubIcon from '@site/static/img/icons/github.svg';
 import styles from './styles.module.css';
-import {externalLinkProps} from "@site/src/utils/externalLink";
+import {linkPropsFor} from "@site/src/utils/externalLink";
 import ExternalArrow from "@site/src/components/ExternalArrow";
 
 const socialIcons = {
@@ -19,7 +19,7 @@ function FooterLink({item}) {
       className={styles.link}
       to={item.to}
       href={item.href}
-      {...externalLinkProps(item.href)}>
+      {...linkPropsFor(item.href)}>
       {item.label}
       {item.href && (
         <>
@@ -62,7 +62,7 @@ function Footer() {
                   className={styles.socialLink}
                   href={social.href}
                   aria-label={social.label}
-                  {...externalLinkProps(social.href)}>
+                  {...linkPropsFor(social.href)}>
                   <Icon className={styles.socialIcon} aria-hidden="true" />
                 </Link>
               );

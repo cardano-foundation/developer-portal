@@ -87,10 +87,6 @@ html[data-theme="dark"] .breadcrumb a:focus-visible {
 }
 
 /* The chips are the shared badges; the maintainer pick keeps its amber star */
-.pickBadge svg {
-  color: var(--site-color-amber);
-}
-
 .description {
   font-size: 1.2rem;
   line-height: 1.6;

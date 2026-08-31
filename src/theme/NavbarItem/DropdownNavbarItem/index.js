@@ -5,7 +5,7 @@ import OriginalDropdownNavbarItem from '@theme-original/NavbarItem/DropdownNavba
 import {useWindowSize} from '@docusaurus/theme-common';
 import {useLocation} from '@docusaurus/router';
 import icons from './icons';
-import {externalLinkProps} from "@site/src/utils/externalLink";
+import {linkPropsFor} from "@site/src/utils/externalLink";
 import ExternalArrow from "@site/src/components/ExternalArrow";
 
 const HOVER_OPEN_DELAY = 80;
@@ -18,7 +18,7 @@ function FeaturedTile({featured}) {
       className="megaMenuFeatured"
       to={featured.to}
       href={featured.href}
-      {...externalLinkProps(featured.href)}>
+      {...linkPropsFor(featured.href)}>
       <img
         src={featured.image}
         alt=""
@@ -52,7 +52,7 @@ function MegaColumn({column}) {
                 className="megaMenuItemLink"
                 to={item.to}
                 href={item.href}
-                {...externalLinkProps(item.href)}>
+                {...linkPropsFor(item.href)}>
                 {Icon && (
                   <span className="megaMenuItemIconTile">
                     <Icon className="megaMenuItemIcon" aria-hidden="true" />

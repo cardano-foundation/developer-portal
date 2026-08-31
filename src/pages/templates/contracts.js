@@ -12,7 +12,7 @@ import TemplatesHero from "@site/src/components/TemplatesHero";
 import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
 import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
 import useFacetSelection from "@site/src/components/TemplatesBrowser/useFacetSelection";
-import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
+import GitHubIcon from "@site/src/components/GitHubIcon";
 import {
   SortedContractShowcases,
   ContractSources,

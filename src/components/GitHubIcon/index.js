@@ -1,7 +1,6 @@
 import React from "react";
 
-// GitHub mark; inherits the surrounding text color via currentColor. Shared by
-// the template detail page and the contract cards' source hint.
+// GitHub mark; inherits the surrounding text color via currentColor.
 export default function GitHubIcon({ size = 18 }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" focusable={false}>
