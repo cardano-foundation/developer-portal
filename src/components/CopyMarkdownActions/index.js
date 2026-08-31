@@ -4,6 +4,7 @@
 // No markdown is generated client-side.
 import React, {useEffect, useRef, useState} from 'react';
 import {useLocation} from '@docusaurus/router';
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 const RESET_MS = 2000;
 
@@ -76,8 +77,10 @@ export default function CopyMarkdownActions() {
   // pages, which have no DocProvider and would make useDoc() throw.
   const {pathname} = useLocation();
   // The .md sibling lives at the current route with the trailing slash
-  // replaced by the extension.
-  const markdownUrl = pathname.replace(/\/$/, '') + '.md';
+  // replaced by the extension. The docs root is the exception: its sibling
+  // is emitted at /docs/index.md, and /docs.md does not exist.
+  const base = pathname.replace(/\/$/, '');
+  const markdownUrl = base === '/docs' ? '/docs/index.md' : base + '.md';
 
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState('idle'); // 'idle' | 'copied' | 'error'
@@ -176,8 +179,7 @@ export default function CopyMarkdownActions() {
           <a
             className="copy-markdown__item"
             href={markdownUrl}
-            target="_blank"
-            rel="noopener"
+            {...EXTERNAL_LINK_PROPS}
             onClick={() => setOpen(false)}>
             <FileIcon />
             <span className="copy-markdown__item-text">

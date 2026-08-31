@@ -7,7 +7,7 @@ description: Common design patterns for Cardano smart contracts with Aiken imple
 
 This section covers common design patterns and data structures for building efficient and secure Cardano smart contracts, all with Aiken implementations and code examples.
 
-These are reference material, not a sequential read: reach for a pattern when you hit the problem it solves. They are about **efficiency and architecture**, which is a different concern from the [security vulnerabilities](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview) (what can go wrong) and [optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) (making a single validator cheaper). The most broadly useful idea here is the principle below.
+These are reference material, not a sequential read: reach for a pattern when you hit the problem it solves. They are about **efficiency and architecture**, which is a different concern from the [security vulnerabilities](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) (what can go wrong) and [optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) (making a single validator cheaper). The most broadly useful idea here is the principle below.
 
 ## Avoid redundant validation
 

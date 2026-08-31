@@ -1,0 +1,19 @@
+/* The template's 393px tool card. */
+.item {
+  flex: 0 0 min(393px, 85vw);
+  max-width: 393px;
+}
+
+/* Pick cards run wider: icon beside text. */
+.item.itemPick {
+  flex-basis: min(470px, 90vw);
+  max-width: 470px;
+}
+
+@media (max-width: 600px) {
+  .item,
+  .item.itemPick {
+    flex-basis: 280px;
+    max-width: 280px;
+  }
+}

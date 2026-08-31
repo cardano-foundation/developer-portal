@@ -20,12 +20,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Common Examples
-**/keys**
+# Example key material (directories only — a doc or image named keys-* must stay trackable)
+**/keys/**
 
-# .NET Examples
-**/bin**
-**/obj**
+# .NET example build output
+**/bin/**
+**/obj/**
 
 # JS / TS Examples
 **/node_modules
@@ -45,19 +45,10 @@ examples/templates/*/dist
 # intellij
 .idea
 
-# TODO: Since we removed CIP, CPS, Changelog these are technically no longer needed, will still keep 
-# these entries for now to prevent people from committing downloaded files
-/docs/governance/cardano-improvement-proposals/*
-/docs/governance/cardano-problem-statements/*
-/static/img/cip/*
-/static/img/cps/*
-/changelog/*
-
-# (only check in yarn.lock when deliberately establishing a software baseline)
-yarn.lock
-
 # Temporary files that sometimes get checked in by accident
 .yarn/**
 
-# Generated OG cards for docs pages (built by scripts/generate-og.js)
+# Generated OG cards (built by scripts/generate-og.js)
 /static/img/og/docs/
+/static/img/og/blog/
+/static/img/og/pages/

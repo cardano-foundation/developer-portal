@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 Optimizing code can be counter-intuitive, especially in the context of smart contracts. The virtual machine and its associated cost models can be sometimes confusing and move in ways that one fails to anticipate.
 
-Hence, before doing any optimisation work it is primordial to setup some baseline benchmarks. Those benchmarks shall cover simple and complex scenarios alike, to easily identify the impact of changes. Sometimes, a change may introduce a one-time cost that slightly increases a simple case while making a more complex scenario significantly better.
+Hence, before doing any optimisation work it is essential to set up some baseline benchmarks. Those benchmarks shall cover simple and complex scenarios alike, to easily identify the impact of changes. Sometimes, a change may introduce a one-time cost that slightly increases a simple case while making a more complex scenario significantly better.
 
 ### Writing baseline benchmarks
 
@@ -55,7 +55,7 @@ test baseline() {
 
 ### Using `Fuzzer`
 
-Fuzzers constitutes a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/fuzz/cardano/fuzz.html). For example:
+Fuzzers constitute a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/fuzz/cardano/fuzz.html). For example:
 
 ```aiken
 use aiken/fuzz
@@ -102,11 +102,11 @@ const transaction = Transaction {
 
 ### The standard library: good or bad?
 
-Let's cover one last point before we dive in: the standard library. Should you use it? Most certainly yes. Will it harm the performances of your program? To some extend, yes. The standard library is **reasonably well optimised**, yet it is tuned for **correctness** and **ease of use**. Its main goal is to get you started and to be convenient.
+Let's cover one last point before we dive in: the standard library. Should you use it? Most certainly yes. Will it harm the performance of your program? To some extent, yes. The standard library is **reasonably well optimised**, yet it is tuned for **correctness** and **ease of use**. Its main goal is to get you started and to be convenient.
 
 Yet, it is easy to replace surgically where needed. Most functions in the standard library are standalone, easily inlinable and can be specialised. Thus it is recommended to always start with the standard library in order to write the most _obviously correct_ code and only then, think about where it could be optimised.
 
-Many optimisations are actually domain-specific and requires intrinsic knowledge to be really effective. While still designing smart contracts, optimisations about how the code is written shouldn't be the priority (but rather, be only an architectural concern). Once your on-chain code is mostly fleshed out, it's good to take a step back and reflect on your usage of the standard lib in critical parts of your program: maybe you don't need all the genericity offere by this particular function, or maybe you can use a simpler, more direct recursive implementation of that other function.
+Many optimisations are actually domain-specific and require intrinsic knowledge to be really effective. While still designing smart contracts, optimisations about how the code is written shouldn't be the priority (but rather, be only an architectural concern). Once your on-chain code is mostly fleshed out, it's good to take a step back and reflect on your usage of the standard lib in critical parts of your program: maybe you don't need all the genericity offered by this particular function, or maybe you can use a simpler, more direct recursive implementation of that other function.
 
 There are few functions from the standard library that you particularly want to look for and avoid in validators. Those functions are usually only good for testing, but not so much for critical paths. These red flags are:
 
@@ -116,7 +116,9 @@ There are few functions from the standard library that you particularly want to 
 
 You almost certainly never want to use any of those in validators.
 
-## Optimization techniques
+## Decide early and cheaply
+
+The cheapest work is work that never runs. These three reorder a validator so the common case exits as soon as it can, and the expensive case is the only one that pays.
 
 ### Fail fast
 
@@ -143,200 +145,6 @@ On-chain code isn't about error handling. If something is wrong: fail. `Option` 
   ```
   </TabItem>
 </Tabs>
-
-
-### Use simple(r) structures
-
-Unless it's coming from the _outside world_ (i.e. datum or redeemer), avoid constructing large records. Aiken is a language which operates directly on encoded objects (a.k.a. `Data`). This is handy when objects have been pre-constructed ahead of the script execution as it the case for datum, redeemers or the transaction itself.
-
-Yet, constructing large records to carry context across multiple transaction elements will often come at a significant cost. So, prefer using functions with explicit arguments when you do not actually need to materialize an intermediate structure.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
-  <TabItem value="dont">
-
-  **mem=5.81M** · **cpu=19.53K**
-
-  ```aiken
-  type MultisigContext {
-    owner: VerificationKeyHash,
-    signatories: List<VerificationKeyHash>,
-    withdrawals: Pairs<VerificationKeyHash, Lovelace>,
-  }
-
-  // NOTE: The implementation is irrelevant.
-  fn verify_multisig(ctx: MultisigContext) {
-    or {
-      list.has(ctx.signatories, ctx.owner),
-      list.any(ctx.withdrawals, fn(Pair(vk, _)) { vk == ctx.owner }),
-    }
-  }
-  ```
-  </TabItem>
-
-  <TabItem value="do">
-
-  **mem=3.71M** · **cpu=14.12K**
-
-  ```aiken
-  // NOTE: The implementation is irrelevant.
-  fn verify_multisig(owner, signatories, withdrawals) {
-    or {
-      list.has(signatories, owner),
-      list.any(withdrawals, fn(Pair(vk, _)) { vk == owner }),
-    }
-  }
-  ```
-  </TabItem>
-
-  <TabItem value="bench">
-
-  ```aiken
-  test baseline_dont() {
-    let ctx = MultisigContext {
-      owner: baseline_owner,
-      signatories: baseline_signatories,
-      withdrawals: baseline_withdrawals,
-    }
-
-    verify_multisig(ctx)
-  }
-
-  test baseline_do() {
-    verify_multisig(
-      baseline_owner,
-      baseline_signatories,
-      baseline_withdrawals,
-    )
-  }
-  ```
-  </TabItem>
-</Tabs>
-
-
-In particular, if you can avoid it, do not construct `Value` and prefer `Dict` or `Pairs` over `Value` whenever possible.
-
-`Value` preserves two important invariants: it does not contain assets with null quantities or policies with empty assets. If you do not rely on these invariants, you can safely go down to `Dict`.
-
-`Dict` preserves two important invariants: their keys are in ascending orders and contain no duplicate. If you do not rely on these invariants, you can safely go down to `Pairs`
-
-
-### Use fast recursion for infaillible searches
-
-This is a more specific version of the fail fast stategy that applies to _'infaillible searches'_. This happens when looking for specific elements within a collection without any possible error recovery: if not present, then it's an error and the entire validator must fail.
-
-Such a scenario is actually quite common in validators, especially when dealing with elements that are part of a protocol.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
-  <TabItem value="dont">
-
-  **mem=12.15K** · **cpu=3.13M**
-
-  ```aiken
-  // Repeatedly check for empty list
-  pub fn has(haystack: List<a>, needle: a) -> Bool {
-    when haystack is {
-      [] -> False
-      [head, ..tail] -> head == needle || has(tail, needle)
-    }
-  }
-  ```
-  </TabItem>
-
-
-  <TabItem value="do">
-
-  **mem=9.56K** · **cpu=2.33M**
-
-  ```aiken
-  // Fails anyway on empty list, value must be present.
-  pub fn has(haystack: List<a>, needle: a) -> Bool {
-    head_list(haystack) == needle || has(tail_list(haystack), needle)
-  }
-  ```
-  </TabItem>
-
-  <TabItem value="bench">
-
-  ```aiken
-  test baseline() {
-    expect has(["alice", "bob", "carol"], "carol")
-  }
-  ```
-  </TabItem>
-</Tabs>
-
-### Favor binary searches over linear searches
-
-It is quite common to have chains of multiple conditions which, when written in the most naive way can result in unnecessary evaluations. When conditions are somewhat equiprobable (i.e. there's no clear unbalance that one may be satisfied way more often than others), it may be useful to restructure and nest certain if/then/else to perform a binary search.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
-  <TabItem value="dont">
-
-  **mem=46.98K** · **cpu=12.68M**
-
-  ```aiken
-  // Linear search, not ideal.
-  fn mod32(i) {
-    if i < 32 { 0 }
-    else if i < 64 { 1 }
-    else if i < 96 { 2 }
-    else if i < 128 { 3 }
-    else if i < 160 { 4 }
-    else if i < 192 { 5 }
-    else if i < 224 { 6 }
-    else { 7 }
-  }
-  ```
-  </TabItem>
-
-  <TabItem value="do">
-
-  **mem=37.06K** · **cpu=9.76M**
-
-  ```aiken
-  // Binary search, more efficient and predictable.
-  fn mod32(i) {
-    if i < 128 {
-      if i < 64 {
-        if i < 32 { 0 } else { 1 }
-      } else {
-        if i < 96 { 2 } else { 3 }
-      }
-    } else {
-      if i < 192 {
-        if i < 160 { 4 } else { 5 }
-      } else {
-        if i < 224 { 6 } else { 7 }
-      }
-    }
-  }
-  ```
-  </TabItem>
-
-  <TabItem value="bench">
-
-  ```aiken
-  test baseline() {
-    and {
-      mod32(15) == 0,
-      mod32(47) == 1,
-      mod32(89) == 2,
-      mod32(114) == 3,
-      mod32(147) == 4,
-      mod32(171) == 5,
-      mod32(200) == 6,
-      mod32(225) == 7,
-    }
-  }
-  ```
-  </TabItem>
-</Tabs>
-
-In this example, we branch based on the value of some integer chosen between 0 and 255. The first form evaluates each condition one after the other, resulting in a **linear search** that will average at `(n + 1) / 2` evaluations. So for `n=7`, that's an average of `4` evaluations.
-
-The _do_ example, however, arranges the conditions to reduce the amount of evaluations done at each pass. It performs a **binary search** which results in `log2(n)` evaluations. So for `n=7`, that's an average of `3` evaluations.
-
-Morover, the binary search has the benefit of being more **predictable**. In the previous example, it does not only average to 3 conditions evaluations, but it always evaluate 3 conditions per pass. Unlike the _don't_ example, which sometimes evaluate one condition, sometimes three, sometimes seven, etc...
 
 ### Put cheap and likely checks first
 
@@ -433,6 +241,84 @@ test baseline() {
 </Tabs>
 
 This is a small transformation, but it matters in tight recursive loops and in code that executes frequently over large structures.
+
+## Choose cheaper representations
+
+Every value a validator builds or compares costs execution units proportional to its shape. Picking a leaner representation is often a larger saving than any change to the logic around it.
+
+### Use simple(r) structures
+
+Unless it's coming from the _outside world_ (i.e. datum or redeemer), avoid constructing large records. Aiken is a language which operates directly on encoded objects (a.k.a. `Data`). This is handy when objects have been pre-constructed ahead of the script execution as it the case for datum, redeemers or the transaction itself.
+
+Yet, constructing large records to carry context across multiple transaction elements will often come at a significant cost. So, prefer using functions with explicit arguments when you do not actually need to materialize an intermediate structure.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
+  <TabItem value="dont">
+
+  **mem=5.81M** · **cpu=19.53K**
+
+  ```aiken
+  type MultisigContext {
+    owner: VerificationKeyHash,
+    signatories: List<VerificationKeyHash>,
+    withdrawals: Pairs<VerificationKeyHash, Lovelace>,
+  }
+
+  // NOTE: The implementation is irrelevant.
+  fn verify_multisig(ctx: MultisigContext) {
+    or {
+      list.has(ctx.signatories, ctx.owner),
+      list.any(ctx.withdrawals, fn(Pair(vk, _)) { vk == ctx.owner }),
+    }
+  }
+  ```
+  </TabItem>
+
+  <TabItem value="do">
+
+  **mem=3.71M** · **cpu=14.12K**
+
+  ```aiken
+  // NOTE: The implementation is irrelevant.
+  fn verify_multisig(owner, signatories, withdrawals) {
+    or {
+      list.has(signatories, owner),
+      list.any(withdrawals, fn(Pair(vk, _)) { vk == owner }),
+    }
+  }
+  ```
+  </TabItem>
+
+  <TabItem value="bench">
+
+  ```aiken
+  test baseline_dont() {
+    let ctx = MultisigContext {
+      owner: baseline_owner,
+      signatories: baseline_signatories,
+      withdrawals: baseline_withdrawals,
+    }
+
+    verify_multisig(ctx)
+  }
+
+  test baseline_do() {
+    verify_multisig(
+      baseline_owner,
+      baseline_signatories,
+      baseline_withdrawals,
+    )
+  }
+  ```
+  </TabItem>
+</Tabs>
+
+
+In particular, if you can avoid it, do not construct `Value` and prefer `Dict` or `Pairs` over `Value` whenever possible.
+
+`Value` preserves two important invariants: it does not contain assets with null quantities or policies with empty assets. If you do not rely on these invariants, you can safely go down to `Dict`.
+
+`Dict` preserves two important invariants: their keys are in ascending orders and contain no duplicate. If you do not rely on these invariants, you can safely go down to `Pairs`
 
 ### Prefer `Data` equality over manual structural comparisons
 
@@ -554,6 +440,276 @@ Both are ergonomic to access:
 But `Pair` integrates more naturally with dictionaries and pairs-based APIs, so it tends to compose better with the rest of the standard library.
 
 This is not usually a game-changing optimisation, but it is a good default when dealing with key-value shaped data.
+
+### Lean more on ByteArrays
+
+Byte arrays are extremely cheap compared to richer structured data. So, when cost is absolutely critical, one option is to give up some of the convenience of structured encodings and operate directly on bytes.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}]}>
+<TabItem value="dont">
+
+```aiken
+pub type MyRedeemer {
+  key: ByteArray,
+  signature: ByteArray,
+}
+
+let MyRedeemer { key, signature } = redeemer
+```
+
+</TabItem>
+
+<TabItem value="do">
+
+```aiken
+pub type MyRedeemer = ByteArray
+
+let key = bytearray.slice(redeemer, 0, 32)
+let signature = bytearray.slice(redeemer, 32, 64)
+```
+
+</TabItem> </Tabs>
+
+This comes with obvious trade-offs:
+
+* less self-documenting code,
+* more manual slicing and offset management,
+* fewer type-level guarantees.
+
+So it should only be used when the savings are worth the loss in readability and maintainability.
+
+## Search and recurse efficiently
+
+Most validator cost is a traversal of transaction inputs, outputs, or a datum collection. How you write the recursion, and whether you exploit any ordering the data already has, sets what that traversal costs.
+
+### Use fast recursion for infallible searches
+
+This is a more specific version of the fail fast strategy that applies to _'infallible searches'_. This happens when looking for specific elements within a collection without any possible error recovery: if not present, then it's an error and the entire validator must fail.
+
+Such a scenario is actually quite common in validators, especially when dealing with elements that are part of a protocol.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
+  <TabItem value="dont">
+
+  **mem=12.15K** · **cpu=3.13M**
+
+  ```aiken
+  // Repeatedly check for empty list
+  pub fn has(haystack: List<a>, needle: a) -> Bool {
+    when haystack is {
+      [] -> False
+      [head, ..tail] -> head == needle || has(tail, needle)
+    }
+  }
+  ```
+  </TabItem>
+
+
+  <TabItem value="do">
+
+  **mem=9.56K** · **cpu=2.33M**
+
+  ```aiken
+  // Fails anyway on empty list, value must be present.
+  pub fn has(haystack: List<a>, needle: a) -> Bool {
+    head_list(haystack) == needle || has(tail_list(haystack), needle)
+  }
+  ```
+  </TabItem>
+
+  <TabItem value="bench">
+
+  ```aiken
+  test baseline() {
+    expect has(["alice", "bob", "carol"], "carol")
+  }
+  ```
+  </TabItem>
+</Tabs>
+
+### Favor binary searches over linear searches
+
+It is quite common to have chains of multiple conditions which, when written in the most naive way can result in unnecessary evaluations. When conditions are somewhat equiprobable (i.e. there's no clear unbalance that one may be satisfied way more often than others), it may be useful to restructure and nest certain if/then/else to perform a binary search.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
+  <TabItem value="dont">
+
+  **mem=46.98K** · **cpu=12.68M**
+
+  ```aiken
+  // Linear search, not ideal.
+  fn mod32(i) {
+    if i < 32 { 0 }
+    else if i < 64 { 1 }
+    else if i < 96 { 2 }
+    else if i < 128 { 3 }
+    else if i < 160 { 4 }
+    else if i < 192 { 5 }
+    else if i < 224 { 6 }
+    else { 7 }
+  }
+  ```
+  </TabItem>
+
+  <TabItem value="do">
+
+  **mem=37.06K** · **cpu=9.76M**
+
+  ```aiken
+  // Binary search, more efficient and predictable.
+  fn mod32(i) {
+    if i < 128 {
+      if i < 64 {
+        if i < 32 { 0 } else { 1 }
+      } else {
+        if i < 96 { 2 } else { 3 }
+      }
+    } else {
+      if i < 192 {
+        if i < 160 { 4 } else { 5 }
+      } else {
+        if i < 224 { 6 } else { 7 }
+      }
+    }
+  }
+  ```
+  </TabItem>
+
+  <TabItem value="bench">
+
+  ```aiken
+  test baseline() {
+    and {
+      mod32(15) == 0,
+      mod32(47) == 1,
+      mod32(89) == 2,
+      mod32(114) == 3,
+      mod32(147) == 4,
+      mod32(171) == 5,
+      mod32(200) == 6,
+      mod32(225) == 7,
+    }
+  }
+  ```
+  </TabItem>
+</Tabs>
+
+In this example, we branch based on the value of some integer chosen between 0 and 255. The first form evaluates each condition one after the other, resulting in a **linear search** that will average at `(n + 1) / 2` evaluations. So for `n=7`, that's an average of `4` evaluations.
+
+The _do_ example, however, arranges the conditions to reduce the amount of evaluations done at each pass. It performs a **binary search** which results in `log2(n)` evaluations. So for `n=7`, that's an average of `3` evaluations.
+
+Moreover, the binary search has the benefit of being more **predictable**. In the previous example, it does not only average to 3 condition evaluations, it always evaluates 3 conditions per pass. Unlike the _don't_ example, which sometimes evaluates one condition, sometimes three, sometimes seven, etc...
+
+### Unroll recursions
+
+When a recursive function advances one step at a time, its convergence can sometimes be improved by manually unrolling the first few steps. This reduces the number of recursive calls needed in the common case.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
+<TabItem value="dont">
+
+**mem=47.53K** · **cpu=12.74M**
+
+```aiken
+fn elem_at(elems: List<a>, at: Int) -> a {
+  if at <= 0 {
+    list.head(elems)
+  } else {
+    elem_at(list.tail(elems), at - 1)
+  }
+}
+```
+</TabItem>
+<TabItem value="do">
+
+**mem=35.01K** · **cpu=9.70M**
+
+```aiken
+fn elem_at(elems: List<a>, at: Int) -> a {
+  if at >= 2 {
+    elem_at(list.tail(list.tail(elems)), at - 2)
+  } else {
+    list.head(if at == 1 { list.tail(elems) } else { elems })
+  }
+}
+```
+</TabItem>
+<TabItem value="bench">
+
+```aiken
+test baseline() {
+  and {
+    elem_at([1], 0) == 1,
+    elem_at([1, 2, 3, 4, 5], 0) == 1,
+    elem_at([1, 2, 3, 4, 5], 4) == 5,
+    elem_at([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 9) == 10,
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+This sort of transformation is most useful for small, performance-critical helpers that get called repeatedly.
+
+### Write tail-recursive functions
+
+The Plutus VM usually behaves better with tail-recursive functions, especially when working with bytes and accumulators. So when you can express a function as a loop with an explicit accumulator, prefer that form.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
+<TabItem value="dont">
+
+**mem=80.36K** · **cpu=21.83M**
+
+```aiken
+fn fib(n: Int) -> Int {
+  if n <= 1 { 1 }
+  else { fib(n - 1) + fib(n - 2) }
+}
+```
+</TabItem>
+<TabItem value="do">
+
+**mem=49.98K** · **cpu=12.60M**
+
+```aiken
+fn fib(n: Int) -> Int {
+  do_fib(1, 1, n)
+}
+
+fn do_fib(last: Int, current: Int, n: Int) -> Int {
+  if n <= 1 { current }
+  else { do_fib(current, current + last, n - 1) }
+}
+```
+</TabItem>
+<TabItem value="bench">
+
+```aiken
+test baseline() {
+  and {
+    fib(0) == 1,
+    fib(1) == 1,
+    fib(2) == 2,
+    fib(3) == 3,
+    fib(4) == 5,
+    fib(5) == 8,
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+The tail-recursive version makes the control flow more explicit and typically avoids building up deferred work across calls.
+
+This pattern is especially relevant for:
+
+* folds,
+* list traversals,
+* byte processing,
+* numeric loops.
+
+## Traverse once
+
+Each of these replaces several passes over a collection with a single pass, either by combining the work or by keeping what the first pass already computed.
 
 ### Avoid re-traversals
 
@@ -726,150 +882,9 @@ Conceptually, this transforms the collection into a small decision chain that ca
 
 This is particularly nice when the source collection is static for the whole validator execution, but queried many times.
 
-### Unroll recursions
+## Replace computation with lookup or proof
 
-When a recursive function advances one step at a time, its convergence can sometimes be improved by manually unrolling the first few steps. This reduces the number of recursive calls needed in the common case.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
-<TabItem value="dont">
-
-**mem=47.53K** · **cpu=12.74M**
-
-```aiken
-fn elem_at(elems: List<a>, at: Int) -> a {
-  if at <= 0 {
-    list.head(elems)
-  } else {
-    elem_at(list.tail(elems), at - 1)
-  }
-}
-```
-</TabItem>
-<TabItem value="do">
-
-**mem=35.01K** · **cpu=9.70M**
-
-```aiken
-fn elem_at(elems: List<a>, at: Int) -> a {
-  if at >= 2 {
-    elem_at(list.tail(list.tail(elems)), at - 2)
-  } else {
-    list.head(if at == 1 { list.tail(elems) } else { elems })
-  }
-}
-```
-</TabItem>
-<TabItem value="bench">
-
-```aiken
-test baseline() {
-  and {
-    elem_at([1], 0) == 1,
-    elem_at([1, 2, 3, 4, 5], 0) == 1,
-    elem_at([1, 2, 3, 4, 5], 4) == 5,
-    elem_at([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 9) == 10,
-  }
-}
-```
-</TabItem>
-</Tabs>
-
-This sort of transformation is most useful for small, performance-critical helpers that get called repeatedly.
-
-### Write tail-recursive functions
-
-The Plutus VM usually behaves better with tail-recursive functions, especially when working with bytes and accumulators. So when you can express a function as a loop with an explicit accumulator, prefer that form.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
-<TabItem value="dont">
-
-**mem=80.36K** · **cpu=21.83M**
-
-```aiken
-fn fib(n: Int) -> Int {
-  if n <= 1 { 1 }
-  else { fib(n - 1) + fib(n - 2) }
-}
-```
-</TabItem>
-<TabItem value="do">
-
-**mem=49.98K** · **cpu=12.60M**
-
-```aiken
-fn fib(n: Int) -> Int {
-  do_fib(1, 1, n)
-}
-
-fn do_fib(last: Int, current: Int, n: Int) -> Int {
-  if n <= 1 { current }
-  else { do_fib(current, current + last, n - 1) }
-}
-```
-</TabItem>
-<TabItem value="bench">
-
-```aiken
-test baseline() {
-  and {
-    fib(0) == 1,
-    fib(1) == 1,
-    fib(2) == 2,
-    fib(3) == 3,
-    fib(4) == 5,
-    fib(5) == 8,
-  }
-}
-```
-</TabItem>
-</Tabs>
-
-The tail-recursive version makes the control flow more explicit and typically avoids building up deferred work across calls.
-
-This pattern is especially relevant for:
-
-* folds,
-* list traversals,
-* byte processing,
-* numeric loops.
-
-
-### Lean more on ByteArrays
-
-Byte arrays are extremely cheap compared to richer structured data. So, when cost is absolutely critical, one option is to give up some of the convenience of structured encodings and operate directly on bytes.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}]}>
-<TabItem value="dont">
-
-```aiken
-pub type MyRedeemer {
-  key: ByteArray,
-  signature: ByteArray,
-}
-
-let MyRedeemer { key, signature } = redeemer
-```
-
-</TabItem>
-
-<TabItem value="do">
-
-```aiken
-pub type MyRedeemer = ByteArray
-
-let key = bytearray.slice(redeemer, 0, 32)
-let signature = bytearray.slice(redeemer, 32, 64)
-```
-
-</TabItem> </Tabs>
-
-This comes with obvious trade-offs:
-
-* less self-documenting code,
-* more manual slicing and offset management,
-* fewer type-level guarantees.
-
-So it should only be used when the savings are worth the loss in readability and maintainability.
+The biggest savings come from not computing at all: look the answer up, verify an answer the transaction supplies, or lean on something the ledger has already guaranteed.
 
 ### Replace expensive computations with lookups
 

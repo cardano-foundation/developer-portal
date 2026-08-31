@@ -26,7 +26,7 @@ tADA is the testnet version of ADA, used to pay fees on Preprod.
 2. **Copy your receive address.** Wallet → Receive tab → copy the address (starts with `addr_test1...`).
 3. **Hit the faucet.** Go to [docs.cardano.org/cardano-testnets/tools/faucet](https://docs.cardano.org/cardano-testnets/tools/faucet), select **Preprod Testnet** as environment, **Receive test ADA** as action, paste your address, and click **Request funds**.
 
-Within a few seconds, the faucet sends 10,000 tADA to your wallet. That's more than enough for every workshop in this section.
+Within a few seconds, the faucet sends a generous amount of tADA to your wallet, more than enough for every workshop in this section.
 
 ## Sending and receiving tADA
 
@@ -80,7 +80,7 @@ Once you have a txhash, look it up on [Preprod CardanoScan](https://preprod.card
 
 This is especially useful when testing IoT projects - you can verify that transactions were sent and received as expected.
 
-CardanoScan is the most popular explorer, but several others work too: [Adastat](https://adastat.net/), [Cexplorer](https://cexplorer.io/), [pool.pm](https://pool.pm/). They differ in features and UI but all let you look up transactions, addresses, and other on-chain data.
+CardanoScan is the explorer these workshops use, but several others work too: [Adastat](https://adastat.net/), [Cexplorer](https://cexplorer.io/), [pool.pm](https://pool.pm/). They differ in features and UI but all let you look up transactions, addresses, and other on-chain data.
 
 ## Further Resources
 

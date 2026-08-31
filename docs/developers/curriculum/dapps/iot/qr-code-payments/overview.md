@@ -20,12 +20,12 @@ This final workshop combines everything from the previous ones into a working pa
 
 ## What you'll need
 
-- Cheap Yellow Display (or compatible ESP32 + TFT) from earlier workshops.
+- The board with a screen from the [Hardware reference](/docs/developers/curriculum/dapps/iot/hardware/), as used in earlier workshops.
 - Two Cardano wallets (one to pay from, one to receive) on Preprod.
 - LittleFS upload tool for the Arduino IDE.
 - All libraries from previous workshops, plus QRcodeDisplay and QRcode_eSPI.
 
-> **Note on CIP-13 today.** As of the workshop's writing, no major mobile wallet correctly attaches the exact-lovelace amount from a `web+cardano:` URI. To exercise the on-chain confirmation flow you'll need to send the exact amount manually from a desktop wallet. Track the [CIP-0013 spec](https://cips.cardano.org/cip/CIP-0013) for progress.
+> **Note on CIP-13 wallet support.** As of the workshop's writing, no major mobile wallet correctly attaches the exact-lovelace amount from a `web+cardano:` URI. To exercise the on-chain confirmation flow you'll need to send the exact amount manually from a desktop wallet. Track the [CIP-0013 spec](https://cips.cardano.org/cip/CIP-0013) for progress.
 
 
 ---

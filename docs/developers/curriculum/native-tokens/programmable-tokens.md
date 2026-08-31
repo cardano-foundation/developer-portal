@@ -35,3 +35,8 @@ Programmability has a cost, and it is the exact thing plain native tokens avoid.
 :::info In active development
 CIP-113 is still a draft ([PR #444](https://github.com/cardano-foundation/CIPs/pull/444)) and the specification may change. The Cardano Foundation's reference implementation has **not been professionally audited** and has only been briefly tested on the Preview testnet, so it is **not production-ready**. Track progress, read the architecture and integration guides, and follow the contracts at the [cip113-programmable-tokens repository](https://github.com/cardano-foundation/cip113-programmable-tokens). This page will be expanded as the standard matures.
 :::
+
+## Next steps
+
+- [Staking & Governance](/docs/developers/curriculum/staking-governance/overview): the next module, how delegation, rewards, and on-chain governance work, and how to build against them
+- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies): the control layer plain native tokens do have, at mint and burn

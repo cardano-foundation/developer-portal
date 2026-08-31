@@ -17,7 +17,7 @@ The Mithril signer must **never** connect directly to the internet. In the **pro
 
 Setting up the signer involves four stages:
 
-1. **Prerequisites** -- ensure the Cardano node is fully synchronized and running a [compatible version](https://github.com/input-output-hk/mithril/blob/main/networks.json), with active KES keys. The signer requires read access to the node's database directory and read/write access to the node socket.
+1. **Prerequisites** -- ensure the Cardano node is fully synchronized and running a [compatible version](https://github.com/IntersectMBO/mithril/blob/main/networks.json), with active KES keys. The signer requires read access to the node's database directory and read/write access to the node socket.
 2. **Installation** -- download the pre-built `mithril-signer` binary or build it from source, then register it as a `systemd` service running as the same user as the Cardano node.
 3. **Credential configuration** -- create an environment file at `/opt/mithril/mithril-signer.env` pointing to your `KES secret key`, `operational certificate`, Cardano node database, node socket, and `cardano-cli` path.
 4. **Connecting the pipeline** -- set the `RELAY_ENDPOINT` variable to your internal Mithril relay address (for example, `http://192.168.1.50:3132`). The signer sends signatures through the relay, which forwards them to the Mithril aggregator.
@@ -40,4 +40,4 @@ For the complete step-by-step instructions, including build commands, environmen
 - [Become a Mithril SPO](https://mithril.network/doc/manual/operate/become-mithril-spo)
 - [Run a Mithril signer node](https://mithril.network/doc/manual/operate/run-signer-node)
 - [Mithril documentation](https://mithril.network/doc/)
-- [GitHub repository](https://github.com/input-output-hk/mithril)
+- [GitHub repository](https://github.com/IntersectMBO/mithril)

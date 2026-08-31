@@ -3,21 +3,15 @@
 // builder tool. The plugin only needs slugs, so it reads src/data/builder-tools/tools.js
 // as TEXT and extracts the entry titles (it can't `require` that module — it contains
 // webpack `require(png)` image refs). The ToolDetail component resolves the full tool
-// object from the showcase adapter (webpack context) by slug at render time.
+// object from the catalog by slug at render time.
 //
 
 const fs = require("fs");
 const path = require("path");
 
-// MUST byte-match slugify() in src/data/builder-tools/showcase.js, otherwise
-// ToolDetail won't find the tool for a generated route.
-function slugify(title) {
-  return String(title)
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+// Shared with src/data/builder-tools/catalog.js, so a generated route and
+// ToolDetail's lookup can't diverge.
+const { slugify } = require("../../src/data/builder-tools/slug");
 
 module.exports = function toolsRoutesPlugin(context) {
   return {
@@ -28,7 +22,15 @@ module.exports = function toolsRoutesPlugin(context) {
         context.siteDir,
         "src/data/builder-tools/tools.js"
       );
-      const source = fs.readFileSync(toolsPath, "utf8");
+      let source;
+      try {
+        source = fs.readFileSync(toolsPath, "utf8");
+      } catch (e) {
+        throw new Error(
+          `tools-routes: could not read src/data/builder-tools/tools.js (${e.message})`,
+          { cause: e }
+        );
+      }
       // Entry titles only: line-leading horizontal whitespace + `title: "..."`.
       // The how-to comment block uses ` * ` line prefixes and won't match.
       const titleRegex = /^[^\S\n]*title:\s*"((?:[^"\\]|\\.)*)"/gm;
@@ -47,6 +49,11 @@ module.exports = function toolsRoutesPlugin(context) {
         }
         seen.add(slug);
         slugs.push(slug);
+      }
+      if (slugs.length === 0) {
+        throw new Error(
+          "tools-routes: found no tool entries in tools.js; the entry pattern no longer matches"
+        );
       }
       return slugs;
     },

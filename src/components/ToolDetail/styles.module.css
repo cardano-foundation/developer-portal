@@ -1,6 +1,16 @@
+/* The closing CTA band owns the bottom rhythm, so the page body carries no
+   bottom padding of its own. `.notFoundPad` restores it for the defensive
+   not-found branch, which renders no band. */
 .detail {
   padding-top: 2.5rem;
+}
+
+.notFoundPad {
   padding-bottom: 4rem;
+}
+
+.notFoundPad .description {
+  margin-top: 1rem;
 }
 
 .breadcrumb {
@@ -10,50 +20,42 @@
   gap: 0.5rem;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--site-color-text-muted);
 }
 
 .breadcrumb a {
-  color: var(--ifm-color-emphasis-700);
+  color: inherit;
   text-decoration: none;
 }
 
 .breadcrumb a:hover {
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .breadcrumb a:hover {
   color: var(--ifm-color-primary);
 }
 
+/* Surface-aware rings: the breadcrumb sits on the page background */
+.breadcrumb a:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+html[data-theme="dark"] .breadcrumb a:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* Fades the inherited muted token rather than naming a second color, so the
+   separator needs no dark counterpart */
 .crumbSep {
-  color: var(--ifm-color-emphasis-400);
+  opacity: 0.5;
 }
 
 .crumbCurrent {
-  color: var(--ifm-color-emphasis-900);
-  font-weight: 500;
-}
-
-.pickBadgeRow {
-  margin-bottom: 1.5rem;
-}
-
-.pickBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--ifm-color-emphasis-1000, #0b0d10);
-  color: #fff;
-  padding: 0.45rem 0.95rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.pickBadge svg {
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .pickBadge {
-  background: #1c1f24;
-  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-font-color-base);
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .header {
@@ -61,30 +63,6 @@
   gap: 1.5rem;
   align-items: center;
   margin-bottom: 1.25rem;
-}
-
-.iconFallback {
-  width: 120px;
-  height: 120px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 3rem;
-  font-weight: 700;
-  flex-shrink: 0;
-  text-transform: uppercase;
-}
-
-.iconImage {
-  width: 120px;
-  height: 120px;
-  border-radius: 24px;
-  object-fit: contain;
-  background: var(--ifm-color-emphasis-100);
-  padding: 8px;
-  flex-shrink: 0;
 }
 
 .headerText {
@@ -95,7 +73,7 @@
 .title {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
+  font-weight: var(--site-font-weight-display);
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
@@ -108,50 +86,11 @@
   margin-bottom: 1.75rem;
 }
 
-.osBadge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  background: color-mix(in srgb, #2ea043 16%, transparent);
-  color: color-mix(in srgb, #2ea043 88%, black);
-}
-
-.categoryPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  transition: transform 0.15s ease, filter 0.15s ease;
-}
-
-.categoryPill:hover {
-  text-decoration: none;
-  filter: brightness(0.95);
-  transform: translateY(-1px);
-}
-
-.tagDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
+/* The chips are the shared badges; the maintainer pick keeps its amber star */
 .description {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: var(--ifm-color-emphasis-800);
+  color: var(--site-color-text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -163,83 +102,21 @@
   margin-top: 0.5rem;
 }
 
-.visitButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.6rem;
-  border-radius: 999px;
-  background: #0a1f5e;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-
-.visitButton:hover {
-  background: #122a78;
-  color: #fff;
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-
-[data-theme="dark"] .visitButton {
-  background: var(--ifm-color-primary);
-}
-
-[data-theme="dark"] .visitButton:hover {
-  background: var(--ifm-color-primary-dark);
-}
-
-.secondaryButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid var(--ifm-color-emphasis-400);
-  background: transparent;
-  color: var(--ifm-color-emphasis-900);
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
-}
-
-.secondaryButton:hover {
-  border-color: var(--ifm-color-emphasis-700);
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-
-.iconButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+/* Icon-only share control: the shared outline button as a circle. The
+   compound beats the global padding vars regardless of stylesheet order. */
+:global(.button).iconButton {
+  --ifm-button-padding-vertical: 0;
+  --ifm-button-padding-horizontal: 0;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  background: transparent;
-  color: var(--ifm-color-emphasis-900);
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
-.iconButton:hover {
-  background: var(--ifm-color-emphasis-100);
-  border-color: var(--ifm-color-emphasis-500);
-  color: var(--ifm-color-emphasis-900);
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-
+/* Matches `.sectionTitle` on the browse page; the inherited heading weight is
+   light and reads thin above the card grid */
 .sectionHeading {
   font-size: 1.4rem;
+  font-weight: var(--ifm-font-weight-bold);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
@@ -254,89 +131,27 @@
   margin: 0 0 1rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* Wide enough for the tile's template padding and type scale; min()
+     keeps a 320px track from overflowing narrower viewports. */
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
 }
 
 .relatedMore {
   font-size: 0.95rem;
 }
 
-.improve {
-  margin-top: 4rem;
-  padding: 3rem 1.5rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.relatedMore:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-.improveIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  margin-bottom: 1.5rem;
-}
-
-.improveHeading {
-  margin: 0 0 0.6rem;
-  font-size: clamp(1.4rem, 3vw, 1.85rem);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-.improveCopy {
-  margin: 0 0 1.75rem;
-  max-width: 480px;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--ifm-color-emphasis-700);
-}
-
-.improveButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid var(--ifm-color-emphasis-400);
-  background: transparent;
-  color: var(--ifm-color-emphasis-900);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
-}
-
-.improveButton:hover {
-  border-color: var(--ifm-color-emphasis-700);
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  text-decoration: none;
-  transform: translateY(-1px);
+html[data-theme="dark"] .relatedMore:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 @media (max-width: 600px) {
-  .iconFallback {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-    font-size: 2.2rem;
-  }
-
-  .iconImage {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-  }
-
-  .visitButton {
+  .actions > :global(.button) {
     flex: 1 1 auto;
-    justify-content: center;
   }
 }

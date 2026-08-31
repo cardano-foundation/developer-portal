@@ -1,0 +1,172 @@
+/* Navy footer, the bottom edge of the site chrome. It shares the navbar's
+   horizontal gutters so the brand column sits flush under the navbar logo
+   on every page, including the landing page with its widened container.
+   Navy in both themes, so everything runs on the theme-invariant card
+   tokens and no dark-mode overrides are needed. */
+
+.footer {
+  background: var(--site-color-card-surface);
+  color: var(--site-color-card-text);
+  padding: 3.5rem var(--ifm-navbar-padding-horizontal) 1.5rem;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem 4rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 360px;
+}
+
+.brandLogoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.brandLogo {
+  height: 28px;
+}
+
+/* The lockup alone says Cardano; the divided suffix names the site the
+   tagline speaks for */
+.brandName {
+  border-left: 1px solid var(--site-color-card-border);
+  padding-left: 0.85rem;
+  font-size: 1.05rem;
+  font-weight: var(--ifm-font-weight-light);
+  color: var(--site-color-card-text);
+  white-space: nowrap;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--site-color-card-text-muted);
+  font-weight: var(--ifm-font-weight-light);
+  max-width: 30ch;
+}
+
+.socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Same icon-tile treatment as the mega menu rows, so the chrome's
+   interactive squares read as one family */
+.socialLink {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(var(--site-color-cream-rgb) / 0.08);
+  color: var(--site-color-card-text);
+  transition: background-color 0.16s ease, color 0.16s ease;
+}
+
+.socialLink:hover {
+  background: var(--site-color-amber);
+  color: var(--site-color-navy);
+}
+
+.socialIcon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem 4rem;
+}
+
+/* Same title treatment as the mega menu columns */
+.columnTitle {
+  font-size: 0.72rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgb(var(--site-color-cream-rgb) / 0.55);
+  margin-bottom: 0.85rem;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.link {
+  color: var(--site-color-card-text-muted);
+  font-weight: var(--ifm-font-weight-light);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.16s ease;
+}
+
+.link:hover {
+  color: var(--site-color-card-text);
+  text-decoration: none;
+}
+
+/* Left-clustered rather than spread edge-to-edge: the sticky contribute
+   button floats over the viewport's bottom-right corner on some pages,
+   so nothing interactive lives there. */
+.bottomBar {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--site-color-card-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 2.5rem;
+  font-size: 0.8rem;
+  color: var(--site-color-card-text-muted);
+}
+
+.legal {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.bottomBar .link {
+  font-size: 0.8rem;
+}
+
+.brandLogoLink:focus-visible,
+.socialLink:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--site-color-amber);
+  outline-offset: 2px;
+}
+
+@media (max-width: 996px) {
+  .top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .columns {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

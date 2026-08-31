@@ -1,0 +1,105 @@
+/* The floating contribute button: the shared primary button as a fixed 50px
+   circle, amber in both themes via the amber context, expanding on hover to
+   reveal its label. The border must stay 1px: the plus-glyph bars below are
+   positioned against the 48px padding box it creates, and meet edge-to-edge
+   only at that size. */
+.fab {
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
+  --ifm-button-padding-vertical: 0;
+  --ifm-button-padding-horizontal: 0;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    width 0.2s ease-in-out;
+}
+
+.fab:hover {
+  width: 180px;
+}
+
+/* The plus glyph, drawn from four bars: the horizontal stubs ride on the
+   button itself, the vertical pair on the inner span. On hover the four
+   retreat into small dots flanking the label. */
+.fab::before,
+.fab::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: var(--site-color-navy);
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+}
+
+.fab::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.fab::after {
+  right: 14px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.fab:hover::before,
+.fab:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+
+.glyph::before,
+.glyph::after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: var(--site-color-navy);
+  transition: all 0.2s ease-in-out;
+}
+
+.glyph::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.glyph::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.fab:hover .glyph::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.fab:hover .glyph::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+/* The label rides hidden in the circle and fades in as it widens. */
+.label {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.fab:hover .label {
+  opacity: 1;
+  transition: opacity 1s;
+}

@@ -2,7 +2,7 @@
 id: overview
 title: Oracles on Cardano
 sidebar_label: Overview
-description: Learn about oracle services that bring real-world data to Cardano smart contracts.
+description: "How oracles bring real-world data to Cardano smart contracts: the oracle problem, publication models, security, and choosing a feed."
 ---
 
 ## What are oracles?
@@ -30,7 +30,7 @@ graph TD
     style I fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-Blockchains are deterministic systems where they can only see data within their own ledger. Oracles solve this limitation by bringing external data on-chain.
+Blockchains are deterministic systems that can only see data within their own ledger. Oracles solve this limitation by bringing external data on-chain.
 
 ## Why oracles matter
 
@@ -158,6 +158,24 @@ Be precise, though, about what that signature does and does not cover:
 
 This is also why the [multi-oracle reconciliation](#multi-oracle-validation) above is worth the effort: reading and cross-checking more than one feed on-chain protects you when any single feed is stale, withheld, or wrong.
 
+## Designing with a price feed
+
+Once your contract can read a verified price, the design question becomes: *when* does it read, and *which parts* of the update does it use? Most oracle-consuming designs reduce to one of two shapes.
+
+**Settlement at a deadline.** The contract stores a question at creation (which feed, what threshold, by when) and reads the oracle exactly once, at resolution. Prediction markets, options expiry, and parametric insurance all work this way. The timing belongs in the transaction validity interval, not just in application code: interactions that must happen before the deadline require the validity upper bound at or below it, and the resolving transaction requires the lower bound at or above it. That turns the freshness rule from the previous section into something the ledger enforces structurally rather than something your off-chain code promises.
+
+**Live parameter.** Every interaction reads the current update and feeds it into the contract's logic as an input: lending protocols checking collateral ratios, liquidation triggers, dynamic pricing, in-game economies. Here the freshness window matters on every transaction, because each one acts on the value it carries.
+
+The update itself carries more signal than the headline number, and each field maps to a mechanic:
+
+- **Price and exponent** are the headline value.
+- **Confidence and the bid-ask spread** measure how certain the market is. A contract can widen its safety margins, scale position limits, or refuse to act at all when the spread blows out. That is volatility protection with no extra infrastructure.
+- **The EMA against the spot price** is a momentum signal: spot above the moving average means the asset is trending up. This gives trend-aware logic without storing any price history on-chain.
+- **Two feeds combined** yield a cross-asset ratio, so anything can be priced in anything: an ADA-denominated contract can settle a EUR obligation by dividing two USD feeds.
+- **The update timestamp** can be an input, not only an accept/reject check: behavior can degrade gracefully as data ages instead of failing outright.
+
+Two architecture patterns are worth knowing. A market or game lifecycle can live in a single UTXO identified by a [state-thread token](https://aiken-lang.org/fundamentals/common-design-patterns#state-thread-tokens-aka-stt), with position tokens minted against user actions and burned to claim; the oracle read then happens exactly once, at the state transition that settles the outcome. And keeping oracle verification in a swappable provider validator, separate from a pure logic validator that consumes normalized price data, lets you test the logic against a mock provider on a local devnet and swap in the real oracle for production. The [Pyth guide](/docs/developers/curriculum/dapps/oracles/pyth#validator-patterns) shows the settlement shape in working Aiken, and its [complete example](/docs/developers/curriculum/dapps/oracles/prediction-market) composes both patterns into a full prediction market.
+
 ## Security considerations
 
 Oracle security matters because smart contracts depend on accurate external data. Oracles defend against bad data in several ways:
@@ -202,17 +220,15 @@ Statistical methods identify and exclude anomalous data that deviates significan
 
 ## Choosing an oracle
 
-Consider these factors when selecting an oracle for your Cardano application:
-
-- What sources does the oracle use? How reliable are they?
-- Does the publication model match your needs?
-- How distributed is the oracle network?
-- Can you audit the data collection and validation process?
-- How hard is it to integrate?
-- What are the fees for consuming oracle data?
+The factors that actually differentiate oracles are concrete, and the sections above explain what each one buys you: the data sources a feed draws from and how diverse they are, the publication model (push or pull) and the trust choice it implies, how distributed the operator set is, whether collection and validation are auditable, the integration effort, and the fee for consuming updates. Weigh them against your use case, in particular against whether you read the feed once at settlement or on every interaction.
 
 ### Recommended: Pyth
 
-For most Cardano applications, **[Pyth](/docs/developers/curriculum/dapps/oracles/pyth)** is the recommended oracle. It is an industry-grade network delivering sub-second, high-frequency price feeds through a pull-based model, with on-chain verification handled by an Aiken library, so your contract reads verified updates directly from the transaction it validates.
+For most Cardano applications, **[Pyth](/docs/developers/curriculum/dapps/oracles/pyth)** is the recommended oracle: sub-second, high-frequency price feeds through a pull-based model, with on-chain verification handled by an Aiken library, so your contract reads verified updates directly from the transaction it validates.
 
 Contracts can also read **multiple** oracle feeds and reconcile them on-chain, as shown above, so a single feed failing or being manipulated does not compromise the result. See the [Pyth integration guide](/docs/developers/curriculum/dapps/oracles/pyth) to wire it into your validator and off-chain code.
+
+## Next steps
+
+- [Pyth](/docs/developers/curriculum/dapps/oracles/pyth): wire the recommended oracle into your validator and off-chain code
+- [Randomness](/docs/developers/curriculum/dapps/oracles/randomness): verifiable random values, the other hard data problem

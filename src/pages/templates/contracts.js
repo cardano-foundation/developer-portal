@@ -1,16 +1,20 @@
 import React, { useMemo, useState } from "react";
 import Head from "@docusaurus/Head";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import useBaseUrl, { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
+import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
-import TemplatesTabs from "@site/src/components/TemplatesTabs";
-import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
-import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
-import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
+import ExternalArrow from "@site/src/components/ExternalArrow";
+import TemplatesHero from "@site/src/components/TemplatesHero";
+import FilterSection from "@site/src/components/browse/FilterSection";
+import ChipRow from "@site/src/components/browse/ChipRow";
+import useFacetSelection from "@site/src/components/browse/useFacetSelection";
+import GitHubIcon from "@site/src/components/GitHubIcon";
 import {
-  SortedContractShowcases,
+  SortedContracts,
   ContractSources,
   MAX_SOURCE_AVATARS,
   OnchainLangs,
@@ -19,13 +23,19 @@ import {
   OnchainList,
   OffchainList,
   CategoryList,
-} from "@site/src/data/contracts/showcase";
+} from "@site/src/data/contracts/catalog";
 
-import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
+import styles from "@site/src/components/browse/browser.module.css";
+import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 const TITLE = "Cardano Contracts Library";
 const DESCRIPTION =
   "A curated aggregator of reference smart contracts from across Cardano. We index proven work from other open sources and link straight to each contract's own repo, organized by use case.";
+// The hero takes the short line; DESCRIPTION stays the full version for
+// search results and link previews.
+const HERO_DESCRIPTION =
+  "Reference contracts from across Cardano, indexed by use case.";
 
 function filterContracts(contracts, selected, search) {
   const term = search.trim().toLowerCase();
@@ -78,16 +88,15 @@ function SourcesStrip() {
   const shown = ContractSources.slice(0, MAX_SOURCE_AVATARS);
   const overflow = ContractSources.length - shown.length;
   return (
-    <div className={styles.sources}>
-      <span className={styles.sourcesLabel}>Aggregated from</span>
-      <div className={styles.avatarStack}>
+    <>
+      <span className={heroStyles.metaText}>Aggregated from</span>
+      <div className={heroStyles.avatarStack}>
         {shown.map((s) => (
           <a
             key={s.id}
-            className={styles.avatar}
+            className={heroStyles.avatar}
             href={s.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK_PROPS}
             title={s.label}
           >
             <img src={withBaseUrl(s.avatar)} alt={s.label} />
@@ -96,19 +105,18 @@ function SourcesStrip() {
       </div>
       {overflow > 0 && (
         <a
-          className={styles.sourcesMore}
+          className={heroStyles.sourcesMore}
           href={CONTRIBUTE_DOC}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...EXTERNAL_LINK_PROPS}
           title={ContractSources.slice(MAX_SOURCE_AVATARS).map((s) => s.label).join(", ")}
         >
           +{overflow} more {overflow === 1 ? "source" : "sources"}
         </a>
       )}
-      <span className={styles.sourcesLabel}>
-        {SortedContractShowcases.length} contracts
+      <span className={heroStyles.metaText}>
+        {SortedContracts.length} contracts
       </span>
-    </div>
+    </>
   );
 }
 
@@ -121,8 +129,7 @@ function ContractCard({ contract }) {
         <Link
           className={styles.cardTitleLink}
           href={contract.repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...EXTERNAL_LINK_PROPS}
         >
           {contract.title}
           {onGitHub && <GitHubIcon size={16} />}
@@ -134,7 +141,7 @@ function ContractCard({ contract }) {
       {isReference ? (
         <div className={styles.chipGroup}>
           <div className={styles.chips}>
-            <span className={clsx(styles.chip, styles.chipMuted)}>Reference</span>
+            <span className={clsx("badge badge--secondary", styles.chipMuted)}>Reference</span>
           </div>
         </div>
       ) : (
@@ -157,29 +164,14 @@ function ContractCard({ contract }) {
 
 export default function Contracts() {
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState({
-    categories: [],
-    onchain: [],
-    offchain: [],
-  });
-
-  const toggle = (group) => (id) =>
-    setSelected((prev) => {
-      const has = prev[group].includes(id);
-      return {
-        ...prev,
-        [group]: has ? prev[group].filter((x) => x !== id) : [...prev[group], id],
-      };
-    });
-
-  const activeCount =
-    selected.categories.length + selected.onchain.length + selected.offchain.length;
-
-  const clearAll = () =>
-    setSelected({ categories: [], onchain: [], offchain: [] });
+  const { selected, toggle, activeCount, clearAll } = useFacetSelection([
+    "categories",
+    "onchain",
+    "offchain",
+  ]);
 
   const filtered = useMemo(
-    () => filterContracts(SortedContractShowcases, selected, search),
+    () => filterContracts(SortedContracts, selected, search),
     [selected, search]
   );
 
@@ -189,24 +181,13 @@ export default function Contracts() {
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESCRIPTION} />
       </Head>
+      <PageMetadata image={ogCards.contracts} />
+      <TemplatesHero
+        title={TITLE}
+        description={HERO_DESCRIPTION}
+        meta={<SourcesStrip />}
+      />
       <main className={clsx("container", styles.page)}>
-        <header className={styles.header}>
-          <div className={styles.headerIntro}>
-            <div className={styles.headerText}>
-              <h1 className={styles.pageTitle}>{TITLE}</h1>
-              <p className={styles.pageSubtitle}>{DESCRIPTION}</p>
-            </div>
-            <img
-              className={styles.headerArt}
-              src={useBaseUrl("img/home/card-smart-contracts.svg")}
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
-          <TemplatesTabs />
-          <SourcesStrip />
-        </header>
-
         <div className={styles.layout}>
           <aside className={styles.sidebar} aria-label="Filter contracts">
             <div className={styles.sidebarHeader}>
@@ -229,13 +210,12 @@ export default function Contracts() {
               aria-label="Search contracts"
             />
             <a
-              className={styles.contributeButton}
+              className={clsx("button button--primary button--block", styles.contributeButton)}
               href={CONTRIBUTE_DOC}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...EXTERNAL_LINK_PROPS}
             >
-              <span aria-hidden="true">+</span>
               Contribute a contract
+              <ExternalArrow />
             </a>
             <FilterSection
               heading="Category"
@@ -276,7 +256,7 @@ export default function Contracts() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="button button--secondary"
+                    className="button button--outline button--primary"
                   >
                     Clear filters
                   </button>
