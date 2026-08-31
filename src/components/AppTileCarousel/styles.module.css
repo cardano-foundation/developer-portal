@@ -64,60 +64,10 @@
   height: 100%;
 }
 
-/* The template's outlined circular arrows */
+/* The same outlined circular arrows as the category carousel; only the
+   on-blue overrides below are this component's own. */
 .arrow {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.5);
-  background: transparent;
-  color: var(--site-color-navy);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 150ms ease, color 150ms ease, opacity 150ms ease,
-    box-shadow 150ms ease;
-  flex-shrink: 0;
-}
-
-html[data-theme="dark"] .arrow {
-  border-color: rgb(var(--site-color-card-text-rgb) / 0.4);
-  color: var(--site-color-cream);
-}
-
-.arrow:hover:not(:disabled) {
-  border-color: var(--site-color-brand-blue);
-  color: var(--ifm-font-color-base);
-  box-shadow: 0 1px 6px rgb(var(--site-color-navy-rgb) / 0.06);
-}
-
-html[data-theme="dark"] .arrow:hover:not(:disabled) {
-  border-color: var(--ifm-color-primary);
-}
-
-.arrow:focus-visible {
-  outline: 2px solid var(--site-color-navy);
-  outline-offset: 2px;
-}
-
-html[data-theme="dark"] .arrow:focus-visible {
-  outline-color: var(--site-color-amber);
-}
-
-.arrow:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.arrow:disabled:hover {
-  border-color: rgb(var(--site-color-navy-rgb) / 0.2);
-  color: var(--site-color-text-muted);
-  box-shadow: none;
-}
-
-html[data-theme="dark"] .arrow:disabled:hover {
-  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
+  composes: arrow from "../CategoryPanelsCarousel/styles.module.css";
 }
 
 /* On the Cardano Blue band the chrome goes cream, identically in both

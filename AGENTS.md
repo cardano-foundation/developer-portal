@@ -80,6 +80,7 @@ See `package.json` > `scripts` for the rest.
 - **Do not use external image hosts.** The CSP `img-src` is an allowlist; hosts like `raw.githubusercontent.com` and `shields.io` are blocked and break on deploy. Self-host in the repo (co-located `img/` or `static/img/`, see common tasks).
 - **Do not set `maintainerPick`** on builder tools.
 - **Do not mass-reformat** or make wide refactors without an explicit OK. Keep diffs surgical.
+- **Use the shared UI primitives.** Buttons are Infima's `button button--primary` / `button button--outline button--primary` (plus `button--sm`, `button--block`), chips are `badge badge--primary` / `badge badge--secondary`, all themed once in `src/css/custom.css`. Do not add button or chip classes, and no new literal radius or colour in module CSS (`--site-radius-*`, `--site-color-*`; icon-only circles use `border-radius: 50%`). Links carry no decorative arrow; `ExternalArrow` marks an href that leaves the site.
 - **No secrets or real keys** in code, config, or examples.
 - **No marketing or promo language.** State what something is and who it is for, then stop.
 

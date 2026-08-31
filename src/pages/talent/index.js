@@ -104,13 +104,11 @@ function HowItWorksSection() {
             </p>
             <p>Low frequency. Unsubscribe at any time.</p>
             <div className={styles.chipRow}>
-              <a className={styles.chip} href="#subscribe">
+              <a className="button button--primary" href="#subscribe">
                 Join the Talent Pool
-                <span aria-hidden="true">→</span>
               </a>
-              <Link className={styles.chip} to="/docs/community/cardano-developer-community/">
+              <Link className="button button--primary" to="/docs/community/cardano-developer-community/">
                 Connect with Developers
-                <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
@@ -133,17 +131,14 @@ function StartBuildingSection() {
               and builder tools.
             </p>
             <div className={styles.pillRow}>
-              <Link className={styles.pill} to="/docs/developers/">
+              <Link className="button button--primary" to="/docs/developers/">
                 Get Started
-                <span className={styles.pillArrow} aria-hidden="true">→</span>
               </Link>
-              <Link className={styles.pill} to="/docs/developers/curriculum/start-building/choose-your-tools/">
+              <Link className="button button--primary" to="/docs/developers/curriculum/start-building/choose-your-tools/">
                 Client SDKs
-                <span className={styles.pillArrow} aria-hidden="true">→</span>
               </Link>
-              <Link className={styles.pill} to="/docs/developers/curriculum/smart-contracts/overview/">
+              <Link className="button button--primary" to="/docs/developers/curriculum/smart-contracts/overview/">
                 Smart Contracts
-                <span className={styles.pillArrow} aria-hidden="true">→</span>
               </Link>
             </div>
           </div>

@@ -5,7 +5,8 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
-import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
+import ExternalArrow from "@site/src/components/ExternalArrow";
+import { EXTERNAL_LINK_PROPS, externalLinkProps } from "@site/src/utils/externalLink";
 
 /* --- DATA --- */
 
@@ -47,28 +48,7 @@ const sdks = [
   },
 ];
 
-
 /* --- COMPONENTS --- */
-
-/* Thin vector card-button arrow: 23.5px glyph, 1.5px stroke, corner-to-corner
-   shaft with a near-full-width L head, instead of the chunkier ↗ font glyph */
-function ArrowUpRight() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M1 23 23 1M3 1.25h19.75V21"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
 
 function Hero() {
   return (
@@ -95,12 +75,12 @@ function Hero() {
               in between. Docs, tools, and SDKs for Cardano.
             </p>
             <div className={styles.heroActions}>
-              <Link to={useBaseUrl("docs/developers/")} className={styles.heroCta}>
+              <Link to={useBaseUrl("docs/developers/")} className="button button--primary">
                 Start Here
               </Link>
               <Link
                 to={useBaseUrl("docs/developers/curriculum/start-building/ai-assisted-development/")}
-                className={styles.heroCtaSecondary}
+                className="button button--outline button--primary"
               >
                 Code with AI
               </Link>
@@ -181,7 +161,6 @@ function BentoSection() {
               <p>The 7-module path from zero to shipping, fundamentals through production.</p>
               <div className={styles.bentoCardFooter}>
                 <span className={styles.bentoLink}>Start the Curriculum</span>
-                <span className={styles.bentoArrowBtn} aria-hidden="true"><ArrowUpRight /></span>
               </div>
             </div>
             <img
@@ -195,6 +174,7 @@ function BentoSection() {
             <Link
               key={card.title}
               to={withBase(card.to)}
+              {...(card.to.startsWith("http") ? externalLinkProps(card.to) : {})}
               className={clsx(styles.bentoCard, styles.bentoSmall)}
             >
               <img
@@ -206,8 +186,10 @@ function BentoSection() {
                 <h3>{card.title}</h3>
                 <p>{card.body}</p>
                 <div className={styles.bentoCardFooter}>
-                  <span className={styles.bentoLink}>{card.cta}</span>
-                  <span className={styles.bentoArrowBtn} aria-hidden="true"><ArrowUpRight /></span>
+                  <span className={styles.bentoLink}>
+                    {card.cta}
+                    {card.to.startsWith("http") && <ExternalArrow />}
+                  </span>
                 </div>
               </div>
             </Link>
@@ -242,13 +224,13 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
   };
 
   const docIcon = (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.quickstartDocIcon}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.quickstartDocIcon}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
   );
 
   return (
     <div className={styles.devQuickstartCard}>
       <div className={styles.quickstartLeft}>
-        <span className={styles.quickstartBadge}>{badge}</span>
+        <span className="badge badge--secondary">{badge}</span>
         <span className={styles.quickstartText}>{text}</span>
       </div>
       <div className={styles.quickstartRight}>
@@ -269,7 +251,7 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
         </div>
         {docExternal ? (
           <a href={docHref} {...EXTERNAL_LINK_PROPS} className={styles.quickstartDocBtn} aria-label={docLabel}>
-            {docIcon}
+            <ExternalArrow />
           </a>
         ) : (
           <Link to={docHref} className={styles.quickstartDocBtn} aria-label={docLabel}>
@@ -281,9 +263,8 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
   );
 }
 
-/* One ecosystem destination. The trailing glyph doubles as the external-link
-   affordance, so it is an arrow for internal routes and the diagonal for
-   anything leaving the site. */
+/* One ecosystem destination. Only a destination that leaves the site gets a
+   glyph, the external-link arrow; internal routes carry none. */
 function EcosystemCard({ title, description, to, href, icon }) {
   const isExternal = Boolean(href);
   const Tag = isExternal ? "a" : Link;
@@ -293,9 +274,11 @@ function EcosystemCard({ title, description, to, href, icon }) {
     <Tag {...linkProps} className={styles.ecoCard}>
       <div className={styles.ecoCardTop}>
         <span className={styles.ecoCardIcon}>{icon}</span>
-        <span className={styles.ecoCardBadge} aria-hidden="true">
-          {isExternal ? "↗" : "→"}
-        </span>
+        {isExternal && (
+          <span className={styles.ecoCardBadge} aria-hidden="true">
+            <ExternalArrow />
+          </span>
+        )}
       </div>
       <span className={styles.ecoCardTitle}>{title}</span>
       <span className={styles.ecoCardDesc}>{description}</span>
@@ -513,13 +496,13 @@ function SmartContractsSection() {
               <h3>Smart Contracts</h3>
               <p>Design patterns, examples, and security best practices</p>
               <div className={styles.scLearnLinks}>
-                <Link className={styles.prodChip} to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview")}>
+                <Link className="button button--primary button--sm" to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview")}>
                   Patterns
                 </Link>
-                <Link className={styles.prodChip} to={useBaseUrl("templates/contracts")}>
+                <Link className="button button--primary button--sm" to={useBaseUrl("templates/contracts")}>
                   Examples
                 </Link>
-                <Link className={styles.prodChip} to={useBaseUrl("docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview")}>
+                <Link className="button button--primary button--sm" to={useBaseUrl("docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview")}>
                   Security
                 </Link>
               </div>
@@ -541,8 +524,8 @@ function SmartContractsSection() {
             <div className={styles.prodCardContent}>
               <h3>Asteria</h3>
               <p>Learn development with eUTxOs by building bots that compete in a 2D space game</p>
-              <span className={styles.prodChip}>
-                Explore universe <span aria-hidden="true">↗</span>
+              <span className={clsx("badge badge--primary", styles.prodChip)}>
+                Explore universe <ExternalArrow />
               </span>
             </div>
           </a>
@@ -561,8 +544,8 @@ function SmartContractsSection() {
             <div className={styles.prodCardContent}>
               <h3>Cardano CTF</h3>
               <p>Find vulnerabilities, exploit contracts, earn rewards</p>
-              <span className={styles.prodChip}>
-                Start hacking <span aria-hidden="true">↗</span>
+              <span className={clsx("badge badge--primary", styles.prodChip)}>
+                Start hacking
               </span>
             </div>
           </Link>
@@ -571,7 +554,6 @@ function SmartContractsSection() {
     </section>
   );
 }
-
 
 function CTASection() {
   const cards = [
@@ -627,7 +609,8 @@ function CTASection() {
                   <h3>{card.title}</h3>
                   <p>{card.body}</p>
                   <span className={styles.ctaCardLink}>
-                    {card.cta} <span aria-hidden="true">↗</span>
+                    {card.cta}
+                    {card.external && <ExternalArrow />}
                   </span>
                 </div>
               </>
@@ -685,7 +668,7 @@ function OfficeHoursSection() {
         <div className={styles.officeHoursBanner}>
           <OfficeHoursArt />
           <div className={styles.officeHoursContent}>
-            <span className={styles.officeHoursBadge}>Weekly</span>
+            <span className={clsx("badge badge--secondary", styles.officeHoursBadge)}>Weekly</span>
             <h2>Developer Office Hours</h2>
             <p>
               Get your questions answered live by Cardano Foundation engineers.
@@ -695,22 +678,18 @@ function OfficeHoursSection() {
               <a
                 href="https://www.addevent.com/calendar/TG807216"
                 {...EXTERNAL_LINK_PROPS}
-                className={styles.officeHoursBtn}
+                className="button button--primary"
               >
                 Add to calendar
-                <span className={styles.officeHoursBtnArrow} aria-hidden="true">
-                  <ArrowUpRight />
-                </span>
+                <ExternalArrow />
               </a>
               <a
                 href="https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr"
                 {...EXTERNAL_LINK_PROPS}
-                className={styles.officeHoursBtn}
+                className="button button--primary"
               >
                 Watch recordings
-                <span className={styles.officeHoursBtnArrow} aria-hidden="true">
-                  <ArrowUpRight />
-                </span>
+                <ExternalArrow />
               </a>
             </div>
           </div>

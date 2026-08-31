@@ -25,7 +25,7 @@ function AppTile({ app, variant }) {
         <AppIcon app={app} size="pick" className={styles.pickIcon} />
         <div className={styles.pickBody}>
           {categoryDef && (
-            <span className={styles.category}>{categoryDef.label}</span>
+            <span className="badge badge--secondary">{categoryDef.label}</span>
           )}
           <h3 className={styles.title}>{app.title}</h3>
           <p className={styles.description}>{getAppBlurb(app)}</p>
@@ -38,19 +38,19 @@ function AppTile({ app, variant }) {
     <Link to={`/tools/${app.slug}/`} className={styles.tile}>
       <div className={styles.header}>
         <AppIcon app={app} size="tile" />
-        {recent && <span className={styles.newBadge}>{NEW_LABEL}</span>}
+        {recent && <span className="badge badge--primary">{NEW_LABEL}</span>}
       </div>
       <h3 className={styles.title}>{app.title}</h3>
       <p className={styles.description}>{getAppBlurb(app)}</p>
       <div className={styles.meta}>
         {categoryDef && (
-          <span className={styles.category}>{categoryDef.label}</span>
+          <span className="badge badge--secondary">{categoryDef.label}</span>
         )}
         {app.properties.slice(0, 2).map((p) => {
           const def = Properties[p];
           if (!def) return null;
           return (
-            <span key={p} className={styles.property}>
+            <span key={p} className="badge badge--secondary">
               {def.label}
             </span>
           );

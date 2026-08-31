@@ -37,19 +37,13 @@
   color: var(--site-color-text-muted);
 }
 
-/* Chivo Mono label treatment shared by every chip, badge, and pill CTA */
+/* Chivo Mono label treatment. Buttons and badges now carry this face via the
+   global primitives (custom.css); only the CTA-card links still compose it. */
 .monoLabel {
   font-family: var(--site-font-family-mono-label);
   font-weight: var(--ifm-font-weight-normal);
   text-transform: uppercase;
   letter-spacing: 0.02em;
-}
-
-/* Filled brand-blue pill, the brand's standard chip shape */
-.pillBlue {
-  border-radius: 999px;
-  background: var(--site-color-brand-blue);
-  color: var(--site-color-gray-light);
 }
 
 /* --- HERO --- */
@@ -146,17 +140,18 @@ html[data-theme="dark"] .heroArtDark {
 .heroCircle4 { left: 60.94%; top: 39.26%; }
 .heroCircle5 { left: 55.42%; top: 54.07%; }
 
-/* The subtitle column follows the title instead of flushing to the
-   container's right edge, so it can never drift into the circle artwork
-   on wide screens: the title column shrinks to its own line width and the
-   gap sets the distance between the two. */
+/* The artwork scales with the hero's height (a 16:9 box pinned right) while
+   the copy scales with the width, so the two only share the row cleanly on
+   wide 16:9 screens. Everywhere else the lede stacks under the title and the
+   right side stays art-only; the paired layout is the exception below. */
 .heroContent {
   position: relative;
   z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 4rem;
+  gap: 0;
   text-align: left;
   /* Hero copy sits ~44px deeper than the card grid's 78px gutter */
   padding-left: clamp(0rem, 2.5vw, 44px);
@@ -186,12 +181,29 @@ html[data-theme="dark"] .heroTitle {
   color: var(--site-color-cream);
 }
 
-/* Right-hand column (subtitle + CTA as one unit), vertically centered
-   against the title; centering the taller block lands the subtitle's first
-   line level with the DEVELOPER line of the title */
+/* Subtitle + CTA as one unit under the title */
 .heroRight {
-  flex: 0 1 24rem;
-  align-self: center;
+  flex: none;
+  align-self: flex-start;
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+}
+
+/* Paired layout, only where the lede clears the lowest circle: 16:9 or wider
+   at 1900px and up. Centering the taller block lands the subtitle's first
+   line level with the DEVELOPER line of the title. */
+@media screen and (min-width: 1900px) and (min-aspect-ratio: 16/9) {
+  .heroContent {
+    flex-direction: row;
+    gap: 4rem;
+  }
+
+  .heroRight {
+    flex: 0 1 24rem;
+    align-self: center;
+    max-width: none;
+    margin: 0;
+  }
 }
 
 .heroSubtitle {
@@ -206,6 +218,9 @@ html[data-theme="dark"] .heroSubtitle {
 }
 
 .heroActions {
+  /* The hero is a call to action: its primary button takes the amber context */
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
   margin-top: 1.5rem;
   display: flex;
   align-items: center;
@@ -213,70 +228,9 @@ html[data-theme="dark"] .heroSubtitle {
   flex-wrap: wrap;
 }
 
-/* Shared shell for the CTA pair below */
-.heroCtaBase {
-  composes: monoLabel;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  padding: 0.5em 1em;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  text-decoration: none !important;
-  transition: all 0.25s ease;
-}
-
-/* Amber with navy glyphs, same in both themes (matches the bento arrow
-   squares and the floating button) */
-.heroCta {
-  composes: heroCtaBase;
-  background: var(--site-color-amber);
-  color: var(--site-color-navy);
-}
-
-.heroCta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
-  color: var(--site-color-navy);
-}
-
-/* Ghost sibling of the primary: same shell, outline instead of fill */
-.heroCtaSecondary {
-  composes: heroCtaBase;
-  border: 1px solid var(--site-color-ink);
-  color: var(--site-color-ink);
-  background: transparent;
-}
-
-.heroCtaSecondary:hover {
-  transform: translateY(-2px);
-  background: var(--site-color-navy);
-  border-color: var(--site-color-navy);
-  color: var(--site-color-cream);
-}
-
-html[data-theme="dark"] .heroCtaSecondary {
-  border-color: var(--site-color-cream);
-  color: var(--site-color-cream);
-}
-
-html[data-theme="dark"] .heroCtaSecondary:hover {
-  background: var(--site-color-cream);
-  color: var(--site-color-navy);
-}
-
 @media screen and (max-width: 996px) {
   .heroContent {
-    flex-direction: column;
-    gap: 0;
     padding-left: 0;
-  }
-
-  .heroRight {
-    flex: none;
-    align-self: flex-start;
-    max-width: 34rem;
-    margin: 1.5rem 0 0;
   }
 }
 
@@ -367,26 +321,12 @@ html[data-theme="dark"] .heroCtaSecondary:hover {
 }
 
 .bentoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   font-size: 0.875rem;
   font-weight: var(--ifm-font-weight-normal);
   color: var(--site-color-card-text);
-}
-
-.bentoArrowBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-  border-radius: 4px;
-  background: var(--site-color-card-accent);
-  color: var(--site-color-navy);
-  transition: transform 0.2s ease;
-}
-
-.bentoCard:hover .bentoArrowBtn {
-  transform: translate(2px, -2px);
 }
 
 /* Start Here — large card, coil artwork bleeding on the right */
@@ -545,7 +485,7 @@ html[data-theme="dark"] .devPanelHeader p {
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 2.5vw, 2.75rem);
-  border-radius: 13px;
+  border-radius: var(--site-radius-lg);
   min-width: 0;
   background-image: radial-gradient(
     circle,
@@ -580,7 +520,7 @@ html[data-theme="dark"] .devPanelArt {
   align-items: center;
   gap: 13px;
   padding: clamp(0.7rem, 1.1vw, 18px);
-  border-radius: 13px;
+  border-radius: var(--site-radius-lg);
   font-size: clamp(1rem, 1.4vw, 1.5rem);
   font-weight: var(--site-font-weight-heading);
   letter-spacing: -0.02em;
@@ -631,7 +571,7 @@ html[data-theme="dark"] .sdkItem:hover {
   flex-direction: column;
   gap: 11px;
   padding: clamp(0.9rem, 1.1vw, 15px);
-  border-radius: 13px;
+  border-radius: var(--site-radius-lg);
   text-decoration: none !important;
   transition: background-color 0.2s ease;
 }
@@ -773,16 +713,6 @@ html[data-theme="dark"] .ecoCardDesc {
   gap: 1rem;
 }
 
-.quickstartBadge {
-  composes: monoLabel;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 4px;
-  background: rgb(var(--site-color-card-text-rgb) / 0.2);
-  color: var(--site-color-card-text);
-}
-
 .quickstartText {
   font-size: 0.875rem;
   font-weight: var(--ifm-font-weight-semibold);
@@ -797,9 +727,10 @@ html[data-theme="dark"] .ecoCardDesc {
 }
 
 .quickstartDocBtn {
+  font-size: 1.25rem;
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -881,7 +812,7 @@ html[data-theme="dark"] .ecoCardDesc {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   font-family: var(--site-font-family-mono-code);
   font-size: 0.8rem;
   background: rgb(var(--site-color-navy-rgb) / 0.25);
@@ -916,7 +847,7 @@ html[data-theme="dark"] .ecoCardDesc {
   width: 32px;
   height: 32px;
   padding: 0;
-  border-radius: 6px;
+  border-radius: var(--site-radius-md);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1036,28 +967,6 @@ html[data-theme="dark"] .ecoCardDesc {
   margin-top: 0.875rem;
 }
 
-.prodChip {
-  composes: monoLabel;
-  composes: pillBlue;
-  display: inline-block;
-  padding: 0.45rem 1rem;
-  font-size: 0.75rem;
-  text-decoration: none !important;
-  transition: all 0.2s ease;
-}
-
-/* Lone chips (whole-card links) recolor amber when the card is hovered;
-   the Smart Contracts chip row recolors and lifts per chip on direct hover */
-.prodCard:hover .prodCardContent > .prodChip,
-.scLearnLinks .prodChip:hover {
-  background: var(--site-color-card-accent);
-  color: var(--site-color-navy);
-}
-
-.scLearnLinks .prodChip:hover {
-  transform: translateY(-2px);
-}
-
 /* The circles art is semi-transparent and reads correctly only over the navy
    card; anchored top-right with bleed instead of full-bleed cover */
 .scLearnImage {
@@ -1101,9 +1010,6 @@ html[data-theme="dark"] .ecoCardDesc {
     min-height: 220px;
   }
 
-  .scLearnLinks .prodChip {
-    padding: 0.4rem 0.75rem;
-  }
 }
 
 /* --- CTA --- */
@@ -1177,6 +1083,9 @@ html[data-theme="dark"] .ecoCardDesc {
 }
 
 .ctaCardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   composes: monoLabel;
   font-size: 1rem;
   color: var(--site-color-card-text);
@@ -1246,25 +1155,10 @@ html[data-theme="dark"] .officeHoursContent {
   color: var(--site-color-cream);
 }
 
-/* Chivo at light weight, not the mono label face: the template sets the
-   WEEKLY pill in the text face. Inverts with the theme. */
+/* The WEEKLY chip is the shared badge; this is only its place in the column */
 .officeHoursBadge {
-  display: inline-block;
   width: fit-content;
-  font-size: 1rem;
-  font-weight: var(--ifm-font-weight-light);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  padding: 0.35rem 1.2rem;
-  border-radius: 999px;
   margin-bottom: 1.6rem;
-  background: var(--site-color-navy);
-  color: var(--site-color-cream);
-}
-
-html[data-theme="dark"] .officeHoursBadge {
-  background: var(--site-color-cream);
-  color: var(--site-color-navy);
 }
 
 .officeHoursContent h2 {
@@ -1294,31 +1188,6 @@ html[data-theme="dark"] .officeHoursContent p {
   align-items: center;
   gap: 1.25rem;
   flex-wrap: wrap;
-}
-
-/* Both actions are identical filled pills; no secondary variant. */
-.officeHoursBtn {
-  composes: monoLabel;
-  composes: pillBlue;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.85rem 1.2rem;
-  font-size: 0.85rem;
-  text-decoration: none !important;
-  transition: all 0.25s ease;
-}
-
-.officeHoursBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgb(var(--site-color-brand-blue-rgb) / 0.25);
-  color: var(--site-color-gray-light);
-}
-
-.officeHoursBtnArrow svg {
-  display: block;
-  width: 11px;
-  height: 11px;
 }
 
 .officeHoursArt {
@@ -1402,14 +1271,12 @@ html[data-theme="dark"] .officeHoursArt .officeHoursArtDark {
    one place: if a control is added below without an entry here, it is obvious.
 
    Ring colour follows the surface the ring is drawn on, not the theme, because
-   an outline sits outside the element. The three groups below were measured
+   an outline sits outside the element. Both groups below were measured
    against the composited backdrop in both themes; a navy ring on a navy card
    is the exact defect this section exists to fix.
    =========================================================================== */
 
 /* On the page itself: cream in light, the dark page in dark. */
-.heroCta:focus-visible,
-.heroCtaSecondary:focus-visible,
 .bentoCard:focus-visible,
 .sdkItem:focus-visible,
 .ecoCard:focus-visible,
@@ -1419,8 +1286,6 @@ html[data-theme="dark"] .officeHoursArt .officeHoursArtDark {
   outline-offset: 2px;
 }
 
-html[data-theme="dark"] .heroCta:focus-visible,
-html[data-theme="dark"] .heroCtaSecondary:focus-visible,
 html[data-theme="dark"] .bentoCard:focus-visible,
 html[data-theme="dark"] .sdkItem:focus-visible,
 html[data-theme="dark"] .ecoCard:focus-visible,
@@ -1430,17 +1295,10 @@ html[data-theme="dark"] .ctaCard:focus-visible {
 }
 
 /* On a blue or navy panel in BOTH themes, where navy would vanish:
-   quickstart 9.7:1, the code toolbar 12.6:1, the chips 19.1:1. */
+   quickstart 9.7:1, the code toolbar 12.6:1. */
 .quickstartDocBtn:focus-visible,
-.copyBtn:focus-visible,
-.prodChip:focus-visible {
+.copyBtn:focus-visible {
   outline: 2px solid var(--site-color-cream);
   outline-offset: 2px;
 }
 
-/* On the light gray card that stays light in BOTH themes, where cream would
-   vanish instead: navy reads at 17.7:1. */
-.officeHoursBtn:focus-visible {
-  outline: 2px solid var(--site-color-navy);
-  outline-offset: 2px;
-}

@@ -12,7 +12,7 @@ export default function ChipRow({ label, ids, taxonomy }) {
       <span className={styles.chipLabel}>{label}</span>
       <div className={styles.chips}>
         {ids.map((id) => (
-          <span key={id} className={styles.chip}>
+          <span key={id} className="badge badge--secondary">
             {taxonomy[id]?.label ?? id}
           </span>
         ))}
