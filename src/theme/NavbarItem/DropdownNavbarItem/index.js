@@ -135,24 +135,38 @@ function MegaDropdownNavbarItem({label, className, customProps}) {
   }, [open]);
 
   // The panel centers on its trigger; near the viewport edges that center
-  // position would push it off-screen, so measure once per open and shift
-  // it back inside via a custom property the transform picks up.
+  // position would push it off-screen, so shift it back inside via a custom
+  // property the transform picks up. The centered position is derived from
+  // the trigger and the panel's layout width rather than read off the panel:
+  // the shift rides on a transitioned transform, so right after a style
+  // change the panel's own rect still reports its previous, already-shifted
+  // position and a stale shift from the last open would read as "fits".
   useLayoutEffect(() => {
+    const root = rootRef.current;
     const panel = panelRef.current;
-    if (!open || !panel) {
-      return;
+    if (!open || !root || !panel) {
+      return undefined;
     }
-    panel.style.removeProperty('--mega-menu-shift');
-    const rect = panel.getBoundingClientRect();
-    let shift = 0;
-    if (rect.left < VIEWPORT_MARGIN) {
-      shift = VIEWPORT_MARGIN - rect.left;
-    } else if (rect.right > window.innerWidth - VIEWPORT_MARGIN) {
-      shift = window.innerWidth - VIEWPORT_MARGIN - rect.right;
-    }
-    if (shift !== 0) {
-      panel.style.setProperty('--mega-menu-shift', `${shift}px`);
-    }
+    const place = () => {
+      const anchor = root.getBoundingClientRect();
+      const width = panel.offsetWidth;
+      const left = anchor.left + anchor.width / 2 - width / 2;
+      const right = left + width;
+      let shift = 0;
+      if (left < VIEWPORT_MARGIN) {
+        shift = VIEWPORT_MARGIN - left;
+      } else if (right > window.innerWidth - VIEWPORT_MARGIN) {
+        shift = window.innerWidth - VIEWPORT_MARGIN - right;
+      }
+      if (shift !== 0) {
+        panel.style.setProperty('--mega-menu-shift', `${shift}px`);
+      } else {
+        panel.style.removeProperty('--mega-menu-shift');
+      }
+    };
+    place();
+    window.addEventListener('resize', place);
+    return () => window.removeEventListener('resize', place);
   }, [open]);
 
   // Hover-intent opening is a mouse behavior; on touch the synthetic
