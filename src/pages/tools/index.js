@@ -24,13 +24,13 @@ import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 import {
-  SortedShowcases,
-  Showcases,
+  SortedTools,
+  Tools,
   Categories,
   CategoryList,
   LanguageList,
   InterfaceList,
-} from "@site/src/data/builder-tools/showcase";
+} from "@site/src/data/builder-tools/catalog";
 
 import styles from "./styles.module.css";
 
@@ -47,7 +47,7 @@ function restoreUserState(userState) {
   window.scrollTo({ top: scrollTopPosition });
 }
 
-const maintainerPicks = SortedShowcases.filter((t) => t.maintainerPick);
+const maintainerPicks = SortedTools.filter((t) => t.maintainerPick);
 
 const isProminentCategory = (c) => Categories[c]?.prominent === true;
 // Everything not prominent is compact, so a category missing the flag still
@@ -57,7 +57,7 @@ const isCompactCategory = (c) => !isProminentCategory(c);
 // Category order is derived by how many tools sit in each category (desc).
 function deriveCategoryOrder(predicate) {
   const countByCat = {};
-  Showcases.forEach((tool) => {
+  Tools.forEach((tool) => {
     if (!predicate(tool.category)) return;
     countByCat[tool.category] = (countByCat[tool.category] || 0) + 1;
   });
@@ -82,9 +82,9 @@ function readSearchName(search) {
   return new URLSearchParams(search).get(SearchNameQueryKey);
 }
 
-// Insertion rank per tool: `Showcases` keeps the order entries were appended
+// Insertion rank per tool: `Tools` keeps the order entries were appended
 // to tools.js, so a higher index is a more recent addition. Built once.
-const INSERTION_RANK = new Map(Showcases.map((tool, i) => [tool.slug, i]));
+const INSERTION_RANK = new Map(Tools.map((tool, i) => [tool.slug, i]));
 
 function sortTools(tools, sortOption) {
   if (sortOption === SORT_IDS.ALPHABETICAL) {
@@ -95,7 +95,7 @@ function sortTools(tools, sortOption) {
       (a, b) => (INSERTION_RANK.get(b.slug) ?? 0) - (INSERTION_RANK.get(a.slug) ?? 0)
     );
   }
-  // FEATURED: SortedShowcases order (maintainer picks first, then alphabetical).
+  // FEATURED: SortedTools order (maintainer picks first, then alphabetical).
   return tools;
 }
 
@@ -148,7 +148,7 @@ function useFilteredTools() {
   const filtered = useMemo(
     () =>
       sortTools(
-        filterTools(SortedShowcases, selectedTags, searchName),
+        filterTools(SortedTools, selectedTags, searchName),
         sortOption
       ),
     [selectedTags, searchName, sortOption]
@@ -379,7 +379,7 @@ function MaintainerPicksSection({ tools }) {
 // below the browse grid still needs its own.
 function AllToolsSection({ tools, sortOption, isUnfiltered, heading, bare = false }) {
   const visible = useMemo(
-    () => (isUnfiltered ? sortTools(SortedShowcases, sortOption) : tools),
+    () => (isUnfiltered ? sortTools(SortedTools, sortOption) : tools),
     [isUnfiltered, sortOption, tools]
   );
   return (
@@ -423,7 +423,7 @@ function AllToolsReveal() {
         className="button button--outline button--primary"
         onClick={() => setShown(true)}
       >
-        {`View all ${SortedShowcases.length} tools alphabetically`}
+        {`View all ${SortedTools.length} tools alphabetically`}
       </button>
     </section>
   );

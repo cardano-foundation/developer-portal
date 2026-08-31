@@ -2,12 +2,12 @@
 // tools and card blurbs.
 
 import {
-  Showcases,
+  Tools,
   RECENT_TOOLS_COUNT,
-} from "@site/src/data/builder-tools/showcase";
+} from "@site/src/data/builder-tools/catalog";
 
 const RECENT_SLUGS = new Set(
-  Showcases.slice(-RECENT_TOOLS_COUNT).map((s) => s.slug)
+  Tools.slice(-RECENT_TOOLS_COUNT).map((s) => s.slug)
 );
 
 export function getToolBlurb(tool) {

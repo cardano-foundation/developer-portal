@@ -12,11 +12,11 @@ import GitHubIcon from "@site/src/components/GitHubIcon";
 import PageCTA from "@site/src/components/PageCTA";
 import PickBadge from "@site/src/components/PickBadge";
 import {
-  TemplateShowcases,
+  Templates,
   Frameworks,
   Sdks,
   Wallets,
-} from "@site/src/data/templates/showcase";
+} from "@site/src/data/templates/catalog";
 
 import styles from "./styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
@@ -79,7 +79,7 @@ function NotFound() {
 
 export default function TemplateDetail({ slug }) {
   const { siteConfig } = useDocusaurusContext();
-  const template = TemplateShowcases.find((t) => t.slug === slug);
+  const template = Templates.find((t) => t.slug === slug);
 
   if (!template) return <NotFound />;
 

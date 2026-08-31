@@ -1,5 +1,5 @@
 // ============================================================================
-// Templates - showcase data (component-facing surface)
+// Templates - catalog (component-facing surface)
 // ============================================================================
 // Shapes the raw template entries for the listing + detail components: derives
 // the slug, the "Use this template" command, and the GitHub source URL from
@@ -8,8 +8,8 @@
 // ============================================================================
 
 import {
-  Templates,
-  SortedTemplates,
+  Templates as RawTemplates,
+  SortedTemplates as RawSortedTemplates,
   Frameworks,
   Sdks,
   Wallets,
@@ -29,11 +29,8 @@ export {
 
 const REPO = "cardano-foundation/developer-portal";
 
-// Slug = the examples/templates/<name> directory. MUST byte-match slugFor() in
-// plugins/templates-routes/index.js so detail routes line up.
-export function templateSlug(template) {
-  return template.repoPath.split("/").pop();
-}
+// Slug derivation lives in ./slug.js, shared with plugins/templates-routes.
+import { templateSlug } from "./slug";
 
 function gigetCommand(template) {
   return `npx giget@latest gh:${REPO}/${template.repoPath} my-app`;
@@ -46,22 +43,22 @@ function githubUrl(template) {
 function adapt(template) {
   return {
     ...template,
-    slug: templateSlug(template),
+    slug: templateSlug(template.repoPath),
     command: gigetCommand(template),
     githubUrl: githubUrl(template),
   };
 }
 
-// `TemplateShowcases` keeps insertion order (drives "recently added" / NEW).
-// `SortedTemplateShowcases` is maintainer-picks-first then alphabetical.
-export const TemplateShowcases = Templates.map(adapt);
-export const SortedTemplateShowcases = SortedTemplates.map(adapt);
+// `Templates` keeps insertion order (drives "recently added" / NEW).
+// `SortedTemplates` is maintainer-picks-first then alphabetical.
+export const Templates = RawTemplates.map(adapt);
+export const SortedTemplates = RawSortedTemplates.map(adapt);
 
-// Slugs are React keys and detail-route ids (they must match slugFor() in
-// plugins/templates-routes); a folder-basename collision would silently drop a
-// route, so fail the build instead of shipping a 404. Mirrors the slug-uniqueness
-// guard in src/data/contracts.js.
-const templateSlugs = TemplateShowcases.map((t) => t.slug);
+// Slugs are React keys and detail-route ids (derived in ./slug.js, shared
+// with plugins/templates-routes); a folder-basename collision would silently
+// drop a route, so fail the build instead of shipping a 404. Mirrors the
+// slug-uniqueness guard in src/data/contracts.js.
+const templateSlugs = Templates.map((t) => t.slug);
 const duplicateTemplateSlug = templateSlugs.find(
   (slug, i) => templateSlugs.indexOf(slug) !== i
 );

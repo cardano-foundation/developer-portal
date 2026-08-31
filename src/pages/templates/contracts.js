@@ -14,7 +14,7 @@ import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
 import useFacetSelection from "@site/src/components/TemplatesBrowser/useFacetSelection";
 import GitHubIcon from "@site/src/components/GitHubIcon";
 import {
-  SortedContractShowcases,
+  SortedContracts,
   ContractSources,
   MAX_SOURCE_AVATARS,
   OnchainLangs,
@@ -23,7 +23,7 @@ import {
   OnchainList,
   OffchainList,
   CategoryList,
-} from "@site/src/data/contracts/showcase";
+} from "@site/src/data/contracts/catalog";
 
 import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
 import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
@@ -114,7 +114,7 @@ function SourcesStrip() {
         </a>
       )}
       <span className={heroStyles.metaText}>
-        {SortedContractShowcases.length} contracts
+        {SortedContracts.length} contracts
       </span>
     </>
   );
@@ -171,7 +171,7 @@ export default function Contracts() {
   ]);
 
   const filtered = useMemo(
-    () => filterContracts(SortedContractShowcases, selected, search),
+    () => filterContracts(SortedContracts, selected, search),
     [selected, search]
   );
 

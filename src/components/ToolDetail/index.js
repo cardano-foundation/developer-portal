@@ -10,8 +10,8 @@ import clsx from "clsx";
 import {
   Categories,
   Properties,
-  Showcases,
-} from "@site/src/data/builder-tools/showcase";
+  Tools,
+} from "@site/src/data/builder-tools/catalog";
 import ToolIcon from "@site/src/components/ToolIcon";
 import ToolTile from "@site/src/components/ToolTile";
 import ExternalArrow from "@site/src/components/ExternalArrow";
@@ -70,7 +70,7 @@ function TagPill({ tag, def, info }) {
 }
 
 function getRelatedTools(current) {
-  return Showcases.filter(
+  return Tools.filter(
     (s) => s.category === current.category && s.slug !== current.slug
   )
     .sort((a, b) => a.title.localeCompare(b.title))
@@ -159,7 +159,7 @@ function NotFound() {
 
 export default function ToolDetail({ slug }) {
   const { siteConfig } = useDocusaurusContext();
-  const tool = Showcases.find((t) => t.slug === slug);
+  const tool = Tools.find((t) => t.slug === slug);
 
   if (!tool) return <NotFound />;
 

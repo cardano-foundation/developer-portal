@@ -50,7 +50,7 @@ export const SOURCES = {
 };
 
 // How many sources show as avatars before the rest fold into "+N more". Single
-// source of truth, shared by the page (rendering) and showcase.js (validation).
+// source of truth, shared by the page (rendering) and catalog.js (validation).
 export const MAX_SOURCE_AVATARS = 3;
 
 // Valid `source` ids. validation.js checks a contract's `source` against this

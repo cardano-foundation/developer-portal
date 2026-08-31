@@ -3,21 +3,15 @@
 // builder tool. The plugin only needs slugs, so it reads src/data/builder-tools/tools.js
 // as TEXT and extracts the entry titles (it can't `require` that module — it contains
 // webpack `require(png)` image refs). The ToolDetail component resolves the full tool
-// object from the showcase adapter (webpack context) by slug at render time.
+// object from the catalog by slug at render time.
 //
 
 const fs = require("fs");
 const path = require("path");
 
-// MUST byte-match slugify() in src/data/builder-tools/showcase.js, otherwise
-// ToolDetail won't find the tool for a generated route.
-function slugify(title) {
-  return String(title)
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+// Shared with src/data/builder-tools/catalog.js, so a generated route and
+// ToolDetail's lookup can't diverge.
+const { slugify } = require("../../src/data/builder-tools/slug");
 
 module.exports = function toolsRoutesPlugin(context) {
   return {

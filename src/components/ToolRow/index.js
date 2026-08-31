@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
-import { Categories, Properties } from "@site/src/data/builder-tools/showcase";
+import { Categories, Properties } from "@site/src/data/builder-tools/catalog";
 import { isRecent, getToolBlurb } from "@site/src/utils/toolDisplay";
 import ToolIcon from "@site/src/components/ToolIcon";
 

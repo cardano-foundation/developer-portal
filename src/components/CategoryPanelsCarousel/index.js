@@ -3,18 +3,18 @@ import Link from "@docusaurus/Link";
 
 import ToolRow from "@site/src/components/ToolRow";
 import Carousel from "@site/src/components/Carousel";
-import { Categories, Showcases } from "@site/src/data/builder-tools/showcase";
+import { Categories, Tools } from "@site/src/data/builder-tools/catalog";
 
 import styles from "./styles.module.css";
 
 function selectPanelTools(category, limit) {
-  // Newest first. `Showcases` keeps insertion order and entries are appended,
+  // Newest first. `Tools` keeps insertion order and entries are appended,
   // so reading from the end gives the most recently added in each category.
   // This used to be maintainer-picks-then-random; the panels are a recency
   // surface, and dropping the randomness also makes the render deterministic.
   const inCategory = [];
-  for (let i = Showcases.length - 1; i >= 0 && inCategory.length < limit; i--) {
-    if (Showcases[i].category === category) inCategory.push(Showcases[i]);
+  for (let i = Tools.length - 1; i >= 0 && inCategory.length < limit; i--) {
+    if (Tools[i].category === category) inCategory.push(Tools[i]);
   }
   return inCategory;
 }
