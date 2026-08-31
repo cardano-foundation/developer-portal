@@ -24,7 +24,7 @@ An SDK handles the parts of Cardano you do not want to reimplement: assembling a
 
 The code tabs across this curriculum use **Evolution** and **Mesh**, both TypeScript. That is the only reason they appear here: with one of them installed, every example on the site runs as written. Nothing you learn depends on either one.
 
-Cardano has SDKs in Python (PyCardano), Rust (Whisky), Go (Apollo), C# (Chrysalis), Java, Swift, and more, alongside lower-level serialization libraries. [Builder Tools](/tools/?tags=sdk) lists them by language and by what each one covers.
+Cardano has SDKs in Python, Rust, Go, C#, Java, Swift, and more, alongside lower-level serialization libraries. [Builder Tools](/tools/?tags=sdk) lists them by language and by what each one covers.
 
 ## Install it
 
