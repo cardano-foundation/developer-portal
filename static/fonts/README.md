@@ -15,8 +15,9 @@ scale is defined as tokens in `src/css/custom.css`, which is also where the
 the size of the raw TTF downloads; convert with
 `fonttools ttLib.woff2 compress` if you ever replace them.
 
-`scripts/fonts/` holds separate static Chivo cuts (400/700). They exist
-because the OG-card generator's renderer (Satori) cannot parse variable
-fonts; do not delete them when touching this directory.
+`scripts/fonts/` holds one separate static Chivo cut (`Chivo-200.ttf`, the
+card headline weight). It exists because the OG-card generator's renderer
+(Satori) cannot parse variable fonts; do not delete it when touching this
+directory.
 
 The fonts are licensed under the SIL Open Font License 1.1, see `OFL.txt`.
