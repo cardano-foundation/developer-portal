@@ -9,15 +9,13 @@ import TabItem from "@theme/TabItem";
 
 # Intermediate: smart contracts
 
-You finished Beginner, so you can move value around Cardano. This track makes the chain **enforce rules** about how that value moves. That is what a smart contract is. We build up from the ideas to a real contract you compile and run yourself.
+You finished Beginner, so you can move value around Cardano. This track makes the chain **enforce rules** about how that value moves. That is what a smart contract is.
 
 :::note Coming from Ethereum?
 "Smart contract" means something different here. On Cardano, it is not a deployed program with storage that you call and that then acts. It is a **rule that answers yes or no** to a transaction your app has already built. State still exists, but it lives in the **datum** on a UTxO rather than inside the contract. **[Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers)** covers how Ethereum and Cardano development differ. This track teaches it from scratch.
 :::
 
 ## What you'll be able to do
-
-After this track you'll be able to:
 
 - Understand how Cardano dApps work under the hood and how you can build your own.
 - Read and write Cardano smart contracts.
@@ -50,7 +48,7 @@ Lectures 10 to 12 each start from an idea and walk the same path, from the idea 
 
 Four contracts, and you write all of them: a **vault** that releases funds only to the owner who signs, a **vesting** contract that holds funds until a date, a **gift card** whose token is the key to the funds behind it, and an **oracle** that publishes a value and keeps changing it.
 
-The vault is the long one: lectures 1 to 9 build it a step at a time, one concept per lecture. Lectures 2 to 8 are on-chain only, so you write the validator, compile it and test it with no app yet, and lecture 9 is where you connect it to a website. That order is deliberate: the contract is where the thinking is, and the app that drives it follows from it.
+The vault is the long one: lectures 1 to 9 build it a step at a time, one concept per lecture. Lectures 2 to 8 are on-chain only, so you write the validator, compile it and test it with no app yet, and lecture 9 is where you connect it to a website.
 
 ## What you need
 
@@ -78,7 +76,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 
 Everything in these lectures is also finished and working in one example project, which we call the **playground**. It has every contract in the track, plus a small browser app that drives them: connect a wallet, mint and lock funds, unlock them again, put a deadline on funds, update an oracle, etc.
 
-You do not need it to follow the lectures. It is here for two reasons:
+You do not need it to follow the lectures:
 
 - **To see where you are going.** Run it once now, and the rest of the track is you rebuilding the first part of it yourself.
 - **To get unstuck.** Every exercise solution is provided in the playground's code.
@@ -107,7 +105,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 </TabItem>
 </Tabs>
 
-Inside the folder, one directory per contract, and the code you read in these lectures is imported straight from it:
+The code you read in these lectures is imported straight from it:
 
 ```
 playground/
@@ -124,7 +122,7 @@ playground/
     └── off-chain/mesh/
 ```
 
-**Each folder is a project in its own right.** Its contract and the app that drives it sit side by side, and nothing in it reaches into a sibling, so you can open one, run it, and take it apart without the other three in your way. 
+**Each folder is a project in its own right.** Its contract and the app that drives it sit side by side, and nothing in it reaches into a sibling, so you can open one, run it, and take it apart without the other three in your way.
 
 The cost of that separation is that every app is separately installed and separately configured. Each `off-chain/mesh/` wants its own `npm install`, its own `.env`, and its own wallet connection. The `.env.example` files are identical, so once you have filled one in you can copy it across:
 
@@ -136,4 +134,4 @@ You never write code in these folders. Every lecture has you build in your own w
 
 Once `npm run dev` is running, open the printed URL **in the browser where Lace is installed**. Connect, set up collateral, then **Lock 5 ADA** and **Unlock** it again. The **Mint & lock** button does the same thing but also creates a token under the contract's own policy, which is what **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** is about.
 
-Ready? Start with **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)**.
+Start with **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)**.

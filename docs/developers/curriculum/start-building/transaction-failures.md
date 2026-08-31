@@ -34,7 +34,7 @@ The transaction is well-formed but the node rejects it. The full list of node re
 - **`BadInputsUTxO`** (phase 1): a chosen UTXO is already spent. Either you read **stale** state (the indexer had not caught up) or another transaction **contended** for the same UTXO (a second browser tab, a double-clicked submit, or a concurrent backend build). This is the UTXO model's characteristic race: inputs are discrete and consumed exactly once.
 - **`OutsideValidityIntervalUTxO`** (phase 1): the transaction's validity window has passed before it landed. Rebuild with a fresh window.
 - **`ValueNotConservedUTxO`** / **`FeeTooSmallUTxO`** (phase 1): the balance or the fee is wrong, almost always a building bug rather than a transient condition.
-- **Script failure** (phase 2): a validator returned false or ran out of budget. Collateral is consumed. This is a logic problem, in the validator or in the datum/redeemer you supplied, not something a retry fixes. Reproduce it locally with the [testing](/docs/developers/curriculum/smart-contracts/testing) tools before resubmitting.
+- **Script failure** (phase 2): a validator returned false or ran out of budget. Collateral is consumed. This is a logic problem, in the validator or in the datum/redeemer you supplied, not something a retry fixes. Reproduce it locally with an [emulator or devnet](/docs/developers/curriculum/start-building/local-testing) before resubmitting; if the bug is in the validator itself, see [testing validators](/docs/developers/curriculum/smart-contracts/testing).
 
 ## Congestion and the mempool
 

@@ -1,30 +1,16 @@
+// #region import-dict
+use aiken/collection/dict
+// #endregion import-dict
+
 use aiken/collection/list
-use aiken/fuzz
 use aiken/crypto.{VerificationKeyHash}
+use aiken/fuzz
 
 // #region import-policy-id
 use cardano/assets.{PolicyId}
 // #endregion import-policy-id
 
 use cardano/transaction.{OutputReference, Transaction}
-
-// #region import-token-minted
-use cocktail.{token_minted}
-// #endregion import-token-minted
-
-// #region spend-test-imports
-use mocktail.{complete, mocktail_tx, required_signer_hash}
-use mocktail/virgin_key_hash.{mock_pub_key_hash}
-use mocktail/virgin_output_reference.{mock_utxo_ref}
-// #endregion spend-test-imports
-
-// The mint tests need two more helpers. They live in modules already imported
-// above, and Aiken takes them on their own lines, so the reader adds these
-// rather than editing the lines they already have.
-// #region mint-test-imports
-use mocktail.{mint}
-use mocktail/virgin_key_hash.{mock_script_hash}
-// #endregion mint-test-imports
 
 // The datum: who owns *this* locked UTxO. It changes from one UTxO to the next,
 // so it belongs on the UTxO.
@@ -40,23 +26,18 @@ pub type VaultAction {
   Unlock
   Recover
 }
-
 // #endregion types
 
-// The name of the token this vault can mint. One script, one token.
+// The name of the token this policy can mint. One policy, one token name.
 // #region token-name
 const vault_token: ByteArray = "VAULT"
 // #endregion token-name
 
-// The vault the reader builds across the track: the owner's key, a backup key
-// welded in at build time, and a token of its own.
+// The vault the reader builds across the track: the owner's key for normal use,
+// and a backup key welded in at build time.
 //
-// `spend` guards the locked UTxO. Three facts reach it, each fixed at a
-// different moment: `recovery` at build time, `owner` at lock time, and the
-// action at spend time.
-//
-// `mint` guards the token: the same hash is this script's policy id, so it also
-// decides which tokens may exist under it. One token in, or one token out.
+// Three facts reach `spend`, each fixed at a different moment: `recovery` at
+// build time, `owner` at lock time, and the action at spend time.
 // #region vault
 validator vault(recovery: VerificationKeyHash) {
   spend(
@@ -72,73 +53,96 @@ validator vault(recovery: VerificationKeyHash) {
     }
   }
 
-  // #region mint-handler
-  mint(_redeemer: Data, policy_id: PolicyId, self: Transaction) {
-    or {
-      token_minted(self.mint, policy_id, vault_token, 1),
-      token_minted(self.mint, policy_id, vault_token, -1),
-    }
+  else(_) {
+    fail
   }
-  // #endregion mint-handler
+}
+// #endregion vault
+
+// A second script, with no parameter, so its hash is the same for everybody
+// while the vault's moves with the recovery key. That hash is also this script's
+// policy id, so it decides which tokens may exist under it: one token in, or one
+// token out.
+// #region mint-validator
+validator vault_policy {
+  mint(_redeemer: Data, policy_id: PolicyId, self: Transaction) {
+    expect [Pair(name, _)] = assets.tokens(self.mint, policy_id)
+      |> dict.to_pairs()
+    name == vault_token
+  }
 
   else(_) {
     fail
   }
 }
-
-// #endregion vault
+// #endregion mint-validator
 
 // Tests. The reader starts them in **testing**, against the vault as it stands
 // there, and extends them as the contract grows: the recovery pair in
 // **parameters**, the mint trio in **validator purposes**.
 //
-// Every call passes `recovery` first, the way a parameter always comes first in
-// a handler. That is the edit **parameters** makes to the tests written in
-// **testing**, where the vault had no parameter to pass.
+// Each one copies `transaction.placeholder` and fills in only the field its rule
+// reads. `recovery` leads every call into `vault`, the way a parameter always
+// comes first in a handler, and none into `vault_policy`, which has no parameter.
 
 // #region spend-tests
-const owner: VerificationKeyHash = mock_pub_key_hash(1)
+const owner: VerificationKeyHash =
+  #"00000000000000000000000000000000000000000000000000000001"
 
-const stranger: VerificationKeyHash = mock_pub_key_hash(2)
+const stranger: VerificationKeyHash =
+  #"00000000000000000000000000000000000000000000000000000002"
+
 // #endregion spend-tests
 
 // The backup key the vault is compiled around. It arrives in **parameters**,
 // alongside the `Recover` action it guards.
 // #region recover-tests
-const recovery: VerificationKeyHash = mock_pub_key_hash(3)
+const recovery: VerificationKeyHash =
+  #"00000000000000000000000000000000000000000000000000000003"
 // #endregion recover-tests
 
 // #region spend-tests
-const dummy_ref: OutputReference = mock_utxo_ref(0, 0)
+const dummy_ref: OutputReference =
+  OutputReference {
+    transaction_id: #"0000000000000000000000000000000000000000000000000000000000000000",
+    output_index: 0,
+  }
 // #endregion spend-tests
 
+// Stands in for the policy id the network would hand the handler.
 // #region mint-tests
-const policy: PolicyId = mock_script_hash(0)
+const policy: PolicyId =
+  #"000000000000000000000000000000000000000000000000000000ff"
 // #endregion mint-tests
 
 // #region spend-tests
 test unlock_ok_when_the_owner_signs() {
-  let tx = mocktail_tx() |> required_signer_hash(True, owner) |> complete()
+  let tx = Transaction { ..transaction.placeholder, extra_signatories: [owner] }
   vault.spend(recovery, Some(VaultDatum { owner }), Unlock, dummy_ref, tx)
 }
 
 test unlock_fails_for_a_stranger() fail {
-  let tx = mocktail_tx() |> required_signer_hash(True, stranger) |> complete()
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [stranger],
+  }
   vault.spend(recovery, Some(VaultDatum { owner }), Unlock, dummy_ref, tx)
 }
-
 // #endregion spend-tests
 
 // #region recover-tests
 test recover_ok_when_the_recovery_key_signs() {
-  let tx = mocktail_tx() |> required_signer_hash(True, recovery) |> complete()
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [recovery],
+  }
   vault.spend(recovery, Some(VaultDatum { owner }), Recover, dummy_ref, tx)
 }
 
 // The important one: the two actions are genuinely separate. Being the owner
 // does not let you take the `Recover` path, and vice versa.
 test recover_fails_when_the_owner_signs() fail {
-  let tx = mocktail_tx() |> required_signer_hash(True, owner) |> complete()
+  let tx = Transaction { ..transaction.placeholder, extra_signatories: [owner] }
   vault.spend(recovery, Some(VaultDatum { owner }), Recover, dummy_ref, tx)
 }
 // #endregion recover-tests
@@ -148,25 +152,42 @@ test recover_fails_when_the_owner_signs() fail {
 // failure, shrinks it to the smallest one that still fails.
 // #region vault-property
 test unlock_ok_for_any_owner(any_owner via fuzz.bytearray()) {
-  let tx = mocktail_tx() |> required_signer_hash(True, any_owner) |> complete()
-  vault.spend(recovery, Some(VaultDatum { owner: any_owner }), Unlock, dummy_ref, tx)
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [any_owner],
+  }
+  vault.spend(
+    recovery,
+    Some(VaultDatum { owner: any_owner }),
+    Unlock,
+    dummy_ref,
+    tx,
+  )
 }
 // #endregion vault-property
 
-// The parameter comes first in every handler, `mint` included.
 // #region mint-tests
-test mint_ok_for_a_single_token() {
-  let tx = mocktail_tx() |> mint(True, 1, policy, vault_token) |> complete()
-  vault.mint(recovery, Void, policy, tx)
+test mint_ok_for_a_correctly_named_token() {
+  let tx = Transaction {
+    ..transaction.placeholder,
+    mint: assets.from_asset(policy, vault_token, 1),
+  }
+  vault_policy.mint(Void, policy, tx)
 }
 
-test burn_ok_for_a_single_token() {
-  let tx = mocktail_tx() |> mint(True, -1, policy, vault_token) |> complete()
-  vault.mint(recovery, Void, policy, tx)
+test burn_ok_for_a_correctly_named_token() {
+  let tx = Transaction {
+    ..transaction.placeholder,
+    mint: assets.from_asset(policy, vault_token, -1),
+  }
+  vault_policy.mint(Void, policy, tx)
 }
 
-test mint_fails_for_more_than_one() fail {
-  let tx = mocktail_tx() |> mint(True, 2, policy, vault_token) |> complete()
-  vault.mint(recovery, Void, policy, tx)
+test mint_fails_for_a_wrongly_named_token() fail {
+  let tx = Transaction {
+    ..transaction.placeholder,
+    mint: assets.from_asset(policy, "IMPOSTOR", 1),
+  }
+  vault_policy.mint(Void, policy, tx)
 }
 // #endregion mint-tests

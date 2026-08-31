@@ -5,15 +5,8 @@ import type { IEvaluator, IFetcher, IWallet, UTxO } from "@meshsdk/core";
 import { vaultScriptCbor } from "./blueprint.ts";
 import { recoverRedeemer } from "./datum.ts";
 
-/// Take the funds out through the **backup key** instead of the owner's.
-///
-/// Compare this with `unlock.ts` and only one line differs: the redeemer says
-/// `Recover` rather than `Unlock`. Everything else is the same, because the two
-/// paths spend the same UTxO at the same address, carrying the same script.
-///
-/// What changes is which signature the validator then looks for. `Unlock` checks
-/// the datum's owner; `Recover` checks the key built into the script. So this
-/// must be signed by the recovery wallet, not the owner's.
+/// `unlock.ts` with one line changed. See that file for what each builder call
+/// does; the difference is marked below.
 export async function buildRecoverTx(
   wallet: IWallet,
   provider: IFetcher,
@@ -22,8 +15,8 @@ export async function buildRecoverTx(
 ): Promise<string> {
   // Where the wallet wants anything left over sent back to.
   const changeAddress = await wallet.getChangeAddress();
-  // The key hash inside it. Note this is the *backup* wallet's, not the owner's
-  // whichever wallet you handed in is the one whose signature this asks for.
+  // The *backup* wallet's key hash. Whichever wallet you hand in is the one
+  // whose signature this asks for.
   const recovery = deserializeAddress(changeAddress).pubKeyHash;
   // The deposit, the same as any other spend that runs a script.
   const collateral = (await wallet.getCollateral())[0];
@@ -51,8 +44,8 @@ export async function buildRecoverTx(
     // The datum is already on the UTxO, so there is nothing to attach here.
     .txInInlineDatumPresent()
     // #region recover-redeemer
-    // **The one line that differs from `unlock.ts`**: `Recover`, not `Unlock`.
-    // This is what tells the validator which of its two branches to take.
+    // **The one line that differs from `unlock.ts`**: `Recover`, which tells the
+    // validator to check the key built into the script instead of the owner.
     .txInRedeemerValue(recoverRedeemer)
     // And so the signature it looks for is the recovery key's.
     .requiredSignerHash(recovery)

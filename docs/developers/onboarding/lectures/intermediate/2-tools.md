@@ -9,23 +9,21 @@ import TabItem from "@theme/TabItem";
 
 # Set up your tools
 
-Two halves, two sets of tools. The on-chain half needs a **compiler and supporting tooling**, because a contract has to become a program the network can run. The off-chain half needs a **library, a provider, and a way to interact with a wallet**, because your app has to read the chain, build transactions, get them signed, and submit them.
+The on-chain half needs a **compiler and supporting tooling**, because a contract has to become a program the network can run. The off-chain half needs a **library, a provider, and a way to interact with a wallet**, because your app has to read the chain, build transactions, get them signed, and submit them.
 
-**You only need the first set now.** The next six lectures are the contract and nothing else: you write it, compile it, test it, and finish it. The app comes afterwards, once the contract is done, so the focus stays on the contract's own concepts. The off-chain half then arrives all at once in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
+**You only need the first set now.** The next six lectures are the contract and nothing else: you write it, compile it and test it. The off-chain half then arrives all at once in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
 
 ## The on-chain toolchain
 
-You do not write the code the network runs. You write it in a high-level language and **compile** it. Several languages do this for Cardano:
+You write the contract in a high-level language and **compile** it into the code the network runs. Several languages do this for Cardano:
 
 - **[Aiken](https://aiken-lang.org/)** is a language made from scratch to write Cardano contracts. It is a small language with a fast compiler and built-in tests, and it is the easiest place to start.
 - **[Scalus](https://scalus.org/)** lets teams who already use Scala write contracts in the language they know.
 - Others exist for Haskell, Python and TypeScript teams. The [handbook compares them](/docs/developers/curriculum/smart-contracts/choose-a-language), and **[Builder Tools](/tools)** lists them all.
 
-Different languages, **same output**. They all compile to the same low-level program, and they all describe it in the same file format, the **CIP-57 blueprint**. Your off-chain code reads that file and never needs to know which language made it. So the choice matters for your team, not for the chain.
+They all compile to the same low-level program, and they all describe it in the same file format, the **CIP-57 blueprint**. Your off-chain code reads that file and never needs to know which language made it.
 
-## The off-chain toolchain, so you know what is coming
-
-Nothing to install here. This is the shape of the off-chain half, so that the choices you make now make sense. Three pieces, each with one job.
+## The off-chain toolchain
 
 **The SDK** builds Cardano transactions for you. Without one, every transaction would cost you a lot of time and a lot of code. There are SDKs for JavaScript, Python, Haskell, Java, Go and more, and **[Builder Tools](/tools)** lists them all.
 
@@ -36,7 +34,7 @@ Nothing in these lectures depends on the one you pick: the contract is the same,
 - **You read UTxOs that are not yours.** Locked funds sit at a contract's address. Your wallet knows nothing about them, so the provider is the only way to find them.
 - **A script transaction has to declare its cost.** Running a validator uses CPU and memory, and the transaction carries the budget it expects to use, written next to the redeemer. You also pay for that budget in the fee. So something has to run the contract first, against your unsigned transaction, to find the real number. Your SDK can do that on your machine, or hand the job to a provider that offers it. Either way the answer arrives before you send anything, which is why a contract that says no usually fails in your app rather than on the chain.
 
-You made a free **[Blockfrost](https://blockfrost.io/)** Preview key during setup. That is the provider. Others are listed in **[Builder Tools](/tools)**, and some of them you can run yourself.
+You made a free **[Blockfrost](https://blockfrost.io/)** Preview key during setup. Others are listed in **[Builder Tools](/tools)**, and some of them you can run yourself.
 
 **The wallet** holds the keys and signs. Your app never sees a private key: it hands the finished transaction to the wallet, the wallet asks the user, and the user approves. Here that is **[Lace](https://www.lace.io/)** on Preview.
 
@@ -44,7 +42,7 @@ Keep your Blockfrost key and your Lace wallet where they are. Neither is touched
 
 ## Try it
 
-**Set up the contract project.** No contract in it yet, **[the next lecture](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** writes that. This one gets the project compiling.
+**Set up the contract project.** No contract in it yet, **[the next lecture](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** writes that.
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
@@ -73,9 +71,7 @@ Check that the project works:
 aiken check
 ```
 
-It compiles and reports `"total": 0` tests, because the project is empty. That is the answer you want here.
-
-Your contracts go in `validators/`.
+It compiles and reports `0` tests, because the project is empty.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -85,7 +81,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Your workspace now has something in the on-chain folder:
+Your workspace:
 
 ```
 cardano-vault/
@@ -95,8 +91,6 @@ cardano-vault/
 │       └── validators/   <- your contracts
 └── off-chain/            <- still empty, filled in lecture 9
 ```
-
-You are ready to write your first validator. Keep going in the next lecture.
 
 Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 

@@ -50,8 +50,8 @@ Then submit the registration metadata in a transaction from your online machine.
 The Calidus key acts as a hot key for:
 
 - **Governance tool authentication** — prove your SPO identity on governance platforms and voting interfaces
-- **Explorer profiles** — update pool metadata and interact with Cardanoscan, Cexplorer, AdaStat
-- **API authentication** — authenticate with Koios, Blockfrost, and other SPO-aware APIs
+- **Explorer profiles** — update pool metadata and interact with [explorers](https://cardano.org/apps/?tags=explorer)
+- **API authentication** — authenticate with SPO-aware [query APIs](/tools/?tags=api)
 - **dApp signing** — compatible with CIP-30 light wallets and CIP-8 message signing, so hardware wallets and browser wallets can be used
 
 Keep `calidus.skey` secure — it represents your pool's online identity. Unlike your cold key, it can be kept on a relatively secured hot machine, but it should still be treated as sensitive. If compromised, rotate it by submitting a new registration with a higher nonce.

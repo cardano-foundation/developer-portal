@@ -1,10 +1,6 @@
-// The first off-chain script in the track, and the only one that is not part of
-// the app: it opens **frontend integration** by proving the provider works
-// before anything is built on top of it. It talks to the chain and nothing
-// else: no contract, no wallet, no transaction. Run it with `node src/check.ts`
-// on Node 22.6 or newer.
-//
-// Its two values come from `.env`, so no key is ever written into the code.
+// Proves the provider works before anything is built on top of it: no contract,
+// no wallet, no transaction. Its two values come from `.env`. Run it with
+// `node src/check.ts` on Node 22.6 or newer.
 // #region check
 import { BlockfrostProvider } from "@meshsdk/core";
 

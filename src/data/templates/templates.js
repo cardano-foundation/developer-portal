@@ -3,7 +3,7 @@
 // ============================================================================
 // Append an entry to add a template. Full guide: examples/templates/README.md.
 // The slug, the "Use this template" command, and the GitHub URL are all derived
-// from repoPath in showcase.js; never hardcode them. Validation runs at build
+// from repoPath in catalog.js; never hardcode them. Validation runs at build
 // (this file -> validation.js) and fail-fasts on missing or invalid fields.
 //
 // Fields:

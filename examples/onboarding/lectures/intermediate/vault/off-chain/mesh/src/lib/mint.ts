@@ -2,10 +2,10 @@
 import { MeshTxBuilder, deserializeAddress, mConStr0, stringToHex } from "@meshsdk/core";
 import type { IFetcher, IWallet } from "@meshsdk/core";
 
-import { vaultAddress, vaultPolicyId, vaultScriptCbor } from "./blueprint.ts";
+import { vaultAddress, vaultTokenPolicyId, vaultTokenScriptCbor } from "./blueprint.ts";
 import { vaultDatum } from "./datum.ts";
 
-/// The token name the vault's `mint` handler allows, as the contract spells it.
+/// The token name the policy allows, as the contract spells it.
 export const VAULT_TOKEN_NAME = "VAULT";
 
 /// Build a transaction that **mints one vault token and locks it**, together with
@@ -30,8 +30,9 @@ export async function buildMintAndLockTx(
     );
   }
 
-  // The contract's hash, read as a policy id. Same value as its address.
-  const policyId = vaultPolicyId();
+  // The policy script's hash. The vault's address is a different script, so
+  // this is a different value.
+  const policyId = vaultTokenPolicyId();
   // Token names travel as hex on the chain, so convert it once here.
   const tokenNameHex = stringToHex(VAULT_TOKEN_NAME);
 
@@ -42,8 +43,8 @@ export async function buildMintAndLockTx(
     .mintPlutusScriptV3()
     // Create exactly one token, which is precisely what the handler allows.
     .mint("1", policyId, tokenNameHex)
-    // Carry the compiled contract, so the network can run the mint handler.
-    .mintingScript(vaultScriptCbor)
+    // Carry the compiled policy, so the network can run its mint handler.
+    .mintingScript(vaultTokenScriptCbor)
     // The mint handler ignores its redeemer, so an empty one is enough.
     .mintRedeemerValue(mConStr0([]))
     // #endregion mint-calls

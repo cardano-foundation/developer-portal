@@ -63,7 +63,7 @@ These are checked in phase-1, before scripts run, so a validator can safely assu
 
 ### Setting validity in code
 
-In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range. That conversion is per-network: each one has its own slot length (one second on mainnet, preprod, and preview, configurable on a [local devnet](/docs/developers/curriculum/start-building/networks-and-test-ada#run-a-chain-yourself)) and its own genesis `zeroTime`/`zeroSlot`, so the builder has to know which chain you are on.
+In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range. That conversion is per-network: each one has its own slot length (one second on mainnet, preprod, and preview, configurable on a [local devnet](/docs/developers/curriculum/start-building/local-testing#local-devnets)) and its own genesis `zeroTime`/`zeroSlot`, so the builder has to know which chain you are on.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>

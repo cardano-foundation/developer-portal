@@ -76,31 +76,48 @@ function rewriteLlmsUrls(replacements) {
   }
 }
 
-let moved = 0;
-const replacements = []; // [oldUrlPath, newUrlPath] for llms.txt
-for (const slug of collectSlugs(DOCS_SRC)) {
-  const toAbs = path.join(DOCS_BUILD, slug + '.md');
-  if (fs.existsSync(toAbs)) continue; // already aligned
-  const fromAbs = [
-    path.join(BUILD, slug + '.md'), // shape 1: outside build/docs
-    path.join(DOCS_BUILD, slug, path.posix.basename(slug) + '.md'), // shape 2: doubled
-  ].find((c) => fs.existsSync(c));
-  if (!fromAbs) {
-    warn(`No generated markdown found for slug "/${slug}/" (plugin output may have changed).`);
-    continue;
+function main() {
+  if (!fs.existsSync(BUILD)) {
+    throw new Error('no build/ directory; run `yarn build` first (this script patches the built site)');
   }
-  const oldUrlPath = '/' + buildRel(fromAbs);
-  fs.mkdirSync(path.dirname(toAbs), { recursive: true });
-  fs.renameSync(fromAbs, toAbs);
-  cleanupEmptyDirs(path.dirname(fromAbs));
-  replacements.push([oldUrlPath, '/' + buildRel(toAbs)]);
-  moved++;
+  let moved = 0;
+  const replacements = []; // [oldUrlPath, newUrlPath] for llms.txt
+  for (const slug of collectSlugs(DOCS_SRC)) {
+    const toAbs = path.join(DOCS_BUILD, slug + '.md');
+    const candidates = [
+      path.join(BUILD, slug + '.md'), // shape 1: outside build/docs
+      path.join(DOCS_BUILD, slug, path.posix.basename(slug) + '.md'), // shape 2: doubled
+    ];
+    const fromAbs = candidates.find((c) => fs.existsSync(c));
+    if (fromAbs) {
+      fs.mkdirSync(path.dirname(toAbs), { recursive: true });
+      fs.renameSync(fromAbs, toAbs);
+      cleanupEmptyDirs(path.dirname(fromAbs));
+      moved++;
+    } else if (!fs.existsSync(toAbs)) {
+      warn(`No generated markdown found for slug "/${slug}/" (the doc may be excluded from llms generation, or the plugin's output shape changed).`);
+      continue;
+    }
+    // Rewrite both possible old URLs whether the move happened this run or an
+    // earlier one, so an interrupted run heals on the next pass; a pattern no
+    // longer present in llms.txt simply matches nothing.
+    for (const c of candidates) replacements.push(['/' + buildRel(c), '/' + buildRel(toAbs)]);
+  }
+
+  rewriteLlmsUrls(replacements);
+
+  console.log(`[fix-llms-paths] Relocated ${moved} slug-affected .md file(s) and updated llms.txt`);
+  if (warnings.length) {
+    console.warn(`[fix-llms-paths] ${warnings.length} warning(s):`);
+    for (const w of warnings) console.warn(`  - ${w}`);
+    // A warning means llms.txt would ship stale URLs; fail the build instead.
+    process.exitCode = 1;
+  }
 }
 
-rewriteLlmsUrls(replacements);
-
-console.log(`[fix-llms-paths] Relocated ${moved} slug-affected .md file(s) and updated llms.txt`);
-if (warnings.length) {
-  console.warn(`[fix-llms-paths] ${warnings.length} warning(s):`);
-  for (const w of warnings) console.warn(`  - ${w}`);
+try {
+  main();
+} catch (err) {
+  console.error('[fix-llms-paths]', err);
+  process.exitCode = 1;
 }

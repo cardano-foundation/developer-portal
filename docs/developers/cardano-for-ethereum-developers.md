@@ -558,7 +558,7 @@ Ready to start building? Here's the tooling landscape.
 
 Ethereum developers primarily use Solidity. On Cardano, currently the [most popular language](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2025/#what-do-you-use-or-plan-to-use-for-writing-plutus-script-validators-smart-contracts) is **Aiken**: a purpose-built language with Rust-like syntax, strong static typing, and its own toolchain (compiler, test framework, formatter, LSP). Aiken compiles directly to UPLC (Untyped Plutus Core), Cardano's native bytecode.
 
-Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](https://scalus.org) (Scala), [Pebble](https://pluts.harmoniclabs.tech/) (TypeScript DSL). See the [Smart Contracts overview](/docs/developers/curriculum/smart-contracts/overview) for the full list.
+Other languages target the same bytecode, with Python, Scala, and TypeScript-flavoured options among them. See the [Smart Contracts overview](/docs/developers/curriculum/smart-contracts/overview) for the comparison and [Builder Tools](/tools/?tags=smart-contracts) for the current set.
 
 ### Tools
 
@@ -566,9 +566,9 @@ Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](http
 |----------|---------|
 | Hardhat | [Aiken CLI](https://aiken-lang.org/installation-instructions) (`aiken build`, `aiken check`) |
 | Remix | [Aiken Playground](https://play.aiken-lang.org) |
-| Web3.js, ethers.js | [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) like **Mesh SDK** (TypeScript) |
-| Ganache, Foundry | [Local development networks](/docs/developers/curriculum/start-building/networks-and-test-ada#run-a-chain-yourself) like [Yaci DevKit](https://devkit.yaci.xyz/) |
-| Infura, Alchemy | [Query APIs](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis) like [Blockfrost](https://blockfrost.dev/), [Maestro](https://www.gomaestro.org/), [Koios](https://koios.rest/) |
+| Web3.js, ethers.js | [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) |
+| Ganache, Foundry | [Local devnets](/docs/developers/curriculum/start-building/local-testing#local-devnets) |
+| Infura, Alchemy | [Query APIs](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis), listed in [Builder Tools](/tools/?tags=api) |
 | Etherscan | [Explorers](https://explorer.cardano.org/) |
 | MetaMask | [Wallets](https://cardano.org/apps/?tags=wallet) |
 
@@ -579,10 +579,10 @@ Client SDKs handle transaction building, wallet integration, UTxO selection, and
 | Language | SDK |
 |----------|-----|
 | TypeScript | [Typescript SDKs](/docs/developers/curriculum/start-building/choose-your-tools)|
-| Python | [PyCardano](/tools/?tags=sdk) |
-| Rust | [Pallas](/tools/?tags=sdk) |
-| Go | [Apollo](/tools/?tags=sdk) |
-| C# | [Chrysalis](/tools/?tags=sdk) |
+| Python | [Python SDKs](/tools/?tags=sdk&tags=python) |
+| Rust | [Rust SDKs](/tools/?tags=sdk&tags=rust) |
+| Go | [Go SDKs](/tools/?tags=sdk&tags=golang) |
+| C# | [C# SDKs](/tools/?tags=sdk&tags=net) |
 
 ### Development Workflow
 
