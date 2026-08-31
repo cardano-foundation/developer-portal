@@ -46,7 +46,7 @@ flowchart TD
     guards reward withdrawals`"]
 ```
 
-The hash **is** the script's identity, and where you put that hash decides which question the network asks it.
+The hash **is** the script's identity, and the way you use that hash decides which question the network asks it.
 
 Because the script sees its own hash in more than one role, it can **connect** them. One script can create a token and also control how the UTxO holding that token is spent, all under one identity. Many real Cardano designs are built this way, using a token as a mark that says "this UTxO is the real one", which only that same script could have created.
 
