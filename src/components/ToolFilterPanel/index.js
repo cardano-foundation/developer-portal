@@ -2,21 +2,21 @@ import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 
-import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
+import Tooltip from "@site/src/components/tools/Tooltip";
 
 import {
-  Showcases,
+  Tools,
   Categories,
   CategoryList,
   Properties,
   PropertyList,
   LanguageList,
   InterfaceList,
-} from "@site/src/data/builder-tools/showcase";
+} from "@site/src/data/builder-tools/catalog";
 import {
   readSearchTags,
   replaceSearchTags,
-} from "@site/src/components/showcase/tagQueryString";
+} from "@site/src/components/tools/tagQueryString";
 
 import styles from "./styles.module.css";
 
@@ -25,7 +25,7 @@ import styles from "./styles.module.css";
 // never read as a promise about what a click will return.
 const FACET_COUNTS = (() => {
   const counts = {};
-  for (const tool of Showcases) {
+  for (const tool of Tools) {
     counts[tool.category] = (counts[tool.category] || 0) + 1;
     for (const prop of tool.properties) {
       counts[prop] = (counts[prop] || 0) + 1;
@@ -41,7 +41,7 @@ const FACET_COUNTS = (() => {
 //
 // The rail is permanent at every width. Below the browse grid's breakpoint it
 // stacks above the results rather than sitting beside them.
-export default function AppFilterPanel() {
+export default function ToolFilterPanel() {
   const location = useLocation();
   const history = useHistory();
   const [selectedTags, setSelectedTags] = useState([]);

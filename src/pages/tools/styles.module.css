@@ -150,13 +150,13 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   color: var(--site-color-text-muted);
 }
 
-.allAppsReveal {
+.allToolsReveal {
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
 }
 
-.allAppsHeader {
+.allToolsHeader {
   justify-content: space-between;
 }
 
@@ -245,7 +245,7 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
 }
 
 /* The maintainer picks band: full-bleed Cardano Blue, identical in both
-   themes; the cards on it keep their light dress (see AppTile). */
+   themes; the cards on it keep their light dress (see ToolTile). */
 .picksBand {
   background: var(--site-color-brand-blue);
   padding: 3rem 0 3.5rem;

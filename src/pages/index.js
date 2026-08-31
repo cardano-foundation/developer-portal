@@ -4,7 +4,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
-import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
+import ContributeButton from "@site/src/components/ContributeButton";
 import ExternalArrow from "@site/src/components/ExternalArrow";
 import { EXTERNAL_LINK_PROPS, isExternalHref, linkPropsFor } from "@site/src/utils/externalLink";
 import useCopyToClipboard from "@site/src/utils/useCopyToClipboard";
@@ -692,7 +692,7 @@ function Home() {
           <SmartContractsSection />
           <OfficeHoursSection />
         </main>
-        <OpenStickyButton />
+        <ContributeButton />
       </div>
     </Layout>
   );

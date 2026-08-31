@@ -1,10 +1,10 @@
 // ============================================================================
-// Builder Tools - showcase data (component-facing surface)
+// Builder Tools - catalog (component-facing surface)
 // ============================================================================
 // Reads the explicit `category` / `properties` / `maintainerPick` now carried by
-// each tools.js entry (no more derivation) and shapes them for the app-store
+// each tools.js entry (no more derivation) and shapes them for the tools
 // components: adds a `slug` and re-exports the taxonomy. Most entries carry an
-// `icon`; where it is null AppIcon renders a letter-avatar fallback instead.
+// `icon`; where it is null ToolIcon renders a letter-avatar fallback instead.
 // ============================================================================
 
 import {
@@ -30,16 +30,10 @@ export {
 };
 
 // "NEW" badge + "Recently added" use the last N entries in insertion order.
-export const RECENT_APPS_COUNT = 5;
+export const RECENT_TOOLS_COUNT = 5;
 
-// MUST byte-match slugify() in plugins/tools-routes/index.js (detail routes).
-function slugify(title) {
-  return String(title)
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+// Slug derivation lives in ./slug.js, shared with plugins/tools-routes.
+import { slugify } from "./slug";
 
 function adapt(tool) {
   return {
@@ -56,7 +50,7 @@ function adapt(tool) {
   };
 }
 
-// `Showcases` keeps insertion order (drives "recently added" / NEW).
-// `SortedShowcases` is maintainer-picks-first then alphabetical (drives "Featured").
-export const Showcases = BuilderTools.map(adapt);
-export const SortedShowcases = SortedBuilderTools.map(adapt);
+// `Tools` keeps insertion order (drives "recently added" / NEW).
+// `SortedTools` is maintainer-picks-first then alphabetical (drives "Featured").
+export const Tools = BuilderTools.map(adapt);
+export const SortedTools = SortedBuilderTools.map(adapt);

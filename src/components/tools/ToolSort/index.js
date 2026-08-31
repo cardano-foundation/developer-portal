@@ -28,7 +28,7 @@ export function readSortOption(search) {
   return SORT_OPTIONS.some((o) => o.id === value) ? value : DEFAULT_SORT;
 }
 
-export default function ShowcaseSort() {
+export default function ToolSort() {
   const location = useLocation();
   const history = useHistory();
   const current = readSortOption(location.search);

@@ -90,7 +90,7 @@ html[data-theme="dark"] .tile.tilePick {
 
 /* The icon ground must not follow the theme either, or dark mode drops the
    tile from under the logo while the card stays light. Compound through the
-   card class to outrank AppIcon's own dark rule. */
+   card class to outrank ToolIcon's own dark rule. */
 .tilePick .pickIcon,
 html[data-theme="dark"] .tilePick .pickIcon {
   background: rgb(var(--site-color-navy-rgb) / 0.05);

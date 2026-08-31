@@ -3,18 +3,16 @@
 // every dApp starter template. Mirrors plugins/tools-routes: it only needs
 // slugs, so it reads src/data/templates/templates.js as TEXT and extracts each
 // entry's repoPath, then derives the slug from the basename. The TemplateDetail
-// component resolves the full template object from the showcase adapter (webpack
-// context) by slug at render time.
+// component resolves the full template object from the catalog by slug at
+// render time.
 //
 
 const fs = require("fs");
 const path = require("path");
 
-// MUST byte-match templateSlug() in src/data/templates/showcase.js: the slug is
-// the examples/templates/<name> directory basename.
-function slugFor(repoPath) {
-  return String(repoPath).split("/").pop();
-}
+// Shared with src/data/templates/catalog.js, so a generated route and
+// TemplateDetail's lookup can't diverge.
+const { templateSlug } = require("../../src/data/templates/slug");
 
 module.exports = function templatesRoutesPlugin(context) {
   return {
@@ -42,7 +40,7 @@ module.exports = function templatesRoutesPlugin(context) {
       let m;
       while ((m = repoPathRegex.exec(source)) !== null) {
         const repoPath = m[1].replace(/\\"/g, '"');
-        const slug = slugFor(repoPath);
+        const slug = templateSlug(repoPath);
         if (!slug || seen.has(slug)) {
           if (slug && seen.has(slug)) {
             // eslint-disable-next-line no-console

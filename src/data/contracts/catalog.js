@@ -1,5 +1,5 @@
 // ============================================================================
-// Contracts - showcase data (component-facing surface)
+// Contracts - catalog (component-facing surface)
 // ============================================================================
 // Shapes the raw contract entries for the listing component and re-exports the
 // taxonomy. adapt() fills default onchain/offchain arrays and resolves the
@@ -9,7 +9,7 @@
 
 import {
   Contracts,
-  SortedContracts,
+  SortedContracts as RawSortedContracts,
   OnchainLangs,
   OffchainLangs,
   Categories,
@@ -87,4 +87,4 @@ function adapt(contract) {
   };
 }
 
-export const SortedContractShowcases = SortedContracts.map(adapt);
+export const SortedContracts = RawSortedContracts.map(adapt);

@@ -27,7 +27,7 @@ Four steps. The data layer that powers the gallery lives in `src/data/templates/
    the problem. Then eyeball `/templates` and `/templates/<name>`.
 
 You never hardcode the slug, the scaffold command, or the GitHub link. All three are derived from
-`repoPath` in `src/data/templates/showcase.js`.
+`repoPath` in `src/data/templates/catalog.js`.
 
 ## Entry reference
 

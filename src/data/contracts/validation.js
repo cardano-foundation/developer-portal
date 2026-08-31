@@ -1,4 +1,4 @@
-import { difference } from "@site/src/utils/jsUtils";
+import { difference } from "@site/src/utils/arrays";
 import { OnchainList, OffchainList, CategoryList } from "./tags";
 import { SOURCE_IDS } from "./sources";
 

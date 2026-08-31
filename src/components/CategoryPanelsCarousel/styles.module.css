@@ -89,7 +89,7 @@ html[data-theme="dark"] .seeAll:hover {
   gap: 1.25rem;
 }
 
-/* Rows sit bare on the card; their compact form in AppRow carries the
+/* Rows sit bare on the card; their compact form in ToolRow carries the
    negative-margin hover wash. */
 
 @media (max-width: 600px) {

@@ -2,15 +2,15 @@ import React, { useCallback, useMemo } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 
-import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
-import InfoDot from "@site/src/components/showcase/InfoDot";
+import Tooltip from "@site/src/components/tools/Tooltip";
+import InfoDot from "@site/src/components/tools/InfoDot";
 import IntentIcon from "./icons";
 import { Categories } from "@site/src/data/builder-tools/tags";
 
 import {
   readSearchTags,
   replaceSearchTags,
-} from "@site/src/components/showcase/tagQueryString";
+} from "@site/src/components/tools/tagQueryString";
 
 import styles from "./styles.module.css";
 

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import styles from "./styles.module.css";
 
 // "Maintainer pick" chip: the shared primary badge with an amber star.
-export default function PickBadge({ className, starSize = 12 }) {
+export default function MaintainerPickBadge({ className, starSize = 12 }) {
   return (
     <span className={clsx("badge badge--primary", styles.pickBadge, className)}>
       <svg

@@ -8,20 +8,20 @@ import clsx from "clsx";
 
 import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
-import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
-import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
-import useFacetSelection from "@site/src/components/TemplatesBrowser/useFacetSelection";
+import FilterSection from "@site/src/components/browse/FilterSection";
+import ChipRow from "@site/src/components/browse/ChipRow";
+import useFacetSelection from "@site/src/components/browse/useFacetSelection";
 import {
-  SortedTemplateShowcases,
+  SortedTemplates,
   Frameworks,
   Sdks,
   Wallets,
   FrameworkList,
   SdkList,
   WalletList,
-} from "@site/src/data/templates/showcase";
+} from "@site/src/data/templates/catalog";
 
-import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
+import styles from "@site/src/components/browse/browser.module.css";
 import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
@@ -69,7 +69,7 @@ export default function Templates() {
   ]);
 
   const filtered = useMemo(
-    () => filterTemplates(SortedTemplateShowcases, selected, search),
+    () => filterTemplates(SortedTemplates, selected, search),
     [selected, search]
   );
 
@@ -85,8 +85,8 @@ export default function Templates() {
         description={HERO_DESCRIPTION}
         meta={
           <span className={heroStyles.metaText}>
-            {SortedTemplateShowcases.length}{" "}
-            {SortedTemplateShowcases.length === 1 ? "template" : "templates"}
+            {SortedTemplates.length}{" "}
+            {SortedTemplates.length === 1 ? "template" : "templates"}
           </span>
         }
       />
