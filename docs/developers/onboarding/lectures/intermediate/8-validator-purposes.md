@@ -27,7 +27,7 @@ Every purpose works the same way. Something in a transaction touches your script
 
 The handler you write changes a little between purposes, because the question changes. A **spend** handler is given the **datum**, because there is a locked UTxO with a note attached to it. A **mint** handler is not, because nothing is being unlocked. Instead it is told which policy is being minted under. All of them receive the redeemer and the whole transaction. Your vault uses **spend** today. In this lecture it gains **mint** as well.
 
-## One validator, many purposes, one hash
+## One validator, one hash, many purposes
 
 A **single validator** can handle **several purposes at once**, and it has exactly **one hash**. That one hash is all of these at the same time:
 
