@@ -40,6 +40,41 @@ For what belongs in the directory and how tools are curated, see the [portal con
 
 Two more curated surfaces live under [/templates](https://developers.cardano.org/templates): runnable dApp starter templates (in this repo under `examples/templates/`, registered in `src/data/templates/`) and the contract library (a use-case index in `src/data/contracts/`). Each has its own README with the exact steps: [`examples/templates/README.md`](./examples/templates/README.md) and [`src/data/contracts/README.md`](./src/data/contracts/README.md). Both are validated by `yarn build` and follow the same review process as builder tools.
 
+## Embedding code from real examples
+
+When a tutorial shows code, embed it from a real, runnable example under `examples/` instead of pasting a copy into the page. That way the snippet on the page is the exact code that gets built and tested, so it can't drift out of date.
+
+Mark the part of the file you want to show with plain `// #region NAME` / `// #endregion NAME` comments. They're just comments, so the example still runs and is still tested:
+
+```ts
+// example source file
+export function build() {
+  // #region build
+  const tx = new Transaction();
+  tx.sendLovelace(address, "2000000");
+  // #endregion build
+  return tx;
+}
+```
+
+Then pull that region into your page with the `extractRegion` helper. The file is imported as raw text via `raw-loader`, and `extractRegion` returns the lines between the markers (trimmed, with indentation normalized). Docs pages are `.md` and already support imports, so no `.mdx` rename is needed:
+
+```md
+import CodeBlock from "@theme/CodeBlock";
+import extractRegion from "@site/src/utils/extractRegion";
+import Source from "!!raw-loader!@site/examples/path/to/file.ts";
+
+<CodeBlock language="ts" title="file.ts">
+  {extractRegion(Source, "build")}
+</CodeBlock>
+```
+
+If the named region doesn't exist, the build fails with `extractRegion: region "..." not found`, so a renamed or deleted region is caught at build time rather than silently showing nothing.
+
+`raw-loader` is a webpack feature, so it only resolves for the rendered page. `llms.txt`, `llms-full.txt` and the per-page Markdown behind the "Copy page as markdown" button are generated separately, straight from the source Markdown, and would otherwise carry the literal `<CodeBlock>` text instead of your code — the surface AI tooling reads. `scripts/fix-llms-snippets.js` runs after the build and expands those, using the same `extractRegion` so both copies always agree. If a snippet fails to reach that output, the build fails rather than shipping a page with a hole.
+
+The command `yarn start` watches `docs/`, not `examples/`, so editing an example won't refresh the page on its own. Save the `.md` file (or just `touch` it) and the page recompiles with the current code. Also, the "Copy page as markdown" button gives you the site's HTML instead of Markdown, because the Markdown files are only generated during `yarn build`. To check that output, run `yarn build && yarn serve`.
+
 ## Before you open a PR
 
 - Run `yarn build` and make sure it passes. It checks for broken links and validates builder tool entries.
