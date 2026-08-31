@@ -16,7 +16,7 @@ The last two lectures finished the list of what a validator is **given**: the **
 
 A **parameter** is not on that list. It is a value built into the contract's own code, before the contract ever reaches the chain. Compiling leaves a **blank** where the value goes, and the contract is finished by filling that blank in. A parameter is baked **into** the validator, which is why you will never find it in `validator(datum, redeemer, context)`.
 
-Of the values **you** supply, the useful way to tell them apart is **when the value is fixed**:
+Of the values **you** supply, the useful way to tell them apart is **when the value is provided**:
 
 | | Fixed when | Lives in | To change it |
 |---|---|---|---|
