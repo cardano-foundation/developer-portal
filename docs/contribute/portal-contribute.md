@@ -164,14 +164,6 @@ Follow the [local development setup](https://github.com/cardano-foundation/devel
 
 Both commands first run two generators: `scripts/generate-stats.js` (writes `static/stats.json`) and `scripts/generate-og.js` (renders the social-preview cards). Their output is gitignored - never commit it.
 
-### Social-preview cards
-
-The card generator needs no work from contributors. If you maintain it, three conventions live in `scripts/generate-og.js`:
-
-- **Backgrounds** are the `bg-*-composed.jpg` files in `static/img/og/_template/`. Each is a finished frame exported from the design template, already carrying the Cardano lockup, the DEVELOPER PORTAL pill, and the left-side scrim that keeps the text readable. Add a frame by dropping in another composed export; raw artwork without that chrome produces unbranded cards.
-- **Eyebrows** (the small label above the headline) come from the doc's path: curriculum docs show their track (`developers/curriculum/<track>/...`), other nested docs their sub-section, flat docs their top-level folder. Brand casing lives in one map in the script (`dapps` renders as dApps).
-- **Standalone pages** under `src/pages/` are not discovered: each needs an entry in the script's `PAGES` array, or the page falls back to the site-wide home card.
-
 ### Project Structure
 
 ```bash
