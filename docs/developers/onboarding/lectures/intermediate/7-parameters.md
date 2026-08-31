@@ -95,7 +95,7 @@ Every vault would share one address, and each locked UTxO would carry its own re
 
 Ask "is this the same for every UTxO at this address?" first. If yes, it is a parameter. Only if no do you go back to the datum or redeemer question.
 
-There is one more thing you could do, and it is worse. You could simply **write the recovery key into the code**. It would be just as fixed and just as safe. But then every new vault needs a change to the contract itself, which means compiling it again, testing it again, and having it audited again. With a parameter you compile and test **once**, and each deployment only passes a different value in.
+There is one more thing you could do. You could simply **write the recovery key into the code**. It would be just as fixed and just as safe. But then every new vault protocol needs a change to the contract itself, which means compiling it again, testing it again, and having it audited again. With a parameter, you compile, test, and audit **once**, and each deployment only passes a different value in.
 
 :::warning A recovery key can spend the vault
 `Recover` is a real spending path, so whoever holds the recovery key can take the funds. That is the point of a backup, and it is also the risk. Use a key **you** control, such as a hardware wallet kept somewhere else. Never a key belonging to somebody you would not hand the funds to today.
