@@ -50,7 +50,7 @@ The hash **is** the script's identity, and where you put that hash decides which
 
 Because the script sees its own hash in more than one role, it can **connect** them. One script can create a token and also control how the UTxO holding that token is spent, all under one identity. Many real Cardano designs are built this way, using a token as a mark that says "this UTxO is the real one", which only that same script could have created.
 
-## Your vault declares only one purpose, so far
+## Your vault declares only one purpose
 
 The vault you have been building handles only **spend**. Its source says so in two places: the spend handler you wrote, and the `else` block that **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** asked you to copy without explaining:
 
