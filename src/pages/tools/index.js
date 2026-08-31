@@ -434,8 +434,9 @@ function SubmitCTA() {
     <PageCTA
       title="Built a tool for Cardano?"
       description="Add it to this page. The submission process is open and lightweight."
-      href="/docs/contribute/portal-contribute"
-      buttonText="Add your tool"
+      buttons={[
+        { href: "/docs/contribute/portal-contribute", label: "Add your tool" },
+      ]}
     />
   );
 }

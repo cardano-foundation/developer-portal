@@ -203,8 +203,7 @@ export default function TemplateDetail({ slug }) {
           <PageCTA
             title="Spotted something off?"
             description="This directory is open source. Open a pull request to update or correct this entry."
-            href={editUrl}
-            buttonText={`Edit ${template.title} on GitHub`}
+            buttons={[{ href: editUrl, label: `Edit ${template.title} on GitHub` }]}
           />
         )}
       </main>

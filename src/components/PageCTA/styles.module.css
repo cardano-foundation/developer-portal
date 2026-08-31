@@ -1,6 +1,6 @@
 /* The shared brand CTA band: navy in both themes. Its buttons are the shared
-   primary primitive, turned amber by the band's context; the talent page's
-   band carries the same context with its own artwork. */
+   primary primitive, turned amber by the band's context; the talent page
+   passes its artwork through the art slot. */
 
 .ctaSection {
   padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
@@ -19,6 +19,15 @@
   color: var(--site-color-card-text);
 }
 
+/* With artwork the band reserves height for it, tightens its padding, and
+   crops the image at the rounded corners. */
+.bandWithArt {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(230px, 19vw, 370px);
+  padding: clamp(1.5rem, 2vw, 1.875rem);
+}
+
 /* Stroked glyph, colored through currentColor */
 .bandIcon {
   flex: none;
@@ -29,6 +38,18 @@
 
 .bandContent {
   max-width: 811px;
+}
+
+/* Lifted above the absolutely positioned artwork; the percentage cap keeps
+   the copy clear of it, which flex layout does not reserve space for. */
+.bandWithArt .bandIcon,
+.bandWithArt .bandContent {
+  position: relative;
+  z-index: 1;
+}
+
+.bandWithArt .bandContent {
+  max-width: min(55%, 811px);
 }
 
 /* Tight title-to-text pairing, then air before the buttons */
@@ -55,9 +76,29 @@
   margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
 }
 
+/* The artwork sits in the band's right ~40%, vertically centered and
+   cropped by the rounded corners, with clear navy between it and the copy */
+.bandArt {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 41%;
+  height: auto;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 996px) {
   .band {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .bandWithArt .bandContent {
+    max-width: 100%;
+  }
+
+  .bandArt {
+    display: none;
   }
 }
