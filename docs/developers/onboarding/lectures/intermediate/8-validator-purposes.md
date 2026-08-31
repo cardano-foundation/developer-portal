@@ -31,7 +31,7 @@ The handler you write changes a little between purposes, because the question ch
 
 A **single validator** can handle **several purposes at once**, and it has exactly **one hash**. That one hash is all of these at the same time:
 
-- its **address** (for the _spend_ purpose),
+- its **payment credential** (for the _spend_ purpose),
 - its **policy ID** (for the _mint_ purpose),
 - its **stake credential** (for the _withdraw_ purpose).
 
