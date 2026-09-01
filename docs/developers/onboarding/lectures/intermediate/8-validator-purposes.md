@@ -75,9 +75,9 @@ That is what it has been doing all along: covering **every other purpose**. If a
 
 ## A validator whose purpose is minting
 
-Every token on Cardano is identified by two values: a **policy id** and a token name. The policy is the script that decides whether tokens under it may be created or destroyed, and the policy id is that script's hash. Two tokens sharing a name under different policy ids are different tokens. Rewriting the policy changes its hash, which makes it a different policy guarding a different token.
+Every token on Cardano is identified by two values: a **policy ID** and a token name. The policy is the script that decides whether tokens under it may be created or destroyed, and the policy ID is that script's hash. Two tokens sharing a name under different policy IDs are different tokens. Rewriting the policy changes its hash, which makes it a different policy guarding a different token.
 
-The vault's `else` refuses every purpose that is not spend, so a token needs a validator of its own (one script *can* carry every purpose at once, but in this lecture we write two validators). That validator has one purpose, `mint`, and its hash is the token's policy id. It has nothing to do with the vault's address.
+The vault's `else` refuses every purpose that is not spend, so a token needs a validator of its own (one script *can* carry every purpose at once, but in this lecture we write two validators). That validator has one purpose, `mint`, and its hash is the token's policy ID. It has nothing to do with the vault's address.
 
 This token is an example, not part of the vault. Nothing in the vault's validator mentions it, and nothing in the policy mentions the vault.
 
@@ -129,7 +129,7 @@ Read the arguments, because they differ from `spend`. **No datum reaches this ha
 
 `self.mint` holds everything the transaction creates or destroys, under every policy. `assets.tokens` gives back only the tokens minted under this one, as a dictionary of token name to amount, and `dict.to_pairs` turns that into a list. Matching the list against `[Pair(name, _)]` succeeds only if it holds exactly one entry, so the transaction cannot mint a second name under this policy. `name == token_name` then decides which name that has to be.
 
-**Notice which script this is.** The vault takes `admin` as a parameter and this policy takes none, so the two hashes move independently, and the policy needs nothing applied to it before you use it. Change your admin key and the vault's address changes, from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. The policy id stays exactly where it was, because there is nothing in it to change. Every reader of this track ends up with a different vault and the same token.
+**Notice which script this is.** The vault takes `admin` as a parameter and this policy takes none, so the two hashes move independently, and the policy needs nothing applied to it before you use it. Change your admin key and the vault's address changes, from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. The policy ID stays exactly where it was, because there is nothing in it to change. Every reader of this track ends up with a different vault and the same token.
 
 ```bash
 aiken check

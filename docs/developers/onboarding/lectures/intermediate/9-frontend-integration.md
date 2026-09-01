@@ -45,7 +45,7 @@ Locking is an ordinary payment that happens to be addressed to a script, with th
 
 Your wallet signing a transaction is not the same as your key hash appearing in the transaction's required-signers field. That field is `extra_signatories`, the one your vault reads in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**, and asking for it is a separate step from signing. Forget it and the signature is there but the validator cannot see it, so a correct contract refuses a legitimate spend.
 
-Minting adds nothing conceptually. The token has a policy script of its own, and its hash is the policy id, from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**. Minting does add collateral, because it runs a script, and a plain lock does not.
+Minting adds nothing conceptually. The token has a policy script of its own, and its hash is the policy ID, from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**. Minting does add collateral, because it runs a script, and a plain lock does not.
 
 ## Collateral, and what a script costs
 

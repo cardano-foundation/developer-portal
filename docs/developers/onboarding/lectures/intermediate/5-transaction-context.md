@@ -62,7 +62,7 @@ There is no `msg.sender` here, and nothing plays that role. A transaction has no
 
 `_own_ref` says which UTxO is being spent, and `self` is the transaction itself.
 
-A `mint` handler is handed a different set, because nothing is being unlocked: no datum, no `_own_ref`, and the policy id instead. What you are given depends on the **purpose**, which has its own lecture in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.
+A `mint` handler is handed a different set, because nothing is being unlocked: no datum, no `_own_ref`, and the policy ID instead. What you are given depends on the **purpose**, which has its own lecture in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
