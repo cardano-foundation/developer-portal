@@ -45,7 +45,7 @@ Locking is an ordinary payment that happens to be addressed to a script, with th
 
 Your wallet signing a transaction is not the same as your key hash appearing in the transaction's required-signers field. That field is `extra_signatories`, the one your vault reads in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**, and asking for it is a separate step from signing. Forget it and the signature is there but the validator cannot see it, so a correct contract refuses a legitimate spend.
 
-Minting adds nothing conceptually. The token has a policy script of its own, and its hash is the policy id, the identifier saying which script may create a token. That is **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** in practice. Minting does add collateral, because it runs a script, and a plain lock does not.
+Minting adds nothing conceptually. The token has a policy script of its own, and its hash is the policy id, from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**. Minting does add collateral, because it runs a script, and a plain lock does not.
 
 ## Collateral, and what a script costs
 
@@ -168,9 +168,9 @@ Four things in it:
 - **The import path** reaches across into the other half of your workspace: from `off-chain/src/lib/` that is `"../../../on-chain/vault/plutus.json"`. This is the only place the two halves of your workspace touch, and it is a file, not a network call.
 - **The title** `vault.vault.spend` is `<file>.<validator>.<purpose>`, so it names your `vault.ak`, its `vault` validator, and its spend handler.
 - **`applyParamsToScript`** fills the blank from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. These are the two lines that lecture promised you.
-- **`RECOVERY`** is that parameter, and it decides the address. Any 56-character hex string works, which is 28 bytes written out.
+- **`ADMIN`** is that parameter, and it decides the address. Any 56-character hex string works, which is 28 bytes written out.
 
-:::caution Changing RECOVERY moves the vault
+:::caution Changing ADMIN moves the vault
 It is part of the script, so it is part of the hash, so it is part of the address. Lock funds with one value, change a single character, and your app will look for them somewhere else entirely and find nothing. The funds are not lost, they are at the old address, but you would have to put the old value back to reach them.
 :::
 
@@ -182,7 +182,7 @@ The shapes from **[datum & redeemer](/docs/developers/onboarding/lectures/interm
   {extractRegion(Datum, "file")}
 </CodeBlock>
 
-`mConStr0` is the numbered-constructor encoding that lecture described. `mConStr0([ownerPubKeyHash])` is constructor 0 carrying one field, which is the `VaultDatum { owner }` your validator expects. `mConStr0([])` is constructor 0 carrying nothing, which is `Unlock`. And `mConStr1([])` is constructor 1, which is `Recover`, because it is declared second in `VaultAction`.
+`mConStr0` names a constructor by number, which is how a type reaches a validator: by the position it was declared in, not by its name. `mConStr0([ownerPubKeyHash])` is constructor 0 carrying one field, which is the `VaultDatum { owner }` your validator expects. `mConStr0([])` is constructor 0 carrying nothing, which is `Unlock`. And `mConStr1([])` is constructor 1, which is `AdminUnlock`, because it is declared second in `VaultAction`.
 
 ### 4. The four transactions
 
@@ -409,7 +409,7 @@ Open the printed URL **in the browser where Lace is installed**, with Lace set t
 2. **Lock 5 ADA.** Approve it. This is the plain payment: no contract runs.
 3. **Refresh locked** after a few seconds, and your UTxO appears.
 4. **Unlock.** This one runs your validator. The funds come back.
-5. **Mint & lock 5 ADA.** The same lock, plus a VAULT token created under the contract's own policy, in one transaction. **Refresh locked** and unlock it the same way: the token comes back with the ADA.
+5. **Mint & lock 5 ADA.** The same lock, plus a TOKEN A minted under the policy you wrote, in one transaction. **Refresh locked** and unlock it the same way: the token comes back with the ADA.
 
 If the page loads but **Lock** fails, look at `.env` before anything else. A Preview key starts with `preview`, and a mainnet or mistyped key shows up as a 401 on `/api/blockfrost/…` in the browser's **Network** tab.
 

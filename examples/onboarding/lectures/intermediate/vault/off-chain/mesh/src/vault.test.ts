@@ -23,7 +23,7 @@ import { buildLockTx } from "./lib/lock.ts";
 import { buildUnlockTx } from "./lib/unlock.ts";
 // #endregion offline-imports
 
-// The other tests in this file need more: the mint and recover builders, and two
+// The other tests in this file need more: the mint and admin builders, and two
 // helpers for applying a parameter by hand. The blueprint comes from
 // `lib/blueprint.ts`, which is where its path is written down once.
 import { applyParamsToScript, serializePlutusScript } from "@meshsdk/core";
@@ -31,7 +31,7 @@ import { applyParamsToScript, serializePlutusScript } from "@meshsdk/core";
 import { blueprint } from "./lib/blueprint.ts";
 
 import { buildMintAndLockTx } from "./lib/mint.ts";
-import { buildRecoverTx } from "./lib/recover.ts";
+import { buildAdminUnlockTx } from "./lib/admin.ts";
 
 // An in-memory chain and a funded wallet. No node, no network, no test ADA, and
 // no waiting: every test below builds a real transaction and runs the real
@@ -96,13 +96,13 @@ function fund(fetcher: OfflineFetcher, address: string) {
 const FIVE_ADA: Asset[] = [{ unit: "lovelace", quantity: "5000000" }];
 // #endregion offline-helpers
 
-/// The vault built around an arbitrary recovery key, rather than the one fixed
+/// The vault built around an arbitrary admin key, rather than the one fixed
 /// in `lib/blueprint.ts`. The reader changes that constant by hand; this lets
 /// the parameters test show two keys giving two addresses in a single run.
-function recoveryVaultAddress(recoveryPubKeyHash: string, networkId: number): string {
+function adminVaultAddress(adminPubKeyHash: string, networkId: number): string {
   const validator = blueprint.validators.find((v) => v.title === "vault.vault.spend");
   if (!validator) throw new Error('validator "vault.vault.spend" not found in the blueprint');
-  const cbor = applyParamsToScript(validator.compiledCode, [recoveryPubKeyHash]);
+  const cbor = applyParamsToScript(validator.compiledCode, [adminPubKeyHash]);
   return serializePlutusScript({ code: cbor, version: "V3" }, undefined, networkId).address;
 }
 
@@ -118,7 +118,7 @@ test("lock: the vault's lock transaction is an ordinary payment carrying a datum
 });
 // #endregion offline-lock
 
-test("mint: one transaction mints a vault token and locks it", async () => {
+test("mint: one transaction mints the token and locks it", async () => {
   const fetcher = newFetcher();
   const owner = await makeWallet(fetcher, OWNER);
   const address = await owner.getChangeAddress();
@@ -159,13 +159,13 @@ test("unlock: the vault releases funds to the owner who signs", async () => {
 });
 // #endregion offline-unlock
 
-// The recovery door, proven offline. `lib/blueprint.ts` compiles the vault
-// around a fixed `RECOVERY` constant, and no wallet's key hash is ever going to
-// equal it, so what this can show is the half that matters: `Recover` checks the
-// key welded into the script and ignores the datum's owner entirely. The owner
-// signing a `Recover` spend is refused, which is exactly what keeps the two
+// The admin door, proven offline. `lib/blueprint.ts` compiles the vault around
+// a fixed `ADMIN` constant, and no wallet's key hash is ever going to equal it,
+// so what this can show is the half that matters: `AdminUnlock` checks the key
+// welded into the script and ignores the datum's owner entirely. The owner
+// signing an `AdminUnlock` spend is refused, which is exactly what keeps the two
 // doors separate.
-test("recover: the owner's signature does not open the recovery door", async () => {
+test("admin: the owner's signature does not open the admin door", async () => {
   const fetcher = newFetcher();
   const owner = await makeWallet(fetcher, OWNER);
   const address = await owner.getChangeAddress();
@@ -181,27 +181,27 @@ test("recover: the owner's signature does not open the recovery door", async () 
 
   // The same UTxO the unlock test spends, and the same wallet signing it. Only
   // the redeemer differs, so only the branch the validator takes differs.
-  const unsignedTx = await buildRecoverTx(owner, fetcher, locked);
+  const unsignedTx = await buildAdminUnlockTx(owner, fetcher, locked);
 
   const evaluator = new OfflineEvaluator(fetcher, "preview");
   await assert.rejects(
     () => evaluator.evaluateTx(unsignedTx, [], []),
-    "the validator should refuse a Recover signed by the owner",
+    "the validator should refuse an AdminUnlock signed by the owner",
   );
 });
 
-test("parameters: a different recovery key gives the vault a different address", () => {
+test("parameters: a different admin key gives the vault a different address", () => {
   // Two 28-byte key hashes, written as hex.
   const alice = "a".repeat(56);
   const bob = "b".repeat(56);
 
-  const alicesVault = recoveryVaultAddress(alice, NETWORK);
-  const bobsVault = recoveryVaultAddress(bob, NETWORK);
+  const alicesVault = adminVaultAddress(alice, NETWORK);
+  const bobsVault = adminVaultAddress(bob, NETWORK);
 
-  // Same source code, same compiled validator, two addresses. The recovery key
-  // is part of the script, the script's hash is the address, so changing the
-  // key moves the vault.
-  assert.notEqual(alicesVault, bobsVault, "each recovery key should get its own address");
+  // Same source code, same compiled validator, two addresses. The admin key is
+  // part of the script, the script's hash is the address, so changing the key
+  // moves the vault.
+  assert.notEqual(alicesVault, bobsVault, "each admin key should get its own address");
 
   // Both are real addresses, which also proves the parameter was applied to a
   // script the ledger can read rather than producing nonsense.
@@ -210,5 +210,5 @@ test("parameters: a different recovery key gives the vault a different address",
   }
 
   // And it is stable: the same key always lands on the same vault.
-  assert.equal(recoveryVaultAddress(alice, NETWORK), alicesVault);
+  assert.equal(adminVaultAddress(alice, NETWORK), alicesVault);
 });

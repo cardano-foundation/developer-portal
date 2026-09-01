@@ -24,22 +24,24 @@ pub type VaultDatum {
 // #region types
 pub type VaultAction {
   Unlock
-  Recover
+  AdminUnlock
 }
 // #endregion types
 
 // The name of the token this policy can mint. One policy, one token name.
+// The token is an example, not part of the vault: neither script mentions the
+// other.
 // #region token-name
-const vault_token: ByteArray = "VAULT"
+const token_name: ByteArray = "TOKEN A"
 // #endregion token-name
 
 // The vault the reader builds across the track: the owner's key for normal use,
-// and a backup key welded in at build time.
+// and the service's admin key welded in at build time.
 //
-// Three facts reach `spend`, each fixed at a different moment: `recovery` at
+// Three facts reach `spend`, each fixed at a different moment: `admin` at
 // build time, `owner` at lock time, and the action at spend time.
 // #region vault
-validator vault(recovery: VerificationKeyHash) {
+validator vault(admin: VerificationKeyHash) {
   spend(
     datum: Option<VaultDatum>,
     redeemer: VaultAction,
@@ -49,7 +51,7 @@ validator vault(recovery: VerificationKeyHash) {
     expect Some(VaultDatum { owner }) = datum
     when redeemer is {
       Unlock -> list.has(self.extra_signatories, owner)
-      Recover -> list.has(self.extra_signatories, recovery)
+      AdminUnlock -> list.has(self.extra_signatories, admin)
     }
   }
 
@@ -60,7 +62,7 @@ validator vault(recovery: VerificationKeyHash) {
 // #endregion vault
 
 // A second script, with no parameter, so its hash is the same for everybody
-// while the vault's moves with the recovery key. That hash is also this script's
+// while the vault's moves with the admin key. That hash is also this script's
 // policy id, so it decides which tokens may exist under it: one token in, or one
 // token out.
 // #region mint-validator
@@ -68,7 +70,7 @@ validator vault_policy {
   mint(_redeemer: Data, policy_id: PolicyId, self: Transaction) {
     expect [Pair(name, _)] = assets.tokens(self.mint, policy_id)
       |> dict.to_pairs()
-    name == vault_token
+    name == token_name
   }
 
   else(_) {
@@ -78,11 +80,11 @@ validator vault_policy {
 // #endregion mint-validator
 
 // Tests. The reader starts them in **testing**, against the vault as it stands
-// there, and extends them as the contract grows: the recovery pair in
+// there, and extends them as the contract grows: the admin pair in
 // **parameters**, the mint trio in **validator purposes**.
 //
 // Each one copies `transaction.placeholder` and fills in only the field its rule
-// reads. `recovery` leads every call into `vault`, the way a parameter always
+// reads. `admin` leads every call into `vault`, the way a parameter always
 // comes first in a handler, and none into `vault_policy`, which has no parameter.
 
 // #region spend-tests
@@ -94,12 +96,12 @@ const stranger: VerificationKeyHash =
 
 // #endregion spend-tests
 
-// The backup key the vault is compiled around. It arrives in **parameters**,
-// alongside the `Recover` action it guards.
-// #region recover-tests
-const recovery: VerificationKeyHash =
+// The admin key the vault is compiled around. It arrives in **parameters**,
+// alongside the `AdminUnlock` action it guards.
+// #region admin-tests
+const admin: VerificationKeyHash =
   #"00000000000000000000000000000000000000000000000000000003"
-// #endregion recover-tests
+// #endregion admin-tests
 
 // #region spend-tests
 const dummy_ref: OutputReference =
@@ -118,7 +120,9 @@ const policy: PolicyId =
 // #region spend-tests
 test unlock_ok_when_the_owner_signs() {
   let tx = Transaction { ..transaction.placeholder, extra_signatories: [owner] }
-  vault.spend(recovery, Some(VaultDatum { owner }), Unlock, dummy_ref, tx)
+  // #region spend-call
+  vault.spend(admin, Some(VaultDatum { owner }), Unlock, dummy_ref, tx)
+  // #endregion spend-call
 }
 
 test unlock_fails_for_a_stranger() fail {
@@ -126,26 +130,26 @@ test unlock_fails_for_a_stranger() fail {
     ..transaction.placeholder,
     extra_signatories: [stranger],
   }
-  vault.spend(recovery, Some(VaultDatum { owner }), Unlock, dummy_ref, tx)
+  vault.spend(admin, Some(VaultDatum { owner }), Unlock, dummy_ref, tx)
 }
 // #endregion spend-tests
 
-// #region recover-tests
-test recover_ok_when_the_recovery_key_signs() {
+// #region admin-tests
+test admin_unlock_ok_when_the_admin_signs() {
   let tx = Transaction {
     ..transaction.placeholder,
-    extra_signatories: [recovery],
+    extra_signatories: [admin],
   }
-  vault.spend(recovery, Some(VaultDatum { owner }), Recover, dummy_ref, tx)
+  vault.spend(admin, Some(VaultDatum { owner }), AdminUnlock, dummy_ref, tx)
 }
 
 // The important one: the two actions are genuinely separate. Being the owner
-// does not let you take the `Recover` path, and vice versa.
-test recover_fails_when_the_owner_signs() fail {
+// does not let you take the `AdminUnlock` path, and vice versa.
+test admin_unlock_fails_when_the_owner_signs() fail {
   let tx = Transaction { ..transaction.placeholder, extra_signatories: [owner] }
-  vault.spend(recovery, Some(VaultDatum { owner }), Recover, dummy_ref, tx)
+  vault.spend(admin, Some(VaultDatum { owner }), AdminUnlock, dummy_ref, tx)
 }
-// #endregion recover-tests
+// #endregion admin-tests
 
 // A property, not an example: the rule has to hold for *every* owner, not just
 // the one the tests happen to name. Aiken generates the keys and, if it finds a
@@ -157,7 +161,7 @@ test unlock_ok_for_any_owner(any_owner via fuzz.bytearray()) {
     extra_signatories: [any_owner],
   }
   vault.spend(
-    recovery,
+    admin,
     Some(VaultDatum { owner: any_owner }),
     Unlock,
     dummy_ref,
@@ -170,7 +174,7 @@ test unlock_ok_for_any_owner(any_owner via fuzz.bytearray()) {
 test mint_ok_for_a_correctly_named_token() {
   let tx = Transaction {
     ..transaction.placeholder,
-    mint: assets.from_asset(policy, vault_token, 1),
+    mint: assets.from_asset(policy, token_name, 1),
   }
   vault_policy.mint(Void, policy, tx)
 }
@@ -178,7 +182,7 @@ test mint_ok_for_a_correctly_named_token() {
 test burn_ok_for_a_correctly_named_token() {
   let tx = Transaction {
     ..transaction.placeholder,
-    mint: assets.from_asset(policy, vault_token, -1),
+    mint: assets.from_asset(policy, token_name, -1),
   }
   vault_policy.mint(Void, policy, tx)
 }

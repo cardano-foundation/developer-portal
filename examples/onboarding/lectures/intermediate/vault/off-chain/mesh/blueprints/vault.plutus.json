@@ -27,7 +27,7 @@
       },
       "parameters": [
         {
-          "title": "recovery",
+          "title": "admin",
           "schema": {
             "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
           }
@@ -43,7 +43,7 @@
       },
       "parameters": [
         {
-          "title": "recovery",
+          "title": "admin",
           "schema": {
             "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
           }
@@ -60,16 +60,16 @@
           "$ref": "#/definitions/Data"
         }
       },
-      "compiledCode": "58c501010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900018031baa001899192cc004c030006266e3d221055641554c5400375c601060160031640286464660020026eacc030c034c034c034c034c028dd51806003912cc004006007132325980099b910060018acc004cdc7803000c4dd59806801401500b44cc010010c04000d00b1bae300b001300d0014030297adef6c60375c6012600e6ea80062c8028c01c004c01cc020004c01c004c00cdd5003c52689b2b200201",
-      "hash": "736feeda8f96f7bb3d291839666a01c51a1de073ab25c5d7f6056b6c"
+      "compiledCode": "58c701010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900018031baa001899192cc004c030006266e3d22107544f4b454e204100375c601060160031640286464660020026eacc030c034c034c034c034c028dd51806003912cc004006007132325980099b910060018acc004cdc7803000c4dd59806801401500b44cc010010c04000d00b1bae300b001300d0014030297adef6c60375c6012600e6ea80062c8028c01c004c01cc020004c01c004c00cdd5003c52689b2b200201",
+      "hash": "32cfa014c18bccdfc9a2a6b40c1995d078e6e910fca787fe8ffdd3a0"
     },
     {
       "title": "vault.vault_policy.else",
       "redeemer": {
         "schema": {}
       },
-      "compiledCode": "58c501010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900018031baa001899192cc004c030006266e3d221055641554c5400375c601060160031640286464660020026eacc030c034c034c034c034c028dd51806003912cc004006007132325980099b910060018acc004cdc7803000c4dd59806801401500b44cc010010c04000d00b1bae300b001300d0014030297adef6c60375c6012600e6ea80062c8028c01c004c01cc020004c01c004c00cdd5003c52689b2b200201",
-      "hash": "736feeda8f96f7bb3d291839666a01c51a1de073ab25c5d7f6056b6c"
+      "compiledCode": "58c701010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900018031baa001899192cc004c030006266e3d22107544f4b454e204100375c601060160031640286464660020026eacc030c034c034c034c034c028dd51806003912cc004006007132325980099b910060018acc004cdc7803000c4dd59806801401500b44cc010010c04000d00b1bae300b001300d0014030297adef6c60375c6012600e6ea80062c8028c01c004c01cc020004c01c004c00cdd5003c52689b2b200201",
+      "hash": "32cfa014c18bccdfc9a2a6b40c1995d078e6e910fca787fe8ffdd3a0"
     },
     {
       "title": "vault_simple.vault.spend",
@@ -102,6 +102,9 @@
       "title": "Data",
       "description": "Any Plutus data."
     },
+    "Int": {
+      "dataType": "integer"
+    },
     "aiken/crypto/VerificationKeyHash": {
       "title": "VerificationKeyHash",
       "dataType": "bytes"
@@ -116,7 +119,7 @@
           "fields": []
         },
         {
-          "title": "Recover",
+          "title": "AdminUnlock",
           "dataType": "constructor",
           "index": 1,
           "fields": []

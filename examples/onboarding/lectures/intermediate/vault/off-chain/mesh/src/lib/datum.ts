@@ -10,8 +10,8 @@ export function vaultDatum(ownerPubKeyHash: string): Data {
 /// The redeemer for `Unlock`.
 export const unlockRedeemer: Data = mConStr0([]);
 
-// #region recover
-/// The redeemer for `Recover`, added in parameters.
-export const recoverRedeemer: Data = mConStr1([]);
-// #endregion recover
+// #region admin
+/// The redeemer for `AdminUnlock`, added in parameters.
+export const adminRedeemer: Data = mConStr1([]);
+// #endregion admin
 // #endregion file
