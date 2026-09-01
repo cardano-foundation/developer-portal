@@ -27,30 +27,30 @@ Every purpose works the same way. Something in a transaction touches your script
 
 The purpose changes a little how you write the validator. A **spend** validator is given the **datum**, because there is a locked UTxO with a note attached to it. A **mint** validator is not, because nothing is being unlocked. Every purpose is given the redeemer and the transaction context. Your vault uses **spend** today. In this lecture it gains **mint** as well.
 
-## One validator, many purposes, one hash
+## One validator, one hash, many purposes
 
 A **single validator** can handle **several purposes at once**, and it has exactly **one hash**. That one hash is all of these at the same time:
 
-- its **address** (for the _spend_ purpose),
+- its **payment credential** (for the _spend_ purpose),
 - its **policy ID** (for the _mint_ purpose),
 - its **stake credential** (for the _withdraw_ purpose).
 
 ```mermaid
 flowchart TD
     S["your validator,<br/>compiled"] -->|hash it| H["one script hash"]
-    H -->|written as an address| A["`**spend**
+    H -->|works as payment credential (inside address)| A["`**spend**
     guards the UTxOs locked there`"]
-    H -->|written as a policy ID| P["`**mint**
+    H -->|works as a policy ID| P["`**mint**
     guards tokens issued under it`"]
-    H -->|registered as a stake credential| W["`**withdraw**
+    H -->|works as stake credential (inside address)| W["`**withdraw**
     guards reward withdrawals`"]
 ```
 
-The hash **is** the script's identity, and where you put that hash decides which question the network asks it.
+The hash **is** the script's identity, and the way you use that hash decides which question the network asks it.
 
 Because the script sees its own hash in more than one role, it can **connect** them. One script can create a token and also control how the UTxO holding that token is spent, all under one identity. Many real Cardano designs are built this way, using a token as a mark that says "this UTxO is the real one", which only that same script could have created.
 
-## Your vault declares only one purpose, so far
+## Your vault declares only one purpose
 
 The vault you have been building handles only **spend**. Its source says so in two places: the spend validator you wrote, and the `else` block that **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** asked you to copy without explaining:
 
@@ -129,7 +129,7 @@ Read the arguments, because they differ from `spend`. **No datum reaches this ha
 
 `self.mint` holds everything the transaction creates or destroys, under every policy. `assets.tokens` gives back only the tokens minted under this one, as a dictionary of token name to amount, and `dict.to_pairs` turns that into a list. Matching the list against `[Pair(name, _)]` succeeds only if it holds exactly one entry, so the transaction cannot mint a second name under this policy. `name == token_name` then decides which name that has to be.
 
-**Notice which script this is.** The vault takes `admin` as a parameter and this policy takes none, so the two hashes move independently. Change your admin key and the vault's address changes, from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. The policy id stays exactly where it was, because there is nothing in it to change. Every reader of this track ends up with a different vault and the same token.
+**Notice which script this is.** The vault takes `admin` as a parameter and this policy takes none, so the two hashes move independently, and the policy needs nothing applied to it before you use it. Change your admin key and the vault's address changes, from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. The policy id stays exactly where it was, because there is nothing in it to change. Every reader of this track ends up with a different vault and the same token.
 
 ```bash
 aiken check

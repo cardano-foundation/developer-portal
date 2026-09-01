@@ -14,13 +14,13 @@ import VaultSimpleAiken from "!!raw-loader!@site/examples/onboarding/lectures/in
 
 # Parameters
 
-The last two lectures finished the list of what a validator is **given**: the **[datum and the redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**, then the **[context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**. Nothing else is handed to a validator when it runs.
+The last two lectures finished the list of what a validator is **given**: the **[datum and the redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**, then the **[context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**. Nothing else is handed to a validator **when it runs**.
 
 A **parameter** is not on that list. It is a value built into the contract's own code, before the contract ever reaches the chain. Compiling leaves a **blank** where the value goes, and the contract is finished by filling that blank in. A parameter is baked **into** the validator, which is why you will never find it in `validator(datum, redeemer, context)`.
 
-Of the values **you** supply, the useful way to tell them apart is **when the value is fixed**:
+Of the values **you** supply, the useful way to tell them apart is **when the value is provided**:
 
-| | Fixed when | Lives in | To change it |
+| | Provided at | Lives in | To change it |
 |---|---|---|---|
 | **parameter** | build time | the contract itself | fill the blank differently: a new contract, at a **new address** |
 | **datum** | lock time | the locked UTxO | lock a new UTxO |
@@ -87,7 +87,7 @@ Every service would share one address, and each locked UTxO would carry its own 
 
 Ask "is this the same for every UTxO at this address?" first. If yes, it is a parameter. Only if no do you go back to the datum or redeemer question.
 
-There is one more thing you could do, and it is worse. You could simply **write the admin key into the code**. It would be just as fixed and just as safe. But then every new deployment needs a change to the contract itself, which means compiling it again, testing it again, and having it audited again. With a parameter you compile and test **once**, and each deployment only passes a different value in.
+There is one more thing you could do. You could simply **write the admin key into the code**. It would be just as fixed and just as safe. But then every new deployment needs a change to the contract itself, which means compiling it again, testing it again, and having it audited again. With a parameter, you compile, test, and audit **once**, and each deployment only passes a different value in.
 
 :::warning An admin key can spend anybody's funds
 `AdminUnlock` is a real spending path, so the company holding the admin key can take any customer's funds. This is custody: the funds are only as safe as that one key and the company behind it.
@@ -105,7 +105,7 @@ The **datum** goes on the output when you lock. The **redeemer** goes in the spe
 
 Filling the blank does not compile anything and does not ask the network for anything. Your off-chain code takes the compiled script from your blueprint (`plutus.json`), with the blank still in it, supplies the missing value, and hashes what comes out. Two lines of ordinary code, and no transaction. **That is the whole of "deploying" a parameterized contract**, and you will write those two lines in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
 
-You will meet the word "deploy" in one other sense, though. It also describes putting the script into a UTxO, so that later transactions point at it instead of carrying a copy of it. That one really is a transaction, and it is optional: a way to make every spend smaller, not a step you must take before a contract works. **Reference inputs & scripts** does it.
+You will meet the word "deploy" in one other sense, though. It also describes putting the script into a UTxO, so that later transactions point at it instead of carrying a copy of it. That one really is a transaction, and it is optional: a way to make every spend smaller, not a step you must take before a contract works. **Reference inputs & scripts** explains it.
 
 ## Try it
 
