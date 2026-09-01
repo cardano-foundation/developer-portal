@@ -108,7 +108,7 @@ Open `validators/vault.ak`, the file you wrote [last lecture](/docs/developers/o
 The shapes you are about to write need two things from the **[standard library](https://github.com/aiken-lang/stdlib)**: a type for the owner's key hash, and the types the handler is handed. The stdlib carries most of what a validator needs, from the ledger types you are importing here to helpers for lists, bytes and time intervals. Add both as the **first lines of the file**:
 
 <CodeBlock language="aiken" title="validators/vault.ak">
-  {extractRegion(VaultSimple, "datum-imports")}
+  {`${extractRegion(VaultSimple, "datum-imports")}\n${extractRegion(VaultSimple, "import-transaction")}`}
 </CodeBlock>
 
 Then write the datum and the redeemer themselves, **between the imports and the `validator` block**. These are the two shapes from the start of this lecture:

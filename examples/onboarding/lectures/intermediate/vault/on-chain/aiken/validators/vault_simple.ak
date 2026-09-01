@@ -1,4 +1,4 @@
-// `vault.ak` part way through the track: no `recovery` parameter, no minting
+// `vault.ak` part way through the track: no `admin` parameter, no minting
 // policy. Lectures 4, 5 and 6 render from here, so their pages show the file as
 // it looked at that point. It sits in `validators/` so the compiler checks it,
 // which is also why `plutus.json` carries `vault_simple.*` entries nothing reads.
@@ -11,9 +11,15 @@ use aiken/crypto.{VerificationKeyHash}
 // The generators the property test draws its keys from. Added in **testing**.
 // #region simple-fuzz-import
 use aiken/fuzz
+// #endregion simple-fuzz-import
+
+// The handler's own argument types. Added in **datum & redeemer**, beside the
+// key hash above; `aiken fmt` sorts the imports, which is why the two sit apart
+// here and lecture 4 renders them as one block.
+// #region import-transaction
 use cardano/transaction.{OutputReference, Transaction}
 
-// #endregion simple-fuzz-import
+// #endregion import-transaction
 
 // The datum: who owns *this* locked UTxO. It changes from one UTxO to the next,
 // so it belongs on the UTxO.
@@ -90,7 +96,9 @@ const dummy_ref: OutputReference =
 // fills in the one field this rule reads.
 test unlock_ok_when_the_owner_signs() {
   let tx = Transaction { ..transaction.placeholder, extra_signatories: [owner] }
+  // #region spend-call
   vault.spend(Some(VaultDatum { owner }), Unlock, dummy_ref, tx)
+  // #endregion spend-call
 }
 
 // The rule is only worth anything if it also says no. `fail` is how a test

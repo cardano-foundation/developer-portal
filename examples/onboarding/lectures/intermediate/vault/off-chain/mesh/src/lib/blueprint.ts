@@ -11,11 +11,11 @@ import blueprint from "../../blueprints/vault.plutus.json" with { type: "json" }
 
 export { blueprint };
 
-// #region recovery-const
-// The recovery key this vault is compiled around. It fixes the address, so it
-// has to stay the same forever.
-const RECOVERY = "00000000000000000000000000000000000000000000000000000000";
-// #endregion recovery-const
+// #region admin-const
+// The admin key this vault is compiled around. It fixes the address, so it has
+// to stay the same forever.
+const ADMIN = "00000000000000000000000000000000000000000000000000000000";
+// #endregion admin-const
 
 const PLUTUS_VERSION = "V3";
 
@@ -27,9 +27,9 @@ function compiledCode(source: Blueprint, title: string): string {
   return validator.compiledCode;
 }
 
-/// The compiled contract, with the recovery key built into it.
+/// The compiled contract, with the admin key built into it.
 // #region params
-export const vaultScriptCbor = applyParamsToScript(compiledCode(blueprint, "vault.vault.spend"), [RECOVERY]);
+export const vaultScriptCbor = applyParamsToScript(compiledCode(blueprint, "vault.vault.spend"), [ADMIN]);
 // #endregion params
 
 /// The token's policy, a second script. It takes no parameter, so the list of

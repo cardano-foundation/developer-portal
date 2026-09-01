@@ -1,6 +1,6 @@
 // Playground bookkeeping, kept out of the lecture: this file is what lecture 9
 // renders, and it runs here too, served at **/vault.html**. `main.tsx` is the
-// same idea with the recovery door and some styling. Both drive the same
+// same idea with the admin door and some styling. Both drive the same
 // `./lib`, which is the code the reader writes.
 // #region file
 /// The page: connect a wallet, lock 5 ADA, mint the vault's own token, and

@@ -6,7 +6,7 @@ import { vaultAddress, vaultTokenPolicyId, vaultTokenScriptCbor } from "./bluepr
 import { vaultDatum } from "./datum.ts";
 
 /// The token name the policy allows, as the contract spells it.
-export const VAULT_TOKEN_NAME = "VAULT";
+export const TOKEN_NAME = "TOKEN A";
 
 /// Build a transaction that **mints one vault token and locks it**, together with
 /// `lovelace`, at the vault's address.
@@ -34,7 +34,7 @@ export async function buildMintAndLockTx(
   // this is a different value.
   const policyId = vaultTokenPolicyId();
   // Token names travel as hex on the chain, so convert it once here.
-  const tokenNameHex = stringToHex(VAULT_TOKEN_NAME);
+  const tokenNameHex = stringToHex(TOKEN_NAME);
 
   const txBuilder = new MeshTxBuilder({ fetcher: provider });
   return await txBuilder

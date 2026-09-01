@@ -3,11 +3,11 @@ import { MeshTxBuilder, deserializeAddress } from "@meshsdk/core";
 import type { IEvaluator, IFetcher, IWallet, UTxO } from "@meshsdk/core";
 
 import { vaultScriptCbor } from "./blueprint.ts";
-import { recoverRedeemer } from "./datum.ts";
+import { adminRedeemer } from "./datum.ts";
 
 /// `unlock.ts` with one line changed. See that file for what each builder call
 /// does; the difference is marked below.
-export async function buildRecoverTx(
+export async function buildAdminUnlockTx(
   wallet: IWallet,
   provider: IFetcher,
   lockedUtxo: UTxO,
@@ -15,9 +15,9 @@ export async function buildRecoverTx(
 ): Promise<string> {
   // Where the wallet wants anything left over sent back to.
   const changeAddress = await wallet.getChangeAddress();
-  // The *backup* wallet's key hash. Whichever wallet you hand in is the one
+  // The *admin* wallet's key hash. Whichever wallet you hand in is the one
   // whose signature this asks for.
-  const recovery = deserializeAddress(changeAddress).pubKeyHash;
+  const admin = deserializeAddress(changeAddress).pubKeyHash;
   // The deposit, the same as any other spend that runs a script.
   const collateral = (await wallet.getCollateral())[0];
   if (!collateral) {
@@ -43,13 +43,13 @@ export async function buildRecoverTx(
     .txInScript(vaultScriptCbor)
     // The datum is already on the UTxO, so there is nothing to attach here.
     .txInInlineDatumPresent()
-    // #region recover-redeemer
-    // **The one line that differs from `unlock.ts`**: `Recover`, which tells the
+    // #region admin-redeemer
+    // **The one line that differs from `unlock.ts`**: `AdminUnlock`, which tells the
     // validator to check the key built into the script instead of the owner.
-    .txInRedeemerValue(recoverRedeemer)
-    // And so the signature it looks for is the recovery key's.
-    .requiredSignerHash(recovery)
-    // #endregion recover-redeemer
+    .txInRedeemerValue(adminRedeemer)
+    // And so the signature it looks for is the admin key's.
+    .requiredSignerHash(admin)
+    // #endregion admin-redeemer
     // Offer the deposit found above.
     .txInCollateral(
       collateral.input.txHash,
