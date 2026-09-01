@@ -194,7 +194,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 You can write a validator, compile it, run it from an application, prove that it does what you say it does, and drive it from a page in a browser. You can also take an idea and turn it into a design. You do that by asking four questions: what has to be remembered, which actions are possible, what must be true for each one, and what breaks if a rule is missing.
 
-Along the way you built a vault with a backup key and its own token, a deadline, a gift card, an oracle, and a contract that reads another contract's data.
+Along the way you built a vault with an admin key and its own token, a deadline, a gift card, an oracle, and a contract that reads another contract's data.
 
 Everything else is a larger version of these same parts. When the size grows, the mechanism does not change, but you need more care: the ways contracts get attacked, the patterns that prevent those attacks, and the cost of running them.
 
