@@ -30,7 +30,7 @@ The good thing is that, unlike when we wrote the contract, this part mostly come
 
 ## The bridge: from blueprint to address
 
-The off-chain side starts from `plutus.json`, the file your compiler wrote. It holds the compiled validator. Filling in its parameter finishes the script, and hashing the finished script gives the **address**. **[Parameters](/docs/developers/onboarding/lectures/intermediate/parameters#why-a-parameter-changes-the-address)** drew that chain and promised you the two lines of code at the end of it. You write them below, in the first file you create.
+The off-chain side starts from `plutus.json`, the file your compiler wrote. It holds the compiled validator. Filling in its parameter finishes the script, and hashing the finished script gives the **address**. 
 
 Deriving the address is not a deployment. The address exists because the contract exists, so you could work it out on a computer that has never been online, and anyone with the same contract and the same parameter arrives at the same address.
 
