@@ -52,7 +52,7 @@ Minting adds nothing conceptually. The token has a policy script of its own, and
 Collateral is a deposit the network takes only when a script fails after passing structural checks. The rules are in **[fees](/docs/developers/curriculum/fundamentals/core-concepts/fees#collateral)** and the two-phase model behind them is in **[transaction failures](/docs/developers/curriculum/start-building/transaction-failures#the-two-phase-model)**. Three things about it are specific to what you are building:
 
 - It must hold **only ADA**, and it must sit at a **plain key address** with no script guarding it. Otherwise the network would need to run a second script just to collect the deposit.
-- **In normal use it is never taken**, because the validator runs before you send anything. In the tests below that happens on your own machine. In the page, the job goes to the **provider**, the service that reads the chain for you, which is Blockfrost here.
+- **In normal use, it is never taken**. For collateral to be taken, you have to be trying to get away with something you're not allowed to do. If something is wrong, It'll be caught by either your tooling (your tests or the **provider**, the service that reads the chain for you, which is Blockfrost here) before submitting the transaction.
 - This is the first project whose **code** reads the chain, which is why it needs a Blockfrost key when the Beginner track never did. The builder resolves inputs and fee settings through the provider, and the check before you send asks it to run your script as well.
 
 :::tip Set collateral once and forget it
