@@ -24,7 +24,7 @@ Your contract is finished. It compiles, passes its eight tests, and has a hash. 
 
 **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** drew the line at the start of this track and left the `off-chain/` folder empty. Well, it's time to fill it. By the end of this lectrue, you will have a page in a browser with a **Connect wallet** button, a **Lock** button and an **Unlock** button, driving the vault you wrote.
 
-It arrives all at once for a reason. The contract is where the thinking is, and it changed with every lecture: a datum, a rule, a parameter, a second purpose. The off-chain half barely changes at all. It is the same few builders every time: derive the address, attach the datum, spend the UTxO. Writing them against a contract that has stopped moving is far easier than rewriting them six times as the contract grows.
+The good thing is that, unlike when we wrote the contract, this part mostly comes from your previous choices and is more mechanical because the off-chain has many repeated parts across protocols: deriving the address, attaching the datum, spending the UTxO, etc.
 
 **You write all of it.** Six files carry a Cardano idea: the address, the datum, and the four transactions your page sends. The rest is the page, its config, and the tests that prove the whole thing before a wallet is ever connected.
 
