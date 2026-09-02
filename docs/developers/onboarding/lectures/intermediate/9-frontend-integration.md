@@ -22,7 +22,7 @@ import VercelFn from "!!raw-loader!@site/examples/onboarding/lectures/intermedia
 
 Your contract is finished. It compiles, passes its eight tests, and has a hash. But it can do nothing at all, because **a contract is a passive entity. It cannot act by itself**. That's the off-chain's job.
 
-That something is your app, and this lecture is the whole of it. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** drew the line at the start of this track and left the `off-chain/` folder empty. Everything on that side of the line arrives here. By the end you will have a page in a browser with a **Connect wallet** button, a **Lock** button and an **Unlock** button, driving the vault you wrote.
+**[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** drew the line at the start of this track and left the `off-chain/` folder empty. Well, it's time to fill it. By the end of this lectrue, you will have a page in a browser with a **Connect wallet** button, a **Lock** button and an **Unlock** button, driving the vault you wrote.
 
 It arrives all at once for a reason. The contract is where the thinking is, and it changed with every lecture: a datum, a rule, a parameter, a second purpose. The off-chain half barely changes at all. It is the same few builders every time: derive the address, attach the datum, spend the UTxO. Writing them against a contract that has stopped moving is far easier than rewriting them six times as the contract grows.
 
