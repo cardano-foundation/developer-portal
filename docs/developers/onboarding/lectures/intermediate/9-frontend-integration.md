@@ -36,7 +36,7 @@ Deriving the address is not a deployment. The address exists because the contrac
 
 ## Lock, then unlock
 
-Locking is an ordinary payment that happens to be addressed to a script, with the datum attached to the output, exactly as **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator#locking-is-just-a-payment)** described. **Unlocking is where the contract runs.** That transaction still carries everything a plain payment does, its inputs, outputs, fee, signatures and validity window, and it carries four things a plain payment never needs:
+Locking is an ordinary payment that happens to be addressed to a script, with the datum attached to the output, exactly as **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator#locking-is-just-a-payment)** described. **Unlocking is where the `spend` script runs.** That transaction still carries everything a plain payment does: its inputs, outputs, fee, signatures, and validity window, but, on top of those, it carries some things a plain payment never needs:
 
 - the **script** itself, because the network cannot run a program it has not been given.
 - the **redeemer**, because the validator has to be told which action you are taking.
