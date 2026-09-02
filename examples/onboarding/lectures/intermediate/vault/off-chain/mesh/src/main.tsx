@@ -152,9 +152,9 @@ function App() {
           Mint &amp; lock 5 ADA
         </button>
         <p className="mt-2 text-xs text-gray-500">
-          The second button also <b>mints</b> one TOKEN A token and locks it with the ADA. Two scripts
-          run in that one transaction: the policy decides the token may exist, and the vault's
-          address is where it lands. Unlocking brings both back.
+          The second button also <b>mints</b> one TOKEN A token and locks it with the ADA. One script
+          runs in that transaction: the policy, which decides the token may exist. The vault's own
+          validator does not run until you unlock, which brings both back.
         </p>
       </Step>
 

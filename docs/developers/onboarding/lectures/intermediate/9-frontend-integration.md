@@ -17,6 +17,7 @@ import MintLib from "!!raw-loader!@site/examples/onboarding/lectures/intermediat
 import OfflineTests from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/vault.test.ts";
 import Minimal from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/app.tsx";
 import VercelFn from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/api/blockfrost/[...path].ts";
+import Tsconfig from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/tsconfig.json";
 
 # Off-chain and frontend integration
 
@@ -46,6 +47,14 @@ Locking is an ordinary payment that happens to be addressed to a script, with th
 Your wallet signing a transaction is not the same as your key hash appearing in the transaction's required-signers field. That field is `extra_signatories`, the one your vault reads in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**, and asking for it is a separate step from signing. Forget it and the signature is there but the validator cannot see it, so a correct contract refuses a legitimate spend.
 
 Minting adds nothing conceptually. The token has a policy script of its own, and its hash is the policy ID, from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**. Minting does add collateral, because it runs a script, and a plain lock does not.
+
+## How the datum and the redeemer are stored
+
+On-chain data is stored as a **numbered constructor plus a list of fields**. The number answers "which choice of the type is this?", and the list answers "what does it hold?". The number comes from position: the first choice declared is 0, the next is 1, and so on.
+
+`VaultDatum` offers one shape, so it is constructor 0 carrying one field, the owner. `VaultAction` offers two, so `Unlock` is constructor 0 and `AdminUnlock` is constructor 1, each carrying nothing.
+
+Your off-chain code has to build those same bytes from the other side, and nothing checks that the two sides agree. Send constructor 1 where you meant `Unlock` and the validator reads `AdminUnlock`, and acts on it.
 
 ## Collateral, and what a script costs
 
@@ -132,26 +141,9 @@ Note where that `package.json` landed: the **workspace root**, not inside `off-c
 
 One more file, so your editor understands the code you are about to write. Create `tsconfig.json` beside `package.json`:
 
-```json title="tsconfig.json"
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "types": ["node", "vite/client"]
-  },
-  "include": ["off-chain/src"]
-}
-```
+<CodeBlock language="json" title="tsconfig.json">
+  {extractRegion(Tsconfig, "file")}
+</CodeBlock>
 
 `skipLibCheck` stops TypeScript checking Mesh's own dependencies and reporting errors from libraries you never imported. `types` brings in Node's globals, which the tests need, and Vite's, which is what makes `import.meta.env` a known thing. `resolveJsonModule` lets you import `plutus.json`. And `allowImportingTsExtensions` is what lets your imports say `./lib/lock.ts`, extension and all, the way Node runs them.
 
@@ -182,49 +174,212 @@ The shapes from **[datum & redeemer](/docs/developers/onboarding/lectures/interm
   {extractRegion(Datum, "file")}
 </CodeBlock>
 
-`mConStr0` names a constructor by number, which is how a type reaches a validator: by the position it was declared in, not by its name. `mConStr0([ownerPubKeyHash])` is constructor 0 carrying one field, which is the `VaultDatum { owner }` your validator expects. `mConStr0([])` is constructor 0 carrying nothing, which is `Unlock`. And `mConStr1([])` is constructor 1, which is `AdminUnlock`, because it is declared second in `VaultAction`.
+`mConStr0` and `mConStr1` are how Mesh writes the [numbered constructors](#how-the-datum-and-the-redeemer-are-stored) above. `mConStr0([ownerPubKeyHash])` is constructor 0 carrying one field, the `VaultDatum { owner }` your validator expects. `mConStr0([])` is `Unlock`, and `mConStr1([])` is `AdminUnlock`.
+
+</TabItem>
+<TabItem value="evolution" label="Evolution">
+
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon. The idea is identical, only the library calls differ.
+
+</TabItem>
+</Tabs>
 
 ### 4. The four transactions
 
-These are the whole off-chain half: lock funds, find them again, unlock them, and mint the vault's own token. First `off-chain/src/lib/lock.ts`:
+These are the logic of your off-chain code: lock funds, find them again, unlock them, and mint the vault's own token.
+
+#### Lock
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I["`**your UTxO**
+        address: you
+        value: 10 ADA`"]
+    end
+
+    TX{{"`**lock**
+    fee: 0.17 ADA
+    no script runs`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O1["`**locked**
+        address: the vault
+        value: 5 ADA
+        datum: owner = your key hash`"]
+        O2["`**change**
+        address: you
+        value: 4.83 ADA`"]
+    end
+
+    I --> TX --> O1
+    TX --> O2
+
+    style I stroke-dasharray:4 3
+```
+
+An ordinary payment. One output goes to the vault's address and carries the datum, and the rest comes back to you as change. No script, no redeemer and no collateral, because the contract does not run when you lock.
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+Create `off-chain/src/lib/lock.ts`:
 
 <CodeBlock language="ts" title="off-chain/src/lib/lock.ts">
   {extractRegion(LockLib, "file")}
 </CodeBlock>
 
-An ordinary payment, with two additions. `deserializeAddress(...).pubKeyHash` pulls your key hash out of your address, which is what goes in the datum, and `.txOutInlineDatumValue(...)` attaches that datum to the output. No script, no collateral, no redeemer: the contract does not run when you lock.
+`deserializeAddress(...).pubKeyHash` pulls your key hash out of your address, which is what goes in the datum, and `.txOutInlineDatumValue(...)` attaches that datum to the output.
 
-Then `off-chain/src/lib/unlock.ts`, which is where the contract does run:
+</TabItem>
+<TabItem value="evolution" label="Evolution">
 
-<CodeBlock language="ts" title="off-chain/src/lib/unlock.ts">
-  {extractRegion(UnlockLib, "file")}
-</CodeBlock>
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon.
 
-The four things a script spend adds each get a line. `.txInScript` carries the compiled contract, `.txInRedeemerValue` says which action you are taking, `.txInCollateral` offers the deposit, and `.requiredSignerHash(owner)` is the one people forget: it puts your key hash in `extra_signatories`, which is the list your validator actually reads.
+</TabItem>
+</Tabs>
 
-The rest say what is being spent. `.spendingPlutusScriptV3()` declares that this input is guarded by a script, `.txIn(...)` names the locked UTxO, and `.txInInlineDatumPresent()` says its datum is already on the chain, so there is nothing to attach.
+#### Find what is locked
 
-Passing an **evaluator** makes the builder run your **real compiled validator** before it returns anything. A spend the contract would refuse fails here, immediately, instead of on the chain where it would cost you the collateral.
+Nothing is spent and nothing is created here. A script address is an ordinary address, so this is the same [UTxO query](/docs/developers/curriculum/start-building/query-the-chain#datums) you have made since Beginner.
 
-Next `off-chain/src/lib/fetch.ts`, because you cannot unlock what you cannot find. A script address is an ordinary address, so this is the same [UTxO query](/docs/developers/curriculum/start-building/query-the-chain#datums) you have made since Beginner:
+**The vault's address is not yours.** Anyone who compiled the same contract with the same parameter arrives at the same address, so what sits there is everyone's UTxOs mixed together. The only thing that says which are yours is the `owner` in each datum, which is exactly what your validator will check later.
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+Create `off-chain/src/lib/fetch.ts`:
 
 <CodeBlock language="ts" title="off-chain/src/lib/fetch.ts">
   {extractRegion(FetchLib, "file")}
 </CodeBlock>
 
-**The vault's address is not yours.** Anyone who compiled the same contract with the same parameter arrives at the same address, so what sits there is everyone's UTxOs mixed together. The only thing that says which are yours is the `owner` in each datum, which is exactly what your validator will check later.
+</TabItem>
+<TabItem value="evolution" label="Evolution">
 
-Last `off-chain/src/lib/mint.ts`, which is `lock.ts` plus the mint from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**, in one transaction:
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon.
+
+</TabItem>
+</Tabs>
+
+#### Unlock
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I1["`**the locked UTxO**
+        address: the vault
+        value: 5 ADA
+        datum: owner = your key hash`"]
+        I2["`**your UTxO**
+        address: you
+        value: 4.83 ADA`"]
+    end
+
+    TX{{"`**unlock**
+    fee: 0.35 ADA
+    the spend validator runs
+    redeemer: Unlock
+    your key hash in extra_signatories
+    collateral offered, not taken`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O["`**back to you**
+        address: you
+        value: 9.48 ADA`"]
+    end
+
+    I1 --> TX --> O
+    I2 --> TX
+
+    style I1 stroke-dasharray:4 3
+    style I2 stroke-dasharray:4 3
+```
+
+This is where the contract runs. A script spend needs four things that a plain payment does not: the script, the redeemer, the required signer entry, and the collateral. **[Lock, then unlock](#lock-then-unlock)** above says what each one is for. Unlocking costs more than locking, because the network runs a program.
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+Create `off-chain/src/lib/unlock.ts`:
+
+<CodeBlock language="ts" title="off-chain/src/lib/unlock.ts">
+  {extractRegion(UnlockLib, "file")}
+</CodeBlock>
+
+Those four each get a line. `.txInScript` carries the compiled contract, `.txInRedeemerValue` says which action you are taking, `.txInCollateral` offers the deposit, and `.requiredSignerHash(owner)` is the one people forget: it puts your key hash in `extra_signatories`, which is the list your validator actually reads.
+
+The rest say what is being spent. `.spendingPlutusScriptV3()` declares that this input is guarded by a script, `.txIn(...)` names the locked UTxO, and `.txInInlineDatumPresent()` says its datum is already on the chain, so there is nothing to attach.
+
+Passing an **evaluator** makes the builder run your **real compiled validator** before it returns anything. A spend the contract would refuse fails here, immediately, instead of on the chain where it would cost you the collateral.
+
+</TabItem>
+<TabItem value="evolution" label="Evolution">
+
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon.
+
+</TabItem>
+</Tabs>
+
+#### Mint and lock
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I["`**your UTxO**
+        address: you
+        value: 10 ADA`"]
+    end
+
+    TX{{"`**mint and lock**
+    fee: 0.3 ADA
+    the policy's mint handler runs
+    mint: +1 TOKEN A
+    collateral offered, not taken`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O1["`**locked**
+        address: the vault
+        value: 5 ADA + 1 TOKEN A
+        datum: owner = your key hash`"]
+        O2["`**change**
+        address: you
+        value: 4.7 ADA`"]
+    end
+
+    I --> TX --> O1
+    TX --> O2
+
+    style I stroke-dasharray:4 3
+```
+
+The token is in no input. Minting is the one thing that creates value, and the policy from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** is what decides whether it may. One script runs here, and it is that policy. The vault's own validator does not, because this transaction creates an output at the vault's address instead of spending one, and sending to a script address never runs the script.
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+Create `off-chain/src/lib/mint.ts`:
 
 <CodeBlock language="ts" title="off-chain/src/lib/mint.ts">
   {extractRegion(MintLib, "file")}
 </CodeBlock>
 
-`vaultTokenPolicyId()` hashes the policy script, the second one in your blueprint, so the value it returns has nothing to do with the vault's address. Two scripts run in this transaction: `.mintingScript(...)` carries the policy so the network can ask it about the token, and the output goes to `vaultAddress(...)`.
+`vaultTokenPolicyId()` hashes the policy script, the second one in your blueprint, so the value it returns has nothing to do with the vault's address. `.mintingScript(...)` carries the policy so the network can ask it about the token, and the output goes to `vaultAddress(...)`.
 
-### 5. Prove it offline
+</TabItem>
+<TabItem value="evolution" label="Evolution">
 
-**[Testing](/docs/developers/onboarding/lectures/intermediate/testing)** named a third level of testing it could not reach, because there was no app to test. There is now, and it needs no network.
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon.
+
+</TabItem>
+</Tabs>
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+### 5. Integration testing
+
+**Integration testing** is what **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** could not reach, because there was no app to test. There is one now, and this needs no network.
 
 Create `off-chain/src/vault.test.ts`. The imports first:
 

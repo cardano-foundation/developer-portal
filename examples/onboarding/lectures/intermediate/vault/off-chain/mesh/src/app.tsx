@@ -59,8 +59,9 @@ function App() {
     run(() => buildLockTx(wallet!, provider, NETWORK_ID, "5000000"));
   }
 
-  // The same lock, plus one token minted under the vault's policy script. One
-  // transaction running two scripts, from **validator purposes**.
+  // The same lock, plus one token minted under the vault's policy script, from
+  // **validator purposes**. Only that policy runs: creating an output at the
+  // vault's address does not run the vault's own validator.
   function mintAndLock() {
     run(() => buildMintAndLockTx(wallet!, provider, NETWORK_ID, "5000000"));
   }
