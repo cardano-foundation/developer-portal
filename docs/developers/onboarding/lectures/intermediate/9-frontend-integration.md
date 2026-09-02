@@ -65,7 +65,7 @@ Unlocking also costs more than locking, because it runs a program and that is pr
 
 Every builder below ends the same way: it returns an **unsigned transaction**, which the **wallet** signs and submits. Your code never sees a key. That division is [CIP-30](/docs/developers/curriculum/dapps/connect-a-wallet#what-cip-30-gives-you), the interface every Cardano wallet exposes to a page, which is why an app written for one wallet works with the rest.
 
-The wallet signs an unlock **partially**: it signs the inputs it owns and leaves the rest alone. One of those inputs is the locked UTxO, and it sits at a script address, where no key can sign for anything. Whether it may be spent is the validator's decision, made when the network runs it.
+The wallet signs an unlock **partially**: it signs the inputs it owns and leaves the rest alone. One of those inputs is the vault UTxO, and it sits at a script address, where no key can sign for anything. The validator decides whether it may be spent when the network runs it.
 
 ## The browser cannot keep a secret
 
