@@ -99,7 +99,7 @@ sequenceDiagram
     W->>Net: signed (partially), submitted
     Net->>Net: run the validator: is the datum's owner<br/>among the transaction's signers?
     Net-->>W: yes
-    Vault->>App: the 5 ADA comes back
+    Vault->>W: the 5 ADA comes back
 ```
 
 ## Try it
