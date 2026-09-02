@@ -40,7 +40,7 @@ You finished Beginner, so you can move value around Cardano. This track makes th
 Lectures 10 to 12 each start from an idea and walk the same path, from the idea to the design to the code. Lecture 13 is a feature rather than a use case, and it is what lets contracts share code and data:
 
 10. **[Handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)** (vesting): funds that can't move before a date, enforced without the contract ever reading a clock.
-11. **[Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** (a gift card): one script guarding two different actions at once, minting and spending.
+11. **[Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** (a gift card): one script guarding two different actions at once, and a token that can only ever be created once.
 12. **[Modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)** (an oracle): changing data that's already on the chain.
 13. **[Reference inputs & reference scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)**: publish a contract once, and let one contract read another's data without consuming it.
 
