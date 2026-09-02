@@ -1,11 +1,9 @@
 // #region consumer-imports
+use cardano/address.{Address, Script}
 use cardano/assets.{from_lovelace}
-use cardano/transaction.{OutputReference, Transaction}
-use cocktail.{input_inline_datum}
-use mocktail.{complete, mocktail_tx, ref_tx_in, ref_tx_in_inline_datum}
-use mocktail/virgin_address.{mock_script_address}
-use mocktail/virgin_key_hash.{mock_pub_key_hash}
-use mocktail/virgin_output_reference.{mock_tx_hash, mock_utxo_ref}
+use cardano/transaction.{
+  InlineDatum, Input, Output, OutputReference, Transaction,
+}
 use oracle.{OracleDatum}
 // #endregion consumer-imports
 
@@ -23,7 +21,8 @@ validator consumer {
     self: Transaction,
   ) {
     expect [oracle_input] = self.reference_inputs
-    expect oracle_datum: OracleDatum = input_inline_datum(oracle_input)
+    expect InlineDatum(published) = oracle_input.output.datum
+    expect oracle_datum: OracleDatum = published
     (oracle_datum.price > 0)?
   }
 
@@ -37,23 +36,47 @@ validator consumer {
 // Tests.
 // #region consumer-tests
 
-const dummy_ref: OutputReference = mock_utxo_ref(1, 0)
+const dummy_ref: OutputReference =
+  OutputReference {
+    transaction_id: #"0000000000000000000000000000000000000000000000000000000000000001",
+    output_index: 0,
+  }
+
+const oracle_address: Address =
+  Address {
+    payment_credential: Script(
+      #"000000000000000000000000000000000000000000000000000000ff",
+    ),
+    stake_credential: None,
+  }
 
 fn oracle_datum(price: Int) -> OracleDatum {
-  OracleDatum { owner: mock_pub_key_hash(1), price }
+  OracleDatum {
+    owner: #"00000000000000000000000000000000000000000000000000000001",
+    price,
+  }
 }
 
+// The oracle's UTxO, attached for reading only. Nothing spends it, so it stays
+// where it is and the consumer never touches the oracle's contract.
 fn tx_reading_oracle(price: Int) -> Transaction {
-  mocktail_tx()
-    |> ref_tx_in(
-        True,
-        mock_tx_hash(0),
-        0,
-        from_lovelace(5_000_000),
-        mock_script_address(0, None),
-      )
-    |> ref_tx_in_inline_datum(True, oracle_datum(price))
-    |> complete()
+  Transaction {
+    ..transaction.placeholder,
+    reference_inputs: [
+      Input {
+        output_reference: OutputReference {
+          transaction_id: #"0000000000000000000000000000000000000000000000000000000000000000",
+          output_index: 0,
+        },
+        output: Output {
+          address: oracle_address,
+          value: from_lovelace(5_000_000),
+          datum: InlineDatum(oracle_datum(price)),
+          reference_script: None,
+        },
+      },
+    ],
+  }
 }
 
 test spend_ok_when_the_oracle_price_is_positive() {

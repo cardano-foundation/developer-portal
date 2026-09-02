@@ -140,9 +140,9 @@ Then the validator itself, whose body is three lines:
   {extractRegion(ConsumerAiken, "consumer")}
 </CodeBlock>
 
-`input_inline_datum`, from `cocktail`, reads the datum off the UTxO the transaction attached to `self.reference_inputs`. Then the contract compares the price, with no call and no direct connection to the oracle.
+`expect InlineDatum(published)` reads the datum off the UTxO the transaction attached to `self.reference_inputs`, and the line after it confirms that datum is an `OracleDatum`. Then the contract compares the price, with no call and no direct connection to the oracle.
 
-Then two tests. Both attach the oracle as a reference input with `ref_tx_in`, which is the test-side twin of `tx_in`. The only difference between the two tests is the price in that datum:
+Then two tests. Both attach the oracle to `reference_inputs` rather than `inputs`, which is the whole difference between reading a UTxO and spending it. The only difference between the two tests is the price in that datum:
 
 <CodeBlock language="aiken" title="validators/consumer.ak">
   {extractRegion(ConsumerAiken, "consumer-tests")}
@@ -156,10 +156,10 @@ aiken build
 Open `plutus.json` and find `consumer.consumer.spend`. Compare its hash with ours:
 
 ```
-451d79ec8b1a4be9bd4006a0abb63afb75354667586ffdefe244355e
+87879dd7a0c4c278267808b931262e5f99e886049629e75c7dcecbe1
 ```
 
-**Then break it.** Delete the `ref_tx_in(...)` line from `tx_reading_oracle`, the helper both tests use, and run `aiken check` again. `spend_ok_when_the_oracle_price_is_positive` now **fails**: the validator can no longer find the oracle. A contract that depends on referenced data refuses when that data is missing.
+**Then break it.** Delete the `reference_inputs` field from `tx_reading_oracle`, the helper both tests use, and run `aiken check` again. `spend_ok_when_the_oracle_price_is_positive` now **fails**: the validator can no longer find the oracle. A contract that depends on referenced data refuses when that data is missing.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">

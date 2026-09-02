@@ -67,7 +67,7 @@ The oracle you are about to write checks that *an* output comes back carrying *a
 
 - **The value came back too.** Our version does not check this, so the owner could publish a new price and take the ADA in the same transaction. Never assume that the value is kept just because an output exists.
 - **The fields that should not change, did not.** Our version accepts any `OracleDatum`, so the owner could change the `owner` field and give the oracle to somebody else.
-- **This is the real oracle.** Anybody can create a UTxO at a script address, so a contract that reads "the oracle" needs a way to tell the real one from a fake one. The usual answer is a token that is created exactly once, and only the real oracle holds it. Learn the name for it, because you will meet it everywhere: a **beacon token**, sometimes called a state thread token. The contract is usually given that token as a [parameter](/docs/developers/onboarding/lectures/intermediate/parameters). It then checks that the token is present in the input it spends and in the output it sends back.
+- **This is the real oracle.** Anybody can create a UTxO at a script address, so a contract that reads "the oracle" needs a way to tell the real one from a fake one. The usual answer is a token created exactly once, the way the [gift card](/docs/developers/onboarding/lectures/intermediate/multi-validators) is, held only by the real oracle. Learn the name for it, because you will meet it everywhere: a **beacon token**, sometimes called a state thread token. The contract is usually given that token as a [parameter](/docs/developers/onboarding/lectures/intermediate/parameters). It then checks that the token is present in the input it spends and in the output it sends back.
 
 Each check is a line or two, and [smart contract security](/docs/developers/curriculum/smart-contracts/security) explains all three. Our version stays simple, so that the state change is the only thing you have to think about.
 :::
@@ -103,7 +103,7 @@ Then the datum and the validator:
 
 1. Take the owner out of the current datum.
 2. Find the input that is being spent, so the contract knows which address to require.
-3. Require **exactly one** output going back to that address, and check that its datum has the same type. `outputs_at` and `output_inline_datum` do this work, both from `cocktail`.
+3. Require **exactly one** output going back to that address, and check that its datum has the same type. `list.filter` keeps the outputs sitting at that address, matching the result against a single item is what makes it exactly one, and the two `expect` lines after it read the datum and confirm its type.
 4. Check the signature.
 
 The contract requires *exactly* one output because two outputs at the same address would make the next update unclear: nothing would say which of them is the oracle.
@@ -124,7 +124,7 @@ aiken build
 Open `plutus.json` and find `oracle.oracle.spend`. Compare its hash with ours:
 
 ```
-e17872fdaba9b9906fa71fb30bf7773832b8b488cf6075c61d4a61a9
+805af340d87be2f60934f1c0d6be86c3b32a0ce144b32bb1a4516ec9
 ```
 
 Your project now holds four contracts, each with its own hash and therefore its own address: the vault, the vesting contract, the gift card, and this oracle.
