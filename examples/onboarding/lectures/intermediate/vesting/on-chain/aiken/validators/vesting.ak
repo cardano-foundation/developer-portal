@@ -1,11 +1,10 @@
 // #region vesting-imports
+use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use aiken/fuzz
-use cardano/transaction.{OutputReference, Transaction}
-use cocktail.{key_signed, valid_after}
-use mocktail.{complete, invalid_before, mocktail_tx, required_signer_hash}
-use mocktail/virgin_key_hash.{mock_pub_key_hash}
-use mocktail/virgin_output_reference.{mock_utxo_ref}
+use aiken/interval.{Finite}
+use cardano/transaction.{OutputReference, Transaction, ValidityRange}
+
 // #endregion vesting-imports
 
 // The vault from the earlier lectures, with a deadline added. Note that the
@@ -17,6 +16,16 @@ pub type VestingDatum {
   lock_until: Int,
 }
 
+// Reads the start of the window the transaction declared, and asks whether it
+// is already past the deadline. A transaction with no start could be submitted
+// at any moment, so it is refused.
+fn valid_after(range: ValidityRange, lock_until: Int) -> Bool {
+  when range.lower_bound.bound_type is {
+    Finite(lower_bound) -> lower_bound > lock_until
+    _ -> False
+  }
+}
+
 validator vesting {
   spend(
     datum: Option<VestingDatum>,
@@ -26,7 +35,7 @@ validator vesting {
   ) {
     expect Some(VestingDatum { beneficiary, lock_until }) = datum
     and {
-      key_signed(self.extra_signatories, beneficiary)?,
+      list.has(self.extra_signatories, beneficiary)?,
       valid_after(self.validity_range, lock_until)?,
     }
   }
@@ -41,58 +50,67 @@ validator vesting {
 // Tests.
 // #region vesting-tests
 
-const beneficiary: VerificationKeyHash = mock_pub_key_hash(1)
+const beneficiary: VerificationKeyHash =
+  #"00000000000000000000000000000000000000000000000000000001"
 
-const stranger: VerificationKeyHash = mock_pub_key_hash(2)
+const stranger: VerificationKeyHash =
+  #"00000000000000000000000000000000000000000000000000000002"
 
 const deadline: Int = 1_700_000_000_000
 
-const dummy_ref: OutputReference = mock_utxo_ref(0, 0)
+const dummy_ref: OutputReference =
+  OutputReference {
+    transaction_id: #"0000000000000000000000000000000000000000000000000000000000000000",
+    output_index: 0,
+  }
 
 fn vesting_datum() -> Option<VestingDatum> {
   Some(VestingDatum { beneficiary, lock_until: deadline })
 }
 
 test claim_ok_after_the_deadline() {
-  let tx =
-    mocktail_tx()
-      |> required_signer_hash(True, beneficiary)
-      |> invalid_before(True, deadline + 1)
-      |> complete()
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [beneficiary],
+    validity_range: interval.after(deadline + 1),
+  }
   vesting.spend(vesting_datum(), Void, dummy_ref, tx)
 }
 
 test claim_fails_before_the_deadline() fail {
-  let tx =
-    mocktail_tx()
-      |> required_signer_hash(True, beneficiary)
-      |> invalid_before(True, deadline - 1)
-      |> complete()
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [beneficiary],
+    validity_range: interval.after(deadline - 1),
+  }
   vesting.spend(vesting_datum(), Void, dummy_ref, tx)
 }
 
 test claim_fails_without_a_deadline_bound() fail {
-  let tx = mocktail_tx() |> required_signer_hash(True, beneficiary) |> complete()
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [beneficiary],
+  }
   vesting.spend(vesting_datum(), Void, dummy_ref, tx)
 }
 
 test claim_fails_for_a_stranger() fail {
-  let tx =
-    mocktail_tx()
-      |> required_signer_hash(True, stranger)
-      |> invalid_before(True, deadline + 1)
-      |> complete()
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [stranger],
+    validity_range: interval.after(deadline + 1),
+  }
   vesting.spend(vesting_datum(), Void, dummy_ref, tx)
 }
 
 test claim_ok_at_any_time_after_the_deadline(
   offset via fuzz.int_between(1, 1_000_000_000),
 ) {
-  let tx =
-    mocktail_tx()
-      |> required_signer_hash(True, beneficiary)
-      |> invalid_before(True, deadline + offset)
-      |> complete()
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [beneficiary],
+    validity_range: interval.after(deadline + offset),
+  }
   vesting.spend(vesting_datum(), Void, dummy_ref, tx)
 }
 // #endregion vesting-tests

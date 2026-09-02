@@ -16,11 +16,6 @@ version = "v3.1.0"
 source = "github"
 
 [[dependencies]]
-name = "sidan-lab/vodka"
-version = "0.1.23"
-source = "github"
-
-[[dependencies]]
 name = "aiken-lang/fuzz"
 version = "v2.2.0"
 source = "github"

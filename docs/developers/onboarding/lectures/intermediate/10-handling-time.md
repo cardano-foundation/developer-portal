@@ -12,9 +12,9 @@ import VestingAiken from "!!raw-loader!@site/examples/onboarding/lectures/interm
 
 # Handling time: vesting
 
-Somebody describes an idea to you. It may be a business idea, a financial one, or a game. Your job is to decide what the contract has to remember, which actions it has to allow, and what it has to refuse. That decision is the **design**, and it is where most of the thinking happens.
+Someone describes an idea to you. It may be a business idea, a financial one, or a game. Your job is to decide what the contract has to remember, which actions it has to allow, and what it has to refuse. That decision is the **design**, and it is where most of the thinking happens.
 
-The design here starts from the most common rule in finance: **not before a certain date**.
+The design here starts from the rule: **not before a certain date**.
 
 ## The idea
 
@@ -153,7 +153,7 @@ The real risk is that you get no warning. If you ask an SDK to convert a date fi
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs inside an Aiken project. Carry on in the one you have been building since **[Set up your tools](/docs/developers/onboarding/lectures/intermediate/tools)**, or start a fresh one the same way. Either one needs the two packages **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** added, `sidan-lab/vodka` and `aiken-lang/fuzz`. The hash below comes out the same in both, because it depends on the contract and not on the project around it.
+Everything below runs inside an Aiken project. Carry on in the one you have been building since **[Set up your tools](/docs/developers/onboarding/lectures/intermediate/tools)**, or start a fresh one the same way. Either one needs `aiken-lang/fuzz`, the package **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** added. The hash below comes out the same in both, because it depends on the contract and not on the project around it.
 
 Create a new file, `validators/vesting.ak`. One Aiken project can hold as many validators as you want, and each one gets its own entry in the blueprint.
 
@@ -169,8 +169,8 @@ Then the datum and the validator. The vesting contract is the vault from the ear
 
 The two fields in `VestingDatum` are answer 1: who may claim, and from when. The single `spend` handler is answer 2. The `and { … }` block is answer 3, one line per rule:
 
-- `key_signed` is the check that the signature is correct: "is this key among the signers?" You wrote it with `list.has` in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
-- `valid_after` is the new part. It reads the **lower bound** of the transaction's validity window. It returns true only if that bound is later than the deadline in the datum.
+- `list.has` is the signature check, the same one you wrote in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**: is this key among the signers?
+- `valid_after` it reads the **lower bound** of the transaction's validity window and returns true only if that bound is later than the deadline in the datum. A window with no lower bound at all falls to the second branch and is refused.
 
 An early claim fails even with the right signature, and a late claim by the wrong person also fails.
 
@@ -180,7 +180,7 @@ Then the tests. Four unit tests cover the four cases this contract has to get ri
   {extractRegion(VestingAiken, "vesting-tests")}
 </CodeBlock>
 
-`invalid_before` in these tests is the **lower bound**, set on a mock transaction.
+`interval.after(deadline + 1)` is a window that starts just after the deadline. `claim_fails_without_a_deadline_bound` sets no window at all, so it inherits the one in `transaction.placeholder`, which has no lower bound.
 
 ```bash
 aiken check
@@ -190,7 +190,7 @@ aiken build
 Now open `plutus.json`. This contract has two entries, `vesting.vesting.spend` and `vesting.vesting.else`, and both carry the same hash. Compare it with ours:
 
 ```
-550f731e0f5e582a5b681ff15ac23ad226629cc599365f5fa73d3f93
+bb5335b850cd989a78f1cfc913e04152b92c50a404099da67ba235eb
 ```
 
 If it matches, you wrote the same contract we did, byte for byte. That hash is already the address the funds sit at.
