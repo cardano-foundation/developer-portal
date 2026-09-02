@@ -26,7 +26,7 @@ Your contract is finished. It compiles, passes its eight tests, and has a hash. 
 
 The good thing is that, unlike when we wrote the contract, this part mostly comes from your previous choices and is more mechanical because the off-chain has many repeated parts across protocols: deriving the address, attaching the datum, spending the UTxO, etc.
 
-**You write all of it.** Six files carry a Cardano idea: the address, the datum, and the four transactions your page sends. The rest is the page, its config, and the tests that prove the whole thing before a wallet is ever connected.
+**You write all of it.** Six files contain the actual off-chain: the address, the datum, and the four transactions your page sends. The rest is the page, its config, and the tests that prove it all before a wallet is ever connected.
 
 ## The bridge: from blueprint to address
 
