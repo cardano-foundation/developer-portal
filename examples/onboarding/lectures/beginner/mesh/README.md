@@ -5,8 +5,8 @@ Small, self-contained [Mesh](https://meshsdk.dev/) snippets used by the lectures
 Get just this folder (no need to clone the whole repo):
 
 ```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
-cd lectures-mesh
+npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/beginner/mesh beginner-mesh
+cd beginner-mesh
 ```
 
 The snippets run in the **browser** with a connected wallet (CIP-30), so there is no offline test to run; instead `npm test` type-checks them against the real Mesh types so they stay valid:

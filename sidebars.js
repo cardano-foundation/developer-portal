@@ -565,7 +565,15 @@ module.exports = {
             id: "developers/onboarding/lectures/intermediate/introduction",
           },
           items: [
-            "developers/onboarding/lectures/intermediate/lecture-1",
+            "developers/onboarding/lectures/intermediate/on-chain-vs-off-chain",
+            "developers/onboarding/lectures/intermediate/tools",
+            "developers/onboarding/lectures/intermediate/what-is-a-validator",
+            "developers/onboarding/lectures/intermediate/datum-and-redeemer",
+            "developers/onboarding/lectures/intermediate/transaction-context",
+            "developers/onboarding/lectures/intermediate/testing",
+            "developers/onboarding/lectures/intermediate/parameters",
+            "developers/onboarding/lectures/intermediate/validator-purposes",
+            "developers/onboarding/lectures/intermediate/frontend-integration",
           ],
         },
         {

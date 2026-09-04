@@ -42,8 +42,8 @@ From lecture 2 onwards you run real transactions on Cardano's free test network.
 You'll need **[Lace](https://www.lace.io/)** on the **Preview** network with a little test ADA, which is what [lecture 1](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses) sets up. Then grab the app (no need to clone the whole repo) and start it:
 
 ```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
-cd lectures-mesh
+npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/beginner/mesh beginner-mesh
+cd beginner-mesh
 npm install
 npm run dev
 ```

@@ -1,0 +1,173 @@
+{
+  "preamble": {
+    "title": "cardano-foundation/onboarding-vault",
+    "description": "The vault built across the onboarding Intermediate lectures",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.23+unknown"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "vault.vault.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/vault~1VaultDatum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/vault~1VaultAction"
+        }
+      },
+      "parameters": [
+        {
+          "title": "admin",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+          }
+        }
+      ],
+      "compiledCode": "590121010100229800aba2aba1aab9faab9eaab9dab9a9bae002488888896600264653001300800198041804800cc0200092225980099b8748008c020dd500144c8cc8a60022b30013001300b37540051332259800980198069baa0088998009bac3002300e375400c6eb8c040c038dd5180818071baa0048998009bac3002300e375400c01680608c03cc040c040c040c040c040c040c040c04000488c8cc00400400c896600200314a115980099b8f375c602400200714a313300200230130014038808a2c805260166ea801a601c0069112cc004c01000a2b3001300f37540130038b20208acc004cdc3a400400515980098079baa009801c5901045900d201a180618068009b8748000c024dd50014590070c020004c010dd5004452689b2b200401",
+      "hash": "5e30f431981846c811b38f89280d99963f23c8df9b71bd1266695ed4"
+    },
+    {
+      "title": "vault.vault.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "parameters": [
+        {
+          "title": "admin",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+          }
+        }
+      ],
+      "compiledCode": "590121010100229800aba2aba1aab9faab9eaab9dab9a9bae002488888896600264653001300800198041804800cc0200092225980099b8748008c020dd500144c8cc8a60022b30013001300b37540051332259800980198069baa0088998009bac3002300e375400c6eb8c040c038dd5180818071baa0048998009bac3002300e375400c01680608c03cc040c040c040c040c040c040c040c04000488c8cc00400400c896600200314a115980099b8f375c602400200714a313300200230130014038808a2c805260166ea801a601c0069112cc004c01000a2b3001300f37540130038b20208acc004cdc3a400400515980098079baa009801c5901045900d201a180618068009b8748000c024dd50014590070c020004c010dd5004452689b2b200401",
+      "hash": "5e30f431981846c811b38f89280d99963f23c8df9b71bd1266695ed4"
+    },
+    {
+      "title": "vault.vault_policy.mint",
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "compiledCode": "58c701010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900018031baa001899192cc004c030006266e3d22107544f4b454e204100375c601060160031640286464660020026eacc030c034c034c034c034c028dd51806003912cc004006007132325980099b910060018acc004cdc7803000c4dd59806801401500b44cc010010c04000d00b1bae300b001300d0014030297adef6c60375c6012600e6ea80062c8028c01c004c01cc020004c01c004c00cdd5003c52689b2b200201",
+      "hash": "32cfa014c18bccdfc9a2a6b40c1995d078e6e910fca787fe8ffdd3a0"
+    },
+    {
+      "title": "vault.vault_policy.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "58c701010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900018031baa001899192cc004c030006266e3d22107544f4b454e204100375c601060160031640286464660020026eacc030c034c034c034c034c028dd51806003912cc004006007132325980099b910060018acc004cdc7803000c4dd59806801401500b44cc010010c04000d00b1bae300b001300d0014030297adef6c60375c6012600e6ea80062c8028c01c004c01cc020004c01c004c00cdd5003c52689b2b200201",
+      "hash": "32cfa014c18bccdfc9a2a6b40c1995d078e6e910fca787fe8ffdd3a0"
+    },
+    {
+      "title": "vault_simple.vault.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/vault_simple~1VaultDatum"
+        }
+      },
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/vault_simple~1VaultAction"
+        }
+      },
+      "compiledCode": "58d801010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900118031baa00189919912cc004cdc3a400060126ea80162b3001300a375400b15980099b8748000c024dd5000c4c8cc88cc008008004896600200314a115980099b8f375c601e00200714a31330020023010001402c8070dd618069807180718071807180718071807180718059baa300d008375c601860146ea8c030c028dd5000c5900845900b45900818050009805180580098039baa0018b200a30070013007300800130070013003375400f149a26cac80081",
+      "hash": "ec431d8627829d7e21119161d909e8a9a15d648a67bff82ccafc3570"
+    },
+    {
+      "title": "vault_simple.vault.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "58d801010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900118031baa00189919912cc004cdc3a400060126ea80162b3001300a375400b15980099b8748000c024dd5000c4c8cc88cc008008004896600200314a115980099b8f375c601e00200714a31330020023010001402c8070dd618069807180718071807180718071807180718059baa300d008375c601860146ea8c030c028dd5000c5900845900b45900818050009805180580098039baa0018b200a30070013007300800130070013003375400f149a26cac80081",
+      "hash": "ec431d8627829d7e21119161d909e8a9a15d648a67bff82ccafc3570"
+    }
+  ],
+  "definitions": {
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "Int": {
+      "dataType": "integer"
+    },
+    "aiken/crypto/VerificationKeyHash": {
+      "title": "VerificationKeyHash",
+      "dataType": "bytes"
+    },
+    "vault/VaultAction": {
+      "title": "VaultAction",
+      "anyOf": [
+        {
+          "title": "Unlock",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "AdminUnlock",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "vault/VaultDatum": {
+      "title": "VaultDatum",
+      "anyOf": [
+        {
+          "title": "VaultDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        }
+      ]
+    },
+    "vault_simple/VaultAction": {
+      "title": "VaultAction",
+      "anyOf": [
+        {
+          "title": "Unlock",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        }
+      ]
+    },
+    "vault_simple/VaultDatum": {
+      "title": "VaultDatum",
+      "anyOf": [
+        {
+          "title": "VaultDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
