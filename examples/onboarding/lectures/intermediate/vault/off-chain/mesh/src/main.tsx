@@ -9,6 +9,7 @@ import { buildLockTx } from "./lib/lock.ts";
 import { buildMintAndLockTx } from "./lib/mint.ts";
 import { buildUnlockTx } from "./lib/unlock.ts";
 import { fetchLocked } from "./lib/fetch.ts";
+import { TOKEN_NAME, buildTokenTx, fetchTokenBalance, tokenUnit } from "./lib/token.ts";
 import "./index.css";
 
 const NETWORK_ID = Number(import.meta.env.VITE_NETWORK_ID ?? "0");
@@ -55,6 +56,8 @@ function App() {
   const [locked, setLocked] = useState<UTxO[]>([]);
   const [status, setStatus] = useState<ReactNode>("");
   const [txHash, setTxHash] = useState("");
+  const [qty, setQty] = useState("1");
+  const [tokens, setTokens] = useState("0");
 
   const laceInstalled = BrowserWallet.getInstalledWallets().some((w) => w.id === "lace");
 
@@ -70,6 +73,7 @@ function App() {
       setOwner(pubKeyHash);
       setHasCollateral((await connected.getCollateral()).length > 0);
       setLocked(await fetchLocked(provider, NETWORK_ID, pubKeyHash));
+      setTokens(await fetchTokenBalance(connected));
       setStatus("");
     } catch (error) {
       setStatus(`error: ${(error as Error).message}`);
@@ -82,6 +86,10 @@ function App() {
 
   async function reloadLocked() {
     setLocked(await fetchLocked(provider, NETWORK_ID, owner));
+  }
+
+  async function reloadTokens() {
+    if (wallet) setTokens(await fetchTokenBalance(wallet));
   }
 
   // Build → sign (partial, so the wallet signs its own inputs and leaves the
@@ -136,13 +144,75 @@ function App() {
         <span className="text-sm">{hasCollateral ? "✓ set" : "not set"}</span>
       </Step>
 
-      <Step n={3} title="Lock funds" hint="Send 5 test ADA to the contract, with you as the owner in the datum.">
+      <Step
+        n={3}
+        title="Mint or burn the token"
+        hint="The token on its own, with no vault involved. Only the policy runs."
+      >
+        <label className="text-sm">
+          How many {TOKEN_NAME}?{" "}
+          <input
+            type="number"
+            min="1"
+            className="w-20 rounded border border-gray-300 px-2 py-1 text-sm"
+            value={qty}
+            onChange={(event) => setQty(event.target.value)}
+          />
+        </label>{" "}
+        <button
+          className={btn}
+          disabled={!wallet || !hasCollateral}
+          onClick={() => run(() => buildTokenTx(wallet!, provider, qty))}
+        >
+          Mint
+        </button>{" "}
+        <button
+          className={btn}
+          disabled={!wallet || !hasCollateral}
+          onClick={() => run(() => buildTokenTx(wallet!, provider, `-${qty}`))}
+        >
+          Burn
+        </button>{" "}
+        <button className={btn} disabled={!wallet} onClick={reloadTokens}>
+          Refresh tokens
+        </button>
+        <p className="mt-2 text-sm">
+          Your wallet holds <b>{tokens}</b> {TOKEN_NAME}.
+        </p>
+        <p className="mt-2 text-xs text-gray-500">
+          Both buttons build the same transaction with one sign changed: the policy checks the
+          token's name and lets any amount through. Minting puts the tokens in your wallet.
+          Burning spends the ones you hold and they stop existing.
+        </p>
+      </Step>
+
+      <Step n={4} title="Lock funds" hint="Send 5 test ADA to the contract, with you as the owner in the datum.">
         <button
           className={btn}
           disabled={!wallet}
-          onClick={() => run(() => buildLockTx(wallet!, provider, NETWORK_ID, "5000000"))}
+          onClick={() =>
+            run(() =>
+              buildLockTx(wallet!, provider, NETWORK_ID, [
+                { unit: "lovelace", quantity: "5000000" },
+              ]),
+            )
+          }
         >
           Lock 5 ADA
+        </button>{" "}
+        <button
+          className={btn}
+          disabled={!wallet}
+          onClick={() =>
+            run(() =>
+              buildLockTx(wallet!, provider, NETWORK_ID, [
+                { unit: "lovelace", quantity: "5000000" },
+                { unit: tokenUnit(), quantity: qty },
+              ]),
+            )
+          }
+        >
+          Lock 5 ADA + {qty} {TOKEN_NAME}
         </button>{" "}
         <button
           className={btn}
@@ -159,7 +229,7 @@ function App() {
       </Step>
 
       <Step
-        n={4}
+        n={5}
         title="Unlock funds"
         hint="Spend a locked UTxO back to yourself. It only succeeds because you're the owner who signs."
       >

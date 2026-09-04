@@ -15,7 +15,6 @@
     "isolatedModules": true,
     "types": ["node", "vite/client"]
   },
-  // #replace "include": ["src"] -> "include": ["off-chain/src"]
   "include": ["src"],
   "exclude": ["node_modules"]
 }
