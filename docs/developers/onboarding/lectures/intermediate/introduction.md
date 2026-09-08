@@ -109,7 +109,7 @@ The code you read in these lectures is imported straight from it:
 
 ```
 playground/
-├── vault/          the contract you are about to write     lectures 3-9, 13
+├── vault/          the contract you are about to write     lectures 3-9
 │   ├── on-chain/aiken/
 │   └── off-chain/mesh/
 ├── vesting/        handling time                           lecture 10

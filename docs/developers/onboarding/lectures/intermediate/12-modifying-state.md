@@ -76,9 +76,7 @@ flowchart LR
     style I2 stroke-dasharray:4 3
 ```
 
-Because both things happen in one transaction, there is no moment in between where the oracle is missing. To anybody reading the chain, a value changed.
-
-The output that goes straight back to the address it came from is called a **continuing output**. It is the pattern behind almost everything on Cardano that stores changing data.
+Because both things happen in one transaction, there is no moment in between where the oracle is missing. To anybody reading the chain, a value changed. The output that goes straight back to the address it came from is called a **continuing output**. It is the pattern behind almost everything on Cardano that stores changing data.
 
 For the app that builds the transaction, this is the unlock you already know, with one addition: one extra output, sent back to the contract's own address, carrying the new datum.
 

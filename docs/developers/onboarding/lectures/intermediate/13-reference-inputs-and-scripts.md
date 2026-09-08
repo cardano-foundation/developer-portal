@@ -12,11 +12,7 @@ import ConsumerAiken from "!!raw-loader!@site/examples/onboarding/lectures/inter
 
 # Reference inputs & reference scripts
 
-Until now, a transaction could do only one thing with a UTxO: **spend** it. Take it, use it, destroy it.
-
-A transaction can also **point at a UTxO** without spending it. The UTxO stays exactly where it is.
-
-That single idea has two uses, and they have similar names:
+Until now, a transaction could do only one thing with a UTxO: **spend** it. Take it, use it, destroy it. A transaction can also **point at a UTxO** without spending it. The UTxO stays exactly where it is. That single idea has two uses, and they have similar names:
 
 - A **reference script** points at published **code**.
 - A **reference input** points at published **data**.
@@ -37,26 +33,29 @@ An unlock that points at it:
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the locked UTxO**
-        address: the vault
-        value: 5 ADA
-        datum: owner = your key hash`"]
+        address: the consumer
+        value: 5 ADA`"]
         I2["`**your UTxO**
         address: you
         value: 4.5 ADA`"]
     end
 
     subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
-        R["`**your UTxO holding the script**
+        S["`**your UTxO holding the script**
         address: you
-        value: 15 ADA + the vault's compiled script
+        value: 10 ADA + the consumer's compiled script
+        stays where it is`"]
+        R["`**the oracle's UTxO**
+        address: the oracle
+        value: 5 ADA + the oracle NFT (the beacon)
+        datum: rate = 150
         stays where it is`"]
     end
 
     TX{{"`**unlock**
     fee: 0.25 ADA, smaller: the script is not carried
-    the spend validator runs, read from the reference
-    redeemer: Unlock
-    your key hash in extra_signatories
+    the consumer's spend handler runs, read from the reference
+    reads rate = 150 from the oracle
     collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
@@ -67,6 +66,7 @@ flowchart LR
 
     I1 --> TX --> O
     I2 --> TX
+    S -.-> TX
     R -.-> TX
 
     style I1 stroke-dasharray:4 3
@@ -75,9 +75,7 @@ flowchart LR
 
 ### Why you need it
 
-Every unlock you have built put the entire compiled contract **inside the transaction**, so that the network had the program to run.
-
-That works, but you pay for every byte you send. If you unlock a thousand times, you send the same contract a thousand times, and you pay for those bytes a thousand times.
+Every unlock you have built put the entire compiled contract **inside the transaction**, so that the network had the program to run. That works, but you pay for every byte you send. If you unlock a thousand times, you send the same contract a thousand times, and you pay for those bytes a thousand times.
 
 A reference script sends it once.
 
@@ -183,15 +181,13 @@ So a transaction has to point at the **current** UTxO. If your app remembers an 
 
 **Attaching a UTxO does not make it trustworthy either.** Whoever builds the transaction chooses what to attach, so a validator that reads the first reference input it is handed reads whatever the caller wants it to read. The oracle's beacon is the answer: the consumer searches the reference inputs for that token and reads only the UTxO that carries it.
 
-## Which one do I need?
+## Side by side
 
 |  | Reference script | Reference input |
 |---|---|---|
-| points at | published **code** | published **data** |
 | so that | transactions stay small | data can be read without being taken |
-| the UTxO holds | the compiled contract | a datum |
 | it sits at | your own address | the publishing contract's address |
-| the validator | never sees it | reads it, in `reference_inputs` |
+| the validator | runs unchanged: the ledger fetches its code from there | reads its datum, in `reference_inputs` |
 | if that UTxO is spent | transactions pointing at it stop working | readers must point at the new one |
 
 ## Try it
@@ -254,14 +250,14 @@ Stuck? The finished code is in the playground. See the **[introduction](/docs/de
 
 ### Then go and see the cost
 
-Open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, find any **unlock** transaction you have sent, from your own app in lecture 9 or from the [playground](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground), and look at its **size**. The compiled contract is inside that transaction. A reference script removes those bytes from every later spend.
-
-The off-chain code for each feature lives with the contract it belongs to.
+Reference scripts and reference inputs both run in the oracle app from the last lecture. You closed that oracle, so publish a new one in step 3 first.
 
 <Tabs groupId="offchain">
 <TabItem value="mesh" label="Mesh" default>
 
-Deploying a reference script and then spending through it is the vault's code, in `vault/off-chain/mesh/src/lib/reference-script.ts`. Reading a reference input is the oracle's code, in `oracle/off-chain/mesh/src/lib/reference-input.ts`. There `readOracle` is one call, `readOnlyTxInReference`, given a transaction hash and an output index. Step 5 of the oracle app runs it: lock some ADA at the consumer, then unlock it while the oracle stays where it is. You closed your oracle at the end of the last lecture, so publish a new one in step 3 first.
+Publishing the consumer's script and then unlocking through it is `oracle/off-chain/mesh/src/lib/reference-script.ts`. Reading a reference input is `oracle/off-chain/mesh/src/lib/reference-input.ts`, where `readOracle` is one call, `readOnlyTxInReference`, given a transaction hash and an output index.
+
+Step 5 of the app publishes the script once. Step 6 locks some ADA at the consumer and offers two ways to unlock it: carrying the script, or pointing at the published one. Send one of each, while the oracle stays where it is.
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">
@@ -270,6 +266,8 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 </TabItem>
 </Tabs>
+
+Open both unlocks on the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)** and compare their **size**. The one that carried the script is larger by the whole compiled consumer, and it paid for those bytes.
 
 ## You have finished the Intermediate track
 
