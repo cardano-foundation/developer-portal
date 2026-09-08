@@ -28,7 +28,7 @@ import {
   rateOf,
 } from "./lib/oracle.ts";
 import type { Deployment } from "./lib/oracle.ts";
-import { buildConsumerSpendTx } from "./lib/reference-input.ts";
+import { buildConsumerLockTx, buildConsumerSpendTx } from "./lib/reference-input.ts";
 import {
   buildConsumerSpendViaReferenceTx,
   buildPublishConsumerScriptTx,
@@ -253,6 +253,34 @@ test("consumer: unlocking through the published script carries no script", async
 
   const costs = await evaluator(fetcher).evaluateTx(unsignedTx, [], []);
   assert.ok(costs.length >= 1, "the consumer should approve when read from the reference");
+});
+
+// The published script sits in an ordinary UTxO of yours, and it must survive
+// every later transaction. Here it is the only UTxO that could fund a lock, so
+// the builder has to refuse rather than spend it.
+test("publish: later transactions never spend the UTxO holding the script", async () => {
+  const fetcher = newFetcher();
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  const address = await wallet.getChangeAddress();
+  const deployment = deploymentFor(deserializeAddress(address).pubKeyHash);
+  const policyId = beaconPolicyId(deployment.seed);
+
+  addUtxo(fetcher, address, [{ unit: "lovelace", quantity: "3000000" }]);
+  const scriptUtxo = {
+    input: { txHash: nextTxHash(), outputIndex: 0 },
+    output: {
+      address,
+      amount: [{ unit: "lovelace", quantity: "50000000" }],
+      scriptRef: resolveScriptRef({ code: consumerScriptCbor(policyId), version: "V3" }),
+      scriptHash: consumerScriptHash(policyId),
+    },
+  };
+  fetcher.addUTxOs([scriptUtxo]);
+
+  await assert.rejects(
+    buildConsumerLockTx(wallet, fetcher, NETWORK, deployment, "5000000"),
+    "the builder should refuse rather than spend the script's UTxO",
+  );
 });
 
 // Proves the assertions above are not passing vacuously: the same builder, on a

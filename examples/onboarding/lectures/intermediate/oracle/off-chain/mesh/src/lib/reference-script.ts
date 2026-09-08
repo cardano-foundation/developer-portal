@@ -4,6 +4,7 @@ import type { IEvaluator, IFetcher, IWallet, UTxO } from "@meshsdk/core";
 import { beaconPolicyId, consumerScriptCbor, consumerScriptHash } from "./blueprint.ts";
 import type { Deployment } from "./oracle.ts";
 import { readOracle } from "./reference-input.ts";
+import { feeUtxo, spendableUtxos } from "./spendable.ts";
 
 /// Park the consumer's compiled code in a UTxO, once.
 ///
@@ -33,7 +34,7 @@ export async function buildPublishConsumerScriptTx(
     // Send the remainder back to you.
     .changeAddress(changeAddress)
     // Offer your UTxOs, so the builder can pick enough to cover this.
-    .selectUtxosFrom(await wallet.getUtxos())
+    .selectUtxosFrom(await spendableUtxos(wallet))
     // Balance it, price the fee, and hand back the unsigned transaction.
     .complete();
 }
@@ -79,6 +80,10 @@ export async function buildConsumerSpendViaReferenceTx(
     );
   }
 
+  // One of your own UTxOs pays the fee, exactly as in the ordinary unlock.
+  const utxos = await spendableUtxos(wallet);
+  const feeInput = feeUtxo(utxos, collateral);
+
   // Passing `evaluator` is what makes the contract run here, before you send.
   const txBuilder = new MeshTxBuilder({ fetcher: provider, evaluator });
   const withOracle = readOracle(
@@ -105,7 +110,13 @@ export async function buildConsumerSpendViaReferenceTx(
       // The datum is still inline on the UTxO being spent.
       .spendingReferenceTxInInlineDatumPresent()
       // The same redeemer as before, named for the referenced-script form.
-      .spendingReferenceTxInRedeemerValue(mConStr0([])),
+      .spendingReferenceTxInRedeemerValue(mConStr0([]))
+      .txIn(
+        feeInput.input.txHash,
+        feeInput.input.outputIndex,
+        feeInput.output.amount,
+        feeInput.output.address,
+      ),
     // The oracle, attached for reading only, exactly as before.
     oracleUtxo,
   );
@@ -118,7 +129,7 @@ export async function buildConsumerSpendViaReferenceTx(
       collateral.output.address,
     )
     .changeAddress(changeAddress)
-    .selectUtxosFrom(await wallet.getUtxos())
+    .selectUtxosFrom(utxos)
     .complete();
 }
 // #endregion spend-via-reference

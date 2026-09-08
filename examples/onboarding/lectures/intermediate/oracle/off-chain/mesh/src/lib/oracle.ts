@@ -10,6 +10,7 @@ import {
   oracleScriptCbor,
 } from "./blueprint.ts";
 import type { Seed } from "./blueprint.ts";
+import { spendableUtxos } from "./spendable.ts";
 
 /// The two redeemers the oracle offers. `OracleAction` reaches the validator as
 /// a number, so `Update` is constructor 0 and `Delete` is constructor 1.
@@ -71,7 +72,7 @@ export async function buildOracleCreateTx(
     );
   }
 
-  const utxos = await wallet.getUtxos();
+  const utxos = await spendableUtxos(wallet);
   // Any UTxO of yours will do. Spending it is what makes the beacon one of a
   // kind, so the policy is built around whichever one you pick here.
   const seedUtxo = utxos[0];
@@ -173,7 +174,7 @@ export async function buildOracleUpdateTx(
       collateral.output.address,
     )
     .changeAddress(changeAddress)
-    .selectUtxosFrom(await wallet.getUtxos())
+    .selectUtxosFrom(await spendableUtxos(wallet))
     .complete();
 }
 // #endregion oracle-update
@@ -218,7 +219,7 @@ export async function buildOracleDeleteTx(
       collateral.output.address,
     )
     .changeAddress(changeAddress)
-    .selectUtxosFrom(await wallet.getUtxos())
+    .selectUtxosFrom(await spendableUtxos(wallet))
     .complete();
 }
 

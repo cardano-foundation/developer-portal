@@ -3,6 +3,7 @@ import type { IEvaluator, IFetcher, IWallet, UTxO } from "@meshsdk/core";
 
 import { beaconPolicyId, consumerAddress, consumerScriptCbor } from "./blueprint.ts";
 import type { Deployment } from "./oracle.ts";
+import { feeUtxo, spendableUtxos } from "./spendable.ts";
 
 /// Attach a UTxO the transaction only wants to **read**.
 ///
@@ -33,7 +34,7 @@ export async function buildConsumerLockTx(
     .txOut(consumerAddress(policyId, networkId), [{ unit: "lovelace", quantity: lovelace }])
     .txOutInlineDatumValue(mConStr0([]))
     .changeAddress(changeAddress)
-    .selectUtxosFrom(await wallet.getUtxos())
+    .selectUtxosFrom(await spendableUtxos(wallet))
     .complete();
 }
 
@@ -61,6 +62,12 @@ export async function buildConsumerSpendTx(
     );
   }
 
+  // One of your own UTxOs pays the fee. Nothing in this contract asks for your
+  // signature, so without it the transaction would have no input of yours, and
+  // the wallet would refuse to sign it.
+  const utxos = await spendableUtxos(wallet);
+  const feeInput = feeUtxo(utxos, collateral);
+
   const txBuilder = new MeshTxBuilder({ fetcher: provider, evaluator });
   const withOracle = readOracle(
     txBuilder
@@ -73,7 +80,13 @@ export async function buildConsumerSpendTx(
       )
       .txInScript(consumerScriptCbor(policyId))
       .txInInlineDatumPresent()
-      .txInRedeemerValue(mConStr0([])),
+      .txInRedeemerValue(mConStr0([]))
+      .txIn(
+        feeInput.input.txHash,
+        feeInput.input.outputIndex,
+        feeInput.output.amount,
+        feeInput.output.address,
+      ),
     oracleUtxo,
   );
 
@@ -85,7 +98,7 @@ export async function buildConsumerSpendTx(
       collateral.output.address,
     )
     .changeAddress(changeAddress)
-    .selectUtxosFrom(await wallet.getUtxos())
+    .selectUtxosFrom(utxos)
     .complete();
 }
 
