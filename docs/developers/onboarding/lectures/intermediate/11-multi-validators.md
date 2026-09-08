@@ -174,7 +174,7 @@ Selling a second gift card means picking a second seed, then filling the blank i
 
 ## Try it
 
-**Write the contract, compile it, and read the blueprint.** There is no app for this one.
+**Write the contract, then create a card and use it on the real network.**
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
@@ -247,6 +247,34 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </Tabs>
 
 Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+
+### Then run it
+
+The playground has a small app for this contract. It locks 5 ADA behind the card rather than the story's 50, to save test ADA. From `playground/`:
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+```bash
+cd giftcard/off-chain/mesh
+npm install
+cp ../../../vault/off-chain/mesh/.env .env   # or fill in .env.example again
+npm run dev
+```
+
+</TabItem>
+<TabItem value="evolution" label="Evolution">
+
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon. The idea is identical, only the library calls differ.
+
+</TabItem>
+</Tabs>
+
+Connect your wallet and set up collateral, the same first two steps as the vault's app. No addresses appear yet, because the policy ID and the address are derived from a seed that is not chosen until you create a card. Then:
+
+1. **Create a 5 ADA card.** One transaction spends the seed, mints the card and locks the funds. Refresh once it confirms: the policy ID and the address appear at the top, the same hash twice, and step 4 shows the locked UTxO and that you hold the card. On the explorer, the mint field shows the card with a quantity of 1, one output sits at the card's address, and the card is in the output that came back to you.
+2. **Take the funds, keep the card.** The transaction is refused before anything is sent, because your SDK ran the contract first, and the spend handler found no card being burned.
+3. **Redeem: burn the card, take the funds.** Approve it and wait. On the explorer, the inputs are the UTxO at the card's address and the UTxO of yours that held the card, the mint field shows the card with a quantity of -1, and the 5 ADA is an output at your own address. Refresh: nothing is left at the card's address, and the card no longer exists.
 
 ## Go deeper
 
