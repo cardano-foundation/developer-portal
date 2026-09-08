@@ -18,7 +18,7 @@ The last lecture had one action and one rule. This contract needs two things you
 
 A shop sells gift cards. You pay 50 ADA today and you get a card. You give the card to a friend. Your friend walks into the shop, hands over the card, and takes 50 ADA of goods. The card is now used up. Nobody can use it a second time.
 
-The card is a **physical object**, and the shop keeps no list of who has one. Whoever is holding the card can use it, and nobody is asked for a name. The shop destroys the card when the customer hands it over, and that ends the claim to the 50 ADA.
+The card is a **physical object**, and the shop keeps no list of who has one. The shop destroys the card when the customer hands it over.
 
 A contract has to reproduce three things:
 
@@ -30,7 +30,7 @@ A contract has to reproduce three things:
 
 The same four questions as the last lecture.
 
-**1. What has to be remembered?** Nothing at all in the datum. The last lecture wrote the beneficiary into the datum, because the contract had to know **who** may claim. A gift card has no named owner. Whoever holds the card may claim the funds.
+**1. What has to be remembered?** Nothing at all in the datum. The last lecture wrote the beneficiary into the datum, because the contract had to know **who** may claim. A gift card has no named owner.
 
 So the state lives somewhere else: in the **token itself**. A token that exists means an unused card. A token that has been destroyed means a card that has been used. A token is a piece of state that anybody can hold and transfer, and it needs no datum.
 
@@ -42,11 +42,11 @@ So the state lives somewhere else: in the **token itself**. A token that exists 
 
 The first two act on a **token**, so they belong to a `mint` handler. The third acts on a **UTxO**, so it belongs to a `spend` handler. **[Validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** already showed that one script can declare both.
 
-**3. What must be true for each action?** Creating a card is allowed once and never again. Destroying a card is allowed only together with taking the funds, for a reason the fourth question turns up. The spend purpose asks one question: is a card being destroyed in this same transaction? If yes, the funds may leave. If no, they stay.
+**3. What must be true for each action?** Creating a card is allowed once and never again. Destroying a card is allowed only together with taking the funds. The spend purpose asks one question: is a card being destroyed in this same transaction? If yes, the funds may leave. If no, they stay.
 
 **4. What breaks if a rule is missing?** Remove the check in the spend handler and the funds leave without any card being destroyed. Anybody can take the 50 ADA, with or without a card, and your friend is left holding a card that opens nothing. Remove the limit on creating and anybody can make a second card, destroy that one instead, and take the 50 ADA that belongs to the first.
 
-The third one is easier to miss, and it is the reason destroying a card is not free. Let the card be destroyed on its own and your friend can throw it away without taking the goods. Only one card can ever exist, so nothing is left that can release the funds, and the 50 ADA stays where it is for ever. Nobody gains anything, which is what makes it easy to do by accident.
+Let the card be destroyed on its own and your friend can throw it away without taking the goods. Only one card can ever exist, so nothing is left that can release the funds, and the 50 ADA stays where it is for ever. Nobody gains anything, which is what makes it easy to do by accident.
 
 The design in one sentence: **a card can only ever be created once, and the card and the funds have to move together in both directions: the funds are released only if a card is destroyed, and a card is destroyed only if the funds are released.**
 
@@ -56,17 +56,82 @@ Beginner defined an [NFT](/docs/developers/onboarding/lectures/beginner/tokens-f
 
 Beginner's NFT used a native script with a deadline in it. Once the deadline passes, nobody can mint under that policy again. Before it passes, whoever holds the key can still mint more, so the token is only certainly unique after the deadline.
 
-A validator can read the transaction, so it can ask for something stronger: **a specific UTxO must be spent in the transaction that creates the token**. A UTxO is consumed exactly once in the whole history of the chain. After that it no longer exists, and no later transaction can use it. So a policy that asks for one can succeed at most once, and the card is unique from the block that created it.
+A validator can read the transaction, so it can ask for something stronger: **a specific UTxO must be spent in the transaction that creates the token**. A UTxO is consumed exactly once in the whole history of the chain. So a policy that asks for one can succeed at most once, and the card is unique from the block that created it.
 
-That UTxO is called the **seed**, and a policy built this way is called a **one-shot policy**. The seed comes from your own wallet, and it is an ordinary UTxO holding ordinary ADA. Nothing about it is special until the policy names it.
+That UTxO is called the **seed**, and a policy built this way is called a **one-shot policy**. The seed comes from your own wallet, and it is an ordinary UTxO holding ordinary ADA.
+
+Creating a card is one transaction:
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I["`**your UTxO, the seed**
+        address: you
+        value: 60 ADA`"]
+    end
+
+    TX{{"`**create the card**
+    fee: 0.3 ADA
+    the mint handler runs
+    redeemer: Create
+    mint: +1 GIFT
+    the seed is among the inputs
+    collateral offered, not taken`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O1["`**the funds behind the card**
+        address: the card's contract
+        value: 50 ADA`"]
+        O2["`**back to you**
+        address: you
+        value: 9.7 ADA + 1 GIFT`"]
+    end
+
+    I --> TX --> O1
+    TX --> O2
+
+    style I stroke-dasharray:4 3
+```
 
 ## How the two handlers cooperate
 
-The spend handler does not ask the mint handler for permission. As **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)** showed, validators never call each other: each one judges the **same transaction** by its own rules. So the spend handler looks at the transaction that both handlers are part of, and it checks what that transaction destroys.
+As **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)** showed, validators never call each other: each one judges the **same transaction** by its own rules. So the spend handler looks at the transaction that both handlers are part of, and it checks what that transaction destroys.
 
-The same technique works between two completely separate contracts, in **[reference inputs](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)**. Here it is one script guarding two different actions.
+The mint handler looks the other way for the same reason. It asks whether the transaction spends a UTxO at this script's address, which is the check that stops a card being destroyed on its own. So the two handlers depend on each other: the funds need a burnt card, and a burnt card needs the funds to move.
 
-The mint handler looks the other way for the same reason. It asks whether the transaction spends a UTxO at this script's address, which is the check that stops a card being destroyed on its own. So the two handlers depend on each other: the funds need a burnt card, and a burnt card needs the funds to move. Neither can happen alone.
+Both handlers see this one transaction:
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I1["`**the funds behind the card**
+        address: the card's contract
+        value: 50 ADA`"]
+        I2["`**your friend's UTxO**
+        address: your friend
+        value: 5 ADA + 1 GIFT`"]
+    end
+
+    TX{{"`**redeem**
+    fee: 0.4 ADA
+    both handlers run
+    spend, redeemer: anything
+    mint, redeemer: Burn
+    mint: -1 GIFT
+    collateral offered, not taken`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O["`**back to your friend**
+        address: your friend
+        value: 54.6 ADA`"]
+    end
+
+    I1 --> TX --> O
+    I2 --> TX
+
+    style I1 stroke-dasharray:4 3
+    style I2 stroke-dasharray:4 3
+```
 
 The spend rule asks whether a card was destroyed. It does not ask how many UTxOs that one destroyed card is releasing. Here each card guards a single locked UTxO, so the simpler question is enough. A contract that keeps several UTxOs at one address has to count them, and the Advanced track covers that problem under the name **double satisfaction**.
 
@@ -86,8 +151,6 @@ flowchart TD
 ```
 
 Because the two handlers share a hash, the spend handler can look at what the transaction mints **under its own policy**. It does not need to be told which policy that is. It can read it from the address it is guarding.
-
-Using a card is one transaction. It either destroys the card and releases the funds, or it does neither.
 
 ## One card, one contract
 
@@ -116,7 +179,14 @@ Selling a second gift card means picking a second seed, then filling the blank i
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs in the same project as the last lecture.
+Start a new Aiken project for this contract, the way the last lecture did. This one needs no extra package:
+
+```bash
+cd on-chain
+aiken new my-name/giftcard
+cd giftcard
+rm validators/placeholder.ak
+```
 
 Create `validators/giftcard.ak`. The imports first, contract and tests together:
 
@@ -132,12 +202,12 @@ Then the token name, the two actions, and the two handlers:
 
 There is no datum type in this file, which is answer 1: the token is the state. The two handlers are answer 2, and the body of each one is answer 3.
 
-- `CardAction` is the mint redeemer, and it reaches the validator as a number: `Create` is constructor 0 and `Burn` is constructor 1. Swap the two lines and the transaction asks for the other action, without any complaint from the compiler. **[Parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** pointed out the same problem for `VaultAction`.
-- The **mint** handler asks a different question in each branch. `Create` asks for two things: one card is created, and `utxo_ref` is among the inputs. `list.any` compares references only, so the seed does not have to pay for anything or be sent anywhere. It only has to be spent. `Burn` asks for a card to be destroyed, which is minting a **negative** amount, and for a UTxO at this script's own address to be spent. It says nothing about the seed, because the seed was already spent when the card was created. It finds the script's address the same way the spend handler does, out of the `policy_id` it is handed, since that value is the script's hash.
+- `CardAction` is the mint redeemer, and it reaches the validator as a number: `Create` is constructor 0 and `Burn` is constructor 1.
+- The **mint** handler asks a different question in each branch. `Create` asks for two things: one card is created, and `utxo_ref` is among the inputs. `list.any` compares references only, so the seed does not have to pay for anything or be sent anywhere. `Burn` asks for a card to be destroyed, which is minting a **negative** amount, and for a UTxO at this script's own address to be spent. It says nothing about the seed, because the seed was already spent when the card was created. It finds the script's address the same way the spend handler does, out of the `policy_id` it is handed, since that value is the script's hash.
 - `assets.tokens` narrows the transaction's mint field to this policy, and `dict.to_pairs` turns what is left into a list. Matching that list against a single `Pair` is the same line you wrote for the vault's own policy in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**, and it is what stops the policy minting a second name beside the card.
-- The **spend** handler asks whether a card is being **destroyed** here. To find the policy ID, it looks for the input that it is guarding, takes the address of that input, and reads the script hash out of that address. That hash **is** the policy ID. This is how a script recognizes the tokens that it created itself.
+- The **spend** handler asks whether a card is being **destroyed** here. To find the policy ID, it looks for the input that it is guarding, takes the address of that input, and reads the script hash out of that address. That hash **is** the policy ID.
 
-Then seven tests. Five of them call the `mint` handler and two call the `spend` handler, which is the first time you have tested two doors of one script:
+Then seven tests. Five of them call the `mint` handler and two call the `spend` handler:
 
 <CodeBlock language="aiken" title="validators/giftcard.ak">
   {extractRegion(GiftcardAiken, "giftcard-tests")}
@@ -162,9 +232,9 @@ Compare the hash with ours:
 
 Your seed is still missing, so this is the script with the blank in it. Filling the blank gives a different hash, and that one is the policy ID and the address of a real card.
 
-**Then break it.** Cut the `Create` branch down to its quantity check, dropping the `list.any` call and the `and` around it, and run the tests again. Six still pass, and `create_fails_without_the_seed` is the one that fails. The compiler also warns that `utxo_ref` is now unused. The contract still creates a card, still refuses two, and still releases the funds when a card is burned. It has simply stopped being a card that can only be created once, and one test out of seven says so.
+**Then break it.** Cut the `Create` branch down to its quantity check, dropping the `list.any` call and the `and` around it, and run the tests again. Six still pass, and `create_fails_without_the_seed` is the one that fails. The compiler also warns that `utxo_ref` is now unused. The contract still creates a card, still refuses two, and still releases the funds when a card is burned. It has stopped being a card that can only be created once.
 
-**Now write the check back yourself, without scrolling up.** The rule in words: creating a card is allowed only when the UTxO the contract was built from is among the transaction's inputs. When that test passes again, only one card can ever exist.
+**Now write the check back yourself, without scrolling up.** The rule in words: creating a card is allowed only when the UTxO the contract was built from is among the transaction's inputs.
 
 [Aiken's own gift card example](https://aiken-lang.org/example--gift-card) builds the same contract together with its off-chain code, and is a good next thing to read.
 
