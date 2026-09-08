@@ -21,8 +21,6 @@ So a validator is defined by what it **refuses**. A guard who lets everyone thro
 
 What ties them together is a single rule: **every validator the transaction triggers has to say yes.** If a single validator rejects it, the whole transaction is rejected. That is how contracts cooperate on Cardano, by each making its own demand of the same transaction.
 
-Our examples use a single validator for now. **[Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** shows one script guarding two different actions at once, and **[reference inputs](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)** shows two separate contracts working together.
-
 ## Where the locked funds live
 
 Remember from Beginner that a [UTxO](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions) (a "sealed bag") always sits at an **[address](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)**. Most of the addresses you have used belong to a person. These are **key addresses**, and whoever holds the matching private key can spend what is there.

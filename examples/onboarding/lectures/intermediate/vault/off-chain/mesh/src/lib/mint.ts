@@ -4,9 +4,7 @@ import type { IFetcher, IWallet } from "@meshsdk/core";
 
 import { vaultAddress, vaultTokenPolicyId, vaultTokenScriptCbor } from "./blueprint.ts";
 import { vaultDatum } from "./datum.ts";
-
-/// The token name the policy allows, as the contract spells it.
-export const TOKEN_NAME = "TOKEN A";
+import { TOKEN_NAME } from "./token.ts";
 
 /// Build a transaction that **mints one vault token and locks it**, together with
 /// `lovelace`, at the vault's address.
@@ -41,7 +39,8 @@ export async function buildMintAndLockTx(
 // #region mint-calls
     // Everything that follows describes one Plutus V3 script minting.
     .mintPlutusScriptV3()
-    // Create exactly one token, which is precisely what the handler allows.
+    // One token is all this transaction needs. The handler checks the name,
+    // not the amount.
     .mint("1", policyId, tokenNameHex)
     // Carry the compiled policy, so the network can run its mint handler.
     .mintingScript(vaultTokenScriptCbor)

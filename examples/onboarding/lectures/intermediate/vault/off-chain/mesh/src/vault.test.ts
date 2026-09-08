@@ -32,6 +32,7 @@ import { blueprint } from "./lib/blueprint.ts";
 
 import { buildMintAndLockTx } from "./lib/mint.ts";
 import { buildAdminUnlockTx } from "./lib/admin.ts";
+import { TOKEN_NAME, buildTokenTx, fetchTokenBalance, tokenUnit } from "./lib/token.ts";
 
 // An in-memory chain and a funded wallet. No node, no network, no test ADA, and
 // no waiting: every test below builds a real transaction and runs the real
@@ -113,10 +114,29 @@ test("lock: the vault's lock transaction is an ordinary payment carrying a datum
   const address = await owner.getChangeAddress();
   fund(fetcher, address);
 
-  const unsignedTx = await buildLockTx(owner, fetcher, NETWORK, "5000000");
+  const unsignedTx = await buildLockTx(owner, fetcher, NETWORK, FIVE_ADA);
   assert.ok(unsignedTx.length > 0, "lock transaction should build");
 });
 // #endregion offline-lock
+
+test("lock: a UTxO can hold tokens as well as ADA", async () => {
+  const fetcher = newFetcher();
+  const owner = await makeWallet(fetcher, OWNER);
+  const address = await owner.getChangeAddress();
+  fund(fetcher, address);
+  // The tokens a standalone mint would have left in the wallet.
+  addUtxo(fetcher, address, [
+    { unit: "lovelace", quantity: "5000000" },
+    { unit: tokenUnit(), quantity: "3" },
+  ]);
+
+  // One output, one bundle. The vault's validator never looks at what is in it.
+  const unsignedTx = await buildLockTx(owner, fetcher, NETWORK, [
+    ...FIVE_ADA,
+    { unit: tokenUnit(), quantity: "3" },
+  ]);
+  assert.ok(unsignedTx.length > 0, "lock with tokens should build");
+});
 
 test("mint: one transaction mints the token and locks it", async () => {
   const fetcher = newFetcher();
@@ -131,6 +151,42 @@ test("mint: one transaction mints the token and locks it", async () => {
   const evaluator = new OfflineEvaluator(fetcher, "preview");
   const costs = await evaluator.evaluateTx(unsignedTx, [], []);
   assert.ok(costs.length >= 1, "the mint handler should approve one token");
+});
+
+test("token: a transaction that only mints, with no vault output", async () => {
+  const fetcher = newFetcher();
+  const owner = await makeWallet(fetcher, OWNER);
+  fund(fetcher, await owner.getChangeAddress());
+
+  // Three at once. The policy checks the name and ignores the amount.
+  const unsignedTx = await buildTokenTx(owner, fetcher, "3");
+
+  const evaluator = new OfflineEvaluator(fetcher, "preview");
+  const costs = await evaluator.evaluateTx(unsignedTx, [], []);
+  assert.ok(costs.length >= 1, "the mint handler should approve three tokens");
+});
+
+test("token: burning spends the tokens the wallet holds", async () => {
+  const fetcher = newFetcher();
+  const owner = await makeWallet(fetcher, OWNER);
+  const address = await owner.getChangeAddress();
+  fund(fetcher, address);
+
+  // A UTxO holding tokens, the way one would sit in the wallet after a mint.
+  // Burning has to spend it, which is the difference from minting.
+  addUtxo(fetcher, address, [
+    { unit: "lovelace", quantity: "5000000" },
+    { unit: tokenUnit(), quantity: "3" },
+  ]);
+
+  // What the page's "Refresh tokens" button reads.
+  assert.equal(await fetchTokenBalance(owner), "3", `the wallet should hold three ${TOKEN_NAME}`);
+
+  const unsignedTx = await buildTokenTx(owner, fetcher, "-1");
+
+  const evaluator = new OfflineEvaluator(fetcher, "preview");
+  const costs = await evaluator.evaluateTx(unsignedTx, [], []);
+  assert.ok(costs.length >= 1, "the mint handler should approve the burn");
 });
 
 // #region offline-unlock
