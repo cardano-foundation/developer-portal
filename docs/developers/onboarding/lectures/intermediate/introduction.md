@@ -130,7 +130,7 @@ The cost of that separation is that every app is separately installed and separa
 cp vault/off-chain/mesh/.env vesting/off-chain/mesh/.env
 ```
 
-You never write code in these folders. Every lecture has you build in your own workspace, and the matching folder here is the answer sheet. What you do run from `playground/` are the apps: the vault's in lecture 9, the vesting one in lecture 10, and the oracle one in lecture 12. Each contract is a separate project here, while in your own workspace all five live together in `on-chain/vault/`. That makes no difference to the compiler, which is why the hashes match.
+You never write code in these folders. Every lecture has you build in your own workspace, and the matching folder here is the answer sheet. What you do run from `playground/` are the apps: the vault's in lecture 9, the vesting one in lecture 10, and the oracle one in lecture 12. Each contract is a separate project here, as it is in your own workspace.
 
 Once `npm run dev` is running, open the printed URL **in the browser where Lace is installed**. Connect, set up collateral, then **Lock 5 ADA** and **Unlock** it again. The **Mint & lock** button does the same thing but also creates a token under the contract's own policy, which is what **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** is about.
 

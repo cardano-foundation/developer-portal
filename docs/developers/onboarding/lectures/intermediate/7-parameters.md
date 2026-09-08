@@ -96,7 +96,7 @@ There is one more thing you could do. You could simply **write the admin key int
 :::note Where else a named key gets a path of its own
 `AdminUnlock` is one instance of a wider pattern, for the cases the main rule cannot cover. Contracts use it for a project key that alone may mint a collection's NFTs, for the single key allowed to update a price feed, which is the oracle you build in **[modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)**, and for a key that can pause a protocol by updating a config UTxO that every other validator reads as a **[reference input](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)**.
 
-Where that key is named follows the rule above: a parameter when it is fixed for the whole deployment, the datum when it differs from one UTxO to the next, as the oracle's does.
+Where that key is named follows the rule above: a parameter when it is fixed for the whole deployment, the datum when it differs from one UTxO to the next. The oracle's operator is fixed for its whole deployment, so it is a parameter, and the datum is left holding only the published rate.
 :::
 
 ## What "filling the blank" actually involves

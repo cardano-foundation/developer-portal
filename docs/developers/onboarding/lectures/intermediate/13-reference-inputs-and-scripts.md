@@ -16,12 +16,12 @@ Until now, a transaction could do only one thing with a UTxO: **spend** it. Take
 
 A transaction can also **point at a UTxO** without spending it. The UTxO stays exactly where it is.
 
-That single idea has two uses, and they have confusingly similar names:
+That single idea has two uses, and they have similar names:
 
 - A **reference script** points at published **code**.
 - A **reference input** points at published **data**.
 
-They solve two different problems. Both problems appear as soon as you have the oracle from the last lecture and you want other contracts to use it. Take them one at a time.
+You need both as soon as another contract wants to use the oracle from the last lecture.
 
 ## Reference scripts
 
@@ -31,9 +31,51 @@ A reference script is a compiled contract that has been stored inside a UTxO on 
 
 The UTxO that holds the script is an ordinary one at **your own address**. The ADA inside it stays yours. Nothing about the contract changes: same code, same hash, same address, same answers.
 
+An unlock that points at it:
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I1["`**the locked UTxO**
+        address: the vault
+        value: 5 ADA
+        datum: owner = your key hash`"]
+        I2["`**your UTxO**
+        address: you
+        value: 4.5 ADA`"]
+    end
+
+    subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
+        R["`**your UTxO holding the script**
+        address: you
+        value: 15 ADA + the vault's compiled script
+        stays where it is`"]
+    end
+
+    TX{{"`**unlock**
+    fee: 0.25 ADA, smaller: the script is not carried
+    the spend validator runs, read from the reference
+    redeemer: Unlock
+    your key hash in extra_signatories
+    collateral offered, not taken`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O["`**back to you**
+        address: you
+        value: 9.25 ADA`"]
+    end
+
+    I1 --> TX --> O
+    I2 --> TX
+    R -.-> TX
+
+    style I1 stroke-dasharray:4 3
+    style I2 stroke-dasharray:4 3
+```
+
 ### Why you need it
 
-Look back at every unlock you have built. Each one put the entire compiled contract **inside the transaction**, so that the network had the program to run.
+Every unlock you have built put the entire compiled contract **inside the transaction**, so that the network had the program to run.
 
 That works, but you pay for every byte you send. If you unlock a thousand times, you send the same contract a thousand times, and you pay for those bytes a thousand times.
 
@@ -60,53 +102,88 @@ flowchart LR
 
 Use one for any contract that will be spent more than a few times. The cost of publishing it is paid once, and every spend after that is smaller and cheaper.
 
-Skip it for a contract you will run twice and throw away. Publishing costs one transaction, and it locks a small amount of ADA in the UTxO that holds the script. At very low volume, that is not worth the trouble.
+Skip it for a contract you will run only once or twice. Publishing costs one transaction and locks a small amount of ADA in the UTxO that holds the script, and at very low volume the saving is smaller than that cost.
 
 This is also the only sense in which a Cardano contract is "deployed", a point **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** already made.
 
 ### What to watch out for
 
-**Pointing at a script is not free.** The bytes still cost a small amount each. The cost is far lower than putting the whole script into every transaction, but it is not zero.
+**Pointing at a script still costs something.** Each byte of the referenced script is charged, at a far lower price than carrying the script inside the transaction.
 
-**The UTxO has to stay unspent.** It is an ordinary output that belongs to you, so you are able to spend it. As soon as you spend it, every transaction that points at it stops working. Publish it, then leave it alone.
+**The UTxO has to stay unspent.** It is an ordinary output that belongs to you, so nothing stops you from spending it. As soon as you do, every transaction that points at it stops working. Publish it, then leave it alone.
 
 ## Reference inputs
 
 ### What it is
 
-A reference input is a UTxO that a transaction attaches only in order to **read** it. The transaction does not spend it. The UTxO stays where it is, and the validator can read its datum.
+A reference input is a UTxO that a transaction attaches only in order to **read** it. The UTxO stays where it is, and the validator can read its datum.
 
 Inside the validator, referenced UTxOs arrive in their own field, `reference_inputs`, separate from the ones being spent. You met that field in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
-The contract you write at the end of this lecture reads the oracle that way. It reads the datum of a UTxO that the transaction attached for it, and the oracle does not know that this second contract exists.
+An unlock at the consumer contract, with the oracle attached for reading:
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I1["`**the locked UTxO**
+        address: the consumer
+        value: 5 ADA`"]
+        I2["`**your UTxO**
+        address: you
+        value: 4.5 ADA`"]
+    end
+
+    subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
+        R["`**the oracle's UTxO**
+        address: the oracle
+        value: 5 ADA + the oracle NFT (the beacon)
+        datum: rate = 150
+        stays where it is`"]
+    end
+
+    TX{{"`**unlock**
+    fee: 0.35 ADA
+    the consumer's spend handler runs
+    reads rate = 150 from the reference input
+    collateral offered, not taken`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O["`**back to you**
+        address: you
+        value: 9.15 ADA`"]
+    end
+
+    I1 --> TX --> O
+    I2 --> TX
+    R -.-> TX
+
+    style I1 stroke-dasharray:4 3
+    style I2 stroke-dasharray:4 3
+```
 
 ### Why you need it
 
-Go back to the oracle. It sits on the chain holding a price, and another contract wants to know that price.
+The oracle sits on the chain holding a rate, and another contract wants to know it. Spending the oracle to read it would destroy it at the moment it was read, and only one transaction per block could ever read it, because a UTxO can be spent only once.
 
-So far, the only way you have had to bring a UTxO into a transaction is to spend it. Spending the oracle would be a serious problem. The oracle would disappear at the moment it was read, and only one contract per block could ever read it, because a UTxO can only be spent once.
-
-A reference input solves both. The oracle stays where it is, and any number of transactions can point at the same one at the same time.
+With a reference input the oracle stays where it is, and any number of transactions can point at the same one at the same time.
 
 ### When to use it
 
 Use one whenever many transactions have to read the same piece of data:
 
-- A price published by an oracle.
+- A rate published by an oracle.
 - A registry of members, or of approved tokens.
 - A configuration UTxO that an admin updates and every other validator reads.
 
-If a contract needs to **know** something that lives in another UTxO, but has no business **taking** that UTxO, use a reference input.
-
 ### What to watch out for
 
-Pointing at a UTxO does not reserve it. Another person's transaction can still spend it, and an oracle update does exactly that: it spends the old UTxO and creates a new one.
+Pointing at a UTxO does not reserve it. Another transaction can still spend it, and an oracle update does exactly that: it spends the old UTxO and creates a new one.
 
-So a contract must always point at the UTxO that is **current**, and not at one that an app stored earlier. If your app remembers an oracle UTxO from an hour ago and points at it, the transaction is rejected, because that UTxO no longer exists.
+So a transaction has to point at the **current** UTxO. If your app remembers an oracle UTxO from an hour ago and points at it, the transaction is rejected, because that UTxO no longer exists.
+
+**Attaching a UTxO does not make it trustworthy either.** Whoever builds the transaction chooses what to attach, so a validator that reads the first reference input it is handed reads whatever the caller wants it to read. The oracle's beacon is the answer: the consumer searches the reference inputs for that token and reads only the UTxO that carries it.
 
 ## Which one do I need?
-
-A reference script is invisible to the validator: the contract runs exactly as it always did, and only the transaction that calls it is built differently.
 
 |  | Reference script | Reference input |
 |---|---|---|
@@ -119,30 +196,30 @@ A reference script is invisible to the validator: the contract runs exactly as i
 
 ## Try it
 
-**Write a second contract that reads the first one's data.** It is the shortest in the track.
+**Write a second contract that reads the first one's data.**
 
 ### Write the consumer
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs in the same project as the last three lectures. This contract reads the oracle you wrote in the last lecture, so `validators/oracle.ak` has to be there already.
+Everything below runs in the oracle project from the last lecture, because this contract reads `validators/oracle.ak`.
 
-Create `validators/consumer.ak`. The imports first. The last line is the interesting one: this contract imports `OracleDatum` from your own oracle, because it has to know the shape of the datum it is about to read.
+Create `validators/consumer.ak`. The imports first. The last line imports three things from your own oracle: the `AssetClass` type, the `Rate` it publishes, and `holds_beacon`, the function the oracle uses to recognize its own token. Both contracts ask the same function the same question, so both agree on which UTxO is the oracle.
 
 <CodeBlock language="aiken" title="validators/consumer.ak">
   {extractRegion(ConsumerAiken, "consumer-imports")}
 </CodeBlock>
 
-Then the validator itself, whose body is three lines:
+Then the validator itself. It takes the beacon as a parameter, the way the oracle takes its own parameters, so the token it trusts is fixed in the code, and the caller cannot point it at a different one:
 
 <CodeBlock language="aiken" title="validators/consumer.ak">
   {extractRegion(ConsumerAiken, "consumer")}
 </CodeBlock>
 
-`expect InlineDatum(published)` reads the datum off the UTxO the transaction attached to `self.reference_inputs`, and the line after it confirms that datum is an `OracleDatum`. Then the contract compares the price, with no call and no direct connection to the oracle.
+`list.find` searches `self.reference_inputs` for the UTxO holding the beacon, so the transaction can attach as many others as it likes without changing the answer. `expect InlineDatum(published)` then reads the datum off that one, and the line after it confirms the datum is a `Rate`. Then the contract compares the rate.
 
-Then two tests. Both attach the oracle to `reference_inputs` rather than `inputs`, which is the whole difference between reading a UTxO and spending it. The only difference between the two tests is the price in that datum:
+Then three tests. All of them attach the oracle to `reference_inputs` rather than `inputs`, which is the whole difference between reading a UTxO and spending it:
 
 <CodeBlock language="aiken" title="validators/consumer.ak">
   {extractRegion(ConsumerAiken, "consumer-tests")}
@@ -153,13 +230,17 @@ aiken check
 aiken build
 ```
 
+`spend_fails_without_the_beacon` hands the contract a UTxO at the oracle's address, carrying a readable rate, that anybody could have created. The contract refuses to read it.
+
 Open `plutus.json` and find `consumer.consumer.spend`. Compare its hash with ours:
 
 ```
-87879dd7a0c4c278267808b931262e5f99e886049629e75c7dcecbe1
+33cb3703d1f936b0dfae5c346c549a550f5ce3e0bcffc7a38a33ee87
 ```
 
-**Then break it.** Delete the `reference_inputs` field from `tx_reading_oracle`, the helper both tests use, and run `aiken check` again. `spend_ok_when_the_oracle_price_is_positive` now **fails**: the validator can no longer find the oracle. A contract that depends on referenced data refuses when that data is missing.
+Like the oracle's, this is the script with its blank still in it.
+
+**Then break it.** Delete the `reference_inputs` field from `tx_reading_oracle`, the helper all three tests use, and run `aiken check` again. `spend_ok_when_the_oracle_rate_is_positive` now **fails**: the validator can no longer find the oracle.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -173,14 +254,14 @@ Stuck? The finished code is in the playground. See the **[introduction](/docs/de
 
 ### Then go and see the cost
 
-Open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, find any **unlock** transaction you have sent, from your own app in lecture 9 or from the [playground](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground), and look at its **size**. The compiled contract is inside that transaction, and you paid for those bytes. A reference script removes those bytes from every future spend.
+Open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, find any **unlock** transaction you have sent, from your own app in lecture 9 or from the [playground](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground), and look at its **size**. The compiled contract is inside that transaction. A reference script removes those bytes from every later spend.
 
 The off-chain code for each feature lives with the contract it belongs to.
 
 <Tabs groupId="offchain">
 <TabItem value="mesh" label="Mesh" default>
 
-Deploying a reference script and then spending through it is the vault's code, in `vault/off-chain/mesh/src/lib/reference-script.ts`. Reading a reference input is the oracle's code, in `oracle/off-chain/mesh/src/lib/reference-input.ts`. Both files are type-checked, and they use the same calls you wrote in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
+Deploying a reference script and then spending through it is the vault's code, in `vault/off-chain/mesh/src/lib/reference-script.ts`. Reading a reference input is the oracle's code, in `oracle/off-chain/mesh/src/lib/reference-input.ts`. There `readOracle` is one call, `readOnlyTxInReference`, given a transaction hash and an output index. Step 5 of the oracle app runs it: lock some ADA at the consumer, then unlock it while the oracle stays where it is. You closed your oracle at the end of the last lecture, so publish a new one in step 3 first.
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">
@@ -194,12 +275,12 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 You can write a validator, compile it, run it from an application, prove that it does what you say it does, and drive it from a page in a browser. You can also take an idea and turn it into a design. You do that by asking four questions: what has to be remembered, which actions are possible, what must be true for each one, and what breaks if a rule is missing.
 
-Along the way you built a vault with an admin key and its own token, a deadline, a gift card, an oracle, and a contract that reads another contract's data.
+Along the way you built a vault with an admin key and its own token, a deadline, a gift card, an oracle identified by a token that can only be created once, and a contract that reads that oracle's data without touching it.
 
 Everything else is a larger version of these same parts. When the size grows, the mechanism does not change, but you need more care: the ways contracts get attacked, the patterns that prevent those attacks, and the cost of running them.
 
 - The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
-- The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page is the best thing to read next, and the most valuable one to read before anything you write holds real funds.
+- The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page: read it before anything you write holds real funds.
 
 ## Go deeper
 
