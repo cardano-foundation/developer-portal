@@ -5,21 +5,28 @@ import {
   DEFAULT_PROTOCOL_PARAMETERS,
   OfflineFetcher,
   deserializeAddress,
+  mConStr0,
   serializeData,
 } from "@meshsdk/core";
 import type { Asset } from "@meshsdk/core";
 import { OfflineEvaluator } from "@meshsdk/core-csl";
 import { MeshWallet } from "@meshsdk/wallet";
 
-import { oracleAddress } from "./lib/blueprint.ts";
-import { buildOracleUpdateTx, oracleDatum } from "./lib/oracle.ts";
+import { beaconPolicyId, beaconUnit, consumerAddress, oracleAddress } from "./lib/blueprint.ts";
+import {
+  buildOracleCreateTx,
+  buildOracleDeleteTx,
+  buildOracleUpdateTx,
+  rateOf,
+} from "./lib/oracle.ts";
+import type { Deployment } from "./lib/oracle.ts";
+import { buildConsumerSpendTx } from "./lib/reference-input.ts";
 
-// An in-memory chain and a funded wallet. No node, no network, no test ADA, and
-// no waiting: the test below builds a real transaction and runs the real
-// compiled validator against it.
+// An in-memory chain and a funded wallet. No node and no waiting: the tests
+// below build real transactions and run the real compiled validators on them.
 const NETWORK = 0;
 
-const OWNER =
+const OPERATOR =
   "system envelope wine dune joy cage senior predict lift lunch foam bring shoe permit boss balcony inherit fold cat again stone topic truly all".split(
     " ",
   );
@@ -62,25 +69,152 @@ function fund(fetcher: OfflineFetcher, address: string) {
   addUtxo(fetcher, address, [{ unit: "lovelace", quantity: "5000000" }]);
 }
 
-const FIVE_ADA: Asset[] = [{ unit: "lovelace", quantity: "5000000" }];
+function evaluator(fetcher: OfflineFetcher): OfflineEvaluator {
+  return new OfflineEvaluator(fetcher, "preview");
+}
 
-test("oracle: an update spends the UTxO and puts a new one back", async () => {
+/// A published oracle: the beacon and 5 ADA at the derived address, with the
+/// rate as a bare integer datum.
+function publishOracle(fetcher: OfflineFetcher, deployment: Deployment, rate: number) {
+  const policyId = beaconPolicyId(deployment.seed);
+  return addUtxo(
+    fetcher,
+    oracleAddress(policyId, deployment.operator, NETWORK),
+    [
+      { unit: "lovelace", quantity: "5000000" },
+      { unit: beaconUnit(policyId), quantity: "1" },
+    ],
+    serializeData(rate),
+  );
+}
+
+/// The seed can be any reference for the tests that never run the mint handler.
+function deploymentFor(operator: string): Deployment {
+  return {
+    seed: { txHash: "00".repeat(32), outputIndex: 0 },
+    operator,
+  };
+}
+
+test("create: minting the beacon and locking it with the first rate", async () => {
   const fetcher = newFetcher();
-  const owner = await makeWallet(fetcher, OWNER);
-  const address = await owner.getChangeAddress();
-  const pubKeyHash = deserializeAddress(address).pubKeyHash;
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  fund(fetcher, await wallet.getChangeAddress());
+
+  const { unsignedTx, deployment } = await buildOracleCreateTx(wallet, fetcher, NETWORK, 100);
+
+  // The seed the builder picked is what every address is derived from, so it
+  // has to come back to the caller. Losing it loses the oracle.
+  assert.ok(deployment.seed.txHash, "the create builder should report its seed");
+
+  const costs = await evaluator(fetcher).evaluateTx(unsignedTx, [], []);
+  assert.ok(costs.length >= 1, "the beacon policy should approve the mint");
+});
+
+test("update: the UTxO is spent and a new one goes straight back", async () => {
+  const fetcher = newFetcher();
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  const address = await wallet.getChangeAddress();
   fund(fetcher, address);
 
-  const published = addUtxo(
+  const deployment = deploymentFor(deserializeAddress(address).pubKeyHash);
+  const published = publishOracle(fetcher, deployment, 100);
+
+  const unsignedTx = await buildOracleUpdateTx(
+    wallet,
     fetcher,
-    oracleAddress(NETWORK),
-    FIVE_ADA,
-    serializeData(oracleDatum(pubKeyHash, 100)),
+    NETWORK,
+    deployment,
+    published,
+    150,
   );
 
-  const unsignedTx = await buildOracleUpdateTx(owner, fetcher, NETWORK, published, 150);
+  const costs = await evaluator(fetcher).evaluateTx(unsignedTx, [], []);
+  assert.ok(costs.length >= 1, "the oracle should approve the update");
+});
 
-  const evaluator = new OfflineEvaluator(fetcher, "preview");
-  const costs = await evaluator.evaluateTx(unsignedTx, [], []);
-  assert.ok(costs.length >= 1, "the validator should approve the update");
+test("delete: closing the oracle burns the beacon", async () => {
+  const fetcher = newFetcher();
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  const address = await wallet.getChangeAddress();
+  fund(fetcher, address);
+
+  const deployment = deploymentFor(deserializeAddress(address).pubKeyHash);
+  const published = publishOracle(fetcher, deployment, 100);
+
+  const unsignedTx = await buildOracleDeleteTx(wallet, fetcher, deployment, published);
+
+  const costs = await evaluator(fetcher).evaluateTx(unsignedTx, [], []);
+  // Two scripts run here: the oracle's spend handler and the beacon's burn.
+  assert.ok(costs.length >= 2, "the oracle and the beacon policy should both approve");
+});
+
+test("consumer: the oracle is read as a reference input, not spent", async () => {
+  const fetcher = newFetcher();
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  const address = await wallet.getChangeAddress();
+  fund(fetcher, address);
+
+  const deployment = deploymentFor(deserializeAddress(address).pubKeyHash);
+  const published = publishOracle(fetcher, deployment, 150);
+  const policyId = beaconPolicyId(deployment.seed);
+
+  const locked = addUtxo(
+    fetcher,
+    consumerAddress(policyId, NETWORK),
+    [{ unit: "lovelace", quantity: "5000000" }],
+    serializeData(mConStr0([])),
+  );
+
+  const unsignedTx = await buildConsumerSpendTx(
+    wallet,
+    fetcher,
+    NETWORK,
+    deployment,
+    locked,
+    published,
+  );
+
+  const costs = await evaluator(fetcher).evaluateTx(unsignedTx, [], []);
+  assert.ok(costs.length >= 1, "the consumer should approve while the rate is positive");
+});
+
+// Proves the assertions above are not passing vacuously: the same builder, on a
+// UTxO with no beacon on it, must be rejected by the validator.
+test("update: a UTxO at the address without the beacon is refused", async () => {
+  const fetcher = newFetcher();
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  const address = await wallet.getChangeAddress();
+  fund(fetcher, address);
+
+  const deployment = deploymentFor(deserializeAddress(address).pubKeyHash);
+  const policyId = beaconPolicyId(deployment.seed);
+  // Same address, same datum, but nobody minted a beacon into it.
+  const impostor = addUtxo(
+    fetcher,
+    oracleAddress(policyId, deployment.operator, NETWORK),
+    [{ unit: "lovelace", quantity: "5000000" }],
+    serializeData(100),
+  );
+
+  const unsignedTx = await buildOracleUpdateTx(
+    wallet,
+    fetcher,
+    NETWORK,
+    deployment,
+    impostor,
+    150,
+  );
+
+  await assert.rejects(
+    () => evaluator(fetcher).evaluateTx(unsignedTx, [], []),
+    "the oracle should refuse a UTxO that does not hold the beacon",
+  );
+});
+
+test("rateOf reads a bare integer datum", () => {
+  const fetcher = newFetcher();
+  const deployment = deploymentFor("00".repeat(28));
+  const published = publishOracle(fetcher, deployment, 150);
+  assert.equal(rateOf(published), 150);
 });

@@ -2,40 +2,69 @@
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Script, VerificationKey}
-use cardano/assets.{from_lovelace}
+use cardano/assets.{AssetName, PolicyId, Value, from_lovelace, quantity_of}
 use cardano/transaction.{
   InlineDatum, Input, Output, OutputReference, Transaction,
 }
+
 // #endregion oracle-imports
 
-// A UTxO that carries a number, and is updated instead of emptied: every other
-// contract here lets the funds go, this one demands they come straight back.
+// A UTxO that carries a number and is updated instead of emptied. Every other
+// contract here lets the funds go; this one demands they come straight back,
+// with the beacon token still on them.
 // #region oracle
-pub type OracleDatum {
-  owner: VerificationKeyHash,
-  price: Int,
+pub type AssetClass {
+  policy_id: PolicyId,
+  name: AssetName,
 }
 
-validator oracle {
+pub type OracleParams {
+  beacon: AssetClass,
+  operator: VerificationKeyHash,
+}
+
+pub type OracleAction {
+  Update
+  Delete
+}
+
+pub type Rate =
+  Int
+
+// One beacon and no more. The consumer in the next lecture calls this too, so
+// both contracts agree on what "the real oracle" means.
+pub fn holds_beacon(value: Value, beacon: AssetClass) -> Bool {
+  quantity_of(value, beacon.policy_id, beacon.name) == 1
+}
+
+validator oracle(params: OracleParams) {
   spend(
-    datum: Option<OracleDatum>,
-    _redeemer: Data,
+    _datum: Option<Rate>,
+    redeemer: OracleAction,
     own_ref: OutputReference,
     self: Transaction,
   ) {
-    expect Some(OracleDatum { owner, .. }) = datum
+    expect Some(own_input) = transaction.find_input(self.inputs, own_ref)
 
-    expect Some(own_input) =
-      list.find(self.inputs, fn(input) { input.output_reference == own_ref })
-
-    // Without these three lines the owner could simply drain the UTxO.
-    let own_address = own_input.output.address
-    expect [continuing] =
-      list.filter(self.outputs, fn(output) { output.address == own_address })
-    expect InlineDatum(returned) = continuing.datum
-    expect _updated: OracleDatum = returned
-
-    list.has(self.extra_signatories, owner)?
+    and {
+      // Both actions need these two, so they sit above the branch.
+      list.has(self.extra_signatories, params.operator)?,
+      holds_beacon(own_input.output.value, params.beacon)?,
+      when redeemer is {
+        Update -> {
+          let own_address = own_input.output.address
+          expect [continuing] = list.filter(
+            self.outputs,
+            fn(output) { output.address == own_address },
+          )
+          expect InlineDatum(returned) = continuing.datum
+          expect _new_rate: Rate = returned
+          holds_beacon(continuing.value, params.beacon)?
+        }
+        Delete ->
+          (quantity_of(self.mint, params.beacon.policy_id, params.beacon.name) == -1)?
+      },
+    }
   }
 
   else(_) {
@@ -49,11 +78,20 @@ validator oracle {
 // #region oracle-tests
 
 // A key hash is 28 bytes, so any 28 bytes stand in for one.
-const owner: VerificationKeyHash =
+const operator: VerificationKeyHash =
   #"00000000000000000000000000000000000000000000000000000001"
 
 const stranger: VerificationKeyHash =
   #"00000000000000000000000000000000000000000000000000000002"
+
+// The beacon the oracle was compiled around.
+const beacon: AssetClass =
+  AssetClass {
+    policy_id: #"000000000000000000000000000000000000000000000000000000ee",
+    name: "ORACLE",
+  }
+
+const params: OracleParams = OracleParams { beacon, operator }
 
 // The oracle's own address. The input it spends and the output it sends back
 // have to carry exactly this value, which is what the rule compares.
@@ -68,7 +106,7 @@ const script_address: Address =
 // Somewhere else to send the funds, for the test that takes them away.
 const wallet_address: Address =
   Address {
-    payment_credential: VerificationKey(owner),
+    payment_credential: VerificationKey(operator),
     stake_credential: None,
   }
 
@@ -80,45 +118,47 @@ const own_ref: OutputReference =
     output_index: 0,
   }
 
-fn old_datum() -> OracleDatum {
-  OracleDatum { owner, price: 100 }
+// Some ADA and the beacon: what a live oracle UTxO holds.
+fn with_beacon(lovelace: Int) -> Value {
+  from_lovelace(lovelace) |> assets.add(beacon.policy_id, beacon.name, 1)
 }
 
-fn new_datum() -> OracleDatum {
-  OracleDatum { owner, price: 150 }
-}
-
-// The oracle's UTxO, coming in. Its datum is the price as it stands now.
+// The oracle's UTxO, coming in. Its datum is the rate as it stands now.
 fn oracle_input() -> Input {
   Input {
     output_reference: own_ref,
     output: Output {
       address: script_address,
-      value: from_lovelace(5_000_000),
-      datum: InlineDatum(old_datum()),
+      value: with_beacon(5_000_000),
+      datum: InlineDatum(100),
       reference_script: None,
     },
   }
 }
 
-// One output, going wherever the test says, carrying whatever datum it says.
-fn output_to(address: Address, datum: Data) -> Output {
-  Output {
-    address,
-    value: from_lovelace(5_000_000),
-    datum: InlineDatum(datum),
-    reference_script: None,
-  }
+// One output, going wherever the test says, holding whatever the test says.
+fn output_to(address: Address, value: Value) -> Output {
+  Output { address, value, datum: InlineDatum(150), reference_script: None }
 }
 
-test update_ok_when_owner_signs_and_utxo_returns() {
+test update_ok_when_operator_signs_and_beacon_returns() {
   let tx = Transaction {
     ..transaction.placeholder,
     inputs: [oracle_input()],
-    outputs: [output_to(script_address, new_datum())],
-    extra_signatories: [owner],
+    outputs: [output_to(script_address, with_beacon(5_000_000))],
+    extra_signatories: [operator],
   }
-  oracle.spend(Some(old_datum()), Void, own_ref, tx)
+  oracle.spend(params, Some(100), Update, own_ref, tx)
+}
+
+test update_fails_for_a_stranger() fail {
+  let tx = Transaction {
+    ..transaction.placeholder,
+    inputs: [oracle_input()],
+    outputs: [output_to(script_address, with_beacon(5_000_000))],
+    extra_signatories: [stranger],
+  }
+  oracle.spend(params, Some(100), Update, own_ref, tx)
 }
 
 // The output goes to an ordinary key address, so nothing comes back to the
@@ -127,19 +167,42 @@ test update_fails_when_the_utxo_does_not_return() fail {
   let tx = Transaction {
     ..transaction.placeholder,
     inputs: [oracle_input()],
-    outputs: [output_to(wallet_address, new_datum())],
-    extra_signatories: [owner],
+    outputs: [output_to(wallet_address, with_beacon(5_000_000))],
+    extra_signatories: [operator],
   }
-  oracle.spend(Some(old_datum()), Void, own_ref, tx)
+  oracle.spend(params, Some(100), Update, own_ref, tx)
 }
 
-test update_fails_for_a_stranger() fail {
+// The UTxO comes back, but the beacon has been taken out of it. What is left
+// behind is a UTxO at the oracle's address that no reader will trust.
+test update_fails_when_the_beacon_does_not_return() fail {
   let tx = Transaction {
     ..transaction.placeholder,
     inputs: [oracle_input()],
-    outputs: [output_to(script_address, new_datum())],
-    extra_signatories: [stranger],
+    outputs: [output_to(script_address, from_lovelace(5_000_000))],
+    extra_signatories: [operator],
   }
-  oracle.spend(Some(old_datum()), Void, own_ref, tx)
+  oracle.spend(params, Some(100), Update, own_ref, tx)
+}
+
+test delete_ok_when_the_beacon_is_burned() {
+  let tx = Transaction {
+    ..transaction.placeholder,
+    inputs: [oracle_input()],
+    mint: assets.from_asset(beacon.policy_id, beacon.name, -1),
+    extra_signatories: [operator],
+  }
+  oracle.spend(params, Some(100), Delete, own_ref, tx)
+}
+
+// Closing without burning would leave the beacon loose in the operator's
+// wallet, ready to be locked again beside a rate nobody agreed to.
+test delete_fails_when_the_beacon_survives() fail {
+  let tx = Transaction {
+    ..transaction.placeholder,
+    inputs: [oracle_input()],
+    extra_signatories: [operator],
+  }
+  oracle.spend(params, Some(100), Delete, own_ref, tx)
 }
 // #endregion oracle-tests
