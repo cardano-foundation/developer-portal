@@ -18,6 +18,11 @@ import {
   buildConsumerSpendTx,
   fetchLocked,
 } from "./lib/reference-input.ts";
+import {
+  buildConsumerSpendViaReferenceTx,
+  buildPublishConsumerScriptTx,
+  fetchPublishedConsumerScript,
+} from "./lib/reference-script.ts";
 import "./index.css";
 
 const NETWORK_ID = Number(import.meta.env.VITE_NETWORK_ID ?? "0");
@@ -75,6 +80,7 @@ function App() {
   const [deployment, setDeployment] = useState<Deployment | undefined>(loadDeployment);
   const [oracle, setOracle] = useState<UTxO>();
   const [locked, setLocked] = useState<UTxO[]>([]);
+  const [scriptUtxo, setScriptUtxo] = useState<UTxO>();
   const [status, setStatus] = useState<ReactNode>("");
   const [txHash, setTxHash] = useState("");
 
@@ -85,9 +91,10 @@ function App() {
     try {
       const connected = await BrowserWallet.enable("lace");
       setWallet(connected);
-      setAddress(await connected.getChangeAddress());
+      const changeAddress = await connected.getChangeAddress();
+      setAddress(changeAddress);
       setHasCollateral((await connected.getCollateral()).length > 0);
-      await refresh(deployment);
+      await refresh(deployment, changeAddress);
       setStatus("");
     } catch (error) {
       setStatus(`error: ${(error as Error).message}`);
@@ -98,10 +105,11 @@ function App() {
     if (wallet) setHasCollateral((await wallet.getCollateral()).length > 0);
   }
 
-  async function refresh(which = deployment) {
+  async function refresh(which = deployment, at = address) {
     if (!which) return;
     setOracle(await fetchOracle(provider, NETWORK_ID, which));
     setLocked(await fetchLocked(provider, NETWORK_ID, which));
+    if (at) setScriptUtxo(await fetchPublishedConsumerScript(provider, at, which));
   }
 
   // Build → sign (partial, so the wallet signs its own inputs and leaves the
@@ -250,8 +258,31 @@ function App() {
 
       <Step
         n={5}
+        title="Publish the consumer's script once"
+        hint="Parks the compiled consumer in a UTxO at your own address. Later unlocks can point at it instead of carrying it."
+      >
+        {scriptUtxo ? (
+          <p className="text-sm">
+            Published at{" "}
+            <span className="font-mono text-xs">
+              {scriptUtxo.input.txHash.slice(0, 8)}…#{scriptUtxo.input.outputIndex}
+            </span>
+          </p>
+        ) : (
+          <button
+            className={btn}
+            disabled={!wallet || !deployment}
+            onClick={() => run(() => buildPublishConsumerScriptTx(wallet!, provider, deployment!))}
+          >
+            Publish script
+          </button>
+        )}
+      </Step>
+
+      <Step
+        n={6}
         title="Read it from another contract"
-        hint="The consumer only releases its funds while the rate is positive. It reads the oracle as a reference input, so the oracle is never spent."
+        hint="The consumer only releases its funds while the rate is positive. It reads the oracle as a reference input, so the oracle is never spent. Once the script is published, unlock both ways and compare the two transactions on the explorer."
       >
         <button
           className={btn}
@@ -267,7 +298,7 @@ function App() {
             <li className="text-gray-500">Nothing locked at the consumer.</li>
           ) : (
             locked.map((utxo) => (
-              <li key={`${utxo.input.txHash}#${utxo.input.outputIndex}`} className="flex items-center gap-2">
+              <li key={`${utxo.input.txHash}#${utxo.input.outputIndex}`} className="flex flex-wrap items-center gap-2">
                 <span className="font-mono text-xs">
                   {utxo.input.txHash.slice(0, 8)}…#{utxo.input.outputIndex}
                 </span>
@@ -288,8 +319,29 @@ function App() {
                     )
                   }
                 >
-                  Unlock, reading the oracle
+                  Unlock, carrying the script
                 </button>
+                {scriptUtxo && (
+                  <button
+                    className={btn}
+                    disabled={!hasCollateral || !oracle}
+                    onClick={() =>
+                      run(() =>
+                        buildConsumerSpendViaReferenceTx(
+                          wallet!,
+                          provider,
+                          deployment!,
+                          utxo,
+                          oracle!,
+                          scriptUtxo,
+                          provider,
+                        ),
+                      )
+                    }
+                  >
+                    Unlock through the published script
+                  </button>
+                )}
               </li>
             ))
           )}

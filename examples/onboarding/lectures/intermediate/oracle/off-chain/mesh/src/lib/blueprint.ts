@@ -82,6 +82,11 @@ export function consumerAddress(policyId: string, networkId: number): string {
   return scriptAddress(consumerScriptCbor(policyId), networkId);
 }
 
+/// The consumer's hash, which is how a published copy of it is recognized.
+export function consumerScriptHash(policyId: string): string {
+  return resolveScriptHash(consumerScriptCbor(policyId), PLUTUS_VERSION);
+}
+
 function scriptAddress(cbor: string, networkId: number): string {
   return serializePlutusScript({ code: cbor, version: PLUTUS_VERSION }, undefined, networkId)
     .address;

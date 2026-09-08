@@ -6,13 +6,21 @@ import {
   OfflineFetcher,
   deserializeAddress,
   mConStr0,
+  resolveScriptRef,
   serializeData,
 } from "@meshsdk/core";
 import type { Asset } from "@meshsdk/core";
 import { OfflineEvaluator } from "@meshsdk/core-csl";
 import { MeshWallet } from "@meshsdk/wallet";
 
-import { beaconPolicyId, beaconUnit, consumerAddress, oracleAddress } from "./lib/blueprint.ts";
+import {
+  beaconPolicyId,
+  beaconUnit,
+  consumerAddress,
+  consumerScriptCbor,
+  consumerScriptHash,
+  oracleAddress,
+} from "./lib/blueprint.ts";
 import {
   buildOracleCreateTx,
   buildOracleDeleteTx,
@@ -21,6 +29,10 @@ import {
 } from "./lib/oracle.ts";
 import type { Deployment } from "./lib/oracle.ts";
 import { buildConsumerSpendTx } from "./lib/reference-input.ts";
+import {
+  buildConsumerSpendViaReferenceTx,
+  buildPublishConsumerScriptTx,
+} from "./lib/reference-script.ts";
 
 // An in-memory chain and a funded wallet. No node and no waiting: the tests
 // below build real transactions and run the real compiled validators on them.
@@ -177,6 +189,70 @@ test("consumer: the oracle is read as a reference input, not spent", async () =>
 
   const costs = await evaluator(fetcher).evaluateTx(unsignedTx, [], []);
   assert.ok(costs.length >= 1, "the consumer should approve while the rate is positive");
+});
+
+test("publish: the consumer's script is attached to an output at your own address", async () => {
+  const fetcher = newFetcher();
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  const address = await wallet.getChangeAddress();
+  fund(fetcher, address);
+  const deployment = deploymentFor(deserializeAddress(address).pubKeyHash);
+
+  const unsignedTx = await buildPublishConsumerScriptTx(wallet, fetcher, deployment);
+
+  // The compiled code travels inside this one transaction, as the reference
+  // script of an output. A slice from the middle of it is enough to recognize.
+  const cbor = consumerScriptCbor(beaconPolicyId(deployment.seed));
+  assert.ok(unsignedTx.includes(cbor.slice(64, 264)), "the compiled consumer should be attached to an output");
+});
+
+test("consumer: unlocking through the published script carries no script", async () => {
+  const fetcher = newFetcher();
+  const wallet = await makeWallet(fetcher, OPERATOR);
+  const address = await wallet.getChangeAddress();
+  fund(fetcher, address);
+
+  const deployment = deploymentFor(deserializeAddress(address).pubKeyHash);
+  const published = publishOracle(fetcher, deployment, 150);
+  const policyId = beaconPolicyId(deployment.seed);
+  const cbor = consumerScriptCbor(policyId);
+
+  // The UTxO a publish transaction would have left: your address, some ADA,
+  // and the consumer's code attached to it.
+  const scriptUtxo = {
+    input: { txHash: nextTxHash(), outputIndex: 0 },
+    output: {
+      address,
+      amount: [{ unit: "lovelace", quantity: "10000000" }],
+      // A provider hands the script back in its reference form, not as the
+      // bare compiled code.
+      scriptRef: resolveScriptRef({ code: cbor, version: "V3" }),
+      scriptHash: consumerScriptHash(policyId),
+    },
+  };
+  fetcher.addUTxOs([scriptUtxo]);
+
+  const locked = addUtxo(
+    fetcher,
+    consumerAddress(policyId, NETWORK),
+    [{ unit: "lovelace", quantity: "5000000" }],
+    serializeData(mConStr0([])),
+  );
+
+  const unsignedTx = await buildConsumerSpendViaReferenceTx(
+    wallet,
+    fetcher,
+    deployment,
+    locked,
+    published,
+    scriptUtxo,
+  );
+
+  // The saving, made checkable: the code is not in this transaction.
+  assert.ok(!unsignedTx.includes(cbor.slice(64, 264)), "the script should not travel in the transaction");
+
+  const costs = await evaluator(fetcher).evaluateTx(unsignedTx, [], []);
+  assert.ok(costs.length >= 1, "the consumer should approve when read from the reference");
 });
 
 // Proves the assertions above are not passing vacuously: the same builder, on a
