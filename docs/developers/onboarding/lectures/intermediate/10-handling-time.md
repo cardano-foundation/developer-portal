@@ -166,7 +166,7 @@ The app has a real clock, so the app turns your deadline into a **slot number** 
 
 The validator never sees that slot. Once the ledger has checked the window, it converts the window into **POSIX milliseconds**, which is the number of milliseconds since 1 January 1970. Only then does it run the script. So `lock_until` in the datum is a date.
 
-Slot length is a network parameter, so a hard fork could change it. A rule written in slot numbers would then mean a different moment, and nothing would warn you. A date always means the same moment.
+Slot length is a network parameter, so a hard fork could change it. A check written in slot numbers would then refer to a different moment, and the beneficiary could potentially consume the UTxO before the desired deadline. That's why we use POSIX, so the date always means the same moment in time.
 
 ## Why the claim must declare a window
 
