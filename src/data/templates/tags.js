@@ -10,18 +10,21 @@
 export const Frameworks = {
   "vite-react": { label: "Vite + React" },
   nextjs: { label: "Next.js" },
+  node: { label: "Node.js" },
 };
 
 // Cardano SDK the template builds transactions with (exactly one).
 export const Sdks = {
   evolution: { label: "Evolution" },
   mesh: { label: "Mesh" },
+  x402: { label: "x402" },
 };
 
 // Wallet connection approach (exactly one).
 export const Wallets = {
   "connect-with-wallet": { label: "Connect with Wallet" },
   mesh: { label: "Mesh (built-in)" },
+  "server-signer": { label: "Server-side signer" },
 };
 
 export const FrameworkList = Object.keys(Frameworks);

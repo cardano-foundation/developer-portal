@@ -1,0 +1,206 @@
+/* x402 hackathon landing — leans on Infima variables so both themes hold. */
+
+.page {
+  --x402-accent: var(--ifm-color-primary);
+}
+
+/* Hero */
+.hero {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  text-align: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ifm-color-secondary-darkest);
+  margin-bottom: 0.75rem;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+  text-wrap: balance;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1.75rem;
+}
+
+.factRow {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.factRow > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.factValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.factLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.flowRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+}
+
+.flowChip {
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  background: var(--ifm-background-surface-color);
+  white-space: nowrap;
+}
+
+.flowChipAccent {
+  background: var(--x402-accent);
+  border-color: var(--x402-accent);
+  color: var(--ifm-color-white);
+  font-weight: 600;
+}
+
+.flowArrow {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.heroButtons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Sections */
+.section {
+  padding: 2.5rem 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+.sectionLead {
+  color: var(--ifm-color-emphasis-700);
+  max-width: 42rem;
+}
+
+.prose {
+  max-width: 46rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+/* Numbered steps */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: grid;
+  gap: 1.25rem;
+  max-width: 52rem;
+}
+
+.step {
+  counter-increment: step;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+  padding: 1.25rem 1.5rem 1.25rem 4rem;
+  position: relative;
+}
+
+.step::before {
+  content: counter(step);
+  position: absolute;
+  left: 1.25rem;
+  top: 1.35rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: var(--x402-accent);
+  color: var(--ifm-color-white);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.step h3 {
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  margin-bottom: 0.75rem;
+}
+
+.step p:last-child {
+  margin-bottom: 0;
+}
+
+.linkList {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.linkList li {
+  margin-bottom: 0.5rem;
+}
+
+/* Callouts */
+.notice {
+  border: 1px dashed var(--ifm-color-emphasis-400);
+  border-radius: 8px;
+  padding: 0.85rem 1.1rem;
+  background: var(--ifm-color-emphasis-100);
+  font-size: 0.95rem;
+  max-width: 46rem;
+  margin-top: 1rem;
+}
+
+/* Troubleshooting table */
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.table {
+  width: 100%;
+  max-width: 60rem;
+}
+
+.table th {
+  text-align: left;
+}
+
+.table td {
+  vertical-align: top;
+}

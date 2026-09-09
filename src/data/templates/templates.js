@@ -40,4 +40,14 @@ export const Templates = [
     wallet: "mesh",
     maintainerPick: true,
   },
+  {
+    title: "x402 Agentic Payments",
+    description:
+      "An API that charges per request and an agent that pays for it, via the x402 standard on Cardano preprod.",
+    repoPath: "examples/templates/x402-express",
+    framework: "node",
+    sdk: "x402",
+    wallet: "server-signer",
+    maintainerPick: true,
+  },
 ];
