@@ -14,7 +14,6 @@ import VestingAiken from "!!raw-loader!@site/examples/onboarding/lectures/interm
 
 Someone describes an idea to you. Your job is to decide what the contract has to remember, which actions it has to allow, and what it has to refuse. That decision is the **design**.
 
-The design here starts from the rule: **not before a certain date**.
 
 ## The idea
 
