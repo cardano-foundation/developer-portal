@@ -1,206 +1,766 @@
-/* x402 hackathon landing — leans on Infima variables so both themes hold. */
+/* stylelint-disable docusaurus/copyright-header */
+
+/* x402 hackathon landing. Brand tokens live in src/css/custom.css; the hero
+   circle field and panel follow the talent page, the mock terminal and CLI
+   copy pill follow the landing page. */
 
 .page {
-  --x402-accent: var(--ifm-color-primary);
+  background: var(--ifm-background-color);
 }
 
-/* Hero */
+/* --- HERO (ball field + panel, talent recipe) --- */
+
 .hero {
-  padding: 4rem 0 3rem;
-  border-bottom: 1px solid var(--ifm-toc-border-color);
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(360px, 40vw, 560px);
+  padding: clamp(2rem, 4vw, 3.5rem) 1rem;
+  background: var(--site-color-cream);
+  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ifm-color-secondary-darkest);
-  margin-bottom: 0.75rem;
+html[data-theme="dark"] .hero {
+  background: var(--site-color-navy);
+  border-bottom-color: var(--site-color-card-border);
+}
+
+.heroField {
+  --ball-size: clamp(60px, 6.3vw, 109px);
+  --ball-gap: clamp(7px, 0.76vw, 13px);
+  position: absolute;
+  inset: calc(var(--ball-size) / -1.8) calc(var(--ball-size) / -1.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ball-gap);
+}
+
+.heroFieldRow {
+  display: flex;
+  gap: var(--ball-gap);
+  flex: none;
+}
+
+.heroFieldRow:nth-child(even) {
+  margin-left: calc(var(--ball-size) + var(--ball-gap));
+}
+
+.ball {
+  width: var(--ball-size);
+  height: var(--ball-size);
+  border-radius: 50%;
+  flex: none;
+}
+
+.ballBlue {
+  background: var(--site-color-brand-blue);
+}
+
+.ballAmber {
+  background: var(--site-color-amber);
+}
+
+.ballLavender {
+  background: var(--site-color-lavender-deep);
+}
+
+/* The two neutrals swap between themes so the field keeps its rhythm on
+   both grounds — same trick as the talent hero. */
+.ballGray {
+  background: var(--site-color-navy);
+  box-shadow: inset 0 3px 80px rgb(var(--site-color-blue-bright-rgb) / 0.6);
+}
+
+html[data-theme="dark"] .ballGray {
+  background: var(--site-color-gray-light);
+  box-shadow: none;
+}
+
+.ballGlow {
+  background: var(--site-color-gray-light);
+}
+
+html[data-theme="dark"] .ballGlow {
+  background: var(--site-color-navy);
+  box-shadow: inset 0 3px 80px rgb(var(--site-color-blue-bright-rgb) / 0.6);
+}
+
+.ballFade {
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--site-color-blue-bright-rgb) / 0.08) 0%,
+    rgb(var(--site-color-navy-rgb) / 0.28) 100%
+  );
+}
+
+html[data-theme="dark"] .ballFade {
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--site-color-blue-bright-rgb) / 0.08) 0%,
+    rgb(var(--site-color-gray-light-rgb) / 0.4) 100%
+  );
+}
+
+/* A clear space punched through the field, not a card sitting on it. */
+.heroPanel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1100px);
+  border-radius: 35px;
+  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 5vw, 4.5rem);
+  text-align: center;
+  background: var(--site-color-cream);
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .heroPanel {
+  background: var(--site-color-card-surface);
+  color: var(--site-color-card-text);
+}
+
+.heroKicker {
+  margin: 0 0 1rem;
 }
 
 .heroTitle {
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: 0.5rem;
-  text-wrap: balance;
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.4rem, 5.5vw, 5rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .heroTitle {
+  color: var(--site-color-cream);
 }
 
 .heroSubtitle {
-  font-size: 1.2rem;
-  color: var(--ifm-color-emphasis-700);
-  margin-bottom: 1.75rem;
+  margin: 0 auto 1.75rem;
+  max-width: 44ch;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.3;
 }
 
+/* Fact tiles ride inside the panel, so they take the theme-aware raised
+   surface (the navy card tokens would vanish on the dark panel, which is
+   itself navy). */
 .factRow {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.75rem;
-}
-
-.factRow > div {
-  display: flex;
-  flex-direction: column;
-}
-
-.factValue {
-  font-size: 1.4rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.factLabel {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ifm-color-emphasis-600);
-}
-
-.flowRow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.85rem;
-}
-
-.flowChip {
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: 6px;
-  padding: 0.35rem 0.7rem;
-  background: var(--ifm-background-surface-color);
-  white-space: nowrap;
-}
-
-.flowChipAccent {
-  background: var(--x402-accent);
-  border-color: var(--x402-accent);
-  color: var(--ifm-color-white);
-  font-weight: 600;
-}
-
-.flowArrow {
-  color: var(--ifm-color-emphasis-500);
-}
-
-.heroButtons {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+  margin-bottom: 1.75rem;
 }
 
-/* Sections */
-.section {
-  padding: 2.5rem 0;
-}
-
-.section + .section {
-  border-top: 1px solid var(--ifm-toc-border-color);
-}
-
-.sectionLead {
-  color: var(--ifm-color-emphasis-700);
-  max-width: 42rem;
-}
-
-.prose {
-  max-width: 46rem;
-}
-
-.prose p {
-  margin-bottom: 1rem;
-}
-
-/* Numbered steps */
-.steps {
-  list-style: none;
-  counter-reset: step;
-  padding: 0;
-  margin: 2rem 0 0;
-  display: grid;
-  gap: 1.25rem;
-  max-width: 52rem;
-}
-
-.step {
-  counter-increment: step;
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: 8px;
-  background: var(--ifm-background-surface-color);
-  padding: 1.25rem 1.5rem 1.25rem 4rem;
-  position: relative;
-}
-
-.step::before {
-  content: counter(step);
-  position: absolute;
-  left: 1.25rem;
-  top: 1.35rem;
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 50%;
-  background: var(--x402-accent);
-  color: var(--ifm-color-white);
-  font-weight: 700;
+.factTile {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 9.5rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--site-radius-lg);
+  background: var(--site-color-surface-raised);
+}
+
+.factValue {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 1.25rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.factLabel {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.68rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--site-color-text-muted);
+}
+
+/* Amber CTA context, same mechanism as the site's hero/CTA bands. */
+.heroActions {
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
+  display: flex;
   justify-content: center;
-  font-size: 0.95rem;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
 }
 
-.step h3 {
-  margin-bottom: 0.5rem;
+.heroGhost {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.8rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
 }
 
-.step p {
-  margin-bottom: 0.75rem;
+.heroGhost:hover {
+  color: var(--site-color-brand-blue);
+  text-decoration: none;
 }
 
-.step p:last-child {
+html[data-theme="dark"] .heroGhost:hover {
+  color: var(--site-color-amber);
+}
+
+/* --- SECTION SCAFFOLDING --- */
+
+.section {
+  padding: clamp(2.75rem, 6vw, 4.5rem) 0;
+}
+
+.anchorTarget {
+  scroll-margin-top: 80px;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+}
+
+.sectionHeader h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.65rem, 3vw, 2.75rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.sectionHeader p {
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.4;
+  color: var(--site-color-text-muted);
+}
+
+/* --- PROTOCOL: prose beside the mock terminal --- */
+
+.protocolRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.protocolCopy p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.protocolCopy p:last-child {
   margin-bottom: 0;
 }
 
-.linkList {
+/* Mock terminal, landing-page recipe: a picture of a terminal, so its chrome
+   and text colours are deliberately literal, not brand tokens. Dark in both
+   themes. */
+.terminal {
+  background: #0A1130;
+  border: 1px solid var(--site-color-card-border);
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: var(--site-font-family-mono-code);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: #d4d4d4;
+  box-shadow: 0 8px 32px rgb(var(--site-color-navy-rgb) / 0.2);
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.875rem 1.25rem;
+  background: rgb(var(--site-color-card-text-rgb) / 0.03);
+  border-bottom: 1px solid var(--site-color-card-border);
+}
+
+.terminalDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminalDot:nth-child(1) { background: #ff5f56; }
+.terminalDot:nth-child(2) { background: #ffbd2e; }
+.terminalDot:nth-child(3) { background: #27ca40; }
+
+.terminalTitle {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--site-color-card-text-muted);
+}
+
+.terminalBody {
   margin: 0;
-  padding-left: 1.1rem;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  color: inherit;
+  overflow-x: auto;
 }
 
-.linkList li {
-  margin-bottom: 0.5rem;
+.terminalBody div {
+  white-space: nowrap;
 }
 
-/* Callouts */
-.notice {
-  border: 1px dashed var(--ifm-color-emphasis-400);
-  border-radius: 8px;
-  padding: 0.85rem 1.1rem;
-  background: var(--ifm-color-emphasis-100);
+.termPrompt { color: rgba(255, 255, 255, 0.45); }
+.termCmd { color: #ffffff; }
+.termReq { color: #9cdcfe; }
+.term402 { color: var(--site-color-amber); font-weight: var(--ifm-font-weight-semibold); }
+.term200 { color: #27ca40; font-weight: var(--ifm-font-weight-semibold); }
+.termBody { color: #d4d4d4; }
+.termMuted { color: rgba(255, 255, 255, 0.45); }
+
+/* --- CARD GRIDS (market triple, go-deeper links) --- */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.marketCard,
+.linkCard {
+  border-radius: var(--site-radius-lg);
+  background: var(--site-color-surface-raised);
+  padding: 1.5rem 1.5rem 1.35rem;
+}
+
+.marketCard h3,
+.linkCard h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+.marketCard p,
+.linkCard p {
+  margin: 0;
+  line-height: 1.55;
+  color: var(--site-color-text-muted);
+}
+
+.marketFooter {
+  text-align: center;
+  margin: clamp(1.5rem, 3vw, 2.25rem) auto 0;
+  max-width: 60ch;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: var(--ifm-font-weight-light);
+}
+
+.linkCard {
+  display: block;
+  color: inherit;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.linkCard:hover {
+  color: inherit;
+  background: var(--site-color-surface-raised-hover);
+  transform: translateY(-2px);
+}
+
+.linkCard h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .linkCard h3 {
+  color: var(--site-color-amber);
+}
+
+/* --- GOLDEN PATH --- */
+
+/* Step 1 gets the landing page's split dev panel: copy + command on one
+   side, a dotted art tile on the other. */
+.scaffoldPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(1.5rem, 3.5vw, 3.25rem) clamp(1.5rem, 4vw, 4rem);
+  border-radius: 20px;
+  max-width: 72rem;
+  margin: 0 auto clamp(1rem, 2vw, 1.5rem);
+}
+
+html[data-theme="light"] .scaffoldPanel {
+  background: var(--site-color-surface-chip);
+  box-shadow: 10px 13px 26px 6px rgb(var(--site-color-navy-rgb) / 0.08);
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .scaffoldPanel {
+  background: var(--site-color-card-surface);
+  border: 1px solid var(--site-color-card-border);
+  color: var(--site-color-card-text);
+}
+
+.scaffoldCopy p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.scaffoldLink {
+  margin-bottom: 0 !important;
+  font-size: 0.92rem;
+  color: var(--site-color-text-muted);
+}
+
+/* The typographic art tile: the status code itself, on the dotted field. */
+.scaffoldArt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: clamp(1rem, 2.5vw, 2.75rem);
+  border-radius: var(--site-radius-lg);
+  min-width: 0;
+  background-image: radial-gradient(
+    circle,
+    rgb(var(--site-color-brand-blue-rgb) / 0.35) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
+}
+
+html[data-theme="light"] .scaffoldArt {
+  background-color: var(--site-color-gray-light);
+}
+
+html[data-theme="dark"] .scaffoldArt {
+  background-color: rgb(var(--site-color-card-text-rgb) / 0.04);
+}
+
+.artGlyph {
+  font-family: var(--ifm-font-family-base);
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .artGlyph {
+  color: var(--site-color-amber);
+}
+
+.artLabel {
+  color: var(--site-color-text-muted);
+}
+
+/* CLI copy pill. Solid navy in light (the landing page's translucent version
+   sits on navy panels; here the light panel is white), hairline chip in dark
+   where the panel itself is navy. */
+.cli {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--site-radius-md);
+  font-family: var(--site-font-family-mono-code);
+  font-size: 0.8rem;
+  background: var(--site-color-navy);
+  color: #ffffff;
+  min-width: 0;
+  margin-bottom: 1rem;
+}
+
+html[data-theme="dark"] .cli {
+  background: rgb(var(--site-color-card-text-rgb) / 0.07);
+  border: 1px solid var(--site-color-card-border);
+}
+
+.cliPrompt {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.cli code {
+  background: none;
+  padding: 0;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.copyBtn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: var(--site-radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgb(var(--site-color-card-text-rgb) / 0.12);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.copyBtn:hover {
+  background: rgb(var(--site-color-card-text-rgb) / 0.25);
+}
+
+.copyIcon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Steps 2–5 as a compact grid */
+.stepGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.stepCard {
+  border-radius: var(--site-radius-lg);
+  background: var(--site-color-surface-raised);
+  padding: 1.35rem 1.5rem;
+}
+
+.stepCard p {
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
+}
+
+.stepCard p:last-child {
+  margin-bottom: 0;
+}
+
+.stepHead {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.stepHead h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+.stepDisc {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: var(--site-color-brand-blue);
+  color: #ffffff;
+  font-weight: var(--ifm-font-weight-bold);
   font-size: 0.95rem;
-  max-width: 46rem;
-  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
 }
 
-/* Troubleshooting table */
+/* Live-updatable slots (facilitator endpoint, support channel): visibly a
+   reserved space, not a warning. */
+.slot {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  border: 1px dashed rgb(var(--site-color-navy-rgb) / 0.35);
+  border-radius: var(--site-radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--site-color-text-muted);
+}
+
+html[data-theme="dark"] .slot {
+  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
+}
+
+.slotDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--site-color-amber);
+  flex: none;
+  transform: translateY(-1px);
+}
+
+/* --- RULES & JUDGING --- */
+
+.rulesRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  max-width: 72rem;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.rulesKicker {
+  margin: 0 0 1rem;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 2.4rem;
+  line-height: 1.55;
+}
+
+.checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--site-color-brand-blue);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: var(--ifm-font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Prize tiles ride on the page ground, so the theme-invariant navy card
+   tokens work here. */
+.prizeStack {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.prizeCard {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-radius: var(--site-radius-lg);
+  background: var(--site-color-card-surface);
+  border: 1px solid var(--site-color-card-border);
+  color: var(--site-color-card-text);
+}
+
+.prizeValue {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 1.5rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.prizeLabel {
+  color: var(--site-color-card-text-muted);
+}
+
+.prizeFirst .prizeValue {
+  color: var(--site-color-amber);
+}
+
+.prizeFirst {
+  border-color: rgb(var(--site-color-amber-rgb) / 0.5);
+}
+
+/* --- TROUBLESHOOTING --- */
+
 .tableWrap {
   overflow-x: auto;
-  margin-top: 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
 }
 
 .table {
   width: 100%;
-  max-width: 60rem;
+  margin: 0;
 }
 
 .table th {
   text-align: left;
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.68rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--site-color-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--ifm-table-border-color);
+  padding: 0.6rem 1rem;
 }
 
 .table td {
   vertical-align: top;
+  border: none;
+  border-bottom: 1px solid var(--ifm-table-border-color);
+  padding: 0.85rem 1rem;
+  line-height: 1.5;
+}
+
+.table tr {
+  background: none !important;
+  border: none;
+}
+
+.table td:first-child {
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+/* --- RESPONSIVE --- */
+
+@media (max-width: 996px) {
+  .protocolRow,
+  .scaffoldPanel,
+  .stepGrid,
+  .rulesRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cardGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .scaffoldArt {
+    min-height: 180px;
+  }
 }
