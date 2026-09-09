@@ -6,7 +6,6 @@ import clsx from "clsx";
 import CodeBlock from "@theme/CodeBlock";
 import PageCTA from "@site/src/components/PageCTA";
 import ExternalArrow from "@site/src/components/ExternalArrow";
-import useCopyToClipboard from "@site/src/utils/useCopyToClipboard";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 import styles from "./styles.module.css";
 
@@ -53,14 +52,17 @@ const MARKET = [
   {
     title: "Sell",
     text: "Monetize your endpoints, APIs, or content per request.",
+    hint: "start in seller.ts · paymentMiddleware",
   },
   {
     title: "Buy",
     text: "Build agents that autonomously pay for the services they use.",
+    hint: "start in buyer.ts · wrapFetchWithPayment",
   },
   {
     title: "Build in between",
     text: "Agent-to-agent marketplaces, and the tooling and infrastructure underneath it all.",
+    hint: "both sides · plus the Masumi standard",
   },
 ];
 
@@ -225,6 +227,7 @@ function MarketSection() {
             <div className={styles.marketCard} key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
+              <span className={clsx("monoKicker", styles.marketHint)}>{card.hint}</span>
             </div>
           ))}
         </div>
@@ -236,41 +239,40 @@ function MarketSection() {
   );
 }
 
-function ScaffoldPanel() {
-  const [copied, copy] = useCopyToClipboard(2000);
+/* One step of the linear path: number rail, action title, a time hint,
+   then the actual commands/config for that step. */
+function PathStep({ number, title, time, children }) {
   return (
-    <div className={styles.scaffoldPanel}>
-      <div className={styles.scaffoldCopy}>
-        <div className={styles.stepHead}>
-          <span className={styles.stepDisc}>1</span>
-          <h3>Scaffold the template</h3>
-        </div>
-        <p>
-          A paid API, an agent that pays for it, and a local facilitator — the whole x402 loop in
-          four short files. Scaffold it, then <code>npm install</code> and <code>npm run demo</code>.
-        </p>
-        <div className={styles.cli}>
-          <span className={styles.cliPrompt}>$</span>
-          <code>{SCAFFOLD_COMMAND}</code>
-          <button
-            type="button"
-            className={styles.copyBtn}
-            onClick={() => copy(SCAFFOLD_COMMAND)}
-            aria-label="Copy command"
-          >
-            {copied ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><polyline points="20 6 9 17 4 12" /></svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
-            )}
-          </button>
-        </div>
-        <p className={styles.scaffoldLink}>
-          <Link to="/templates/">Browse it on the templates page</Link> — the README carries the
-          quickstart and a troubleshooting table.
-        </p>
+    <li className={styles.pathStep}>
+      <span className={styles.pathDisc} aria-hidden="true">
+        {number}
+      </span>
+      <div className={styles.pathHead}>
+        <h3>{title}</h3>
+        {time && <span className={clsx("monoKicker", styles.pathTime)}>{time}</span>}
       </div>
-      <div className={styles.scaffoldArt} aria-hidden="true">
+      <div className={styles.pathBody}>{children}</div>
+    </li>
+  );
+}
+
+function AgentPanel() {
+  return (
+    <div className={styles.agentPanel}>
+      <div className={styles.agentCopy}>
+        <p className={clsx("monoKicker", styles.agentKicker)}>Building with a coding agent?</p>
+        <p>
+          Claude Code, Codex, or another agent can run this whole path for you. Install{" "}
+          <a href="https://cardano-foundation.github.io/cardano-dev-skills/" {...EXTERNAL_LINK_PROPS}>
+            cardano-dev-skills
+          </a>{" "}
+          first, so it works from current Cardano sources instead of stale training data:
+        </p>
+        <CodeBlock language="text">
+          {"/plugin marketplace add cardano-foundation/cardano-dev-skills\n/plugin install cardano-dev-skills@cardano-dev-skills"}
+        </CodeBlock>
+      </div>
+      <div className={styles.agentArt} aria-hidden="true">
         <span className={styles.artGlyph}>402</span>
         <span className={clsx("monoKicker", styles.artLabel)}>Payment Required</span>
       </div>
@@ -278,83 +280,99 @@ function ScaffoldPanel() {
   );
 }
 
-function StepsSection() {
+function PathSection() {
   return (
     <section className={clsx(styles.section, styles.anchorTarget)} id="start">
       <div className="container">
         <div className={styles.sectionHeader}>
           <h2>From zero to a paid request</h2>
           <p>
-            Five steps, most of the wait is the faucet. The demo pays 2 tADA for an API call and
-            prints the receipt with an explorer link.
+            From an empty directory to one successful x402 payment on preprod — a real 2 tADA API
+            call with the receipt on-chain. About 15 minutes; the faucet wait is most of it.
           </p>
         </div>
-        <ScaffoldPanel />
-        <div className={styles.stepGrid}>
-          <div className={styles.stepCard}>
-            <div className={styles.stepHead}>
-              <span className={styles.stepDisc}>2</span>
-              <h3>Create and fund a test wallet</h3>
-            </div>
-            <p>
-              <code>npm run wallet</code> prints the address to fund. Test ADA is free from the{" "}
-              <a href="https://docs.cardano.org/cardano-testnets/tools/faucet" {...EXTERNAL_LINK_PROPS}>
-                preprod faucet
-              </a>{" "}
-              (select <strong>Preprod</strong>); test USDM is a self-serve claim at{" "}
-              <a href="https://tusdm.moneta.global/#manual" {...EXTERNAL_LINK_PROPS}>
-                tusdm.moneta.global
-              </a>
-              .
-            </p>
-          </div>
-          <div className={styles.stepCard}>
-            <div className={styles.stepHead}>
-              <span className={styles.stepDisc}>3</span>
-              <h3>Get a Blockfrost project id</h3>
-            </div>
-            <p>
-              The agent side needs chain access to build transactions. A free preprod project id
-              from{" "}
-              <a href="https://blockfrost.io" {...EXTERNAL_LINK_PROPS}>
-                blockfrost.io
-              </a>{" "}
-              goes into your <code>.env</code>.
-            </p>
-          </div>
-          <div className={styles.stepCard}>
-            <div className={styles.stepHead}>
-              <span className={styles.stepDisc}>4</span>
-              <h3>Point at the facilitator</h3>
-            </div>
-            <p>
-              The facilitator verifies and settles payments so your code never touches chain
-              infrastructure. It holds no keys and no funds.
-            </p>
-            <div className={styles.slot}>
-              <span className={styles.slotDot} />
-              <span>
-                The hosted endpoint will be published here before the hackathon. Until then:{" "}
-                <code>npm run facilitator</code>.
-              </span>
-            </div>
-          </div>
-          <div className={styles.stepCard}>
-            <div className={styles.stepHead}>
-              <span className={styles.stepDisc}>5</span>
-              <h3>Build with your AI agent</h3>
-            </div>
-            <p>
-              Working with Claude Code, Codex, or another coding agent? Install{" "}
-              <a href="https://cardano-foundation.github.io/cardano-dev-skills/" {...EXTERNAL_LINK_PROPS}>
-                cardano-dev-skills
-              </a>{" "}
-              so it answers from current Cardano sources instead of stale training data:
-            </p>
-            <CodeBlock language="text">
-              {"/plugin marketplace add cardano-foundation/cardano-dev-skills\n/plugin install cardano-dev-skills@cardano-dev-skills"}
-            </CodeBlock>
-          </div>
+        <div className={styles.pathWrap}>
+          <AgentPanel />
+          <ol className={styles.path}>
+            <PathStep number="1" title="Scaffold the template" time="~2 min">
+              <p>
+                A paid API, an agent that pays for it, and a local facilitator — the whole x402
+                loop in four short files.
+              </p>
+              <CodeBlock language="bash">
+                {`${SCAFFOLD_COMMAND}\ncd my-app && npm install`}
+              </CodeBlock>
+              <p className={styles.pathAside}>
+                <Link to="/templates/">Browse the template</Link> — the README carries this
+                quickstart and the troubleshooting table.
+              </p>
+            </PathStep>
+            <PathStep number="2" title="Create a wallet and fund it" time="~5 min · mostly the faucet">
+              <CodeBlock language="bash">npm run wallet</CodeBlock>
+              <p>
+                It prints a <code>MNEMONIC</code> and the address to fund. Test ADA is free from
+                the{" "}
+                <a
+                  href="https://docs.cardano.org/cardano-testnets/tools/faucet"
+                  {...EXTERNAL_LINK_PROPS}
+                >
+                  preprod faucet
+                </a>{" "}
+                — select <strong>Preprod</strong>; funds usually arrive within a minute or two.
+                Test USDM is an optional self-serve claim at{" "}
+                <a href="https://tusdm.moneta.global/#manual" {...EXTERNAL_LINK_PROPS}>
+                  tusdm.moneta.global
+                </a>
+                .
+              </p>
+            </PathStep>
+            <PathStep number="3" title="Fill in .env" time="~3 min">
+              <p>
+                Two ids do all the work: your funded wallet, and free chain access from{" "}
+                <a href="https://blockfrost.io" {...EXTERNAL_LINK_PROPS}>
+                  blockfrost.io
+                </a>
+                .
+              </p>
+              <CodeBlock language="bash" title=".env">
+                {`FACILITATOR_URL=http://localhost:4022   # hosted URL announced before the event
+SELLER_ADDRESS=addr_test1...            # receives the payment
+MNEMONIC=...                            # from npm run wallet, funded
+BLOCKFROST_PROJECT_ID=preprod...        # free at blockfrost.io`}
+              </CodeBlock>
+              <div className={styles.slot}>
+                <span className={styles.slotDot} />
+                <span>
+                  The hosted facilitator endpoint will be published here before the hackathon. It
+                  verifies and settles payments — your code never touches chain infrastructure, and
+                  it holds no keys and no funds.
+                </span>
+              </div>
+            </PathStep>
+            <PathStep number="4" title="Run it — one payment, on-chain" time="~1 min · plus one confirmation">
+              <p>
+                Two terminals. The seller comes up, the buyer hits the paid route, gets the 402,
+                pays, and retries:
+              </p>
+              <CodeBlock language="bash">
+                {`npm run facilitator   # terminal 1 — until the hosted URL lands
+npm run demo          # terminal 2`}
+              </CodeBlock>
+              <p className={clsx("monoKicker", styles.outputLabel)}>Success looks like</p>
+              <pre className={styles.outputBlock}>
+                <div className={styles.term402}>← 402 Payment Required · 2 tADA on preprod</div>
+                <div className={styles.term200}>← 200 OK · 27.9s</div>
+                <div className={styles.termMuted}>
+                  receipt: df1f9bca… · preprod.cardanoscan.io/transaction/df1f9bca…
+                </div>
+              </pre>
+              <p>
+                That receipt is a real transaction — open it in the explorer. From here it&apos;s
+                yours: change the route and price in <code>seller.ts</code>, or point the buyer at
+                someone else&apos;s endpoint.
+              </p>
+            </PathStep>
+          </ol>
         </div>
       </div>
     </section>
@@ -474,7 +492,7 @@ export default function X402Page() {
         <Hero />
         <ProtocolSection />
         <MarketSection />
-        <StepsSection />
+        <PathSection />
         <DeeperSection />
         <RulesSection />
         <TroubleshootingSection />

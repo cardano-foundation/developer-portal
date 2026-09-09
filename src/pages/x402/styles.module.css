@@ -362,6 +362,16 @@ html[data-theme="dark"] .heroGhost:hover {
   color: var(--site-color-text-muted);
 }
 
+.marketHint {
+  display: block;
+  margin-top: 0.9rem;
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .marketHint {
+  color: var(--site-color-amber);
+}
+
 .marketFooter {
   text-align: center;
   margin: clamp(1.5rem, 3vw, 2.25rem) auto 0;
@@ -396,50 +406,58 @@ html[data-theme="dark"] .linkCard h3 {
 
 /* --- GOLDEN PATH --- */
 
-/* Step 1 gets the landing page's split dev panel: copy + command on one
-   side, a dotted art tile on the other. */
-.scaffoldPanel {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  align-items: stretch;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  padding: clamp(1.5rem, 3.5vw, 3.25rem) clamp(1.5rem, 4vw, 4rem);
-  border-radius: 20px;
-  max-width: 72rem;
-  margin: 0 auto clamp(1rem, 2vw, 1.5rem);
+/* The whole path shares one readable column, like a quickstart doc. */
+.pathWrap {
+  max-width: 56rem;
+  margin: 0 auto;
 }
 
-html[data-theme="light"] .scaffoldPanel {
+/* Intro card: the coding-agent on-ramp beside the 402 art tile. Landing
+   page devPanel recipe: white card + soft shadow in light, navy in dark. */
+.agentPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 3.5vw, 2.75rem);
+  border-radius: 20px;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+html[data-theme="light"] .agentPanel {
   background: var(--site-color-surface-chip);
   box-shadow: 10px 13px 26px 6px rgb(var(--site-color-navy-rgb) / 0.08);
   color: var(--site-color-ink);
 }
 
-html[data-theme="dark"] .scaffoldPanel {
+html[data-theme="dark"] .agentPanel {
   background: var(--site-color-card-surface);
   border: 1px solid var(--site-color-card-border);
   color: var(--site-color-card-text);
 }
 
-.scaffoldCopy p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
+.agentKicker {
+  margin: 0 0 0.6rem;
+  color: var(--site-color-brand-blue);
 }
 
-.scaffoldLink {
-  margin-bottom: 0 !important;
-  font-size: 0.92rem;
-  color: var(--site-color-text-muted);
+html[data-theme="dark"] .agentKicker {
+  color: var(--site-color-amber);
+}
+
+.agentCopy p {
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
 }
 
 /* The typographic art tile: the status code itself, on the dotted field. */
-.scaffoldArt {
+.agentArt {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: clamp(1rem, 2.5vw, 2.75rem);
+  padding: clamp(1rem, 2.5vw, 2rem);
   border-radius: var(--site-radius-lg);
   min-width: 0;
   background-image: radial-gradient(
@@ -450,17 +468,17 @@ html[data-theme="dark"] .scaffoldPanel {
   background-size: 26px 26px;
 }
 
-html[data-theme="light"] .scaffoldArt {
+html[data-theme="light"] .agentArt {
   background-color: var(--site-color-gray-light);
 }
 
-html[data-theme="dark"] .scaffoldArt {
+html[data-theme="dark"] .agentArt {
   background-color: rgb(var(--site-color-card-text-rgb) / 0.04);
 }
 
 .artGlyph {
   font-family: var(--ifm-font-family-base);
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
   font-weight: var(--site-font-weight-display);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -475,119 +493,118 @@ html[data-theme="dark"] .artGlyph {
   color: var(--site-color-text-muted);
 }
 
-/* CLI copy pill. Solid navy in light (the landing page's translucent version
-   sits on navy panels; here the light panel is white), hairline chip in dark
-   where the panel itself is navy. */
-.cli {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--site-radius-md);
-  font-family: var(--site-font-family-mono-code);
-  font-size: 0.8rem;
-  background: var(--site-color-navy);
-  color: #ffffff;
-  min-width: 0;
-  margin-bottom: 1rem;
-}
-
-html[data-theme="dark"] .cli {
-  background: rgb(var(--site-color-card-text-rgb) / 0.07);
-  border: 1px solid var(--site-color-card-border);
-}
-
-.cliPrompt {
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.cli code {
-  background: none;
-  padding: 0;
-  color: #ffffff;
-  border: none;
-  box-shadow: none;
-  flex: 1;
-  min-width: 0;
-  white-space: nowrap;
-  overflow-x: auto;
-}
-
-.copyBtn {
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border-radius: var(--site-radius-md);
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: rgb(var(--site-color-card-text-rgb) / 0.12);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.copyBtn:hover {
-  background: rgb(var(--site-color-card-text-rgb) / 0.25);
-}
-
-.copyIcon {
-  width: 14px;
-  height: 14px;
-}
-
-/* Steps 2–5 as a compact grid */
-.stepGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  max-width: 72rem;
-  margin: 0 auto;
-}
-
-.stepCard {
-  border-radius: var(--site-radius-lg);
-  background: var(--site-color-surface-raised);
-  padding: 1.35rem 1.5rem;
-}
-
-.stepCard p {
-  line-height: 1.55;
-  margin-bottom: 0.85rem;
-}
-
-.stepCard p:last-child {
-  margin-bottom: 0;
-}
-
-.stepHead {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.stepHead h3 {
+/* Vertical stepper: number discs on a left rail joined by a hairline, so
+   the sequence reads as one path, not a pile of cards. */
+.path {
+  list-style: none;
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  letter-spacing: -0.01em;
+  padding: 0;
+  counter-reset: none;
 }
 
-.stepDisc {
-  width: 1.8rem;
-  height: 1.8rem;
+.pathStep {
+  position: relative;
+  padding: 0 0 clamp(2rem, 4vw, 2.75rem) 3.6rem;
+}
+
+.pathStep:last-child {
+  padding-bottom: 0;
+}
+
+.pathDisc {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: 50%;
   background: var(--site-color-brand-blue);
   color: #ffffff;
   font-weight: var(--ifm-font-weight-bold);
-  font-size: 0.95rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: none;
+}
+
+/* The connecting rail, from below one disc to the top of the next */
+.pathStep::before {
+  content: "";
+  position: absolute;
+  left: calc(1.1rem - 0.5px);
+  top: 2.5rem;
+  bottom: 0.3rem;
+  width: 1px;
+  background: rgb(var(--site-color-navy-rgb) / 0.15);
+}
+
+html[data-theme="dark"] .pathStep::before {
+  background: rgb(var(--site-color-card-text-rgb) / 0.15);
+}
+
+.pathStep:last-child::before {
+  display: none;
+}
+
+.pathHead {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+  min-height: 2.2rem;
+}
+
+.pathHead h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 2.2rem;
+}
+
+.pathTime {
+  margin-left: auto;
+  color: var(--site-color-text-muted);
+  white-space: nowrap;
+}
+
+.pathBody p {
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+  max-width: 46rem;
+}
+
+.pathBody p:last-child {
+  margin-bottom: 0;
+}
+
+.pathAside {
+  font-size: 0.92rem;
+  color: var(--site-color-text-muted);
+}
+
+/* Expected output: a bare dark transcript, same literal palette as the
+   mock terminal above. */
+.outputLabel {
+  margin: 1rem 0 0.5rem;
+}
+
+.outputBlock {
+  margin: 0 0 1rem;
+  padding: 1rem 1.25rem;
+  background: #0A1130;
+  border: 1px solid var(--site-color-card-border);
+  border-radius: var(--site-radius-lg);
+  font-family: var(--site-font-family-mono-code);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: #d4d4d4;
+  overflow-x: auto;
+}
+
+.outputBlock div {
+  white-space: nowrap;
 }
 
 /* Live-updatable slots (facilitator endpoint, support channel): visibly a
@@ -750,8 +767,7 @@ html[data-theme="dark"] .slot {
 
 @media (max-width: 996px) {
   .protocolRow,
-  .scaffoldPanel,
-  .stepGrid,
+  .agentPanel,
   .rulesRow {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -760,7 +776,16 @@ html[data-theme="dark"] .slot {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .scaffoldArt {
-    min-height: 180px;
+  .agentArt {
+    min-height: 160px;
+  }
+
+  .pathStep {
+    padding-left: 3rem;
+  }
+
+  .pathTime {
+    margin-left: 0;
+    flex-basis: 100%;
   }
 }
