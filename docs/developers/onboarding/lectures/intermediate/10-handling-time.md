@@ -19,7 +19,7 @@ Let's see today's requirements.
 
 ## The idea
 
-A company hires a developer and promises them tokens. The tokens belong to the developer, but not today. The developer can take them after one year.
+A company hires a developer and promises them tokens. The tokens belong to the developer, but they can't use them because they are locked. The company will vest them in four installments (once per year) over four years.
 
 The same shape appears in many places:
 
