@@ -30,7 +30,7 @@ The same shape appears in many places:
 
 The company must not be able to change its mind on the day before the date. An app cannot enforce that, because the company controls the app.
 
-## From idea to contract
+## From idea to architecture
 
 Four questions turn an idea into a contract. Ask them in this order.
 
