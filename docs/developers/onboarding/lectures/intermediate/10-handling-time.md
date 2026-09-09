@@ -12,7 +12,9 @@ import VestingAiken from "!!raw-loader!@site/examples/onboarding/lectures/interm
 
 # Handling time: vesting
 
-Someone describes an idea to you. Your job is to decide what the contract has to remember, which actions it has to allow, and what it has to refuse. That decision is the **design**.
+Let's start approaching our work like a real-world scenario. Someone (co-founder, investor, boss) describes an idea to you. Your job is to decide what the contract must remember (state), what actions it must allow (state transitions), and what it must refuse (checks) to meet the product requirements. Those decisions will allow you to **design** your contract/protocol.
+
+Let's see today's requirements.
 
 
 ## The idea
