@@ -85,13 +85,16 @@ export async function buildVestingClaimTx(
     );
   }
 
-  // Turn the deadline into a slot. The extra second keeps us strictly past it,
-  // since a slot covers a whole second. (Preview's slot config; the whole track
-  // runs on Preview.)
+  // #region vesting-deadline
+  // The deadline is POSIX milliseconds, the same number the datum holds. The
+  // ledger counts in slots, so the app converts. The extra second keeps the
+  // bound strictly past the deadline, since a slot covers a whole second.
+  // (Preview's slot config; the whole track runs on Preview.)
   const lowerBoundSlot = unixTimeToEnclosingSlot(
     lockUntilMs + 1000,
     SLOT_CONFIG_NETWORK.preview,
   );
+  // #endregion vesting-deadline
 
   // Passing `evaluator` is what makes the contract run here, before you send.
   const txBuilder = new MeshTxBuilder({ fetcher: provider, evaluator });
@@ -113,11 +116,13 @@ export async function buildVestingClaimTx(
     .txInRedeemerValue(claimRedeemer)
     // The signature the validator looks for.
     .requiredSignerHash(beneficiary)
-    // **The only line the vault's unlock does not have.** It declares that this
-    // transaction may not be included in a block before that slot. The validator
-    // reads this declaration rather than a clock, and the ledger has already
-    // checked it against the real slot, so claiming early fails and it cannot lie.
+    // **The only line the vault's unlock does not have.** The validator reads
+    // this declaration rather than a clock, and the ledger has already checked
+    // it against the real slot, so claiming early fails and it cannot lie.
+    // #region vesting-deadline
+    // On the claim transaction: it may not be included in a block before that slot.
     .invalidBefore(lowerBoundSlot)
+    // #endregion vesting-deadline
     // Offer the deposit found above.
     .txInCollateral(
       collateral.input.txHash,

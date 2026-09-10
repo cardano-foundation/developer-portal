@@ -83,7 +83,10 @@ function App() {
   // Lock for two minutes, so you can watch the claim be refused and then
   // succeed without waiting around.
   function lockVesting() {
+    // #region vesting-deadline
+    // POSIX milliseconds is what `Date.now()` already returns.
     const lockUntil = Date.now() + 2 * 60_000;
+    // #endregion vesting-deadline
     run(() => buildVestingLockTx(wallet!, provider, NETWORK_ID, "5000000", lockUntil));
   }
 

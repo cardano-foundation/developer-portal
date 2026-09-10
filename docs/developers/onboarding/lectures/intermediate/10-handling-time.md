@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import VestingAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vesting/on-chain/aiken/validators/vesting.ak";
+import VestingMesh from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vesting/off-chain/mesh/src/lib/vesting.ts";
+import VestingApp from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vesting/off-chain/mesh/src/app.tsx";
 import validatorHash from "@site/src/utils/validatorHash";
 import VestingBlueprint from "@site/examples/onboarding/lectures/intermediate/vesting/on-chain/aiken/plutus.json";
 
@@ -256,6 +258,20 @@ npm install
 cp ../../../vault/off-chain/mesh/.env .env   # or fill in .env.example again
 npm run dev
 ```
+
+The deadline the lock writes into the datum comes from the clock the language already gives you:
+
+<CodeBlock language="tsx" title="src/app.tsx">
+  {extractRegion(VestingApp, "vesting-deadline")}
+</CodeBlock>
+
+The claim reads the same number back out of the datum. These two fragments of `src/lib/vesting.ts` are everything it does with it, and the rest of the claim is the vault's unlock, unchanged:
+
+<CodeBlock language="ts" title="src/lib/vesting.ts">
+  {extractRegion(VestingMesh, "vesting-deadline")}
+</CodeBlock>
+
+`unixTimeToEnclosingSlot` turns the deadline into the slot the bound needs, and `invalidBefore` is the declaration the validator later reads.
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">
