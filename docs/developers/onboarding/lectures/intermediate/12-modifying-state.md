@@ -10,6 +10,8 @@ import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import BeaconAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/oracle/on-chain/aiken/validators/beacon.ak";
 import OracleAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/oracle/on-chain/aiken/validators/oracle.ak";
+import validatorHash from "@site/src/utils/validatorHash";
+import OracleBlueprint from "@site/examples/onboarding/lectures/intermediate/oracle/on-chain/aiken/plutus.json";
 
 # Modifying state: an oracle
 
@@ -325,15 +327,11 @@ aiken build
 
 Ten tests, ten passes. Open `plutus.json` and compare two hashes with ours. `beacon.beacon.mint`:
 
-```
-e2d3557adc6f05d986ddf9c489c7b003dd498db1a7972516a0ad59c3
-```
+<CodeBlock>{validatorHash(OracleBlueprint, "beacon.beacon.mint")}</CodeBlock>
 
 And `oracle.oracle.spend`:
 
-```
-c276cc0fa8b33153bfbf9cfd1dfe0b173bd6b0cdc6b9fd5bf7ed17d7
-```
+<CodeBlock>{validatorHash(OracleBlueprint, "oracle.oracle.spend")}</CodeBlock>
 
 Both carry a `parameters` field, and both are the script with the blank still in it, exactly as the gift card's was. Filling the blanks gives different hashes, and those are the policy ID and address of a real oracle.
 

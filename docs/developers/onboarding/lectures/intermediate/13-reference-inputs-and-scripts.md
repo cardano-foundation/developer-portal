@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import ConsumerAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/oracle/on-chain/aiken/validators/consumer.ak";
+import validatorHash from "@site/src/utils/validatorHash";
+import OracleBlueprint from "@site/examples/onboarding/lectures/intermediate/oracle/on-chain/aiken/plutus.json";
 
 # Reference inputs & reference scripts
 
@@ -230,9 +232,7 @@ aiken build
 
 Open `plutus.json` and find `consumer.consumer.spend`. Compare its hash with ours:
 
-```
-33cb3703d1f936b0dfae5c346c549a550f5ce3e0bcffc7a38a33ee87
-```
+<CodeBlock>{validatorHash(OracleBlueprint, "consumer.consumer.spend")}</CodeBlock>
 
 Like the oracle's, this is the script with its blank still in it.
 

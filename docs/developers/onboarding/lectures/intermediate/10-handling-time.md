@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import VestingAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vesting/on-chain/aiken/validators/vesting.ak";
+import validatorHash from "@site/src/utils/validatorHash";
+import VestingBlueprint from "@site/examples/onboarding/lectures/intermediate/vesting/on-chain/aiken/plutus.json";
 
 # Handling time: vesting
 
@@ -229,9 +231,7 @@ aiken build
 
 Now open `plutus.json`. This contract has two entries, `vesting.vesting.spend` and `vesting.vesting.else`, and both carry the same hash. Compare it with ours:
 
-```
-bb5335b850cd989a78f1cfc913e04152b92c50a404099da67ba235eb
-```
+<CodeBlock>{validatorHash(VestingBlueprint, "vesting.vesting.spend")}</CodeBlock>
 
 That hash is already the address the funds sit at.
 

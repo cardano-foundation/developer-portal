@@ -6,6 +6,9 @@ description: "A smart contract on Cardano is a validator: a small yes/no functio
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+import validatorHash from "@site/src/utils/validatorHash";
+import VaultBlueprint from "@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/plutus.json";
 
 # What a validator is
 
@@ -131,9 +134,7 @@ aiken build
 
 **Check you wrote the same contract.** That build wrote a file called `plutus.json`, which the next section goes through. Open it and find the `hash` under the `validators` list. Compare it with ours:
 
-```
-d27ccc13fab5b782984a3d1f99353197ca1a81be069941ffc003ee75
-```
+<CodeBlock>{validatorHash(VaultBlueprint, "vault_always_true.vault.spend")}</CodeBlock>
 
 If it matches, your validator compiles to exactly the same script as ours, byte for byte, which means the same address. If it does not, something in the file differs from the code above, so copy it again. Make sure `True` is back in place, because the `False` version compiles just as happily and gives a different hash.
 

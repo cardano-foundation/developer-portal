@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import GiftcardAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/giftcard/on-chain/aiken/validators/giftcard.ak";
+import validatorHash from "@site/src/utils/validatorHash";
+import GiftcardBlueprint from "@site/examples/onboarding/lectures/intermediate/giftcard/on-chain/aiken/plutus.json";
 
 # Multi validators: a gift card
 
@@ -226,9 +228,7 @@ Now open `plutus.json` and find the three `giftcard.giftcard.*` entries. One is 
 
 Compare the hash with ours:
 
-```
-312eeec0e121aee21efb39db3298de48fd1e3a02ea21980b9ce5b538
-```
+<CodeBlock>{validatorHash(GiftcardBlueprint, "giftcard.giftcard.mint")}</CodeBlock>
 
 Your seed is still missing, so this is the script with the blank in it. Filling the blank gives a different hash, and that one is the policy ID and the address of a real card.
 
