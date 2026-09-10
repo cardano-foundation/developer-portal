@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
-import CodeBlock from "@theme/CodeBlock";
 import PageCTA from "@site/src/components/PageCTA";
 import ExternalArrow from "@site/src/components/ExternalArrow";
+import useCopyToClipboard from "@site/src/utils/useCopyToClipboard";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 import styles from "./styles.module.css";
 
@@ -16,9 +16,9 @@ const DESCRIPTION =
 const SCAFFOLD_COMMAND =
   "npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/x402-express my-app";
 
-/* The hero's decorative circle field, same primitive as the talent page:
-   one entry per circle, row by row. The middle rows sit mostly behind the
-   title panel, so their sequences only show at the edges. */
+/* The hero's decorative circle field (talent-page primitive), pinned to its
+   dark rendition — this page is navy in both themes, like the site's CTA
+   bands. */
 const HERO_ROWS = [
   ["ballAmber", "ballLavender", "ballGlow", "ballGray", "ballFade", "ballAmber", "ballLavender", "ballFade", "ballBlue", "ballGlow", "ballGray", "ballLavender", "ballGlow", "ballBlue", "ballGray", "ballFade", "ballLavender", "ballAmber", "ballBlue", "ballGlow", "ballGray", "ballFade"],
   ["ballGlow", "ballBlue", "ballGlow", "ballAmber", "ballGray", "ballFade", "ballLavender", "ballGlow", "ballBlue", "ballGray", "ballAmber", "ballFade", "ballGlow", "ballLavender", "ballBlue", "ballAmber", "ballGray", "ballBlue", "ballLavender", "ballFade", "ballAmber", "ballGlow"],
@@ -34,9 +34,10 @@ const FACTS = [
   { value: "preprod", label: "network" },
 ];
 
-/* The terminal transcript mirrors a real run of the starter template on
-   preprod (2 tADA, settled in 27.9s, tx df1f9bca…) — compressed, not
-   invented. */
+const TICKER_ITEMS = ["GET /resource", "402 Payment Required", "pay on-chain", "200 OK"];
+
+/* Mirrors a real run of the starter on preprod (2 tADA, settled in 27.9s,
+   tx df1f9bca…) — compressed, not invented. */
 const TERMINAL_LINES = [
   { cls: "termCmd", prompt: true, text: "npm run demo" },
   { cls: "termReq", text: "→ GET /api/message" },
@@ -121,6 +122,45 @@ const TROUBLESHOOTING = [
   ],
 ];
 
+/* Dark code card with a title bar and an always-visible copy button. The
+   page is navy in both themes, so these are hand-styled rather than the
+   theme-following CodeBlock. */
+function DarkCode({ title, copyText, children }) {
+  const [copied, copy] = useCopyToClipboard(2000);
+  return (
+    <div className={styles.code}>
+      <div className={styles.codeBar}>
+        <span className={clsx("monoKicker", styles.codeTitle)}>{title}</span>
+        <button
+          type="button"
+          className={styles.copyBtn}
+          onClick={() => copy(copyText)}
+          aria-label="Copy"
+        >
+          {copied ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><polyline points="20 6 9 17 4 12" /></svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+          )}
+        </button>
+      </div>
+      <pre className={styles.codePre}>{children}</pre>
+    </div>
+  );
+}
+
+function SectionHead({ index, label, title, lead }) {
+  return (
+    <div className={clsx(styles.sectionHeader, styles.reveal)}>
+      <p className={clsx("monoKicker", styles.sectionKicker)}>
+        {index} · {label}
+      </p>
+      <h2>{title}</h2>
+      {lead && <p>{lead}</p>}
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <header className={styles.hero}>
@@ -133,8 +173,10 @@ function Hero() {
           </div>
         ))}
       </div>
+      <div className={styles.heroShade} aria-hidden="true" />
       <div className={styles.heroPanel}>
         <p className={clsx("monoKicker", styles.heroKicker)}>
+          <span className={styles.liveDot} aria-hidden="true" />
           TOKEN2049 Origins 2026 · Hackathon track
         </p>
         <h1 className={styles.heroTitle}>Agentic Commerce</h1>
@@ -150,7 +192,7 @@ function Hero() {
           ))}
         </div>
         <div className={styles.heroActions}>
-          <a className="button button--primary" href="#start">
+          <a className={clsx("button button--primary", styles.heroBtn)} href="#start">
             Start building
           </a>
           <a className={styles.heroGhost} href="#rules">
@@ -162,9 +204,38 @@ function Hero() {
   );
 }
 
+function Ticker() {
+  /* Two identical halves so the loop is seamless at -50%. */
+  const half = (
+    <>
+      {[0, 1, 2].map(rep =>
+        TICKER_ITEMS.map((item, i) => (
+          <span
+            key={`${rep}-${i}`}
+            className={clsx(styles.tickerItem, i === 1 && styles.tickerAccent)}
+          >
+            {item}
+            <span className={styles.tickerSep} aria-hidden="true">
+              {i === TICKER_ITEMS.length - 1 ? "·" : "→"}
+            </span>
+          </span>
+        ))
+      )}
+    </>
+  );
+  return (
+    <div className={styles.ticker} aria-hidden="true">
+      <div className={styles.tickerTrack}>
+        {half}
+        {half}
+      </div>
+    </div>
+  );
+}
+
 function Terminal() {
   return (
-    <div className={styles.terminal}>
+    <div className={clsx(styles.terminal, styles.reveal)}>
       <div className={styles.terminalHeader}>
         <span className={styles.terminalDot} />
         <span className={styles.terminalDot} />
@@ -173,11 +244,14 @@ function Terminal() {
       </div>
       <pre className={styles.terminalBody}>
         {TERMINAL_LINES.map((line, i) => (
-          <div className={styles[line.cls]} key={i}>
+          <div className={clsx(styles[line.cls], styles.termLine)} style={{ "--i": i }} key={i}>
             {line.prompt && <span className={styles.termPrompt}>$ </span>}
             {line.text}
           </div>
         ))}
+        <div className={styles.termLine} style={{ "--i": TERMINAL_LINES.length }}>
+          <span className={styles.termCursor} />
+        </div>
       </pre>
     </div>
   );
@@ -187,11 +261,13 @@ function ProtocolSection() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2>AI agents are becoming customers</h2>
-          <p>Buying data, compute, API calls, and each other&apos;s services.</p>
-        </div>
-        <div className={styles.protocolRow}>
+        <SectionHead
+          index="01"
+          label="Protocol"
+          title="AI agents are becoming customers"
+          lead="Buying data, compute, API calls, and each other's services."
+        />
+        <div className={clsx(styles.protocolRow, styles.reveal)}>
           <div className={styles.protocolCopy}>
             <p>
               This track is about building for the agentic economy on Cardano with{" "}
@@ -219,10 +295,8 @@ function MarketSection() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2>Pick your side of the market</h2>
-        </div>
-        <div className={styles.cardGrid}>
+        <SectionHead index="02" label="Market" title="Pick your side of the market" />
+        <div className={clsx(styles.cardGrid, styles.reveal)}>
           {MARKET.map(card => (
             <div className={styles.marketCard} key={card.title}>
               <h3>{card.title}</h3>
@@ -231,7 +305,7 @@ function MarketSection() {
             </div>
           ))}
         </div>
-        <p className={styles.marketFooter}>
+        <p className={clsx(styles.marketFooter, styles.reveal)}>
           Anything that advances agentic commerce on Cardano is in scope.
         </p>
       </div>
@@ -239,11 +313,9 @@ function MarketSection() {
   );
 }
 
-/* One step of the linear path: number rail, action title, a time hint,
-   then the actual commands/config for that step. */
 function PathStep({ number, title, time, children }) {
   return (
-    <li className={styles.pathStep}>
+    <li className={clsx(styles.pathStep, styles.reveal)}>
       <span className={styles.pathDisc} aria-hidden="true">
         {number}
       </span>
@@ -258,7 +330,7 @@ function PathStep({ number, title, time, children }) {
 
 function AgentPanel() {
   return (
-    <div className={styles.agentPanel}>
+    <div className={clsx(styles.agentPanel, styles.reveal)}>
       <div className={styles.agentCopy}>
         <p className={clsx("monoKicker", styles.agentKicker)}>Building with a coding agent?</p>
         <p>
@@ -268,9 +340,13 @@ function AgentPanel() {
           </a>{" "}
           first, so it works from current Cardano sources instead of stale training data:
         </p>
-        <CodeBlock language="text">
-          {"/plugin marketplace add cardano-foundation/cardano-dev-skills\n/plugin install cardano-dev-skills@cardano-dev-skills"}
-        </CodeBlock>
+        <DarkCode
+          title="your coding agent"
+          copyText={"/plugin marketplace add cardano-foundation/cardano-dev-skills\n/plugin install cardano-dev-skills@cardano-dev-skills"}
+        >
+          <div className={styles.cCmd}>/plugin marketplace add cardano-foundation/cardano-dev-skills</div>
+          <div className={styles.cCmd}>/plugin install cardano-dev-skills@cardano-dev-skills</div>
+        </DarkCode>
       </div>
       <div className={styles.agentArt} aria-hidden="true">
         <span className={styles.artGlyph}>402</span>
@@ -284,13 +360,12 @@ function PathSection() {
   return (
     <section className={clsx(styles.section, styles.anchorTarget)} id="start">
       <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2>From zero to a paid request</h2>
-          <p>
-            From an empty directory to one successful x402 payment on preprod — a real 2 tADA API
-            call with the receipt on-chain. About 15 minutes; the faucet wait is most of it.
-          </p>
-        </div>
+        <SectionHead
+          index="03"
+          label="Quickstart"
+          title="From zero to a paid request"
+          lead="From an empty directory to one successful x402 payment on preprod — a real 2 tADA API call with the receipt on-chain. About 15 minutes; the faucet wait is most of it."
+        />
         <div className={styles.pathWrap}>
           <AgentPanel />
           <ol className={styles.path}>
@@ -299,16 +374,22 @@ function PathSection() {
                 A paid API, an agent that pays for it, and a local facilitator — the whole x402
                 loop in four short files.
               </p>
-              <CodeBlock language="bash">
-                {`${SCAFFOLD_COMMAND}\ncd my-app && npm install`}
-              </CodeBlock>
+              <DarkCode
+                title="terminal"
+                copyText={`${SCAFFOLD_COMMAND}\ncd my-app && npm install`}
+              >
+                <div className={styles.cCmd}>{SCAFFOLD_COMMAND}</div>
+                <div className={styles.cCmd}>cd my-app &amp;&amp; npm install</div>
+              </DarkCode>
               <p className={styles.pathAside}>
                 <Link to="/templates/">Browse the template</Link> — the README carries this
                 quickstart and the troubleshooting table.
               </p>
             </PathStep>
             <PathStep number="2" title="Create a wallet and fund it" time="~5 min · mostly the faucet">
-              <CodeBlock language="bash">npm run wallet</CodeBlock>
+              <DarkCode title="terminal" copyText="npm run wallet">
+                <div className={styles.cCmd}>npm run wallet</div>
+              </DarkCode>
               <p>
                 It prints a <code>MNEMONIC</code> and the address to fund. Test ADA is free from
                 the{" "}
@@ -334,12 +415,28 @@ function PathSection() {
                 </a>
                 .
               </p>
-              <CodeBlock language="bash" title=".env">
-                {`FACILITATOR_URL=http://localhost:4022   # hosted URL announced before the event
-SELLER_ADDRESS=addr_test1...            # receives the payment
-MNEMONIC=...                            # from npm run wallet, funded
-BLOCKFROST_PROJECT_ID=preprod...        # free at blockfrost.io`}
-              </CodeBlock>
+              <DarkCode
+                title=".env"
+                copyText={`FACILITATOR_URL=http://localhost:4022\nSELLER_ADDRESS=addr_test1...\nMNEMONIC=...\nBLOCKFROST_PROJECT_ID=preprod...`}
+              >
+                <div>
+                  <span className={styles.cKey}>FACILITATOR_URL</span>=http://localhost:4022
+                  {"   "}
+                  <span className={styles.cComment}># hosted URL announced before the event</span>
+                </div>
+                <div>
+                  <span className={styles.cKey}>SELLER_ADDRESS</span>=addr_test1...{"            "}
+                  <span className={styles.cComment}># receives the payment</span>
+                </div>
+                <div>
+                  <span className={styles.cKey}>MNEMONIC</span>=...{"                            "}
+                  <span className={styles.cComment}># from npm run wallet, funded</span>
+                </div>
+                <div>
+                  <span className={styles.cKey}>BLOCKFROST_PROJECT_ID</span>=preprod...{"        "}
+                  <span className={styles.cComment}># free at blockfrost.io</span>
+                </div>
+              </DarkCode>
               <div className={styles.slot}>
                 <span className={styles.slotDot} />
                 <span>
@@ -354,10 +451,21 @@ BLOCKFROST_PROJECT_ID=preprod...        # free at blockfrost.io`}
                 Two terminals. The seller comes up, the buyer hits the paid route, gets the 402,
                 pays, and retries:
               </p>
-              <CodeBlock language="bash">
-                {`npm run facilitator   # terminal 1 — until the hosted URL lands
-npm run demo          # terminal 2`}
-              </CodeBlock>
+              <DarkCode
+                title="terminal"
+                copyText={"npm run facilitator\nnpm run demo"}
+              >
+                <div>
+                  <span className={styles.cCmd}>npm run facilitator</span>
+                  {"   "}
+                  <span className={styles.cComment}># terminal 1 — until the hosted URL lands</span>
+                </div>
+                <div>
+                  <span className={styles.cCmd}>npm run demo</span>
+                  {"          "}
+                  <span className={styles.cComment}># terminal 2</span>
+                </div>
+              </DarkCode>
               <p className={clsx("monoKicker", styles.outputLabel)}>Success looks like</p>
               <pre className={styles.outputBlock}>
                 <div className={styles.term402}>← 402 Payment Required · 2 tADA on preprod</div>
@@ -383,10 +491,8 @@ function DeeperSection() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2>Go deeper</h2>
-        </div>
-        <div className={styles.cardGrid}>
+        <SectionHead index="04" label="Resources" title="Go deeper" />
+        <div className={clsx(styles.cardGrid, styles.reveal)}>
           {DEEPER_LINKS.map(card => (
             <a
               className={styles.linkCard}
@@ -411,14 +517,13 @@ function RulesSection() {
   return (
     <section className={clsx(styles.section, styles.anchorTarget)} id="rules">
       <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2>Rules &amp; judging</h2>
-          <p>
-            Judging weighs use-case quality, technical execution, a real payment on preprod, and
-            long-term potential.
-          </p>
-        </div>
-        <div className={styles.rulesRow}>
+        <SectionHead
+          index="05"
+          label="Rules & prizes"
+          title="Rules & judging"
+          lead="Judging weighs use-case quality, technical execution, a real payment on preprod, and long-term potential."
+        />
+        <div className={clsx(styles.rulesRow, styles.reveal)}>
           <div className={styles.rulesCol}>
             <p className={clsx("monoKicker", styles.rulesKicker)}>To qualify</p>
             <ul className={styles.checklist}>
@@ -458,10 +563,8 @@ function TroubleshootingSection() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2>When something fails</h2>
-        </div>
-        <div className={styles.tableWrap}>
+        <SectionHead index="06" label="Debug" title="When something fails" />
+        <div className={clsx(styles.tableWrap, styles.reveal)}>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -486,10 +589,35 @@ function TroubleshootingSection() {
 
 export default function X402Page() {
   const bandArt = useBaseUrl("img/talent/start-building-cubes.webp");
+  const mainRef = useRef(null);
+
+  /* Scroll-reveal + terminal typing, gated so no-JS and reduced-motion
+     visitors get a fully visible static page. */
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    main.classList.add(styles.motionOn);
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.revealIn);
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    main.querySelectorAll(`.${styles.reveal}`).forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <main className={styles.page}>
+      <main className={styles.page} ref={mainRef}>
         <Hero />
+        <Ticker />
         <ProtocolSection />
         <MarketSection />
         <PathSection />

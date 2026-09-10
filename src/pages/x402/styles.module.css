@@ -1,14 +1,51 @@
 /* stylelint-disable docusaurus/copyright-header */
 
-/* x402 hackathon landing. Brand tokens live in src/css/custom.css; the hero
-   circle field and panel follow the talent page, the mock terminal and CLI
-   copy pill follow the landing page. */
+/* x402 hackathon landing — a launch microsite inside the portal. The page
+   is navy in BOTH themes (like the site's CTA bands and homepage hero), so
+   its palette is fixed here rather than theme-following. Motion is gated:
+   the .motionOn class is added by JS only when reduced-motion is off, so
+   no-JS and reduced-motion visitors get a fully visible static page. */
 
 .page {
-  background: var(--ifm-background-color);
+  /* Fixed dark palette */
+  --x-bg: var(--site-color-navy);
+  --x-ink: #e9ecf8;
+  --x-ink-strong: #f7f8ff;
+  --x-muted: rgba(233, 236, 248, 0.62);
+  --x-border: rgba(255, 255, 255, 0.09);
+  --x-surface: rgba(255, 255, 255, 0.04);
+  --x-surface-hover: rgba(255, 255, 255, 0.07);
+  --x-link: #9db4ff;
+  --x-amber: var(--site-color-amber);
+  --x-blue: var(--site-color-brand-blue);
+
+  background-color: var(--x-bg);
+  /* Faint dot lattice over the whole page */
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--x-ink);
 }
 
-/* --- HERO (ball field + panel, talent recipe) --- */
+.page h2,
+.page h3 {
+  color: var(--x-ink-strong);
+}
+
+.page a:not([class*="button"]) {
+  color: var(--x-link);
+}
+
+.page a:not([class*="button"]):hover {
+  color: var(--x-amber);
+}
+
+.page code {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--x-ink);
+}
+
+/* --- HERO --- */
 
 .hero {
   position: relative;
@@ -16,15 +53,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(360px, 40vw, 560px);
-  padding: clamp(2rem, 4vw, 3.5rem) 1rem;
-  background: var(--site-color-cream);
-  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
-}
-
-html[data-theme="dark"] .hero {
-  background: var(--site-color-navy);
-  border-bottom-color: var(--site-color-card-border);
+  min-height: clamp(420px, 46vw, 640px);
+  padding: clamp(2.5rem, 5vw, 4.5rem) 1rem;
+  background: var(--x-bg);
 }
 
 .heroField {
@@ -56,6 +87,7 @@ html[data-theme="dark"] .hero {
   flex: none;
 }
 
+/* The field's dark rendition, pinned (the page has one ground) */
 .ballBlue {
   background: var(--site-color-brand-blue);
 }
@@ -68,23 +100,11 @@ html[data-theme="dark"] .hero {
   background: var(--site-color-lavender-deep);
 }
 
-/* The two neutrals swap between themes so the field keeps its rhythm on
-   both grounds — same trick as the talent hero. */
 .ballGray {
-  background: var(--site-color-navy);
-  box-shadow: inset 0 3px 80px rgb(var(--site-color-blue-bright-rgb) / 0.6);
-}
-
-html[data-theme="dark"] .ballGray {
   background: var(--site-color-gray-light);
-  box-shadow: none;
 }
 
 .ballGlow {
-  background: var(--site-color-gray-light);
-}
-
-html[data-theme="dark"] .ballGlow {
   background: var(--site-color-navy);
   box-shadow: inset 0 3px 80px rgb(var(--site-color-blue-bright-rgb) / 0.6);
 }
@@ -93,87 +113,114 @@ html[data-theme="dark"] .ballGlow {
   background: radial-gradient(
     closest-side,
     rgb(var(--site-color-blue-bright-rgb) / 0.08) 0%,
-    rgb(var(--site-color-navy-rgb) / 0.28) 100%
-  );
-}
-
-html[data-theme="dark"] .ballFade {
-  background: radial-gradient(
-    closest-side,
-    rgb(var(--site-color-blue-bright-rgb) / 0.08) 0%,
     rgb(var(--site-color-gray-light-rgb) / 0.4) 100%
   );
 }
 
-/* A clear space punched through the field, not a card sitting on it. */
+/* Vignette: darken toward the center so the glass panel and its type sit
+   on calm ground while the field stays vivid at the edges. */
+.heroShade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    rgb(var(--site-color-navy-rgb) / 0.82) 0%,
+    rgb(var(--site-color-navy-rgb) / 0.45) 55%,
+    rgb(var(--site-color-navy-rgb) / 0.1) 100%
+  );
+}
+
+/* Glass panel */
 .heroPanel {
   position: relative;
   z-index: 1;
-  width: min(100%, 1100px);
+  width: min(100%, 1000px);
   border-radius: 35px;
-  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 5vw, 4.5rem);
+  padding: clamp(2.25rem, 4.5vw, 4rem) clamp(1.25rem, 5vw, 4.5rem);
   text-align: center;
-  background: var(--site-color-cream);
-  color: var(--site-color-ink);
+  background: rgb(2 12 60 / 0.5);
+  border: 1px solid var(--x-border);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.35);
 }
 
-html[data-theme="dark"] .heroPanel {
-  background: var(--site-color-card-surface);
-  color: var(--site-color-card-text);
+.motionOn .heroPanel {
+  animation: riseIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .heroKicker {
-  margin: 0 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.25rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--x-border);
+  border-radius: var(--site-radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--x-amber);
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--x-amber);
+}
+
+.motionOn .liveDot {
+  animation: pulse 2.2s ease-out infinite;
 }
 
 .heroTitle {
-  margin: 0 0 0.75rem;
-  font-size: clamp(2.4rem, 5.5vw, 5rem);
+  margin: 0 0 0.9rem;
+  font-size: clamp(2.6rem, 7vw, 6rem);
   font-weight: var(--site-font-weight-display);
-  line-height: 1.1;
+  line-height: 1.04;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: var(--site-color-ink);
-}
-
-html[data-theme="dark"] .heroTitle {
-  color: var(--site-color-cream);
+  /* Gradient type with a solid fallback */
+  color: var(--x-ink-strong);
+  background: linear-gradient(180deg, #ffffff 30%, #aab4e6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .heroSubtitle {
-  margin: 0 auto 1.75rem;
-  max-width: 44ch;
-  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  margin: 0 auto 2rem;
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.6vw, 1.45rem);
   font-weight: var(--ifm-font-weight-light);
-  line-height: 1.3;
+  line-height: 1.35;
+  color: var(--x-ink);
 }
 
-/* Fact tiles ride inside the panel, so they take the theme-aware raised
-   surface (the navy card tokens would vanish on the dark panel, which is
-   itself navy). */
 .factRow {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .factTile {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.2rem;
   min-width: 9.5rem;
-  padding: 0.85rem 1.25rem;
+  padding: 0.9rem 1.3rem;
   border-radius: var(--site-radius-lg);
-  background: var(--site-color-surface-raised);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--x-border);
 }
 
 .factValue {
   font-family: var(--site-font-family-mono-label);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: var(--ifm-font-weight-semibold);
   font-variant-numeric: tabular-nums;
+  color: var(--x-amber);
 }
 
 .factLabel {
@@ -182,18 +229,28 @@ html[data-theme="dark"] .heroTitle {
   font-weight: var(--ifm-font-weight-semibold);
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--site-color-text-muted);
+  color: var(--x-muted);
 }
 
-/* Amber CTA context, same mechanism as the site's hero/CTA bands. */
 .heroActions {
   --site-button-primary-bg: var(--site-color-amber);
   --site-button-primary-fg: var(--site-color-navy);
+  --site-button-ring: var(--site-color-cream);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.4rem;
   flex-wrap: wrap;
+}
+
+.heroBtn {
+  box-shadow: 0 6px 32px rgb(var(--site-color-amber-rgb) / 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.heroBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 44px rgb(var(--site-color-amber-rgb) / 0.5);
 }
 
 .heroGhost {
@@ -202,25 +259,63 @@ html[data-theme="dark"] .heroTitle {
   font-weight: var(--ifm-font-weight-semibold);
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: inherit;
+  color: var(--x-ink) !important;
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   padding-bottom: 2px;
 }
 
 .heroGhost:hover {
-  color: var(--site-color-brand-blue);
+  color: var(--x-amber) !important;
+  border-bottom-color: var(--x-amber);
   text-decoration: none;
 }
 
-html[data-theme="dark"] .heroGhost:hover {
-  color: var(--site-color-amber);
+/* --- PROTOCOL TICKER --- */
+
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--x-border);
+  border-bottom: 1px solid var(--x-border);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.7rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tickerTrack {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.motionOn .tickerTrack {
+  animation: marquee 36s linear infinite;
+}
+
+.tickerItem {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.72rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--x-muted);
+}
+
+.tickerAccent {
+  color: var(--x-amber);
+}
+
+.tickerSep {
+  margin: 0 1.1rem;
+  color: rgba(255, 255, 255, 0.25);
 }
 
 /* --- SECTION SCAFFOLDING --- */
 
 .section {
-  padding: clamp(2.75rem, 6vw, 4.5rem) 0;
+  padding: clamp(3.25rem, 7vw, 5.5rem) 0;
+  position: relative;
 }
 
 .anchorTarget {
@@ -229,27 +324,43 @@ html[data-theme="dark"] .heroGhost:hover {
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.sectionKicker {
+  margin: 0 0 0.9rem;
+  color: var(--x-amber);
 }
 
 .sectionHeader h2 {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.65rem, 3vw, 2.75rem);
-  font-weight: var(--ifm-font-weight-light);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
 .sectionHeader p {
   margin: 0 auto;
-  max-width: 60ch;
-  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
   font-weight: var(--ifm-font-weight-light);
-  line-height: 1.4;
-  color: var(--site-color-text-muted);
+  line-height: 1.5;
+  color: var(--x-muted);
 }
 
-/* --- PROTOCOL: prose beside the mock terminal --- */
+/* Scroll reveal: elements stay visible without JS; with .motionOn the
+   observer adds .revealIn, which plays the entrance. The bare .reveal rule
+   must exist so the class survives CSS-modules mapping. */
+.reveal {
+  will-change: opacity, transform;
+}
+
+.motionOn .revealIn {
+  animation: riseIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* --- PROTOCOL: prose beside the terminal --- */
 
 .protocolRow {
   display: grid;
@@ -262,26 +373,27 @@ html[data-theme="dark"] .heroGhost:hover {
 
 .protocolCopy p {
   margin-bottom: 1rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .protocolCopy p:last-child {
   margin-bottom: 0;
 }
 
-/* Mock terminal, landing-page recipe: a picture of a terminal, so its chrome
-   and text colours are deliberately literal, not brand tokens. Dark in both
-   themes. */
+/* Mock terminal — literal editor colours (it's a picture of a terminal),
+   now with a blue glow and typed-in lines. */
 .terminal {
-  background: #0A1130;
-  border: 1px solid var(--site-color-card-border);
+  background: #0a1130;
+  border: 1px solid var(--x-border);
   border-radius: 20px;
   overflow: hidden;
   font-family: var(--site-font-family-mono-code);
   font-size: 0.82rem;
   line-height: 1.8;
   color: #d4d4d4;
-  box-shadow: 0 8px 32px rgb(var(--site-color-navy-rgb) / 0.2);
+  box-shadow:
+    0 8px 40px rgb(0 0 0 / 0.5),
+    0 0 80px rgb(var(--site-color-blue-bright-rgb) / 0.18);
 }
 
 .terminalHeader {
@@ -289,8 +401,8 @@ html[data-theme="dark"] .heroGhost:hover {
   align-items: center;
   gap: 6px;
   padding: 0.875rem 1.25rem;
-  background: rgb(var(--site-color-card-text-rgb) / 0.03);
-  border-bottom: 1px solid var(--site-color-card-border);
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--x-border);
 }
 
 .terminalDot {
@@ -306,7 +418,7 @@ html[data-theme="dark"] .heroGhost:hover {
 .terminalTitle {
   margin-left: auto;
   font-size: 0.75rem;
-  color: var(--site-color-card-text-muted);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .terminalBody {
@@ -320,6 +432,29 @@ html[data-theme="dark"] .heroGhost:hover {
 
 .terminalBody div {
   white-space: nowrap;
+}
+
+/* Typing choreography: hidden only when motion is on, then staggered in
+   once the terminal scrolls into view. */
+.motionOn .terminal .termLine {
+  opacity: 0;
+}
+
+.motionOn .terminal.revealIn .termLine {
+  animation: typeLine 0.36s ease-out both;
+  animation-delay: calc(var(--i) * 0.34s + 0.2s);
+}
+
+.termCursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.05em;
+  vertical-align: text-bottom;
+  background: var(--x-amber);
+}
+
+.motionOn .termCursor {
+  animation: blink 1.1s steps(1) infinite;
 }
 
 .termPrompt { color: rgba(255, 255, 255, 0.45); }
@@ -343,13 +478,24 @@ html[data-theme="dark"] .heroGhost:hover {
 .marketCard,
 .linkCard {
   border-radius: var(--site-radius-lg);
-  background: var(--site-color-surface-raised);
-  padding: 1.5rem 1.5rem 1.35rem;
+  background: var(--x-surface);
+  border: 1px solid var(--x-border);
+  padding: 1.6rem 1.6rem 1.45rem;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.marketCard:hover,
+.linkCard:hover {
+  background: var(--x-surface-hover);
+  border-color: rgb(var(--site-color-amber-rgb) / 0.45);
+  box-shadow: 0 8px 40px rgb(var(--site-color-amber-rgb) / 0.08);
+  transform: translateY(-3px);
 }
 
 .marketCard h3,
 .linkCard h3 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.55rem;
   font-size: 1.15rem;
   font-weight: var(--ifm-font-weight-semibold);
   letter-spacing: -0.01em;
@@ -359,61 +505,49 @@ html[data-theme="dark"] .heroGhost:hover {
 .linkCard p {
   margin: 0;
   line-height: 1.55;
-  color: var(--site-color-text-muted);
+  color: var(--x-muted);
 }
 
 .marketHint {
   display: block;
-  margin-top: 0.9rem;
-  color: var(--site-color-brand-blue);
-}
-
-html[data-theme="dark"] .marketHint {
-  color: var(--site-color-amber);
+  margin-top: 1rem;
+  color: var(--x-amber);
 }
 
 .marketFooter {
   text-align: center;
-  margin: clamp(1.5rem, 3vw, 2.25rem) auto 0;
+  margin: clamp(1.75rem, 3vw, 2.5rem) auto 0;
   max-width: 60ch;
   font-size: clamp(1rem, 1.4vw, 1.25rem);
   font-weight: var(--ifm-font-weight-light);
+  color: var(--x-ink);
 }
 
 .linkCard {
   display: block;
   color: inherit;
   text-decoration: none !important;
-  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .linkCard:hover {
   color: inherit;
-  background: var(--site-color-surface-raised-hover);
-  transform: translateY(-2px);
 }
 
 .linkCard h3 {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--site-color-brand-blue);
+  color: var(--x-amber);
 }
 
-html[data-theme="dark"] .linkCard h3 {
-  color: var(--site-color-amber);
-}
+/* --- QUICKSTART --- */
 
-/* --- GOLDEN PATH --- */
-
-/* The whole path shares one readable column, like a quickstart doc. */
 .pathWrap {
   max-width: 56rem;
   margin: 0 auto;
 }
 
-/* Intro card: the coding-agent on-ramp beside the 402 art tile. Landing
-   page devPanel recipe: white card + soft shadow in light, navy in dark. */
+/* Agent on-ramp: glass split card beside the 402 art tile */
 .agentPanel {
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
@@ -421,36 +555,21 @@ html[data-theme="dark"] .linkCard h3 {
   gap: clamp(1.25rem, 3vw, 2.5rem);
   padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 3.5vw, 2.75rem);
   border-radius: 20px;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-html[data-theme="light"] .agentPanel {
-  background: var(--site-color-surface-chip);
-  box-shadow: 10px 13px 26px 6px rgb(var(--site-color-navy-rgb) / 0.08);
-  color: var(--site-color-ink);
-}
-
-html[data-theme="dark"] .agentPanel {
-  background: var(--site-color-card-surface);
-  border: 1px solid var(--site-color-card-border);
-  color: var(--site-color-card-text);
+  margin-bottom: clamp(2.25rem, 4vw, 3.25rem);
+  background: var(--x-surface);
+  border: 1px solid var(--x-border);
 }
 
 .agentKicker {
   margin: 0 0 0.6rem;
-  color: var(--site-color-brand-blue);
-}
-
-html[data-theme="dark"] .agentKicker {
-  color: var(--site-color-amber);
+  color: var(--x-amber);
 }
 
 .agentCopy p {
-  line-height: 1.55;
-  margin-bottom: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
 }
 
-/* The typographic art tile: the status code itself, on the dotted field. */
 .agentArt {
   display: flex;
   flex-direction: column;
@@ -460,20 +579,13 @@ html[data-theme="dark"] .agentKicker {
   padding: clamp(1rem, 2.5vw, 2rem);
   border-radius: var(--site-radius-lg);
   min-width: 0;
+  background-color: rgba(255, 255, 255, 0.03);
   background-image: radial-gradient(
     circle,
-    rgb(var(--site-color-brand-blue-rgb) / 0.35) 1px,
+    rgb(var(--site-color-blue-bright-rgb) / 0.5) 1px,
     transparent 1px
   );
   background-size: 26px 26px;
-}
-
-html[data-theme="light"] .agentArt {
-  background-color: var(--site-color-gray-light);
-}
-
-html[data-theme="dark"] .agentArt {
-  background-color: rgb(var(--site-color-card-text-rgb) / 0.04);
 }
 
 .artGlyph {
@@ -482,29 +594,24 @@ html[data-theme="dark"] .agentArt {
   font-weight: var(--site-font-weight-display);
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--site-color-brand-blue);
-}
-
-html[data-theme="dark"] .artGlyph {
-  color: var(--site-color-amber);
+  color: var(--x-amber);
+  text-shadow: 0 0 60px rgb(var(--site-color-amber-rgb) / 0.4);
 }
 
 .artLabel {
-  color: var(--site-color-text-muted);
+  color: var(--x-muted);
 }
 
-/* Vertical stepper: number discs on a left rail joined by a hairline, so
-   the sequence reads as one path, not a pile of cards. */
+/* Vertical stepper */
 .path {
   list-style: none;
   margin: 0;
   padding: 0;
-  counter-reset: none;
 }
 
 .pathStep {
   position: relative;
-  padding: 0 0 clamp(2rem, 4vw, 2.75rem) 3.6rem;
+  padding: 0 0 clamp(2.25rem, 4vw, 3rem) 3.6rem;
 }
 
 .pathStep:last-child {
@@ -525,9 +632,9 @@ html[data-theme="dark"] .artGlyph {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 24px rgb(var(--site-color-blue-bright-rgb) / 0.45);
 }
 
-/* The connecting rail, from below one disc to the top of the next */
 .pathStep::before {
   content: "";
   position: absolute;
@@ -535,11 +642,11 @@ html[data-theme="dark"] .artGlyph {
   top: 2.5rem;
   bottom: 0.3rem;
   width: 1px;
-  background: rgb(var(--site-color-navy-rgb) / 0.15);
-}
-
-html[data-theme="dark"] .pathStep::before {
-  background: rgb(var(--site-color-card-text-rgb) / 0.15);
+  background: linear-gradient(
+    180deg,
+    rgb(var(--site-color-blue-bright-rgb) / 0.5),
+    rgba(255, 255, 255, 0.08)
+  );
 }
 
 .pathStep:last-child::before {
@@ -565,7 +672,7 @@ html[data-theme="dark"] .pathStep::before {
 
 .pathTime {
   margin-left: auto;
-  color: var(--site-color-text-muted);
+  color: var(--x-muted);
   white-space: nowrap;
 }
 
@@ -581,57 +688,126 @@ html[data-theme="dark"] .pathStep::before {
 
 .pathAside {
   font-size: 0.92rem;
-  color: var(--site-color-text-muted);
+  color: var(--x-muted);
 }
 
-/* Expected output: a bare dark transcript, same literal palette as the
-   mock terminal above. */
+/* Dark code cards */
+.code {
+  border: 1px solid var(--x-border);
+  border-radius: var(--site-radius-lg);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #0a1130;
+  box-shadow: 0 6px 28px rgb(0 0 0 / 0.35);
+}
+
+.codeBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.9rem 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--x-border);
+}
+
+.codeTitle {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.codePre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: none;
+  border: none;
+  font-family: var(--site-font-family-mono-code);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: #eceef8;
+  overflow-x: auto;
+}
+
+.codePre div {
+  white-space: pre;
+}
+
+.cCmd { color: #ffffff; }
+.cKey { color: #9cdcfe; }
+.cComment { color: rgba(255, 255, 255, 0.4); font-style: italic; }
+
+.copyBtn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: var(--site-radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.copyBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.copyIcon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Expected output */
 .outputLabel {
   margin: 1rem 0 0.5rem;
+  color: var(--x-muted);
 }
 
 .outputBlock {
   margin: 0 0 1rem;
   padding: 1rem 1.25rem;
-  background: #0A1130;
-  border: 1px solid var(--site-color-card-border);
+  background: #0a1130;
+  border: 1px solid rgb(var(--site-color-amber-rgb) / 0.25);
   border-radius: var(--site-radius-lg);
   font-family: var(--site-font-family-mono-code);
   font-size: 0.82rem;
   line-height: 1.8;
   color: #d4d4d4;
   overflow-x: auto;
+  box-shadow: 0 0 40px rgb(var(--site-color-amber-rgb) / 0.08);
 }
 
 .outputBlock div {
   white-space: nowrap;
 }
 
-/* Live-updatable slots (facilitator endpoint, support channel): visibly a
-   reserved space, not a warning. */
+/* Live-updatable slots (facilitator endpoint, support channel) */
 .slot {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-  border: 1px dashed rgb(var(--site-color-navy-rgb) / 0.35);
+  border: 1px dashed rgba(255, 255, 255, 0.25);
   border-radius: var(--site-radius-md);
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   font-size: 0.9rem;
   line-height: 1.5;
-  color: var(--site-color-text-muted);
-}
-
-html[data-theme="dark"] .slot {
-  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
+  color: var(--x-muted);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .slotDot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--site-color-amber);
+  background: var(--x-amber);
   flex: none;
   transform: translateY(-1px);
+}
+
+.motionOn .slotDot {
+  animation: pulse 2.2s ease-out infinite;
 }
 
 /* --- RULES & JUDGING --- */
@@ -647,6 +823,7 @@ html[data-theme="dark"] .slot {
 
 .rulesKicker {
   margin: 0 0 1rem;
+  color: var(--x-muted);
 }
 
 .checklist {
@@ -654,7 +831,7 @@ html[data-theme="dark"] .slot {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.85rem;
+  gap: 0.9rem;
 }
 
 .checklist li {
@@ -678,10 +855,9 @@ html[data-theme="dark"] .slot {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 18px rgb(var(--site-color-blue-bright-rgb) / 0.4);
 }
 
-/* Prize tiles ride on the page ground, so the theme-invariant navy card
-   tokens work here. */
 .prizeStack {
   display: grid;
   gap: 0.75rem;
@@ -693,11 +869,11 @@ html[data-theme="dark"] .slot {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 1.4rem;
+  padding: 1.05rem 1.4rem;
   border-radius: var(--site-radius-lg);
-  background: var(--site-color-card-surface);
-  border: 1px solid var(--site-color-card-border);
-  color: var(--site-color-card-text);
+  background: var(--x-surface);
+  border: 1px solid var(--x-border);
+  color: var(--x-ink);
 }
 
 .prizeValue {
@@ -708,15 +884,16 @@ html[data-theme="dark"] .slot {
 }
 
 .prizeLabel {
-  color: var(--site-color-card-text-muted);
-}
-
-.prizeFirst .prizeValue {
-  color: var(--site-color-amber);
+  color: var(--x-muted);
 }
 
 .prizeFirst {
-  border-color: rgb(var(--site-color-amber-rgb) / 0.5);
+  border-color: rgb(var(--site-color-amber-rgb) / 0.55);
+  box-shadow: 0 0 40px rgb(var(--site-color-amber-rgb) / 0.15);
+}
+
+.prizeFirst .prizeValue {
+  color: var(--x-amber);
 }
 
 /* --- TROUBLESHOOTING --- */
@@ -725,6 +902,9 @@ html[data-theme="dark"] .slot {
   overflow-x: auto;
   max-width: 72rem;
   margin: 0 auto;
+  border: 1px solid var(--x-border);
+  border-radius: var(--site-radius-lg);
+  background: var(--x-surface);
 }
 
 .table {
@@ -739,19 +919,24 @@ html[data-theme="dark"] .slot {
   font-weight: var(--ifm-font-weight-semibold);
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--site-color-text-muted);
-  background: none;
+  color: var(--x-muted);
+  background: rgba(255, 255, 255, 0.03);
   border: none;
-  border-bottom: 1px solid var(--ifm-table-border-color);
-  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--x-border);
+  padding: 0.7rem 1.25rem;
 }
 
 .table td {
   vertical-align: top;
   border: none;
-  border-bottom: 1px solid var(--ifm-table-border-color);
-  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--x-border);
+  padding: 0.9rem 1.25rem;
   line-height: 1.5;
+  color: var(--x-muted);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .table tr {
@@ -761,6 +946,58 @@ html[data-theme="dark"] .slot {
 
 .table td:first-child {
   font-weight: var(--ifm-font-weight-semibold);
+  color: var(--x-ink);
+}
+
+/* --- KEYFRAMES --- */
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes typeLine {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(var(--site-color-amber-rgb) / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgb(var(--site-color-amber-rgb) / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(var(--site-color-amber-rgb) / 0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* --- RESPONSIVE --- */
