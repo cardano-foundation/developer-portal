@@ -89,7 +89,7 @@ A **property test** states a property directly and lets the test runner find an 
 
 If any of them fails, it **reduces ("shrinks")** the counterexample to the smallest one that still breaks the property, so you get the exact edge case rather than whichever random value happened to fail first.
 
-Reach for a property test whenever a rule holds "for all" of something: every key, every amount, every moment after a deadline. You will meet that last one in **handling time**, where the vesting contract's deadline needs exactly this test.
+Reach for a property test whenever a rule holds "for all" of something: every key, every amount, every moment after a deadline. You will meet that last one in **[handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)**, where the vesting contract's deadline needs exactly this test.
 
 ## The level these two cannot reach
 

@@ -113,6 +113,31 @@
       "hash": "32cfa014c18bccdfc9a2a6b40c1995d078e6e910fca787fe8ffdd3a0"
     },
     {
+      "title": "vault_always_true.vault.spend",
+      "datum": {
+        "title": "_datum",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "compiledCode": "585c01010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748008c01cdd500144c8cc892898050009805180580098041baa0028b200c180300098019baa0068a4d13656400401",
+      "hash": "d27ccc13fab5b782984a3d1f99353197ca1a81be069941ffc003ee75"
+    },
+    {
+      "title": "vault_always_true.vault.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "585c01010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748008c01cdd500144c8cc892898050009805180580098041baa0028b200c180300098019baa0068a4d13656400401",
+      "hash": "d27ccc13fab5b782984a3d1f99353197ca1a81be069941ffc003ee75"
+    },
+    {
       "title": "vault_simple.vault.spend",
       "datum": {
         "title": "datum",
@@ -136,6 +161,31 @@
       },
       "compiledCode": "58d801010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900118031baa00189919912cc004cdc3a400060126ea80162b3001300a375400b15980099b8748000c024dd5000c4c8cc88cc008008004896600200314a115980099b8f375c601e00200714a31330020023010001402c8070dd618069807180718071807180718071807180718059baa300d008375c601860146ea8c030c028dd5000c5900845900b45900818050009805180580098039baa0018b200a30070013007300800130070013003375400f149a26cac80081",
       "hash": "ec431d8627829d7e21119161d909e8a9a15d648a67bff82ccafc3570"
+    },
+    {
+      "title": "vault_with_datum.vault.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/vault_with_datum~1VaultDatum"
+        }
+      },
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/vault_with_datum~1VaultAction"
+        }
+      },
+      "compiledCode": "589b01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748008c01cdd500144c8cc896600266e1d2000300a375400d15980098059baa0068acc004cdc3a400060146ea8006264944dd7180698059baa300d300b375400316402516403116402460160026016601800260106ea800a2c8030600e00260066ea801e29344d95900101",
+      "hash": "49f60f50cd2bdf1b06554e5b58adbbc86da3cc129bc5f80dc878591d"
+    },
+    {
+      "title": "vault_with_datum.vault.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "589b01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748008c01cdd500144c8cc896600266e1d2000300a375400d15980098059baa0068acc004cdc3a400060146ea8006264944dd7180698059baa300d300b375400316402516403116402460160026016601800260106ea800a2c8030600e00260066ea801e29344d95900101",
+      "hash": "49f60f50cd2bdf1b06554e5b58adbbc86da3cc129bc5f80dc878591d"
     }
   ],
   "definitions": {
@@ -195,6 +245,33 @@
       ]
     },
     "vault_simple/VaultDatum": {
+      "title": "VaultDatum",
+      "anyOf": [
+        {
+          "title": "VaultDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        }
+      ]
+    },
+    "vault_with_datum/VaultAction": {
+      "title": "VaultAction",
+      "anyOf": [
+        {
+          "title": "Unlock",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        }
+      ]
+    },
+    "vault_with_datum/VaultDatum": {
       "title": "VaultDatum",
       "anyOf": [
         {
