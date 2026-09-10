@@ -208,7 +208,7 @@ Then the datum and the validator. The vesting contract is the vault from the ear
 The two fields in `VestingDatum` are step 4: who may claim, and from when. The single `spend` handler is step 2. The `and { … }` block is step 3, one line per check:
 
 - `list.has` is the signature check, the same one you wrote in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**: is this key among the signers?
-- `valid_after` it reads the **lower bound** of the transaction's validity window and returns true only if that bound is later than the deadline in the datum. A window with no lower bound at all falls to the second branch and is refused.
+- `interval.is_entirely_after` is the deadline check, and it comes from the stdlib. It returns true only if the whole validity window starts later than the deadline in the datum. `valid_after` above it is that same check written out by hand, so you can see which bound is read, and what happens when the window has no lower bound at all: the `when` falls to the second branch, and the claim is refused. The validator calls the stdlib version.
 
 Then the tests. Four unit tests cover the four cases this contract has to get right, and one property test states the rule itself:
 

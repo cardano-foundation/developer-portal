@@ -16,10 +16,11 @@ pub type VestingDatum {
   lock_until: Int,
 }
 
-// Reads the start of the window the transaction declared, and asks whether it
-// is already past the deadline. A transaction with no start could be submitted
-// at any moment, so it is refused.
-fn valid_after(range: ValidityRange, lock_until: Int) -> Bool {
+// What the check does, written out. The validator below calls the stdlib
+// instead, and this is here to show what that call reads: the start of the
+// window the transaction declared, compared with the deadline. A window with no
+// start could be submitted at any moment, so it is refused.
+pub fn valid_after(range: ValidityRange, lock_until: Int) -> Bool {
   when range.lower_bound.bound_type is {
     Finite(lower_bound) -> lower_bound > lock_until
     _ -> False
@@ -36,7 +37,7 @@ validator vesting {
     expect Some(VestingDatum { beneficiary, lock_until }) = datum
     and {
       list.has(self.extra_signatories, beneficiary)?,
-      valid_after(self.validity_range, lock_until)?,
+      interval.is_entirely_after(self.validity_range, lock_until)?,
     }
   }
 
