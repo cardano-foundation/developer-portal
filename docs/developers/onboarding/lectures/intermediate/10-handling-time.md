@@ -31,19 +31,17 @@ The same shape appears in many places:
 
 **Vesting** is the name for it.
 
-The company must not be able to change its mind on the day before the date. An app cannot enforce that, because the company controls the app.
-
 ## From idea to architecture
 
 Four questions turn an idea into a contract. Ask them in this order.
 
-**1. What has to be remembered?** This becomes the **datum**. A vesting contract has to remember two things: **who** may take the money, and **when** they can take it. Nothing else. The amount does not need to be remembered, because the UTxO already holds it.
+**1. Write down the requirements.** Say what the contract has to guarantee before you think about code. The developer gets the funds, and nobody else can. They get them after the date, and not before. The company must not be able to change its mind on the day before the date, and an app cannot enforce that, because the company controls the app. Four instalments are four dates, so each instalment is locked in its own UTxO with its own date, and the contract only has to handle one date.
 
-**2. What actions are possible?** This becomes the set of handlers, and the **redeemer** if there is more than one action. Here there is only one action: claim the money. So the contract needs a single `spend` handler, and the redeemer carries nothing.
+**2. What actions are possible?** These are the state transitions the requirements allow, and each one becomes a handler. The **redeemer** says which one the transaction wants, if there is more than one. Here there is only one action: claim the funds. So the contract needs a single `spend` handler, and the redeemer carries nothing.
 
-**3. What must be true for each action?** These are the rules. The claim has two conditions, and both must hold. The person named in the datum has to sign the transaction. And the transaction has to happen after the date in the datum.
+**3. What must be true for each action?** These are the checks. The claim has two, and both must hold: the beneficiary signs the transaction, and the transaction happens after the date. Drop the signature check and anybody can take the funds on the right date. Drop the date check and the developer can take the funds on the first day.
 
-**4. What breaks if a rule is missing?** Ask this before you write the code. Drop the signature check and anybody can take the money on the right date. Drop the date check and the developer can take the money on the first day.
+**4. What has to be remembered to run the checks?** This becomes the **datum**. The two checks need two things: **who** may take the funds, and **when** they can take them. Nothing else. The amount does not need to be remembered, because the UTxO already holds it.
 
 The design in one sentence: **the funds go to the person named in the datum, and only in a transaction that happens after the date in the datum.**
 
@@ -53,9 +51,9 @@ A contract cannot read a clock, because a clock gives a different answer every t
 
 The solution is the one you met in Beginner, in [Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano). Every transaction can carry a **validity window**, and **you** set it when you build the transaction. It is a statement the transaction makes about itself: **this transaction may only be included in a block _after_ this slot, and _before_ that slot.**
 
-The window has two ends, and each has a name you will meet in code: the **lower bound** (`invalid_before`), and the **upper bound** (`invalid_hereafter`, also called the TTL, for time to live). A deadline is a rule about being late, so this contract needs the lower bound.
+The window has two ends, and each has a name you will meet in code: the **lower bound** (`invalid_before`), and the **upper bound** (`invalid_hereafter`, also called the TTL, for time to live). The window does not say when the transaction runs, only that it runs somewhere between the two ends, and whoever builds the transaction can make it as wide as they like. So the only way to be sure a claim is after the deadline is to require that the window opens after the deadline. This contract reads the lower bound.
 
-The ledger and the validator both check that window, and they ask different questions. The examples use clock times, which are easier to read than slot numbers:
+The ledger and the validator both read that window, and each does a different job with it. The examples use clock times, which are easier to read than slot numbers:
 
 ```mermaid
 sequenceDiagram
@@ -80,14 +78,10 @@ sequenceDiagram
     Val-->>You: yes, the funds move where the claim says
 ```
 
-- The **ledger** asks: is the current slot inside the window the transaction declared? A transaction outside its own window is rejected, and no contract runs at all.
-- The **validator** asks: does that window start after the deadline in the datum? The ledger cannot ask this one for you. A deadline is one contract's rule, written in one datum, and the ledger does not read datums.
-
-Remove the validator's check and anybody could claim on the first day with a perfectly honest window. Remove the ledger's check and the window becomes a claim that nobody verified.
+- The **ledger** checks that the current slot is inside the window the transaction declared. A transaction outside its own window is rejected, and no contract runs at all. When the transaction is inside its window, the ledger converts both bounds from slot numbers into **POSIX milliseconds**, the number of milliseconds since 1 January 1970, and runs the validator.
+- The **validator** reads those two bounds, and it can trust that the transaction is happening inside them. Its check is that the window starts after the deadline in the datum. The ledger cannot do this one for you: a deadline is one contract's rule, written in one datum, and the ledger does not read datums.
 
 So **the contract never checks the time. It checks a statement that the ledger has already verified.** Reading that statement is deterministic, exactly like reading the datum.
-
-But the window is only a **bound**. Whoever builds the transaction chooses it and may make it as wide as they like, so the contract never learns the exact moment the transaction ran. That is why the rule is written on the **lower bound**: the only way to be sure the claim is late is to require that the whole window is late.
 
 You are free to declare a window that opens later than the current time, and the validator will believe it. But you cannot get that transaction into a block early, because the ledger refuses it until the real slot arrives.
 
@@ -166,7 +160,7 @@ The deadline travels between the two transactions inside the datum. The lock wri
 
 The app has a real clock, so the app turns your deadline into a **slot number** and writes that slot into the transaction.
 
-The validator never sees that slot. Once the ledger has checked the window, it converts the window into **POSIX milliseconds**, which is the number of milliseconds since 1 January 1970. Only then does it run the script. So `lock_until` in the datum is a date.
+The validator never sees that slot. It sees the bounds in POSIX milliseconds, so `lock_until` in the datum is written in POSIX milliseconds too, and the two can be compared.
 
 Slot length is a network parameter, so a hard fork could change it. A check written in slot numbers would then refer to a different moment, and the beneficiary could potentially consume the UTxO before the desired deadline. That's why we use POSIX, so the date always means the same moment in time.
 
@@ -177,7 +171,7 @@ Both bounds of the window are optional. A bound you leave out is treated as **in
 :::warning A deadline far in the future is an estimate
 Converting a date to a slot meets that same network parameter, from the other side. When an SDK converts a date, it assumes that slots keep the length they have today. As [Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano) explained, the conversion is only reliable a fixed distance ahead, currently about a day and a half (36 hours).
 
-The real risk is that you get no warning. If you ask an SDK to convert a date five years from now, it returns a slot number and reports no error. It only calculates with today's parameters. Our example locks funds for two minutes, which is safely inside the reliable range.
+An SDK that converts a date five years from now returns a slot number and reports no error, because it calculates with today's parameters. The node does refuse the transaction, since the slot is past the range it can vouch for, so you find out at submission rather than while building. This limit is on the bounds you put in a transaction, and not on the deadline in the datum: `lock_until` is a plain number until the claim is built, and by then the deadline is close. Our example locks funds for two minutes, which is safely inside the reliable range.
 :::
 
 ## Try it
@@ -211,7 +205,7 @@ Then the datum and the validator. The vesting contract is the vault from the ear
   {extractRegion(VestingAiken, "vesting")}
 </CodeBlock>
 
-The two fields in `VestingDatum` are answer 1: who may claim, and from when. The single `spend` handler is answer 2. The `and { … }` block is answer 3, one line per rule:
+The two fields in `VestingDatum` are step 4: who may claim, and from when. The single `spend` handler is step 2. The `and { … }` block is step 3, one line per check:
 
 - `list.has` is the signature check, the same one you wrote in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**: is this key among the signers?
 - `valid_after` it reads the **lower bound** of the transaction's validity window and returns true only if that bound is later than the deadline in the datum. A window with no lower bound at all falls to the second branch and is refused.
