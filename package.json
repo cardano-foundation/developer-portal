@@ -34,7 +34,7 @@
     "react-dom": "^18.0.0",
     "react-popper": "^2.2.5",
     "satori": "^0.26.0",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.4"
   },
   "browserslist": {
     "production": [
