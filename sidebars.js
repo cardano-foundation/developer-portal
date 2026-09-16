@@ -574,6 +574,10 @@ module.exports = {
             "developers/onboarding/lectures/intermediate/parameters",
             "developers/onboarding/lectures/intermediate/validator-purposes",
             "developers/onboarding/lectures/intermediate/frontend-integration",
+            "developers/onboarding/lectures/intermediate/handling-time",
+            "developers/onboarding/lectures/intermediate/multi-validators",
+            "developers/onboarding/lectures/intermediate/modifying-state",
+            "developers/onboarding/lectures/intermediate/reference-inputs-and-scripts",
           ],
         },
         {
@@ -585,7 +589,7 @@ module.exports = {
             id: "developers/onboarding/lectures/advanced/introduction",
           },
           items: [
-            "developers/onboarding/lectures/advanced/lecture-1",
+            "developers/onboarding/lectures/advanced/detecting-vulnerabilities",
           ],
         },
       ],

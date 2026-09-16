@@ -32,7 +32,7 @@ cd developer-portal/examples/onboarding/atomic-swap
 
 To run the example, you only need Node.js:
 
-- **[Node.js](https://nodejs.org/)** (version 20 or newer) and a package manager (npm). The off-chain code and the web app are a normal JavaScript project, `npm install` pulls in the Cardano SDK (this example uses [Mesh](https://meshsdk.dev/), the library that builds Cardano transactions and talks to your wallet) and everything else.
+- **[Node.js](https://nodejs.org/)** (version 20 or newer) and a package manager (npm). The off-chain code and the web app are a normal JavaScript project, `npm install` pulls in the Cardano SDK (this example uses [Mesh](https://github.com/MeshJS/mesh), the library that builds Cardano transactions and talks to your wallet) and everything else.
 
 ### Optional
 

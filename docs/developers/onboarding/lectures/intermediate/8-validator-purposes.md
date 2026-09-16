@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import VaultAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/validators/vault.ak";
+import validatorHash from "@site/src/utils/validatorHash";
+import VaultBlueprint from "@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/plutus.json";
 
 # Validator purposes
 
@@ -140,17 +142,13 @@ Open `plutus.json` and look at the `validators` list. It now has **four** entrie
 
 Compare the policy's with ours:
 
-```
-32cfa014c18bccdfc9a2a6b40c1995d078e6e910fca787fe8ffdd3a0
-```
+<CodeBlock>{validatorHash(VaultBlueprint, "vault.vault_policy.mint")}</CodeBlock>
 
 This one you should match exactly: there is no blank to fill, so nothing about your setup can move it.
 
 The vault's is the other kind:
 
-```
-5e30f431981846c811b38f89280d99963f23c8df9b71bd1266695ed4
-```
+<CodeBlock>{validatorHash(VaultBlueprint, "vault.vault.spend")}</CodeBlock>
 
 If that matches, you wrote the same spend rule we did, byte for byte. Your vault takes a parameter, so this is the script with the blank still in it, from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. Filling the blank with a real admin key gives a different hash, and that one is the address funds actually go to.
 
