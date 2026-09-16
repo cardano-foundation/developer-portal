@@ -589,7 +589,7 @@ module.exports = {
             id: "developers/onboarding/lectures/advanced/introduction",
           },
           items: [
-            "developers/onboarding/lectures/advanced/lecture-1",
+            "developers/onboarding/lectures/advanced/detecting-vulnerabilities",
           ],
         },
       ],

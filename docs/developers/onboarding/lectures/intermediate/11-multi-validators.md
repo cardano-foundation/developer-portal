@@ -135,7 +135,7 @@ flowchart LR
     style I2 stroke-dasharray:4 3
 ```
 
-The spend rule asks whether a card was destroyed. It does not ask how many UTxOs that one destroyed card is releasing. Here each card guards a single locked UTxO, so the simpler question is enough. A contract that keeps several UTxOs at one address has to count them, and the Advanced track covers that problem under the name **double satisfaction**.
+The spend rule asks whether a card was destroyed. It does not ask how many UTxOs that one destroyed card is releasing. Here each card guards a single locked UTxO, so the simpler question is enough. A contract that keeps several UTxOs at one address has to count them, and the Advanced track covers that problem under the name **[double satisfaction](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#double-satisfaction)**.
 
 ## Two purposes, one hash
 
