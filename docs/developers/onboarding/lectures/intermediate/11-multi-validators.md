@@ -139,7 +139,7 @@ The spend rule asks whether a card was destroyed. It does not ask how many UTxOs
 
 ## Two purposes, one hash
 
-Remember from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** that one script has one hash, and that this hash acts as both its **address** and its **policy ID**:
+Remember from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** that one script has one hash, and that this hash can act as both its **address payment key** and its **policy ID**:
 
 ```mermaid
 flowchart TD
