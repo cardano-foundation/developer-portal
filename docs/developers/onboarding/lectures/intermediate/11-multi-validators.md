@@ -145,7 +145,7 @@ Remember from **[validator purposes](/docs/developers/onboarding/lectures/interm
 flowchart TD
     S["one script,<br/>one hash"] -->|as a policy ID| M["`**mint** handler
     guards making and destroying cards`"]
-    S -->|as an address| P["`**spend** handler
+    S -->|as the address payment key| P["`**spend** handler
     guards the funds behind them`"]
 
     U["the seed UTxO<br/>in your wallet"] -.->|"spent, once"| M
