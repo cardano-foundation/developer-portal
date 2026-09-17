@@ -152,7 +152,7 @@ flowchart TD
     M -.->|"same transaction"| P
 ```
 
-Because the two handlers share a hash, the spend handler can look at what the transaction mints **under its own policy**. It does not need to be told which policy that is. It can read it from the address it is guarding.
+Because the two purposes share a hash, the spend purpose can look at what the transaction mints **under its own policy**. It does not need to be told which policy that is. It can read it from the address it is guarding.
 
 ## One card, one contract
 
