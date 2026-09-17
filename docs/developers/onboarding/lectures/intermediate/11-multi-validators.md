@@ -20,7 +20,7 @@ The last lecture had one purpose and one rule. This contract needs two things yo
 
 Let's say there's a shop that sells gift cards. You go there and buy a gift card redeemable for 50 ADA. You give the card to a friend. Your friend walks into the shop, hands over the card, gets 50 ADA transferred into his account, and the card is destroyed. Nobody can use it again.
 
-The card is a **physical object**, and the shop keeps no list of who has one. The shop destroys the card when the customer hands it over.
+In this case, we're trusting the shop will transfer the ADA to our friend. But what if we don't trust them? In that case, we don't need to go to the store. We can encode the logic for this use case in a smart contract that ensures these rules are followed, and that our friend gets paid!
 
 A contract has to reproduce three things:
 
