@@ -90,7 +90,7 @@ A UTxO can only be spent once. So if two updates try to change the same oracle a
 
 A script address is public, and anybody can create a UTxO at one. So anybody can put a UTxO at your oracle's address carrying any rate they like. A contract that reads the address as "the oracle" has no way to tell that one from yours.
 
-The answer is an **NFT**, and you built one in the last lecture. A **[one-shot policy](/docs/developers/onboarding/lectures/intermediate/multi-validators#what-makes-it-an-nft)** is compiled around a **seed** UTxO that the minting transaction has to spend, so the policy can succeed only once, and no second copy of the token can ever exist.
+In this case, the answer is an **NFT**, and you built one in the last lecture. A **[one-shot policy](/docs/developers/onboarding/lectures/intermediate/multi-validators#what-makes-it-an-nft)** is compiled around a **seed** UTxO that the minting transaction has to spend, so the policy can succeed only once, and when it does, it can only mint one token. So, no second copy of the token can ever exist.
 
 The gift card used its token as a key: whoever held it could take the funds. The oracle uses the same kind of token as a name. A token used this way is called a **beacon token**, sometimes a state thread token.
 
