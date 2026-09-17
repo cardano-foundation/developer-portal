@@ -14,7 +14,7 @@ import GiftcardBlueprint from "@site/examples/onboarding/lectures/intermediate/g
 
 # Multi validators: a gift card
 
-The last lecture had one action and one rule. This contract needs two things you have not met yet: **state that is not in a datum**, and **one script that guards two different actions**.
+The last lecture had one purpose and one rule. This contract needs two things you have not met yet: **a state that is not in a datum** and **one script that guards two different purposes**.
 
 ## The idea
 
