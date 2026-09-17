@@ -18,7 +18,7 @@ The last lecture had one purpose and one rule. This contract needs two things yo
 
 ## The idea
 
-A shop sells gift cards. You pay 50 ADA today and you get a card. You give the card to a friend. Your friend walks into the shop, hands over the card, and takes 50 ADA of goods. The card is now used up. Nobody can use it a second time.
+Let's say there's a shop that sells gift cards. You go there and buy a gift card redeemable for 50 ADA. You give the card to a friend. Your friend walks into the shop, hands over the card, gets 50 ADA transferred into his account, and the card is destroyed. Nobody can use it again.
 
 The card is a **physical object**, and the shop keeps no list of who has one. The shop destroys the card when the customer hands it over.
 
