@@ -35,35 +35,35 @@ An unlock that points at it:
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the locked UTxO**
-        address: the consumer
-        value: 5 ADA`"]
+        - address: the consumer
+        - value: 5 ADA`"]
         I2["`**your UTxO**
-        address: you
-        value: 4.5 ADA`"]
+        - address: you
+        - value: 4.5 ADA`"]
     end
 
     subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
         S["`**your UTxO holding the script**
-        address: you
-        value: 10 ADA + the consumer's compiled script
-        stays where it is`"]
+        - address: you
+        - value: 10 ADA + the consumer's compiled script
+        - stays where it is`"]
         R["`**the oracle's UTxO**
-        address: the oracle
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 150
-        stays where it is`"]
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 150
+        - stays where it is`"]
     end
 
     TX{{"`**unlock**
-    fee: 0.25 ADA, smaller: the script is not carried
-    the consumer's spend handler runs, read from the reference
-    reads rate = 150 from the oracle
-    collateral offered, not taken`"}}
+    - fee: 0.25 ADA, smaller: the script is not carried
+    - the consumer's spend handler runs, read from the reference
+    - reads rate = 150 from the oracle
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to you**
-        address: you
-        value: 9.25 ADA`"]
+        - address: you
+        - value: 9.25 ADA`"]
     end
 
     I1 --> TX --> O
@@ -126,31 +126,31 @@ An unlock at the consumer contract, with the oracle attached for reading:
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the locked UTxO**
-        address: the consumer
-        value: 5 ADA`"]
+        - address: the consumer
+        - value: 5 ADA`"]
         I2["`**your UTxO**
-        address: you
-        value: 4.5 ADA`"]
+        - address: you
+        - value: 4.5 ADA`"]
     end
 
     subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
         R["`**the oracle's UTxO**
-        address: the oracle
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 150
-        stays where it is`"]
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 150
+        - stays where it is`"]
     end
 
     TX{{"`**unlock**
-    fee: 0.35 ADA
-    the consumer's spend handler runs
-    reads rate = 150 from the reference input
-    collateral offered, not taken`"}}
+    - fee: 0.35 ADA
+    - the consumer's spend handler runs
+    - reads rate = 150 from the reference input
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to you**
-        address: you
-        value: 9.15 ADA`"]
+        - address: you
+        - value: 9.15 ADA`"]
     end
 
     I1 --> TX --> O
@@ -271,7 +271,7 @@ Open both unlocks on the **[Cardano explorer for Preview](https://explorer.carda
 
 ## You have finished the Intermediate track
 
-You can write a validator, compile it, run it from an application, prove that it does what you say it does, and drive it from a page in a browser. You can also take an idea and turn it into a design. You do that by asking four questions: what has to be remembered, which actions are possible, what must be true for each one, and what breaks if a rule is missing.
+You can write a validator, compile it, run it from an application, prove that it does what you say it does, and drive it from a page in a browser. You can also take an idea and turn it into a design. You do that by asking four questions: what the contract has to guarantee, which actions are possible, what must be true for each one, and what has to be remembered to run the checks.
 
 Along the way you built a vault with an admin key and its own token, a deadline, a gift card, an oracle identified by a token that can only be created once, and a contract that reads that oracle's data without touching it.
 

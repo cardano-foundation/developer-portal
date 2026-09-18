@@ -22,33 +22,22 @@ Let's say there's a shop that sells gift cards. You go there and buy a gift card
 
 In this case, we're trusting the shop will transfer the ADA to our friend. But what if we don't trust them? In that case, we don't need to go to the store. We can encode the logic for this use case in a smart contract that ensures these rules are followed, and that our friend gets paid!
 
-A contract has to reproduce three things:
-
-- Anybody may hold the card, and holding it is enough.
-- The funds and the card must move together. The shop must not be able to release the goods and keep the card, and the customer must not be able to keep the card and take the goods.
-- There is one card. The shop must not be able to print a second one for the same funds.
-
-## From idea to contract
+## From idea to architecture
 
 The same four questions as the last lecture.
 
-**1. What has to be remembered?** Nothing at all in the datum. The last lecture wrote the beneficiary into the datum, because the contract had to know **who** may claim. A gift card has no named owner.
+**1. Write down the requirements.** Anybody may hold the card, and holding it is enough, so the card has no named owner. Anybody who holds the card can give it to anybody else. The funds and the card move together: the shop must not be able to release the goods and keep the card, and the customer must not be able to keep the card and take the goods. There is one card, and the shop must not be able to print a second one for the same funds.
 
-So the state lives somewhere else: in the **token itself**. A token that exists means an unused card. A token that has been destroyed means a card that has been used. A token is a piece of state that anybody can hold and transfer, and it needs no datum.
-
-**2. What actions are possible?** Three of them:
+**2. What actions are possible?** Two of them:
 
 - Create a card.
-- Destroy a card.
-- Release the funds that sit behind a card.
+- Redeem a card: destroy it and release the funds behind it.
 
-The first two act on a **token**, so they belong to a `mint` handler. The third acts on a **UTxO**, so it belongs to a `spend` handler. **[Validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** already showed that one script can declare both.
+Creating acts on a **token**, so it belongs to a `mint` handler. Redeeming acts on both a token and a **UTxO**, so it runs two handlers in one transaction: the `mint` handler destroys the card, and the `spend` handler releases the funds. The redeemer tells the mint handler which of its two jobs the transaction wants. Giving the card to somebody is not an action of the contract: the ledger moves tokens between wallets on its own, and that is what makes a card something you can hand to a friend. **[Validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** already showed that one script can declare both.
 
-**3. What must be true for each action?** Creating a card is allowed once and never again. Destroying a card is allowed only together with taking the funds. The spend purpose asks one question: is a card being destroyed in this same transaction? If yes, the funds may leave. If no, they stay.
+**3. What must be true for each action?** Creating a card is allowed once and never again. Remove that limit and anybody can make a second card, destroy that one instead, and take the 50 ADA that belongs to the first. Redeeming has a check in each handler, and they point at each other. The mint handler destroys a card only if the funds are taken in the same transaction. Let the card be destroyed on its own and your friend can throw it away without taking the goods: only one card can ever exist, so nothing is left that can release the funds, and the 50 ADA stays where it is for ever. Nobody gains anything, which is what makes it easy to do by accident. The spend handler releases the funds only if a card is destroyed in the same transaction. Remove that check and the funds leave without any card being destroyed. Anybody can take the 50 ADA, with or without a card, and your friend is left holding a card that opens nothing. One thing is not checked: how much is locked behind the card. The shop is trusted to lock the 50 ADA when it creates the card, so the contract does not look at the value.
 
-**4. What breaks if a rule is missing?** Remove the check in the spend handler and the funds leave without any card being destroyed. Anybody can take the 50 ADA, with or without a card, and your friend is left holding a card that opens nothing. Remove the limit on creating and anybody can make a second card, destroy that one instead, and take the 50 ADA that belongs to the first.
-
-Let the card be destroyed on its own and your friend can throw it away without taking the goods. Only one card can ever exist, so nothing is left that can release the funds, and the 50 ADA stays where it is for ever. Nobody gains anything, which is what makes it easy to do by accident.
+**4. What has to be remembered to run the checks?** Nothing in a datum. The last lecture wrote the beneficiary into the datum, because a check had to know **who** may claim, and no check here needs a name. The state lives in the **token itself**. A token that exists means an unused card. A token that has been destroyed means a card that has been used. A token is a piece of state that anybody can hold and transfer, and it needs no datum.
 
 The design in one sentence: **a card can only ever be created once, and the card and the funds have to move together in both directions: the funds are released only if a card is destroyed, and a card is destroyed only if the funds are released.**
 
@@ -68,25 +57,25 @@ Creating a card is one transaction:
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I["`**your UTxO, the seed**
-        address: you
-        value: 60 ADA`"]
+        - address: you
+        - value: 60 ADA`"]
     end
 
     TX{{"`**create the card**
-    fee: 0.3 ADA
-    the mint handler runs
-    redeemer: Create
-    mint: +1 GIFT
-    the seed is among the inputs
-    collateral offered, not taken`"}}
+    - fee: 0.3 ADA
+    - the mint handler runs
+    - redeemer: Create
+    - mint: +1 GIFT
+    - the seed is among the inputs
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O1["`**the funds behind the card**
-        address: the card's contract
-        value: 50 ADA`"]
+        - address: the card's contract
+        - value: 50 ADA`"]
         O2["`**back to you**
-        address: you
-        value: 9.7 ADA + 1 GIFT`"]
+        - address: you
+        - value: 9.7 ADA + 1 GIFT`"]
     end
 
     I --> TX --> O1
@@ -107,25 +96,25 @@ Both handlers see this one transaction:
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the funds behind the card**
-        address: the card's contract
-        value: 50 ADA`"]
+        - address: the card's contract
+        - value: 50 ADA`"]
         I2["`**your friend's UTxO**
-        address: your friend
-        value: 5 ADA + 1 GIFT`"]
+        - address: your friend
+        - value: 5 ADA + 1 GIFT`"]
     end
 
     TX{{"`**redeem**
-    fee: 0.4 ADA
-    both handlers run
-    spend, redeemer: anything
-    mint, redeemer: Burn
-    mint: -1 GIFT
-    collateral offered, not taken`"}}
+    - fee: 0.4 ADA
+    - both handlers run
+    - spend, redeemer: anything
+    - mint, redeemer: Burn
+    - mint: -1 GIFT
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to your friend**
-        address: your friend
-        value: 54.6 ADA`"]
+        - address: your friend
+        - value: 54.6 ADA`"]
     end
 
     I1 --> TX --> O
@@ -144,9 +133,9 @@ Remember from **[validator purposes](/docs/developers/onboarding/lectures/interm
 ```mermaid
 flowchart TD
     S["one script,<br/>one hash"] -->|as a policy ID| M["`**mint** handler
-    guards making and destroying cards`"]
+    - guards making and destroying cards`"]
     S -->|as the address payment key| P["`**spend** handler
-    guards the funds behind them`"]
+    - guards the funds behind them`"]
 
     U["the seed UTxO<br/>in your wallet"] -.->|"spent, once"| M
     M -.->|"same transaction"| P
@@ -163,13 +152,13 @@ Every card therefore has a contract of its own, and its hash is both the policy 
 ```mermaid
 flowchart LR
     S["the gift card<br/>one source file"] -->|"compile<br/>once"| C["`the contract with a **blank**
-    where the seed goes`"]
+    - where the seed goes`"]
     C -->|"fill it in:<br/>seed = a UTxO you own"| A["`one hash
-    **policy ID** of card A
-    **address** holding card A's funds`"]
+    - policy ID of card A
+    - address holding card A's funds`"]
     C -->|"fill it in:<br/>seed = another UTxO you own"| B["`a different hash
-    **policy ID** of card B
-    **address** holding card B's funds`"]
+    - policy ID of card B
+    - address holding card B's funds`"]
 ```
 
 Selling a second gift card means picking a second seed, then filling the blank in again with the two lines of off-chain code from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters#what-filling-the-blank-actually-involves)**.
@@ -202,7 +191,7 @@ Then the token name, the two actions, and the two handlers:
   {extractRegion(GiftcardAiken, "giftcard")}
 </CodeBlock>
 
-There is no datum type in this file, which is answer 1: the token is the state. The two handlers are answer 2, and the body of each one is answer 3.
+There is no datum type in this file, which is step 4: the token is the state. The two handlers are step 2, and the body of each one is step 3.
 
 - `CardAction` is the mint redeemer, and it reaches the validator as a number: `Create` is constructor 0 and `Burn` is constructor 1.
 - The **mint** handler asks a different question in each branch. `Create` asks for two things: one card is created, and `utxo_ref` is among the inputs. `list.any` compares references only, so the seed does not have to pay for anything or be sent anywhere. `Burn` asks for a card to be destroyed, which is minting a **negative** amount, and for a UTxO at this script's own address to be spent. It says nothing about the seed, because the seed was already spent when the card was created. It finds the script's address the same way the spend handler does, out of the `policy_id` it is handed, since that value is the script's hash.
@@ -231,10 +220,6 @@ Compare the hash with ours:
 <CodeBlock>{validatorHash(GiftcardBlueprint, "giftcard.giftcard.mint")}</CodeBlock>
 
 Your seed is still missing, so this is the script with the blank in it. Filling the blank gives a different hash, and that one is the policy ID and the address of a real card.
-
-**Then break it.** Cut the `Create` branch down to its quantity check, dropping the `list.any` call and the `and` around it, and run the tests again. Six still pass, and `create_fails_without_the_seed` is the one that fails. The compiler also warns that `utxo_ref` is now unused. The contract still creates a card, still refuses two, and still releases the funds when a card is burned. It has stopped being a card that can only be created once.
-
-**Now write the check back yourself, without scrolling up.** The rule in words: creating a card is allowed only when the UTxO the contract was built from is among the transaction's inputs.
 
 [Aiken's own gift card example](https://aiken-lang.org/example--gift-card) builds the same contract together with its off-chain code, and is a good next thing to read.
 
