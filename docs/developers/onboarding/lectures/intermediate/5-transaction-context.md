@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/validators/vault_simple.ak";
+import validatorHash from "@site/src/utils/validatorHash";
+import VaultBlueprint from "@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/plutus.json";
 
 # The transaction context
 
@@ -89,7 +91,7 @@ The context is generous, but it stops at the edge of one transaction. A contract
 :::tip The transaction is the whole world
 A validator runs **inside** a single transaction, and that transaction is everything it can see: its inputs and their datums and values, the UTxOs it references, its outputs, its signatures, its window, etc.
 
-A contract judges the facts already in front of it, and **whoever builds the transaction has to put them there**. That is what the datum, the redeemer and the reference inputs are for. The question is never "how does the contract fetch this", it is "who puts it in, and why should the contract believe them". **Modifying state** builds an oracle, which is that question answered.
+A contract judges the facts already in front of it, and **whoever builds the transaction has to put them there**. That is what the datum, the redeemer and the reference inputs are for. The question is never "how does the contract fetch this", it is "who puts it in, and why should the contract believe them". **[Modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)** builds an oracle, which is that question answered.
 :::
 
 ## Try it
@@ -125,9 +127,7 @@ Green, and you have written a working validator.
 aiken build
 ```
 
-```
-ec431d8627829d7e21119161d909e8a9a15d648a67bff82ccafc3570
-```
+<CodeBlock>{validatorHash(VaultBlueprint, "vault_simple.vault.spend")}</CodeBlock>
 
 If the `hash` in `plutus.json` matches, your vault is ours byte for byte. Notice it is not the hash you compared in **[datum & redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**. One line of rule changed the script, so it changed its identity and its address, exactly as **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** said it would.
 
