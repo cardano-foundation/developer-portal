@@ -35,9 +35,8 @@ What runs underneath an application, where the eUTXO model shapes the design:
 
 An agent that holds a wallet and acts without a human is the same building blocks driven by different logic, plus the infrastructure an agent economy needs.
 
-- **[AI agents on Cardano](/docs/developers/curriculum/dapps/ai-agents/overview)**: what an autonomous on-chain agent requires.
+- **[AI agents on Cardano](/docs/developers/curriculum/dapps/ai-agents/overview)**: what an autonomous on-chain agent requires, and chain access over MCP with the signing boundary intact.
 - **[Agent economy (Masumi)](/docs/developers/curriculum/dapps/ai-agents/masumi)**: identity, escrowed payments, and discovery as a protocol.
-- **[MCP access](/docs/developers/curriculum/dapps/ai-agents/mcp)**: giving an AI assistant Cardano tools, and where the signing boundary stays.
 
 ## Side-track: Internet of Things
 

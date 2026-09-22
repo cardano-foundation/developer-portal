@@ -1,48 +1,82 @@
 ---
 id: ai-assisted-development
-title: Set up your AI assistant
-sidebar_label: Set up your AI assistant
-description: Use AI coding assistants to build on Cardano with current, authoritative context instead of stale training data.
+title: Cardano Dev Skills
+sidebar_label: Cardano Dev Skills
+description: The go-to toolkit for building on Cardano with an AI coding agent. Focused skills for every stage of development, docs refreshed weekly, installed in two commands.
 ---
 
-AI coding assistants are fast, but their training data on Cardano drifts: APIs change, libraries get renamed, and patterns evolve faster than models are retrained. The fix is to give your assistant current, authoritative context, and it costs a couple of minutes to set up.
+[Cardano Dev Skills](https://github.com/cardano-foundation/cardano-dev-skills) is the go-to toolkit for building on Cardano with a coding agent. It gives the agent a focused skill for each stage of development and bundled documentation from active Cardano projects, refreshed weekly, so the agent builds from current sources and moves faster than it would on training data alone. The skills are plain Markdown, and any coding agent that reads Markdown can use them.
 
-## Cardano Dev Skills
+:::tip[Install with one prompt]
 
-[Cardano Dev Skills](https://github.com/cardano-foundation/cardano-dev-skills) is the Cardano Foundation's toolkit for keeping an assistant current. It works with any AI coding agent that reads Markdown, bundling authoritative Cardano documentation and behavioral "skills" refreshed weekly from upstream project repositories, so your assistant answers from current sources rather than guessing from training data.
+The fastest setup is to let the agent do it. Paste this into your coding agent:
 
-It ships:
-
-- **Developer skills** for common workflows: writing validators, building transactions, governance, optimization, and debugging.
-- **Bundled documentation** pulled from active Cardano projects and auto-refreshed weekly.
-- **Hooks** that make the agent consult the bundled context before falling back on its training data.
-
-Its scope is the developer toolchain (SDKs, validator libraries, design patterns, language tooling, protocol specs, and reference implementations), not the product docs of specific deployed apps.
-
-### Add it to your agent
-
-The skills are plain Markdown, so any agent that reads Markdown can use them. In Claude Code:
-
-```
-/plugin marketplace add cardano-foundation/cardano-dev-skills
-/plugin install cardano-dev-skills@cardano-dev-skills
+```text title="prompt"
+Install Cardano Dev Skills in this environment. It is a curated set of
+Cardano skills and indexed documentation that keeps a coding agent
+current. Repository and install instructions:
+https://github.com/cardano-foundation/cardano-dev-skills
+Follow the README for your kind of agent. If a step needs commands only
+I can run, print them for me.
 ```
 
-Then run `/cardano-context` once per project to wire the directive into your `CLAUDE.md`. For Codex or any other agent, clone the repo and symlink the skills into your project's `.agents/skills` directory, or point the agent at the Markdown directly, then add the equivalent directive to whatever file that agent reads at startup. The [repository](https://github.com/cardano-foundation/cardano-dev-skills) has the full list of skills and setup details.
+:::
 
-## Going deeper on a specific SDK
+## Set it up in Claude Code
 
-Start with Cardano Dev Skills: it aggregates context across the whole toolchain and stays tool-agnostic while you are still deciding how to build.
+1. **Install Claude Code.** If it is not on your machine yet, the [quickstart](https://code.claude.com/docs/en/quickstart) takes a few minutes.
 
-Once you've committed to a specific SDK, that SDK may ship its own AI context you can add on top, for depth on its API: correct method ordering, transaction patterns, and framework-specific mappings. [Mesh](https://meshjs.dev/ai) shows what that looks like:
+2. **Add the marketplace, then install the plugin.** In any Claude Code session:
 
-- **Agent Skills**: `npx skills add MeshJS/skills` installs deep SDK knowledge across `mesh-transaction` (MeshTxBuilder, minting, Plutus spending, staking, governance), `mesh-wallet` (CIP-30 and headless wallets, CIP-8 signing), and `mesh-core-cst` (CBOR and Plutus data serialization). The CLI detects your installed AI tools and drops the skills in the right place.
-- **MCP server**: the [`meshjs-mcp`](https://meshjs.dev/ai/mcp) server gives your assistant real-time access to Mesh docs and code generation in VS Code, Cursor, or Claude Desktop.
-- **llms.txt**: paste [`https://meshjs.dev/llms.txt`](https://meshjs.dev/llms.txt) into any assistant for a single, current file of the full Mesh API.
+   ```text title="Claude Code"
+   /plugin marketplace add cardano-foundation/cardano-dev-skills
+   /plugin install cardano-dev-skills@cardano-dev-skills
+   ```
 
-Reach for these only when you're working in Mesh and want more than Cardano Dev Skills already gives you.
+   Run the two commands in that order. Installing without adding the marketplace first can fail with an SSH permission error, even though the repository is public.
 
-## Next steps
+3. **Verify.** `/plugin list` shows `cardano-dev-skills` enabled. The plugin installs once and is active in every session, in any directory. Each new session now opens by reporting how fresh the bundled docs are:
 
-- [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): build, sign, and submit a payment on testnet, then read it back from the chain
-- [Connect an AI assistant with MCP](/docs/developers/curriculum/dapps/ai-agents/mcp): beyond writing code, let an assistant read your live Cardano state and draft transactions you sign
+   ```text title="session start"
+   [Cardano Dev Skills] Docs loaded: 72 sources, 3925 files (updated 2d ago)
+   ```
+
+   Your counts and dates will differ as the sources refresh.
+
+4. **Wire it into your project.** In the project you are working on:
+
+   ```text title="Claude Code"
+   /cardano-context
+   ```
+
+   This writes a small directive block into the project's `CLAUDE.md`, telling Claude to consult the bundled skills and docs before its training data. Claude Code reads `CLAUDE.md` on every turn, so the directive holds across sessions, and it travels with the repository when you commit it.
+
+5. **Ask something that drifts.** A good first prompt is a question whose answer has changed since most models were trained:
+
+   ```text title="first prompt"
+   How do I build and submit a simple payment transaction with Mesh on preprod?
+   ```
+
+   Watch the answer: the agent reads the bundled sources as it works, and the reply reflects the current API rather than an old snapshot. If the agent in some project still answers Cardano questions from memory, run `/cardano-context` in that project.
+
+## Other agents
+
+**Claude Cowork** uses the same plugin format. Open Customize, go to the Plugins tab, add a marketplace from the repository URL `https://github.com/cardano-foundation/cardano-dev-skills`, and install `cardano-dev-skills` once it syncs. The first sync pulls the full bundled docs, so it is not instant.
+
+**Codex, and anything else that reads Markdown**: clone the repository and link the skills into your project, then point the file your agent reads at startup at them, the way `/cardano-context` does for Claude Code.
+
+```bash
+git clone https://github.com/cardano-foundation/cardano-dev-skills.git
+cd your-project
+ln -s ../cardano-dev-skills/skills .agents/skills
+```
+
+## What's inside
+
+A skill is a focused workflow guide: scaffolding a project, writing a validator, building a transaction, debugging one that fails. Alongside the skills, the plugin bundles documentation from active Cardano projects, mirrored locally and auto-refreshed weekly. The scope is the developer toolchain, meaning SDKs, validator libraries, protocol specs and reference implementations, not the product docs of deployed apps. The full list of skills and sources is on the [Cardano Dev Skills site](https://cardano-foundation.github.io/cardano-dev-skills/).
+
+## Going further
+
+- Once you have committed to one SDK, it may ship its own AI context for depth on its API. [Mesh AI](https://meshjs.dev/ai) is the one to know.
+- An agent can also work against live chain state, reading your balances and drafting transactions you sign: [chain access over MCP](/docs/developers/curriculum/dapps/ai-agents/overview#chain-access-over-mcp).
+- With the agent set up, [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) is the natural next build.

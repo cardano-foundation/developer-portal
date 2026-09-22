@@ -1143,6 +1143,8 @@ const redirects = [
   { to: '/docs/operators/relay-configuration/relay-node-configuration', from: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration' },
   { to: '/docs/operators/security/air-gap', from: '/docs/learn/educational-resources/air-gap' },
   { to: '/docs/operators/security/secure-workflow', from: '/docs/learn/cardano-cli/security/secure-workflow' },
+  // The MCP page merged into the AI agents overview (2026-09-22).
+  { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/developers/curriculum/dapps/ai-agents/mcp' },
 ];
 
 module.exports = redirects;
