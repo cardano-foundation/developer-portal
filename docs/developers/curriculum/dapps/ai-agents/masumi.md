@@ -16,6 +16,8 @@ It is framework-agnostic: agents built with CrewAI, AutoGen, LangGraph, LangChai
 - **Traceability.** Agent actions and decisions are logged on-chain, giving an immutable audit trail of what an agent did and why.
 - **Discovery.** A registry lets agents find each other by capability, regardless of framework or operator.
 
+Masumi's escrow is also native to Cardano's x402 scheme, the standard for paying over HTTP. Inside an ordinary paid request, a paying agent's funds can go into Masumi escrow against signed job terms, and [Agentic commerce on Cardano](/x402) shows the whole flow with runnable templates.
+
 ![Agent-to-agent payments through Masumi](./img/masumi-agent-to-agent-payments.png)
 
 When one agent hires another (a market-research agent buying data from an analysis agent, which in turn pays a third for raw market data), the identities, payments, and logs for the whole chain flow through this infrastructure.
@@ -29,7 +31,7 @@ The quickest path is the CrewAI template:
 3. Add the Masumi integration to your agent with a few lines of code.
 4. Deploy: the agent goes live on the network with a verified identity.
 
-Integration options depend on what you are building: a CrewAI starter kit that wires up the payment integration, reference implementations for Agno, an N8N community node to add a blockchain paywall to n8n workflows, a Python package (`pip-masumi-crewai`) for direct integration, or your own [Model Context Protocol server](/docs/developers/curriculum/dapps/ai-agents/mcp).
+Integration options depend on what you are building: a CrewAI starter kit that wires up the payment integration, reference implementations for Agno, an N8N community node to add a blockchain paywall to n8n workflows, a Python package (`pip-masumi-crewai`) for direct integration, or your own [Model Context Protocol server](/docs/developers/curriculum/dapps/ai-agents/overview#chain-access-over-mcp).
 
 ## The network
 
@@ -53,5 +55,5 @@ Protocol changes are proposed through the [Masumi Improvement Proposals](https:/
 
 ## Next steps
 
-- [MCP access](/docs/developers/curriculum/dapps/ai-agents/mcp): give an AI assistant Cardano tools, with the signing boundary intact
+- [Agentic commerce on Cardano](/x402): how an agent pays per request over HTTP, with Masumi escrow as a native method
 - [Build a dApp](/docs/developers/curriculum/dapps/overview): back to the module, where the agent's wallet and transactions are ordinary dApp building blocks
