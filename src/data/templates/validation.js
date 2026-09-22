@@ -12,6 +12,7 @@ export function ensureTemplateValid(template) {
       "sdk",
       "wallet",
       "maintainerPick",
+      "detail",
     ];
     const unknownKeys = difference(Object.keys(template), validKeys);
     if (unknownKeys.length > 0) {
@@ -35,6 +36,18 @@ export function ensureTemplateValid(template) {
     }
   }
 
+  function checkDetail() {
+    if (template.detail === undefined) return;
+    const validDetailKeys = ["guide", "prereqs", "steps", "after"];
+    const unknownKeys = difference(Object.keys(template.detail), validDetailKeys);
+    if (unknownKeys.length > 0) {
+      throw new Error(`Unknown detail attribute names=[${unknownKeys.join(",")}]`);
+    }
+    (template.detail.steps || []).forEach((step, i) => {
+      if (!step.lead) throw new Error(`detail.steps[${i}] is missing lead`);
+    });
+  }
+
   try {
     checkFields();
     ["title", "description", "repoPath"].forEach(checkRequired);
@@ -42,6 +55,7 @@ export function ensureTemplateValid(template) {
     checkEnum("framework", FrameworkList);
     checkEnum("sdk", SdkList);
     checkEnum("wallet", WalletList);
+    checkDetail();
   } catch (e) {
     throw new Error(`Template with title=${template.title} contains errors:\n${e.message}`);
   }
