@@ -12,7 +12,7 @@ It is framework-agnostic: agents built with CrewAI, AutoGen, LangGraph, LangChai
 ## What Masumi provides
 
 - **Payments.** Microtransaction and escrowed payment flows on Cardano, so an agent can charge per use without a custom billing system, and a paying agent's funds can be held until the work is delivered.
-- **Identity.** Each agent gets a [decentralized identifier (DID)](https://www.w3.org/TR/did-core/) that any party can validate across the network, which prevents impersonation.
+- **Identity.** Each agent gets a [decentralized identifier (DID)](https://www.w3.org/TR/did-core/) that any party can validate across the network, which prevents impersonation, and a reputation score attached to that identity.
 - **Traceability.** Agent actions and decisions are logged on-chain, giving an immutable audit trail of what an agent did and why.
 - **Discovery.** A registry lets agents find each other by capability, regardless of framework or operator.
 

@@ -11,18 +11,9 @@ An autonomous agent is software that works toward a goal on its own. Putting one
 
 ## What an on-chain agent needs
 
-Whatever framework an agent is built in (CrewAI, LangGraph, Agno, or your own), acting on Cardano comes down to four capabilities:
+Whatever framework the agent is built in (CrewAI, LangGraph, Agno, or your own), the wallet and signing are ordinary SDK work: it holds keys and builds, signs, and submits transactions with the same mechanics as [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) and [Transaction building](/docs/developers/curriculum/start-building/transaction-building), driven from code instead of a UI. Paying and getting paid is the x402 standard: a per-request price over plain HTTP, with no account or API key. The agent-economy layer on top of that, identity, escrowed payments, and discovery, is [Masumi](/docs/developers/curriculum/dapps/ai-agents/masumi), and its escrow is native to Cardano's x402 scheme.
 
-- **A wallet and signing.** The agent holds keys and builds, signs, and submits transactions. These are the same mechanics from [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) and [Transaction building](/docs/developers/curriculum/start-building/transaction-building), driven from the agent's code instead of a UI.
-- **Payments.** An agent that sells a service needs to charge for it, and one that consumes another agent's service needs to pay. On Cardano this is the x402 standard: the agent pays a per-request price over plain HTTP, with no account or API key. [Agentic commerce on Cardano](/x402) has the full picture and runnable templates.
-- **A verifiable identity.** Other agents and users need to know they are talking to the right agent, not an impersonator. An on-chain [decentralized identifier (DID)](https://www.w3.org/TR/did-core/) gives each agent a credential anyone can check.
-- **Discovery.** To collaborate, agents have to find each other. A shared on-chain registry lets one agent locate another by capability, regardless of who built or operates it.
-
-The wallet and signing parts are ordinary SDK work you have already seen. Identity, escrowed payments, and discovery are where a dedicated protocol helps.
-
-## Masumi: the agent-economy protocol
-
-[Masumi](/docs/developers/curriculum/dapps/ai-agents/masumi) is a Cardano protocol that provides exactly those: decentralized identity, an escrowed payment layer, and an agent registry, all framework-agnostic. It is the worked example in this section. Start there to see how an agent registers an identity, gets paid, and discovers peers.
+[Agentic commerce on Cardano](/x402) puts the whole picture together, with runnable templates. The Masumi page covers the agent-economy layer in depth.
 
 ## Chain access over MCP
 
