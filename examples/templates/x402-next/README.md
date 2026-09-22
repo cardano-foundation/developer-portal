@@ -36,7 +36,9 @@ client-side.
    Expect 20 to 60 seconds for on-chain confirmation.
 
 Headless clients work against the same routes with `@x402/fetch` and a
-mnemonic signer; see the x402-express starter next to this template.
+mnemonic signer; the
+[x402 Express Starter](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/x402-express)
+shows that side.
 
 ## How it is put together
 
@@ -50,7 +52,10 @@ mnemonic signer; see the x402-express starter next to this template.
   frontend. The stock `@x402/paywall` package covers EVM and Solana
   only, so these ~200 lines are the Cardano paywall.
 - `components/Paywall.tsx`: wallet list, pay button, step log, unlocked
-  content.
+  content. The paywall talks CIP-30 directly rather than through a
+  connector library: the payment needs the wallet's raw API for
+  transaction signing, and a connector would add its UI stack and
+  dependencies to a template this small.
 - `scripts/facilitator.ts`: a minimal local facilitator (the offline
   fallback). It holds no keys and no funds, and binds `127.0.0.1` so
   only your machine can reach it (`FACILITATOR_HOST` overrides).
@@ -71,3 +76,20 @@ Cardano Dev Skills gives a coding agent skills and docs for the whole
 Cardano toolchain, refreshed weekly, so it works from current facts. The
 setup guide is on the developer portal:
 <https://developers.cardano.org/docs/developers/curriculum/start-building/ai-assisted-development/>
+
+## Going to production
+
+- `NETWORK`, the Blockfrost project and the asset ids switch to their
+  mainnet forms (`USDM_PREPROD_ASSET` becomes `USDM_MAINNET_ASSET`),
+  and cent-level prices belong in a stablecoin, since the ~1 ADA
+  min-UTxO floor is real money there.
+- Use a facilitator you run or trust, over HTTPS. The seller acts on
+  its verification answers.
+- Give the facilitator scheme a durable `settlementStore`, so replay
+  protection survives restarts and spans replicas (the default is
+  in-memory).
+- The default single confirmation is right for small payments. Raise
+  `extra.confirmationPolicy.l1Confirmations` on a route as its
+  amounts grow.
+- A mainnet paywall must not ship a Blockfrost key to the browser.
+  Route chain queries through your own backend.

@@ -20,12 +20,13 @@ export const Sdks = {
   x402: { label: "x402" },
 };
 
-// Wallet connection approach (exactly one).
+// Wallet connection approach (exactly one). Two values on purpose: the axis
+// that is orthogonal to the SDK column is where signing happens, not which
+// wrapper library sits over CIP-30 (that story lives in the SDK tag and the
+// description).
 export const Wallets = {
-  "connect-with-wallet": { label: "Connect with Wallet" },
-  mesh: { label: "Mesh (built-in)" },
+  "browser-wallet": { label: "Browser wallet (CIP-30)" },
   "server-signer": { label: "Server-side signer" },
-  "browser-wallet": { label: "CIP-30 browser wallet" },
 };
 
 export const FrameworkList = Object.keys(Frameworks);
