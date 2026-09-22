@@ -36,7 +36,9 @@ client-side.
    Expect 20 to 60 seconds for on-chain confirmation.
 
 Headless clients work against the same routes with `@x402/fetch` and a
-mnemonic signer; see the x402-express starter next to this template.
+mnemonic signer; the
+[x402 Express Starter](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/x402-express)
+shows that side.
 
 ## How it is put together
 
@@ -74,3 +76,20 @@ Cardano Dev Skills gives a coding agent skills and docs for the whole
 Cardano toolchain, refreshed weekly, so it works from current facts. The
 setup guide is on the developer portal:
 <https://developers.cardano.org/docs/developers/curriculum/start-building/ai-assisted-development/>
+
+## Going to production
+
+- `NETWORK`, the Blockfrost project and the asset ids switch to their
+  mainnet forms (`USDM_PREPROD_ASSET` becomes `USDM_MAINNET_ASSET`),
+  and cent-level prices belong in a stablecoin, since the ~1 ADA
+  min-UTxO floor is real money there.
+- Use a facilitator you run or trust, over HTTPS. The seller acts on
+  its verification answers.
+- Give the facilitator scheme a durable `settlementStore`, so replay
+  protection survives restarts and spans replicas (the default is
+  in-memory).
+- The default single confirmation is right for small payments. Raise
+  `extra.confirmationPolicy.l1Confirmations` on a route as its
+  amounts grow.
+- A mainnet paywall must not ship a Blockfrost key to the browser.
+  Route chain queries through your own backend.
