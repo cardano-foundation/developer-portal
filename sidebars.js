@@ -8,7 +8,7 @@ module.exports = {
     {
       type: "doc",
       id: "developers/curriculum/start-building/ai-assisted-development",
-      label: "Cardano Dev Skills",
+      label: "Code with AI",
     },
     {
       type: "category",

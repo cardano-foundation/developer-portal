@@ -1,7 +1,7 @@
 ---
 id: ai-assisted-development
 title: Cardano Dev Skills
-sidebar_label: Cardano Dev Skills
+sidebar_label: Code with AI
 description: The go-to toolkit for building on Cardano with an AI coding agent. Focused skills for every stage of development, docs refreshed weekly, installed in two commands.
 ---
 
