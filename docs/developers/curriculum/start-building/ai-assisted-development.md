@@ -9,15 +9,11 @@ description: The go-to toolkit for building on Cardano with an AI coding agent. 
 
 :::tip[Install with one prompt]
 
-The fastest setup is to let the agent do it. Paste this into your coding agent:
+Paste this into your coding agent:
 
 ```text title="prompt"
-Install Cardano Dev Skills in this environment. It is a curated set of
-Cardano skills and indexed documentation that keeps a coding agent
-current. Repository and install instructions:
+Walk me through installing Cardano Dev Skills in this project:
 https://github.com/cardano-foundation/cardano-dev-skills
-Follow the README for your kind of agent. If a step needs commands only
-I can run, print them for me.
 ```
 
 :::
