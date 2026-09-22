@@ -11,7 +11,7 @@ This is the hands-on on-ramp. By the end you will have a working environment, yo
 
 1. **[Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools)**: pick an SDK for your language and get a provider key
 2. **[Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada)**: pick where your code runs, get free test ADA from the faucet, and find a block explorer
-3. **[Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development)**: what the Cardano context contains, how to add it to any agent, and the extra context each SDK ships
+3. **[Cardano Dev Skills](/docs/developers/curriculum/start-building/ai-assisted-development)**: give your coding agent the go-to Cardano toolkit, installed in two commands
 4. **[Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction)**: build, sign, and submit a payment, then read it back from the chain
 5. **[Transaction building](/docs/developers/curriculum/start-building/transaction-building)**: the full builder toolkit, multi-asset outputs, metadata, and patterns beyond a simple payment
 6. **[Query the chain](/docs/developers/curriculum/start-building/query-the-chain)**: read UTXOs, addresses, and history through a provider

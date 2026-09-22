@@ -33,7 +33,7 @@ Pick where you want to start.
 
 <div className="row margin-bottom--md">
   <div className="col col--6">
-    <DocCard item={{type: 'link', href: '/docs/developers/curriculum/start-building/ai-assisted-development', label: 'Set up your assistant', description: 'Cardano Dev Skills, or an agent over MCP.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/curriculum/start-building/ai-assisted-development', label: 'Set up your coding agent', description: 'Cardano Dev Skills, or an agent over MCP.'}} />
   </div>
   <div className="col col--6">
     <DocCard item={{type: 'link', href: '/tools', label: 'Browse Builder Tools', description: 'SDKs, APIs, and libraries by language.'}} />
