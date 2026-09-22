@@ -115,7 +115,7 @@ const CLAIMS = [
   {
     icon: "img/home/rebrand/icon-integrate-payments.svg",
     title: "Non-custodial facilitators",
-    body: "Because the wallet signs the whole transaction, there is nothing left for the facilitator to change. It holds no keys and no funds, and it can only verify and relay. It is lightweight, and anyone can easily run a facilitator themselves.",
+    body: "Because the wallet signs the whole transaction, there is nothing left for the facilitator to change and no signature of its own to add. It holds no keys and no funds, and it can only verify and relay. It is lightweight, and anyone can easily run a facilitator themselves.",
   },
 ];
 
