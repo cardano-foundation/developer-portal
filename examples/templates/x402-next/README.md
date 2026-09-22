@@ -71,3 +71,10 @@ Cardano Dev Skills gives a coding agent skills and docs for the whole
 Cardano toolchain, refreshed weekly, so it works from current facts. The
 setup guide is on the developer portal:
 <https://developers.cardano.org/docs/developers/curriculum/start-building/ai-assisted-development/>
+
+## Going to production
+
+The [Express starter's notes](../x402-express/README.md#going-to-production)
+apply unchanged. One addition: a mainnet paywall must not ship a
+Blockfrost key to the browser, so route chain queries through your
+own backend.
