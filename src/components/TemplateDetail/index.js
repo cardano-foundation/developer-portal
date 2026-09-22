@@ -53,6 +53,25 @@ function CodeBlock({ code }) {
   );
 }
 
+// Sentences from a template's `detail` override (templates.js): plain strings
+// mixed with { label, to } internal or { label, href } external links.
+function Segments({ segments }) {
+  return segments.map((seg, i) => {
+    if (typeof seg === "string") {
+      return <React.Fragment key={i}>{seg}</React.Fragment>;
+    }
+    return seg.to ? (
+      <Link key={i} to={seg.to}>
+        {seg.label}
+      </Link>
+    ) : (
+      <Link key={i} href={seg.href} {...EXTERNAL_LINK_PROPS}>
+        {seg.label}
+      </Link>
+    );
+  });
+}
+
 function MetaRow({ label, value }) {
   if (!value) return null;
   return (
@@ -92,6 +111,7 @@ export default function TemplateDetail({ slug }) {
 
   const pageTitle = `${template.title}, Cardano dApp template`;
   const pageDescription = template.description;
+  const detail = template.detail;
 
   return (
     <Layout title={pageTitle} description={pageDescription}>
@@ -120,37 +140,65 @@ export default function TemplateDetail({ slug }) {
             <div className={styles.main}>
               <p className={styles.description}>{template.description}</p>
 
-              <p className={styles.guideNote}>
-                New to building on Cardano? Start with the{" "}
-                <Link to="/docs/developers/curriculum/dapps/your-first-dapp">
-                  Build a dApp guide
-                </Link>
-                .
-              </p>
+              {detail?.guide ? (
+                <p className={styles.guideNote}>
+                  <Segments segments={detail.guide} />
+                </p>
+              ) : (
+                <p className={styles.guideNote}>
+                  New to building on Cardano? Start with the{" "}
+                  <Link to="/docs/developers/curriculum/dapps/your-first-dapp">
+                    Build a dApp guide
+                  </Link>
+                  .
+                </p>
+              )}
 
               <h2 className={styles.sectionHeading}>Get started</h2>
-              <p className={styles.guideNote}>
-                You need Node.js 20.19+, a Cardano wallet browser extension, and a
-                free <Link href="https://blockfrost.io" {...EXTERNAL_LINK_PROPS}>Blockfrost</Link> project
-                ID. Get test ADA from the{" "}
-                <Link to="/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada">
-                  faucet
-                </Link>
-                .
-              </p>
+              {detail?.prereqs ? (
+                <p className={styles.guideNote}>
+                  <Segments segments={detail.prereqs} />
+                </p>
+              ) : (
+                <p className={styles.guideNote}>
+                  You need Node.js 20.19+, a Cardano wallet browser extension, and a
+                  free <Link href="https://blockfrost.io" {...EXTERNAL_LINK_PROPS}>Blockfrost</Link> project
+                  ID. Get test ADA from the{" "}
+                  <Link to="/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada">
+                    faucet
+                  </Link>
+                  .
+                </p>
+              )}
               <ol className={styles.steps}>
                 <li>
                   Scaffold the project into a new <code>my-app</code> folder:
                   <CodeBlock code={template.command} />
                 </li>
-                <li>
-                  Install dependencies and start the dev server:
-                  <CodeBlock code={`cd my-app\nnpm install\ncp .env.example .env\nnpm run dev`} />
-                </li>
-                <li>
-                  Set the env values from the template README, then start building.
-                </li>
+                {detail?.steps ? (
+                  detail.steps.map((step, i) => (
+                    <li key={i}>
+                      <Segments segments={step.lead} />
+                      {step.code && <CodeBlock code={step.code} />}
+                    </li>
+                  ))
+                ) : (
+                  <>
+                    <li>
+                      Install dependencies and start the dev server:
+                      <CodeBlock code={`cd my-app\nnpm install\ncp .env.example .env\nnpm run dev`} />
+                    </li>
+                    <li>
+                      Set the env values from the template README, then start building.
+                    </li>
+                  </>
+                )}
               </ol>
+              {detail?.after && (
+                <p className={styles.guideNote}>
+                  <Segments segments={detail.after} />
+                </p>
+              )}
               <Link
                 href={template.githubUrl}
                 className={styles.readmeLink}
