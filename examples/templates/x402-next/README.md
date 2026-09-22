@@ -50,7 +50,10 @@ mnemonic signer; see the x402-express starter next to this template.
   frontend. The stock `@x402/paywall` package covers EVM and Solana
   only, so these ~200 lines are the Cardano paywall.
 - `components/Paywall.tsx`: wallet list, pay button, step log, unlocked
-  content.
+  content. The paywall talks CIP-30 directly rather than through a
+  connector library: the payment needs the wallet's raw API for
+  transaction signing, and a connector would add its UI stack and
+  dependencies to a template this small.
 - `scripts/facilitator.ts`: a minimal local facilitator (the offline
   fallback). It holds no keys and no funds, and binds `127.0.0.1` so
   only your machine can reach it (`FACILITATOR_HOST` overrides).

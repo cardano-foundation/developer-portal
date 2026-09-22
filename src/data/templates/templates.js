@@ -35,7 +35,7 @@ export const Templates = [
     repoPath: "examples/templates/evolution-vite-react",
     framework: "vite-react",
     sdk: "evolution",
-    wallet: "connect-with-wallet",
+    wallet: "browser-wallet",
     maintainerPick: true,
   },
   {
@@ -45,7 +45,7 @@ export const Templates = [
     repoPath: "examples/templates/mesh-nextjs",
     framework: "nextjs",
     sdk: "mesh",
-    wallet: "mesh",
+    wallet: "browser-wallet",
     maintainerPick: true,
   },
   {
