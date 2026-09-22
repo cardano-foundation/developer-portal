@@ -72,6 +72,24 @@ Cardano toolchain, refreshed weekly, so it works from current facts. The
 setup guide is on the developer portal:
 <https://developers.cardano.org/docs/developers/curriculum/start-building/ai-assisted-development/>
 
+## Going to production
+
+- `NETWORK`, the Blockfrost project and the asset ids switch to their
+  mainnet forms (`USDM_PREPROD_ASSET` becomes `USDM_MAINNET_ASSET`),
+  and cent-level prices belong in a stablecoin, since the ~1 ADA
+  min-UTxO floor is real money there.
+- Use a facilitator you run or trust, over HTTPS. The seller acts on
+  its verification answers.
+- Give the facilitator scheme a durable `settlementStore`, so replay
+  protection survives restarts and spans replicas (the default is
+  in-memory).
+- The default single confirmation is right for small payments. Raise
+  `extra.confirmationPolicy.l1Confirmations` on a route as its
+  amounts grow.
+- The seller stays keyless (an address is all it holds). Move the
+  buyer's mnemonic from `.env` to a secret store and keep its spend
+  ceiling on.
+
 ## Going further
 
 - The full protocol tour (browser wallet, USDM route, Masumi escrow, a
