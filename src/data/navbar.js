@@ -65,17 +65,18 @@ function getNavbarItems(repository) {
         {
           title: 'Build',
           items: [
-            {to: '/tools/', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'wrench'},
-            {to: '/templates/', label: 'Templates', description: 'Runnable dApp starters you can scaffold in one command', icon: 'code'},
-            {to: '/templates/contracts/', label: 'Contracts Library', description: 'Reference smart contracts by use case', icon: 'scroll'},
-            {to: '/docs/developers/curriculum/start-building/ai-assisted-development/', label: 'Cardano Dev Skills', description: 'Current Cardano context for your AI coding assistant', icon: 'plug'},
+            {to: '/tools/', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'gear'},
+            {to: '/templates/', label: 'Templates', description: 'Runnable dApp starters you can scaffold in one command', icon: 'template'},
+            {to: '/templates/contracts/', label: 'Contracts Library', description: 'Reference smart contracts by use case', icon: 'build'},
+            {to: '/docs/developers/curriculum/start-building/ai-assisted-development/', label: 'Code with AI', description: 'Cardano Dev Skills, current Cardano context for your coding agent', icon: 'package'},
+            {to: '/x402/', label: 'Agentic Commerce', description: 'Internet-native payments on Cardano with x402', icon: 'payments'},
           ],
         },
         {
           title: 'Guides',
           items: [
-            {to: '/docs/developers/cardano-for-ethereum-developers/', label: 'Cardano for Ethereum Developers', description: 'Map your existing mental model to Cardano', icon: 'shapes'},
-            {to: '/docs/developers/exchange-integrations/', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration', icon: 'building'},
+            {to: '/docs/developers/cardano-for-ethereum-developers/', label: 'Cardano for Ethereum Developers', description: 'Map your existing mental model to Cardano', icon: 'eth'},
+            {to: '/docs/developers/exchange-integrations/', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration', icon: 'exchange'},
           ],
         },
       ],
@@ -86,9 +87,9 @@ function getNavbarItems(repository) {
         {
           title: 'Run a Stake Pool',
           items: [
-            {to: '/docs/operators/', label: 'Overview', description: 'What it takes to run a stake pool', icon: 'book'},
-            {to: '/docs/operators/basics/consensus-staking/', label: 'Handbook', description: 'Step by step from setup to governance', icon: 'building'},
-            {to: '/docs/operators/operator-tools/guild-ops-suite/', label: 'Operator Tools', description: 'Guild Ops, Calidus keys, and Mithril', icon: 'wrench'},
+            {to: '/docs/operators/', label: 'Overview', description: 'What it takes to run a stake pool', icon: 'overview'},
+            {to: '/docs/operators/basics/consensus-staking/', label: 'Handbook', description: 'Step by step from setup to governance', icon: 'package'},
+            {to: '/docs/operators/operator-tools/guild-ops-suite/', label: 'Operator Tools', description: 'Guild Ops, Calidus keys, and Mithril', icon: 'gear'},
           ],
         },
       ],
@@ -107,17 +108,17 @@ function getNavbarItems(repository) {
         {
           title: 'Community',
           items: [
-            {to: '/docs/community/cardano-developer-community/', label: 'Community', description: 'Forums, chats, and weekly office hours', icon: 'people-group'},
-            {to: '/talent/', label: 'Talent Pool', description: 'Hackathons, jobs, and grants for developers', icon: 'users'},
-            {to: '/docs/community/funding/', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'handshake'},
+            {to: '/docs/community/cardano-developer-community/', label: 'Community', description: 'Forums, chats, and weekly office hours', icon: 'people'},
+            {to: '/talent/', label: 'Talent Pool', description: 'Hackathons, jobs, and grants for developers', icon: 'profile'},
+            {to: '/docs/community/funding/', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'payments'},
           ],
         },
         {
           title: 'Stay Current',
           items: [
-            {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book'},
-            {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Ecosystem-wide development progress', icon: 'chart-line'},
-            {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll'},
+            {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'list'},
+            {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Ecosystem-wide development progress', icon: 'chain'},
+            {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'eye'},
           ],
         },
       ],
