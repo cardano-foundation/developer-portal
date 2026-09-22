@@ -47,13 +47,13 @@ https://github.com/cardano-foundation/cardano-dev-skills
 
    This writes a small directive block into the project's `CLAUDE.md`, telling Claude to consult the bundled skills and docs before its training data. Claude Code reads `CLAUDE.md` on every turn, so the directive holds across sessions, and it travels with the repository when you commit it.
 
-5. **Ask something that drifts.** A good first prompt is a question whose answer has changed since most models were trained:
+5. **Put it to work.** Typing `/` lists the skills the plugin added, one per workflow: `/scaffold-project`, `/write-validator`, `/debug-transaction` and the rest. Or start wide:
 
    ```text title="first prompt"
-   How do I build and submit a simple payment transaction with Mesh on preprod?
+   Brainstorm a Cardano app with me, then walk me through building it.
    ```
 
-   Watch the answer: the agent reads the bundled sources as it works, and the reply reflects the current API rather than an old snapshot. If the agent in some project still answers Cardano questions from memory, run `/cardano-context` in that project.
+   The agent reads the bundled sources as it works. If it answers Cardano questions from memory in some project, run `/cardano-context` there.
 
 ## Other agents
 
@@ -73,6 +73,6 @@ A skill is a focused workflow guide: scaffolding a project, writing a validator,
 
 ## Going further
 
-- Once you have committed to one SDK, it may ship its own AI context for depth on its API. [Mesh AI](https://meshjs.dev/ai) is the one to know.
+- SDKs and protocols ship their own AI context to layer on top: [Mesh AI](https://meshjs.dev/ai) for the Mesh API, [Masumi Skills](https://www.masumi.network/dev/masumi/documentation/integrations/masumi-skills) for Masumi's agent stack.
 - An agent can also work against live chain state, reading your balances and drafting transactions you sign: [chain access over MCP](/docs/developers/curriculum/dapps/ai-agents/overview#chain-access-over-mcp).
 - With the agent set up, [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) is the natural next build.
