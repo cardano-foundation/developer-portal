@@ -12,7 +12,7 @@ description: The go-to toolkit for building on Cardano with an AI coding agent. 
 Paste this into your coding agent:
 
 ```text title="prompt"
-Walk me through installing Cardano Dev Skills in this project:
+Walk me through installing Cardano Dev Skills:
 https://github.com/cardano-foundation/cardano-dev-skills
 ```
 
