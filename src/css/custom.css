@@ -844,8 +844,9 @@ html[data-theme="dark"] .megaMenuItemIconTile {
 }
 
 .megaMenuItemIcon {
-  width: 18px;
-  height: 18px;
+  /* The design draws the brand icons at 30px inside the 40px tile. */
+  width: 30px;
+  height: 30px;
   fill: currentColor;
 }
 
