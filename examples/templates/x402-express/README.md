@@ -80,11 +80,12 @@ setup guide is on the developer portal:
   min-UTxO floor is real money there.
 - Use a facilitator you run or trust, over HTTPS. The seller acts on
   its verification answers.
-- Pass the facilitator scheme a durable `settlementStore`: the
-  default guard is in-memory, and a restart or a second replica can
-  rebroadcast an already-settled payment.
-- Set `extra.confirmationPolicy.l1Confirmations` per route, higher
-  for anything you would not want rolled back.
+- Give the facilitator scheme a durable `settlementStore`, so replay
+  protection survives restarts and spans replicas (the default is
+  in-memory).
+- The default single confirmation is right for small payments. Raise
+  `extra.confirmationPolicy.l1Confirmations` on a route as its
+  amounts grow.
 - The seller stays keyless (an address is all it holds). Move the
   buyer's mnemonic from `.env` to a secret store and keep its spend
   ceiling on.
