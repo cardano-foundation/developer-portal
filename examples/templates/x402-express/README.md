@@ -41,6 +41,9 @@ needs chain infrastructure beyond Blockfrost. It holds no keys and no funds.
   facilitator scheme; it needs only your `BLOCKFROST_PROJECT_ID`. Keep
   `FACILITATOR_URL=http://localhost:4022` and run it in a second terminal
   (or let `npm run demo` talk to whichever facilitator the env points at).
+  It binds `127.0.0.1`, so only your machine can reach it; set
+  `FACILITATOR_HOST=0.0.0.0` only to share one with your team deliberately
+  (every request spends your Blockfrost quota).
 
 ## Troubleshooting
 

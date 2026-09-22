@@ -92,6 +92,10 @@ app.get("/health", (_req, res) => {
 });
 
 const port = Number(process.env.FACILITATOR_PORT ?? 4022);
-app.listen(port, () => {
-  console.log(`Facilitator listening on http://localhost:${port} (${NETWORK})`);
+// Loopback by default: every /verify and /settle spends your Blockfrost
+// quota, so the facilitator should not be reachable from the network unless
+// you opt in (FACILITATOR_HOST=0.0.0.0 to share one deliberately).
+const host = process.env.FACILITATOR_HOST ?? "127.0.0.1";
+app.listen(port, host, () => {
+  console.log(`Facilitator listening on http://${host}:${port} (${NETWORK})`);
 });

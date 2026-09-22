@@ -52,7 +52,8 @@ mnemonic signer; see the x402-express starter next to this template.
 - `components/Paywall.tsx`: wallet list, pay button, step log, unlocked
   content.
 - `scripts/facilitator.ts`: a minimal local facilitator (the offline
-  fallback). It holds no keys and no funds.
+  fallback). It holds no keys and no funds, and binds `127.0.0.1` so
+  only your machine can reach it (`FACILITATOR_HOST` overrides).
 
 ## Troubleshooting
 
