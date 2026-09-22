@@ -6,6 +6,11 @@ module.exports = {
       label: "Start Here",
     },
     {
+      type: "doc",
+      id: "developers/curriculum/start-building/ai-assisted-development",
+      label: "Code with AI",
+    },
+    {
       type: "category",
       label: "Curriculum",
       collapsed: false,
@@ -49,7 +54,6 @@ module.exports = {
           items: [
             "developers/curriculum/start-building/choose-your-tools",
             "developers/curriculum/start-building/networks-and-test-ada",
-            "developers/curriculum/start-building/ai-assisted-development",
             "developers/curriculum/start-building/your-first-transaction",
             "developers/curriculum/start-building/transaction-building",
             "developers/curriculum/start-building/query-the-chain",
@@ -216,7 +220,6 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/ai-agents/masumi",
-                "developers/curriculum/dapps/ai-agents/mcp",
               ],
             },
             {

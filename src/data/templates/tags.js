@@ -10,18 +10,23 @@
 export const Frameworks = {
   "vite-react": { label: "Vite + React" },
   nextjs: { label: "Next.js" },
+  node: { label: "Node.js" },
 };
 
 // Cardano SDK the template builds transactions with (exactly one).
 export const Sdks = {
   evolution: { label: "Evolution" },
   mesh: { label: "Mesh" },
+  x402: { label: "x402" },
 };
 
-// Wallet connection approach (exactly one).
+// Wallet connection approach (exactly one). Two values on purpose: the axis
+// that is orthogonal to the SDK column is where signing happens, not which
+// wrapper library sits over CIP-30 (that story lives in the SDK tag and the
+// description).
 export const Wallets = {
-  "connect-with-wallet": { label: "Connect with Wallet" },
-  mesh: { label: "Mesh (built-in)" },
+  "browser-wallet": { label: "Browser wallet (CIP-30)" },
+  "server-signer": { label: "Server-side signer" },
 };
 
 export const FrameworkList = Object.keys(Frameworks);

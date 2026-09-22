@@ -720,6 +720,9 @@ html[data-theme="dark"] .navbar__item--mega[data-open] .megaMenuTrigger {
   max-width: min(1010px, calc(100vw - 2rem));
   padding: 20px 30px;
   background: var(--site-color-cream);
+  /* The panel floats over grounds of its own color, so the shadow alone
+     does not close its edge; a hairline in the site's card language does. */
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
   border-radius: var(--site-radius-lg);
   box-shadow: 4px 8px 15px rgb(var(--site-color-navy-rgb) / 0.1);
   opacity: 0;
@@ -733,6 +736,7 @@ html[data-theme="dark"] .megaMenuPanel {
   --mega-item-border: #133483;
   --mega-chip-bg: #112256;
   background: #0E1A40;
+  border-color: var(--mega-item-border);
   box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.35);
 }
 
@@ -832,15 +836,39 @@ html[data-theme="dark"] .megaMenuItemIconTile {
   color: var(--site-color-cream);
 }
 
+/* The brand icons carry their own navy-blue and amber fills, so the tile
+   no longer flips to amber on hover (that flip was designed for the old
+   single-color icons and would swallow the amber accents). */
 .megaMenuItemLink:hover .megaMenuItemIconTile {
-  background: var(--site-color-amber);
-  color: var(--site-color-navy);
+  background: var(--mega-chip-bg);
 }
 
 .megaMenuItemIcon {
-  width: 18px;
-  height: 18px;
+  /* The design draws the brand icons at 30px inside the 40px tile. */
+  width: 30px;
+  height: 30px;
   fill: currentColor;
+}
+
+/* The brand icons are navy blue with amber accents in light mode; in dark
+   mode the blue turns white, per the design's dark treatment, and the amber
+   accents stay. Their roots carry fill="none", which must survive the
+   currentColor rule above or stroke-drawn paths get filled solid. White
+   knockout shapes track the tile background so they read as cutouts. */
+.megaMenuItemIcon[fill="none"] {
+  fill: none;
+}
+
+html[data-theme="dark"] .megaMenuItemIcon [fill="#004FFE"] {
+  fill: #ffffff;
+}
+
+html[data-theme="dark"] .megaMenuItemIcon [stroke="#004FFE"] {
+  stroke: #ffffff;
+}
+
+.megaMenuItemIcon [fill="white"] {
+  fill: var(--mega-chip-bg);
 }
 
 .megaMenuItemContent {
