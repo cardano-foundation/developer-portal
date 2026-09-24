@@ -116,7 +116,7 @@ This is also the only sense in which a Cardano contract is "deployed", a point *
 
 ### What it is
 
-A reference input is a UTxO that a transaction attaches only in order to **read** it. The UTxO stays where it is, and the validator can read its datum.
+A reference input is a UTxO that a transaction attaches only in order to **read** it. The UTxO stays where it is, and the validator can read its datum, value, address, etc.
 
 Inside the validator, referenced UTxOs arrive in their own field, `reference_inputs`, separate from the ones being spent. You met that field in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
