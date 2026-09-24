@@ -72,6 +72,10 @@ Cardano toolchain, refreshed weekly, so it works from current facts. The
 setup guide is on the developer portal:
 <https://developers.cardano.org/docs/developers/curriculum/start-building/ai-assisted-development/>
 
+The x402 overview for Cardano is at <https://developers.cardano.org/x402>,
+with a plain-text version for coding agents at
+<https://developers.cardano.org/x402/agent.md>.
+
 ## Going to production
 
 - `NETWORK`, the Blockfrost project and the asset ids switch to their
