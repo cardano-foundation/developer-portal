@@ -27,7 +27,7 @@ You need to reference an input as soon as another contract wants to use the orac
 
 A reference script is a compiled contract that has been stored inside a UTxO on the chain. After you store it, a transaction can point at that UTxO instead of carrying its own copy of the contract.
 
-The UTxO that holds the script is an ordinary one at **your own address**. The ADA inside it stays yours. Nothing about the contract changes: same code, same hash, same address, same answers.
+The UTxO that holds the script is an ordinary one at **any address**. You can use your own address, someone else's, or another contract address, depending on your needs and preferences. Nothing about the contract changes: same code, same hash, same address, same answers.
 
 An unlock that points at it:
 
