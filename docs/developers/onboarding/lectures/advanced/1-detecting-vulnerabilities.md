@@ -467,3 +467,5 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 - [Cardano CTF](/docs/developers/curriculum/smart-contracts/security/ctf): deliberately vulnerable contracts to attack, with a guided series to start on.
 
 The handbook's **[security](/docs/developers/curriculum/smart-contracts/security#common-security-patterns)** page continues with the patterns that close these doors and with how to prepare a contract for an audit.
+
+Next: **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization)**.

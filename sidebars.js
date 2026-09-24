@@ -590,6 +590,7 @@ module.exports = {
           },
           items: [
             "developers/onboarding/lectures/advanced/detecting-vulnerabilities",
+            "developers/onboarding/lectures/advanced/optimization",
           ],
         },
       ],
