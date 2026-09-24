@@ -94,6 +94,37 @@ const SELLER_LINES = [
   [{ t: "c", x: "// The template wires the rest." }],
 ];
 
+/* Areas around the payment layer, drawn from what other ecosystems'
+   agentic-commerce hackathons and the wider industry treat as open.
+   x402 and Masumi cover payment, identity, discovery and escrow, so none
+   of these asks builders to rebuild them. */
+const AREAS = [
+  {
+    title: "Spending control",
+    body: "Agents spend on someone's behalf. Budgets, limits and approvals enforced on chain keep a person in control.",
+  },
+  {
+    title: "Usage-based pricing",
+    body: "Credits, subscriptions and metered sessions let agents pay for what they use, beyond a single request.",
+  },
+  {
+    title: "Trust and reputation",
+    body: "Agents need to judge a service before they pay it. Reputation and proof of good work can build on Masumi's identity and on-chain history.",
+  },
+  {
+    title: "Privacy",
+    body: "Agents act for people and businesses with details to protect. Build commerce that keeps those details private.",
+  },
+  {
+    title: "Business operations",
+    body: "Agents that pay invoices, manage treasury and settle with suppliers.",
+  },
+  {
+    title: "New sellers",
+    body: "Publishers, compute providers, devices and services on other networks can sell to agents per use.",
+  },
+];
+
 /* Grounded in docs/05 pitch angles and masumi.network's why-Cardano
    page; every sentence is defensible as written. */
 const CLAIMS = [
@@ -467,6 +498,26 @@ export default function X402Page() {
                   <ExternalArrow />
                 </a>
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <div className="container">
+            <div className={home.sectionHeader}>
+              <h2>Beyond the payment</h2>
+              <p>
+                x402 handles the payment. Masumi adds agent identity, discovery and escrow. Build
+                on both for what agentic commerce needs next.
+              </p>
+            </div>
+            <div className={styles.areaGrid}>
+              {AREAS.map(area => (
+                <div key={area.title} className={styles.areaCard}>
+                  <h4>{area.title}</h4>
+                  <p>{area.body}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
