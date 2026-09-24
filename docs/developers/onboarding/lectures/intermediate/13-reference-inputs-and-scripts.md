@@ -19,7 +19,7 @@ Until now, a transaction could do only one thing with a UTxO: **spend** it. Take
 - A **reference script** points at published **code**.
 - A **reference input** points at published **data**.
 
-You need both as soon as another contract wants to use the oracle from the last lecture.
+You need to reference an input as soon as another contract wants to use the oracle from the last lecture, and we'll use a reference script to make oracle management cheaper and more effective.
 
 ## Reference scripts
 
