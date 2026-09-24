@@ -742,3 +742,25 @@ html[data-theme="dark"] .agentDivider {
   font-size: 0.9rem;
   color: var(--site-color-text-muted);
 }
+
+/* Masumi as its own path under the template cards, in the banner
+   pattern of the Masumi panel. */
+.masumiPath {
+  margin-top: 1.5rem;
+}
+
+.masumiPathLink {
+  flex: none;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .masumiPathLink {
+    margin-left: 0;
+  }
+}

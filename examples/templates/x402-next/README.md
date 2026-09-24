@@ -49,8 +49,8 @@ shows that side.
 - `lib/x402/cip30.ts` and `lib/x402/payFlow.ts`: the browser payment
   blocks, adapted from the
   [x402-cardano-demo](https://github.com/cardano-foundation/x402-cardano-demo)
-  frontend. The stock `@x402/paywall` package covers EVM and Solana
-  only, so these ~200 lines are the Cardano paywall.
+  frontend. The stock `@x402/paywall` package covers EVM, Solana and
+  Algorand only, so these ~280 lines are the Cardano paywall.
 - `components/Paywall.tsx`: wallet list, pay button, step log, unlocked
   content. The paywall talks CIP-30 directly rather than through a
   connector library: the payment needs the wallet's raw API for
@@ -65,8 +65,8 @@ shows that side.
 | Symptom | Cause and fix |
 | --- | --- |
 | "No CIP-30 wallet found" | Install Eternl or Lace, enable it for this site, reload. |
-| "Switch your wallet to Cardano preprod" | The wallet is on mainnet or preview. Change its network to preprod. |
-| "No live preprod inputs match your wallet" | The wallet is unfunded, or its UTxO cache is stale after a payment. Fund it or wait a minute. |
+| "Switch your wallet to Cardano preprod" | The wallet is on mainnet. Change its network to preprod. |
+| "No live preprod inputs match your wallet" | The wallet is unfunded, on preview (preview and preprod share network id 0), or its UTxO cache is stale after a payment. Fund it, switch to preprod, or wait a minute. |
 | Payment rejected before submission | The facilitator log has the reason (`invalidReason`). |
 | Everything takes 20 to 60 seconds after paying | One on-chain confirmation on preprod. It is the chain, not a bug. |
 

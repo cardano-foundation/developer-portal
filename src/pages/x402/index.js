@@ -61,7 +61,7 @@ const SELLER_LINES = [
     { t: "p", x: "    " },
     { t: "v", x: "network" },
     { t: "p", x: ": " },
-    { t: "s", x: '"cardano:mainnet"' },
+    { t: "s", x: '"cardano:preprod"' },
     { t: "p", x: "," },
   ],
   [
@@ -78,7 +78,7 @@ const SELLER_LINES = [
     { t: "p", x: "             " },
     { t: "v", x: "asset" },
     { t: "p", x: ": " },
-    { t: "v", x: "USDM_MAINNET_ASSET" },
+    { t: "v", x: "USDM_PREPROD_ASSET" },
     { t: "p", x: " }," },
   ],
   [
@@ -98,9 +98,9 @@ const SELLER_LINES = [
    page; every sentence is defensible as written. */
 const CLAIMS = [
   {
-    icon: "img/home/rebrand/icon-stake-pool.svg",
-    title: "Payments in parallel",
-    body: "An agent's payment spends its own funds, held as discrete on-chain objects in Cardano's eUTxO accounting model. Payments share nothing, so they do not wait on each other. A thousand agents can pay the same API at once.",
+    icon: "img/home/rebrand/icon-smart-contracts.svg",
+    title: "Payments with rules",
+    body: "A payment can go to a smart contract instead of an address, locking the funds under rules the seller declares, such as a delivery deadline, a refund window or a release condition. Masumi's escrow is one such contract, and the ledger enforces the rules before the funds can leave it.",
   },
   {
     icon: "img/home/rebrand/icon-native-tokens.svg",
@@ -110,43 +110,43 @@ const CLAIMS = [
   {
     icon: "img/home/rebrand/icon-transaction-metadata.svg",
     title: "Deterministic transactions",
-    body: "A Cardano transaction states its full effect in its own body, down to the exact fee. Nothing is decided after signing, which is what lets an agent commit funds on its own. It lands exactly as written or is rejected outright.",
+    body: "An agent sees exactly what a payment will do before it signs: the amount, the recipient and the exact fee are all in the transaction. Once signed, nothing can change it, and it lands exactly as written or not at all.",
   },
   {
     icon: "img/home/rebrand/icon-integrate-payments.svg",
     title: "Non-custodial facilitators",
-    body: "Because the wallet signs the whole transaction, there is nothing left for the facilitator to change and no signature of its own to add. It holds no keys and no funds, and it can only verify and relay. It is lightweight, and anyone can easily run a facilitator themselves.",
+    body: "Because the wallet signs the whole transaction, there is nothing left for the facilitator to change and no signature of its own to add. It holds no keys and no funds, and it can only verify and relay. Anyone can run one: the template's facilitator is about 100 lines.",
   },
 ];
 
 const COMPARE_ROWS = [
   {
     feature: "Address payments",
-    detail: "A direct payment to a wallet address, the baseline every chain supports.",
+    detail: "A direct payment to a wallet address.",
     href: "https://docs.x402.org/schemes/exact",
     cols: [true, true],
   },
   {
     feature: "Refunds",
-    detail: "If nothing is delivered, the escrowed payment goes back to the client automatically.",
+    detail: "The payment waits in an on-chain escrow. If nothing is delivered, the buyer requests a refund before the deadline.",
     href: "https://www.masumi.network/dev/masumi/core-concepts/refunds-and-disputes",
     cols: [false, true],
   },
   {
     feature: "Decision logging",
-    detail: "Payment decisions are recorded on-chain, decentralized and auditable.",
+    detail: "A hash of each job's input and output is stored on chain, so either side can prove what was delivered.",
     href: "https://www.masumi.network/dev/masumi/core-concepts/decision-logging",
     cols: [false, true],
   },
   {
     feature: "Discovery",
-    detail: "A public registry of agents, searchable through an API.",
+    detail: "An on-chain registry of agents, searchable through an API.",
     href: "https://www.masumi.network/dev/masumi/core-concepts/registry",
     cols: [false, true],
   },
   {
     feature: "Identity",
-    detail: "Every agent gets a decentralized ID and a reputation score.",
+    detail: "Every registered agent gets an on-chain ID.",
     href: "https://www.masumi.network/dev/masumi/core-concepts/identity",
     cols: [false, true],
   },
@@ -309,9 +309,9 @@ export default function X402Page() {
               </div>
               <div className={clsx(home.heroRight, styles.heroStackedRight)}>
                 <p className={home.heroSubtitle}>
-                  x402 lets any service charge for access over plain HTTP, and lets agents pay
-                  without accounts or API keys. See how you can build internet-native payments
-                  on Cardano.
+                  x402 lets any service charge per request over plain HTTP, and lets agents pay
+                  without accounts or API keys. Build internet-native payments on Cardano, with
+                  everything you need on this page.
                 </p>
                 <div className={home.heroActions}>
                   <a className="button button--primary" href="#start">
@@ -343,7 +343,7 @@ export default function X402Page() {
                       <a href="https://www.x402.org" {...EXTERNAL_LINK_PROPS}>
                         x402 Foundation
                       </a>{" "}
-                      under the Linux Foundation. Cardano support is part of the core
+                      under the Linux Foundation. Cardano has its own scheme in the x402
                       specification, published on npm as <code>@x402/cardano</code>.
                     </p>
                   </div>
@@ -364,8 +364,7 @@ export default function X402Page() {
             <div className={home.sectionHeader}>
               <h2>Why Cardano</h2>
               <p>
-                Cardano transactions are deterministic. What a payment will do and what it will
-                cost are known before it is signed.
+                Four properties of Cardano&apos;s ledger that matter for agentic payments.
               </p>
             </div>
             <div className={styles.claimRow}>
@@ -385,8 +384,8 @@ export default function X402Page() {
             <div className={styles.panel}>
               <h3 className={styles.panelTitle}>x402 goes further on Cardano</h3>
               <p className={styles.panelIntro}>
-                Cardano&apos;s x402 scheme defines three transfer methods: the address payment,
-                the{" "}
+                Cardano&apos;s x402 scheme defines three transfer methods: a payment to an
+                address, a lock in{" "}
                 <a
                   href="https://www.masumi.network"
                   {...EXTERNAL_LINK_PROPS}
@@ -394,8 +393,7 @@ export default function X402Page() {
                 >
                   Masumi
                 </a>{" "}
-                escrow to extend what paying agents can do, or any custom smart contract the
-                seller declares.
+                escrow, or a lock in any smart contract the seller declares.
               </p>
               <div className={styles.masumiBanner}>
                 <span className={styles.masumiBannerMark}>
@@ -421,8 +419,8 @@ export default function X402Page() {
                   <thead>
                     <tr>
                       <th />
-                      <th className={styles.compareCol}>Standard x402</th>
-                      <th className={styles.compareCol}>x402 on Cardano</th>
+                      <th className={styles.compareCol}>x402</th>
+                      <th className={styles.compareCol}>x402 + Masumi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -456,9 +454,9 @@ export default function X402Page() {
                 </table>
               </div>
               <p className={styles.panelBodyWide}>
-                A Masumi payment goes into escrow against signed job terms, every decision is
-                logged on chain, and the payment comes back if nothing is delivered. All of it
-                happens inside the same x402 request.
+                A Masumi payment locks funds in escrow against job terms the seller signed. The
+                x402 request ends at the lock. Result delivery, refunds and disputes then follow
+                the Masumi escrow lifecycle, with every decision logged on chain.
               </p>
               <p className={styles.panelLinks}>
                 <a
@@ -531,7 +529,8 @@ export default function X402Page() {
               <h2 className={styles.plainHeading}>Pick your starting point</h2>
               <p className={styles.sectionLead}>
                 Two templates to build from and one complete reference. Start from Express for a
-                headless agent behind an API, from Next.js when a person pays in the browser.
+                headless agent behind an API, from Next.js when a person pays in the browser. Both
+                use TypeScript, the language of Cardano&apos;s x402 SDK.
               </p>
               <div className={styles.templateGrid}>
                 <TemplateCard
@@ -548,12 +547,33 @@ export default function X402Page() {
                 />
                 <TemplateCard
                   title="The complete demo"
-                  body="A working app that runs the whole x402 flow and shows each step as a payment happens. All three transfer methods, browser wallets, USDM and Masumi escrow."
+                  body="A working app that runs the whole x402 flow and shows each step as a payment happens. Address payments and Masumi escrow, in ADA and USDM, with browser wallets."
                   href="https://github.com/cardano-foundation/x402-cardano-demo"
                   linkLabel="Open the repository"
                   external
                   dark
                 />
+              </div>
+              <div className={clsx(styles.masumiBanner, styles.masumiPath)}>
+                <span className={styles.masumiBannerMark}>
+                  <img
+                    src={baseUrl + "img/x402/masumi-wordmark.png"}
+                    alt="Masumi"
+                    className={clsx(styles.bannerLogo, styles.bannerLogoMasumi)}
+                  />
+                </span>
+                <p className={styles.masumiBannerText}>
+                  For agent services with escrow and an on-chain identity, start with Masumi. It
+                  works with CrewAI, LangGraph and other agent frameworks.
+                </p>
+                <a
+                  href="https://www.masumi.network/dev/masumi/documentation"
+                  {...EXTERNAL_LINK_PROPS}
+                  className={styles.masumiPathLink}
+                >
+                  Start with Masumi
+                  <ExternalArrow />
+                </a>
               </div>
               <p className={styles.slotNote}>
                 The hosted facilitator URL and the support channel will be published here.
@@ -576,7 +596,9 @@ export default function X402Page() {
             <div className={home.sectionHeader}>
               <h2>Your agent already knows how</h2>
               <p>
-                Two skills: current Cardano knowledge, and the Masumi context on top.
+                Cardano Dev Skills covers the Cardano side, Masumi Skills the agent layer. For
+                the x402 facts in one file, give your agent{" "}
+                <a href={baseUrl + "x402/agent.md"}>agent.md</a>.
               </p>
             </div>
             <div className={clsx(home.bentoCard, styles.agentPanel)}>
