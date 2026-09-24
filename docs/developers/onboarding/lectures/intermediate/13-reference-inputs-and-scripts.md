@@ -187,7 +187,7 @@ So a transaction has to point at the **current** UTxO. If your app remembers an 
 
 |  | Reference script | Reference input |
 |---|---|---|
-| so that | transactions stay small | data can be read without being taken |
+| so that | transactions stay small | data can be read without consuming the UTxO |
 | it sits at | your own address | the publishing contract's address |
 | the validator | runs unchanged: the ledger fetches its code from there | reads its datum, in `reference_inputs` |
 | if that UTxO is spent | transactions pointing at it stop working | readers must point at the new one |
