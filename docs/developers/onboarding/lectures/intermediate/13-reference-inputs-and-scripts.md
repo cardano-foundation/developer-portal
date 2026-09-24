@@ -110,7 +110,7 @@ This is also the only sense in which a Cardano contract is "deployed", a point *
 
 **Pointing at a script still costs something.** Each byte of the referenced script is charged, at a far lower price than carrying the script inside the transaction.
 
-**The UTxO has to stay unspent.** It is an ordinary output that belongs to you, so nothing stops you from spending it. As soon as you do, every transaction that points at it stops working. Publish it, then leave it alone.
+**The UTxO must stay unspent.** So, if it's an ordinary output that belongs to you, so nothing stops you from spending it. As soon as you do, every transaction that points to it stops working. Publish it somewhere safe, and then leave it alone!
 
 ## Reference inputs
 
