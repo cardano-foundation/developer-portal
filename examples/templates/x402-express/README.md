@@ -49,17 +49,19 @@ needs chain infrastructure beyond Blockfrost. It holds no keys and no funds.
 
 | Symptom | Cause / fix |
 | --- | --- |
-| Seller answers 500 with "no supported payment kinds" | The facilitator isn't reachable at `FACILITATOR_URL` — start one (`npm run facilitator` in a second terminal) or fix the URL |
+| Seller answers HTTP 500 and its console logs "no supported payment kinds" | The facilitator isn't reachable at `FACILITATOR_URL` — start one (`npm run facilitator` in a second terminal) or fix the URL |
 | Buyer prints `Payment failed: HTTP 402` | The payment was attempted and rejected — the reason (`invalidReason`) is in the facilitator's log output |
-| Buyer hangs ~1 min then fails | Wallet not funded yet, or faucet still pending — check the address on <https://preprod.cardanoscan.io> |
+| Buyer fails with "Funding wallet has no UTXOs available" | Wallet not funded yet, or faucet still pending — check the address on <https://preprod.cardanoscan.io> |
 | `verify` fails with HTTP 200 and `isValid: false` | Normal shape for a rejected payment — read `invalidReason`; it is not a transport error |
-| Amount errors on tiny prices | Pure-lovelace prices must clear the ~1 ADA min-UTxO; keep lovelace routes ≥ ~1.5 tADA |
-| Spend-control rejection | lovelace is not USD-pegged; the buyer allows it via `allowedAssets` — keep that block if you change assets |
+| Amount errors on tiny prices | Pure-lovelace prices must clear the ~1 ADA min-UTxO; keep lovelace routes at 1 tADA or more |
+| Spend-control rejection | lovelace is not USD-pegged; the buyer allows it via `allowedAssets`, capped at 5 tADA per payment — keep that block if you change assets, and raise the cap if you raise the price |
 | Long waits after payment | 1 confirmation ≈ 20–60s on preprod; that is the chain, not a bug |
 
 ## Package versions
 
-The x402 packages come straight from npm, pinned exactly at **2.26.0**
+The x402 packages (`@x402/express` for the seller, `@x402/fetch` for the
+buyer, `@x402/cardano` for the Cardano scheme) come straight from npm,
+pinned exactly at **2.26.0**
 (content freeze for the hackathon — the x402 release train ships weekly, and
 a version range would change what participants install mid-event). To bump
 later: check `npm view @x402/cardano version`, update the six `@x402/*`
@@ -87,8 +89,8 @@ setup guide is on the developer portal:
   `extra.confirmationPolicy.l1Confirmations` on a route as its
   amounts grow.
 - The seller stays keyless (an address is all it holds). Move the
-  buyer's mnemonic from `.env` to a secret store and keep its spend
-  ceiling on.
+  buyer's mnemonic from `.env` to a secret store and keep its
+  per-payment cap (`maxAmountPerPayment`) set.
 
 ## Going further
 
