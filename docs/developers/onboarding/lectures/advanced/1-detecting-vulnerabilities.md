@@ -36,7 +36,7 @@ An attacker could try to do much more than just steal tokens. Here are the five 
 
 1. **Steal tokens.** Take value that the rules meant for somebody else. The vault's funds are for the owner who signs. Can anybody else end up with them?
 2. **Block others from getting their tokens.** The funds stay where they are, and the person they are for cannot take them. Your gift card refuses to let a card be burned on its own, because a burned card with the funds still locked leaves them locked forever.
-3. **Halt the protocol.** No action is possible again, for anyone. A rule that can never be satisfied again is a halt, and so is a transaction that has grown too big to run.
+3. **Halt the protocol.** No action is possible again, for anyone. A rule that can never be satisfied again is a halt. For example, the only available transaction has grown too big to run.
 4. **Block people from using the protocol.** Some users cannot act, or cannot act now, while others can.
 5. **Slow the protocol down.** Every action costs more, or fewer actions fit in a block.
 
