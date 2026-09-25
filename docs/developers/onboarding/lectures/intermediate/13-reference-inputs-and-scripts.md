@@ -29,47 +29,48 @@ A reference script is a compiled contract that has been stored inside a UTxO on 
 
 The UTxO that holds the script is an ordinary one at **your own address**. The ADA inside it stays yours. Nothing about the contract changes: same code, same hash, same address, same answers.
 
-An unlock that points at it:
+Take the update from the last lecture. The oracle's spend handler has to run to approve it, so the network needs the oracle's code. Here the transaction points at a UTxO that holds that code instead of carrying it:
 
 ```mermaid
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
-        I1["`**the locked UTxO**
-        - address: the consumer
-        - value: 5 ADA`"]
+        I1["`**the oracle's UTxO**
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 100`"]
         I2["`**your UTxO**
         - address: you
-        - value: 4.5 ADA`"]
+        - value: 4.7 ADA`"]
     end
 
     subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
         S["`**your UTxO holding the script**
         - address: you
-        - value: 10 ADA + the consumer's compiled script
-        - stays where it is`"]
-        R["`**the oracle's UTxO**
-        - address: the oracle
-        - value: 5 ADA + the oracle NFT (the beacon)
-        - datum: rate = 150
+        - value: 10 ADA + the oracle's compiled script
         - stays where it is`"]
     end
 
-    TX{{"`**unlock**
+    TX{{"`**update**
     - fee: 0.25 ADA, smaller: the script is not carried
-    - the consumer's spend handler runs, read from the reference
-    - reads rate = 150 from the oracle
+    - the oracle's spend handler runs, read from the reference
+    - redeemer: Update
+    - the operator's key hash in extra_signatories
     - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
-        O["`**back to you**
+        O1["`**the oracle's new UTxO**
+        - address: the oracle, the same address
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 150`"]
+        O2["`**back to you**
         - address: you
-        - value: 9.25 ADA`"]
+        - value: 4.45 ADA`"]
     end
 
-    I1 --> TX --> O
+    I1 --> TX --> O1
+    TX --> O2
     I2 --> TX
     S -.-> TX
-    R -.-> TX
 
     style I1 stroke-dasharray:4 3
     style I2 stroke-dasharray:4 3
@@ -120,7 +121,7 @@ A reference input is a UTxO that a transaction attaches only in order to **read*
 
 Inside the validator, referenced UTxOs arrive in their own field, `reference_inputs`, separate from the ones being spent. You met that field in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
-An unlock at the consumer contract, with the oracle attached for reading:
+Say another contract, the consumer, holds locked ADA and releases it only if the oracle's current rate is greater than zero. To decide, it has to read the rate from the oracle's datum. An unlock at the consumer attaches the oracle for reading:
 
 ```mermaid
 flowchart LR
@@ -144,7 +145,7 @@ flowchart LR
     TX{{"`**unlock**
     - fee: 0.35 ADA
     - the consumer's spend handler runs
-    - reads rate = 150 from the reference input
+    - reads rate = 150 from the reference input: greater than 0, so it approves
     - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
