@@ -19,7 +19,7 @@ Until now, a transaction could do only one thing with a UTxO: **spend** it. Take
 - A **reference script** points at published **code**.
 - A **reference input** points at published **data**.
 
-You need both as soon as another contract wants to use the oracle from the last lecture.
+You need to reference an input as soon as another contract wants to use the oracle from the last lecture, and we'll use a reference script to make oracle management cheaper and more effective.
 
 ## Reference scripts
 
@@ -27,7 +27,7 @@ You need both as soon as another contract wants to use the oracle from the last 
 
 A reference script is a compiled contract that has been stored inside a UTxO on the chain. After you store it, a transaction can point at that UTxO instead of carrying its own copy of the contract.
 
-The UTxO that holds the script is an ordinary one at **your own address**. The ADA inside it stays yours. Nothing about the contract changes: same code, same hash, same address, same answers.
+The UTxO that holds the script is an ordinary one at **any address**. You can use your own address, someone else's, or another contract address, depending on your needs and preferences. Nothing about the contract changes: same code, same hash, same address, same answers.
 
 Take the update from the last lecture. The oracle's spend handler has to run to approve it, so the network needs the oracle's code. Here the transaction points at a UTxO that holds that code instead of carrying it:
 
@@ -111,13 +111,13 @@ This is also the only sense in which a Cardano contract is "deployed", a point *
 
 **Pointing at a script still costs something.** Each byte of the referenced script is charged, at a far lower price than carrying the script inside the transaction.
 
-**The UTxO has to stay unspent.** It is an ordinary output that belongs to you, so nothing stops you from spending it. As soon as you do, every transaction that points at it stops working. Publish it, then leave it alone.
+**The UTxO must stay unspent.** So, if it's an ordinary output that belongs to you, so nothing stops you from spending it. As soon as you do, every transaction that points to it stops working. Publish it somewhere safe, and then leave it alone!
 
 ## Reference inputs
 
 ### What it is
 
-A reference input is a UTxO that a transaction attaches only in order to **read** it. The UTxO stays where it is, and the validator can read its datum.
+A reference input is a UTxO that a transaction attaches only in order to **read** it. The UTxO stays where it is, and the validator can read its datum, value, address, etc.
 
 Inside the validator, referenced UTxOs arrive in their own field, `reference_inputs`, separate from the ones being spent. You met that field in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
@@ -188,8 +188,8 @@ So a transaction has to point at the **current** UTxO. If your app remembers an 
 
 |  | Reference script | Reference input |
 |---|---|---|
-| so that | transactions stay small | data can be read without being taken |
-| it sits at | your own address | the publishing contract's address |
+| so that | transactions stay small | data can be read without consuming the UTxO |
+| it sits at | any address | the publishing contract's address |
 | the validator | runs unchanged: the ledger fetches its code from there | reads its datum, in `reference_inputs` |
 | if that UTxO is spent | transactions pointing at it stop working | readers must point at the new one |
 
