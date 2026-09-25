@@ -40,7 +40,7 @@ An attacker could try to do much more than just steal tokens. Here are the five 
 4. **Block people from using the protocol.** Some users cannot act, or cannot act now, while others can.
 5. **Slow the protocol down.** Every action costs more, or fewer actions fit in a block.
 
-The last three are one family, and "denial of service" is the name for all of them.
+Most of the time, an attacker will perform several of these actions to exploit the protocol itself or exploit another process that depends on the protocol functioning correctly.
 
 **What an attacker can do.** Everything your own app does, with any transaction they like. They can run your validator offline first to see what it accepts, exactly as your SDK does before it sends anything. They can send any UTxO with any datum to your script's address, and [nothing checks it on the way in](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator#locking-is-just-a-payment). They can send several transactions, one after another, each one built on what the last one left on the chain. They can read your contract. The compiled script is on the chain for anyone to take, and most projects publish the source as well.
 
