@@ -28,7 +28,7 @@ flowchart LR
     V -->|no| NO["rejected, nothing changes"]
 ```
 
-Some attacks cannot happen on Cardano at all: a contract cannot be called in the middle of running, and a UTxO cannot be spent twice. The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page lists what the ledger protects you from.
+Some attacks cannot happen on Cardano at all: a second contract cannot be called in the middle of running the first, a UTxO cannot be spent twice, etc. The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page lists what the ledger protects you from. However, protocols can still be attacked in many ways.
 
 ## Think as an attacker
 
