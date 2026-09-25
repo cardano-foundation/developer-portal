@@ -46,24 +46,22 @@ validator oracle(params: OracleParams) {
   ) {
     expect Some(own_input) = transaction.find_input(self.inputs, own_ref)
 
-    and {
-      // Both actions need these two, so they sit above the branch.
-      list.has(self.extra_signatories, params.operator)?,
-      holds_beacon(own_input.output.value, params.beacon)?,
-      when redeemer is {
-        Update -> {
-          let own_address = own_input.output.address
-          expect [continuing] = list.filter(
-            self.outputs,
-            fn(output) { output.address == own_address },
-          )
-          expect InlineDatum(returned) = continuing.datum
-          expect _new_rate: Rate = returned
-          holds_beacon(continuing.value, params.beacon)?
-        }
-        Delete ->
-          (quantity_of(self.mint, params.beacon.policy_id, params.beacon.name) == -1)?
-      },
+    expect list.has(self.extra_signatories, params.operator)?
+    expect holds_beacon(own_input.output.value, params.beacon)?
+
+    when redeemer is {
+      Update -> {
+        let own_address = own_input.output.address
+        expect [continuing] = list.filter(
+          self.outputs,
+          fn(output) { output.address == own_address },
+        )
+        expect InlineDatum(returned) = continuing.datum
+        expect _new_rate: Rate = returned
+        holds_beacon(continuing.value, params.beacon)?
+      }
+      Delete ->
+        (quantity_of(self.mint, params.beacon.policy_id, params.beacon.name) == -1)?
     }
   }
 

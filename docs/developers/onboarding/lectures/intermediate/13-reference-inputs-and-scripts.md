@@ -19,7 +19,7 @@ Until now, a transaction could do only one thing with a UTxO: **spend** it. Take
 - A **reference script** points at published **code**.
 - A **reference input** points at published **data**.
 
-You need both as soon as another contract wants to use the oracle from the last lecture.
+You need to reference an input as soon as another contract wants to use the oracle from the last lecture, and we'll use a reference script to make oracle management cheaper and more effective.
 
 ## Reference scripts
 
@@ -27,49 +27,50 @@ You need both as soon as another contract wants to use the oracle from the last 
 
 A reference script is a compiled contract that has been stored inside a UTxO on the chain. After you store it, a transaction can point at that UTxO instead of carrying its own copy of the contract.
 
-The UTxO that holds the script is an ordinary one at **your own address**. The ADA inside it stays yours. Nothing about the contract changes: same code, same hash, same address, same answers.
+The UTxO that holds the script is an ordinary one at **any address**. You can use your own address, someone else's, or another contract address, depending on your needs and preferences. Nothing about the contract changes: same code, same hash, same address, same answers.
 
-An unlock that points at it:
+Take the update from the last lecture. The oracle's spend handler has to run to approve it, so the network needs the oracle's code. Here the transaction points at a UTxO that holds that code instead of carrying it:
 
 ```mermaid
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
-        I1["`**the locked UTxO**
-        address: the consumer
-        value: 5 ADA`"]
+        I1["`**the oracle's UTxO**
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 100`"]
         I2["`**your UTxO**
-        address: you
-        value: 4.5 ADA`"]
+        - address: you
+        - value: 4.7 ADA`"]
     end
 
     subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
         S["`**your UTxO holding the script**
-        address: you
-        value: 10 ADA + the consumer's compiled script
-        stays where it is`"]
-        R["`**the oracle's UTxO**
-        address: the oracle
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 150
-        stays where it is`"]
+        - address: you
+        - value: 10 ADA + the oracle's compiled script
+        - stays where it is`"]
     end
 
-    TX{{"`**unlock**
-    fee: 0.25 ADA, smaller: the script is not carried
-    the consumer's spend handler runs, read from the reference
-    reads rate = 150 from the oracle
-    collateral offered, not taken`"}}
+    TX{{"`**update**
+    - fee: 0.25 ADA, smaller: the script is not carried
+    - the oracle's spend handler runs, read from the reference
+    - redeemer: Update
+    - the operator's key hash in extra_signatories
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
-        O["`**back to you**
-        address: you
-        value: 9.25 ADA`"]
+        O1["`**the oracle's new UTxO**
+        - address: the oracle, the same address
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 150`"]
+        O2["`**back to you**
+        - address: you
+        - value: 4.45 ADA`"]
     end
 
-    I1 --> TX --> O
+    I1 --> TX --> O1
+    TX --> O2
     I2 --> TX
     S -.-> TX
-    R -.-> TX
 
     style I1 stroke-dasharray:4 3
     style I2 stroke-dasharray:4 3
@@ -110,47 +111,47 @@ This is also the only sense in which a Cardano contract is "deployed", a point *
 
 **Pointing at a script still costs something.** Each byte of the referenced script is charged, at a far lower price than carrying the script inside the transaction.
 
-**The UTxO has to stay unspent.** It is an ordinary output that belongs to you, so nothing stops you from spending it. As soon as you do, every transaction that points at it stops working. Publish it, then leave it alone.
+**The UTxO must stay unspent.** So, if it's an ordinary output that belongs to you, so nothing stops you from spending it. As soon as you do, every transaction that points to it stops working. Publish it somewhere safe, and then leave it alone!
 
 ## Reference inputs
 
 ### What it is
 
-A reference input is a UTxO that a transaction attaches only in order to **read** it. The UTxO stays where it is, and the validator can read its datum.
+A reference input is a UTxO that a transaction attaches only in order to **read** it. The UTxO stays where it is, and the validator can read its datum, value, address, etc.
 
 Inside the validator, referenced UTxOs arrive in their own field, `reference_inputs`, separate from the ones being spent. You met that field in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
-An unlock at the consumer contract, with the oracle attached for reading:
+Say another contract, the consumer, holds locked ADA and releases it only if the oracle's current rate is greater than zero. To decide, it has to read the rate from the oracle's datum. An unlock at the consumer attaches the oracle for reading:
 
 ```mermaid
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the locked UTxO**
-        address: the consumer
-        value: 5 ADA`"]
+        - address: the consumer
+        - value: 5 ADA`"]
         I2["`**your UTxO**
-        address: you
-        value: 4.5 ADA`"]
+        - address: you
+        - value: 4.5 ADA`"]
     end
 
     subgraph REF["REFERENCE INPUTS: UTxOs read, not spent"]
         R["`**the oracle's UTxO**
-        address: the oracle
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 150
-        stays where it is`"]
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 150
+        - stays where it is`"]
     end
 
     TX{{"`**unlock**
-    fee: 0.35 ADA
-    the consumer's spend handler runs
-    reads rate = 150 from the reference input
-    collateral offered, not taken`"}}
+    - fee: 0.35 ADA
+    - the consumer's spend handler runs
+    - reads rate = 150 from the reference input: greater than 0, so it approves
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to you**
-        address: you
-        value: 9.15 ADA`"]
+        - address: you
+        - value: 9.15 ADA`"]
     end
 
     I1 --> TX --> O
@@ -187,8 +188,8 @@ So a transaction has to point at the **current** UTxO. If your app remembers an 
 
 |  | Reference script | Reference input |
 |---|---|---|
-| so that | transactions stay small | data can be read without being taken |
-| it sits at | your own address | the publishing contract's address |
+| so that | transactions stay small | data can be read without consuming the UTxO |
+| it sits at | any address | the publishing contract's address |
 | the validator | runs unchanged: the ledger fetches its code from there | reads its datum, in `reference_inputs` |
 | if that UTxO is spent | transactions pointing at it stop working | readers must point at the new one |
 
@@ -271,7 +272,7 @@ Open both unlocks on the **[Cardano explorer for Preview](https://explorer.carda
 
 ## You have finished the Intermediate track
 
-You can write a validator, compile it, run it from an application, prove that it does what you say it does, and drive it from a page in a browser. You can also take an idea and turn it into a design. You do that by asking four questions: what has to be remembered, which actions are possible, what must be true for each one, and what breaks if a rule is missing.
+You can write a validator, compile it, run it from an application, prove that it does what you say it does, and drive it from a page in a browser. You can also take an idea and turn it into a design. You do that by asking four questions: what the contract has to guarantee, which actions are possible, what must be true for each one, and what has to be remembered to run the checks.
 
 Along the way you built a vault with an admin key and its own token, a deadline, a gift card, an oracle identified by a token that can only be created once, and a contract that reads that oracle's data without touching it.
 

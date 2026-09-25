@@ -21,12 +21,6 @@ Every contract so far has ended the same way. The validator says yes, and the fu
 
 A lending application needs to know the rate: how many dollars one ADA is worth. A validator sees only the transaction context, and nothing in a transaction says what a dollar costs today. Somebody has to publish the number on the chain, and everybody else reads it from there. That publisher is called an **oracle**.
 
-The idea has three parts:
-
-- One party publishes a number, and only that party may change it.
-- Anybody can read the number.
-- The number changes over time, and the latest value is the one that counts.
-
 :::warning This oracle is centralized
 One key controls the number, so everybody reading it has to trust whoever holds that key. The contract proves that the operator signed the update. Nothing proves that the rate is true. **[Parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** made the same point about an admin key.
 
@@ -45,29 +39,29 @@ A UTxO is replaced rather than edited: you spend it, and you create its replacem
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the oracle's UTxO**
-        address: the oracle
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 100`"]
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 100`"]
         I2["`**your UTxO**
-        address: you
-        value: 4.7 ADA`"]
+        - address: you
+        - value: 4.7 ADA`"]
     end
 
     TX{{"`**update**
-    fee: 0.35 ADA
-    the oracle's spend handler runs
-    redeemer: Update
-    the operator's key hash in extra_signatories
-    collateral offered, not taken`"}}
+    - fee: 0.35 ADA
+    - the oracle's spend handler runs
+    - redeemer: Update
+    - the operator's key hash in extra_signatories
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O1["`**the oracle's new UTxO**
-        address: the oracle, the same address
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 150`"]
+        - address: the oracle, the same address
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 150`"]
         O2["`**back to you**
-        address: you
-        value: 4.35 ADA`"]
+        - address: you
+        - value: 4.35 ADA`"]
     end
 
     I1 --> TX --> O1
@@ -83,24 +77,24 @@ Because both things happen in one transaction, there is no moment in between whe
 For the app that builds the transaction, this is the unlock you already know, with one addition: one extra output, sent back to the contract's own address, carrying the new datum.
 
 :::note One UTxO, one updater at a time
-A UTxO can only be spent once. So if two updates try to change the same oracle at the same time, one of those transactions fails and has to be built again. That is fine for something a single party publishes. That party does not even have to wait for a block between updates: a transaction's hash is known as soon as it is built, so the next update can spend the continuing output before the previous one confirms, which the handbook calls [transaction chaining](/docs/developers/curriculum/dapps/defi#transaction-chaining). The app in this lecture waits instead, to keep each step visible. Two parties cannot chain past each other, though, and that is why busy contracts store their data in many UTxOs instead of one.
+A UTxO can only be spent once. So if two updates try to change the same oracle at the same time, one of those transactions fails and has to be built again. That is fine for something a single party publishes. That party does not even have to wait for a block between updates: a transaction's hash is known as soon as it is built, so the next update can spend the continuing output before the previous one confirms, which the handbook calls [transaction chaining](/docs/developers/curriculum/dapps/defi#transaction-chaining). The app in this lecture waits instead, to keep each step visible. Two parties cannot chain past each other, though, and that is why busy contracts store their data in many UTxOs instead of one. The handbook calls this problem **[UTxO contention](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion#utxo-contention)**.
 :::
 
 ## Which UTxO is the oracle?
 
-A script address is public, and anybody can create a UTxO at one. So anybody can put a UTxO at your oracle's address carrying any rate they like. A contract that reads "the oracle" has no way to tell that one from yours.
+A script address is public, and anybody can create a UTxO at one. So anybody can put a UTxO at your oracle's address carrying any rate they like. A contract that reads the address as "the oracle" has no way to tell that one from yours.
 
-The answer is an **NFT**, and you built one in the last lecture. A **[one-shot policy](/docs/developers/onboarding/lectures/intermediate/multi-validators#what-makes-it-an-nft)** is compiled around a **seed** UTxO that the minting transaction has to spend, so the policy can succeed only once, and no second copy of the token can ever exist.
+In this case, the answer is an **NFT**, and you built one in the last lecture. A **[one-shot policy](/docs/developers/onboarding/lectures/intermediate/multi-validators#what-makes-it-an-nft)** is compiled around a **seed** UTxO that the minting transaction has to spend, so the policy can succeed only once, and when it does, it can only mint one token. So, no second copy of the token can ever exist.
 
-The gift card used its token as a key: whoever held it could take the funds. The oracle uses the same kind of token as a name. A token used this way is called a **beacon token**, sometimes a state thread token.
+The gift card used its token as a key: whoever held it could take the funds. The oracle uses the same kind of token as a unique identifier. A token used this way is called a **beacon token** (because it serves as a beacon to find the UTxO) or a **thread token** (because it's threaded between the old and new UTxOs when updating them).
 
-A token that exists once is not yet an identity. Three rules together make it one:
+A token that exists once is not yet an identity. This oracle makes it one with three checks:
 
 - The policy mints the beacon once, so there is never a second one to confuse it with.
-- An update has to put the beacon on the output that goes back, so it cannot leave the oracle.
-- Closing the oracle has to burn the beacon, so it cannot outlive the oracle either.
+- `Update` has to put the beacon on the output that goes back, so it cannot leave the oracle.
+- `Delete` has to burn the beacon, so it cannot outlive the oracle either.
 
-Exactly one UTxO on the chain holds that beacon, and that UTxO is the oracle. Anything that wants the rate looks for the beacon.
+Exactly one UTxO on the chain holds that beacon, and that UTxO is the oracle. Anything that wants the rate looks for the beacon. Other protocols make other choices: a beacon does not have to be an NFT.
 
 This track gives the beacon's policy a validator of its own, in its own file. The oracle then holds the beacon as a parameter, so it can be told which token to trust. Each of these values is the hash of a contract with the previous one filled in, so they can only be computed in this order, and the oracle's address does not exist until you have chosen a seed:
 
@@ -112,28 +106,22 @@ flowchart LR
     Params -->|"fill them in<br/>and hash it"| Address["the oracle's address"]
 ```
 
-## From idea to contract
+## From idea to architecture
 
 The same four questions, this time for two validators: the policy that mints the beacon, and the oracle that holds the rate.
 
-**1. What has to be remembered?** The rate, and nothing else, so the datum is a single number. Two more values never change for the whole life of one oracle: the key allowed to publish, which this contract calls the **operator**, and the beacon that names the oracle. By the rule from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**, both are parameters of the oracle. The beacon policy has one parameter of its own, the seed.
+**1. Write down the requirements.** One party publishes the number, and only that party may change it. Anybody can read the number. The number changes over time, and the latest value is the one that counts, so there has to be exactly one place to read it, and a reader has to be able to tell that place from any other UTxO somebody puts at the same address. The publisher can also retire the oracle.
 
-**2. What actions are possible?** Four, two in each validator. The policy's are `Mint` and `Burn`, in a `mint` handler. The oracle's are `Update` and `Delete`, in a `spend` handler. Creating the oracle runs only the policy: putting the first output at the oracle's address spends nothing there. As in the **[gift card](/docs/developers/onboarding/lectures/intermediate/multi-validators#how-the-two-handlers-cooperate)**, each validator judges the same transaction on its own.
+**2. What actions are possible?** Three, and one more to account for. The protocol creates the oracle, updates it and deletes it. Creating runs only the policy's `Mint` branch, since putting the first output at the oracle's address spends nothing there. Updating runs the oracle's `Update` branch. Deleting runs the oracle's `Delete` branch and the policy's `Burn` branch in one transaction, and as in the **[gift card](/docs/developers/onboarding/lectures/intermediate/multi-validators#how-the-two-handlers-cooperate)**, each validator judges the same transaction on its own. The fourth is reading the oracle. Other contracts do that, in their own transactions, so no handler here runs for it.
 
 **3. What must be true for each action?**
 
-- `Mint`: the transaction spends the seed, and it creates exactly one token.
+- `Mint`: the transaction spends the seed, and it creates exactly one token. Drop the seed and a second beacon can be minted, and a second beacon means a second UTxO claiming to be the oracle.
 - `Burn`: the transaction destroys exactly one token. No seed is needed, because the seed was spent when the beacon was created.
-- `Update`: the operator signed, the UTxO being spent carries the beacon, and exactly one output goes back to the oracle's address, carrying a new rate and the beacon.
-- `Delete`: the operator signed, the UTxO being spent carries the beacon, and the transaction burns it. The burn runs the beacon policy in the same transaction, so both validators execute and both have to approve.
+- `Update`: the operator signed, the UTxO being spent carries the beacon, and exactly one output goes back to the oracle's address, carrying a new rate and the beacon. Drop the signature check and anybody can publish any rate, which destroys the point of an oracle. Drop the output rule and nothing requires the UTxO to come back: the operator spends it, takes their own ADA, and the oracle disappears. What you have then is a vault. Drop the beacon from that output rule and the operator can move the beacon into their wallet, leaving a UTxO at the oracle's address that no reader will trust.
+- `Delete`: the operator signed, the UTxO being spent carries the beacon, and the transaction burns it. The burn runs the beacon policy in the same transaction, so both validators execute and both have to approve. Drop the burn and the beacon sits loose in a wallet, ready to be locked again beside a rate nobody agreed to.
 
-**4. What breaks if a rule is missing?**
-
-- Drop the signature check and anybody can publish any rate, which destroys the point of an oracle.
-- Drop the output rule on `Update` and nothing requires the UTxO to come back. The operator spends it, takes their own ADA, and the oracle disappears. What you have then is a vault.
-- Drop the beacon from that output rule and the operator can move the beacon into their wallet, leaving a UTxO at the oracle's address that no reader will trust.
-- Drop the burn on `Delete` and the beacon sits loose in a wallet, ready to be locked again beside a rate nobody agreed to.
-- Drop the seed and a second beacon can be minted, and a second beacon means a second UTxO claiming to be the oracle.
+**4. What has to be remembered to run the checks?** The rate, and nothing else, so the datum is a single number. Two more values never change for the whole life of one oracle: the key allowed to publish, which this contract calls the **operator**, and the beacon that names the oracle. By the rule from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**, both are parameters of the oracle. The beacon policy has one parameter of its own, the seed.
 
 The design in one sentence: **the beacon is created once, and the operator may spend the oracle's UTxO only in a transaction that puts a new one back with the beacon on it, or that burns the beacon.**
 
@@ -177,26 +165,26 @@ The update transaction is drawn under **[Nothing is edited](#nothing-is-edited-e
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I["`**your UTxO, the seed**
-        address: you
-        value: 10 ADA`"]
+        - address: you
+        - value: 10 ADA`"]
     end
 
     TX{{"`**publish**
-    fee: 0.3 ADA
-    the beacon's mint handler runs
-    redeemer: Mint
-    mint: +1 oracle NFT (the beacon)
-    the seed is among the inputs
-    collateral offered, not taken`"}}
+    - fee: 0.3 ADA
+    - the beacon's mint handler runs
+    - redeemer: Mint
+    - mint: +1 oracle NFT (the beacon)
+    - the seed is among the inputs
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O1["`**the oracle's UTxO**
-        address: the oracle
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 100`"]
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 100`"]
         O2["`**back to you**
-        address: you
-        value: 4.7 ADA`"]
+        - address: you
+        - value: 4.7 ADA`"]
     end
 
     I --> TX --> O1
@@ -209,27 +197,27 @@ flowchart LR
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the oracle's UTxO**
-        address: the oracle
-        value: 5 ADA + the oracle NFT (the beacon)
-        datum: rate = 150`"]
+        - address: the oracle
+        - value: 5 ADA + the oracle NFT (the beacon)
+        - datum: rate = 150`"]
         I2["`**your UTxO**
-        address: you
-        value: 4.35 ADA`"]
+        - address: you
+        - value: 4.35 ADA`"]
     end
 
     TX{{"`**close**
-    fee: 0.4 ADA
-    both validators run
-    the oracle's spend handler, redeemer: Delete
-    the beacon's mint handler, redeemer: Burn
-    mint: -1 oracle NFT (the beacon)
-    the operator's key hash in extra_signatories
-    collateral offered, not taken`"}}
+    - fee: 0.4 ADA
+    - both validators run
+    - the oracle's spend handler, redeemer: Delete
+    - the beacon's mint handler, redeemer: Burn
+    - mint: -1 oracle NFT (the beacon)
+    - the operator's key hash in extra_signatories
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to you**
-        address: you
-        value: 8.95 ADA`"]
+        - address: you
+        - value: 8.95 ADA`"]
     end
 
     I1 --> TX --> O
@@ -302,15 +290,15 @@ Then the types and the validator:
   {extractRegion(OracleAiken, "oracle")}
 </CodeBlock>
 
-`Rate` is answer 1, and it is an alias for `Int`: the datum is a bare number with no wrapper around it. `OracleAction` is answer 2. The body is answer 3, and it reads in three parts:
+`Rate` is step 4, and it is an alias for `Int`: the datum is a bare number with no wrapper around it. `OracleAction` is step 2. The body is step 3, and it reads in three parts:
 
 1. Find the input being spent, so the contract knows which address to require and what the UTxO came in holding.
-2. The two conditions both actions share sit above the branch: the operator signed, and the UTxO being spent carries the beacon. `holds_beacon` asks the second question.
+2. The two conditions both actions share are `expect` statements above the branch: the operator signed, and the UTxO being spent carries the beacon. If either fails, the validator stops there. `holds_beacon` asks the second question.
 3. One branch per action. `Update` requires **exactly one** output going back to that address, reads its datum, confirms the datum is a `Rate`, and requires the beacon to be on it. `Delete` requires the beacon to be burned.
 
-`_datum` is ignored, because the old rate grants nobody anything. Compare the vault, where the datum named the owner and the contract had to read it.
+`_datum` is ignored, because the oracle never uses the rate: its readers do. The only thing the oracle checks about a rate is that the new one on the output is a `Rate`.
 
-Two outputs at the oracle's address would leave the next update with nothing to say which of them is the oracle. The **exactly one** in step 3 is what prevents that.
+Two outputs at the oracle's address would not confuse a reader, since only one of them can carry the beacon. Requiring **exactly one** is a simplification: the branch does not have to search the outputs for the one with the beacon, and nobody gains anything from an update that leaves extra UTxOs at the oracle's address.
 
 Then six tests:
 
@@ -377,7 +365,7 @@ Closing is final. The seed is spent, so this beacon can never be minted again. T
 
 ## Practise the value rule
 
-Every contract that keeps other people's funds beside its state, such as a pool or an escrow, needs a rule the four questions did not produce: the output that goes back has to carry at least what came in. Without it, whoever may update the state can take the funds in the same transaction. This oracle holds only the operator's own ADA, so it does not need the rule, but it is the simplest place to write and test it.
+A contract that keeps other people's funds beside its state, such as a pool or an escrow, usually needs a rule the four questions did not produce: the output that goes back has to carry at least what came in, unless the action is one that is allowed to take funds out. Without such a rule, whoever may update the state can take the funds in the same transaction. This oracle holds only the operator's own ADA, so it does not need the rule, but it is the simplest place to write and test it.
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>

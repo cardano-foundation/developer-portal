@@ -95,24 +95,24 @@ Locking the funds is an ordinary payment, exactly as before. The claim has the s
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I["`**your UTxO**
-        address: you
-        value: 10 ADA`"]
+        - address: you
+        - value: 10 ADA`"]
     end
 
     TX{{"`**lock**
-    fee: 0.2 ADA
-    nothing runs`"}}
+    - fee: 0.2 ADA
+    - nothing runs`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O1["`**the locked UTxO**
-        address: the vesting contract
-        value: 5 ADA
-        datum:
+        - address: the vesting contract
+        - value: 5 ADA
+        - datum:
         beneficiary = the developer
         lock_until = 12:00`"]
         O2["`**back to you**
-        address: you
-        value: 4.8 ADA`"]
+        - address: you
+        - value: 4.8 ADA`"]
     end
 
     I --> TX --> O1
@@ -127,28 +127,28 @@ Then the claim:
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the locked UTxO**
-        address: the vesting contract
-        value: 5 ADA
-        datum:
+        - address: the vesting contract
+        - value: 5 ADA
+        - datum:
         beneficiary = the developer
         lock_until = 12:00`"]
         I2["`**the developer's UTxO**
-        address: the developer
-        value: 4.5 ADA`"]
+        - address: the developer
+        - value: 4.5 ADA`"]
     end
 
     TX{{"`**claim**
-    fee: 0.35 ADA
-    the spend validator runs
-    redeemer: nothing
-    valid from: 13:00
-    the developer's key hash in extra_signatories
-    collateral offered, not taken`"}}
+    - fee: 0.35 ADA
+    - the spend validator runs
+    - redeemer: nothing
+    - valid from: 13:00
+    - the developer's key hash in extra_signatories
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to the developer**
-        address: the developer
-        value: 9.15 ADA`"]
+        - address: the developer
+        - value: 9.15 ADA`"]
     end
 
     I1 --> TX --> O
