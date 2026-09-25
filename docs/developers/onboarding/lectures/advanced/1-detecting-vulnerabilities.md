@@ -50,7 +50,7 @@ The [first design question](/docs/developers/onboarding/lectures/intermediate/ha
 
 ## Single-step attacks
 
-A single-step attack fits in one transaction. That transaction is the whole attack, and the attacker builds it from what is already on the chain. Finding one means reading a rule the way an attacker does: word by word, asking what else fits it.
+A single-step attack fits in one transaction. That transaction is the whole attack, and the attacker builds it from what is already on the chain.
 
 ### Double satisfaction
 
