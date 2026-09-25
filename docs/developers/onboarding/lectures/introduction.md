@@ -27,6 +27,8 @@ Smart contracts from scratch: their structure, their role, on-chain vs off-chain
 
 Going from "it works" to "it's safe and scalable": common vulnerabilities, design patterns, optimization, and getting to production. After this, you'll be able to write **secure, scalable, high-quality** contracts.
 
+**[Start the Advanced module](/docs/developers/onboarding/lectures/advanced/introduction)**
+
 ## What you need
 
 Depending on the lecture, you'll want:

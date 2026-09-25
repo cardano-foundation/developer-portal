@@ -276,9 +276,10 @@ You can write a validator, compile it, run it from an application, prove that it
 
 Along the way you built a vault with an admin key and its own token, a deadline, a gift card, an oracle identified by a token that can only be created once, and a contract that reads that oracle's data without touching it.
 
-Everything else is a larger version of these same parts. When the size grows, the mechanism does not change, but you need more care: the ways contracts get attacked, the patterns that prevent those attacks, and the cost of running them.
+Everything else is a larger version of these same parts. When the size grows, the mechanism does not change, but you need more care: the ways contracts get attacked, the patterns that prevent those attacks, and the cost of running them. The **[Advanced track](/docs/developers/onboarding/lectures/advanced/introduction)** starts with the first of those.
 
 - The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
+- **[Detecting vulnerabilities](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities)**, the first Advanced lecture: how to think as an attacker, and a contract you attack and then close.
 - The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page: read it before anything you write holds real funds.
 
 ## Go deeper
