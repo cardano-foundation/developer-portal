@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/validators/vault_simple.ak";
+import validatorHash from "@site/src/utils/validatorHash";
+import VaultBlueprint from "@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/plutus.json";
 
 # Datum & redeemer
 
@@ -158,9 +160,7 @@ aiken build
 
 Open `plutus.json` and find the `hash` under the `validators` list. Compare it with ours:
 
-```
-49f60f50cd2bdf1b06554e5b58adbbc86da3cc129bc5f80dc878591d
-```
+<CodeBlock>{validatorHash(VaultBlueprint, "vault_with_datum.vault.spend")}</CodeBlock>
 
 If it matches, your vault compiles to exactly the same script as ours, byte for byte, which means the same address. If it does not, something in the file differs from the code above, so go back over the imports, the two types and the handler. The hash will change again in the [next lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context), because the contract does.
 

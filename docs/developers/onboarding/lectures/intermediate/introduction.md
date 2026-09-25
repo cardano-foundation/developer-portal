@@ -39,10 +39,10 @@ You finished Beginner, so you can move value around Cardano. This track makes th
 
 Lectures 10 to 12 each start from an idea and walk the same path, from the idea to the design to the code. Lecture 13 is a feature rather than a use case, and it is what lets contracts share code and data:
 
-10. **Handling time** (vesting): funds that can't move before a date, enforced without the contract ever reading a clock.
-11. **Multi validators** (a gift card): one script guarding two different actions at once, minting and spending.
-12. **Modifying state** (an oracle): changing data that's already on the chain.
-13. **Reference inputs & reference scripts**: publish a contract once, and let one contract read another's data without consuming it.
+10. **[Handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)** (vesting): funds that can't move before a date, enforced without the contract ever reading a clock.
+11. **[Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** (a gift card): one script guarding two different actions at once, and a token that can only ever be created once.
+12. **[Modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)** (an oracle): changing data that's already on the chain.
+13. **[Reference inputs & reference scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)**: publish a contract once, and let one contract read another's data without consuming it.
 
 ## The projects you'll build
 
@@ -109,7 +109,7 @@ The code you read in these lectures is imported straight from it:
 
 ```
 playground/
-├── vault/          the contract you are about to write     lectures 3-9, 13
+├── vault/          the contract you are about to write     lectures 3-9
 │   ├── on-chain/aiken/
 │   └── off-chain/mesh/
 ├── vesting/        handling time                           lecture 10
@@ -130,7 +130,7 @@ The cost of that separation is that every app is separately installed and separa
 cp vault/off-chain/mesh/.env vesting/off-chain/mesh/.env
 ```
 
-Lectures 10 to 13 work directly in these folders, with `playground/` as the folder you run from: a different workspace, named on every command. Lectures 1 to 9 do not: there you build your own, and `playground/vault/` is the answer sheet.
+You never write code in these folders. Every lecture has you build in your own workspace, and the matching folder here is the answer sheet. What you do run from `playground/` are the apps: the vault's in lecture 9, the vesting one in lecture 10, the gift card's in lecture 11, and the oracle one in lecture 12. Each contract is a separate project here, as it is in your own workspace.
 
 Once `npm run dev` is running, open the printed URL **in the browser where Lace is installed**. Connect, set up collateral, then **Lock 5 ADA** and **Unlock** it again. The **Mint & lock** button does the same thing but also creates a token under the contract's own policy, which is what **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** is about.
 
