@@ -32,7 +32,7 @@ Some attacks cannot happen on Cardano at all: a second contract cannot be called
 
 ## Think as an attacker
 
-An attacker starts from a goal, and there are five. Ask each one about every contract you wrote.
+An attacker could try to do much more than just steal tokens. Here are the five most common. Ask each one about every contract you write.
 
 1. **Steal tokens.** Take value that the rules meant for somebody else. The vault's funds are for the owner who signs. Can anybody else end up with them?
 2. **Block others from getting their tokens.** The funds stay where they are, and the person they are for cannot take them. Your gift card refuses to let a card be burned on its own, because a burned card with the funds still locked leaves them locked forever.
