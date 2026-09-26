@@ -3,27 +3,31 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "type-check": "tsc --noEmit",
-    "preview": "vite preview",
-    "test": "echo \"No tests specified for Vite React example\" && exit 0"
+    "build": "vite build && vite build --ssr server/index.ts --outDir dist-server",
+    "start": "node dist-server/index.js",
+    "typecheck": "tsc --noEmit",
+    "ci": "npm run typecheck && npm run build"
   },
   "dependencies": {
-    "@cardano-foundation/cardano-connect-with-wallet": "^0.2.9",
-    "@cardano-foundation/cardano-connect-with-wallet-core": "^0.2.5",
-    "@evolution-sdk/evolution": "^0.5.9",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "@cardano-foundation/cardano-connect-with-wallet": "0.2.22",
+    "@cardano-foundation/cardano-connect-with-wallet-core": "0.2.12",
+    "@evolution-sdk/evolution": "0.5.14",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@tailwindcss/postcss": "^4.1.7",
-    "@vitejs/plugin-react": "^6.0.1",
-    "tailwindcss": "^4.1.7",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vite": "^8.0.0"
+    "vite": "8.3.1"
   }
 }

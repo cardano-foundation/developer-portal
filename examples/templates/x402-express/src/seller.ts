@@ -15,8 +15,8 @@ config();
 
 const payTo = process.env.SELLER_ADDRESS;
 const facilitatorUrl = process.env.FACILITATOR_URL;
-if (!payTo || !facilitatorUrl) {
-  console.error("Set SELLER_ADDRESS and FACILITATOR_URL in .env (see .env.example)");
+if (!payTo?.startsWith("addr_test1") || !facilitatorUrl) {
+  console.error("Set SELLER_ADDRESS to a preprod address (addr_test1...) and FACILITATOR_URL in .env (see .env.example)");
   process.exit(1);
 }
 
