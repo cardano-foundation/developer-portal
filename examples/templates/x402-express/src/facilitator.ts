@@ -77,6 +77,7 @@ app.post("/settle", async (req, res) => {
         success: false,
         errorReason: error.message.replace("Settlement aborted: ", ""),
         network: req.body?.paymentPayload?.network ?? "unknown",
+        transaction: "",
       });
     }
     res.status(500).json({ error: error instanceof Error ? error.message : "Unknown error" });
