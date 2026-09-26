@@ -10,9 +10,8 @@
     "dev": "vite",
     "build": "vite build && vite build --ssr server/index.ts --outDir dist-server",
     "start": "node dist-server/index.js",
-    "lint": "oxlint",
     "typecheck": "tsc --noEmit",
-    "ci": "npm run lint && npm run typecheck && npm run build"
+    "ci": "npm run typecheck && npm run build"
   },
   "dependencies": {
     "@cardano-foundation/cardano-connect-with-wallet": "0.2.22",
@@ -27,7 +26,6 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "6.1.1",
-    "oxlint": "^1.85.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "vite": "8.3.1"

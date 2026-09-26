@@ -109,7 +109,7 @@ This template is a starting point, not a production app. Before real users and r
 - `npm run dev` starts the dev server, with the API.
 - `npm run build` builds the app into `dist/` and the server into `dist-server/`.
 - `npm start` runs the production server on port 3000 (set `PORT` to change it).
-- `npm run lint` and `npm run typecheck` check the code; `npm run ci` runs both and the build.
+- `npm run typecheck` checks the code; `npm run ci` runs it and the build.
 
 ## Learn more
 
