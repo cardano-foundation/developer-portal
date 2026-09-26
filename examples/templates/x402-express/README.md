@@ -15,7 +15,7 @@ buyer ◄─ 200 + resource + receipt ─────── seller
 
 ## Quickstart
 
-1. **Install**: `npm install` (Node 20+)
+1. **Install**: `npm install` (Node 20.9+)
 2. **Wallet**: `npm run wallet` — copy the `MNEMONIC=` line into `.env`
    (start from `cp .env.example .env`), fund the printed address at the
    [preprod faucet](https://docs.cardano.org/cardano-testnets/tools/faucet).
@@ -45,6 +45,15 @@ needs chain infrastructure beyond Blockfrost. It holds no keys and no funds.
   `FACILITATOR_HOST=0.0.0.0` only to share one with your team deliberately
   (every request spends your Blockfrost quota).
 
+## What it can do with your funds
+
+The seller holds no keys: it only receives payments at `SELLER_ADDRESS`.
+The buyer holds a wallet. Each `npm run buyer` (or `npm run demo`) signs
+and pays for one request, from the wallet whose `MNEMONIC` is in `.env`,
+capped at 5 tADA per payment by `maxAmountPerPayment`. Nothing pays
+unless you run it. To revoke the buyer, move the funds out and delete the
+mnemonic; rotate the Blockfrost key in your Blockfrost dashboard.
+
 ## Troubleshooting
 
 | Symptom | Cause / fix |
@@ -55,16 +64,17 @@ needs chain infrastructure beyond Blockfrost. It holds no keys and no funds.
 | `verify` fails with HTTP 200 and `isValid: false` | Normal shape for a rejected payment — read `invalidReason`; it is not a transport error |
 | Amount errors on tiny prices | Pure-lovelace prices must clear the ~1 ADA min-UTxO; keep lovelace routes at 1 tADA or more |
 | Spend-control rejection | lovelace is not USD-pegged; the buyer allows it via `allowedAssets`, capped at 5 tADA per payment — keep that block if you change assets, and raise the cap if you raise the price |
+| Buyer stops without a receipt (timeout, dropped connection) | The payment may still settle. Check the buyer's address on <https://preprod.cardanoscan.io> before running it again, or it pays twice |
 | Long waits after payment | 1 confirmation ≈ 20–60s on preprod; that is the chain, not a bug |
 
 ## Package versions
 
 The x402 packages (`@x402/express` for the seller, `@x402/fetch` for the
 buyer, `@x402/cardano` for the Cardano scheme) come straight from npm,
-pinned exactly at **2.26.0**
+pinned exactly at **2.26.0**, as is `@evolution-sdk/evolution`
 (content freeze for the hackathon — the x402 release train ships weekly, and
 a version range would change what participants install mid-event). To bump
-later: check `npm view @x402/cardano version`, update the six `@x402/*`
+later: check `npm view @x402/cardano version`, update the four `@x402/*`
 versions in `package.json`, and rerun `npm install`.
 
 ## Building with a coding agent
@@ -80,8 +90,7 @@ with a plain-text version for coding agents at
 
 ## Going to production
 
-- `NETWORK`, the Blockfrost project and the asset ids switch to their
-  mainnet forms (`USDM_PREPROD_ASSET` becomes `USDM_MAINNET_ASSET`),
+- `NETWORK` and the Blockfrost project switch to their mainnet forms,
   and cent-level prices belong in a stablecoin, since the ~1 ADA
   min-UTxO floor is real money there.
 - Use a facilitator you run or trust, over HTTPS. The seller acts on
@@ -95,6 +104,14 @@ with a plain-text version for coding agents at
 - The seller stays keyless (an address is all it holds). Move the
   buyer's mnemonic from `.env` to a secret store and keep its
   per-payment cap (`maxAmountPerPayment`) set.
+- The paid handler runs after the payment is verified but before it
+  settles, and again on each paid retry. Make its side effects (database
+  writes, paid API calls) safe to repeat, or defer them until settlement.
+- Put rate limits or authentication in front of the seller and the
+  facilitator's `/verify` and `/settle`: each call spends your Blockfrost
+  quota. Log errors on the server rather than returning them to callers.
+- Preprod is written into the code, not only the env. A case-insensitive
+  search for `preprod` in `src/` finds every place to change.
 
 ## Going further
 
