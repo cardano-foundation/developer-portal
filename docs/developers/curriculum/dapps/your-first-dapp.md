@@ -57,7 +57,7 @@ npm run dev            # http://localhost:5173
 npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs my-app
 cd my-app
 npm install
-cp .env.example .env   # set NEXT_PUBLIC_BLOCKFROST_API_KEY
+cp .env.example .env   # set BLOCKFROST_PROJECT_ID (server-only) and NEXT_PUBLIC_NETWORK
 npm run dev            # http://localhost:3000
 ```
 
@@ -154,9 +154,12 @@ const txHash = await (await tx.sign()).submit()
 ```tsx
 import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core"
 
-const provider = new BlockfrostProvider(process.env.NEXT_PUBLIC_BLOCKFROST_API_KEY!)
-const unsignedTx = await new MeshTxBuilder({ fetcher: provider, submitter: provider })
-  .txOut(recipient, [{ unit: "lovelace", quantity: lovelaceAmount }])
+// The template's /api/blockfrost route adds the Blockfrost key on the server,
+// so the key never reaches the browser.
+const provider = new BlockfrostProvider("/api/blockfrost")
+const params = await provider.fetchProtocolParameters()
+const unsignedTx = await new MeshTxBuilder({ fetcher: provider, params })
+  .txOut(recipient, [{ unit: "lovelace", quantity: lovelace.toString() }])
   .changeAddress(await wallet.getChangeAddress())
   .selectUtxosFrom(await wallet.getUtxos())
   .complete()
