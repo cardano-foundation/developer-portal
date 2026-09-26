@@ -7,7 +7,13 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { createCip30Signer } from "@/lib/x402/cip30";
-import { runPaymentFlow, type FlowStep } from "@/lib/x402/payFlow";
+import {
+  checkPayment,
+  runPaymentFlow,
+  type FlowOutcome,
+  type FlowStep,
+  type PreparedPayment,
+} from "@/lib/x402/payFlow";
 
 interface WalletInfo {
   key: string;
@@ -21,11 +27,6 @@ declare global {
     cardano?: Record<string, { name?: string; icon?: string; enable?: () => Promise<unknown> }>;
   }
 }
-
-const BLOCKFROST = {
-  baseUrl: "https://cardano-preprod.blockfrost.io/api/v0",
-  projectId: process.env.NEXT_PUBLIC_BLOCKFROST_PROJECT_ID ?? "",
-};
 
 /* A real signing wallet exposes enable(); that alone distinguishes it from
    unrelated globals some extensions drop onto window.cardano. */
@@ -57,6 +58,9 @@ export default function Paywall({
   const [unlocked, setUnlocked] = useState<unknown>();
   const [elapsed, setElapsed] = useState(0);
   const [settled, setSettled] = useState<{ seconds: number; transaction?: string }>();
+  // A signed payment whose result is not final yet. While it is set, the only
+  // action offered is to check it again; paying again could charge twice.
+  const [openPayment, setOpenPayment] = useState<PreparedPayment>();
   const sentAt = useRef<number>(undefined);
 
   useEffect(() => {
@@ -78,34 +82,49 @@ export default function Paywall({
     return () => clearInterval(timer);
   }, [sending]);
 
-  async function pay(wallet: WalletInfo) {
+  const onStep = (step: FlowStep) => setSteps(s => [...s, step]);
+
+  function finish(outcome: FlowOutcome) {
+    if (outcome.status === "settled") {
+      setOpenPayment(undefined);
+      setSettled({
+        seconds: sentAt.current ? Math.round((Date.now() - sentAt.current) / 1000) : 0,
+        transaction: (outcome.receipt as { transaction?: string } | undefined)?.transaction,
+      });
+      setUnlocked(outcome.body);
+    } else if (outcome.status === "failed") {
+      setOpenPayment(undefined);
+      setError(outcome.message);
+    } else {
+      setOpenPayment(outcome.payment);
+      const where = outcome.transaction ? ` Transaction ${outcome.transaction} on preprod.cardanoscan.io.` : "";
+      setError(`${outcome.message}${where} Check this payment again rather than paying again.`);
+    }
+  }
+
+  async function run(task: () => Promise<FlowOutcome>) {
     setBusy(true);
     setError(undefined);
     setSteps([]);
     setSettled(undefined);
     sentAt.current = undefined;
     try {
-      const api = await wallet.enable();
-      const signer = await createCip30Signer(api, BLOCKFROST);
-      const outcome = await runPaymentFlow(url, signer, step => setSteps(s => [...s, step]), {
-        asset,
-        maxAmount,
-      });
-      if (outcome.status === "settled") {
-        setSettled({
-          seconds: sentAt.current ? Math.round((Date.now() - sentAt.current) / 1000) : 0,
-          transaction: (outcome.receipt as { transaction?: string } | undefined)?.transaction,
-        });
-        setUnlocked(outcome.body);
-      } else if ("transaction" in outcome && outcome.transaction)
-        setError(`${outcome.message} Transaction ${outcome.transaction} on preprod.cardanoscan.io.`);
-      else setError(outcome.message);
+      finish(await task());
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause));
     } finally {
       setBusy(false);
     }
   }
+
+  const pay = (wallet: WalletInfo) =>
+    run(async () => {
+      const api = await wallet.enable();
+      const signer = await createCip30Signer(api, { baseUrl: `${window.location.origin}/api/blockfrost` });
+      return runPaymentFlow(url, signer, onStep, { asset, maxAmount });
+    });
+
+  const checkAgain = (payment: PreparedPayment) => run(() => checkPayment(payment, onStep));
 
   if (unlocked) {
     return (
@@ -144,7 +163,7 @@ export default function Paywall({
       ) : (
         <div className="wallets">
           {wallets.map(wallet => (
-            <button key={wallet.key} onClick={() => pay(wallet)} disabled={busy}>
+            <button key={wallet.key} onClick={() => pay(wallet)} disabled={busy || !!openPayment}>
               {wallet.icon ? <img src={wallet.icon} alt="" width={18} height={18} /> : null}
               Pay with {wallet.name}
             </button>
@@ -166,7 +185,14 @@ export default function Paywall({
             : "Preparing the transaction, your wallet will ask you to sign."}
         </p>
       )}
-      {error && <p className="error">{error}</p>}
+      {openPayment && !busy && (
+        <button onClick={() => checkAgain(openPayment)}>Check this payment again</button>
+      )}
+      {error && (
+        <p className="error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
