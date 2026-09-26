@@ -53,7 +53,51 @@ You never hardcode the slug, the scaffold command, or the GitHub link. All three
 
 ## What belongs here
 
-This is a curated set, not a catch-all. A template should be canonical, maintained, and reliable for
-newcomers: a clean starting point, not a full product. Anything better suited to its own repository
+This is a curated set, not a catch-all. A template is the smallest app that does one thing correctly
+and safely: a clean starting point, not a full product. Anything better suited to its own repository
 belongs there. See the [examples README](../README.md) for the wider direction, including the planned
 move to a dedicated templates repo if the catalog outgrows this one.
+
+### Quality bar
+
+A template must be correct and safe for what it does. Everything beyond that is named in its README,
+not built.
+
+**Required**
+
+- A `ci` script (`npm run ci`) that type-checks and builds. CI runs `npm install && npm run ci` on
+  every pull request that touches the template, and weekly for all of them. A linter is the
+  developer's choice; keep one only if the framework ships it.
+- No secret reaches the browser. A provider key stays behind a server route or is not used at all.
+  `.env.example` holds placeholders only, and `.env` is git-ignored.
+- ADA converts to exact lovelace: round, never truncate (`1.005 * 1e6` is `1004999.999…` in
+  floating point).
+- The network is explicit and defaults to a testnet. The recipient address and the wallet must match
+  it (CIP-30 only tells mainnet from testnet, so the README says so), and mainnet asks for
+  confirmation before signing.
+- Errors reach the user, including a rejection in the wallet.
+- Cardano SDKs, pre-1.0 packages, and anything the build config depends on (such as `next`) are
+  pinned to exact versions; other dependencies use `^` ranges. No lockfile is committed: the
+  developer's first `npm install` creates one, and the README says to commit it. `package.json`
+  declares `engines`.
+- A template that signs or moves funds says in its README what it can sign or send, which actions
+  need the user's approval, and how to revoke access or rotate its keys. Nothing moves funds without
+  a deliberate user action.
+- The README says what the template does, how to run it, and lists under "Going to production" what
+  it leaves out on purpose.
+
+**Expected**
+
+- TypeScript in strict mode.
+- Network and provider settings in one config module.
+- Basic accessibility: labelled inputs, a visible focus state, errors announced to screen readers.
+
+**Out of scope**
+
+These belong in the app a developer builds from the template. List them under "Going to production"
+instead of building them:
+
+- Test suites. The build and type-check are the bar.
+- Rate limiting, authentication, monitoring, analytics.
+- State-management libraries, UI kits, internationalisation.
+- Cosmetic polish.
