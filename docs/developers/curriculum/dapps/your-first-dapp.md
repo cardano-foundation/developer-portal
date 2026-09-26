@@ -44,7 +44,7 @@ Each SDK has a runnable starter, browsable in the [templates gallery](/templates
 npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/evolution-vite-react my-app
 cd my-app
 npm install
-cp .env.example .env   # set VITE_BLOCKFROST_PROJECT_ID and VITE_NETWORK
+cp .env.example .env   # set BLOCKFROST_PROJECT_ID (server-only) and VITE_NETWORK
 npm run dev            # http://localhost:5173
 ```
 
@@ -133,19 +133,21 @@ The climax: build a transfer to a recipient, have the wallet sign it, and submit
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
 
+The template's server builds the transaction with the Blockfrost key, so the key never reaches the
+browser. The browser only reads the wallet and signs:
+
 ```tsx
-import { Address, Assets, Client, preprod } from "@evolution-sdk/evolution"
+import { Address, Client, Transaction, TransactionWitnessSet, preprod } from "@evolution-sdk/evolution"
 
 const api = await window.cardano[enabledWallet].enable()
-const client = Client.make(preprod)
-  .withBlockfrost({ baseUrl: "https://cardano-preprod.blockfrost.io/api/v0", projectId: import.meta.env.VITE_BLOCKFROST_PROJECT_ID })
-  .withCip30(api)
+const client = Client.make(preprod).withCip30(api)
+const from = Address.toBech32(await client.address())
 
-const tx = await client
-  .newTx()
-  .payToAddress({ address: Address.fromBech32(recipient), assets: Assets.fromLovelace(amount) })
-  .build()
-const txHash = await (await tx.sign()).submit()
+// server/payments.ts builds it: withBlockfrost(...).withAddress(from).newTx().payToAddress(...).build()
+const { txCbor } = await post("/api/build-payment", { from, to: recipient, lovelace })
+const witnessSet = await client.signTx(txCbor)
+const signedTxCbor = Transaction.addVKeyWitnessesHex(txCbor, TransactionWitnessSet.toCBORHex(witnessSet))
+const { txHash } = await post("/api/submit-tx", { signedTxCbor })
 ```
 
 </TabItem>
