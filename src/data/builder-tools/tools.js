@@ -1023,6 +1023,16 @@ export const BuilderTools = [
     category: "operations",
     properties: ["javascript", "rust"],
   },
+  {
+    title: "VIA Network",
+    icon: "/img/tools/via-network.svg",
+    description: "Cross-chain messaging network that connects Cardano smart contracts to 150+ blockchains, including EVM chains and Midnight. Projects deploy and own their cross-chain contracts and use them for liquidity transfers, oracle feeds, and AI agent integrations.",
+    website: "https://vialabs.tech/overview",
+    docs: "https://developer.vialabs.tech/docs/examples/cardano/overview/",
+    repository: null,
+    category: "integration",
+    properties: ["typescript"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
