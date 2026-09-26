@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Minimal x402 starter for Cardano: a paid API (seller) and an agent that pays for it (buyer), against a hosted facilitator.",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "wallet": "tsx src/wallet.ts",
     "seller": "tsx src/seller.ts",
@@ -11,16 +14,15 @@
     "buyer": "tsx src/buyer.ts",
     "demo": "tsx src/demo.ts",
     "typecheck": "tsc --noEmit",
-    "build": "tsc --noEmit"
+    "build": "tsc --noEmit",
+    "ci": "npm run typecheck"
   },
   "dependencies": {
-    "@evolution-sdk/evolution": "^0.5.9",
+    "@evolution-sdk/evolution": "0.5.14",
     "@x402/cardano": "2.26.0",
     "@x402/core": "2.26.0",
     "@x402/express": "2.26.0",
-    "@x402/extensions": "2.26.0",
     "@x402/fetch": "2.26.0",
-    "@x402/paywall": "2.26.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.0"
   },
