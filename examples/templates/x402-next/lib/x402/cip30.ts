@@ -10,7 +10,8 @@ import { Buffer } from "buffer";
 import { Address, Assets, Client, Transaction, preprod, type UTxO } from "@evolution-sdk/evolution";
 import { LOVELACE_ASSET, parseAssetUnit, type ClientCardanoSigner } from "@x402/cardano";
 
-type Blockfrost = { baseUrl: string; projectId: string };
+/** The app's /api/blockfrost route, which adds the project ID on the server. */
+type Blockfrost = { baseUrl: string };
 
 interface Cip30WalletApi {
   getNetworkId(): Promise<number>;
@@ -25,10 +26,7 @@ function assets(asset: string, amount: bigint) {
 }
 
 async function query(provider: Blockfrost, path: string) {
-  return fetch(`${provider.baseUrl}${path}`, {
-    headers: { project_id: provider.projectId },
-    signal: AbortSignal.timeout(15_000),
-  });
+  return fetch(`${provider.baseUrl}${path}`, { signal: AbortSignal.timeout(15_000) });
 }
 
 /**
@@ -43,7 +41,8 @@ async function liveUtxos(utxos: readonly UTxO.UTxO[], provider: Blockfrost): Pro
       const response = await query(provider, `/addresses/${address}/utxos?count=100&page=${page}`);
       if (response.status === 404) break;
       if (!response.ok) {
-        throw new Error(`Blockfrost returned ${response.status} checking preprod inputs. Try again before signing.`);
+        const { error } = (await response.json().catch(() => ({}))) as { error?: string };
+        throw new Error(error ?? `Blockfrost returned ${response.status} checking preprod inputs. Try again before signing.`);
       }
       const rows = (await response.json()) as Array<{ tx_hash: string; output_index: number }>;
       for (const row of rows) live.add(`${row.tx_hash.toLowerCase()}#${row.output_index}`);
@@ -61,9 +60,6 @@ export async function createCip30Signer(
   walletApi: unknown,
   provider: Blockfrost,
 ): Promise<ClientCardanoSigner> {
-  if (!provider.projectId?.trim()) {
-    throw new Error("Set NEXT_PUBLIC_BLOCKFROST_PROJECT_ID to a preprod project ID and restart the dev server.");
-  }
   const api = walletApi as Cip30WalletApi;
   async function checkNetwork() {
     if ((await api.getNetworkId()) !== 0) {
