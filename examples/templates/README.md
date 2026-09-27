@@ -97,7 +97,8 @@ not built.
 These belong in the app a developer builds from the template. List them under "Going to production"
 instead of building them:
 
-- Test suites. The build and type-check are the bar.
+- Test suites. The build and type-check are the bar; a template may add one offline build test
+  where its SDK makes that cheap (mesh-nextjs builds payments against Mesh's in-memory fetcher).
 - Rate limiting, authentication, monitoring, analytics.
 - State-management libraries, UI kits, internationalisation.
 - Cosmetic polish.
