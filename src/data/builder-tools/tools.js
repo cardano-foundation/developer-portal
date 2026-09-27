@@ -1023,6 +1023,15 @@ export const BuilderTools = [
     category: "operations",
     properties: ["javascript", "rust"],
   },
+  {
+    title: "node101",
+    description: "Paid managed Cardano node services with REST and gRPC access, distributed request handling, monitoring, and 24/7 support. Testnet access, archive nodes, and dedicated deployments in Türkiye, Europe, and the United States are available on request.",
+    category: "api",
+    properties: ["rest", "grpc"],
+    website: "https://node101.io/en/rpc/cardano",
+    repository: null,
+    docs: null,
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
