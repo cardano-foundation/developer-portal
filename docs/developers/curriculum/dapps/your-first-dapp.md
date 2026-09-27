@@ -171,7 +171,7 @@ const txHash = await wallet.submitTx(await wallet.signTx(unsignedTx))
 </TabItem>
 </Tabs>
 
-Each template wraps this in a form with input handling and error states; see `src/components/TransactionBuilder.tsx` (Evolution) or `src/pages/index.tsx` (Mesh).
+Each template wraps this in a form with input handling and error states; see `src/components/TransactionBuilder.tsx` (Evolution), or `src/lib/payment.ts` and `src/pages/index.tsx` (Mesh).
 
 ## Run it
 
