@@ -60,6 +60,7 @@ Many teams across the ecosystem hire remotely. To find roles and the organizatio
 
 - [Browse Cardano ecosystem entities](https://cardano.org/entities) to see who is building, across DeFi, NFTs, gaming, identity, and more.
 - [Cardano Foundation careers](https://cardanofoundation.org/careers), [EMURGO careers](https://emurgo.io/careers/), and [Input Output careers](https://apply.workable.com/io-global/) for roles at the founding entities.
+- [Maneki](https://www.maneki.work/) for a broader look at Web3 hiring — an aggregated job board tracking 2,500+ live openings from 500+ crypto companies' career pages, updated daily.
 - Sign up for the [Talent Pool](/talent) to hear about jobs as they come up.
 
 ## Developer Surveys
