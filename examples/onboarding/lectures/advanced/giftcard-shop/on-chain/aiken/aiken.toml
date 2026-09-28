@@ -1,9 +1,9 @@
-name = "cardano-foundation/onboarding-giftcard"
+name = "cardano-foundation/onboarding-giftcard-shop"
 version = "0.0.0"
 compiler = "v1.1.24"
 plutus = "v3"
 license = "Apache-2.0"
-description = "The gift card contract from the onboarding Intermediate lectures"
+description = "The gift card shop from the onboarding Advanced lectures: one contract, written open and then closed"
 
 [repository]
 user = "cardano-foundation"
