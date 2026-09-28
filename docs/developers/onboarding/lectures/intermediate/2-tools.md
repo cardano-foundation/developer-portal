@@ -47,7 +47,13 @@ Keep your Blockfrost key and your Lace wallet where they are. Neither is touched
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Install Aiken from the **[installation guide](https://aiken-lang.org/installation-instructions)**. It takes about a minute. Then build the contract project **inside the on-chain half**, so it lands where it belongs instead of being moved there afterwards:
+Install Aiken from the **[installation guide](https://aiken-lang.org/installation-instructions)**. It takes about a minute. This track needs **v1.1.24 or newer**, because `aiken new` adds the latest standard library to every project, and older versions cannot compile it. Check the version you have:
+
+```bash
+aiken --version
+```
+
+Then build the contract project **inside the on-chain half**, so it lands where it belongs instead of being moved there afterwards:
 
 ```bash
 cd on-chain

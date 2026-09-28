@@ -2,7 +2,7 @@
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Script, VerificationKey}
-use cardano/assets.{AssetName, PolicyId, Value, from_lovelace, quantity_of}
+use cardano/assets.{AssetName, Assets, PolicyId, from_lovelace, quantity_of}
 use cardano/transaction.{
   InlineDatum, Input, Output, OutputReference, Transaction,
 }
@@ -33,7 +33,7 @@ pub type Rate =
 
 // One beacon and no more. The consumer in the next lecture calls this too, so
 // both contracts agree on what "the real oracle" means.
-pub fn holds_beacon(value: Value, beacon: AssetClass) -> Bool {
+pub fn holds_beacon(value: Assets, beacon: AssetClass) -> Bool {
   quantity_of(value, beacon.policy_id, beacon.name) == 1
 }
 
@@ -117,7 +117,7 @@ const own_ref: OutputReference =
   }
 
 // Some ADA and the beacon: what a live oracle UTxO holds.
-fn with_beacon(lovelace: Int) -> Value {
+fn with_beacon(lovelace: Int) -> Assets {
   from_lovelace(lovelace) |> assets.add(beacon.policy_id, beacon.name, 1)
 }
 
@@ -135,7 +135,7 @@ fn oracle_input() -> Input {
 }
 
 // One output, going wherever the test says, holding whatever the test says.
-fn output_to(address: Address, value: Value) -> Output {
+fn output_to(address: Address, value: Assets) -> Output {
   Output { address, value, datum: InlineDatum(150), reference_script: None }
 }
 
