@@ -19,12 +19,12 @@ You finished Intermediate, so you can take an idea, design a contract, write it,
 
 ## The lectures
 
-1. **[Detecting vulnerabilities](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities)**: the five goals an attacker has, attacks that fit in one transaction, attacks that take several, and a gift card shop with two doors you find and close.
+1. **[Detecting vulnerabilities](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities)**: the five goals an attacker has, attacks that fit in one transaction, attacks that take several, and three contracts whose doors you find and close: a gift card shop, a shared pot and a vault.
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Install it from the **[Aiken installation guide](https://aiken-lang.org/installation-instructions)** if it is not on your machine any more.
+Install it from the **[Aiken installation guide](https://aiken-lang.org/installation-instructions)** if it is not on your machine any more. The examples need v1.1.24 or newer, and `aiken --version` shows the version you have.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">

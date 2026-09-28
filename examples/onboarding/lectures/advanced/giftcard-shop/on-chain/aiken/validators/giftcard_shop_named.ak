@@ -21,7 +21,7 @@ pub type CardAction {
   Burn
 }
 
-/// The datum of a locked UTxO: the name of the card that releases it.
+// The datum of a locked UTxO: the name of the card that releases it.
 pub type CardDatum {
   card: ByteArray,
 }
@@ -74,7 +74,7 @@ validator giftcard_shop(shop: VerificationKeyHash) {
 }
 
 // #region locks-card
-/// Whether an input is a UTxO at the script's address whose datum names this card.
+// Whether an input is a UTxO at the script's address whose datum names this card.
 fn locks_card(input: Input, policy_id: PolicyId, card: ByteArray) -> Bool {
   if input.output.address.payment_credential == Script(policy_id) {
     when input.output.datum is {
