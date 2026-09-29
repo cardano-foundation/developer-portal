@@ -361,7 +361,11 @@ module.exports = {
           label: "Talent Pool",
           href: "/talent",
         },
-        "community/funding",
+        {
+          type: "link",
+          label: "Funding",
+          href: "https://cardano.org/grants-funding/",
+        },
       ],
     },
     {

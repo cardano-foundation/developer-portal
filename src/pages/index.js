@@ -566,10 +566,10 @@ function CTASection() {
       title: "Get Funded",
       body: "Grants and funding opportunities to bring your ideas to life",
       cta: "Explore grants",
-      to: "docs/community/funding",
+      to: "https://cardano.org/grants-funding/",
       img: "img/home/rebrand/ecosystem-get-funded.webp",
       alt: "Cardano funding and grants",
-      external: false,
+      external: true,
     },
   ];
   const baseUrl = useBaseUrl("/");
