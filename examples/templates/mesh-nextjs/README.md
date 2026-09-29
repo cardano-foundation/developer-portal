@@ -43,23 +43,27 @@ The app runs at `http://localhost:3000`. Connect a wallet, then send some [test 
 ## The Mesh pieces
 
 `MeshProvider` (in `src/pages/_app.tsx`) makes wallet state available to the hooks. `useWallet` and
-`useLovelace` read the connected wallet; `MeshTxBuilder` builds the payment, and the wallet signs and
-submits it:
+`useLovelace` read the connected wallet. `buildPaymentTx` in `src/lib/payment.ts` builds the payment
+with `MeshTxBuilder`, and the wallet signs and submits it:
 
 ```tsx
-const provider = new BlockfrostProvider("/api/blockfrost")
-const params = await provider.fetchProtocolParameters()
-
-const unsignedTx = await new MeshTxBuilder({ fetcher: provider, params })
+// src/lib/payment.ts
+return new MeshTxBuilder({ fetcher, params })
   .txOut(recipient, [{ unit: "lovelace", quantity: lovelace.toString() }])
   .changeAddress(await wallet.getChangeAddress())
   .selectUtxosFrom(await wallet.getUtxos())
   .complete()
 
+// src/pages/index.tsx
+const provider = new BlockfrostProvider("/api/blockfrost")
+const params = await provider.fetchProtocolParameters()
+const unsignedTx = await buildPaymentTx(wallet, provider, params, to, lovelace)
 const txHash = await wallet.submitTx(await wallet.signTx(unsignedTx))
 ```
 
-See `src/pages/index.tsx` for the full flow with the balance display, the send form, and error states.
+The page keeps the input checks, the mainnet confirm and the error states; see `src/pages/index.tsx`.
+`src/lib/payment.test.ts` builds payments against an in-memory chain, so `npm test` needs no network
+or wallet.
 
 ## What it can do with your funds
 
@@ -109,7 +113,8 @@ This template is a starting point, not a production app. Before real users and r
 - `npm run build` builds for production.
 - `npm run start` serves the production build.
 - `npm run lint` checks the code with ESLint.
-- `npm run ci` runs lint, type-check, and build, as CI does.
+- `npm test` builds payments offline and checks the outputs.
+- `npm run ci` runs lint, type-check, the tests, and the build, as CI does.
 
 ## Learn more
 
