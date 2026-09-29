@@ -2,8 +2,9 @@ import { useState } from "react";
 import Head from "next/head";
 import type { NextPage } from "next";
 import { CardanoWallet, useLovelace, useNetwork, useWallet } from "@meshsdk/react";
-import { BlockfrostProvider, MeshTxBuilder, deserializeAddress } from "@meshsdk/core";
+import { BlockfrostProvider, deserializeAddress } from "@meshsdk/core";
 import { addressPrefix, explorerTxUrl, isMainnet, network, networkId } from "@/config";
+import { buildPaymentTx } from "@/lib/payment";
 
 // The provider only fetches protocol parameters, through the server route that
 // holds the Blockfrost key. The wallet signs and submits.
@@ -65,11 +66,7 @@ const Home: NextPage = () => {
     setLoading(true);
     try {
       const params = await provider.fetchProtocolParameters();
-      const unsignedTx = await new MeshTxBuilder({ fetcher: provider, params })
-        .txOut(to, [{ unit: "lovelace", quantity: lovelace.toString() }])
-        .changeAddress(await wallet.getChangeAddress())
-        .selectUtxosFrom(await wallet.getUtxos())
-        .complete();
+      const unsignedTx = await buildPaymentTx(wallet, provider, params, to, lovelace);
 
       const signedTx = await wallet.signTx(unsignedTx);
       setTxHash(await wallet.submitTx(signedTx));
