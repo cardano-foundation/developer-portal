@@ -399,6 +399,12 @@ export const BuilderTools = [
     category: "smart-contracts",
     properties: [],
     maintainerPick: true,
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/aiken.webp",
+        alt: "The Aiken Playground after a check: the example minting validator compiles, and four tests pass with their CPU and memory costs and the coverage of a property test",
+      },
+    ],
   },
   {
     title: "Cardano Signer",
@@ -674,6 +680,12 @@ export const BuilderTools = [
     category: "testing",
     properties: ["typescript"],
     maintainerPick: true,
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/lace-anatomy.webp",
+        alt: "A preprod transaction dissected in Lace Anatomy: fee, size and block height up top, its inputs, outputs, certificates and witnesses listed, and the selected input decoded down to its address parts",
+      },
+    ],
   },
   {
     title: "Gastronomy",
@@ -695,6 +707,12 @@ export const BuilderTools = [
     repository: "https://github.com/WingRiders/datum-explorer",
     category: "testing",
     properties: ["typescript"],
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/datum-explorer.webp",
+        alt: "A Minswap V2 pool datum from mainnet pasted as CBOR, with the schema detected and decoded into named fields such as both assets, the reserves and the fees",
+      },
+    ],
   },
   {
     title: "Apollo",
@@ -865,6 +883,12 @@ export const BuilderTools = [
     repository: "https://github.com/IntersectMBO/mithril",
     category: "operations",
     properties: ["rust", "javascript", "typescript"],
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/mithril.webp",
+        alt: "The Mithril Explorer on mainnet: the current epoch, the share of SPOs and stake signing, the protocol parameters, and the latest certificates the aggregator sealed",
+      },
+    ],
   },
   {
     title: "ODATANO",
