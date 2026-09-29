@@ -30,7 +30,12 @@
  *  - Open source is encouraged: set `repository` to your public repo (it surfaces an
  *    "Open Source" badge + GitHub link). Hosted/closed services are welcome too, use null.
  *  - Do NOT set maintainerPick (maintainers choose those).
- *  - Categories + properties are defined in ./tags.js. All fields are required (use null where noted).
+ *  - screenshots (optional): up to 3 images of the tool in use, for tools with a UI or visual
+ *    output. Put the files in static/img/tools/screenshots/ (.png, .jpg or .webp, max 500 KB) and
+ *    list them as `screenshots: [{ src: "/img/tools/screenshots/your-tool.webp", alt: "What the
+ *    image shows" }]`. Leave the field out when there is nothing to show.
+ *  - Categories + properties are defined in ./tags.js. All other fields are required (use null
+ *    where noted).
  *
  * ============================================================================
  */
@@ -39,7 +44,7 @@ export const BuilderTools = [
   {
     title: "cardano-cli",
     icon: "/img/tools/intersect.png",
-    description: "Command-line tool for interacting with a Cardano node: keys, addresses, transactions, stake pools, and governance.",
+    description: "Command-line tool for interacting with a Cardano node: keys, addresses, transactions, chain queries and scripts. It also covers stake pool operation, DRep registration, and creating and voting on governance actions.",
     website: "https://github.com/IntersectMBO/cardano-cli#overview-of-the-cardano-cli-repository",
     docs: null,
     repository: "https://github.com/IntersectMBO/cardano-cli",
@@ -1022,6 +1027,72 @@ export const BuilderTools = [
     repository: "https://github.com/GNP1-dev/PoolTerminal",
     category: "operations",
     properties: ["javascript", "rust"],
+  },
+  {
+    title: "cip30-test-wallet",
+    icon: "/img/tools/cip30-test-wallet.svg",
+    description: "CIP-30 test wallet that injects into Playwright tests and signs transactions and messages without a wallet popup, so CI and coding agents can test dApp wallet flows unattended. Includes a catalogue of wallet quirks and a CSP doctor.",
+    website: "https://github.com/Lichtstaub/cip30-test-wallet#readme",
+    docs: "https://github.com/Lichtstaub/cip30-test-wallet#quick-start",
+    repository: "https://github.com/Lichtstaub/cip30-test-wallet",
+    category: "testing",
+    properties: ["typescript", "agentic"],
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/cip30-test-wallet.webp",
+        alt: "A Playwright test in the trace viewer: the test connects the demo dApp to the injected wallet, commits, and proves the submitted transaction carries the wallet's signature",
+      },
+    ],
+  },
+  {
+    title: "cardano-api",
+    icon: "/img/tools/intersect.png",
+    description: "Haskell library for building, signing and submitting transactions, managing keys and addresses, and querying a Cardano node. It is the library that cardano-cli is built on.",
+    website: "https://github.com/IntersectMBO/cardano-api#readme",
+    docs: "https://cardano-api.cardano.intersectmbo.org/",
+    repository: "https://github.com/IntersectMBO/cardano-api",
+    category: "sdk",
+    properties: ["haskell"],
+  },
+  {
+    title: "cardano-rpc",
+    icon: "/img/tools/intersect.png",
+    description: "gRPC server built into cardano-node that implements the UTxO RPC specification: query UTxOs and protocol parameters, submit and evaluate transactions, and follow the chain tip as a stream.",
+    website: "https://github.com/IntersectMBO/cardano-api/tree/master/cardano-rpc",
+    docs: "https://cardano-api.cardano.intersectmbo.org/cardano-rpc/Cardano-Rpc-Server.html",
+    repository: "https://github.com/IntersectMBO/cardano-api",
+    category: "node-access",
+    properties: ["grpc", "haskell"],
+  },
+  {
+    title: "cardano-wasm",
+    icon: "/img/tools/intersect.png",
+    description: "Subset of the cardano-api Haskell library compiled to WebAssembly, with a JavaScript and TypeScript API for key management, addresses, transaction building, fee estimation and signing in the browser and Node.js.",
+    website: "https://github.com/IntersectMBO/cardano-api/tree/master/cardano-wasm",
+    docs: null,
+    repository: "https://github.com/IntersectMBO/cardano-api",
+    category: "sdk",
+    properties: ["typescript", "javascript", "haskell"],
+  },
+  {
+    title: "cardano-sieve",
+    icon: "/img/tools/intersect.png",
+    description: "Pattern-filtered chain index that follows a local Cardano node, records every matching UTxO with when it was created and spent in SQLite, and serves the results over an HTTP API.",
+    website: "https://github.com/IntersectMBO/cardano-sieve#readme",
+    docs: null,
+    repository: "https://github.com/IntersectMBO/cardano-sieve",
+    category: "indexer",
+    properties: ["haskell", "rest"],
+  },
+  {
+    title: "cardano-testnet",
+    icon: "/img/tools/intersect.png",
+    description: "Spins up a local, multi-node Cardano cluster with configurable genesis, era and node topology, for integration testing and local development. Ships as a command-line tool and as a Haskell library for writing Hedgehog-based integration tests against a running network.",
+    website: "https://github.com/IntersectMBO/cardano-node/tree/master/cardano-testnet",
+    docs: null,
+    repository: "https://github.com/IntersectMBO/cardano-node",
+    category: "dev-env",
+    properties: ["haskell"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE

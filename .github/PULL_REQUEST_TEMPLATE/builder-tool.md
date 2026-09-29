@@ -20,3 +20,4 @@ Thanks for contributing a tool. Complete the checklist, fill in every field belo
 * Website: <link to the tool's home page>
 * Repository: <link to your public source repo, or `null` for a closed/hosted service>
 * Docs: <link to docs / get-started page, or `null`>
+* Screenshots (optional): *paths under `static/img/tools/screenshots/`, only for tools with a UI or visual output*
