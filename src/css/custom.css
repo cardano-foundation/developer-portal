@@ -831,13 +831,14 @@ html[data-theme="dark"] .megaMenuColumnTitle {
   gap: 10px;
 }
 
-/* Items are outlined cards on the panel, one fixed-height row each */
+/* Items are outlined cards on the panel, 70px rows that grow when a
+   larger browser font size wraps the copy onto more lines */
 .megaMenuItemLink {
   display: flex;
   align-items: center;
   gap: 14px;
-  height: 70px;
-  padding: 0 10px;
+  min-height: 70px;
+  padding: 10px;
   border: 1px solid var(--mega-item-border);
   border-radius: var(--site-radius-md);
   text-decoration: none !important;
