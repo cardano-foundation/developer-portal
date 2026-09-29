@@ -1028,6 +1028,22 @@ export const BuilderTools = [
     category: "operations",
     properties: ["javascript", "rust"],
   },
+  {
+    title: "cip30-test-wallet",
+    icon: "/img/tools/cip30-test-wallet.svg",
+    description: "CIP-30 test wallet that injects into Playwright tests and signs transactions and messages without a wallet popup, so CI and coding agents can test dApp wallet flows unattended. Includes a catalogue of wallet quirks and a CSP doctor.",
+    website: "https://github.com/Lichtstaub/cip30-test-wallet#readme",
+    docs: "https://github.com/Lichtstaub/cip30-test-wallet#quick-start",
+    repository: "https://github.com/Lichtstaub/cip30-test-wallet",
+    category: "testing",
+    properties: ["typescript", "agentic"],
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/cip30-test-wallet.webp",
+        alt: "A Playwright test in the trace viewer: the test connects the demo dApp to the injected wallet, commits, and proves the submitted transaction carries the wallet's signature",
+      },
+    ],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
