@@ -59,14 +59,15 @@ const redirects = [
     from: '/docs/get-started/smart-contracts-signpost',
   },
   {
-    // the old funding category overview now points to the funding page
-    to: '/docs/community/funding',
-    from: '/docs/fund-your-project/',
-  },
-  {
-    // redirect to the new funding page
-    to: '/docs/community/funding',
-    from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
+    // funding moved to cardano.org/grants-funding
+    to: 'https://cardano.org/grants-funding/',
+    from: [
+      '/docs/community/funding',
+      '/docs/fund-your-project/',
+      '/docs/fund-your-project/project-catalyst',
+      '/docs/fund-your-project/alternatives',
+      '/docs/get-started/funding',
+    ],
   },
   {
     // redirect as many pages as possible from old SPO course to new SPO course
@@ -204,10 +205,6 @@ const redirects = [
   {
     to: '/docs/community/cardano-developer-community',
     from: '/docs/get-started/cardano-developer-community',
-  },
-  {
-    to: '/docs/community/funding',
-    from: '/docs/get-started/funding',
   },
   {
     to: '/docs/developers/curriculum/fundamentals/core-concepts/overview',
