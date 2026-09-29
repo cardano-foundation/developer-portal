@@ -45,7 +45,7 @@ export function createPaymentApi(env: PaymentEnv) {
 
   async function submitTx(body: Record<string, unknown>) {
     if (typeof body.signedTxCbor !== "string") throw new BadRequest("signedTxCbor is required.")
-    const hash = await provider!.submitTx(Transaction.fromCBORHex(body.signedTxCbor))
+    const hash = await provider!.submitTx(parseTransaction(body.signedTxCbor))
     return { txHash: TransactionHash.toHex(hash) }
   }
 
@@ -56,7 +56,7 @@ export function createPaymentApi(env: PaymentEnv) {
 
   // Returns false for requests outside the API, so the caller can serve them.
   return async function handle(req: IncomingMessage, res: ServerResponse): Promise<boolean> {
-    const route = routes[req.url ?? ""]
+    const route = routes[new URL(req.url ?? "/", "http://localhost").pathname]
     if (!route) return false
     if (req.method !== "POST") return (send(res, 405, { error: "Method not allowed" }), true)
     if (!provider) {
@@ -79,6 +79,14 @@ function tryParse(bech32: string) {
     return Address.fromBech32(bech32)
   } catch {
     return undefined
+  }
+}
+
+function parseTransaction(cbor: string) {
+  try {
+    return Transaction.fromCBORHex(cbor)
+  } catch {
+    throw new BadRequest("signedTxCbor is not a valid transaction.")
   }
 }
 
