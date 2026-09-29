@@ -5,6 +5,7 @@ import { PageMetadata } from "@docusaurus/theme-common";
 import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import {
@@ -29,7 +30,7 @@ import useCopyToClipboard from "@site/src/utils/useCopyToClipboard";
 // fourth card would wrap alone.
 const RELATED_LIMIT = 3;
 
-function buildJsonLd(tool, categoryLabel) {
+function buildJsonLd(tool, categoryLabel, screenshotUrls) {
   return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -38,6 +39,7 @@ function buildJsonLd(tool, categoryLabel) {
     url: tool.website,
     ...(tool.repository ? { codeRepository: tool.repository } : {}),
     ...(categoryLabel ? { applicationCategory: categoryLabel } : {}),
+    ...(screenshotUrls.length > 0 ? { screenshot: screenshotUrls } : {}),
   });
 }
 
@@ -121,6 +123,40 @@ function ShareButton({ title }) {
   );
 }
 
+// Stacked full-width figures. Most tools are libraries or CLIs with nothing
+// to show, so entries carry one to three images and a carousel isn't needed.
+// Each image links to the full-size file for dense captures like terminals.
+// `sizes` comes from plugins/tools-routes, which measures the files at build.
+function Screenshots({ screenshots, sizes }) {
+  const { withBaseUrl } = useBaseUrlUtils();
+  return (
+    <section>
+      <h2 className={styles.sectionHeading}>
+        {screenshots.length === 1 ? "Screenshot" : "Screenshots"}
+      </h2>
+      <div className={styles.screenshotList}>
+        {screenshots.map((shot, i) => {
+          const src = withBaseUrl(shot.src);
+          return (
+            <figure key={shot.src} className={styles.screenshot}>
+              <a href={src} {...EXTERNAL_LINK_PROPS}>
+                <img
+                  src={src}
+                  alt={shot.alt}
+                  width={sizes[i]?.width}
+                  height={sizes[i]?.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </figure>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function NotFound() {
   return (
     <Layout title="Tool not found">
@@ -139,8 +175,9 @@ function NotFound() {
   );
 }
 
-export default function ToolDetail({ slug }) {
+export default function ToolDetail({ slug, screenshotSizes = [] }) {
   const { siteConfig } = useDocusaurusContext();
+  const { withBaseUrl } = useBaseUrlUtils();
   const tool = Tools.find((t) => t.slug === slug);
 
   if (!tool) return <NotFound />;
@@ -155,6 +192,10 @@ export default function ToolDetail({ slug }) {
       ? `${repository}/edit/${branch}/src/data/builder-tools/tools.js`
       : repository;
 
+  const screenshotUrls = tool.screenshots.map((shot) =>
+    withBaseUrl(shot.src, { absolute: true })
+  );
+
   const pageTitle = `${tool.title}, Cardano builder tool`;
   const pageDescription = tool.description;
 
@@ -164,7 +205,7 @@ export default function ToolDetail({ slug }) {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <script type="application/ld+json">
-          {buildJsonLd(tool, categoryDef?.label)}
+          {buildJsonLd(tool, categoryDef?.label, screenshotUrls)}
         </script>
       </Head>
       <PageMetadata image={ogCards.tools} />
@@ -233,6 +274,10 @@ export default function ToolDetail({ slug }) {
             )}
             <ShareButton title={tool.title} />
           </div>
+
+          {tool.screenshots.length > 0 && (
+            <Screenshots screenshots={tool.screenshots} sizes={screenshotSizes} />
+          )}
 
           {relatedTools.length > 0 && (
             <section className={styles.related}>
