@@ -363,7 +363,7 @@ module.exports = {
         },
         {
           type: "link",
-          label: "Funding",
+          label: "Grants & Funding",
           href: "https://cardano.org/grants-funding/",
         },
       ],
