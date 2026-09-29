@@ -30,7 +30,12 @@
  *  - Open source is encouraged: set `repository` to your public repo (it surfaces an
  *    "Open Source" badge + GitHub link). Hosted/closed services are welcome too, use null.
  *  - Do NOT set maintainerPick (maintainers choose those).
- *  - Categories + properties are defined in ./tags.js. All fields are required (use null where noted).
+ *  - screenshots (optional): up to 3 images of the tool in use, for tools with a UI or visual
+ *    output. Put the files in static/img/tools/screenshots/ (.png, .jpg or .webp, max 500 KB) and
+ *    list them as `screenshots: [{ src: "/img/tools/screenshots/your-tool.webp", alt: "What the
+ *    image shows" }]`. Leave the field out when there is nothing to show.
+ *  - Categories + properties are defined in ./tags.js. All other fields are required (use null
+ *    where noted).
  *
  * ============================================================================
  */
