@@ -504,6 +504,26 @@ html[data-theme="dark"] .navbar {
   height: 40px;
 }
 
+/* Infima lets the brand shrink when the bar runs short of room, which slid
+   the nav links over the logo on narrow desktops. */
+.navbar__brand {
+  flex-shrink: 0;
+}
+
+/* Narrow desktops: search collapses to its icon, as DocSearch does below
+   768px, so the nav links keep their room. Set in em so the range widens
+   with the visitor's browser font size. */
+@media (min-width: 997px) and (max-width: 70em) {
+  .navbar .DocSearch-Button {
+    width: auto;
+  }
+
+  .navbar .DocSearch-Button-Placeholder,
+  .navbar .DocSearch-Button-Keys {
+    display: none;
+  }
+}
+
 .navbar .DocSearch-Button {
   background: var(--site-color-gray-light);
   border: 1px solid var(--site-color-light-grey);
@@ -652,6 +672,15 @@ html[data-theme="dark"] body {
 
 .navbar__item--mega {
   position: relative;
+}
+
+/* A closed panel keeps its layout box, centered under its trigger, and on
+   narrow desktops that box runs past the viewport edge and makes the page
+   scroll sideways. Clip the bar horizontally: open panels are shifted to
+   sit inside the viewport, and clip leaves the vertical overflow the
+   panels drop into untouched. */
+.navbar {
+  overflow-x: clip;
 }
 
 .megaMenuTrigger {
