@@ -220,7 +220,7 @@ flowchart TB
     A ~~~ B
 ```
 
-The node limits how far ahead the end of a window may be, about a day and a half at the time of writing, so this rule lets the beneficiary claim up to a day and a half early. The limit is a network parameter setting that can change, so a contract cannot count on it to keep the damage small. The handbook's **[lending example](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling)** shows the same mistake from both sides. The borrower must write the loan's end date into the datum, and the contract computes it by adding the loan's duration to the end of the window. A borrower who moves that end later gets a longer loan. The lender may take the collateral only after the loan ends, and the contract checks that by reading the end of the window too. A lender who moves it past the loan's end date takes the collateral early.
+The node limits how far ahead the end of a window may be, about a day and a half at the time of writing, so this rule lets the beneficiary claim up to a day and a half early. The limit is a network parameter setting that can change, so a contract cannot count on it to keep the damage small. The handbook's **[time handling](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling)** page shows the same mistake in a lending contract, where the borrower and the lender can each move the window to their own advantage.
 
 ## Multi-step attacks
 
