@@ -15,7 +15,7 @@ import QueueLean from "!!raw-loader!@site/examples/onboarding/lectures/advanced/
 
 # Optimization
 
-A validator can be correct and still be useless. In [spam until it breaks](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#spam-until-it-breaks) an attacker grew a raffle until its closing transaction needed more than a transaction is allowed to use, and the funds stayed locked. A contract reaches the same limit without any attacker: a treasury that pays ten people in one transaction is cheap, and the same treasury paying sixty is refused by the chain.
+A validator can be correct and still be useless. In [resource limit](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#resource-limit) an attacker filled the splitter's pot with dust until the split needed more than a transaction is allowed to use, and the funds stayed locked. A contract reaches the same limit without any attacker: a treasury that pays ten people in one transaction is cheap, and the same treasury paying sixty is refused by the chain.
 
 ## Three limits on a transaction
 
@@ -43,7 +43,7 @@ The limit is on the whole serialized transaction, which means the signatures and
 
 The rest grows with the work. Each input, spent or referenced, adds an output reference, which is a transaction id with an index. A transaction can carry one redeemer per validator run, with the execution units that run expects. Each output is written out in full, with its address, its value and its datum.
 
-The datum of a UTxO you spend stays on the chain where it already is, so spending one costs the same few bytes whatever it holds. The datums a transaction creates are new bytes, and nothing limits how large a datum can be, so its outputs can grow until it no longer fits. A contract that keeps a lot of state in its datums spends more bytes on them than on its script. The handbook's [batching](/docs/developers/curriculum/start-building/transaction-building#batching-and-airdrops) section puts an output at about 60 to 100 bytes, which leaves room for 20 to 30 plain payments.
+The datum of a UTxO you spend stays on the chain where it already is, so spending one costs the same few bytes whatever it holds. The datums a transaction creates are new bytes, and nothing limits how large a datum can be, so its outputs can grow until it no longer fits. A contract that keeps a lot of state in its datums spends more bytes on them than on its script. An output that pays ADA to an ordinary wallet address takes about 67 bytes.
 
 A reference input takes the compiled script out of every transaction that points at it, which is what [reference scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts#reference-scripts) are for.
 
@@ -78,14 +78,14 @@ flowchart TB
     subgraph AFTER["one run answers it for all of them"]
         direction LR
         A1["spend run 1"] -->|checks it ran| A0
-        A2["spend run 2"] -->|checks it ran| A0["the run that happens once"]
+        A2["spend run 2"] -->|checks it ran| A0["one run per transaction"]
         A3["spend run 3"] -->|checks it ran| A0
         A0 -->|walks it| AT{{"the transaction"}}
     end
     BEFORE ~~~ AFTER
 ```
 
-A minting policy runs once per transaction whatever it mints. A contract with nothing to mint can use the withdraw purpose from [validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes). Taking zero ADA out of the script's own reward account makes the script run one more time, as a withdrawal validator. That run can carry the check for everything else. The handbook has both shapes, [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter) and the [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator).
+A minting policy runs once per transaction whatever it mints. A contract with nothing to mint can use the withdraw purpose from [validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes). A transaction that withdraws zero ADA from the script's own reward account makes the script run one more time, as a withdrawal validator, and that run can carry the check for everything else. This is called the **withdraw zero trick**. The handbook explains it on its [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) page, and the minting version on [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter).
 
 ## Optimize before you deploy
 
@@ -120,9 +120,38 @@ Then the datum, the validator, and the function that walks the inputs:
   {extractRegion(Queue, "queue")}
 </CodeBlock>
 
-The payment for a queued payout is the output sitting at the same position as its input. Two payouts cannot be released by one payment, because two inputs cannot sit at the same position. The app has to put each payment in the right place. The ledger sorts the inputs of a transaction before any validator sees them, so the app has to match that sorted order.
+The payment for a queued payout is the output at the same position as its input:
 
-`position_of` is where the cost is. It walks the inputs until it reaches the UTxO being spent, and it does that once for every payout the transaction releases.
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent, in the ledger's order"]
+        I0["`**position 0**
+        address: the payout queue
+        datum: pay Alice 10 ADA`"]
+        I1["`**position 1**
+        address: the payout queue
+        datum: pay Bob 20 ADA`"]
+    end
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O0["`**position 0**
+        address: Alice
+        value: 10 ADA`"]
+        O1["`**position 1**
+        address: Bob
+        value: 20 ADA`"]
+    end
+
+    I0 -->|"its spend run checks"| O0
+    I1 -->|"its spend run checks"| O1
+
+    style I0 stroke-dasharray:4 3
+    style I1 stroke-dasharray:4 3
+```
+
+Two payouts cannot be released by one payment, because two inputs cannot sit at the same position. The ledger sorts the inputs of a transaction before any validator sees them, so the app has to put each payment at the position its input will have after sorting.
+
+`position_of` is where the cost is. It walks the inputs until it reaches the UTxO being spent, and it does that once for every payout the transaction releases. The gift card shop's count in [count the cards](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#count-the-cards) has the same shape.
 
 Then the tests:
 
@@ -144,7 +173,7 @@ Add a builder for a release of any size, a function that runs every handler the 
   {extractRegion(Queue, "measure")}
 </CodeBlock>
 
-Run `aiken check` again. Eight passes, and the runner prints the memory and CPU beside each test name:
+Run `aiken check` again. Eight passes. Read the memory and CPU beside each test name, as you did for the splitter's split in [donate dust](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#donate-dust):
 
 | test | memory | CPU |
 | --- | --- | --- |
@@ -153,6 +182,8 @@ Run `aiken check` again. Eight passes, and the runner prints the memory and CPU 
 | `sixty_payouts_are_released` | 16.59 M | 7.85 B |
 
 Three times as many payouts cost five times the memory. Six times as many cost more than fifteen times. At sixty payouts the test reports 16.59 M, which is already over the 16.5 M limit.
+
+The size limit is further away. Each payout adds an input, an output and a redeemer to the transaction, about 120 bytes together when the script comes from a reference input. Sixty payouts take about 7,700 of the 16,384 bytes, and a release reaches the size limit at about 130 payouts. Memory runs out first.
 
 Then the benchmark. A `bench` takes a sampler: a function that turns a size into a generator of transactions. The runner calls it with every size up to a maximum, and this sampler ignores the randomness it is given and returns the release of that size:
 
@@ -194,7 +225,44 @@ CPU at sixty payouts drops by more than a third and memory hardly moves. The wal
 
 ### Check the queue once
 
-Every spend run still reads a datum, looks up a payment and compares it. Whether every payout is paid is one fact about the whole transaction, so one run can answer it for all of them. This contract has nothing to mint, so the run that happens once is a withdrawal of zero ADA from the script's own reward account.
+Every spend run still reads a datum, looks up a payment and compares it. Whether every payout is paid is one fact about the whole transaction, so one run can answer it for all of them. This contract has nothing to mint, so it uses the withdraw zero trick. The release withdraws zero ADA from the script's own reward account, and the script runs once more, as a withdrawal validator:
+
+```mermaid
+flowchart LR
+    subgraph IN["INPUTS: UTxOs spent"]
+        I0["`**position 0**
+        queued payout to Alice
+        spend run: is the withdrawal here?`"]
+        I1["`**position 1**
+        queued payout to Bob
+        spend run: is the withdrawal here?`"]
+    end
+
+    W["`**withdrawal: 0 ADA**
+    from the script's reward account
+    withdraw run: is every payout paid?`"]
+
+    TX{{"`**release**
+    the script runs three times`"}}
+
+    subgraph OUT["OUTPUTS: UTxOs created"]
+        O0["`**position 0**
+        to Alice, 10 ADA`"]
+        O1["`**position 1**
+        to Bob, 20 ADA`"]
+    end
+
+    I0 --> TX
+    I1 --> TX
+    W --> TX
+    TX --> O0
+    TX --> O1
+
+    style I0 stroke-dasharray:4 3
+    style I1 stroke-dasharray:4 3
+```
+
+With two payouts the script runs three times instead of two. With sixty it runs sixty-one times, and only one of those runs checks the payments.
 
 The imports gain the withdrawals lookup and the credential type:
 
@@ -299,8 +367,8 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 - [Contract optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization): the handbook's catalog, benchmarks first, then the techniques grouped by the kind of saving each one makes.
 - [Fees](/docs/developers/curriculum/fundamentals/core-concepts/fees): the fee formula, the price of execution units, and what a reference script costs.
 - [UTxO indexers](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers): the position in the redeemer, for one input, for one input and its outputs, and for many of each.
-- [Transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter): the run that happens once as a minting policy.
-- [Stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator): the run that happens once as a withdrawal, and what registering the reward account involves.
+- [Transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter): one check per transaction, run by a minting policy.
+- [Stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator): the withdraw zero trick, and what registering the reward account involves.
 - [Merkelized validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator): putting part of a validator in a separate script, so that a change that trades script size for execution units still fits.
 - [Transaction building](/docs/developers/curriculum/start-building/transaction-building#batching-and-airdrops): splitting the work across transactions when one of them can no longer hold it.
 - [Debugging CBOR](/docs/developers/curriculum/smart-contracts/advanced/debug-cbor): reading a transaction's bytes to see what takes the space.

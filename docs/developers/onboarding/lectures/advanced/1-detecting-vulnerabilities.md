@@ -254,7 +254,7 @@ flowchart LR
     style UN stroke-dasharray:4 3
 ```
 
-Running a validator costs **[execution units](/docs/developers/curriculum/fundamentals/core-concepts/fees#script-execution-fees)**, the CPU and memory measure you met when the backend evaluated the unlock, and a protocol parameter sets a maximum per transaction. A transaction whose scripts need more than that maximum is invalid, whatever fee it offers. Reading 60 dust tokens needs more, so nobody can split the pot, and the ADA is locked in it. The protocol has halted and every benefactor is blocked from their money, two of the five goals in one attack, and no single step broke a rule.
+A transaction may only use so much memory and CPU to run its scripts, and one that needs more is invalid, whatever fee it offers. **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization#three-limits-on-a-transaction)** has the limits. Reading 60 dust tokens needs more, so nobody can split the pot, and the ADA is locked in it. The protocol has halted and every benefactor is blocked from their money, two of the five goals in one attack, and no single step broke a rule.
 
 A list in a datum grows in the same way, one entry per transaction, until the transaction that reads it no longer fits. The handbook lists this family under **[resource exhaustion](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion)**: an unbounded datum, unbounded inputs and cheap spam are three ways to grow something until it no longer fits. Its **[token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security#value-size-and-execution-limits)** page has the limits on the size of a value.
 
@@ -350,7 +350,7 @@ The rule has to say how many cards, and the number is the number of locked UTxOs
   {extractRegion(ShopClosed, "spend-closed")}
 </CodeBlock>
 
-`list.count` goes through the inputs and counts the ones at this script's address. Then mark the attack test `fail`, and add the honest transaction beside it, two cards for two UTxOs:
+`list.count` goes through the inputs and counts the ones at this script's address. Every spend run does that count again, so a transaction that redeems twenty cards walks its inputs twenty times. **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization)** makes rules of this shape cheaper. Then mark the attack test `fail`, and add the honest transaction beside it, two cards for two UTxOs:
 
 <CodeBlock language="aiken" title="validators/giftcard_shop.ak">
   {extractRegion(ShopClosed, "attack-test-closed")}
