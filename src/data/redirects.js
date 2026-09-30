@@ -1142,6 +1142,8 @@ const redirects = [
   { to: '/docs/operators/security/secure-workflow', from: '/docs/learn/cardano-cli/security/secure-workflow' },
   // The MCP page merged into the AI agents overview (2026-09-22).
   { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/developers/curriculum/dapps/ai-agents/mcp' },
+  // The prediction-market walkthrough was removed; its oracle patterns live in the Pyth guide (2026-09-30).
+  { to: '/docs/developers/curriculum/dapps/oracles/pyth', from: '/docs/developers/curriculum/dapps/oracles/prediction-market' },
 ];
 
 module.exports = redirects;

@@ -262,8 +262,6 @@ fn spread_within(feed: Feed, max_spread: Int) -> Bool {
 
 The same idea extends to the other payload fields: `ema_price` against `price` gives a momentum signal with no on-chain history, and two feeds fetched in one update give a cross-asset ratio. When you compare a ratio against bounds, cross-multiply instead of dividing (`min_num * price_b <= price_a * min_den`) so everything stays in integers. The design-space view of these options is in [Designing with a price feed](/docs/developers/curriculum/dapps/oracles/overview#designing-with-a-price-feed).
 
-The three patterns above compose into a full contract in [A price-settled prediction market](/docs/developers/curriculum/dapps/oracles/prediction-market), a complete dApp walked end to end.
-
 ## Network support
 
 Pyth deployments are per-network: each network has its own `pyth_id` policy ID, which your validator and off-chain code use to locate the Pyth state and withdraw script. The examples above target preprod. For the deployment on your target network, see the [Pyth documentation](https://docs.pyth.network/price-feeds/pro/integrate-as-consumer/cardano).
@@ -276,5 +274,4 @@ Pyth deployments are per-network: each network has its own `pyth_id` policy ID, 
 
 ## Next steps
 
-- [A price-settled prediction market](/docs/developers/curriculum/dapps/oracles/prediction-market): these patterns assembled into a working oracle-consuming dApp
 - [On-chain randomness](/docs/developers/curriculum/dapps/oracles/randomness): the other hard data problem, where a feed cannot help you
