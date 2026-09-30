@@ -2,7 +2,7 @@
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Script, VerificationKey}
-use cardano/assets.{AssetName, PolicyId, Value, from_lovelace, quantity_of}
+use cardano/assets.{AssetName, Assets, PolicyId, from_lovelace, quantity_of}
 use cardano/transaction.{
   InlineDatum, Input, Output, OutputReference, Transaction,
 }
@@ -33,7 +33,7 @@ pub type Rate =
 
 // One beacon and no more. The consumer in the next lecture calls this too, so
 // both contracts agree on what "the real oracle" means.
-pub fn holds_beacon(value: Value, beacon: AssetClass) -> Bool {
+pub fn holds_beacon(value: Assets, beacon: AssetClass) -> Bool {
   quantity_of(value, beacon.policy_id, beacon.name) == 1
 }
 
@@ -46,24 +46,22 @@ validator oracle(params: OracleParams) {
   ) {
     expect Some(own_input) = transaction.find_input(self.inputs, own_ref)
 
-    and {
-      // Both actions need these two, so they sit above the branch.
-      list.has(self.extra_signatories, params.operator)?,
-      holds_beacon(own_input.output.value, params.beacon)?,
-      when redeemer is {
-        Update -> {
-          let own_address = own_input.output.address
-          expect [continuing] = list.filter(
-            self.outputs,
-            fn(output) { output.address == own_address },
-          )
-          expect InlineDatum(returned) = continuing.datum
-          expect _new_rate: Rate = returned
-          holds_beacon(continuing.value, params.beacon)?
-        }
-        Delete ->
-          (quantity_of(self.mint, params.beacon.policy_id, params.beacon.name) == -1)?
-      },
+    expect list.has(self.extra_signatories, params.operator)?
+    expect holds_beacon(own_input.output.value, params.beacon)?
+
+    when redeemer is {
+      Update -> {
+        let own_address = own_input.output.address
+        expect [continuing] = list.filter(
+          self.outputs,
+          fn(output) { output.address == own_address },
+        )
+        expect InlineDatum(returned) = continuing.datum
+        expect _new_rate: Rate = returned
+        holds_beacon(continuing.value, params.beacon)?
+      }
+      Delete ->
+        (quantity_of(self.mint, params.beacon.policy_id, params.beacon.name) == -1)?
     }
   }
 
@@ -119,7 +117,7 @@ const own_ref: OutputReference =
   }
 
 // Some ADA and the beacon: what a live oracle UTxO holds.
-fn with_beacon(lovelace: Int) -> Value {
+fn with_beacon(lovelace: Int) -> Assets {
   from_lovelace(lovelace) |> assets.add(beacon.policy_id, beacon.name, 1)
 }
 
@@ -137,7 +135,7 @@ fn oracle_input() -> Input {
 }
 
 // One output, going wherever the test says, holding whatever the test says.
-fn output_to(address: Address, value: Value) -> Output {
+fn output_to(address: Address, value: Assets) -> Output {
   Output { address, value, datum: InlineDatum(150), reference_script: None }
 }
 

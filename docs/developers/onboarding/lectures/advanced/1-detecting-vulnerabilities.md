@@ -11,6 +11,10 @@ import extractRegion from "@site/src/utils/extractRegion";
 import ShopOpen from "!!raw-loader!@site/examples/onboarding/lectures/advanced/giftcard-shop/on-chain/aiken/validators/giftcard_shop_open.ak";
 import ShopClosed from "!!raw-loader!@site/examples/onboarding/lectures/advanced/giftcard-shop/on-chain/aiken/validators/giftcard_shop.ak";
 import ShopNamed from "!!raw-loader!@site/examples/onboarding/lectures/advanced/giftcard-shop/on-chain/aiken/validators/giftcard_shop_named.ak";
+import SplitterOpen from "!!raw-loader!@site/examples/onboarding/lectures/advanced/splitter/on-chain/aiken/validators/splitter_open.ak";
+import SplitterClosed from "!!raw-loader!@site/examples/onboarding/lectures/advanced/splitter/on-chain/aiken/validators/splitter.ak";
+import VaultOpen from "!!raw-loader!@site/examples/onboarding/lectures/advanced/vault/on-chain/aiken/validators/vault_open.ak";
+import VaultClosed from "!!raw-loader!@site/examples/onboarding/lectures/advanced/vault/on-chain/aiken/validators/vault.ak";
 
 # Detecting vulnerabilities
 
@@ -28,33 +32,33 @@ flowchart LR
     V -->|no| NO["rejected, nothing changes"]
 ```
 
-Some attacks cannot happen on Cardano at all: a contract cannot be called in the middle of running, and a UTxO cannot be spent twice. The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page lists what the ledger protects you from.
+Some attacks cannot happen on Cardano at all: a second contract cannot be called in the middle of running the first, a UTxO cannot be spent twice, etc. The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page lists what the ledger protects you from. However, protocols can still be attacked in many ways.
 
 ## Think as an attacker
 
-An attacker starts from a goal, and there are five. Ask each one about every contract you wrote.
+An attacker could try to do much more than just steal tokens. Here are the five most common. Ask each one about every contract you write.
 
 1. **Steal tokens.** Take value that the rules meant for somebody else. The vault's funds are for the owner who signs. Can anybody else end up with them?
 2. **Block others from getting their tokens.** The funds stay where they are, and the person they are for cannot take them. Your gift card refuses to let a card be burned on its own, because a burned card with the funds still locked leaves them locked forever.
-3. **Halt the protocol.** No action is possible again, for anyone. A rule that can never be satisfied again is a halt, and so is a transaction that has grown too big to run.
+3. **Halt the protocol.** No action is possible again, for anyone. A rule that can never be satisfied again is a halt. For example, the only available transaction has grown too big to run.
 4. **Block people from using the protocol.** Some users cannot act, or cannot act now, while others can.
 5. **Slow the protocol down.** Every action costs more, or fewer actions fit in a block.
 
-The last three are one family, and "denial of service" is the name for all of them.
+Most of the time, an attacker will perform several of these actions to exploit the protocol itself or exploit another process that depends on the protocol functioning correctly.
 
 **What an attacker can do.** Everything your own app does, with any transaction they like. They can run your validator offline first to see what it accepts, exactly as your SDK does before it sends anything. They can send any UTxO with any datum to your script's address, and [nothing checks it on the way in](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator#locking-is-just-a-payment). They can send several transactions, one after another, each one built on what the last one left on the chain. They can read your contract. The compiled script is on the chain for anyone to take, and most projects publish the source as well.
 
-**What an attacker cannot do.** Sign with a key they do not hold, and make a validator say yes when it says no.
+**What an attacker cannot do.** Sign with a key they do not hold, or break or change the validator's logic.
 
 The [first design question](/docs/developers/onboarding/lectures/intermediate/handling-time#from-idea-to-architecture) wrote down what the contract must guarantee, and the third wrote down what it checks. Those two lists are meant to be the same list. An attack is a transaction, or a sequence of them, that passes every check and still breaks a guarantee. For each action of the contract, take the five goals and look for the gap between the checks and the guarantee.
 
 ## Single-step attacks
 
-A single-step attack fits in one transaction. That transaction is the whole attack, and the attacker builds it from what is already on the chain. Finding one means reading a rule the way an attacker does: word by word, asking what else fits it.
+A single-step attack fits in one transaction. That transaction is the whole attack, and the attacker builds it from what is already on the chain.
 
 ### Double satisfaction
 
-Take the gift card from **[multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** and grow it into a shop. The shop signs to create as many cards as it likes, every card is backed by its own 5 ADA UTxO at the script's address, and burning a card releases the funds behind it. The rule guarding each locked UTxO is the one you already wrote: a card is being burned in this transaction.
+Take the gift card from **[multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** and grow it into a shop. The gift card's parameter was a seed UTxO. A UTxO can be spent only once, so the policy could mint only once, and the one card it made was an NFT. A shop issues many cards, so its parameter is the shop's key instead, and the shop signs to create as many cards as it likes. Every card has the same policy ID and the same name, GIFT. The cards are fungible tokens: they are all identical, and the ledger cannot tell one from another. Every card is backed by its own 5 ADA UTxO at the script's address, and burning a card releases the funds behind it. The rule guarding each locked UTxO is the one you already wrote: a card is being burned in this transaction.
 
 The redeem the shop expected:
 
@@ -154,220 +158,9 @@ flowchart LR
 
 Three runs, three questions, and one burn answers all of them. One card has released two UTxOs, and with twenty it is the same. One burn satisfies two spend rules, and that is the reason it is called double satisfaction.
 
-The spend rule checks that a burn **exists** in the transaction, without checking that it belongs to **this** input. The fix is to say which one: count the locked inputs, or tie each burn to the UTxO it releases. The handbook's **[double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction)** page follows the same attack across two different scripts, a minting policy and a fee, and shows why each obvious fix is not enough.
+The spend rule checks that a burn **exists** in the transaction, without checking that it belongs to **this** input. The first fix is to count: as many burned cards as locked UTxOs spent.
 
-### The wrong end of the window
-
-A second single-step attack, this one on time. Your vesting contract keeps the deadline in the datum, and the claim declares a validity window with a start and an end. The ledger applies a transaction only while the current time is inside its window, so the validator can trust that the claim is happening somewhere between the two ends. The rule you wrote reads the start: if the window starts after the deadline, every moment inside it is after the deadline, including now.
-
-A rule that reads the end instead proves nothing about now. The end can be after the deadline while the start is today. The beneficiary declares a window from today until the day after the deadline and sends the claim. The ledger accepts it, because today is inside the window. The validator sees an end after the deadline and says yes.
-
-```mermaid
-flowchart TB
-    subgraph A["the rule reads the start of the window"]
-        direction LR
-        W1["`**the claim's window**
-        from 31 May, today
-        to 2 June`"] --> R1{"is the start, 31 May,<br/>after the deadline, 1 June?"} -->|no| N1["rejected"]
-    end
-    subgraph B["the rule reads the end of the window"]
-        direction LR
-        W2["`**the claim's window**
-        from 31 May, today
-        to 2 June`"] --> R2{"is the end, 2 June,<br/>after the deadline, 1 June?"} -->|yes| N2["the funds move, a day early"]
-    end
-    A ~~~ B
-```
-
-The node limits how far ahead the end of a window may be, about a day and a half at the time of writing, so this rule lets the beneficiary claim up to a day and a half early. The limit is a network parameter setting that can change, so a contract cannot count on it to keep the damage small. The handbook's **[lending example](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling)** shows the same mistake from both sides. The borrower must write the loan's end date into the datum, and the contract computes it by adding the loan's duration to the end of the window. A borrower who moves that end later gets a longer loan. The lender may take the collateral only after the loan ends, and the contract checks that by reading the end of the window too. A lender who moves it past the loan's end date takes the collateral early.
-
-## Multi-step attacks
-
-A multi-step attack is a sequence of transactions. The validator accepts every one of them, and the damage only appears once the last one is applied. These are harder to find, because you have to imagine the sequence. They are harder to run, because every transaction before the last one costs a fee, and the attacker has to wait for each one to be applied. And every test you have written so far checks one transaction at a time, so none of them would have caught one.
-
-### Trust no UTxO
-
-Imagine a contract where the members of a group vote on proposals. A proposal is a UTxO at the voting contract's address, and its datum is the list of members who voted for it. Each vote is a transaction that spends the proposal and puts it back with one more member in the list, and the voting contract checks that this member signed the transaction. A second contract, the DAO, has one UTxO whose datum is the list of proposals that passed, and so far that list holds only proposal 3. The DAO adds a proposal when the proposal's UTxO is spent together with the DAO's own UTxO and the list in the datum holds at least four members.
-
-Eve is a member who wants proposal 5 to pass, and nobody else does. She does not vote. Her first transaction sends a new UTxO to the voting contract's address, with a datum that already lists four members. Sending a UTxO to a script address is an ordinary payment, so no validator runs and nothing checks what the datum says. Her second transaction spends that UTxO together with the DAO's UTxO. The DAO validator counts the members in the list, finds four, and passes the proposal:
-
-```mermaid
-flowchart LR
-    subgraph IN["INPUTS: UTxOs spent"]
-        I1["`**proposal 5, created by Eve**
-        address: the voting contract
-        datum: votes = Bob, Alice, Eve, John
-        no validator ran when it was created`"]
-        I2["`**the DAO's UTxO**
-        address: the DAO contract
-        datum: passed proposals = [3]`"]
-    end
-
-    TX{{"`**pass the proposal**
-    fee: 0.2 ADA
-    the DAO validator runs
-    at least four members voted for proposal 5? yes`"}}
-
-    subgraph OUT["OUTPUTS: UTxOs created"]
-        O["`**the DAO's UTxO**
-        address: the DAO contract
-        datum: passed proposals = [3, 5]`"]
-    end
-
-    I1 --> TX --> O
-    I2 --> TX
-
-    style I1 stroke-dasharray:4 3
-    style I2 stroke-dasharray:4 3
-```
-
-Your oracle has the same problem. Anyone can send a UTxO to the oracle's address with any rate in the datum, and a consumer that trusted the address alone would read that rate. It already has the answer: the consumer looks for the beacon token, the beacon can only be created once, and a UTxO without it is ignored. A token used this way is called a validity token. The full explanation of the vote, and how a validity token can be stolen when the contract has more than one action, is in the handbook's **[missing UTxO authentication](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication)** page.
-
-### Spam until it breaks
-
-Imagine a raffle. The list of participants is kept in the datum of one UTxO at the raffle's address. An entry is a transaction that spends that UTxO and puts it back with one more participant in the list and the entry fee added to the value, and the validator checks exactly that. The rule does not limit how long the list may grow. At the end, one closing transaction reads the whole list to pick the winner. An attacker sends the entry transaction 10,000 times, each one spending the UTxO the previous one created:
-
-```mermaid
-flowchart LR
-    U0["`**the raffle UTxO**
-    address: the raffle contract
-    datum: 0 participants`"]
-    E{{"`**entry**, 10,000 times
-    fee paid
-    one more participant
-    allowed every time`"}}
-    UN["`**the raffle UTxO**
-    address: the raffle contract
-    datum: 10,000 participants`"]
-    C{{"`**close**
-    reads 10,000 participants
-    over the execution unit maximum: invalid`"}}
-
-    U0 --> E --> UN --> C
-
-    style U0 stroke-dasharray:4 3
-    style UN stroke-dasharray:4 3
-```
-
-Running a validator costs **[execution units](/docs/developers/curriculum/fundamentals/core-concepts/fees#script-execution-fees)**, the CPU and memory measure you met when the backend evaluated the unlock, and a protocol parameter sets a maximum per transaction. A transaction whose scripts need more than that maximum is invalid, whatever fee it offers. Reading 10,000 participants needs more, so nobody can close the raffle, and the fees are locked with it. The protocol has halted and every participant is blocked from their money, two of the five goals in one attack, and no single step broke a rule. The handbook lists this family under **[resource exhaustion](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion)**: an unbounded datum, unbounded inputs and cheap spam are three ways to grow something until it no longer fits.
-
-### Dust tokens
-
-The same attack, with tokens. A treasury whose rule is "the value only grows" accepts anything, so an attacker sends thousands of worthless tokens, a few per transaction, until the withdrawal no longer fits in a transaction's limits. The handbook's **[token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security#value-size-and-execution-limits)** page has the treasury and the limits.
-
-### Reward stealing
-
-A Cardano address has two parts. The payment part says who may spend the UTxO, and a script address is one whose payment part is the script's hash. The stake part says who is paid the staking rewards for the ADA in the UTxO, and the ledger pays them once per epoch, about every five days. Any stake part can sit beside the script's payment part, and the result is still an address the script guards. So a contract that puts funds back at its own address on every update, as your oracle does, has to say what "its own address" means.
-
-```mermaid
-flowchart TB
-    subgraph A1["the oracle's address"]
-        direction LR
-        P1["`**payment part**
-        who may spend
-        the oracle script`"] ~~~ S1["`**stake part**
-        who collects rewards
-        none`"]
-    end
-    subgraph A2["a franken address"]
-        direction LR
-        P2["`**payment part**
-        who may spend
-        the oracle script`"] ~~~ S2["`**stake part**
-        who collects rewards
-        the attacker's key`"]
-    end
-    A1 ~~~ A2
-```
-
-A rule that compares only the payment part accepts both, so an ordinary update can send the funds to the second one. It is called a franken address, because it is built from the parts of two other addresses. The funds are still locked by the same validator, every later update still works, and nobody notices. Every epoch, the attacker collects the rewards on money that was never theirs. Three steps: one transaction to move the funds, a wait, and a withdrawal. Your oracle compares the whole address of the continuing output, so it is safe from this. The full explanation is in the handbook's **[staking and certificates](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates)** page.
-
-### A handler that says yes to everything
-
-Every contract you wrote ends with a handler that refuses any purpose it was not written for. Imagine a protocol whose fallback handler says yes instead. Its checks live under the withdraw purpose from **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**, so that is the only handler written, and the fallback approves everything else. Everything else includes certificates. A certificate is a request to the ledger about staking: one kind registers a stake credential and pays a deposit of 2 ADA, another deregisters it and refunds the deposit to whoever sent the transaction. The script runs for those too, and its fallback says yes. Anyone can deregister the protocol's credential. The protocol stops until somebody registers it again and pays the deposit, and the attacker keeps the refund each time: cheap, repeatable, and a small profit per round. The full explanation, and the mirror attack that registers and delegates the credential instead, is in the handbook's **[unconstrained certificate operations](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates#unconstrained-certificate-operations)** section.
-
-### One UTxO everybody needs
-
-An exchange that keeps its whole pool of tokens in one UTxO: every swap spends it, a UTxO can be spent once, so one swap per block is applied and every other one fails and has to be rebuilt. An attacker does not need to win. Sending many cheap transactions at that one UTxO keeps everybody else out. Your oracle avoids this: the consumer in **[reference inputs and scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)** reads it through a reference input, so any number of transactions can read it in the same block. This is **[UTxO contention](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion#utxo-contention)**.
-
-The tests you wrote in **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** build one transaction and ask one validator about it. They catch a single-step attack the moment you write it down as a test. They cannot catch a sequence unless you write the sequence first: the steps, who sends each one, and what the chain looks like after the last. Do that on paper, for each of the five goals, before you decide a contract is finished.
-
-## Try it
-
-<Tabs groupId="onchain">
-<TabItem value="aiken" label="Aiken" default>
-
-### Write the shop
-
-The shop is the gift card from **[multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** with one difference: it issues many cards. Start a new Aiken project for it:
-
-```bash
-aiken new my-name/giftcard-shop
-cd giftcard-shop
-rm validators/placeholder.ak
-```
-
-Create `validators/giftcard_shop.ak`. The imports first:
-
-<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
-  {extractRegion(ShopOpen, "shop-imports")}
-</CodeBlock>
-
-Then the token name, the two actions, and the two handlers:
-
-<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
-  {extractRegion(ShopOpen, "shop")}
-</CodeBlock>
-
-Three things differ from the gift card:
-
-- **The parameter is the shop's key hash.** In the Intermediate gift card, the seed UTxO was the parameter: it can be spent once, so the policy could mint once, and that made the one card unique. A shop issues many cards, so its policy is tied to the shop's key instead, and the import list gains `VerificationKeyHash`.
-- **`Create` asks for the shop's signature** and allows any positive quantity, so the shop can issue several cards in one transaction. The cards are not NFTs: every one of them is the same policy and the same name, GIFT, minted many times over. For every card it sells, the shop locks one 5 ADA UTxO at the script's address.
-- **`Burn` allows any negative quantity**, and asks that at least one input sits at the script's address. A card is only destroyed when the funds behind it are released.
-
-The spend handler is the gift card's, unchanged: the locked UTxO may be spent when this transaction burns one card.
-
-Then the tests. The constants are the gift card's with one change: the shop's key replaces the seed.
-
-<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
-  {extractRegion(ShopOpen, "shop-tests")}
-</CodeBlock>
-
-```bash
-aiken check
-```
-
-Five tests, five passes.
-
-### Attack it
-
-Take the shop's actions and go through the five goals. Create is guarded by the shop's signature, and nobody else holds that key. Burn asks for a card and for a locked UTxO. Redeem, the spend handler, asks for a burn. Stop at the first goal, stealing, and ask the attacker's question about the redeem rule: what else fits "a card is being burned"? A transaction that spends two locked UTxOs fits it. Write that transaction as a test, below the others. It needs a second locked UTxO, `locked_b`, so that constant comes with it:
-
-<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
-  {extractRegion(ShopOpen, "attack-test")}
-</CodeBlock>
-
-The test calls every handler the transaction would run: the policy once, for the burn, and the spend handler once for each locked input. Run `aiken check` again. Six passes. A passing test is the proof that the attack works.
-
-### Close the door
-
-The rule has to say how many cards, and the number is the number of locked UTxOs this transaction spends. Replace the spend handler:
-
-<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
-  {extractRegion(ShopClosed, "spend-closed")}
-</CodeBlock>
-
-`list.count` goes through the inputs and counts the ones at this script's address. Then mark the attack test `fail`, and add the honest transaction beside it, two cards for two UTxOs:
-
-<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
-  {extractRegion(ShopClosed, "attack-test-closed")}
-</CodeBlock>
-
-Run `aiken check` once more. Seven passes: the attack is refused and the honest transaction goes through. The open rule would have refused that honest transaction, because it asked for exactly one burned card and the mint field says minus two.
-
-### A card releases any UTxO
-
-Say the shop starts selling two kinds of card, one for 5 ADA and one for 50 ADA, each with its own locked UTxO. Both are the same GIFT token. The closed rule releases one locked UTxO for one burned card, and never says which one. A customer who bought a 5 ADA card burns it while spending the UTxO behind a 50 ADA card:
+Counting is not enough once the shop sells two kinds of card, one for 5 ADA and one for 50 ADA, each with its own locked UTxO. Both kinds are the same GIFT token. A customer who bought a 5 ADA card burns it while spending the UTxO behind a 50 ADA card:
 
 ```mermaid
 flowchart LR
@@ -400,7 +193,176 @@ flowchart LR
     style I2 stroke-dasharray:4 3
 ```
 
-Write it as a test, below the others. The locked UTxO holds 50 ADA this time, so the test builds the input in place:
+One card for one UTxO, so the count is satisfied. The card cannot say which UTxO it was sold with. Its policy ID is the same for every card, because the shop's key is the parameter, and so is its name. The asset name is the only part of a token's identity left to change, so the second fix gives each card its own name, and the locked UTxO carries that name in its datum. The 5 ADA customer's card is named card-1, the 50 ADA UTxO's datum says card-2, and no burn of card-1 satisfies a UTxO that asks for card-2.
+
+The handbook's **[double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction)** page follows the same attack across two different scripts, a minting policy and a fee, and shows why each obvious fix is not enough.
+
+### The wrong end of the window
+
+A second single-step attack, this one on time. Your vesting contract keeps the deadline in the datum, and the claim declares a validity window with a start and an end. The ledger applies a transaction only while the current time is inside its window, so the validator can trust that the claim is happening somewhere between the two ends. The rule you wrote reads the start: if the window starts after the deadline, every moment inside it is after the deadline, including now.
+
+A rule that reads the end instead proves nothing about now. The end can be after the deadline while the start is today. The beneficiary declares a window from today until the day after the deadline and sends the claim. The ledger accepts it, because today is inside the window. The validator sees an end after the deadline and says yes.
+
+```mermaid
+flowchart TB
+    subgraph A["the rule reads the start of the window"]
+        direction LR
+        W1["`**the claim's window**
+        from 31 May, today
+        to 2 June`"] --> R1{"is the start, 31 May,<br/>after the deadline, 1 June?"} -->|no| N1["rejected"]
+    end
+    subgraph B["the rule reads the end of the window"]
+        direction LR
+        W2["`**the claim's window**
+        from 31 May, today
+        to 2 June`"] --> R2{"is the end, 2 June,<br/>after the deadline, 1 June?"} -->|yes| N2["the funds move, a day early"]
+    end
+    A ~~~ B
+```
+
+The node limits how far ahead the end of a window may be, about a day and a half at the time of writing, so this rule lets the beneficiary claim up to a day and a half early. The limit is a network parameter setting that can change, so a contract cannot count on it to keep the damage small. The handbook's **[lending example](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling)** shows the same mistake from both sides. The borrower must write the loan's end date into the datum, and the contract computes it by adding the loan's duration to the end of the window. A borrower who moves that end later gets a longer loan. The lender may take the collateral only after the loan ends, and the contract checks that by reading the end of the window too. A lender who moves it past the loan's end date takes the collateral early.
+
+## Multi-step attacks
+
+A multi-step attack is a sequence of transactions. The validator accepts every one of them, and the damage only appears once the last one is applied. These are harder to find, because you have to imagine the sequence. They are harder to run, because every transaction before the last one costs a fee, and the attacker has to wait for each one to be applied.
+
+### Resource limit
+
+Take a shared pot, the splitter. The pot is one UTxO at the splitter's address. Anyone may donate to it, and the rule for a donation is that the pot comes back holding at least as much of every asset as before. Anyone may also split it: every benefactor named in the contract receives an equal share of everything in the pot. To compute that share, the validator reads every asset the pot holds.
+
+The donation rule accepts any token. An attacker mints worthless tokens under their own policy, called dust, and donates a few of them in each transaction. Every donation is allowed, and every one makes the next split more expensive:
+
+```mermaid
+flowchart LR
+    U0["`**the pot**
+    address: the splitter contract
+    value: 100 ADA`"]
+    E{{"`**donate dust**, many times
+    fee paid
+    a few more worthless tokens
+    allowed every time`"}}
+    UN["`**the pot**
+    address: the splitter contract
+    value: 100 ADA + 60 dust tokens`"]
+    C{{"`**split**
+    reads 60 dust tokens
+    over the execution unit maximum: invalid`"}}
+
+    U0 --> E --> UN --> C
+
+    style U0 stroke-dasharray:4 3
+    style UN stroke-dasharray:4 3
+```
+
+Running a validator costs **[execution units](/docs/developers/curriculum/fundamentals/core-concepts/fees#script-execution-fees)**, the CPU and memory measure you met when the backend evaluated the unlock, and a protocol parameter sets a maximum per transaction. A transaction whose scripts need more than that maximum is invalid, whatever fee it offers. Reading 60 dust tokens needs more, so nobody can split the pot, and the ADA is locked in it. The protocol has halted and every benefactor is blocked from their money, two of the five goals in one attack, and no single step broke a rule.
+
+A list in a datum grows in the same way, one entry per transaction, until the transaction that reads it no longer fits. The handbook lists this family under **[resource exhaustion](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion)**: an unbounded datum, unbounded inputs and cheap spam are three ways to grow something until it no longer fits. Its **[token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security#value-size-and-execution-limits)** page has the limits on the size of a value.
+
+### Reward stealing
+
+A Cardano address has two parts. The payment part says who may spend the UTxO, and a script address is one whose payment part is the script's hash. The stake part says who is paid the staking rewards for the ADA in the UTxO, and the ledger pays them once per epoch, about every five days. Any stake part can sit beside the script's payment part, and the result is still an address the script guards. So a contract that puts funds back at its own address on every update, as your oracle does, has to say what "its own address" means.
+
+```mermaid
+flowchart TB
+    subgraph A1["the oracle's address"]
+        direction LR
+        P1["`**payment part**
+        who may spend
+        the oracle script`"] ~~~ S1["`**stake part**
+        who collects rewards
+        none`"]
+    end
+    subgraph A2["a franken address"]
+        direction LR
+        P2["`**payment part**
+        who may spend
+        the oracle script`"] ~~~ S2["`**stake part**
+        who collects rewards
+        the attacker's key`"]
+    end
+    A1 ~~~ A2
+```
+
+A rule that compares only the payment part accepts both, so an ordinary update can send the funds to the second one. It is called a franken address, because it is built from the parts of two other addresses. The funds are still locked by the same validator, every later update still works, and nobody notices. Every epoch, the attacker collects the rewards on money that was never theirs. Three steps: one transaction to move the funds, a wait, and a withdrawal. Your oracle compares the whole address of the continuing output, so it is safe from this. The full explanation is in the handbook's **[staking and certificates](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates)** page.
+
+The tests you wrote in **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** build one transaction and ask one validator about it. They catch a single-step attack the moment you write it down as a test. A sequence needs one more thing written down first: the state of the chain after the last step, so a test can build the next transaction on top of it. Do that on paper, for each of the five goals, before you decide a contract is finished.
+
+## Try it
+
+<Tabs groupId="onchain">
+<TabItem value="aiken" label="Aiken" default>
+
+In each exercise you write a contract, write the attack as a test that passes, and then close the door so the same test fails.
+
+### One card, two UTxOs
+
+#### Write the shop
+
+The shop from **[double satisfaction](#double-satisfaction)**, as first written. Start a new Aiken project for it:
+
+```bash
+aiken new my-name/giftcard-shop
+cd giftcard-shop
+rm validators/placeholder.ak
+```
+
+Create `validators/giftcard_shop.ak`. The imports first:
+
+<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
+  {extractRegion(ShopOpen, "shop-imports")}
+</CodeBlock>
+
+Then the token name, the two actions, and the two handlers:
+
+<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
+  {extractRegion(ShopOpen, "shop")}
+</CodeBlock>
+
+The mint handler differs from the gift card's in two places. `Create` asks for the shop's signature and allows any positive quantity, so the shop can issue several cards in one transaction. `Burn` allows any negative quantity, and asks that at least one input sits at the script's address, so a card is only destroyed when the funds behind it are released. The spend handler is the gift card's, unchanged.
+
+Then the tests. The constants are the gift card's with one change: the shop's key replaces the seed.
+
+<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
+  {extractRegion(ShopOpen, "shop-tests")}
+</CodeBlock>
+
+```bash
+aiken check
+```
+
+Five tests, five passes.
+
+#### Attack the shop
+
+Take the shop's actions and go through the five goals, starting with stealing. Create is guarded by the shop's signature, and nobody else holds that key. Burn asks for a card and for a locked UTxO. Redeem, the spend handler, asks for a burn. What else fits "a card is being burned"? A transaction that spends two locked UTxOs fits it. Write that transaction as a test, below the others. It needs a second locked UTxO, `locked_b`, so that constant comes with it:
+
+<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
+  {extractRegion(ShopOpen, "attack-test")}
+</CodeBlock>
+
+The test calls every handler the transaction would run: the policy once, for the burn, and the spend handler once for each locked input. Run `aiken check` again. Six passes, and a passing test proves the attack works.
+
+#### Count the cards
+
+The rule has to say how many cards, and the number is the number of locked UTxOs this transaction spends. Replace the spend handler:
+
+<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
+  {extractRegion(ShopClosed, "spend-closed")}
+</CodeBlock>
+
+`list.count` goes through the inputs and counts the ones at this script's address. Then mark the attack test `fail`, and add the honest transaction beside it, two cards for two UTxOs:
+
+<CodeBlock language="aiken" title="validators/giftcard_shop.ak">
+  {extractRegion(ShopClosed, "attack-test-closed")}
+</CodeBlock>
+
+Run `aiken check` once more. Seven passes: the attack is refused and the honest transaction goes through. The open rule would have refused that honest transaction, because it asked for exactly one burned card and the mint field says minus two.
+
+### A card releases any UTxO
+
+#### Attack the count
+
+The 5 ADA card that releases a 50 ADA UTxO, from **[double satisfaction](#double-satisfaction)**. Write it as a test, below the others. The locked UTxO holds 50 ADA this time, so the test builds the input in place:
 
 <CodeBlock language="aiken" title="validators/giftcard_shop.ak">
   {extractRegion(ShopClosed, "attack-any-utxo")}
@@ -408,11 +370,9 @@ Write it as a test, below the others. The locked UTxO holds 50 ADA this time, so
 
 Run `aiken check`. Eight passes.
 
-### Close it too
+#### Name the cards
 
-A card has to name the UTxO it releases. In the Intermediate gift card the seed UTxO was the parameter, so every card had its own policy ID and the name GIFT could be shared. The shop's parameter is the shop's key, so all of its cards share one policy ID, and with one name they are interchangeable. The only part of a token's identity left is the asset name, so each card gets its own.
-
-The rule in words: when the shop creates a card, it gives the card a name and locks the UTxO with that name in the datum. When a locked UTxO is spent, the spend handler reads the name in its own datum and asks whether a card with that name is burned in this transaction. The 5 ADA customer's card is named card-1, the 50 ADA UTxO's datum says card-2, and no burn of card-1 satisfies a UTxO that asks for card-2.
+When the shop creates a card, it gives the card a name and locks the UTxO with that name in the datum. When a locked UTxO is spent, the spend handler reads the name in its own datum and asks whether a card with that name is burned in this transaction.
 
 Three blocks change, the imports, the contract and the tests, and the file does not compile until all three are in, because the old tests still use `NoDatum` and the GIFT constant. The imports first, since the spend handler now reads inline datums:
 
@@ -427,7 +387,7 @@ Replace the types and the handlers:
 </CodeBlock>
 
 - `CardDatum` is the datum of a locked UTxO, and it holds one thing: the name of the card that releases it.
-- The mint handler no longer expects a single name. `Create` lets the shop mint any names it likes, each with a positive quantity, and `Burn` requires every quantity to be negative. The cards are still not NFTs: nothing stops the shop minting a name with quantity two, or minting it again next week.
+- The mint handler no longer expects a single name. `Create` lets the shop mint any names it likes, each with a positive quantity, and `Burn` requires every quantity to be negative.
 - The spend handler reads its datum for the first time, and the datums of the other inputs too. `assets.quantity_of` is how many cards with this name the transaction burns, and `locks_card` picks out the inputs at this address whose datum names the same card. The count stays, per name: as many burned cards with this name as locked UTxOs named for it.
 
 Then replace everything from the constants to the end of the file with the new tests. The datum is now part of every locked input, so the helper takes the card's name and the amount, and every spend call passes the datum. Both attacks are marked `fail`, and one more test checks that the count still holds per name:
@@ -438,14 +398,123 @@ Then replace everything from the constants to the end of the file with the new t
 
 Run `aiken check`. Eight passes: the two attacks are refused, and two cards still release their two UTxOs at once.
 
-### The other four goals
+### Dust in the splitter
 
-No code for this part. For the vault, the vesting contract, the oracle and the shop, take each action and each remaining goal, and write down one sequence of transactions you cannot rule out. Then open the contract and check. Two to start with:
+#### Write the splitter
 
-- **Can a stranger stop the vesting beneficiary from ever claiming?** The claim needs the beneficiary's signature and a window after the date. Neither depends on anything a stranger can change, so a stranger cannot.
-- **Can the shop take the funds behind a customer's card?** Yes, in two steps. The shop signs to create a second card with the same name as a customer's card, then burns it while spending that customer's locked UTxO. The count per name is satisfied, one card of that name for one UTxO of that name. The guarantee the shop breaks is one the checks never wrote down: every card name is created once. The check belongs in the `Create` branch: a name may only be created together with the UTxO it locks, and it has to be a name the shop cannot repeat, such as the hash of an input spent in the same transaction. Write it if you like, with the test that proves it, and then ask what the shop can do next.
+The splitter from **[resource limit](#resource-limit)**, as first written. The benefactors are the contract's parameter. The pot is the one UTxO at the script's address that holds a beacon NFT, so a UTxO somebody else sends to the address is ignored, as in your oracle. Start a new project:
 
-Stuck? All three versions of the shop are in the example project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)**.
+```bash
+aiken new my-name/splitter
+cd splitter
+rm validators/placeholder.ak
+```
+
+Create `validators/splitter.ak`. The imports first:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterOpen, "splitter-imports", "attack-import")}
+</CodeBlock>
+
+Then the types, a helper and the handler:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterOpen, "splitter")}
+</CodeBlock>
+
+- `value_geq` is true when the first value holds at least as much of every asset as the second, ADA included.
+- `Donate` asks that the pot comes back at the same address, with the beacon, holding at least as much of every asset as before.
+- `Split` divides every asset except the beacon by the number of benefactors, and asks that each benefactor receives an output holding at least that share. What does not divide evenly stays in the pot.
+
+Then the tests:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterOpen, "splitter-tests")}
+</CodeBlock>
+
+Run `aiken check`. Four passes.
+
+#### Donate dust
+
+Write the attack from **[resource limit](#resource-limit)** as tests. The test helper names each dust token with a number, so add one line to the imports, below `use aiken/collection/list`:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterOpen, "attack-import")}
+</CodeBlock>
+
+Then two tests, below the others. The first is one step of the sequence, a donation of five dust tokens. The second is the pot the sequence leaves behind, holding 60 of them, and the split that has to read them all:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterOpen, "attack-dust")}
+</CodeBlock>
+
+Run `aiken check`. Six passes. The line for the last test shows what the split costs, `mem: 21.62 M, cpu: 6.30 B` with the compiler and stdlib this lecture uses. A transaction may use at most 16,500,000 memory units and 10,000,000,000 CPU units at the time of writing, so the memory is over the maximum, and no split can ever be built. At 50 dust tokens the split still fits, at 15.72 M. The pot's value at 60 tokens is about 300 bytes, far below the 5,000 bytes a single output may hold, so the ledger's size limit does not stop the attacker first.
+
+#### Accept only ADA
+
+The pot has to decide which tokens it accepts. The benefactors are paid in ADA, so a donation may add ADA and nothing else. Replace the `Donate` branch:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterClosed, "donate-closed")}
+</CodeBlock>
+
+`assets.match` requires every token in the two values to be exactly equal, and compares the ADA with the function you pass, here `>=`. Mark `donate_dust_ok` as `fail` and run `aiken check`. Six passes: the dust donation is refused. The split test still goes over the maximum, because it builds the dusty pot directly, and no donation can build that pot now.
+
+### The vault's stake part
+
+#### Write the vault
+
+The vault belongs to one owner, whose key hash is the datum. The owner may take everything with a signature. Anybody else may donate: spend the vault and put it back with more ADA in it. A beacon NFT marks the vault's UTxO, as it marks the splitter's pot. Start a new project:
+
+```bash
+aiken new my-name/vault
+cd vault
+rm validators/placeholder.ak
+```
+
+Create `validators/vault.ak`. The imports first:
+
+<CodeBlock language="aiken" title="validators/vault.ak">
+  {extractRegion(VaultOpen, "vault-imports")}
+</CodeBlock>
+
+Then the types and the handler:
+
+<CodeBlock language="aiken" title="validators/vault.ak">
+  {extractRegion(VaultOpen, "vault")}
+</CodeBlock>
+
+`Consume` asks for the owner's signature. `Donate` finds the output whose payment part is the script, and checks three things about it: it holds the beacon, its datum names the same owner, and it holds the same tokens and at least as much ADA. The datum check matters: without it, a donor could write their own key as the owner and then take everything with `Consume`.
+
+Then the tests:
+
+<CodeBlock language="aiken" title="validators/vault.ak">
+  {extractRegion(VaultOpen, "vault-tests")}
+</CodeBlock>
+
+Run `aiken check`. Five passes.
+
+#### Move the stake part
+
+Anyone may donate, so `Donate` has no signature to check. The funds cannot leave the script, and the owner cannot change. Ask about the address instead: what else fits "the script as its payment part"? The franken address from **[reward stealing](#reward-stealing)** fits it. Write the donation that moves the vault there, with nothing added, as a test below the others:
+
+<CodeBlock language="aiken" title="validators/vault.ak">
+  {extractRegion(VaultOpen, "attack-stake")}
+</CodeBlock>
+
+`address.Inline` and `address.VerificationKey` are written with the module name, so the imports stay as they are. Run `aiken check`. Six passes. This test is the first of the three steps. After it, the vault is still locked by the same validator and every later donation works. Once the attacker has registered their stake key and delegated it to a pool, the ledger pays the rewards on the vault's ADA to them every epoch.
+
+#### Compare the whole address
+
+Replace the search for the vault's output:
+
+<CodeBlock language="aiken" title="validators/vault.ak">
+  {extractRegion(VaultClosed, "find-closed")}
+</CodeBlock>
+
+Mark `donate_moves_the_stake_part` as `fail` and run `aiken check`. Six passes: the franken address is not the vault's address, so the donation finds no output to check and is refused.
+
+Stuck? The three contracts are in the example project, each as first written and closed. See the **[introduction](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)**.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">

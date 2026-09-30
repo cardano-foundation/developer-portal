@@ -28,8 +28,36 @@ Three files hold the same contract at three moments:
 
 ```bash
 cd giftcard-shop/on-chain/aiken
-aiken check    # compile + run the tests in both files
+aiken check    # compile + run the tests in all three files
 aiken build    # regenerate plutus.json
+```
+
+## splitter (lecture 1, Detecting vulnerabilities)
+
+A shared pot: anyone may donate to it, and a split pays every benefactor an equal share of everything it
+holds. Two files:
+
+- `validators/splitter_open.ak`: the contract as first written. A donation only has to leave the pot
+  holding at least as much of every asset. Its last two tests are the attack: a donation of dust tokens,
+  which **passes**, and a split of a pot holding 60 of them, whose memory cost is over the maximum a
+  transaction may use.
+- `validators/splitter.ak`: the door closed. A donation may add ADA and nothing else, and the dust
+  donation test is marked `fail`.
+
+## vault (lecture 1, Detecting vulnerabilities)
+
+A vault that belongs to one owner, where anybody may donate ADA. Two files:
+
+- `validators/vault_open.ak`: the contract as first written. A donation checks only the payment part of
+  the address the vault goes back to. Its last test is the attack, a donation that moves the vault to an
+  address with the attacker's stake key, and that test **passes**.
+- `validators/vault.ak`: the door closed. A donation puts the vault back at exactly the address it came
+  from, and the attack test is marked `fail`.
+
+```bash
+cd splitter/on-chain/aiken   # or vault/on-chain/aiken
+aiken check
+aiken build
 ```
 
 ## payout-queue (lecture 2, Optimization)

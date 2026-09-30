@@ -31,20 +31,20 @@ This is a diagram of that transaction. Inputs go in, outputs go out:
 flowchart LR
     subgraph IN["INPUTS: bags destroyed"]
         I["`**a1b2c3…#0**
-        address: you
-        value: 10 ADA`"]
+        - address: you
+        - value: 10 ADA`"]
     end
 
     TX{{"`**transaction**
-    fee: 0.17 ADA`"}}
+    - fee: 0.17 ADA`"}}
 
     subgraph OUT["OUTPUTS: bags created"]
         O1["`**new #0**
-        address: friend
-        value: 6 ADA`"]
+        - address: friend
+        - value: 6 ADA`"]
         O2["`**new #1** _(change)_
-        address: you
-        value: 3.83 ADA`"]
+        - address: you
+        - value: 3.83 ADA`"]
     end
 
     I --> TX --> O1

@@ -193,20 +193,20 @@ These are the logic of your off-chain code, and together they cover the token an
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I["`**your UTxO**
-        address: you
-        value: 10 ADA`"]
+        - address: you
+        - value: 10 ADA`"]
     end
 
     TX{{"`**mint**
-    fee: 0.3 ADA
-    the policy's mint handler runs
-    mint: +3 TOKEN A
-    collateral offered, not taken`"}}
+    - fee: 0.3 ADA
+    - the policy's mint handler runs
+    - mint: +3 TOKEN A
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to you**
-        address: you
-        value: 9.7 ADA + 3 TOKEN A`"]
+        - address: you
+        - value: 9.7 ADA + 3 TOKEN A`"]
     end
 
     I --> TX --> O
@@ -243,22 +243,22 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I["`**your UTxO**
-        address: you
-        value: 9.7 ADA + 3 TOKEN A`"]
+        - address: you
+        - value: 9.7 ADA + 3 TOKEN A`"]
     end
 
     TX{{"`**lock**
-    fee: 0.2 ADA
-    no script runs`"}}
+    - fee: 0.2 ADA
+    - no script runs`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O1["`**locked**
-        address: the vault
-        value: 5 ADA + 3 TOKEN A
-        datum: owner = your key hash`"]
+        - address: the vault
+        - value: 5 ADA + 3 TOKEN A
+        - datum: owner = your key hash`"]
         O2["`**change**
-        address: you
-        value: 4.5 ADA`"]
+        - address: you
+        - value: 4.5 ADA`"]
     end
 
     I --> TX --> O1
@@ -332,25 +332,25 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I1["`**the locked UTxO**
-        address: the vault
-        value: 5 ADA + 3 TOKEN A
-        datum: owner = your key hash`"]
+        - address: the vault
+        - value: 5 ADA + 3 TOKEN A
+        - datum: owner = your key hash`"]
         I2["`**your UTxO**
-        address: you
-        value: 4.5 ADA`"]
+        - address: you
+        - value: 4.5 ADA`"]
     end
 
     TX{{"`**unlock**
-    fee: 0.35 ADA
-    the spend validator runs
-    redeemer: Unlock
-    your key hash in extra_signatories
-    collateral offered, not taken`"}}
+    - fee: 0.35 ADA
+    - the spend validator runs
+    - redeemer: Unlock
+    - your key hash in extra_signatories
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to you**
-        address: you
-        value: 9.15 ADA + 3 TOKEN A`"]
+        - address: you
+        - value: 9.15 ADA + 3 TOKEN A`"]
     end
 
     I1 --> TX --> O
@@ -390,20 +390,20 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I["`**your UTxO**
-        address: you
-        value: 9.15 ADA + 3 TOKEN A`"]
+        - address: you
+        - value: 9.15 ADA + 3 TOKEN A`"]
     end
 
     TX{{"`**burn**
-    fee: 0.3 ADA
-    the policy's mint handler runs
-    mint: -1 TOKEN A
-    collateral offered, not taken`"}}
+    - fee: 0.3 ADA
+    - the policy's mint handler runs
+    - mint: -1 TOKEN A
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O["`**back to you**
-        address: you
-        value: 8.85 ADA + 2 TOKEN A`"]
+        - address: you
+        - value: 8.85 ADA + 2 TOKEN A`"]
     end
 
     I --> TX --> O
@@ -432,24 +432,24 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 flowchart LR
     subgraph IN["INPUTS: UTxOs spent"]
         I["`**your UTxO**
-        address: you
-        value: 10 ADA`"]
+        - address: you
+        - value: 10 ADA`"]
     end
 
     TX{{"`**mint and lock**
-    fee: 0.3 ADA
-    the policy's mint handler runs
-    mint: +1 TOKEN A
-    collateral offered, not taken`"}}
+    - fee: 0.3 ADA
+    - the policy's mint handler runs
+    - mint: +1 TOKEN A
+    - collateral offered, not taken`"}}
 
     subgraph OUT["OUTPUTS: UTxOs created"]
         O1["`**locked**
-        address: the vault
-        value: 5 ADA + 1 TOKEN A
-        datum: owner = your key hash`"]
+        - address: the vault
+        - value: 5 ADA + 1 TOKEN A
+        - datum: owner = your key hash`"]
         O2["`**change**
-        address: you
-        value: 4.7 ADA`"]
+        - address: you
+        - value: 4.7 ADA`"]
     end
 
     I --> TX --> O1
