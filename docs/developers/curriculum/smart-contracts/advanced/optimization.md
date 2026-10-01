@@ -60,6 +60,7 @@ Fuzzers constitute a very practical way to write fixtures. Transactions in parti
 ```aiken
 use aiken/fuzz
 use cardano/fuzz as cardano
+use cardano/transaction.{Input, NoDatum, Output}
 
 pub fn some_basic_input() -> Fuzzer<Input> {
   let output_reference <- fuzz.and_then(cardano.output_reference())
@@ -160,7 +161,7 @@ So, when possible, place first the checks that are both:
 
 ```aiken
 or {
-  input.output.value |> assets.has_nft_strict(my_nft),
+  input.output.value |> assets.has_nft_strict(my_policy_id, my_asset_name),
   input.output.address.payment_credential != my_script_credential,
 }
 ```
@@ -170,7 +171,7 @@ or {
 ```aiken
 or {
   input.output.address.payment_credential != my_script_credential,
-  input.output.value |> assets.has_nft_strict(my_nft),
+  input.output.value |> assets.has_nft_strict(my_policy_id, my_asset_name),
 }
 ```
 </TabItem>
@@ -219,7 +220,7 @@ fn insert_in_order(self: List<Int>, elem: Int) -> List<Int> {
           [elem, ..self]
         }
       } else {
-        [head, ..insert_in_order_alt(tail, elem)]
+        [head, ..insert_in_order(tail, elem)]
       }
   }
 }
@@ -255,7 +256,7 @@ Yet, constructing large records to carry context across multiple transaction ele
 <Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
   <TabItem value="dont">
 
-  **mem=5.81M** · **cpu=19.53K**
+  **mem=19.53K** · **cpu=5.81M**
 
   ```aiken
   type MultisigContext {
@@ -276,7 +277,7 @@ Yet, constructing large records to carry context across multiple transaction ele
 
   <TabItem value="do">
 
-  **mem=3.71M** · **cpu=14.12K**
+  **mem=14.12K** · **cpu=3.71M**
 
   ```aiken
   // NOTE: The implementation is irrelevant.
@@ -417,9 +418,9 @@ test baseline_tuple() {
 }
 
 test baseline_backpassing() {
-  expect 0, 0 <- count_and_sum([])
-  expect 3, 3 <- count_and_sum([1, 1, 1])
-  expect 5, 15 <- count_and_sum([1, 2, 3, 4, 5])
+  expect 0, 0 <- count_and_sum_ret([])
+  expect 3, 3 <- count_and_sum_ret([1, 1, 1])
+  expect 5, 15 <- count_and_sum_ret([1, 2, 3, 4, 5])
   Void
 }
 ```
@@ -464,8 +465,8 @@ let MyRedeemer { key, signature } = redeemer
 ```aiken
 pub type MyRedeemer = ByteArray
 
-let key = bytearray.slice(redeemer, 0, 32)
-let signature = bytearray.slice(redeemer, 32, 64)
+let key = bytearray.slice(redeemer, 0, 31)
+let signature = bytearray.slice(redeemer, 32, 95)
 ```
 
 </TabItem> </Tabs>
@@ -534,7 +535,7 @@ It is quite common to have chains of multiple conditions which, when written in 
 <Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
   <TabItem value="dont">
 
-  **mem=46.98K** · **cpu=12.68M**
+  **mem=49.98K** · **cpu=13.16M**
 
   ```aiken
   // Linear search, not ideal.
@@ -553,7 +554,7 @@ It is quite common to have chains of multiple conditions which, when written in 
 
   <TabItem value="do">
 
-  **mem=37.06K** · **cpu=9.76M**
+  **mem=37.86K** · **cpu=9.89M**
 
   ```aiken
   // Binary search, more efficient and predictable.
@@ -612,9 +613,9 @@ When a recursive function advances one step at a time, its convergence can somet
 ```aiken
 fn elem_at(elems: List<a>, at: Int) -> a {
   if at <= 0 {
-    list.head(elems)
+    head_list(elems)
   } else {
-    elem_at(list.tail(elems), at - 1)
+    elem_at(tail_list(elems), at - 1)
   }
 }
 ```
@@ -626,9 +627,9 @@ fn elem_at(elems: List<a>, at: Int) -> a {
 ```aiken
 fn elem_at(elems: List<a>, at: Int) -> a {
   if at >= 2 {
-    elem_at(list.tail(list.tail(elems)), at - 2)
+    elem_at(tail_list(tail_list(elems)), at - 2)
   } else {
-    list.head(if at == 1 { list.tail(elems) } else { elems })
+    head_list(if at == 1 { tail_list(elems) } else { elems })
   }
 }
 ```
@@ -791,7 +792,7 @@ fn validate_outputs(self: Pairs<ByteArray, Int>) -> Void {
 </TabItem>
 <TabItem value="do">
 
-**mem=59.7K** · **cpu=17.44M**
+**mem=59.7K** · **cpu=17.35M**
 
 ```aiken
 fn validate_outputs(self: Pairs<ByteArray, Int>) -> Void {
@@ -806,9 +807,9 @@ fn validate_outputs(self: Pairs<ByteArray, Int>) -> Void {
 
 ```aiken
 test baseline() {
-  validate_outputs([Pair("me", 42), Pair("you", 14), Pair("me", 1337)])
+  validate_outputs([Pair("my_address", 42), Pair("you", 14), Pair("my_address", 1337)])
   validate_outputs([Pair("a", 1), Pair("b", 2), Pair("c", 3)])
-  validate_outputs([Pair("me", 100), Pair("me", 100), Pair("me", 100)])
+  validate_outputs([Pair("my_address", 100), Pair("my_address", 100), Pair("my_address", 100)])
 }
 ```
 </TabItem>
@@ -968,10 +969,10 @@ let y = expensive_function(x)
 you can sometimes do:
 
 ```aiken
-expect mpf.member(y, root)
+expect mpf.has(mpf.from_root(root), x, y, proof)
 ```
 
-where `root` is the precomputed authenticated structure committed off-chain.
+where `root` commits to a precomputed table of `x` to `y` pairs, and the redeemer carries `y` and its `proof`.
 
 The general pattern is:
 
@@ -1015,9 +1016,9 @@ A final optimisation technique is not really about code shape, but about knowing
 
 Many structures that validators inspect already satisfy strong invariants. For example:
 
-* inputs are alphabetically ordered,
+* inputs are sorted by output reference,
 * values are ordered by policy and asset name,
-* redeemers and datums are indexed by hashes,
+* datums are indexed by hash, and redeemers by script purpose,
 * output values never contain negative quantities,
 * output values always include ADA.
 * minted values never include ADA.
