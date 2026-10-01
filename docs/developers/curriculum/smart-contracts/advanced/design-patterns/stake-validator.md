@@ -276,9 +276,9 @@ See [UTxO Indexers](../utxo-indexers) for robust input/output pairing patterns.
 
 ## Example Code
 
-Full working example: [stake-validator.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/validators/examples/stake-validator.ak)
+Full working example: [stake-validator.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/validators/examples/stake-validator.ak)
 
-Library implementation: [stake_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/lib/aiken-design-patterns/stake-validator.ak)
+Library implementation: [stake_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/stake-validator.ak)
 
 ## When to Use
 

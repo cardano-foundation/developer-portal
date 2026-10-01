@@ -207,9 +207,9 @@ validator parameterized_mint(
 
 ## Examples and Implementation
 
-Full working example: [parameter-validation.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/validators/examples/parameter-validation.ak)
+Full working example: [parameter-validation.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/validators/examples/parameter-validation.ak)
 
-Library implementation: [parameter_validation module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/lib/aiken-design-patterns/parameter-validation.ak)
+Library implementation: [parameter_validation module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/parameter-validation.ak)
 
 ## Considerations
 
