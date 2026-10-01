@@ -8,7 +8,7 @@ description: Mint a one-of-one NFT on Cardano with CIP-25 metadata, using Evolut
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-An NFT is just a native token with a quantity of 1, minted under a policy that closes after a set slot so the supply can never grow. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This page mints one and sends it to a wallet, pick your tool below.
+An NFT is just a native token with a quantity of 1, minted under a policy that closes after a set slot, which fixes the supply once that slot passes. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This page mints one and sends it to a wallet, pick your tool below.
 
 New to policies and what makes a token "non-fungible"? Read [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) and [What are native tokens](/docs/developers/curriculum/native-tokens/overview) first. This page is the hands-on version.
 
@@ -87,7 +87,7 @@ const signed = await tx.sign()
 const txHash = await signed.submit()
 ```
 
-The builder handles fees, coin selection, and change. `mintAssets` with quantity `1n` is what makes it non-fungible; `attachMetadata` under `721n` is the CIP-25 standard. `setValidity` sets the transaction's upper bound to `lockSlot`: a `before` policy only validates when that bound is set and is no later than its slot. The builder does not check this for you.
+The builder handles fees, coin selection, and change. `mintAssets` with quantity `1n` is what makes it non-fungible; `attachMetadata` under `721n` is the CIP-25 standard.
 
 </TabItem>
 <TabItem value="mesh" label="Mesh">
@@ -140,7 +140,7 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-`ForgeScript.fromNativeScript` serializes the time-locked policy; `.mint("1", ...)` sets quantity 1. `.invalidHereafter(lockSlot)` sets the transaction's upper bound: a `before` policy only validates when that bound is set and is no later than its slot. Mesh does not check this for you.
+`ForgeScript.fromNativeScript` builds the time-locked policy; `.mint("1", ...)` sets quantity 1.
 
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
@@ -159,7 +159,7 @@ Time-locked policy (`policy/policy.script`):
 }
 ```
 
-Replace `<future slot>` with a real future slot: the current slot (`cardano-cli latest query tip`) plus a buffer (for example `+ 10000`). A past slot like `0` would make the policy immediately unmintable. Pass the same value as `$slot` to `--invalid-hereafter` below: a `before` policy only validates when the transaction's upper bound is set and is no later than its slot, and cardano-cli does not check this.
+Set `<future slot>` to the current slot (`cardano-cli latest query tip`) plus a buffer, for example `+ 10000`; a past slot makes the policy unmintable. Pass the same value as `$slot` to `--invalid-hereafter` below.
 
 CIP-25 metadata (`metadata.json`):
 
@@ -195,13 +195,13 @@ cardano-cli latest transaction submit --tx-file matx.signed
 
 ## Make it a true one-of-one
 
-An NFT derives value from guaranteed scarcity. A **time-locked policy** (the `before` slot in every tab above) means no more tokens can ever be minted under that policy once the deadline passes, enforced at the protocol level. Buyers can verify it by inspecting the policy. Until the deadline, the key holder can still mint more under it; a [one-shot policy](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) enforces uniqueness from the first mint. See [Validity intervals](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time).
+An NFT derives value from guaranteed scarcity. A **time-locked policy** (the `before` slot in every tab above) means no more tokens can ever be minted under that policy once the deadline passes, enforced at the protocol level. Each tab sets the transaction's upper bound to the lock slot, because the policy rejects any transaction without one. Buyers can verify it by inspecting the policy. Before the deadline the key holder can still mint more; a [one-shot policy](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) rules that out from the first mint. See [Validity intervals](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time).
 
 ## Updatable metadata: CIP-68
 
 CIP-25 writes the metadata into the minting transaction, where it is permanent and readable only off-chain. **[CIP-68](https://cips.cardano.org/cip/CIP-68)** instead stores it in an **inline datum on a reference token**, so it can be updated later and read on-chain by smart contracts through reference inputs. Each asset becomes a pair: a **reference token** (asset-name label `100`) held at a script address carrying the metadata datum, and a **user token** (label `222`) that lives in the holder's wallet. For when to choose it over CIP-25, see [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry#cip-68-datum-metadata-updatable-on-chain).
 
-CIP-68 does not require a Plutus minting policy. It requires that both tokens share a policy ID and carry the CIP-67 label prefixes, and that each user token has exactly one reference token, so the time-locked native policy above can mint the pair in one transaction. With a native policy, "exactly one" rests on you as the key holder; a [one-shot policy](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) enforces it on-chain. The script that holds the reference token decides who can change the metadata, because an update spends that output and re-creates it with a new datum. An always-succeed script lets anyone rewrite the metadata or take the token, so the minimal holder checks the issuer's signature (Aiken, Plutus V3, see [Smart contracts](/docs/developers/curriculum/smart-contracts/overview)):
+CIP-68 needs no Plutus minting policy: the native policy above can mint the pair, as long as both tokens share its policy ID and carry the CIP-67 prefixes, one reference token per user token. What needs a script is the reference token's holder, because updating the metadata spends that output: an always-succeed holder lets anyone rewrite the metadata or take the token. The minimal holder accepts only the issuer's signature:
 
 ```aiken
 use aiken/collection/list
@@ -224,7 +224,7 @@ validator cip68_holder(issuer: VerificationKeyHash) {
 }
 ```
 
-Save it as `validators/cip68_holder.ak`. Each tab looks it up in `plutus.json` by its title, `cip68_holder.cip68_holder.spend`, applies your key hash as the `issuer` parameter, mints the pair, and sends the (100) token to the resulting holder address with the metadata as its inline datum:
+Save it as `validators/cip68_holder.ak`; each tab applies your key hash to it and locks the (100) token at the resulting address, with the metadata as its inline datum:
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -322,11 +322,11 @@ const txHash = await wallet.submitTx(signedTx);
 </TabItem>
 </Tabs>
 
-To update the metadata, the issuer spends the reference output and re-creates it with a new datum in a transaction they sign. A larger datum raises the output's [minimum ADA](/docs/developers/curriculum/native-tokens/overview#the-minimum-ada-requirement), so add lovelace when the metadata grows.
+To update the metadata, the issuer spends that output and re-creates it with the new datum, adding lovelace if the larger datum raises the [minimum ADA](/docs/developers/curriculum/native-tokens/overview#the-minimum-ada-requirement).
 
 ## Royalties: CIP-27
 
-A royalty is recorded as a **single token** (empty asset name) under metadata label **`777`**, carrying a rate and a recipient address, minted once under the **same policy** as the NFTs it covers. Marketplaces that honor [CIP-27](https://cips.cardano.org/cip/CIP-27) read label 777 to route a cut of secondary sales to the creator. The policy must be new and unused, and the royalty token must be minted first: marketplaces look only at the first asset minted under a policy. The lock slot is part of the policy ID, so save it and reuse it when you mint the NFTs. Metadata strings are capped at 64 bytes, so the address is written as an array of strings.
+A royalty is recorded as a **single token** (empty asset name) under metadata label **`777`**, carrying a rate and a recipient address, minted once under the **same policy** as the NFTs it covers. Marketplaces that honor [CIP-27](https://cips.cardano.org/cip/CIP-27) read it from the first asset minted under a policy to route a cut of secondary sales to the creator, so mint it first, under a fresh policy whose lock slot you reuse for the NFTs. Metadata strings are capped at 64 bytes, so the address is split into an array.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -359,7 +359,7 @@ const txHash = await signed.submit()
 </TabItem>
 <TabItem value="mesh" label="Mesh">
 
-Mesh's `RoyaltiesStandard` type names the address field `address`, but CIP-27 uses the key `addr`, so attach a plain object under label `777`:
+Mesh's `RoyaltiesStandard` type writes the key `address` instead of CIP-27's `addr`, so attach a plain object under label `777`:
 
 ```typescript
 // setup from the CIP-25 example above, its imports through `policyId`
