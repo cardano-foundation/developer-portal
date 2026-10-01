@@ -20,28 +20,26 @@ Token names are additional data associated with tokens. They are set by the mint
 Note that in a single transaction, each minting policy is run only once. If the transaction mints and/or burns several tokens with the same policy ID but different token names, the corresponding minting policy is run only once and it needs to validate all the policy's minted and burned tokens.
 
 ```aiken
-validator {
-  fn mint_and_burn(_redeemer: Void, ctx: ScriptContext) -> Bool {
-    let ScriptContext { transaction, purpose } = ctx
-    expect Mint(own_policy_id) = purpose
-    let Transaction { mint, ..} = transaction
+use aiken/collection/dict
+use aiken/collection/list
+use cardano/assets.{PolicyId}
+use cardano/transaction.{Transaction}
 
-    let mint_value = value.from_minted_value(mint)
-    let own_tokens = dict.to_list(value.tokens(mint_value, own_policy_id))
+validator mint_and_burn {
+  mint(_redeemer: Data, policy_id: PolicyId, tx: Transaction) {
+    let own_tokens = dict.to_pairs(assets.tokens(tx.mint, policy_id))
 
     // Allowing only mint, not burn
-    list.all(
-      own_tokens,
-      fn(token) {
-        let (asset_name, amount) = token
-        amount > 0
-      },
-    )
+    list.all(own_tokens, fn(Pair(_asset_name, amount)) { amount > 0 })
+  }
+
+  else(_) {
+    fail @"unsupported purpose"
   }
 }
 ```
 
-The code above shows a simple minting policy that lets anyone mint any tokens, but does not allow burning them at all. Note that the transaction.mint contains all the tokens minted or burned in the transaction. The goal is therefore to filter out only tokens governed by this minting policy whose id was extracted to the policy_id variable. The resulting list can contain a number of records. Each is a pair consisting of an asset name and an amount of tokens of that asset name that were minted (representing a positive number) or burned (representing a negative number). Finally, the final check makes sure that all the amounts are positive, meaning that no token was burned. Note that it does not restrict anything else and you could mint tokens of any token name under this policy. However, naturally, you can not mint tokens of a different policy using this code. For that, you need the other policy to validate.
+The code above shows a simple minting policy that lets anyone mint any tokens, but does not allow burning them at all. Note that `tx.mint` contains all the tokens minted or burned in the transaction. The goal is therefore to filter out only tokens governed by this minting policy, whose id the `mint` handler receives as `policy_id`. The resulting list can contain a number of records. Each is a pair consisting of an asset name and an amount of tokens of that asset name that were minted (representing a positive number) or burned (representing a negative number). Finally, the final check makes sure that all the amounts are positive, meaning that no token was burned. Note that it does not restrict anything else and you could mint tokens of any token name under this policy. However, naturally, you can not mint tokens of a different policy using this code. For that, you need the other policy to validate.
 
 It is therefore possible to create tokens that:
 
@@ -96,7 +94,7 @@ Rigorous testing should be in place to test whether even the most extreme edge c
 
 ### Value normalization and zero quantities
 
-Comparing values is another place handling goes wrong. An on-chain `Value` is a normalized, canonically sorted map that by construction never holds a zero-quantity entry. The transaction's **mint field** is not normalized the same way, which is why Aiken historically exposed it as a distinct type converted with `from_minted_value` (that separate type has since been merged into the unified `cardano/assets` `Value`, but the underlying distinction remains). The risk is trusting value structure you did not normalize: an externally supplied value carrying a zero-quantity token, or a non-canonical ordering, can make a structural equality (`==`) or subset check behave wrongly, so two economically equal values compare as unequal (bypassing a guard) or a required equality can never be met (locking the UTxO). Do not compare raw value maps for equality when any part is attacker-controlled; check specific quantities with `quantity_of`, and normalize before comparing.
+Comparing values is another place handling goes wrong. An on-chain `Value` is a normalized, canonically sorted map that by construction never holds a zero-quantity entry. Under Plutus V3 the transaction's **mint field** is normalized the same way; it differs only in holding negative quantities for burned tokens. The risk is trusting value structure you did not normalize: an externally supplied value carrying a zero-quantity token, or a non-canonical ordering, can make a structural equality (`==`) or subset check behave wrongly, so two economically equal values compare as unequal (bypassing a guard) or a required equality can never be met (locking the UTxO). Do not compare raw value maps for equality when any part is attacker-controlled; check specific quantities with `quantity_of`, and normalize before comparing.
 
 ## Beyond value: technical tokens
 
@@ -140,80 +138,74 @@ Additionally, the validator needs to check that the correct validation token is 
 
 As the hashes of both the validator and the minting policy depend on each other, there is a new problem, a cyclic dependency. To know the policy ID, the script hash needs to be known and for that, the policy ID is needed. This cycle needs to be broken as the code can not be compiled as described.
 
-There are several options for how to fix this. Perhaps the most elegant is to use the token name. Recall that the token name can be set arbitrarily by the minter, assuming the minting policy allows it. Therefore, for one minting policy, there are a lot of different token names, each possibly creating a unique token type. Keep the UTxO validator parametrized by the policy ID.
+There are several options for how to fix this. The simplest is [one validator with both a `mint` and a `spend` handler](/docs/developers/curriculum/smart-contracts/write-a-validator#one-validator-many-purposes-one-hash): both compile into one script, so the policy ID is the validator's own hash and there is no cycle. If the two must stay separate scripts, use the token name. Recall that the token name can be set arbitrarily by the minter, assuming the minting policy allows it. Therefore, for one minting policy, there are a lot of different token names, each possibly creating a unique token type. Keep the UTxO validator parametrized by the policy ID.
 
-The minting policy won't be parametrized and it will contain the following change: the validation token can be minted into any address, but its token name needs to match the payment credential part of the address of that UTxO. The script validator then needs to check that the validation token of the policy ID set as a parameter that is present in the UTxO has the corresponding name, that it matches its own script hash. By doing that, the validator can be sure that the token was minted to the same script. Different token names are untrustworthy and need to be considered invalid.
+The minting policy won't be parametrized and it will contain the following change: the validation token can be minted into any script address, but its token name needs to match the payment credential part of the address of that UTxO. The script validator then needs to check that the validation token of the policy ID set as a parameter that is present in the UTxO has the corresponding name, that it matches its own script hash. By doing that, the validator can be sure that the token was minted to the same script. Different token names are untrustworthy and need to be considered invalid.
 
 ```aiken
-use aiken/dict.{to_list}
-use aiken/transaction.{
- Mint, ScriptContext, Spend, Transaction, find_input, find_script_outputs,
+use aiken/collection/dict
+use cardano/address.{Script}
+use cardano/assets.{PolicyId}
+use cardano/transaction.{
+  OutputReference, Transaction, find_input, find_script_outputs,
 }
-use aiken/transaction/credential.{ScriptCredential}
-use aiken/transaction/value.{from_minted_value, quantity_of, tokens}
-
 
 // Minting policy of the validation token
-validator {
- fn validation_token_policy(_redeemer: Void, ctx: ScriptContext) -> Bool {
-   let ScriptContext { transaction, purpose } = ctx
-   expect Mint(policy_id) = purpose
-   let Transaction { outputs, mint, .. } = transaction
+validator validation_token_policy {
+  mint(_redeemer: Data, policy_id: PolicyId, tx: Transaction) {
+    expect [Pair(asset_name, amount)] =
+      dict.to_pairs(assets.tokens(tx.mint, policy_id))
+    when amount is {
+      1 -> {
+        // the token name must be the hash of the script it is minted into
+        expect [token_output] = find_script_outputs(tx.outputs, asset_name)
 
-   expect [(asset_name, amount)] =
-     to_list(tokens(from_minted_value(mint), policy_id))
-   when amount is {
-     1 -> {
-       expect [token_output] =
-         find_script_outputs(outputs, asset_name)
+        // ... other checks, including:
+        // ... double satisfaction prevention
+        // ... initial state validation (datum, value)
+        assets.quantity_of(token_output.value, policy_id, asset_name) == 1
+      }
+      -1 -> True
+      _ -> False
+    }
+  }
 
-       and {
-         quantity_of(token_output.value, policy_id, asset_name) == 1,
-         // ... other checks, including:
-         // ... double satisfaction prevention
-         // ... initial state validation (datum, value)
-       }
-     }
-     -1 -> True
-     _ -> False
-   }
- }
+  else(_) {
+    fail @"unsupported purpose"
+  }
 }
 
-
 // Validator expects to have the correct validation token
-validator(validation_token_policy: ByteArray) {
- fn multisig(_datum: Void, _redeemer: Void, ctx: ScriptContext) -> Bool {
-   let ScriptContext { transaction, purpose } = ctx
-   let Transaction { inputs, outputs, .. } = transaction
-   expect Spend(output_reference) = purpose
+validator multisig(validation_token_policy: PolicyId) {
+  spend(
+    _datum: Option<Data>,
+    _redeemer: Data,
+    own_ref: OutputReference,
+    tx: Transaction,
+  ) {
+    expect Some(own_input) = find_input(tx.inputs, own_ref)
+    expect Script(own_hash) = own_input.output.address.payment_credential
 
-   expect Some(own_input) = find_input(inputs, output_reference)
-   expect ScriptCredential(own_hash) =
-     own_input.output.address.payment_credential
+    // expect to have the correct validation token:
+    // its name must be this script's own hash
+    expect
+      assets.quantity_of(
+        own_input.output.value,
+        validation_token_policy,
+        own_hash,
+      ) == 1
 
-   // expect to have the correct validation token
-   expect
-     quantity_of(
-       own_input.output.value,
-       validation_token_policy,
-       own_hash, // expected token name == this script's hash
-     ) == 1
+    expect [token_output] = find_script_outputs(tx.outputs, own_hash)
 
-   expect [expected_token_output] =
-     find_script_outputs(outputs, own_hash)
+    // ... other checks, including:
+    // ... double satisfaction prevention
+    // ... correct state transition validation (datum, value)
+    assets.quantity_of(token_output.value, validation_token_policy, own_hash) == 1
+  }
 
-   expect
-     quantity_of(
-       expected_token_output.value,
-       validation_token_policy,
-       expected_token_name,
-     ) == 1
-
-   // ... other checks, including:
-   // ... double satisfaction prevention
-   // ... correct state transition validation (datum, value)
- }
+  else(_) {
+    fail @"unsupported purpose"
+  }
 }
 ```
 
