@@ -21,7 +21,26 @@ Reach for it when multiple scripts in a protocol share validation and cost matte
 
 ## Design Patterns Library
 
-The patterns below come from the [Anastasia Labs aiken-design-patterns](https://github.com/Anastasia-Labs/aiken-design-patterns) library (v1.5.0). This is a ready-to-use Aiken library that provides production-grade implementations of common on-chain patterns, so developers can import and use them directly without the overhead of reimplementing the base logic themselves.
+The patterns below come from the [Anastasia Labs aiken-design-patterns](https://github.com/Anastasia-Labs/aiken-design-patterns) library. This is a ready-to-use Aiken library that provides production-grade implementations of common on-chain patterns, so developers can import and use them directly without the overhead of reimplementing the base logic themselves.
+
+On Aiken v1.1.23 with stdlib v3.1.0, use v1.8.0 (v1.9.0 needs Aiken v1.1.24 and stdlib v4). Aiken does not fetch a package's own dependencies, so add the library's two dependencies to `aiken.toml` as well:
+
+```toml
+[[dependencies]]
+name = "anastasia-labs/aiken-design-patterns"
+version = "v1.8.0"
+source = "github"
+
+[[dependencies]]
+name = "aiken-lang/fuzz"
+version = "v2.2.0"
+source = "github"
+
+[[dependencies]]
+name = "keyan-m/aiken-scott-utils"
+version = "v1.4.0"
+source = "github"
+```
 
 | Pattern | Description |
 |---------|-------------|

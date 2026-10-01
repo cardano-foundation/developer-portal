@@ -81,4 +81,4 @@ validator my_validator {
 
 ## Example Code
 
-Full working example: [validity-range-normalization.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/lib/aiken-design-patterns/validity-range-normalization.ak)
+Full working example: [validity-range-normalization.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/validity-range-normalization.ak)

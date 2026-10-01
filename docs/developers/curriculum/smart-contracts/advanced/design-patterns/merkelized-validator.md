@@ -213,8 +213,8 @@ validator forty_two_staking_script {
 
 ## Example Code
 
-Full working example: [merkelized-validator.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/validators/examples/merkelized-validator.ak)
+Full working example: [merkelized-validator.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/validators/examples/merkelized-validator.ak)
 
-Library implementation: [merkelized_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/lib/aiken-design-patterns/merkelized-validator.ak)
+Library implementation: [merkelized_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/merkelized-validator.ak)
 
 Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/main-contract.ak)
