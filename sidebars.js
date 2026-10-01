@@ -207,7 +207,6 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/oracles/pyth",
-                "developers/curriculum/dapps/oracles/prediction-market",
                 "developers/curriculum/dapps/oracles/randomness",
               ],
             },
