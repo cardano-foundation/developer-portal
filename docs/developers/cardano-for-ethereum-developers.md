@@ -100,45 +100,39 @@ The transaction:
 2. Spends the UTxO containing the current counter value in its datum (input)
 3. Creates a new UTxO at the same address with the updated datum (output)
 
-:::note Helper functions
-The validator below uses helper functions like `find_continuing_output` and `get_datum`. These are not built into Aiken, but are common patterns you implement or import from [utility libraries](https://packages.aiken-lang.org/).
-:::
-
 Here's the validator:
 
 ```aiken
+use aiken/collection/list
+use cardano/transaction.{InlineDatum, OutputReference, Transaction, find_input}
+
 validator counter_validator {
   spend(
     datum_opt: Option<CounterDatum>,
     redeemer: CounterAction,
-    _input: OutputReference,
+    own_ref: OutputReference,
     tx: Transaction,
   ) {
-
     // --- Input state (current counter) ---
     // The state lives in the datum of the UTxO being spent.
     expect Some(input_datum) = datum_opt
 
-    // --- Transition Logic ---
-    // The redeemer tells the validator which state transition logic to apply.
+    // --- Output state (next counter) ---
+    // Exactly one output must go back to this script's address, so the state is
+    // neither duplicated nor lost. That output carries the next state in its datum.
+    expect Some(own_input) = find_input(tx.inputs, own_ref)
+    expect [output] = list.filter(
+      tx.outputs,
+      fn(o) { o.address == own_input.output.address },
+    )
+    expect InlineDatum(data) = output.datum
+    expect output_datum: CounterDatum = data
+
+    // --- Transition rule ---
+    // The redeemer tells the validator which transition to check.
     when redeemer is {
-      Increment -> {
-        // --- Output state (next counter) ---
-        // A valid state transition must produce a continuing output UTxO at the same smart contract address.
-        // That output carries the next state in its datum.
-        expect Some(output) = find_continuing_output(tx)
-        expect output_datum: CounterDatum = get_datum(output)
-
-        // --- Transition rule ---
-        // The datum attached to the output UTxO must contain the next correct state of the counter.
-        output_datum.count == input_datum.count + 1
-      }
-
-      Decrement -> {
-        expect Some(output) = find_continuing_output(tx)
-        expect output_datum: CounterDatum = get_datum(output)
-        output_datum.count == input_datum.count - 1
-      }
+      Increment -> output_datum.count == input_datum.count + 1
+      Decrement -> output_datum.count == input_datum.count - 1
     }
   }
 
@@ -184,11 +178,21 @@ To enforce "action X only after date Y," store Y in the datum and check that the
 
 Another significant difference from Ethereum is composition. On Ethereum, a transaction has a single entry point and composition is typically expressed through internal contract calls (routers, aggregators, multicalls). On Cardano, a single transaction can spend from multiple script addresses and mint tokens under multiple policies. Each validator runs independently; all must pass, and the entire transaction succeeds or fails atomically. No router contracts are required.
 
-In the UTxO model, the [transaction](/docs/developers/curriculum/fundamentals/core-concepts/transactions) itself is the **local state**. Every input, every output, every signature, every piece of data the validator needs is contained within the transaction. There's no querying external state and as a result there are no surprises from concurrent modifications. When a validator runs, it receives this complete local state as context. For example, the transaction's `extra_signatories` field lists every verification key hash that signed it. The validator can inspect all inputs being spent, all outputs being created, and all metadata attached. Given the same transaction inputs and outputs, a validator will always produce the same result because everything it needs is self-contained.
+:::info How often do validators run?
+Validators run **per script purpose**, not once per transaction:
+
+- **Spending validators** run once for each script-locked input being spent
+- **Minting policies** run once per policy ID (not per asset or per input)
+- **Staking and governance scripts** run once per withdrawal, certificate, voter, or proposal that requires a script
+
+A single transaction can trigger multiple executions of the same spending validator (with different datums/redeemers), plus minting policy executions, plus staking scripts. This is a key difference from Ethereum, where one contract call means one execution.
+:::
+
+In the UTxO model, the [transaction](/docs/developers/curriculum/fundamentals/core-concepts/transactions) itself is the **local state**. Every input, every output, every signature, every piece of data the validator needs is contained within the transaction. There's no querying external state and as a result there are no surprises from concurrent modifications. When a validator runs, it receives this complete local state as context. For example, the transaction's `extra_signatories` field lists the key hashes the transaction declares as required signers, and the ledger checks their signatures before any validator runs. The validator can inspect all inputs being spent, all outputs being created, and all metadata attached. Given the same transaction inputs and outputs, a validator will always produce the same result because everything it needs is self-contained.
 
 ## How Do Fees Work on Cardano?
 
-Cardano uses a deterministic fee model. Fees are calculated using a fixed formula based on transaction size (a × tx_size + b) and, for smart contract transactions, known execution budgets (CPU and memory units). Fees are fully calculable before submission, with no gas price auctions or bidding.
+Cardano uses a deterministic fee model. Fees are calculated using a fixed formula based on transaction size (a × tx_size + b), the size of any reference scripts in the UTxOs it spends or references, and, for smart contract transactions, known execution budgets (CPU and memory units). Fees are fully calculable before submission, with no gas price auctions or bidding.
 
 One important detail: every UTxO must contain a minimum amount of ADA (called **minUTxO**). This prevents dust attacks and ensures UTxOs are economically meaningful. The minimum depends on the UTxO's size, so more data in the datum means more ADA required. Client SDKs handle this automatically when building transactions.
 
@@ -213,44 +217,45 @@ function increment() public onlyOwner {
 }
 ```
 
-On Cardano, we would check if the defined owner signed the transaction. The `key_signed` [helper function](https://packages.aiken-lang.org/) checks whether a specific key hash appears in `tx.extra_signatories`, the list of keys that signed this transaction:
+On Cardano, we would check if the defined owner signed the transaction. The standard library's `list.has` checks whether a specific key hash appears in `tx.extra_signatories`, the transaction's required signers (the off-chain code must list the owner there):
 
 ```aiken
+use aiken/collection/list
+use aiken/crypto.{VerificationKeyHash}
+use cardano/transaction.{InlineDatum, OutputReference, Transaction, find_input}
+
 validator counter_with_owner(owner: VerificationKeyHash) {
   spend(
     datum_opt: Option<CounterDatum>,
     redeemer: CounterAction,
-    _input: OutputReference,
+    own_ref: OutputReference,
     tx: Transaction,
   ) {
-    expect Some(input_datum) = datum_opt
+    // onlyOwner: the owner must be one of the transaction's required signers
+    expect list.has(tx.extra_signatories, owner)
 
-    // Check if owner signed
-    let is_owner_signed = key_signed(tx.extra_signatories, owner)
+    expect Some(input_datum) = datum_opt
+    expect Some(own_input) = find_input(tx.inputs, own_ref)
+    expect [output] = list.filter(
+      tx.outputs,
+      fn(o) { o.address == own_input.output.address },
+    )
+    expect InlineDatum(data) = output.datum
+    expect output_datum: CounterDatum = data
 
     when redeemer is {
-      Increment -> {
-        expect Some(output) = find_continuing_output(tx)
-        expect output_datum: CounterDatum = get_datum(output)
-
-        // Check if the owner signed the transaction and the counter was incremented correctly
-        // If both conditions are true, the transaction is allowed.
-        is_owner_signed && (input_datum.count + 1 == output_datum.count)
-      }
-      Decrement -> {
-        // Similar logic for decrementing.
-      }
+      Increment -> output_datum.count == input_datum.count + 1
+      Decrement -> output_datum.count == input_datum.count - 1
     }
   }
+
+  else(_) {
+    fail
+  }
+}
 ```
 
-The `owner` parameter is baked into the script at compile time. Different owners produce different script hashes, meaning different addresses:
-
-```aiken
-validator counter_with_owner(owner: VerificationKeyHash) { 
-```
-
-This is Cardano's equivalent of Solidity's constructor arguments, but with an important difference: the parameter is compiled directly into the script bytecode. Even if two contracts have identical logic, compiling with different `owner` verification keys produces different bytecode:
+The `owner` parameter is Cardano's equivalent of Solidity's constructor arguments, but with an important difference: it is applied to the compiled script off-chain and becomes part of the script bytes. Even if two contracts have identical logic, applying different `owner` verification keys produces different bytecode:
 
 ```mermaid
 flowchart LR
@@ -264,26 +269,34 @@ Since the script address is derived by hashing this bytecode, each owner gets th
 
 ### Adding Time Locks
 
-What if we want the counter to only work before a certain deadline? On Ethereum, you'd check `block.timestamp`. On Cardano, we use validity intervals. Here's a more complete example based on our vesting contract pattern:
+What if the owner may only act before a certain deadline? On Ethereum, you'd check `block.timestamp`. On Cardano, we use validity intervals:
 
 ```aiken
-pub type CounterDatum {
-  count: Int,
-  owner: ByteArray,
-  deadline: Int,  // POSIX timestamp in milliseconds
+use aiken/collection/list
+use aiken/crypto.{VerificationKeyHash}
+use aiken/interval
+use cardano/transaction.{OutputReference, Transaction}
+
+pub type LockDatum {
+  owner: VerificationKeyHash,
+  // POSIX timestamp in milliseconds
+  deadline: Int,
 }
 
-validator timed_counter {
+validator before_deadline {
   spend(
-    datum_opt: Option<CounterDatum>,
+    datum_opt: Option<LockDatum>,
     _redeemer: Data,
-    _input: OutputReference,
+    _own_ref: OutputReference,
     tx: Transaction,
   ) {
     expect Some(datum) = datum_opt
 
-    let is_owner_signed = key_signed(tx.extra_signatories, datum.owner)
-    let is_not_expired = valid_before(tx.validity_range, datum.deadline)
+    let is_owner_signed = list.has(tx.extra_signatories, datum.owner)
+    let is_not_expired = interval.is_entirely_before(
+      tx.validity_range,
+      datum.deadline,
+    )
 
     is_owner_signed && is_not_expired
   }
@@ -294,7 +307,7 @@ validator timed_counter {
 }
 ```
 
-The `valid_before` function checks that the transaction's validity interval ends before the deadline.
+`interval.is_entirely_before` checks that the transaction's validity interval ends before the deadline. A transaction with no upper bound fails the check, so the builder must set one.
 
 ## Native Tokens vs ERC-20/721
 
@@ -312,7 +325,7 @@ For example, to create a token that requires your signature and can only be mint
 const nativeScript: NativeScript = {
   type: "all",
   scripts: [
-    { type: "before", slot: "99999999" },
+    { type: "before", slot: lockSlot.toString() }, // a future slot: minting closes after it
     { type: "sig", keyHash: yourPubKeyHash },
   ],
 };
@@ -325,9 +338,14 @@ The ledger validates these rules directly. This covers most basic token use case
 When you need complex business logic like conditional minting based on other UTxOs, oracle data, or custom validation, you write a minting policy smart contract:
 
 ```aiken
+use aiken/collection/list
+use aiken/crypto.{VerificationKeyHash}
+use cardano/assets.{PolicyId}
+use cardano/transaction.{Transaction}
+
 validator my_token(owner: VerificationKeyHash) {
   mint(_redeemer: Data, _policy_id: PolicyId, tx: Transaction) {
-    key_signed(tx.extra_signatories, owner)
+    list.has(tx.extra_signatories, owner)
   }
 
   else(_) {
@@ -338,217 +356,53 @@ validator my_token(owner: VerificationKeyHash) {
 
 This gives you full programmability by allowing you to check transaction inputs/outputs, reference other UTxOs, and enforce arbitrary conditions. Native tokens work just like ADA in transactions. The only difference is that minting and burning require a policy.
 
-## Putting It Together: A Ticketing System
+### Accepting Payment: `payable` and `msg.value`
 
-Let's see how these concepts combine in a real use case. This ticketing system is used for a conference registration. It issues unique NFT tickets where each purchase increments a counter and mints a token named `TICKET0`, `TICKET1`, and so on.
+On Ethereum, a sale is a `payable` function that checks `msg.value`:
 
-### Transaction Structure
-
-Here's what a ticket purchase transaction looks like:
-
-```mermaid
-flowchart LR
-    subgraph Inputs
-        A["Buyer funds<br/>(ADA for payment)"]
-        B["Current state<br/>(ticket_counter: 7)"]
-    end
-
-    subgraph TX["buy_ticket"]
-        T[" "]
-    end
-
-    subgraph Outputs
-        C["Ticket + change<br/>(TICKET7 NFT)"]
-        D["New state<br/>(ticket_counter: 8)"]
-        E["Payment<br/>(ADA to treasury)"]
-    end
-
-    A --> TX
-    B --> TX
-    TX --> C
-    TX --> D
-    TX --> E
-```
-
-The transaction spends two UTxOs as inputs: the buyer's funds (from their wallet) and the current protocol state (sitting at the script address with `ticket_counter: 7` in its datum). It creates three new UTxOs as outputs: the minted ticket plus change goes back to the buyer's wallet, the updated state (with `ticket_counter: 8`) returns to the script address to continue the protocol, and the payment goes to the treasury (organizers) address. Everything happens atomically. If any part fails, nothing happens.
-
-First, the types. We define an `AssetClass` to identify tokens, datums for state, and redeemers for actions:
-
-```aiken
-use cardano/assets.{AssetName, PolicyId}
-
-pub type AssetClass {
-  policy: PolicyId,
-  name: AssetName,
-}
-
-pub type TicketerDatum {
-  ticket_counter: Int,
-}
-
-pub type TicketerRedeemer {
-  BuyTicket
-}
-
-pub type TicketPolicyRedeemer {
-  MintTicket
-  BurnTicket
+```js
+function buyTicket() external payable {
+    require(msg.value >= price, "Insufficient payment");
+    payable(treasury).transfer(msg.value);
+    _mint(msg.sender, 1);
 }
 ```
 
-Now the validator itself, which handles both spending (state updates) and minting (ticket creation):
+Cardano has no `msg.value`. The payment is an output of the same transaction, so the minting policy checks that one pays the treasury before a ticket is minted:
 
 ```aiken
-validator ticketer(
-  admin_token: AssetClass,
-  blind_price: Int,
-  normal_price: Int,
-  switch_slot: Int,
-  treasury: Address,
-  max_tickets: Int,
-) {
-  spend(datum: Option<TicketerDatum>, redeemer: TicketerRedeemer, utxo: OutputReference, tx: Transaction) {
-    expect Some(datum) = datum
-    let TicketerDatum { ticket_counter } = datum
+use aiken/collection/dict
+use aiken/collection/list
+use cardano/address.{Address}
+use cardano/assets.{PolicyId}
+use cardano/transaction.{InlineDatum, Transaction}
 
-    expect ticket_counter < max_tickets
+validator ticket(treasury: Address, price: Int) {
+  mint(_redeemer: Data, policy_id: PolicyId, tx: Transaction) {
+    // Exactly one ticket is minted under this policy
+    expect [Pair(_name, 1)] = dict.to_pairs(assets.tokens(tx.mint, policy_id))
 
-    expect [ticketer_output] = list.filter(outputs, fn(o) { o.address == ticketer_input.output.address })
-
-    expect ticketer_datum: TicketerDatum = ticketer_output.datum
-    let must_update_datum = ticketer_datum.ticket_counter == ticket_counter + 1
-
-    let current_price = if interval.is_entirely_before(tx.validity_range, switch_slot) {
-      blind_price
-    } else {
-      normal_price
-    }
-
-    let must_pay_treasury = list.any(outputs, fn(o) {
-      o.address == treasury && quantity_of(o.value, ada_policy_id, ada_asset_name) >= current_price
-    })
-
-    let ticket_name = concat("TICKET", from_string(string.from_int(ticket_counter)))
-    let must_mint_ticket = tx.mint == from_asset(policy_id, ticket_name, 1)
-
-    must_update_datum? && must_pay_treasury? && must_mint_ticket?
+    // require(msg.value >= price): an output pays the treasury, tagged with
+    // this policy ID so the same payment cannot also cover another sale
+    list.any(
+      tx.outputs,
+      fn(o) {
+        and {
+          o.address == treasury,
+          assets.lovelace_of(o.value) >= price,
+          o.datum == InlineDatum(policy_id),
+        }
+      },
+    )
   }
 
-  mint(redeemer: TicketPolicyRedeemer, policy_id: PolicyId, tx: Transaction) {
-    when redeemer is {
-      MintTicket -> {
-        list.any(tx.inputs, fn(input) {
-          input.output.address.payment_credential == Script(policy_id)
-        })
-      }
-      BurnTicket -> {
-        list.all(tokens(tx.mint, policy_id), fn(pair) { pair.2nd < 0 })
-      }
-    }
+  else(_) {
+    fail
   }
 }
 ```
 
-Let's break down what's happening.
-
-### Parameterized Scripts
-
-```aiken
-validator ticketer(
-  admin_token: AssetClass,
-  blind_price: Int,
-  normal_price: Int,
-  switch_slot: Int,
-  treasury: Address,
-  max_tickets: Int,
-) {
-```
-
-Configuration is encoded as script [parameters](https://aiken-lang.org/language-tour/validators#parameters) (not stored in contract state (datum)). You can use parameter values as hardcoded constants for the validator. The validator is compiled as a parameterized script, and when parameters are applied off-chain, they become part of the resulting script bytes. Because the script hash is computed from those bytes, different parameters result in different script hashes and therefore different contract addresses.
-
-### State Lives in Datums
-
-```aiken
-  spend(datum: Option<TicketerDatum>, redeemer: TicketerRedeemer, UTxO: OutputReference, tx: Transaction) {
-    expect Some(datum) = datum
-    let TicketerDatum { ticket_counter } = datum
-```
-
-The `ticket_counter` isn't stored in the contract. It's attached to the UTxO being spent. Each purchase consumes the old state UTxO and creates a new one with an incremented counter. The validator receives this state as input, not from internal storage.
-
-```aiken
-    expect ticketer_datum: TicketerDatum = ticketer_output.datum
-    let must_update_datum = ticketer_datum.ticket_counter == ticket_counter + 1
-```
-
-The validator doesn't increment the counter. It checks that whoever built the transaction incremented it correctly. The off-chain code does the work; the on-chain code validates the result. If the output datum doesn't have exactly `ticket_counter + 1`, validation fails.
-
-### Finding the Continuing Output
-
-```aiken
-    expect [ticketer_output] = list.filter(outputs, fn(o) { o.address == ticketer_input.output.address })
-```
-
-When a stateful contract updates, the new state must go back to the same script address. This line finds the output that "continues" the contract by filtering for outputs sent to the same address as the input. The `expect [ticketer_output]` pattern asserts there's exactly one such output. If zero or multiple outputs match, validation fails. This is how you ensure the protocol state isn't duplicated or lost.
-
-### Verifying Payments
-
-```aiken
-    let must_pay_treasury = list.any(outputs, fn(o) {
-      o.address == treasury && quantity_of(o.value, ada_policy_id, ada_asset_name) >= current_price
-    })
-```
-
-The validator scans transaction outputs to verify payment. It checks that at least one output goes to the treasury address with the required ADA amount. This pattern of iterating outputs to find a matching address and minimum value is how you enforce payments on Cardano. The transaction builder decides which UTxOs to use and how to structure outputs; the validator just confirms the result meets requirements.
-
-### Time via Validity Intervals
-
-```aiken
-    let current_price = if interval.is_entirely_before(tx.validity_range, switch_slot) {
-      blind_price
-    } else {
-      normal_price
-    }
-```
-
-The validator checks if the transaction's validity range falls before or after `switch_slot`. Early bird pricing is enforced by the ledger rejecting transactions submitted after the deadline, before the script even runs. The validator just needs to check which price tier applies.
-
-### Multiple Validators in one transaction
-
-```aiken
-  mint(redeemer: TicketPolicyRedeemer, policy_id: PolicyId, tx: Transaction) {
-    when redeemer is {
-      MintTicket -> {
-        list.any(tx.inputs, fn(input) {
-          input.output.address.payment_credential == Script(policy_id)
-        })
-```
-
-The `spend` validator handles state updates while the `mint` validator controls ticket creation. For minting, the validator just checks that the spend validator is also running in this transaction, which ensures state is properly updated. Both validators run independently; if either fails, the whole transaction is rejected atomically.
-
-:::info How often do validators run?
-Validators run **per script purpose**, not once per transaction:
-
-- **Spending validators** run once for each script-locked input being spent
-- **Minting policies** run once per policy ID (not per asset or per input)
-- **Staking scripts** run once per certificate or withdrawal that requires a script
-
-A single transaction can trigger multiple executions of the same spending validator (with different datums/redeemers), plus minting policy executions, plus staking scripts. This is a key difference from Ethereum, where one contract call means one execution.
-:::
-
-### Admin Token for Authentication
-
-The `admin_token` parameter solves a Cardano-specific problem: anyone can create (send) UTxOs to any address. Without the admin token, an attacker could create fake state UTxOs with manipulated counters. Our validator checks that the state UTxO contains this unique token, identifying it as the legitimate protocol state rather than a random UTxO at the same address.
-
-### Combining Validations
-
-```aiken
-    must_update_datum? && must_pay_treasury? && must_mint_ticket?
-```
-
-All conditions must pass for the transaction to succeed. Each check is a boolean, and the final expression combines them. The `?` suffix is Aiken syntax that traces the variable name on failure, useful for debugging which condition failed. This declarative style of building up named boolean checks and combining them at the end makes validators easier to read and audit.
-
-This is what production Cardano development looks like: declarative transactions where you specify exactly what should happen, and validators that approve or reject based on whether you followed the rules.
+The datum tag matters. Without it, one payment could satisfy two ticket policies that share a treasury (two events from the same organizer) in a single transaction, the [double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) problem.
 
 ## Developer Environment
 
@@ -645,7 +499,7 @@ In practice, Cardano development intentionally shifts complexity from on-chain t
 
 ### State Management
 
-There is no implicit “current state” stored in a contract. State must be modeled explicitly using UTxOs and datums. Patterns like counters, registries, or mappings require designing how state is split across UTxOs and how those UTxOs evolve over time. This makes state transitions explicit and auditable, but it can feel verbose compared to mutating a variable in contract storage on Ethereum.
+There is no implicit “current state” stored in a contract. State must be modeled explicitly using UTxOs and datums. Patterns like counters, registries, or mappings require designing how state is split across UTxOs and how those UTxOs evolve over time. This makes state transitions explicit and auditable, but it can feel verbose compared to mutating a variable in contract storage on Ethereum. A UTxO at a script address also proves nothing on its own, since anyone can create one there with any datum. Protocols mark their genuine state UTxO with a unique token whose minting policy checks the initial state; see [Missing UTxO authentication](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication).
 
 ### Concurrency Requires Design
 
@@ -718,7 +572,7 @@ A few Solidity habits carry over, but the ones that matter are not one-to-one:
 
 - **There is no contract storage.** Solidity keeps mutable state inside the contract; Cardano attaches immutable data (a **datum**) to a UTxO. You never update a datum in place, you consume the UTxO and create a new one with the new value, so a `mapping(addr => uint)` becomes one UTxO per entry rather than a single mutable map.
 - **There is no `msg.sender` or `msg.value`.** A validator inspects the transaction itself: check `tx.extra_signatories` for who signed, and read input and output values explicitly.
-- **Logic moves from runtime to build time.** A `constructor` becomes a parameterized script whose parameters are baked in at compile time. `require(condition)` becomes Aiken's `expect`, and `modifier onlyOwner` becomes an explicit `key_signed(signers, owner)` check.
+- **Logic moves from runtime to build time.** A `constructor` becomes a parameterized script whose parameters are applied before it is used. `require(condition)` becomes Aiken's `expect`, and `modifier onlyOwner` becomes an explicit `list.has(tx.extra_signatories, owner)` check.
 - **The interface is a blueprint, not an ABI.** Tools read [`plutus.json`](https://cips.cardano.org/cip/CIP-0057) the way they read an ABI. Instead of view functions and events, you query UTxOs directly through a provider and use transaction metadata or an indexer for event-style history.
 
 ## Next steps
