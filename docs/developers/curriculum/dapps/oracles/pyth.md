@@ -17,7 +17,7 @@ On Cardano, price updates are verified through a **zero-withdrawal** from the Py
 
 **Pyth Pro (Lazer)**: Sub-second, high-frequency price feeds via a pull-based model. You subscribe to a websocket or fetch the latest price and include the signed update in your transaction.
 
-**On-chain Aiken Library**: The [`pyth-lazer-cardano`](https://github.com/pyth-network/pyth-crosschain/tree/main/lazer/contracts/cardano) library handles signature verification and exposes parsed price data including price, confidence, EMA price, bid/ask, and exponent.
+**On-chain Aiken Library**: The [`pyth-lazer-cardano`](https://github.com/pyth-network/pyth-lazer-cardano) library handles signature verification and exposes parsed price data including price, confidence, EMA price, bid/ask, and exponent.
 
 **Off-chain TypeScript SDK**: The [`@pythnetwork/pyth-lazer-sdk`](https://www.npmjs.com/package/@pythnetwork/pyth-lazer-sdk) provides websocket streaming and one-shot fetching of signed price updates.
 
@@ -27,12 +27,12 @@ Integrating Pyth Pro into a Cardano smart contract is a three-step process:
 
 ### Step 1: Use the Aiken library on-chain
 
-Add the Pyth Lazer Cardano library to your `aiken.toml`:
+Add the Pyth Lazer Cardano library to your `aiken.toml`. It has no tagged releases, so pin a commit:
 
 ```toml
 [[dependencies]]
 name = "pyth-network/pyth-lazer-cardano"
-version = "main"
+version = "217b5917228b17f015719b27dd616a75ad6bd800"
 source = "github"
 ```
 
@@ -82,7 +82,10 @@ Fetching updates requires a Pyth Pro access token. Intersect has arranged access
 ```typescript
 import { PythLazerClient } from "@pythnetwork/pyth-lazer-sdk";
 
-const lazer = await PythLazerClient.create({ token: LAZER_TOKEN });
+const lazer = await PythLazerClient.create({
+  token: LAZER_TOKEN,
+  webSocketPoolConfig: {},
+});
 const latestPrice = await lazer.getLatestPrice({
   channel: "fixed_rate@200ms",
   formats: ["solana"],
@@ -159,10 +162,12 @@ validator pyth_test(pyth_id: PolicyId) {
   withdraw(_redeemer: Data, _account: Credential, self: Transaction) {
     expect [update] = pyth.get_updates(pyth_id, self)
 
-    // Find BTC/USD (feed ID 1) and assert a price exists
-    expect Some(btc_feed) =
-      list.find(update.feeds, fn(f) { u32.as_int(f.feed_id) == 1 })
-    expect Some(Some(_price)) = btc_feed.price
+    // Find ADA/USD (feed ID 16, as fetched in Step 2) and assert a price exists
+    expect Some(ada_feed) = list.find(
+      update.feeds,
+      fn(f) { u32.as_int(f.feed_id) == 16 },
+    )
+    expect Some(Some(_price)) = ada_feed.price
 
     True
   }
@@ -184,11 +189,11 @@ This test consumer is itself a [withdrawal validator](/docs/developers/curriculu
 
 ## Validator patterns
 
-The steps above get a verified price into your validator. What follows are the recurring shapes for actually using it, written against the current library types. Two unit conventions matter throughout: transaction validity bounds are POSIX **milliseconds**, while `timestamp_us` is **microseconds**. Feed fields are also double-optional: the outer `Option` tells you whether you requested that property in the off-chain fetch (Step 2's `properties` array), the inner whether Pyth has a value for it right now.
+The steps above get a verified price into your validator. What follows are the recurring shapes for actually using it, written against the current library types. Two unit conventions matter throughout: transaction validity bounds are POSIX **milliseconds**, while `timestamp_us` is **microseconds**. Most feed fields are also double-optional: the outer `Option` tells you whether you requested that property in the off-chain fetch (Step 2's `properties` array), the inner whether Pyth has a value for it right now. `exponent`, `publisher_count`, and `market_session` have only the outer one.
 
 ### Enforce a freshness window
 
-The signature check proves integrity, not recency, so bound the age yourself. Anchor the check to the validity **upper** bound: then no matter when inside its validity window the transaction lands on-chain, the update is at most `max_age_ms` old.
+The signature check proves integrity, not recency, so bound the age yourself. Anchor the check to the validity **upper** bound: then no matter when inside its validity window the transaction lands on-chain, the update is at most `max_age_ms` old. `max_age_ms` must therefore be longer than the time from the fetch to that bound, which is 60 seconds in Step 3.
 
 ```aiken
 use aiken/interval.{Finite}
@@ -196,7 +201,7 @@ use cardano/transaction.{Transaction}
 use pyth.{PriceUpdate}
 use types/u64
 
-const max_age_ms: Int = 60_000
+const max_age_ms: Int = 120_000
 
 fn is_fresh(update: PriceUpdate, self: Transaction) -> Bool {
   expect Finite(upper) = self.validity_range.upper_bound.bound_type
@@ -209,7 +214,7 @@ The two-sided check rejects both stale updates and updates timestamped after the
 
 ### Settle an outcome at a deadline
 
-In the settlement shape, the datum stores the question (which feed, what threshold, by when) and the oracle answers it exactly once, after the deadline. The deadline is enforced through the validity interval, so the ledger itself refuses a transaction that tries to settle early.
+In the settlement shape, the datum stores the question (which feed, what threshold, by when) and the oracle answers it exactly once, after the deadline. The deadline is enforced through the validity interval, so the ledger itself refuses a transaction that tries to settle early. The price must also be published within a short window after the deadline; otherwise the settler could present whichever signed update suits them. The SDK's `getPrice` fetches the update for a given timestamp, so settlement can still happen after the window closes.
 
 ```aiken
 use aiken/collection/list
@@ -218,13 +223,18 @@ use cardano/assets.{PolicyId}
 use cardano/transaction.{Transaction}
 use pyth
 use types/u32
+use types/u64
 
 pub type Terms {
   pyth_id: PolicyId,
   feed_id: Int,
   target_price: Int,
+  // POSIX milliseconds
   deadline: Int,
 }
+
+// How long after the deadline the settling price may be published
+const settlement_window_ms: Int = 60_000
 
 fn settles_above_target(terms: Terms, self: Transaction) -> Bool {
   // The transaction cannot be valid before the deadline
@@ -232,19 +242,28 @@ fn settles_above_target(terms: Terms, self: Transaction) -> Bool {
   expect lower >= terms.deadline
 
   expect [update] = pyth.get_updates(terms.pyth_id, self)
-  expect Some(feed) =
-    list.find(update.feeds, fn(f) { u32.as_int(f.feed_id) == terms.feed_id })
+
+  // The price must be published just after the deadline, so the settler
+  // cannot choose an earlier or later update that suits them
+  let published_ms = u64.as_int(update.timestamp_us) / 1_000
+  expect published_ms >= terms.deadline
+  expect published_ms <= terms.deadline + settlement_window_ms
+
+  expect Some(feed) = list.find(
+    update.feeds,
+    fn(f) { u32.as_int(f.feed_id) == terms.feed_id },
+  )
   expect Some(Some(price)) = feed.price
 
   price > terms.target_price
 }
 ```
 
-Two details make this cheap and safe:
+Three details make this cheap and safe:
 
 - **Store the target in raw feed units.** ADA/USD publishes with exponent `-8`, so a target of $0.45 is stored as `45_000_000`. Comparing two integers avoids rational arithmetic on-chain entirely; the conversion example in Step 1 is only needed when you must combine feeds with different exponents.
 - **Mirror the bound for the other side of the deadline.** Any action that must happen *before* it, such as placing a bet or adjusting a position, requires the validity **upper** bound at or below `terms.deadline`. Between the two rules, the state machine cannot accept positions after expiry or settle before it, and none of that depends on off-chain code behaving.
-- **Let anyone settle.** The oracle signature already fixes the outcome, so the resolving transaction needs no privileged signer. Requiring one (say, the market creator) reintroduces exactly the liveness dependency the signature model warns about: settlement then happens only when that party chooses to act. Keep resolution permissionless and let the deadline plus the verified price decide.
+- **Let anyone settle.** The signed price from the settlement window fixes the outcome, so the resolving transaction needs no privileged signer. Requiring one (say, the market creator) reintroduces exactly the liveness dependency the signature model warns about: settlement then happens only when that party chooses to act. Keep resolution permissionless and let the deadline plus the verified price decide.
 
 This is the core of a prediction market, an option expiry, or a parametric insurance payout. The surrounding contract only adds how positions are entered and how the pot is paid out.
 
@@ -253,6 +272,8 @@ This is the core of a prediction market, an option expiry, or a parametric insur
 The bid-ask spread is a live uncertainty measure. A settlement or liquidation that fires during a momentary dislocation is technically correct and practically wrong, so let the contract demand an orderly market:
 
 ```aiken
+use pyth.{Feed}
+
 fn spread_within(feed: Feed, max_spread: Int) -> Bool {
   expect Some(Some(bid)) = feed.best_bid_price
   expect Some(Some(ask)) = feed.best_ask_price
