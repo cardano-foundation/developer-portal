@@ -94,6 +94,9 @@ const latestPrice = await lazer.getLatestPrice({
   properties: ["price", "exponent"],
 });
 
+// The client keeps websocket connections open; close them after a one-shot fetch
+lazer.shutdown();
+
 if (!latestPrice.solana?.data) {
   throw new Error("Missing update payload");
 }
