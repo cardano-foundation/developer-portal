@@ -196,7 +196,7 @@ The steps above get a verified price into your validator. What follows are the r
 
 ### Enforce a freshness window
 
-The signature check proves integrity, not recency, so bound the age yourself. Anchor the check to the validity **upper** bound: then no matter when inside its validity window the transaction lands on-chain, the update is at most `max_age_ms` old. `max_age_ms` must therefore be longer than the time from the fetch to that bound, which is 60 seconds in Step 3.
+The signature check proves integrity, not recency, so bound the age yourself. Anchor the check to the validity **upper** bound: then no matter when inside its validity window the transaction lands on-chain, the update is at most `max_age_ms` old. `max_age_ms` must therefore be longer than the time from the fetch to that bound, just over 60 seconds in Step 3.
 
 ```aiken
 use aiken/interval.{Finite}
@@ -217,7 +217,7 @@ The two-sided check rejects both stale updates and updates timestamped after the
 
 ### Settle an outcome at a deadline
 
-In the settlement shape, the datum stores the question (which feed, what threshold, by when) and the oracle answers it exactly once, after the deadline. The deadline is enforced through the validity interval, so the ledger itself refuses a transaction that tries to settle early. The price must also be published within a short window after the deadline; otherwise the settler could present whichever signed update suits them. The SDK's `getPrice` fetches the update for a given timestamp, so settlement can still happen after the window closes.
+In the settlement shape, the datum stores the question (which feed, what threshold, by when) and the oracle answers it exactly once, after the deadline. The deadline is enforced through the validity interval, so the ledger itself refuses a transaction that tries to settle early. The price must also be published within a short window after the deadline, since the settler can present any signed update the contract accepts. The SDK's `getPrice` fetches the update for a given timestamp, so settlement can still happen after the window closes.
 
 ```aiken
 use aiken/collection/list
@@ -266,7 +266,7 @@ Three details make this cheap and safe:
 
 - **Store the target in raw feed units.** ADA/USD publishes with exponent `-8`, so a target of $0.45 is stored as `45_000_000`. Comparing two integers avoids rational arithmetic on-chain entirely; the conversion example in Step 1 is only needed when you must combine feeds with different exponents.
 - **Mirror the bound for the other side of the deadline.** Any action that must happen *before* it, such as placing a bet or adjusting a position, requires the validity **upper** bound at or below `terms.deadline`. Between the two rules, the state machine cannot accept positions after expiry or settle before it, and none of that depends on off-chain code behaving.
-- **Let anyone settle.** The signed price from the settlement window fixes the outcome, so the resolving transaction needs no privileged signer. Requiring one (say, the market creator) reintroduces exactly the liveness dependency the signature model warns about: settlement then happens only when that party chooses to act. Keep resolution permissionless and let the deadline plus the verified price decide.
+- **Let anyone settle.** The deadline and the settlement window decide which signed prices count, so the resolving transaction needs no privileged signer. Requiring one (say, the market creator) reintroduces exactly the liveness dependency the signature model warns about: settlement then happens only when that party chooses to act. Keep resolution permissionless and let the deadline plus the verified price decide.
 
 This is the core of a prediction market, an option expiry, or a parametric insurance payout. The surrounding contract only adds how positions are entered and how the pot is paid out.
 
