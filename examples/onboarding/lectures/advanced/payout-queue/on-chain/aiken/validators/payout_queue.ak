@@ -14,7 +14,7 @@ use cardano/transaction.{
 // "Optimization" measures it and then makes it cheaper three times.
 
 // #region queue
-/// One debt: who the treasury owes, and how much.
+// One debt: who the treasury owes, and how much.
 pub type Payout {
   recipient: VerificationKeyHash,
   amount: Int,
@@ -41,7 +41,7 @@ validator payout_queue {
   }
 }
 
-/// Where this UTxO sits among the transaction's inputs.
+// Where this UTxO sits among the transaction's inputs.
 fn position_of(inputs: List<Input>, own_ref: OutputReference) -> Int {
   when inputs is {
     [] -> fail @"the UTxO being spent is not among the inputs"
@@ -72,7 +72,7 @@ const alice: VerificationKeyHash =
 const bob: VerificationKeyHash =
   #"00000000000000000000000000000000000000000000000000000002"
 
-/// The reference of the queued payout at position n.
+// The reference of the queued payout at position n.
 fn queued_ref(n: Int) -> OutputReference {
   OutputReference {
     transaction_id: #"0000000000000000000000000000000000000000000000000000000000000000",
@@ -80,7 +80,7 @@ fn queued_ref(n: Int) -> OutputReference {
   }
 }
 
-/// A queued payout: a UTxO at the script's address, holding the debt in its datum.
+// A queued payout: a UTxO at the script's address, holding the debt in its datum.
 fn queued(n: Int, recipient: VerificationKeyHash, amount: Int) -> Input {
   let datum: Data = Payout { recipient, amount }
   Input {
@@ -94,7 +94,7 @@ fn queued(n: Int, recipient: VerificationKeyHash, amount: Int) -> Input {
   }
 }
 
-/// A payment to somebody.
+// A payment to somebody.
 fn paid(recipient: VerificationKeyHash, amount: Int) -> Output {
   Output {
     address: Address {
@@ -197,7 +197,7 @@ test two_payouts_cannot_share_one_payment() fail {
 // #endregion tests
 
 // #region measure
-/// The person owed the payout at position n.
+// The person owed the payout at position n.
 fn person(n: Int) -> VerificationKeyHash {
   if n % 2 == 0 {
     alice
@@ -206,8 +206,8 @@ fn person(n: Int) -> VerificationKeyHash {
   }
 }
 
-/// A release of `count` queued payouts: every payout is paid by the output
-/// sitting at the same position.
+// A release of `count` queued payouts: every payout is paid by the output
+// sitting at the same position.
 fn release_of(count: Int) -> Transaction {
   let positions = list.range(0, count - 1)
   Transaction {
@@ -217,8 +217,8 @@ fn release_of(count: Int) -> Transaction {
   }
 }
 
-/// Every handler the chain runs for that release: the spend handler, once per
-/// queued payout.
+// Every handler the chain runs for that release: the spend handler, once per
+// queued payout.
 fn run_release(tx: Transaction) -> Bool {
   list.indexed_foldr(
     tx.inputs,

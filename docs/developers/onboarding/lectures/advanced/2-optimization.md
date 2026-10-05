@@ -15,7 +15,9 @@ import QueueLean from "!!raw-loader!@site/examples/onboarding/lectures/advanced/
 
 # Optimization
 
-A validator can be correct and still be useless. In [resource limit](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#resource-limit) an attacker filled the splitter's pot with dust until the split needed more than a transaction is allowed to use, and the funds stayed locked. A contract reaches the same limit without any attacker: a treasury that pays ten people in one transaction is cheap, and the same treasury paying sixty is refused by the chain.
+A validator can be correct and still be useless. In [resource limit](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#resource-limit) an attacker filled the splitter's pot with dust until the split needed more than a transaction is allowed to use, and the funds stayed locked. A contract reaches the same limit without any attacker: a treasury that pays ten people in one transaction is cheap, and the same treasury paying sixty reaches the limit.
+
+This lecture makes a contract cheaper to run. Whoever submits a transaction pays for every unit its scripts use, so a cheaper contract lowers the fees your users pay. It also lets one transaction do more work, so fewer transactions are needed. The app does not get faster: a transaction waits for its block, whatever its scripts cost.
 
 ## Three limits on a transaction
 
@@ -149,7 +151,9 @@ flowchart LR
     style I1 stroke-dasharray:4 3
 ```
 
-Two payouts cannot be released by one payment, because two inputs cannot sit at the same position. The ledger sorts the inputs of a transaction before any validator sees them, so the app has to put each payment at the position its input will have after sorting.
+Two payouts cannot be released by one payment, because two inputs cannot sit at the same position. The ledger sorts the inputs of a transaction before any validator sees them: by transaction id first, then by output index. So the app has to put each payment at the position its input will have after sorting.
+
+Every input takes a position, including one that is not a queued payout, such as the wallet input that pays the fee. Nothing checks the output at that position, so the app can put the change there.
 
 `position_of` is where the cost is. It walks the inputs until it reaches the UTxO being spent, and it does that once for every payout the transaction releases. The gift card shop's count in [count the cards](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#count-the-cards) has the same shape.
 
@@ -181,11 +185,11 @@ Run `aiken check` again. Eight passes. Read the memory and CPU beside each test 
 | `thirty_payouts_are_released` | 5.22 M | 2.31 B |
 | `sixty_payouts_are_released` | 16.59 M | 7.85 B |
 
-Three times as many payouts cost five times the memory. Six times as many cost more than fifteen times. At sixty payouts the test reports 16.59 M, which is already over the 16.5 M limit.
+Three times as many payouts cost five times the memory. Six times as many cost more than fifteen times. At sixty payouts the test reports 16.59 M, just over the 16.5 M limit. The chain's number differs: building the release inside the test costs about 1.9 M of it. A release of sixty is close to the limit, and each payout after that costs more than the one before.
 
 The size limit is further away. Each payout adds an input, an output and a redeemer to the transaction, about 120 bytes together when the script comes from a reference input. Sixty payouts take about 7,700 of the 16,384 bytes, and a release reaches the size limit at about 130 payouts. Memory runs out first.
 
-Then the benchmark. A `bench` takes a sampler: a function that turns a size into a generator of transactions. The runner calls it with every size up to a maximum, and this sampler ignores the randomness it is given and returns the release of that size:
+Then the benchmark. A `bench` takes a sampler: a function that turns a size into a generator of transactions. The runner calls it with every size up to a maximum. The generator is the same kind that `fuzz.bytearray()` gave you in [property tests](/docs/developers/onboarding/lectures/intermediate/testing#property-tests): a `Fuzzer`, which is a function that takes the random state and returns `Some` with the state and a value. This one gives the state back unchanged and returns the release of that size. `Fuzzer` is part of the language, so the benchmark needs no new library:
 
 <CodeBlock language="aiken" title="validators/payout_queue.ak">
   {extractRegion(Queue, "bench")}
@@ -196,6 +200,15 @@ aiken bench --max-size 70
 ```
 
 Two plots, memory and CPU against the number of payouts, and one line above them: `release (projected max size = 67)`. The runner fits a straight line through its measurements and reports where that line crosses the budget, taking the lower of the memory crossing and the CPU crossing. Both plots bend upward, so the real limit is lower than 67.
+
+The third measurement is the size of the compiled script. Build the blueprint and count it:
+
+```bash
+aiken build
+awk -F'"' '/compiledCode/ {print length($4)/2 " bytes"; exit}' plutus.json
+```
+
+507 bytes.
 
 ### Point at the input
 
@@ -276,13 +289,15 @@ The spend handler keeps its position and asks one question:
   {extractRegion(QueueBatch, "spend-batch")}
 </CodeBlock>
 
-The new handler carries the rule. Its `account` is the script's own credential, handed to it by the ledger, which is why it needs no search of its own:
+The key it looks for among the withdrawals is the payment credential of its own address. The script's hash is also the credential of its reward account, so one `Script` credential names both.
+
+The new handler carries the rule. Add it inside the validator, after `spend`. Its `account` is the script's own credential, handed to it by the ledger, which is why it needs no search of its own:
 
 <CodeBlock language="aiken" title="validators/payout_queue.ak">
   {extractRegion(QueueBatch, "withdraw-batch")}
 </CodeBlock>
 
-The check walks the inputs beside the outputs:
+Put the check below the validator. It walks the inputs beside the outputs:
 
 <CodeBlock language="aiken" title="validators/payout_queue.ak">
   {extractRegion(QueueBatch, "every-payout-is-paid")}
@@ -297,6 +312,12 @@ Every transaction that should go through now needs the withdrawal in it. The two
 </CodeBlock>
 
 `refuses_a_release_without_the_withdrawal` is the new one. The rule is now in the withdrawal, so a transaction without one may spend nothing at all.
+
+The release you measure needs the withdrawal too. Replace the measurement section, from `person` to `sixty_payouts_are_released`. `release_of` now withdraws zero ADA, and `run_release` runs the withdraw handler once as well as every spend:
+
+<CodeBlock language="aiken" title="validators/payout_queue.ak">
+  {extractRegion(QueueBatch, "batch-measure")}
+</CodeBlock>
 
 Add a second benchmark, on the check alone:
 
@@ -314,14 +335,7 @@ Run `aiken check`. Ten passes:
 
 Ten payouts cost a little more than they did, because the transaction now runs one handler more. Sixty cost a quarter less memory and close to a fifth less CPU. Run `aiken bench --max-size 70`: the release's projected maximum goes from 73 to 100, and the check on its own reports `check_queue (projected max size = 373)`.
 
-The saving has a price in bytes. Build the blueprint and count the compiled script:
-
-```bash
-aiken build
-awk -F'"' '/compiledCode/ {print length($4)/2 " bytes"; exit}' plutus.json
-```
-
-The script grew from 507 bytes to 837, because it now holds a handler it did not have before. A withdrawal of zero ADA also costs something outside the contract. The script's reward account has to be registered on the chain, which is a deposit paid once, and every release has to include the withdrawal. The handbook's [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) page covers what that involves.
+The saving has a price in bytes. Build the blueprint and count the compiled script again, with the same two commands. It grew from 507 bytes to 837, because it now holds a handler it did not have before. A withdrawal of zero ADA also costs something outside the contract. The script's reward account has to be registered on the chain, which is a deposit paid once, and every release has to include the withdrawal. The handbook's [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) page covers what that involves.
 
 ### One walk instead of four
 
@@ -331,7 +345,7 @@ The script grew from 507 bytes to 837, because it now holds a handler it did not
   {extractRegion(QueueLean, "every-payout-is-paid-lean")}
 </CodeBlock>
 
-When the outputs run out while a payout is still waiting, the recursion returns `False`, which is what the old length check did. Nothing outside the function changes. Run `aiken check`. Ten passes:
+When the outputs run out while a payout is still waiting, the recursion returns `False`, which is what the old length check did. An input that is not a queued payout skips its output, as it did in the pairs. Nothing outside the function changes. Run `aiken check`. Ten passes:
 
 | test | memory | CPU |
 | --- | --- | --- |
@@ -349,6 +363,8 @@ The whole release costs about four percent less. Run `aiken bench --max-size 70`
 | the position in the redeemer | 15.67 M | 4.89 B | 73 | 507 bytes |
 | the queue checked once | 11.90 M | 3.97 B | 100 | 837 bytes |
 | one walk over the queue | 11.50 M | 3.82 B | 105 | 795 bytes |
+
+At today's mainnet prices, 0.0577 lovelace per memory unit and 0.0000721 lovelace per CPU unit, the scripts' part of the fee for a release of sixty is about 1.52 ADA as first written and about 0.94 ADA after the three changes. The test also builds the release, so the real fee is a little lower in both cases.
 
 The change that saved the most is the one that changed the design. The change that saved the least is the only one the app never sees, and the only one you can still make after the app is written.
 

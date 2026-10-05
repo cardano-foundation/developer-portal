@@ -148,7 +148,6 @@
     },
     "payout_queue/Payout": {
       "title": "Payout",
-      "description": "One debt: who the treasury owes, and how much.",
       "anyOf": [
         {
           "title": "Payout",
@@ -169,7 +168,6 @@
     },
     "payout_queue_batch/Payout": {
       "title": "Payout",
-      "description": "One debt: who the treasury owes, and how much.",
       "anyOf": [
         {
           "title": "Payout",
@@ -190,7 +188,6 @@
     },
     "payout_queue_indexed/Payout": {
       "title": "Payout",
-      "description": "One debt: who the treasury owes, and how much.",
       "anyOf": [
         {
           "title": "Payout",
@@ -211,7 +208,6 @@
     },
     "payout_queue_lean/Payout": {
       "title": "Payout",
-      "description": "One debt: who the treasury owes, and how much.",
       "anyOf": [
         {
           "title": "Payout",
