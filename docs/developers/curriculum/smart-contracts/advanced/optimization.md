@@ -60,7 +60,6 @@ Fuzzers constitute a very practical way to write fixtures. Transactions in parti
 ```aiken
 use aiken/fuzz
 use cardano/fuzz as cardano
-use cardano/transaction.{Input, NoDatum, Output}
 
 pub fn some_basic_input() -> Fuzzer<Input> {
   let output_reference <- fuzz.and_then(cardano.output_reference())
@@ -161,7 +160,7 @@ So, when possible, place first the checks that are both:
 
 ```aiken
 or {
-  input.output.value |> assets.has_nft_strict(my_policy_id, my_asset_name),
+  input.output.value |> assets.has_nft_strict(my_nft),
   input.output.address.payment_credential != my_script_credential,
 }
 ```
@@ -171,7 +170,7 @@ or {
 ```aiken
 or {
   input.output.address.payment_credential != my_script_credential,
-  input.output.value |> assets.has_nft_strict(my_policy_id, my_asset_name),
+  input.output.value |> assets.has_nft_strict(my_nft),
 }
 ```
 </TabItem>
@@ -315,9 +314,9 @@ Yet, constructing large records to carry context across multiple transaction ele
 </Tabs>
 
 
-In particular, if you can avoid it, do not construct `Value` and prefer `Dict` or `Pairs` over `Value` whenever possible.
+In particular, if you can avoid it, do not construct `Assets` and prefer `Dict` or `Pairs` over `Assets` whenever possible.
 
-`Value` preserves two important invariants: it does not contain assets with null quantities or policies with empty assets. If you do not rely on these invariants, you can safely go down to `Dict`.
+`Assets` preserves two important invariants: it does not contain assets with null quantities or policies with empty assets. If you do not rely on these invariants, you can safely go down to `Dict`.
 
 `Dict` preserves two important invariants: their keys are in ascending orders and contain no duplicate. If you do not rely on these invariants, you can safely go down to `Pairs`
 
@@ -327,11 +326,11 @@ Aiken programs operate over encoded `Data`, and comparing `Data` values directly
 
 This can be particularly helpful when working with datums that represent values or state snapshots.
 
-The standard library already exposes useful helpers for this. For instance, [`assets.match`](https://aiken-lang.github.io/stdlib/cardano/assets.html#match) can compare a runtime `Value` against a `Data` representation while letting you parameterize how lovelace should be checked:
+The standard library already exposes useful helpers for this. For instance, [`assets.match`](https://aiken-lang.github.io/stdlib/cardano/assets.html#match) can compare a runtime `Assets` against a `Data` representation while letting you parameterize how lovelace should be checked:
 
 ```aiken
 pub fn match(
-  left: Value,
+  left: Assets,
   right: Data,
   assert_lovelace: fn(Lovelace, Lovelace) -> Bool,
 ) -> Bool
@@ -362,7 +361,7 @@ expect and {
 }
 ```
 
-This is often much cheaper than re-computing full semantic comparisons over complete `Value` structures.
+This is often much cheaper than re-computing full semantic comparisons over complete `Assets` structures.
 
 ### Use backpassing when returning more than one value
 
@@ -535,7 +534,7 @@ It is quite common to have chains of multiple conditions which, when written in 
 <Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
   <TabItem value="dont">
 
-  **mem=49.98K** · **cpu=13.16M**
+  **mem=46.98K** · **cpu=12.68M**
 
   ```aiken
   // Linear search, not ideal.
@@ -554,7 +553,7 @@ It is quite common to have chains of multiple conditions which, when written in 
 
   <TabItem value="do">
 
-  **mem=37.86K** · **cpu=9.89M**
+  **mem=37.06K** · **cpu=9.76M**
 
   ```aiken
   // Binary search, more efficient and predictable.
@@ -613,9 +612,9 @@ When a recursive function advances one step at a time, its convergence can somet
 ```aiken
 fn elem_at(elems: List<a>, at: Int) -> a {
   if at <= 0 {
-    head_list(elems)
+    builtin.head_list(elems)
   } else {
-    elem_at(tail_list(elems), at - 1)
+    elem_at(builtin.tail_list(elems), at - 1)
   }
 }
 ```
@@ -627,9 +626,9 @@ fn elem_at(elems: List<a>, at: Int) -> a {
 ```aiken
 fn elem_at(elems: List<a>, at: Int) -> a {
   if at >= 2 {
-    elem_at(tail_list(tail_list(elems)), at - 2)
+    elem_at(builtin.tail_list(builtin.tail_list(elems)), at - 2)
   } else {
-    head_list(if at == 1 { tail_list(elems) } else { elems })
+    builtin.head_list(if at == 1 { builtin.tail_list(elems) } else { elems })
   }
 }
 ```
@@ -969,10 +968,10 @@ let y = expensive_function(x)
 you can sometimes do:
 
 ```aiken
-expect mpf.has(mpf.from_root(root), x, y, proof)
+expect mpf.member(y, root)
 ```
 
-where `root` commits to a precomputed table of `x` to `y` pairs, and the redeemer carries `y` and its `proof`.
+where `root` is the precomputed authenticated structure committed off-chain.
 
 The general pattern is:
 
@@ -1016,7 +1015,7 @@ A final optimisation technique is not really about code shape, but about knowing
 
 Many structures that validators inspect already satisfy strong invariants. For example:
 
-* inputs are sorted by output reference,
+* inputs are alphabetically ordered,
 * values are ordered by policy and asset name,
 * datums are indexed by hash, and redeemers by script purpose,
 * output values never contain negative quantities,
