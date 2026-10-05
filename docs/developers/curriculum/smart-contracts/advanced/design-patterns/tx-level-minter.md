@@ -260,9 +260,9 @@ checks.
 
 ## Example Code
 
-Full working example: [tx-level-minter.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/validators/examples/tx-level-minter.ak)
+Full working example: [tx-level-minter.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/tx-level-minter.ak)
 
-Library implementation: [tx_level_minter module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/tx-level-minter.ak)
+Library implementation: [tx_level_minter module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/tx-level-minter.ak)
 
 Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/spend-logic.ak)
 

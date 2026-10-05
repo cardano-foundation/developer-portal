@@ -108,15 +108,15 @@ The library checks the list structure, not how your contract wires it. The modul
 
 - Membership is proven by the list NFT, never by the address: anyone can create a UTxO at the list's script address.
 - One spend script and one minting policy control every element. Structural spends pass only through `spend_for_adding_or_removing_an_element`, and the policy mints and burns only through the matching operation.
-- Every helper receives the transaction's complete, unmodified `inputs`, and every `Output` passed in comes from the transaction's outputs, never from redeemer data.
+- Every `inputs` argument is the transaction's complete, unmodified input list in ledger order, and every `Output` passed to a minting helper comes from the transaction's outputs, never from redeemer data.
 
 ## Example Code
 
-Library implementation: [linked_list module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/linked-list.ak)
+Library implementation: [linked_list module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/linked-list.ak)
 
-Example validator: [linked_list example](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/validators/examples/linked-list.ak)
+Example validator: [linked_list example](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/linked-list.ak)
 
-Test suite: [linked_list tests](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/tests/linked-list.ak)
+Test suite: [linked_list tests](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/tests/linked-list.ak)
 
 ## Acknowledgments
 

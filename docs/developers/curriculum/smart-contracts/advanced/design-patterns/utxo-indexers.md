@@ -266,13 +266,13 @@ one_to_one(validate, 1, 0, ...)  // Input 1 -> Output 0 (same!)
 
 **Singular indexer:**
 
-- [singular-utxo-indexer.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/validators/examples/singular-utxo-indexer.ak)
-- [Library implementation](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/singular-utxo-indexer.ak)
+- [singular-utxo-indexer.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/singular-utxo-indexer.ak)
+- [Library implementation](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/singular-utxo-indexer.ak)
 
 **Multi indexer:**
 
-- [multi-utxo-indexer.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/validators/examples/multi-utxo-indexer.ak)
-- [Library implementation](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.8.0/lib/aiken-design-patterns/multi-utxo-indexer.ak)
+- [multi-utxo-indexer.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/multi-utxo-indexer.ak)
+- [Library implementation](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/multi-utxo-indexer.ak)
 
 ## Related Patterns
 
