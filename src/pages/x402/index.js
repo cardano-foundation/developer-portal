@@ -19,6 +19,11 @@ const DESCRIPTION =
    dependency of @x402/cardano. Express wiring lives in the template. */
 const INSTALL_COMMAND = "npm install @x402/cardano";
 
+/* The Cardano Foundation's hosted facilitators. The templates default to
+   the preprod one in their .env.example. */
+const FACILITATOR_PREPROD = "https://x402.preprod.dev.ecosyseng.cf-deployments.org";
+const FACILITATOR_MAINNET = "https://x402.mainnet.dev.ecosyseng.cf-deployments.org";
+
 /* The seller, tokenized by hand for the editor card (the homepage
    devCodeCard convention). Shape mirrors the official docs' Cardano
    setup at docs.x402.org/schemes/exact#cardano-setup, on preprod.
@@ -626,8 +631,19 @@ export default function X402Page() {
                   <ExternalArrow />
                 </a>
               </div>
-              <p className={styles.slotNote}>
-                The hosted facilitator URL and the support channel will be published here.
+              <div className={clsx(styles.facilitatorRow, styles.qsScope)}>
+                <QuickstartCard
+                  badge="Facilitator"
+                  text="Hosted by the Cardano Foundation, preprod"
+                  command={`FACILITATOR_URL=${FACILITATOR_PREPROD}`}
+                  docHref={`${FACILITATOR_PREPROD}/supported`}
+                  docLabel="What the facilitator supports"
+                  docExternal
+                />
+              </div>
+              <p className={styles.facilitatorNote}>
+                Mainnet: <code>{FACILITATOR_MAINNET}</code>. Every template can also run a local
+                facilitator.
               </p>
               <p className={styles.deeperRow}>
                 Go deeper:{" "}
