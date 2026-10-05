@@ -58,8 +58,9 @@ mnemonic; rotate the Blockfrost key in your Blockfrost dashboard.
 
 | Symptom | Cause / fix |
 | --- | --- |
-| Seller answers HTTP 500 and its console logs "no supported payment kinds" | The facilitator isn't reachable at `FACILITATOR_URL` — start one (`npm run facilitator` in a second terminal) or fix the URL |
-| Buyer prints `Payment failed: HTTP 402` | The payment was attempted and rejected — the reason (`invalidReason`) is in the facilitator's log output |
+| Seller answers HTTP 500 and its console logs "no supported payment kinds" | The facilitator isn't reachable at `FACILITATOR_URL` — check the URL, or run one locally (`npm run facilitator` in a second terminal) |
+| Buyer prints `Payment failed: HTTP 402` after about a minute | The payment is probably on chain but its block came after the facilitator stopped waiting (`settlement_pending`). Check the buyer's address on <https://preprod.cardanoscan.io> before running it again, or it pays twice |
+| Buyer prints `Payment failed: HTTP 402` right away | The payment was rejected before submission — the reason is in the `error` field of the 402's `PAYMENT-REQUIRED` header; with a local facilitator, also in its log output |
 | Buyer fails with "Funding wallet has no UTXOs available" | Wallet not funded yet, or faucet still pending — check the address on <https://preprod.cardanoscan.io> |
 | `verify` fails with HTTP 200 and `isValid: false` | Normal shape for a rejected payment — read `invalidReason`; it is not a transport error |
 | Amount errors on tiny prices | Pure-lovelace prices must clear the ~1 ADA min-UTxO; keep lovelace routes at 1 tADA or more |
