@@ -22,7 +22,7 @@ buyer ◄─ 200 + resource + receipt ─────── seller
 3. **Blockfrost**: free preprod project id at [blockfrost.io](https://blockfrost.io)
    → `BLOCKFROST_PROJECT_ID` in `.env`. Set `SELLER_ADDRESS` to any preprod
    address you control (the wallet script's address works).
-4. **Facilitator**: set `FACILITATOR_URL` (see below).
+4. **Facilitator**: already set to the hosted one in `.env.example` (see below).
 5. **Run**: `npm run demo` — starts the seller, the buyer pays it, the
    terminal shows the receipt and an explorer link. Expect 20–60 seconds for
    on-chain confirmation.
@@ -34,11 +34,11 @@ buyer ◄─ 200 + resource + receipt ─────── seller
 The facilitator verifies and settles payments so neither seller nor buyer
 needs chain infrastructure beyond Blockfrost. It holds no keys and no funds.
 
-- **Hackathon**: use the hosted facilitator URL announced by the Cardano
-  Foundation.
+- **Hosted (default)**: the Cardano Foundation runs one on preprod at
+  `https://x402.preprod.dev.ecosyseng.cf-deployments.org`.
 - **Local / offline**: `npm run facilitator` — this repo includes a minimal
   one (`src/facilitator.ts`, ~100 lines) built on `@x402/cardano`'s own
-  facilitator scheme; it needs only your `BLOCKFROST_PROJECT_ID`. Keep
+  facilitator scheme; it needs only your `BLOCKFROST_PROJECT_ID`. Set
   `FACILITATOR_URL=http://localhost:4022` and run it in a second terminal
   (or let `npm run demo` talk to whichever facilitator the env points at).
   It binds `127.0.0.1`, so only your machine can reach it; set
