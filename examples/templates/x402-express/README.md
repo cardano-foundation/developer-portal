@@ -22,7 +22,7 @@ buyer ◄─ 200 + resource + receipt ─────── seller
 3. **Blockfrost**: free preprod project id at [blockfrost.io](https://blockfrost.io)
    → `BLOCKFROST_PROJECT_ID` in `.env`. Set `SELLER_ADDRESS` to any preprod
    address you control (the wallet script's address works).
-4. **Facilitator**: set `FACILITATOR_URL` (see below).
+4. **Facilitator**: already set to the hosted one in `.env.example` (see below).
 5. **Run**: `npm run demo` — starts the seller, the buyer pays it, the
    terminal shows the receipt and an explorer link. Expect 20–60 seconds for
    on-chain confirmation.
@@ -34,11 +34,11 @@ buyer ◄─ 200 + resource + receipt ─────── seller
 The facilitator verifies and settles payments so neither seller nor buyer
 needs chain infrastructure beyond Blockfrost. It holds no keys and no funds.
 
-- **Hackathon**: use the hosted facilitator URL announced by the Cardano
-  Foundation.
+- **Hosted (default)**: the Cardano Foundation runs one on preprod at
+  `https://x402.preprod.dev.ecosyseng.cf-deployments.org`.
 - **Local / offline**: `npm run facilitator` — this repo includes a minimal
   one (`src/facilitator.ts`, ~100 lines) built on `@x402/cardano`'s own
-  facilitator scheme; it needs only your `BLOCKFROST_PROJECT_ID`. Keep
+  facilitator scheme; it needs only your `BLOCKFROST_PROJECT_ID`. Set
   `FACILITATOR_URL=http://localhost:4022` and run it in a second terminal
   (or let `npm run demo` talk to whichever facilitator the env points at).
   It binds `127.0.0.1`, so only your machine can reach it; set
@@ -58,8 +58,9 @@ mnemonic; rotate the Blockfrost key in your Blockfrost dashboard.
 
 | Symptom | Cause / fix |
 | --- | --- |
-| Seller answers HTTP 500 and its console logs "no supported payment kinds" | The facilitator isn't reachable at `FACILITATOR_URL` — start one (`npm run facilitator` in a second terminal) or fix the URL |
-| Buyer prints `Payment failed: HTTP 402` | The payment was attempted and rejected — the reason (`invalidReason`) is in the facilitator's log output |
+| Seller answers HTTP 500 and its console logs "no supported payment kinds" | The facilitator isn't reachable at `FACILITATOR_URL` — check the URL, or run one locally (`npm run facilitator` in a second terminal) |
+| Buyer prints `Payment failed: HTTP 402` after about a minute | The payment is probably on chain but its block came after the facilitator stopped waiting (`settlement_pending`). Check the buyer's address on <https://preprod.cardanoscan.io> before running it again, or it pays twice |
+| Buyer prints `Payment failed: HTTP 402` right away | The payment was rejected before submission — the reason is in the `error` field of the 402's `PAYMENT-REQUIRED` header; with a local facilitator, also in its log output |
 | Buyer fails with "Funding wallet has no UTXOs available" | Wallet not funded yet, or faucet still pending — check the address on <https://preprod.cardanoscan.io> |
 | `verify` fails with HTTP 200 and `isValid: false` | Normal shape for a rejected payment — read `invalidReason`; it is not a transport error |
 | Amount errors on tiny prices | Pure-lovelace prices must clear the ~1 ADA min-UTxO; keep lovelace routes at 1 tADA or more |

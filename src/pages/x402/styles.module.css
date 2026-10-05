@@ -771,10 +771,15 @@ html[data-theme="dark"] .agentDivider {
 
 /* ---------------------------------------------------------------- misc */
 
-.slotNote {
+.facilitatorRow {
   margin: 2.5rem 0 0;
+}
+
+.facilitatorNote {
+  margin: 0.75rem 0 0;
   font-size: 0.9rem;
   color: var(--site-color-text-muted);
+  overflow-wrap: anywhere;
 }
 
 .deeperRow {
