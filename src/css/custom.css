@@ -674,15 +674,6 @@ html[data-theme="dark"] body {
   position: relative;
 }
 
-/* A closed panel keeps its layout box, centered under its trigger, and on
-   narrow desktops that box runs past the viewport edge and makes the page
-   scroll sideways. Clip the bar horizontally: open panels are shifted to
-   sit inside the viewport, and clip leaves the vertical overflow the
-   panels drop into untouched. */
-.navbar {
-  overflow-x: clip;
-}
-
 .megaMenuTrigger {
   background: none;
   border: none;
@@ -743,7 +734,7 @@ html[data-theme="dark"] .navbar__item--mega[data-open] .megaMenuTrigger {
   --mega-chip-bg: rgba(172, 166, 166, 0.2);
   position: absolute;
   top: calc(100% + 10px);
-  left: 50%;
+  left: calc(50% + var(--mega-menu-shift, 0px));
   z-index: 10;
   width: max-content;
   max-width: min(1010px, calc(100vw - 2rem));
@@ -756,7 +747,7 @@ html[data-theme="dark"] .navbar__item--mega[data-open] .megaMenuTrigger {
   box-shadow: 4px 8px 15px rgb(var(--site-color-navy-rgb) / 0.1);
   opacity: 0;
   visibility: hidden;
-  transform: translate(calc(-50% + var(--mega-menu-shift, 0px)), 6px);
+  transform: translate(-50%, 6px);
   pointer-events: none;
   transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
 }
@@ -772,7 +763,7 @@ html[data-theme="dark"] .megaMenuPanel {
 .navbar__item--mega[data-open] .megaMenuPanel {
   opacity: 1;
   visibility: visible;
-  transform: translate(calc(-50% + var(--mega-menu-shift, 0px)), 0);
+  transform: translate(-50%, 0);
   pointer-events: auto;
 }
 

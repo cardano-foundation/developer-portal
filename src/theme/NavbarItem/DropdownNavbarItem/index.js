@@ -143,15 +143,18 @@ function MegaDropdownNavbarItem({label, className, customProps}) {
 
   // The panel centers on its trigger; near the viewport edges that center
   // position would push it off-screen, so shift it back inside via a custom
-  // property the transform picks up. The centered position is derived from
-  // the trigger and the panel's layout width rather than read off the panel:
-  // the shift rides on a transitioned transform, so right after a style
-  // change the panel's own rect still reports its previous, already-shifted
-  // position and a stale shift from the last open would read as "fits".
+  // property that offsets `left`. The centered position is derived from the
+  // trigger and the panel's layout width rather than read off the panel, so
+  // a shift already applied never reads as "fits".
+  // Closed panels are placed too: they keep their box, and one hanging past
+  // the viewport edge would make the page scroll sideways. Clipping the
+  // navbar instead hides the open panels in Safari. The shift sits on `left`
+  // rather than in the transform because WebKit does not recompute the
+  // scrollable area when only a custom property inside a transform changes.
   useLayoutEffect(() => {
     const root = rootRef.current;
     const panel = panelRef.current;
-    if (!open || !root || !panel) {
+    if (!root || !panel) {
       return undefined;
     }
     const place = () => {
@@ -172,6 +175,8 @@ function MegaDropdownNavbarItem({label, className, customProps}) {
       }
     };
     place();
+    // Web fonts arriving after mount move the triggers.
+    document.fonts?.ready.then(place);
     window.addEventListener('resize', place);
     return () => window.removeEventListener('resize', place);
   }, [open]);
