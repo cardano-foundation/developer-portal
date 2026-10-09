@@ -22,8 +22,10 @@ The UX began as a port of the `/apps` feature in the cardano-org repo, originall
 ## Contracts to not break
 
 - The `/tools/<slug>` derivation lives in `slug.js`, shared by `catalog.js` and `plugins/tools-routes`, so generated routes and detail-page lookups can't diverge.
+- `tools.js` must stay plain data: no `import`, no `require()`, no second export. `plugins/tools-routes` evaluates the array in a sandbox to build the routes and check screenshot files.
 - The `?tags=` URL format is owned by `src/components/tools/tagQueryString.js`; the filter panel, the intent chips, and the page all read it through those helpers.
 - `category` and `properties` values must exist in `tags.js`; `yarn build` fails otherwise (see `validation.js`).
+- Screenshots are checked in two places: `validation.js` checks the entry shape (paths under `/img/tools/screenshots/`, alt text, at most three), `plugins/tools-routes` checks that the files exist in `static/`, stay under 500 KB, and measures them so the images reserve their space before they load.
 
 ## Adding or curating tools
 

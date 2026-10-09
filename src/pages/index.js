@@ -440,10 +440,10 @@ function DeveloperSection() {
             <div className={styles.quickstartStack}>
               <QuickstartCard
                 badge="AI agents"
-                text="Current Cardano context for your AI assistant"
+                text="Current Cardano context for your coding agent"
                 command="/plugin marketplace add cardano-foundation/cardano-dev-skills"
                 docHref={baseUrl + "docs/developers/curriculum/start-building/ai-assisted-development"}
-                docLabel="Set up your AI assistant"
+                docLabel="Set up your coding agent"
               />
               <QuickstartCard
                 badge="Devnet"
@@ -566,10 +566,10 @@ function CTASection() {
       title: "Get Funded",
       body: "Grants and funding opportunities to bring your ideas to life",
       cta: "Explore grants",
-      to: "docs/community/funding",
+      to: "https://cardano.org/grants-funding/",
       img: "img/home/rebrand/ecosystem-get-funded.webp",
       alt: "Cardano funding and grants",
-      external: false,
+      external: true,
     },
   ];
   const baseUrl = useBaseUrl("/");

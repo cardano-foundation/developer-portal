@@ -4,8 +4,7 @@ import type { WalletApi } from "@evolution-sdk/evolution"
 
 declare global {
   interface ImportMetaEnv {
-    readonly VITE_NETWORK: "preprod" | "preview" | "mainnet"
-    readonly VITE_BLOCKFROST_PROJECT_ID: string
+    readonly VITE_NETWORK?: string
   }
 
   interface ImportMeta {
