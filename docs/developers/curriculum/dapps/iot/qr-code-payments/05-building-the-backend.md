@@ -73,7 +73,7 @@ Returns only UTxOs of value 13000004 lovelace - 13 ADA requested + 4 lovelace re
 When the API returns a UTxO for that query, the payment is confirmed: render confirmation on the TFT, update the JSON store with the transaction hash, stop listening for that request.
 
 :::info Future improvements
-A CIP is in flight (CIP-0157, currently being drafted) for adding individual metadata to CIP-13 payment URIs (such as a unique payment ID), which would replace this lovelace-encoding hack with proper IDs.
+A follow-up proposal ([CIP-0157](https://github.com/cardano-foundation/CIPs/pull/843)) adds individual metadata to CIP-13 payment URIs (such as a unique payment ID), which would replace this lovelace-encoding hack with proper IDs; check its status before designing around it.
 :::
 
 ## Putting it all together
@@ -966,7 +966,7 @@ These workshops are educational. For production: substantial error handling, aut
 
 - [LVGL](https://lvgl.io/) - for more sophisticated MCU UIs.
 - [CIP-0013 spec](https://cips.cardano.org/cip/CIP-0013) - current state of integration and next steps.
-- CIP-0157 (currently being drafted) - proposal for metadata on CIP-13 URIs.
+- [CIP-0157](https://github.com/cardano-foundation/CIPs/pull/843) - proposal for metadata on CIP-13 URIs.
 
 
 ---

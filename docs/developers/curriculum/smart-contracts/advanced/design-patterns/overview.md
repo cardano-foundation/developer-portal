@@ -7,7 +7,7 @@ description: Common design patterns for Cardano smart contracts with Aiken imple
 
 This section covers common design patterns and data structures for building efficient and secure Cardano smart contracts, all with Aiken implementations and code examples.
 
-These are reference material, not a sequential read: reach for a pattern when you hit the problem it solves. They are about **efficiency and architecture**, which is a different concern from the [security vulnerabilities](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview) (what can go wrong) and [optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) (making a single validator cheaper). The most broadly useful idea here is the principle below.
+These are reference material, not a sequential read: reach for a pattern when you hit the problem it solves. They are about **efficiency and architecture**, which is a different concern from the [security vulnerabilities](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) (what can go wrong) and [optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) (making a single validator cheaper). The most broadly useful idea here is the principle below.
 
 ## Avoid redundant validation
 
@@ -21,7 +21,26 @@ Reach for it when multiple scripts in a protocol share validation and cost matte
 
 ## Design Patterns Library
 
-The patterns below come from the [Anastasia Labs aiken-design-patterns](https://github.com/Anastasia-Labs/aiken-design-patterns) library (v1.5.0). This is a ready-to-use Aiken library that provides production-grade implementations of common on-chain patterns, so developers can import and use them directly without the overhead of reimplementing the base logic themselves.
+The patterns below come from the [Anastasia Labs aiken-design-patterns](https://github.com/Anastasia-Labs/aiken-design-patterns) library. This is a ready-to-use Aiken library that provides production-grade implementations of common on-chain patterns, so developers can import and use them directly without the overhead of reimplementing the base logic themselves.
+
+Add it to `aiken.toml` with its two dependencies, which Aiken does not fetch on its own:
+
+```toml
+[[dependencies]]
+name = "anastasia-labs/aiken-design-patterns"
+version = "v1.9.0"
+source = "github"
+
+[[dependencies]]
+name = "aiken-lang/fuzz"
+version = "v3.0.0"
+source = "github"
+
+[[dependencies]]
+name = "keyan-m/aiken-scott-utils"
+version = "v1.5.0"
+source = "github"
+```
 
 | Pattern | Description |
 |---------|-------------|

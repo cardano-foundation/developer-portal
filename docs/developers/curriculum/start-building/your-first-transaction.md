@@ -8,7 +8,7 @@ description: Build, sign, and submit your first Cardano transaction on testnet w
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Time to send real value (well, real test value). Every Cardano interaction follows the same three steps: **build** a transaction, **sign** it with your key, and **submit** it to the network. This guide sends ADA on Preprod, then reads it back. Pick your tool below.
+Time to send real value (well, real test value). Every Cardano interaction follows the same three steps: **build** a transaction, **sign** it with your key, and **submit** it to the network. This page sends ADA on Preprod, then reads it back. Pick your tool below.
 
 ## Before you start
 

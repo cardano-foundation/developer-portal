@@ -30,12 +30,6 @@ A relay can switch mains-voltage loads (110V / 220V), which can cause serious in
 - [ESP32 IO - Relay tutorial](https://esp32io.com/tutorials/esp32-relay)
 - [Random Nerd - ESP32 relay module web server](https://randomnerdtutorials.com/esp32-relay-module-ac-web-server/)
 
-## Where to buy
-
-- [AliExpress](https://s.click.aliexpress.com/e/_c4dcY23d)
-- [Amazon US](https://amzn.to/3LHOEBA)
-- [Amazon Germany](https://amzn.to/453y85x)
-
 ---
 
 *Adapted from the [CardanoThings](https://cardanothings.io/hardware/relay-module-3v-1channel) project, originally produced under [Project Catalyst Fund 11](https://projectcatalyst.io/funds/11). Source: [github.com/CardanoThings](https://github.com/CardanoThings).*

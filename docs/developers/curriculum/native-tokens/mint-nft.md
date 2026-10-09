@@ -8,13 +8,13 @@ description: Mint a one-of-one NFT on Cardano with CIP-25 metadata, using Evolut
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-An NFT is just a native token with a quantity of 1, made permanently unique by a minting policy that can only ever run once. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This guide mints one and sends it to a wallet, pick your tool below.
+An NFT is just a native token with a quantity of 1, minted under a policy that closes after a set slot, which fixes the supply once that slot passes. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This page mints one and sends it to a wallet, pick your tool below.
 
 New to policies and what makes a token "non-fungible"? Read [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) and [What are native tokens](/docs/developers/curriculum/native-tokens/overview) first. This page is the hands-on version.
 
 ## What you'll build
 
-- A minting policy only you can mint from (time-locked, so the supply is provably fixed)
+- A minting policy only you can mint from (time-locked, so the supply is provably fixed once the lock slot passes)
 - One NFT (quantity 1) carrying CIP-25 metadata
 - A transaction that mints it, attaches the metadata, and pays it to a recipient
 
@@ -25,7 +25,7 @@ New to policies and what makes a token "non-fungible"? Read [Minting policies](/
 - An image pinned to IPFS (the `ipfs://...` URI goes in the metadata)
 
 :::tip CIP-25 or CIP-68?
-**CIP-25** stores metadata in the minting transaction (label 721). Simplest, and what this guide uses. **CIP-68** stores metadata in an on-chain datum that a smart contract can read and update later. Choose CIP-68 only if your NFT's metadata needs to change or be read on-chain. See [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry).
+**CIP-25** stores metadata in the minting transaction (label 721). Simplest, and what this page uses. **CIP-68** stores metadata in an on-chain datum that a smart contract can read and update later. Choose CIP-68 only if your NFT's metadata needs to change or be read on-chain. See [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry).
 :::
 
 ## Mint it
@@ -35,7 +35,7 @@ New to policies and what makes a token "non-fungible"? Read [Minting policies](/
 
 ```typescript
 import {
-  Address, Assets, NativeScripts, Bytes, TransactionMetadatum,
+  Address, Assets, NativeScripts, ScriptHash, Time, TransactionMetadatum,
   preprod, Client
 } from "@evolution-sdk/evolution"
 
@@ -46,11 +46,15 @@ const client = Client.make(preprod)
   })
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
-const myKeyHash = Bytes.fromHex("abc123def456abc123def456abc123def456abc123def456abc123de")
-const mintingPolicy = NativeScripts.makeScriptPubKey(myKeyHash)
-const nativeScript = new NativeScripts.NativeScript({ script: mintingPolicy })
+// Time-locked policy: your key signs, and minting closes at lockSlot, one hour from now
+const { paymentCredential } = await client.address()
+const lockSlot = Time.getSlotAt(60 * 60 * 1000, "Preprod")
+const nativeScript = NativeScripts.makeScriptAll([
+  NativeScripts.makeInvalidHereafter(lockSlot).script,   // "before": lockSlot
+  NativeScripts.makeScriptPubKey(paymentCredential.hash).script,
+])
 
-const policyId = "abc123def456abc123def456abc123def456abc123def456abc123de"
+const policyId = ScriptHash.toHex(ScriptHash.fromScript(nativeScript))
 const assetName = "4d794e4654303031"                    // "MyNFT001" in hex
 
 let mintAssets = Assets.fromLovelace(0n)
@@ -61,7 +65,7 @@ sendAssets = Assets.addByHex(sendAssets, policyId, assetName, 1n)
 
 const nftMetadata = new Map([
   [policyId, new Map([
-    [assetName, new Map([
+    ["MyNFT001", new Map([                               // CIP-25 v1: the asset name as UTF-8 text
       ["name", "My First NFT"],
       ["image", "ipfs://QmYourImageHashHere"],
       ["mediaType", "image/png"],
@@ -76,6 +80,7 @@ const tx = await client
   .attachScript({ script: nativeScript })
   .attachMetadata({ label: 721n, metadata: nftMetadata })   // 721n, bigint
   .payToAddress({ address: Address.fromBech32("addr_test1..."), assets: sendAssets })
+  .setValidity({ to: Time.slotToUnixTime(lockSlot, preprod.slotConfig) })   // upper bound = lockSlot
   .build()
 
 const signed = await tx.sign()
@@ -87,21 +92,29 @@ The builder handles fees, coin selection, and change. `mintAssets` with quantity
 </TabItem>
 <TabItem value="mesh" label="Mesh">
 
-```javascript
-import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex, BlockfrostProvider } from '@meshsdk/core';
-import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
+```typescript
+import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex, BlockfrostProvider, MeshWallet, deserializeAddress } from '@meshsdk/core';
 
 const provider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY!);
-const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+const wallet = new MeshWallet({
   networkId: 0,                          // 0 = preprod/preview testnet
-  walletAddressType: AddressType.Base,
   fetcher: provider,
   submitter: provider,
-  mnemonic: process.env.WALLET_MNEMONIC!.split(" "),
+  key: { type: "mnemonic", words: process.env.WALLET_MNEMONIC!.split(" ") },
 });
+await wallet.init();
 
-const changeAddress = await wallet.getChangeAddressBech32();
-const forgingScript = ForgeScript.withOneSignature(changeAddress);
+const changeAddress = await wallet.getChangeAddress();
+// Time-locked policy: your key signs, and minting closes at lockSlot, about an hour after the tip
+const { pubKeyHash } = deserializeAddress(changeAddress);
+const lockSlot = Number((await provider.fetchLatestBlock()).slot) + 3600;
+const forgingScript = ForgeScript.fromNativeScript({
+  type: "all",
+  scripts: [
+    { type: "before", slot: lockSlot.toString() },
+    { type: "sig", keyHash: pubKeyHash },
+  ],
+});
 
 const demoAssetMetadata = {
   name: "Mesh Token",
@@ -118,15 +131,16 @@ const unsignedTx = await txBuilder
   .mint("1", policyId, stringToHex(tokenName))
   .mintingScript(forgingScript)
   .metadataValue(721, metadata)            // CIP-25
+  .invalidHereafter(lockSlot)              // upper bound = lockSlot
   .changeAddress(changeAddress)
-  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .selectUtxosFrom(await wallet.getUtxos())
   .complete();
 
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-`ForgeScript.withOneSignature` derives the policy from your address; `.mint("1", ...)` sets quantity 1.
+`ForgeScript.fromNativeScript` builds the time-locked policy; `.mint("1", ...)` sets quantity 1.
 
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
@@ -139,13 +153,13 @@ Time-locked policy (`policy/policy.script`):
 {
   "type": "all",
   "scripts": [
-    { "type": "before", "slot": 90000000 },
+    { "type": "before", "slot": <future slot> },
     { "type": "sig", "keyHash": "<policy key hash>" }
   ]
 }
 ```
 
-Set the `before` slot to a real future slot: the current slot plus a buffer (for example `+ 10000`). A past slot like `0` would make the policy immediately unmintable.
+Set `<future slot>` to the current slot (`cardano-cli latest query tip`) plus a buffer, for example `+ 10000`; a past slot makes the policy unmintable. Pass the same value as `$slot` to `--invalid-hereafter` below.
 
 CIP-25 metadata (`metadata.json`):
 
@@ -160,7 +174,7 @@ CIP-25 metadata (`metadata.json`):
 Build, sign, and submit (set `--testnet-magic 1|2` or `--mainnet`):
 
 ```bash
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in $txhash#$txix \
   --tx-out "$address+1500000+1 $policyid.$tokenname" \
   --change-address $address \
@@ -170,10 +184,10 @@ cardano-cli conway transaction build \
   --invalid-hereafter $slot \
   --out-file matx.raw
 
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --signing-key-file payment.skey --signing-key-file policy/policy.skey \
   --tx-body-file matx.raw --out-file matx.signed
-cardano-cli conway transaction submit --tx-file matx.signed
+cardano-cli latest transaction submit --tx-file matx.signed
 ```
 
 </TabItem>
@@ -181,41 +195,63 @@ cardano-cli conway transaction submit --tx-file matx.signed
 
 ## Make it a true one-of-one
 
-An NFT derives value from guaranteed scarcity. A **time-locked policy** (the `before` slot above, or a time-lock on the native script in the SDK tabs) means no more tokens can ever be minted under that policy once the deadline passes, enforced at the protocol level. Buyers can verify it by inspecting the policy. See [Validity intervals](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time).
+An NFT derives value from guaranteed scarcity. A **time-locked policy** (the `before` slot in every tab above) means no more tokens can ever be minted under that policy once the deadline passes, enforced at the protocol level. Each tab sets the transaction's upper bound to the lock slot, because the policy rejects any transaction without one. Buyers can verify it by inspecting the policy. Before the deadline the key holder can still mint more; a [one-shot policy](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) rules that out from the first mint. See [Validity intervals](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time).
 
 ## Updatable metadata: CIP-68
 
 CIP-25 writes the metadata into the minting transaction, where it is permanent and readable only off-chain. **[CIP-68](https://cips.cardano.org/cip/CIP-68)** instead stores it in an **inline datum on a reference token**, so it can be updated later and read on-chain by smart contracts through reference inputs. Each asset becomes a pair: a **reference token** (asset-name label `100`) held at a script address carrying the metadata datum, and a **user token** (label `222`) that lives in the holder's wallet. For when to choose it over CIP-25, see [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry#cip-68-datum-metadata-updatable-on-chain).
 
-Minting both tokens in one transaction needs a Plutus minting policy and an always-succeed reference-token holder (see [Smart contracts](/docs/developers/curriculum/smart-contracts/overview)). Both SDKs ship CIP-68 helpers:
+CIP-68 needs no Plutus minting policy: the native policy above can mint the pair, as long as both tokens share its policy ID and carry the CIP-67 prefixes, one reference token per user token. What needs a script is the reference token's holder, because updating the metadata spends that output: an always-succeed holder lets anyone rewrite the metadata or take the token. The minimal holder accepts only the issuer's signature:
+
+```aiken
+use aiken/collection/list
+use aiken/crypto.{VerificationKeyHash}
+use cardano/transaction.{OutputReference, Transaction}
+
+validator cip68_holder(issuer: VerificationKeyHash) {
+  spend(
+    _datum: Option<Data>,
+    _redeemer: Data,
+    _own_ref: OutputReference,
+    tx: Transaction,
+  ) {
+    list.has(tx.extra_signatories, issuer)
+  }
+
+  else(_) {
+    fail @"unsupported purpose"
+  }
+}
+```
+
+Save it as `validators/cip68_holder.ak`; each tab applies your key hash to it and locks the (100) token at the resulting address, with the metadata as its inline datum:
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
 
 ```typescript
-import { Assets, Bytes, Text, Data, InlineDatum, Address, preprod, Client } from "@evolution-sdk/evolution"
-import { CIP68Metadata } from "@evolution-sdk/evolution/plutus"
+// setup from the CIP-25 example above, its imports through `policyId`
+import { Bytes, Data, InlineDatum, Label, PlutusV3, Text, UPLC } from "@evolution-sdk/evolution"
+import blueprint from "./plutus.json" with { type: "json" }   // from `aiken build`
 
-const client = Client.make(preprod)
-  .withBlockfrost({ baseUrl: "https://cardano-preprod.blockfrost.io/api/v0", projectId: process.env.BLOCKFROST_API_KEY! })
-  .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
-
-// Metadata lives on the reference token as a typed CIP-68 datum
+// Metadata lives on the reference token as a CIP-68 datum: Constr 0 [metadata, version, extra]
 const metadata = Data.map([
   [Text.toBytes("name"), Text.toBytes("CIP-68 Token")],
   [Text.toBytes("image"), Text.toBytes("ipfs://QmYourImageHashHere")],
 ])
-const referenceDatum: CIP68Metadata.CIP68Datum = { metadata, version: 1n, extra: [] }
+const referenceDatum = Data.constr(0n, [metadata, 1n, Data.constr(0n, [])])   // extra: Unit when unused
 
 // Asset names carry the CIP-67 label prefix: (100) reference, (222) user
-const name = Text.toBytes("MyCIP68Token")
-const refNameHex  = Bytes.toHex(new Uint8Array([0x00, 0x0f, 0x42, 0x00, ...name]))
-const userNameHex = Bytes.toHex(new Uint8Array([0x00, 0x0f, 0x42, 0x02, ...name]))
+const name = Text.toHex("MyCIP68Token")
+const refNameHex  = Label.toLabel(100) + name   // 000643b0...
+const userNameHex = Label.toLabel(222) + name   // 000de140...
 
-// Your compiled minting policy and the always-succeed script address holding the reference token
-declare const mintingScript: any
-declare const policyId: string
-const scriptAddress = Address.fromBech32("addr_test1...")
+// The cip68_holder validator, applied to your key hash, holds the reference token
+const holderCode = blueprint.validators.find((v) => v.title === "cip68_holder.cip68_holder.spend")!.compiledCode
+const holder = new PlutusV3.PlutusV3({
+  bytes: Bytes.fromHex(UPLC.applySingleCborEncoding(UPLC.applyParamsToScript(holderCode, [paymentCredential.hash]))),
+})
+const scriptAddress = new Address.Address({ networkId: 0, paymentCredential: ScriptHash.fromScript(holder) })
 
 let mintAssets = Assets.fromLovelace(0n)
 mintAssets = Assets.addByHex(mintAssets, policyId, refNameHex, 1n)
@@ -226,14 +262,15 @@ refOutput = Assets.addByHex(refOutput, policyId, refNameHex, 1n)
 
 const tx = await client
   .newTx()
-  .mintAssets({ assets: mintAssets, redeemer: Data.constr(0n, []) })
-  .attachScript({ script: mintingScript })
-  // reference token (100) -> script address, metadata as its inline datum (the user token goes to change)
+  .mintAssets({ assets: mintAssets })
+  .attachScript({ script: nativeScript })
+  // reference token (100) -> holder script, metadata as its inline datum (the user token goes to change)
   .payToAddress({
     address: scriptAddress,
     assets: refOutput,
-    datum: new InlineDatum.InlineDatum({ data: CIP68Metadata.Codec.toData(referenceDatum) }),
+    datum: new InlineDatum.InlineDatum({ data: referenceDatum }),
   })
+  .setValidity({ to: Time.slotToUnixTime(lockSlot, preprod.slotConfig) })
   .build()
 
 const signed = await tx.sign()
@@ -244,71 +281,52 @@ const txHash = await signed.submit()
 <TabItem value="mesh" label="Mesh">
 
 ```typescript
-import {
-  MeshTxBuilder, BlockfrostProvider, resolveScriptHash, stringToHex,
-  mConStr0, mTxOutRef, applyParamsToScript, serializePlutusScript,
-  metadataToCip68, CIP68_100, CIP68_222,
-} from "@meshsdk/core";
-import { MeshCardanoHeadlessWallet, AddressType } from "@meshsdk/wallet";
+// setup from the CIP-25 example above, its imports through `policyId`
+import { CIP68_100, CIP68_222, applyParamsToScript, serializePlutusScript, assocMap, byteString, conStr0, integer } from "@meshsdk/core";
+import blueprint from "./plutus.json" with { type: "json" };   // from `aiken build`
 
-const provider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY!);
-const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
-  networkId: 0, walletAddressType: AddressType.Base,
-  fetcher: provider, submitter: provider,
-  mnemonic: process.env.WALLET_MNEMONIC!.split(" "),
-});
-const txBuilder = new MeshTxBuilder({ fetcher: provider });
+// The cip68_holder validator, applied to your key hash, holds the reference token
+const holderCode = blueprint.validators.find((v) => v.title === "cip68_holder.cip68_holder.spend")!.compiledCode;
+const holderScript = applyParamsToScript(holderCode, [pubKeyHash]);
+const { address: scriptAddress } = serializePlutusScript({ code: holderScript, version: "V3" });
 
-const utxos = await wallet.getUtxosMesh();
-const collateral = (await wallet.getCollateralMesh())[0];
-const changeAddress = await wallet.getChangeAddressBech32();
-
-// Your compiled Plutus scripts (see Smart contracts): an always-succeed holder
-// for the reference token, and a one-time minting policy.
-const alwaysSucceedCbor = "...";         // PlutusScript V1 CBOR
-const oneTimeMintingPolicyCbor = "...";  // parameterized minting policy CBOR
-
-const userTokenMetadata = {
-  name: "CIP-68 Token",
-  image: "ipfs://QmYourImageHashHere",
-  mediaType: "image/png",
-  description: "A CIP-68 token with updatable, on-chain metadata",
-};
-
-const { address: scriptAddress } = serializePlutusScript({ code: alwaysSucceedCbor, version: "V1" });
-
-// Parameterize the policy by the UTXO it consumes, so it can only ever run once
-const scriptCode = applyParamsToScript(oneTimeMintingPolicyCbor, [
-  mTxOutRef(utxos[0].input.txHash, utxos[0].input.outputIndex),
+// CIP-68 datum: Constr 0 [metadata, version, extra], with UTF-8 keys and values as bytes
+const utf8 = (s: string) => byteString(stringToHex(s));
+const referenceDatum = conStr0([
+  assocMap([
+    [utf8("name"), utf8("CIP-68 Token")],
+    [utf8("image"), utf8("ipfs://QmYourImageHashHere")],
+  ]),
+  integer(1),    // version
+  conStr0([]),   // extra: Unit when unused
 ]);
-const policyId = resolveScriptHash(scriptCode, "V2");
 const tokenNameHex = stringToHex("MyCIP68Token");
 
+const txBuilder = new MeshTxBuilder({ fetcher: provider });
 const unsignedTx = await txBuilder
-  .txIn(utxos[0].input.txHash, utxos[0].input.outputIndex, utxos[0].output.amount, utxos[0].output.address)
-  // reference token (label 100) -> script address, metadata stored as its datum
-  .mintPlutusScriptV2().mint("1", policyId, CIP68_100(tokenNameHex)).mintingScript(scriptCode).mintRedeemerValue(mConStr0([]))
-  // user token (label 222) -> the holder's wallet
-  .mintPlutusScriptV2().mint("1", policyId, CIP68_222(tokenNameHex)).mintingScript(scriptCode).mintRedeemerValue(mConStr0([]))
+  // reference token (label 100) and user token (label 222), under the same policy
+  .mint("1", policyId, CIP68_100(tokenNameHex)).mintingScript(forgingScript)
+  .mint("1", policyId, CIP68_222(tokenNameHex)).mintingScript(forgingScript)
+  // reference token -> holder script, metadata stored as its inline datum (the user token goes to change)
   .txOut(scriptAddress, [{ unit: policyId + CIP68_100(tokenNameHex), quantity: "1" }])
-  .txOutInlineDatumValue(metadataToCip68(userTokenMetadata))
+  .txOutInlineDatumValue(referenceDatum, "JSON")
+  .invalidHereafter(lockSlot)
   .changeAddress(changeAddress)
-  .selectUtxosFrom(utxos)
-  .txInCollateral(collateral.input.txHash, collateral.input.outputIndex, collateral.output.amount, collateral.output.address)
+  .selectUtxosFrom(await wallet.getUtxos())
   .complete();
 
-const signedTx = await wallet.signTx(unsignedTx, true);
+const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
 </TabItem>
 </Tabs>
 
-Mesh's `metadataToCip68` / `CIP68_100` / `CIP68_222` helpers and Evolution's typed `CIP68Metadata` schema reach the same result by different routes (helper functions versus a typed codec): encode the metadata as the reference token's datum and apply the CIP-67 label prefixes. To **update** the metadata later, spend the reference UTXO and recreate it with a new datum.
+To update the metadata, the issuer spends that output and re-creates it with the new datum, adding lovelace if the larger datum raises the [minimum ADA](/docs/developers/curriculum/native-tokens/overview#the-minimum-ada-requirement).
 
 ## Royalties: CIP-27
 
-A royalty is recorded as a **single token** (empty asset name) under metadata label **`777`**, carrying a rate and a recipient address, minted once under the **same policy** as the NFTs it covers. Marketplaces that honor [CIP-27](https://cips.cardano.org/cip/CIP-27) read label 777 to route a cut of secondary sales to the creator.
+A royalty is recorded as a **single token** (empty asset name) under metadata label **`777`**, carrying a rate and a recipient address, minted once under the **same policy** as the NFTs it covers. Marketplaces that honor [CIP-27](https://cips.cardano.org/cip/CIP-27) read it from the first asset minted under a policy to route a cut of secondary sales to the creator, so mint it first, under a fresh policy whose lock slot you reuse for the NFTs. Metadata strings are capped at 64 bytes, so the address is split into an array.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -316,12 +334,11 @@ A royalty is recorded as a **single token** (empty asset name) under metadata la
 Evolution has no royalty-specific helper, so you attach the CIP-27 structure as plain metadata under label `777n`:
 
 ```typescript
-import { Assets } from "@evolution-sdk/evolution"
-
-// reuse the client and your single-signature native policy from above
-const royaltyMetadata = new Map([
-  ["rate", "0.05"],            // 5%
-  ["addr", "addr_test1qz..."], // royalty recipient
+// setup from the CIP-25 example above, its imports through `policyId`
+const royaltyAddress = "addr_test1qz..."   // royalty recipient
+const royaltyMetadata = TransactionMetadatum.fromEntries([
+  ["rate", "0.05"],                              // 5%
+  ["addr", royaltyAddress.match(/.{1,64}/g)!],   // split into strings of at most 64 bytes
 ])
 
 let royaltyToken = Assets.fromLovelace(0n)
@@ -332,6 +349,7 @@ const tx = await client
   .mintAssets({ assets: royaltyToken })
   .attachScript({ script: nativeScript })
   .attachMetadata({ label: 777n, metadata: royaltyMetadata })
+  .setValidity({ to: Time.slotToUnixTime(lockSlot, preprod.slotConfig) })
   .build()
 
 const signed = await tx.sign()
@@ -341,27 +359,24 @@ const txHash = await signed.submit()
 </TabItem>
 <TabItem value="mesh" label="Mesh">
 
-Mesh ships a typed `RoyaltiesStandard` helper for the 777 structure:
+Mesh's `RoyaltiesStandard` type writes the key `address` instead of CIP-27's `addr`, so attach a plain object under label `777`:
 
 ```typescript
-import { MeshTxBuilder, ForgeScript, resolveScriptHash, RoyaltiesStandard } from "@meshsdk/core";
-
-const txBuilder = new MeshTxBuilder({ fetcher: provider });   // same provider + wallet as above
-const address = (await wallet.getUsedAddressesBech32())[0];
-const forgingScript = ForgeScript.withOneSignature(address);
-const policyId = resolveScriptHash(forgingScript);
-
-const royaltyMetadata: RoyaltiesStandard = {
-  rate: "0.05",                 // 5%
-  address: "addr_test1qz...",   // royalty recipient
+// setup from the CIP-25 example above, its imports through `policyId`
+const royaltyAddress = "addr_test1qz...";   // royalty recipient
+const royaltyMetadata = {
+  rate: "0.05",                                // 5%
+  addr: royaltyAddress.match(/.{1,64}/g)!,     // split into strings of at most 64 bytes
 };
 
+const txBuilder = new MeshTxBuilder({ fetcher: provider });
 const unsignedTx = await txBuilder
   .mint("1", policyId, "")              // empty asset name = the policy's royalty token
   .mintingScript(forgingScript)
   .metadataValue(777, royaltyMetadata)
-  .changeAddress(address)
-  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .invalidHereafter(lockSlot)
+  .changeAddress(changeAddress)
+  .selectUtxosFrom(await wallet.getUtxos())
   .complete();
 
 const signedTx = await wallet.signTx(unsignedTx);
@@ -378,7 +393,7 @@ const txHash = await wallet.submitTx(signedTx);
 | NFT not showing in wallet | metadata structure mismatch | policy ID and asset name in metadata must exactly match the minted token |
 | "Minting not allowed" | wrong key signed | the signing key's hash must match the policy |
 | Type error on label (Evolution) | `721` instead of `721n` | use the bigint `721n` |
-| Min UTxO too low | not enough ADA with the NFT | include about 2 ADA in the NFT output |
+| Min UTxO too low | not enough ADA with the NFT | include 2 ADA in the NFT output, comfortably above the floor |
 
 ## Next steps
 

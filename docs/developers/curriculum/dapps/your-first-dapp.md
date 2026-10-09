@@ -8,7 +8,7 @@ description: "Assemble a working Cardano dApp end to end: scaffold, connect a wa
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have met the pieces separately: [wallets](/docs/developers/curriculum/dapps/connect-a-wallet), [transactions](/docs/developers/curriculum/start-building/your-first-transaction), and [providers](/docs/developers/curriculum/production/api-providers/overview). A dApp is those pieces assembled into one running application. This page builds the smallest complete one, connect a wallet, show its balance, send ADA, and points you at a runnable template for each SDK so you start from working code, not a blank directory.
+You have met the pieces separately: [wallets](/docs/developers/curriculum/dapps/connect-a-wallet), [transactions](/docs/developers/curriculum/start-building/your-first-transaction), and [providers](/docs/developers/curriculum/production/connecting-to-the-chain). A dApp is those pieces assembled into one running application. This page builds the smallest complete one, connect a wallet, show its balance, send ADA, and points you at a runnable template for each SDK so you start from working code, not a blank directory.
 
 ## What a dApp is made of
 
@@ -33,7 +33,9 @@ On-chain logic (a validator) is an optional fifth block you layer on later. The 
 
 ## Start from a template
 
-Each SDK has a runnable starter, browsable in the [templates gallery](/templates): [Evolution + Vite + React](/templates/evolution-vite-react) and [Mesh + Next.js](/templates/mesh-nextjs). Scaffold one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new project), then install and run.
+Setting up a dApp means wiring together an off-chain library, a frontend, a provider, and often an on-chain language and a local devnet. A template does that wiring for you, so you start from a runnable project instead of a blank directory.
+
+Each SDK has a runnable starter, browsable in the [templates gallery](/templates): [Evolution + Vite + React](/templates/evolution-vite-react) and [Mesh + Next.js](/templates/mesh-nextjs). Both do the same thing, connect a wallet, show the balance, and send ADA. Scaffold one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new project), then install and run. Both need a free [Blockfrost](https://blockfrost.io) key in the env file.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -42,7 +44,7 @@ Each SDK has a runnable starter, browsable in the [templates gallery](/templates
 npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/evolution-vite-react my-app
 cd my-app
 npm install
-cp .env.example .env   # set VITE_BLOCKFROST_PROJECT_ID and VITE_NETWORK
+cp .env.example .env   # set BLOCKFROST_PROJECT_ID (server-only) and VITE_NETWORK
 npm run dev            # http://localhost:5173
 ```
 
@@ -55,14 +57,20 @@ npm run dev            # http://localhost:5173
 npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs my-app
 cd my-app
 npm install
-cp .env.example .env.local   # set NEXT_PUBLIC_BLOCKFROST_API_KEY
-npm run dev                  # http://localhost:3000
+cp .env.example .env   # set BLOCKFROST_PROJECT_ID (server-only) and NEXT_PUBLIC_NETWORK
+npm run dev            # http://localhost:3000
 ```
 
 [Browse the template on GitHub](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs). It is Next.js. Mesh ships React components and hooks, so the connect button and wallet state come built in.
 
 </TabItem>
 </Tabs>
+
+If you want a contract from the start, the [Mesh Aiken template](https://github.com/MeshJS/mesh-aiken-template) is a full-stack starter pairing the Mesh SDK off-chain with Aiken on-chain.
+
+:::info cardano-init is on the way
+[cardano-init](https://github.com/input-output-hk/cardano-init) aims to unify scaffolding into one tool: you pick the tools for each role (on-chain validators, off-chain transaction building, local devnet, infrastructure, or formal methods) and it generates a runnable monorepo with everything pre-wired, plus an end-to-end example that builds and passes tests. It is an early prototype and not yet ready for use, with its templates, CLI flags, and output still changing. Track progress at the [cardano-init repository](https://github.com/input-output-hk/cardano-init).
+:::
 
 The rest of this page walks the building blocks the template wires together.
 
@@ -125,19 +133,21 @@ The climax: build a transfer to a recipient, have the wallet sign it, and submit
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
 
+The template's server builds the transaction with the Blockfrost key, so the key never reaches the
+browser. The browser only reads the wallet and signs:
+
 ```tsx
-import { Address, Assets, Client, preprod } from "@evolution-sdk/evolution"
+import { Address, Client, Transaction, TransactionWitnessSet, preprod } from "@evolution-sdk/evolution"
 
 const api = await window.cardano[enabledWallet].enable()
-const client = Client.make(preprod)
-  .withBlockfrost({ baseUrl: "https://cardano-preprod.blockfrost.io/api/v0", projectId: import.meta.env.VITE_BLOCKFROST_PROJECT_ID })
-  .withCip30(api)
+const client = Client.make(preprod).withCip30(api)
+const from = Address.toBech32(await client.address())
 
-const tx = await client
-  .newTx()
-  .payToAddress({ address: Address.fromBech32(recipient), assets: Assets.fromLovelace(amount) })
-  .build()
-const txHash = await (await tx.sign()).submit()
+// server/payments.ts builds it: withBlockfrost(...).withAddress(from).newTx().payToAddress(...).build()
+const { txCbor } = await post("/api/build-payment", { from, to: recipient, lovelace })
+const witnessSet = await client.signTx(txCbor)
+const signedTxCbor = Transaction.addVKeyWitnessesHex(txCbor, TransactionWitnessSet.toCBORHex(witnessSet))
+const { txHash } = await post("/api/submit-tx", { signedTxCbor })
 ```
 
 </TabItem>
@@ -146,9 +156,12 @@ const txHash = await (await tx.sign()).submit()
 ```tsx
 import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core"
 
-const provider = new BlockfrostProvider(process.env.NEXT_PUBLIC_BLOCKFROST_API_KEY!)
-const unsignedTx = await new MeshTxBuilder({ fetcher: provider, submitter: provider })
-  .txOut(recipient, [{ unit: "lovelace", quantity: lovelaceAmount }])
+// The template's /api/blockfrost route adds the Blockfrost key on the server,
+// so the key never reaches the browser.
+const provider = new BlockfrostProvider("/api/blockfrost")
+const params = await provider.fetchProtocolParameters()
+const unsignedTx = await new MeshTxBuilder({ fetcher: provider, params })
+  .txOut(recipient, [{ unit: "lovelace", quantity: lovelace.toString() }])
   .changeAddress(await wallet.getChangeAddress())
   .selectUtxosFrom(await wallet.getUtxos())
   .complete()
@@ -158,7 +171,7 @@ const txHash = await wallet.submitTx(await wallet.signTx(unsignedTx))
 </TabItem>
 </Tabs>
 
-Each template wraps this in a form with input handling and error states; see `src/components/TransactionBuilder.tsx` (Evolution) or `src/pages/index.tsx` (Mesh).
+Each template wraps this in a form with input handling and error states; see `src/components/TransactionBuilder.tsx` (Evolution), or `src/lib/payment.ts` and `src/pages/index.tsx` (Mesh).
 
 ## Run it
 

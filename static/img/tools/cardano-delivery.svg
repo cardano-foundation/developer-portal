@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>.hx{stroke:#eef2e2}@media (prefers-color-scheme: light){.hx{stroke:#171b0e}}</style>
+  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#b8f318"/><stop offset="1" stop-color="#00e5a8"/></linearGradient></defs>
+  <path class="hx" d="M41 32 L32.5 46.7 L15.5 46.7 L7 32 L15.5 17.3 L32.5 17.3 Z" fill="none" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M45 24 l8 8 -8 8" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M54 26.5 l5.5 5.5 -5.5 5.5" fill="none" stroke="url(#g)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
+</svg>

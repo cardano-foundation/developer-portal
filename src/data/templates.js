@@ -5,7 +5,7 @@
 // Contributors: edit ./templates/templates.js to add your template.
 // ============================================================================
 
-import { sortBy } from "@site/src/utils/jsUtils";
+import { sortBy } from "@site/src/utils/arrays";
 import { Templates } from "./templates/templates";
 import {
   Frameworks,

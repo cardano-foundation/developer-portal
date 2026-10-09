@@ -36,7 +36,9 @@ graph LR
     style B fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
-Once a transaction is accepted into the mempool it is [guaranteed to be included](/docs/developers/curriculum/fundamentals/core-concepts/transactions#the-transaction-lifecycle) until its validity interval passes, so the links you have already placed are firm. The chain as a whole, though, is only as durable as its first link.
+Under the hood the mempool is an ordered sequence, validated against a recent ledger state (its *anchor*). In the reference node, a change of tip revalidates the sequence in order, and a transaction that drops out forces everything after it to be rechecked, because later transactions may have been building on it. The ledger only requires that a producing transaction come before its spender; a dependency-aware mempool could recheck less. The [Cardano Blueprint's mempool page](https://cardano-scaling.github.io/cardano-blueprint/mempool/index.html) documents this machinery in full.
+
+Once a transaction is accepted into the mempool it keeps its place [toward inclusion](/docs/developers/curriculum/fundamentals/core-concepts/transactions#the-transaction-lifecycle) for as long as it stays valid against the node's evolving view of the chain. The chain as a whole, though, is only as durable as its first link.
 
 :::warning Submit in order
 A chained transaction is only valid once its predecessor is in the mempool or a block. If it arrives first, the node sees inputs that do not exist yet and rejects it. Submit sequentially, and never hand a not-yet-submitted output to a provider query: your provider only knows about outputs that are already on-chain.

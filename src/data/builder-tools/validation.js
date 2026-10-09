@@ -1,5 +1,9 @@
-import { difference } from "@site/src/utils/jsUtils";
+import { difference } from "@site/src/utils/arrays";
 import { CategoryList, PropertyList } from "./tags";
+
+const MAX_SCREENSHOTS = 3;
+const SCREENSHOT_DIR = "/img/tools/screenshots/";
+const SCREENSHOT_EXT = /\.(png|jpe?g|webp)$/i;
 
 // Fail-fast on common errors (runs at build via builder-tools.js).
 export function ensureBuilderToolValid(tool) {
@@ -14,6 +18,7 @@ export function ensureBuilderToolValid(tool) {
       "category",
       "properties",
       "maintainerPick",
+      "screenshots",
     ];
     const unknownKeys = difference(Object.keys(tool), validKeys);
     if (unknownKeys.length > 0) {
@@ -98,6 +103,41 @@ export function ensureBuilderToolValid(tool) {
     }
   }
 
+  // Optional. The files themselves (existence, size) are checked by the
+  // tools-routes plugin, which runs in Node and can read static/.
+  function checkScreenshots() {
+    if (typeof tool.screenshots === "undefined") return;
+    if (
+      !Array.isArray(tool.screenshots) ||
+      tool.screenshots.length === 0 ||
+      tool.screenshots.length > MAX_SCREENSHOTS
+    ) {
+      throw new Error(
+        `screenshots must be an array of 1 to ${MAX_SCREENSHOTS} entries, or left out`
+      );
+    }
+    tool.screenshots.forEach((shot, i) => {
+      const unknownKeys = difference(Object.keys(shot || {}), ["src", "alt"]);
+      if (unknownKeys.length > 0) {
+        throw new Error(
+          `screenshots[${i}] has unknown attribute names=[${unknownKeys.join(",")}]`
+        );
+      }
+      if (
+        typeof shot.src !== "string" ||
+        !shot.src.startsWith(SCREENSHOT_DIR) ||
+        !SCREENSHOT_EXT.test(shot.src)
+      ) {
+        throw new Error(
+          `screenshots[${i}].src must be a .png, .jpg or .webp path under ${SCREENSHOT_DIR}, got ${shot.src}`
+        );
+      }
+      if (typeof shot.alt !== "string" || !shot.alt.trim()) {
+        throw new Error(`screenshots[${i}].alt is missing (describe what the image shows)`);
+      }
+    });
+  }
+
   try {
     checkFields();
     checkTitle();
@@ -108,6 +148,7 @@ export function ensureBuilderToolValid(tool) {
     checkDocs();
     checkRepository();
     checkOperations();
+    checkScreenshots();
   } catch (e) {
     throw new Error(
       `Builder tool with title=${tool.title} contains errors:\n${e.message}`

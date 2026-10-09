@@ -27,12 +27,12 @@ separate fields. We point at the established repository.
 - `src/data/contracts/sources.js`, the sources: the collections we aggregate from (`SOURCES`, `SOURCE_IDS`).
 - `src/data/contracts/tags.js`, the taxonomy: `Categories`, `OnchainLangs`, `OffchainLangs`.
 - `src/data/contracts/validation.js`, build-time fail-fast checks (a valid `source` when set, a GitHub `repoUrl`).
-- `src/data/contracts/showcase.js`, the component-facing adapter.
+- `src/data/contracts/catalog.js`, the component-facing adapter.
 - `src/data/contracts.js`, the entry point: validates every entry at build and exports the sorted list.
 - `src/pages/templates/contracts.js`, the `/templates/contracts` page.
 
-Data flow: `contracts.js` (catalog) -> `contracts.js` entry (validate + sort) -> `showcase.js` (adapter)
--> page. `sources.js` and `tags.js` are the two source-of-truth lookups, imported by validation and showcase.
+Data flow: `contracts.js` (entries) -> `contracts.js` entry point (validate + sort) -> `catalog.js` (adapter)
+-> page. `sources.js` and `tags.js` are the two source-of-truth lookups, imported by validation and the catalog.
 
 ## What the on-chain / off-chain chips mean
 

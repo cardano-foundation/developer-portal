@@ -1,0 +1,85 @@
+name: "Templates"
+
+# Builds each starter template the way a developer would: a fresh
+# `npm install`, then the template's own `npm run ci` (lint, type-check,
+# build). Pull requests build only the templates they touch; the weekly run
+# builds all of them, to catch breakage from outside the repo.
+
+on:
+  pull_request:
+    paths:
+      - "examples/templates/**"
+      - ".github/workflows/templates.yml"
+  push:
+    branches: [staging]
+    paths:
+      - "examples/templates/**"
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  select:
+    name: Select templates
+    runs-on: ubuntu-latest
+    outputs:
+      templates: ${{ steps.select.outputs.templates }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: List templates to build
+        id: select
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          all=$(find examples/templates -mindepth 2 -maxdepth 2 -name package.json -exec dirname {} \; | xargs -n1 basename | sort)
+          selected="$all"
+          if [ "$EVENT" = "pull_request" ] && ! git diff --name-only "$BASE" HEAD | grep -qx ".github/workflows/templates.yml"; then
+            changed=$(git diff --name-only "$BASE" HEAD -- examples/templates | cut -d/ -f3 | sort -u)
+            selected=$(comm -12 <(echo "$all") <(echo "$changed"))
+          fi
+          echo "templates=$(echo "$selected" | jq -R . | jq -cs 'map(select(. != ""))')" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: ${{ matrix.template }}
+    needs: select
+    if: needs.select.outputs.templates != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        template: ${{ fromJson(needs.select.outputs.templates) }}
+    defaults:
+      run:
+        working-directory: examples/templates/${{ matrix.template }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Cache npm downloads
+        uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: npm-${{ matrix.template }}-${{ hashFiles(format('examples/templates/{0}/package.json', matrix.template)) }}
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Lint, type-check and build
+        run: npm run ci

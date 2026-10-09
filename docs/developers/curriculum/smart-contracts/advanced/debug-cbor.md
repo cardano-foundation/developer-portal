@@ -263,11 +263,11 @@ You can see that all fields are optional. However, field 0 will be present as it
 
 Field 3 is the list of Plutus scripts, this is, the binaries of the Plutus Core code for all the Plutus scripts that must be executed to validate the transaction, both for consuming script UTxOs and for minting Plutus assets.
 
-Plutus scripts are without doubt the biggest part of Conway transactions and an important source of headache for any engineer trying to develop a meaningful dapp without hitting transaction size limit of 16kB.
+Plutus scripts are without doubt the biggest part of Conway transactions and an important source of headache for any engineer trying to develop a meaningful dapp without hitting the transaction size limit (`maxTxSize`, currently ~16 kB).
 
 For instance, in our example the Plutus script takes up to 4353 bytes, more than 45% of the total transaction size (9666 bytes).
 
-The Babbage era, introduced "reference scripts" [CIP 33](https://cips.cardano.org/cip/CIP-33), a feature that provides a way to use scripts without the need for explicitly including them in transactions. We will leave this discussion for a future article.
+The Babbage era introduced "reference scripts" [CIP 33](https://cips.cardano.org/cip/CIP-33), a feature that provides a way to use scripts without the need for explicitly including them in transactions; see [reference scripts](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts) for how to use them.
 
 ### Plutus data
 

@@ -19,16 +19,16 @@ Every blockchain needs a way to track ownership, and there are two fundamentally
 
 The account model works like a bank account: each address has a mutable balance, and transactions update balances in place by debiting the sender and crediting the receiver. If you have worked with databases or Ethereum, you already understand it.
 
-```
-Account state (like a database row):
+State is a row per address, exactly like a database table:
 
-| Address      | Balance   |
-|--------------|-----------|
-| addr_alice   | 5,000 ADA |
-| addr_bob     | 3,000 ADA |
+| Address | Balance |
+|---|---|
+| `addr_alice` | 5,000 ADA |
+| `addr_bob` | 3,000 ADA |
 
-Transaction: Alice sends 1,000 ADA to Bob
+Alice sending 1,000 ADA to Bob is an update in place:
 
+```sql
 UPDATE accounts SET balance = balance - 1000 WHERE address = 'addr_alice';
 UPDATE accounts SET balance = balance + 1000 WHERE address = 'addr_bob';
 ```
@@ -77,13 +77,11 @@ Four properties fall out of this:
 
 The **UTXO set** is the complete collection of all unspent outputs at a point in time. It is the current state of the chain.
 
-```
-| TxId:Index | Address      | Value     |
-|------------|--------------|-----------|
-| tx_01:#0   | addr_alice   | 300 ADA   |
-| tx_02:#0   | addr_bob     | 4,500 ADA |
-| tx_03:#1   | addr_dave    | 750 ADA   |
-```
+| TxId:Index | Address | Value |
+|---|---|---|
+| `tx_01:#0` | `addr_alice` | 300 ADA |
+| `tx_02:#0` | `addr_bob` | 4,500 ADA |
+| `tx_03:#1` | `addr_dave` | 750 ADA |
 
 Each UTXO is uniquely identified by the transaction ID that created it plus its output index. That `(TxId, Index)` pair is a **transaction output reference** (TxOutRef). On mainnet the set holds millions of entries, and every node keeps it for fast validation.
 
@@ -92,19 +90,10 @@ Each UTXO is uniquely identified by the transaction ID that created it plus its 
 The Extended UTXO model adds three things to Bitcoin's original UTXO concept: **datums** (data attached to a UTXO), **redeemers** (arguments provided when spending), and **script context** (a view of the whole transaction). Together they enable smart contracts while preserving UTXO determinism and parallelism.
 
 ```mermaid
-graph TB
-    subgraph BasicUTXO["Basic UTXO (Bitcoin)"]
-        BV["Value: 5,000 ADA"]
-        BA["Address: key_hash"]
-    end
-    subgraph eUTXO["Extended UTXO (Cardano)"]
-        EV["Value: 5,000 ADA"]
-        EA["Address: script_hash"]
-        ED["Datum: { owner, deadline, status }"]
-        ER["+ Redeemer at spend time"]
-        EC["+ Script Context at spend time"]
-    end
-    BasicUTXO -->|"Cardano extends with"| eUTXO
+graph LR
+    U["UTXO (Bitcoin)<br/><br/>Value: 5,000 ADA<br/>Address: key_hash"]
+    E["Extended UTXO (Cardano)<br/><br/>Value: 5,000 ADA<br/>Address: script_hash<br/><br/>Datum: { owner, deadline }<br/>Redeemer: given when spending<br/>Script context: the transaction"]
+    U -->|"Cardano adds"| E
 ```
 
 **Datum** is data attached to an output: state that lives inside a specific UTXO. In the account model, contract state sits in mutable storage; in eUTXO, state lives in UTXOs, and you update it by consuming a UTXO and creating a new one with new data. Cardano supports two modes: a **datum hash** (only the hash is on-chain, the full datum is supplied at spend time) and an **inline datum** (the full datum is stored in the UTXO so others can read it without off-chain coordination).
@@ -117,7 +106,7 @@ graph TB
 - "This UTXO can only be spent after slot 50,000,000."
 - "This UTXO can only be spent if the transaction recreates this same script address with an updated datum." (This last pattern is the foundation of stateful contracts in eUTXO: the script enforces that its own state propagates correctly.)
 
-The full mechanics of writing validators against datum, redeemer, and context are covered in [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview); here we only need the model.
+The full mechanics of writing validators against datum, redeemer, and context are covered in [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview); this page only needs the model.
 
 ### What can a validator actually see? Bitcoin vs Ethereum vs Cardano
 
@@ -125,7 +114,7 @@ The scope of information available to a script is the key difference between the
 
 - **Bitcoin (UTXO):** scripts see only the redeemer (the unlocking data). Simple and secure, but it limits contracts to "dumb" logic.
 - **Ethereum (account):** scripts can read and modify the entire global state. Powerful, but it introduces unpredictability and a large security surface.
-- **Cardano (eUTXO):** scripts see all inputs and outputs of the specific transaction plus its context, but not arbitrary global state. This middle ground was mathematically researched to provide expressive power comparable to the account model while keeping stronger security guarantees.
+- **Cardano (eUTXO):** scripts see all inputs and outputs of the specific transaction plus its context, but not arbitrary global state. This middle ground was designed to provide expressive power comparable to the account model while keeping stronger security guarantees.
 
 Smart contract validators (written in Plutus or Aiken) are **pure functions**: given the same datum, redeemer, and context, they always return the same result. That purity buys you:
 
@@ -137,66 +126,38 @@ Smart contract validators (written in Plutus or Aiken) are **pure functions**: g
 
 A script interaction consumes script-locked UTXOs with a redeemer, the validator checks the datum, redeemer, and context, and if validation passes the transaction produces new UTXOs with updated state.
 
+Take a vesting contract. Alice locked 1,000 ADA at a script address, carrying the datum `{ beneficiary: addr_alice, release_slot: 50000000 }`, and she holds a separate 10 ADA UTXO to cover the fee. Once the chain is past slot 50,000,000, she builds a transaction that spends both:
+
 ```
-Scenario: Alice locked 1,000 ADA in a vesting contract that releases after a slot.
+Inputs                                       Outputs
+  [1] script UTXO             1,000 ADA        [1] addr_alice   1,000 ADA   (the vested funds)
+      redeemer: { action: "withdraw" }         [2] addr_alice       8 ADA   (change)
+  [2] Alice's UTXO               10 ADA        fee                  2 ADA
 
-BEFORE:
-  Script UTXO (vesting_script_addr):
-    Value: 1,000 ADA
-    Datum: { beneficiary: addr_alice, release_slot: 50000000 }
-  Alice's UTXO: 10 ADA (for fees)
-
-TRANSACTION:
-  Inputs:
-    [1] Script UTXO   Redeemer: { action: "withdraw" }
-    [2] Alice's fee UTXO
-  Outputs:
-    [1] 1,000 ADA -> addr_alice   (the vested funds)
-    [2] 8 ADA     -> addr_alice   (change)
-  Fee: 2 ADA
-  Validity interval: [50000000, infinity)   <- valid only after release slot
-
-SCRIPT VALIDATION (the vesting validator checks):
-  1. Is current slot >= datum.release_slot?     YES (enforced by validity interval)
-  2. Does the tx pay to datum.beneficiary?      YES (output #1)
-  3. Is the tx signed by datum.beneficiary?     YES
-  -> TRUE, transaction is valid
+Validity interval: from slot 50,000,000 onwards
 ```
+
+The validator runs once, against this transaction and nothing else. It asks three questions:
+
+1. **Is the validity interval entirely after `release_slot`?** The lower bound is exactly 50,000,000, so yes. The script never asks what time it is; the ledger has already refused to include the transaction any earlier.
+2. **Does an output pay `beneficiary`?** Output 1 does.
+3. **Is the transaction signed by `beneficiary`?** Alice's signature is on it.
+
+All three hold, so the validator returns true and the transaction is valid. Break any one of them and it returns false, which you can see by running the same validation locally before you submit anything.
 
 ## Why is deterministic validation such a big deal?
 
 Deterministic validation means you can predict exactly what a transaction will do before you submit it, because eUTXO transactions reference specific UTXOs by ID instead of reading mutable global state.
 
-In the account model, outcomes depend on state that can change between construction and execution:
+In the account model, outcomes depend on state that can change between construction and execution. Alice builds a transaction against a DEX quoting 100 TOKEN per ETH. Bob's transaction lands first and moves the price to 200. Alice's then executes at the worse price, or fails and costs her gas anyway. At the moment she built it, neither outcome was knowable.
 
-```
-Account model (Ethereum):
-  1. Alice builds a tx calling a DEX; price is 100 TOKEN per ETH
-  2. Bob's tx lands first and moves the price to 200
-  3. Alice's tx executes at the worse price (or fails, and she still pays gas)
-  -> unpredictable at build time
-```
-
-In eUTXO, the transaction names its exact inputs:
-
-```
-eUTXO model (Cardano):
-  1. Alice builds a tx consuming UTXO_A and UTXO_B
-  2. If either is already spent when it reaches a validator, the tx simply fails
-  3. Otherwise it executes with exactly the state Alice saw
-  -> the outcome is predictable; either the expected result or nothing
-```
+In eUTXO, the transaction names its exact inputs. Alice builds a transaction consuming `UTXO_A` and `UTXO_B`. If either has been spent by the time it reaches a validator, the transaction fails and nothing happens. Otherwise it executes against exactly the state Alice saw when she built it. The result is the one she expected, or none at all.
 
 ## How does concurrency work in eUTXO?
 
 Concurrency in eUTXO is explicit, because two transactions cannot consume the same UTXO at once; only one wins and the other fails.
 
-```
-Script UTXO at a DEX: { price: 100, liquidity: 10000 }
-  Alice's tx: consume DEX UTXO, buy 100 tokens
-  Bob's tx:   consume DEX UTXO, buy 50 tokens
-  -> only ONE can succeed; the other references a spent UTXO
-```
+A DEX that keeps its whole state in one script UTXO shows the problem plainly. Alice builds a transaction consuming it to buy 100 tokens, Bob builds one consuming it to buy 50. Whichever reaches a block first succeeds; the other now points at a UTXO that no longer exists, and fails. Nothing was corrupted, but one user has to rebuild.
 
 There are a few patterns to handle concurrency:
 
@@ -211,13 +172,14 @@ Reference inputs and reference scripts are transaction-level features; for the f
 
 On Cardano, custom tokens are **native**: they live inside UTXOs alongside ADA at the protocol level, not inside smart contracts, so they inherit ADA's security without script execution for basic transfers.
 
+A single output carries a bundle, not a number:
+
 ```
-A single UTXO can carry multiple assets:
-  Address: addr_alice
-  Value:
-    5 ADA (5,000,000 lovelace)
-    PolicyID_abc.TokenA: 1,000
-    PolicyID_def.MyNFT:  1
+Address: addr_alice
+Value:
+  5 ADA (5,000,000 lovelace)
+  PolicyID_abc.TokenA: 1,000
+  PolicyID_def.MyNFT:  1
 ```
 
 ADA itself is denominated in **lovelace** (1 ADA = 1,000,000 lovelace), named after Ada Lovelace, just as Ethereum has wei. For how tokens are identified, minted, and why every token-bearing UTXO carries a minimum amount of ADA, see [What are native tokens](/docs/developers/curriculum/native-tokens/overview).
@@ -260,8 +222,8 @@ Read the [eUTXO handbook (PDF)](https://ucarecdn.com/3da33f2f-73ac-4c9b-844b-f21
 
 - **The UTXO model tracks discrete coins**, consumed entirely and recreated as change, like physical cash, rather than mutable balances.
 - **eUTXO extends it** with datums (state), redeemers (action arguments), and script context (transaction awareness), enabling smart contracts without losing UTXO benefits.
-- **Determinism is the superpower.** Outcomes are predictable before submission, which kills front-running and enables exact fees and off-chain validation.
-- **Concurrency is explicit.** Fan-out, batching, and reference inputs are the standard ways mature protocols handle contention.
+- **Determinism is the superpower.** Outcomes are predictable before submission, which shuts out fee-auction front-running and enables exact fees and off-chain validation.
+- **Concurrency is explicit.** Fan-out, batching, and reference inputs are the standard ways deployed protocols handle contention.
 - **Native tokens live in UTXOs alongside ADA**, inheriting protocol-level security without contracts for basic transfers.
 
 ## Next steps

@@ -255,14 +255,14 @@ graph LR
 
 Transaction level validation can be implemented using minting policies. However, if minting
 validation tokens is impractical, the recommended approach is to implement transaction level
-validation using a staking validator due to lower ExUnits cost compared to minting policy checks,
-based on our experience.
+validation using a staking validator, which in practice costs fewer ExUnits than minting policy
+checks.
 
 ## Example Code
 
-Full working example: [tx-level-minter.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/validators/examples/tx-level-minter.ak)
+Full working example: [tx-level-minter.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/tx-level-minter.ak)
 
-Library implementation: [tx_level_minter module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/lib/aiken-design-patterns/tx-level-minter.ak)
+Library implementation: [tx_level_minter module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/tx-level-minter.ak)
 
 Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/spend-logic.ak)
 

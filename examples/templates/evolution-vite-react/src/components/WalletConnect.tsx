@@ -2,13 +2,14 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet"
 import { NetworkType } from "@cardano-foundation/cardano-connect-with-wallet-core"
 import { useState } from "react"
 
+import { isMainnet } from "../config"
+
 export default function WalletConnect() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const network = import.meta.env.MODE === "development" ? NetworkType.TESTNET : NetworkType.MAINNET
+  const [error, setError] = useState<string | null>(null)
 
   const { accountBalance, connect, disconnect, installedExtensions, isConnected, stakeAddress } = useCardano({
-    limitNetwork: network
+    limitNetwork: isMainnet ? NetworkType.MAINNET : NetworkType.TESTNET
   })
 
   return (
@@ -17,7 +18,7 @@ export default function WalletConnect() {
         <div className="px-5 py-4">
           <div className="flex flex-col space-y-4">
             <div className="grid grid-cols-[auto_1fr] gap-y-3 gap-x-10">
-              <div className="text-xs font-medium text-zinc-400">Address</div>
+              <div className="text-xs font-medium text-zinc-400">Stake address</div>
               <div className="text-xs font-mono text-zinc-200 text-right truncate">
                 {stakeAddress?.slice(0, 10)}
                 {"..."}
@@ -29,7 +30,7 @@ export default function WalletConnect() {
             </div>
 
             <button
-              className="w-full py-2 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-300 rounded-md border border-zinc-700/50 text-xs font-medium transition-all focus:outline-none focus:ring-1 focus:ring-zinc-500/30"
+              className="w-full py-2 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-300 rounded-md border border-zinc-700/50 text-xs font-medium transition-all focus:outline-none focus-visible:ring-2 focus:ring-zinc-500/30"
               onClick={() => disconnect()}
             >
               Disconnect
@@ -39,12 +40,18 @@ export default function WalletConnect() {
       ) : (
         <div className="flex items-center justify-center px-5 py-8">
           <button
-            className="w-full max-w-xs py-2.5 bg-orange-900/90 hover:bg-orange-800 text-zinc-100 rounded-md border border-orange-900/60 text-xs font-medium transition-all focus:outline-none focus:ring-1 focus:ring-orange-700/30"
+            className="w-full max-w-xs py-2.5 bg-orange-900/90 hover:bg-orange-800 text-zinc-100 rounded-md border border-orange-900/60 text-xs font-medium transition-all focus:outline-none focus-visible:ring-2 focus:ring-orange-700/30"
             onClick={() => setIsModalOpen(true)}
           >
             Connect Wallet
           </button>
         </div>
+      )}
+
+      {error && !isConnected && (
+        <p role="alert" className="px-5 pb-4 text-xs text-orange-400">
+          {error}
+        </p>
       )}
 
       {isModalOpen && !isConnected && (
@@ -56,12 +63,18 @@ export default function WalletConnect() {
 
             <div className="p-5 space-y-3">
               <div className="grid gap-2">
+                {installedExtensions.length === 0 && (
+                  <p className="text-xs text-zinc-400">No Cardano wallet found. Install one, such as Eternl or Lace.</p>
+                )}
                 {installedExtensions.map((provider) => (
                   <button
                     key={provider}
-                    className="w-full px-4 py-2.5 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-200 rounded-md border border-zinc-700/50 flex items-center justify-between transition-all text-xs font-medium focus:outline-none focus:ring-1 focus:ring-zinc-500/30"
+                    className="w-full px-4 py-2.5 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-200 rounded-md border border-zinc-700/50 flex items-center justify-between transition-all text-xs font-medium focus:outline-none focus-visible:ring-2 focus:ring-zinc-500/30"
                     onClick={() => {
-                      connect(provider)
+                      setError(null)
+                      connect(provider, undefined, (err) =>
+                        setError(err instanceof Error ? err.message : "The wallet refused to connect.")
+                      )
                       setIsModalOpen(false)
                     }}
                   >
@@ -71,7 +84,7 @@ export default function WalletConnect() {
               </div>
 
               <button
-                className="w-full px-4 py-2 bg-zinc-800/60 text-zinc-300 rounded-md hover:bg-zinc-700 transition-all text-xs border border-zinc-700/40 font-medium focus:outline-none focus:ring-1 focus:ring-zinc-500/30"
+                className="w-full px-4 py-2 bg-zinc-800/60 text-zinc-300 rounded-md hover:bg-zinc-700 transition-all text-xs border border-zinc-700/40 font-medium focus:outline-none focus-visible:ring-2 focus:ring-zinc-500/30"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel

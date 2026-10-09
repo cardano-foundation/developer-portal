@@ -50,7 +50,7 @@ Sign up for the Cardano developer talent pool to hear about hackathons, jobs, an
 
 Sign up once and we'll reach out when relevant hackathons, jobs, or grants come up.
 
-[**Join the Talent Pool →**](/talent)
+[**Join the Talent Pool**](/talent)
 
 :::
 

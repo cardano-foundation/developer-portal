@@ -34,12 +34,6 @@ There's a near-identical 0.96" OLED that uses the **SSD1306** controller. Librar
 - [U8glib library](https://github.com/olikraus/u8glib) - alternate driver supporting SH1106 and many others.
 - [Instructables - SH1106 1.3" OLED tutorial](https://www.instructables.com/How-to-Interface-With-OLED-13-Inch-LCD128x64/)
 
-## Where to buy
-
-- [AliExpress](https://s.click.aliexpress.com/e/_c4sQlYaj)
-- [Amazon US](https://amzn.to/4pte57L)
-- [Amazon Germany](https://amzn.to/4qfU7hY)
-
 ---
 
 *Adapted from the [CardanoThings](https://cardanothings.io/hardware/oled-display-sh1106-13inch-i2c) project, originally produced under [Project Catalyst Fund 11](https://projectcatalyst.io/funds/11). Source: [github.com/CardanoThings](https://github.com/CardanoThings).*

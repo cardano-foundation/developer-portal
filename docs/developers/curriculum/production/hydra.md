@@ -101,13 +101,13 @@ This walkthrough follows the commit-phase flow of hydra-node 1.x. On Hydra 2.x t
 
 ### Prerequisites
 
-- A synced `cardano-node` with `cardano-cli` (preprod), and the `hydra-node` binary ([install](https://hydra.family/head-protocol/docs/getting-started/installation)).
+- A synced `cardano-node` with `cardano-cli` (preprod), and the `hydra-node` binary ([install](https://hydra.family/head-protocol/docs/installation)).
 - Test ADA per participant ([faucet](/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada)), for L1 node fees and funds to commit.
 - Each participant generates **Cardano keys** (L1 identity/fees) and **Hydra keys** (snapshot signing), then starts a `hydra-node` peered with the others. Inside the Head, protocol parameters set all fee fields to zero.
 
 ### Connect, initialize, commit
 
-<Tabs groupId="sdk">
+<Tabs>
 <TabItem value="mesh" label="Mesh" default>
 
 ```ts
@@ -134,7 +134,7 @@ await wallet.submitTx(signedCommit);                              // -> "HeadIsO
 
 Once the Head is open, build with `MeshTxBuilder` using `isHydra: true` and the Head's (zero-fee) protocol parameters. `submitTx` goes to the Head, not Layer 1:
 
-<Tabs groupId="sdk">
+<Tabs>
 <TabItem value="mesh" label="Mesh" default>
 
 ```ts
@@ -162,7 +162,7 @@ Submit as many transactions as you need; each confirmed one updates the shared s
 
 ### Close and fanout
 
-<Tabs groupId="sdk">
+<Tabs>
 <TabItem value="mesh" label="Mesh" default>
 
 ```ts
@@ -178,5 +178,10 @@ await hydraProvider.fanout();  // distributes final balances back to L1 -> "Head
 
 ## Next steps
 
-- [Going to production](/docs/developers/curriculum/production/going-to-production): reliability and security before mainnet
 - [Hydra protocol docs](https://hydra.family/head-protocol/) and [MeshJS Hydra](https://meshjs.dev/hydra): the full protocol and SDK reference
+
+Hydra closes the curriculum. From here the paths lead outward:
+
+- [Operate a Stake Pool](/docs/operators/): running Cardano infrastructure as a discipline of its own
+- [Templates](/templates): start your next project from a runnable starter
+- [Developer community](/docs/community/cardano-developer-community): where Cardano developers ask, answer, and ship

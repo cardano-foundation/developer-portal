@@ -8,7 +8,7 @@ description: How Cardano's multi-asset ledger handles native tokens and NFTs as 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A Cardano native token is a custom asset the ledger tracks directly, alongside ADA, without a smart contract for basic transfers. Where Ethereum needs an ERC-20 or ERC-721 contract per token, Cardano treats your token the same way it treats ADA: it lives in UTXOs and moves through ordinary transactions.
+You can build and submit transactions; this module puts assets of your own inside them. A Cardano native token is a custom asset the ledger tracks directly, alongside ADA, without a smart contract for basic transfers. Where Ethereum needs an ERC-20 or ERC-721 contract per token, Cardano treats your token the same way it treats ADA: it lives in UTXOs and moves through ordinary transactions.
 
 :::note Quick summary
 Tokens are "native" because the protocol tracks them with the same UTXO machinery that tracks ADA. That means lower fees, no contract-execution risk on transfers, atomic multi-asset transactions, and the same ledger-level guarantees ADA has.
@@ -68,10 +68,12 @@ ADA-only output:            ~1.0 ADA
 many tokens in one output:  ~3-5+ ADA
 ```
 
+These are floors, not the amounts you should send. The exact figure comes from `coinsPerUtxoByte` (a governance-controlled protocol parameter) multiplied by the serialized output size, so it shifts with the output's contents and can change by governance action. Production code usually sends a round 2 ADA with a token rather than computing the floor: it clears every case above, the surplus stays spendable by the recipient, and it removes a class of failed transactions. The examples on this page do exactly that.
+
 Practical consequences:
 
 - **You cannot send "just a token."** Some ADA always travels with it.
-- **Airdrop cost**: 10,000 recipients at ~1.2 ADA each is ~12,000 ADA locked in min-UTXO (held by recipients).
+- **Airdrop cost**: budget what you will actually send, not the floor. 10,000 recipients at 2 ADA each is ~20,000 ADA locked in min-UTXO (held by recipients); at the ~1.2 floor it would be ~12,000.
 - **Consolidation**: combining many small token UTXOs into one frees the excess ADA.
 
 :::tip
@@ -151,8 +153,18 @@ Native tokens move through: policy design, then policy creation (the script hash
 - A single UTXO holds ADA plus any number of tokens (the token bundle).
 - Every token-bearing UTXO carries min-ADA; it scales with size and shapes airdrop and consolidation design.
 
-## Next steps
+## In this module
 
 - [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies): the rules that control creation and burning
-- [Mint a fungible token](/docs/developers/curriculum/native-tokens/mint-fungible) and [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft)
-- [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry): CIP-25, CIP-68, CIP-26, royalties
+- [Mint a fungible token](/docs/developers/curriculum/native-tokens/mint-fungible): your first token, minted end to end
+- [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft): one-shot policies and NFT metadata
+- [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry): how metadata works across CIP-25, CIP-68, and CIP-26
+- [Register an entry](/docs/developers/curriculum/native-tokens/token-registry/register-an-entry): submit your token to the Cardano Token Registry
+- [Token metadata server](/docs/developers/curriculum/native-tokens/token-registry/metadata-server): query registry metadata from your application
+- [Authenticated products](/docs/developers/curriculum/native-tokens/authenticated-products): a physical-goods case study with NFC chips
+- [Programmable tokens](/docs/developers/curriculum/native-tokens/programmable-tokens): where token rules move from the mint to every transfer
+
+## Next steps
+
+- Start with [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies); the mint pages build directly on it
+- The module ends by handing over to [Staking & Governance](/docs/developers/curriculum/staking-governance/overview)

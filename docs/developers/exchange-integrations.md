@@ -26,7 +26,7 @@ Cardano uses the **Extended UTXO (eUTXO)** model: value lives in discrete unspen
 
 :::note
 Rosetta specification does not include transaction signing capabilities. This is done  in a separate offline service for best security practices using any signing libraries available. See example using [CSL](https://github.com/Emurgo/cardano-serialization-lib/blob/master/doc/getting-started/singing_rosetta_tx.ts).  
-For creating addresses, [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) provides mnemonic (backup phrase) creation, and conversion of a mnemonic to seed for wallet restoration, and address derivation functionalities. This can also be achieved using other libraries like [cardano-serialization-lib](https://github.com/Emurgo/cardano-serialization-lib)
+For creating addresses, [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) provides mnemonic (backup phrase) creation, and conversion of a mnemonic to seed for wallet restoration, and address derivation functionalities. This can also be achieved with any of the [SDKs and serialization libraries](/tools/?tags=sdk)
 :::
 
 - [**cardano-graphql**](https://github.com/cardano-foundation/cardano-graphql): GraphQL API for querying blockchain data.
@@ -82,7 +82,7 @@ Cardano offers multiple tools for transaction creation and submission, each desi
 | [`cardano-submit-api`](https://github.com/IntersectMBO/cardano-node/tree/master/cardano-submit-api) | ❌ | ❌ | ✅ | Lightweight API for submitting signed transactions to a Cardano node. |
 
 :::tip
-The best practice for exchanges is to use `cardano-rosetta` for transaction construction and submission, and sign the transaction using signing libraries of their choice such as `cardano-serialization-lib`.
+The best practice for exchanges is to use `cardano-rosetta` for transaction construction and submission, and sign the transaction using a signing library of their choice ([SDKs and serialization libraries](/tools/?tags=sdk)).
 :::
 
 ### Fee Calculation
@@ -269,7 +269,7 @@ Exchange debited:
 
 1. **Dynamic Calculation (Recommended)**
 
-- Use libraries like [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) for dynamic calculation
+- Use an [SDK](/tools/?tags=sdk) for dynamic calculation
 
 2. **Fixed Allocation (Simpler but less efficient)**
 

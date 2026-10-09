@@ -175,7 +175,7 @@ Metadata is public: any provider can read it back. With Blockfrost, fetch every 
 
 ## Batching and airdrops
 
-A single transaction has a **max size (~16 KB)**. Each output adds ~60-100 bytes, so you fit roughly **20-30 ADA-only recipients** per transaction (fewer if outputs carry native tokens). To pay hundreds of recipients, chunk the list into transaction-sized batches:
+A single transaction has a maximum size (`maxTxSize`, currently ~16 KB, and [governance-controlled](/docs/developers/curriculum/staking-governance/governance) like every protocol parameter). Each output adds ~60-100 bytes, so you fit roughly **20-30 ADA-only recipients** per transaction (fewer if outputs carry native tokens). To pay hundreds of recipients, chunk the list into transaction-sized batches:
 
 ```typescript
 function chunk<T>(array: T[], size: number): T[][] {
@@ -236,7 +236,10 @@ For **native-token** airdrops, give each output enough ADA for the min-UTXO (tok
 
 ## Chaining transactions
 
-Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. For the concept beneath this, why an unconfirmed output is safe to spend and where chaining fits among Cardano's scaling options, see [transaction chaining](/docs/developers/curriculum/production/transaction-chaining). With Evolution:
+Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. For the concept beneath this, why an unconfirmed output is safe to spend and where chaining fits among Cardano's scaling options, see [transaction chaining](/docs/developers/curriculum/production/transaction-chaining).
+
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Address, Assets } from "@evolution-sdk/evolution"
@@ -259,6 +262,9 @@ const tx2 = await client
 await (await tx1.sign()).submit()
 await (await tx2.sign()).submit()
 ```
+
+</TabItem>
+</Tabs>
 
 :::warning Submit in order
 Each chained transaction spends an output of the previous one. If tx2 reaches the node before tx1, the node sees inputs that don't exist and rejects it. A sequential loop guarantees ordering. The `available` outputs are **not on-chain yet**. Don't pass them to a provider query.
@@ -339,13 +345,13 @@ SDKs solve this by **deferring redeemer construction**: you provide a redeemer *
 | **Self** | called once per script UTXO, with its own index | a spend validator that looks up its own input |
 | **Static** | no indices, data used directly | a redeemer that doesn't depend on order |
 
-This is what powers the [withdraw-zero coordinator pattern](/docs/developers/curriculum/staking-governance/staking#script-controlled-stake-and-the-coordinator-pattern): the [Stake Validator design pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) runs business logic once for the whole transaction. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) for spending from scripts and [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for the on-chain side.
+This is what powers the withdraw-zero coordinator: the [Stake Validator design pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) runs business logic once for the whole transaction. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) for spending from scripts and [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for the on-chain side.
 
 ## Offline builds (air-gapped)
 
 SDKs build a transaction against a live provider. `cardano-cli` can also build one **fully offline**, where you calculate the fee and balance the transaction yourself, for air-gapped signing and reproducible builds. Of its three build commands, `transaction build` is the everyday node-connected one, `build-raw` is the offline one, and `build-estimate` sizes a fee offline without balancing.
 
-<Tabs groupId="sdk">
+<Tabs>
 <TabItem value="cardano-cli" label="cardano-cli" default>
 
 ```bash
@@ -381,7 +387,7 @@ cardano-cli latest transaction build-raw \
 
 To spend UTXOs owned by *different* keys in one transaction (combining two wallets, or a multisig), list each `--tx-in`, set the witness count to the number of signers, and pass every signing key at sign time.
 
-<Tabs groupId="sdk">
+<Tabs>
 <TabItem value="cardano-cli" label="cardano-cli" default>
 
 ```bash
@@ -404,7 +410,7 @@ Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. 
 
 ## Headless dApps
 
-So far you have built transactions inside your application with an SDK. But that transaction-building logic is where a Cardano dApp's business logic actually sits: a validator only checks that a finished transaction is valid, it holds no logic of its own, so the real work is turning external events (a button in a UI, an API call, an on-chain condition, a scheduled job) into the transactions that represent them. That logic does not have to live in your frontend. It can run in the browser, in a cloud backend, or in an unattended process like a batcher. Left unmanaged, every app ends up wiring its own way to read the chain, build transactions, and submit them, so no two are alike and none can reuse another's work.
+Everything above builds transactions inside your application with an SDK. But that transaction-building logic is where a Cardano dApp's business logic actually sits: a validator only checks that a finished transaction is valid, it holds no logic of its own, so the real work is turning external events (a button in a UI, an API call, an on-chain condition, a scheduled job) into the transactions that represent them. That logic does not have to live in your frontend. It can run in the browser, in a cloud backend, or in an unattended process like a batcher. Left unmanaged, every app ends up wiring its own way to read the chain, build transactions, and submit them, so no two are alike and none can reuse another's work.
 
 A *headless dApp* pushes all of that behind one well-defined interface: the business logic becomes a standalone service, and every input and output flows through that interface instead of being baked into a particular UI. It is hexagonal architecture (or clean architecture) applied to Cardano, separating the core logic from the adapters that connect it to the outside world. The payoff is reuse: one transaction-building service can back several frontends, other applications can compose it programmatically, and nobody re-implements chain queries, transaction building, and submission from scratch.
 
@@ -412,7 +418,7 @@ Making this concrete needs standard interfaces for the two things such a service
 
 ## Declarative transactions
 
-Everything on this page states *how* to assemble a transaction: pick inputs, add outputs, attach metadata, compute the change. An emerging alternative flips the model: you describe *what* must be true of the transaction, and a resolver works out the rest at runtime. The most developed take on this for Cardano is [Tx3](https://docs.txpipe.io/tx3), a small declarative language that treats a transaction as a reusable, parameterized template:
+Everything on this page states *how* to assemble a transaction: pick inputs, add outputs, attach metadata, compute the change. An emerging alternative flips the model: you describe *what* must be true of the transaction, and a resolver works out the rest at runtime. A concrete take on this for Cardano is [Tx3](https://docs.txpipe.io/tx3), a small declarative language that treats a transaction as a reusable, parameterized template:
 
 ```text title="buy_product.tx3"
 party Buyer;

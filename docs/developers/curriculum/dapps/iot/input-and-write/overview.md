@@ -19,8 +19,7 @@ This workshop is about *writing* to the chain. You will read temperature and hum
 ## What you'll need
 
 - Everything from Workshops 01 and 02.
-- AHT10 temperature and humidity sensor (or compatible I2C sensor).
-- Optional: 1.3" SH1106 OLED for on-device display.
+- The temperature and humidity sensor from the [Hardware reference](/docs/developers/curriculum/dapps/iot/hardware/), and optionally the OLED for on-device display.
 - Node.js 14+ and a Cardano testnet wallet with some tADA for transaction fees.
 
 

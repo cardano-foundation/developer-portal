@@ -19,7 +19,7 @@ The example uses **mainnet data** (the original CardanoThings wallet). API endpo
 
 ## What you'll need
 
-- Cheap Yellow Display (CYD) or compatible ESP32 + TFT setup from Workshop 02.
+- The board with a screen from the [Hardware reference](/docs/developers/curriculum/dapps/iot/hardware/), as set up in Workshop 02.
 - A free [Cexplorer.io](https://cexplorer.io/) API key.
 - Libraries already installed from earlier workshops: TFT_eSPI, ArduinoJson, WiFi, HTTPClient.
 

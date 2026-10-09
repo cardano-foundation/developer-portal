@@ -1,0 +1,146 @@
+:root {
+  color-scheme: light dark;
+  --ink: #14161f;
+  --muted: #6a6f7e;
+  --line: #d9d7cf;
+  --bg: #faf8f3;
+  --error: #b3261e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8e6df;
+    --muted: #9aa0ad;
+    --line: #2a2d3a;
+    --bg: #10131f;
+    --error: #ff8a80;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+main {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4rem 1rem 6rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.wallets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.75rem 0;
+}
+
+.wallets button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.wallets button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.steps {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.live {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.pulse {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.settledLine {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+}
+
+.settledLine a {
+  color: inherit;
+}
+
+.unlocked pre {
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: rgb(127 127 127 / 0.08);
+  font-size: 0.82rem;
+  overflow-x: auto;
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}

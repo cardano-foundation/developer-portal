@@ -26,15 +26,9 @@ I2C address: `0x38` (fixed).
 
 ## Resources
 
-- [AHT10 datasheet](https://www.aosong.com/userfiles/files/media/AHT10%20%E8%8B%B1%E6%96%87%E7%89%88%E6%9C%AC%20Datasheet%20AHT10.pdf)
+- [AHT10 datasheet](https://datasheet4u.com/datasheets/ASAIR/AHT10/1545327)
 - [Adafruit AHTX0 library](https://github.com/adafruit/Adafruit_AHTX0) - supports AHT10 and AHT20.
 - [Adafruit AHT20 tutorial](https://learn.adafruit.com/adafruit-aht20/arduino) - same library, similar API.
-
-## Where to buy
-
-- [AliExpress](https://s.click.aliexpress.com/e/_c32qqi9D)
-- [Amazon US](https://amzn.to/4jDI9fF)
-- [Amazon Germany](https://amzn.to/3Ywrml8)
 
 ---
 

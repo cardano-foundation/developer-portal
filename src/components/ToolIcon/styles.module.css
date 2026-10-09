@@ -1,0 +1,93 @@
+/* Radius lives on the size classes; a base value here would tie them on
+   specificity and win or lose on minified order. */
+.toolIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+}
+
+html[data-theme="dark"] .toolIcon {
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
+}
+
+.toolIconTile {
+  width: 62px;
+  height: 62px;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.toolIconPick {
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.toolIconRow {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.toolIconDetail {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--site-color-navy);
+  border: 1px solid transparent;
+  color: var(--site-color-cream);
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.toolIconRow .fallback {
+  font-size: 1.05rem;
+}
+
+.toolIconPick .fallback {
+  font-size: 2.6rem;
+}
+
+.toolIconDetail .fallback {
+  font-size: 3rem;
+}
+
+/* The navy tile blends into the dark page without an edge */
+html[data-theme="dark"] .fallback {
+  border-color: var(--site-color-card-border);
+}
+
+@media (max-width: 600px) {
+  .toolIconDetail {
+    width: 88px;
+    height: 88px;
+  }
+
+  .toolIconDetail .fallback {
+    font-size: 2.2rem;
+  }
+}

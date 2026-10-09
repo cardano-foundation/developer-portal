@@ -1,0 +1,23 @@
+import React from "react";
+import clsx from "clsx";
+
+import styles from "./browser.module.css";
+
+// A labeled row of taxonomy chips on a card (e.g. "Framework: Vite + React").
+// `ids` are resolved to their display label via `taxonomy`; renders nothing for
+// an empty list. Shared by the app-starter and contracts cards.
+export default function ChipRow({ label, ids = [], taxonomy }) {
+  if (!ids.length) return null;
+  return (
+    <div className={styles.chipGroup}>
+      <span className={clsx("monoKicker", styles.chipLabel)}>{label}</span>
+      <div className={styles.chips}>
+        {ids.map((id) => (
+          <span key={id} className="badge badge--secondary">
+            {taxonomy[id]?.label ?? id}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}

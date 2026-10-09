@@ -5,7 +5,7 @@
 // Contributors: edit ./builder-tools/tools.js to add your tool.
 // ============================================================================
 
-import { sortBy } from "@site/src/utils/jsUtils";
+import { sortBy } from "@site/src/utils/arrays";
 import { BuilderTools } from "./builder-tools/tools";
 import {
   Categories,

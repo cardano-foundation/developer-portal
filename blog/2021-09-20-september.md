@@ -4,7 +4,6 @@ title: "NOWPayments Interview"
 authors: [cf]
 tags: [payment, interview]
 description: "September Spotlight Interview"
-image: https://developers.cardano.org/img/og/blog/nowpayments.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';

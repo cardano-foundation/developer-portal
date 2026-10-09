@@ -1,27 +1,35 @@
 import React, { useMemo, useState } from "react";
 import Head from "@docusaurus/Head";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
-import TemplatesTabs from "@site/src/components/TemplatesTabs";
-import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
-import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
+import ExternalArrow from "@site/src/components/ExternalArrow";
+import TemplatesHero from "@site/src/components/TemplatesHero";
+import FilterSection from "@site/src/components/browse/FilterSection";
+import ChipRow from "@site/src/components/browse/ChipRow";
+import useFacetSelection from "@site/src/components/browse/useFacetSelection";
 import {
-  SortedTemplateShowcases,
+  SortedTemplates,
   Frameworks,
   Sdks,
   Wallets,
   FrameworkList,
   SdkList,
   WalletList,
-} from "@site/src/data/templates/showcase";
+} from "@site/src/data/templates/catalog";
 
-import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
+import styles from "@site/src/components/browse/browser.module.css";
+import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 const TITLE = "Cardano dApp Templates";
 const DESCRIPTION = "Runnable dApp starters you can scaffold in one command";
+// The hero carries the fuller line; DESCRIPTION stays the terse meta version.
+const HERO_DESCRIPTION =
+  "Scaffold a wallet-connected dApp and start building.";
 
 function filterTemplates(templates, selected, search) {
   const term = search.trim().toLowerCase();
@@ -54,28 +62,14 @@ function TemplateCard({ template }) {
 
 export default function Templates() {
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState({
-    frameworks: [],
-    sdks: [],
-    wallets: [],
-  });
-
-  const toggle = (group) => (id) =>
-    setSelected((prev) => {
-      const has = prev[group].includes(id);
-      return {
-        ...prev,
-        [group]: has ? prev[group].filter((x) => x !== id) : [...prev[group], id],
-      };
-    });
-
-  const activeCount =
-    selected.frameworks.length + selected.sdks.length + selected.wallets.length;
-
-  const clearAll = () => setSelected({ frameworks: [], sdks: [], wallets: [] });
+  const { selected, toggle, activeCount, clearAll } = useFacetSelection([
+    "frameworks",
+    "sdks",
+    "wallets",
+  ]);
 
   const filtered = useMemo(
-    () => filterTemplates(SortedTemplateShowcases, selected, search),
+    () => filterTemplates(SortedTemplates, selected, search),
     [selected, search]
   );
 
@@ -85,26 +79,18 @@ export default function Templates() {
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESCRIPTION} />
       </Head>
+      <PageMetadata image={ogCards.templates} />
+      <TemplatesHero
+        title={TITLE}
+        description={HERO_DESCRIPTION}
+        meta={
+          <span className={heroStyles.metaText}>
+            {SortedTemplates.length}{" "}
+            {SortedTemplates.length === 1 ? "template" : "templates"}
+          </span>
+        }
+      />
       <main className={clsx("container", styles.page)}>
-        <header className={styles.header}>
-          <div className={styles.headerIntro}>
-            <div className={styles.headerText}>
-              <h1 className={styles.pageTitle}>{TITLE}</h1>
-              <p className={styles.pageSubtitle}>
-                Start from a working dApp. Scaffold a wallet-connected starter and
-                ship from there.
-              </p>
-            </div>
-            <img
-              className={styles.headerArt}
-              src={useBaseUrl("img/home/card-get-started.svg")}
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
-          <TemplatesTabs />
-        </header>
-
         <div className={styles.layout}>
           <aside className={styles.sidebar} aria-label="Filter templates">
             <div className={styles.sidebarHeader}>
@@ -127,13 +113,12 @@ export default function Templates() {
               aria-label="Search templates"
             />
             <a
-              className={styles.contributeButton}
+              className={clsx("button button--primary button--block", styles.contributeButton)}
               href="https://github.com/cardano-foundation/developer-portal/blob/staging/examples/templates/README.md"
-              target="_blank"
-              rel="noopener noreferrer"
+              {...EXTERNAL_LINK_PROPS}
             >
-              <span aria-hidden="true">+</span>
               Contribute a template
+              <ExternalArrow />
             </a>
             <FilterSection
               heading="Frameworks"
@@ -159,12 +144,17 @@ export default function Templates() {
           </aside>
 
           <section className={styles.results}>
-            <div className={styles.resultsHeader}>
-              <span className={styles.resultsCount}>
-                {filtered.length}{" "}
-                {filtered.length === 1 ? "template" : "templates"}
-              </span>
-            </div>
+            {/* The band already carries the total, so this only earns its
+                place once it differs from it. Same rule as the contracts
+                page. */}
+            {(activeCount > 0 || search.trim().length > 0) && (
+              <div className={styles.resultsHeader}>
+                <span className={styles.resultsCount}>
+                  {filtered.length}{" "}
+                  {filtered.length === 1 ? "template" : "templates"}
+                </span>
+              </div>
+            )}
             {filtered.length === 0 ? (
               <div className={styles.empty}>
                 <p>No templates match these filters.</p>
@@ -172,7 +162,7 @@ export default function Templates() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="button button--secondary"
+                    className="button button--outline button--primary"
                   >
                     Clear filters
                   </button>

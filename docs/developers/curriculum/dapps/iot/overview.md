@@ -46,6 +46,12 @@ The material was originally produced as the **CardanoThings** course (Project Ca
 4. [Workshop 04: Cardano Ticker](./cardano-ticker/overview.md) - multi-screen ticker for wallet, tokens, NFTs.
 5. [Workshop 05: QR-Code Payments](./qr-code-payments/overview.md) - CIP-13 QR codes and on-chain payment confirmation.
 
+## Alongside the workshops
+
+- [Introductions](./introductions/overview.md) - Arduino, ESP32 and D1 microcontrollers, and REST APIs, if any of those are new.
+- [Hardware](./hardware/overview.md) - the boards, displays, sensors, and actuators the workshops use, with specs and where to buy.
+- [Troubleshooting](./troubleshooting.md) - the upload, driver, and serial-monitor problems that stop a workshop.
+
 ## Community projects
 
 Builds from the community that extend or remix what's covered in this section:

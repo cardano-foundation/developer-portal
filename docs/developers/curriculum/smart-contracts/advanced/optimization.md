@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 Optimizing code can be counter-intuitive, especially in the context of smart contracts. The virtual machine and its associated cost models can be sometimes confusing and move in ways that one fails to anticipate.
 
-Hence, before doing any optimisation work it is primordial to setup some baseline benchmarks. Those benchmarks shall cover simple and complex scenarios alike, to easily identify the impact of changes. Sometimes, a change may introduce a one-time cost that slightly increases a simple case while making a more complex scenario significantly better.
+Hence, before doing any optimisation work it is essential to set up some baseline benchmarks. Those benchmarks shall cover simple and complex scenarios alike, to easily identify the impact of changes. Sometimes, a change may introduce a one-time cost that slightly increases a simple case while making a more complex scenario significantly better.
 
 ### Writing baseline benchmarks
 
@@ -55,7 +55,7 @@ test baseline() {
 
 ### Using `Fuzzer`
 
-Fuzzers constitutes a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/fuzz/cardano/fuzz.html). For example:
+Fuzzers constitute a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/fuzz/cardano/fuzz.html). For example:
 
 ```aiken
 use aiken/fuzz
@@ -102,11 +102,11 @@ const transaction = Transaction {
 
 ### The standard library: good or bad?
 
-Let's cover one last point before we dive in: the standard library. Should you use it? Most certainly yes. Will it harm the performances of your program? To some extend, yes. The standard library is **reasonably well optimised**, yet it is tuned for **correctness** and **ease of use**. Its main goal is to get you started and to be convenient.
+Let's cover one last point before we dive in: the standard library. Should you use it? Most certainly yes. Will it harm the performance of your program? To some extent, yes. The standard library is **reasonably well optimised**, yet it is tuned for **correctness** and **ease of use**. Its main goal is to get you started and to be convenient.
 
 Yet, it is easy to replace surgically where needed. Most functions in the standard library are standalone, easily inlinable and can be specialised. Thus it is recommended to always start with the standard library in order to write the most _obviously correct_ code and only then, think about where it could be optimised.
 
-Many optimisations are actually domain-specific and requires intrinsic knowledge to be really effective. While still designing smart contracts, optimisations about how the code is written shouldn't be the priority (but rather, be only an architectural concern). Once your on-chain code is mostly fleshed out, it's good to take a step back and reflect on your usage of the standard lib in critical parts of your program: maybe you don't need all the genericity offere by this particular function, or maybe you can use a simpler, more direct recursive implementation of that other function.
+Many optimisations are actually domain-specific and require intrinsic knowledge to be really effective. While still designing smart contracts, optimisations about how the code is written shouldn't be the priority (but rather, be only an architectural concern). Once your on-chain code is mostly fleshed out, it's good to take a step back and reflect on your usage of the standard lib in critical parts of your program: maybe you don't need all the genericity offered by this particular function, or maybe you can use a simpler, more direct recursive implementation of that other function.
 
 There are few functions from the standard library that you particularly want to look for and avoid in validators. Those functions are usually only good for testing, but not so much for critical paths. These red flags are:
 
@@ -116,7 +116,9 @@ There are few functions from the standard library that you particularly want to 
 
 You almost certainly never want to use any of those in validators.
 
-## Optimization techniques
+## Decide early and cheaply
+
+The cheapest work is work that never runs. These three reorder a validator so the common case exits as soon as it can, and the expensive case is the only one that pays.
 
 ### Fail fast
 
@@ -144,6 +146,105 @@ On-chain code isn't about error handling. If something is wrong: fail. `Option` 
   </TabItem>
 </Tabs>
 
+### Put cheap and likely checks first
+
+When chaining conditions with `and` or `or`, order matters. Aiken short-circuits boolean operators, which means that the first satisfied branch of an `or` avoids evaluating the others, and the first failing branch of an `and` stops the rest.
+
+So, when possible, place first the checks that are both:
+
+1. cheaper to evaluate, and
+2. more likely to determine the result (i.e. more frequently `True`)
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}]}>
+<TabItem value="dont">
+
+```aiken
+or {
+  input.output.value |> assets.has_nft_strict(my_nft),
+  input.output.address.payment_credential != my_script_credential,
+}
+```
+</TabItem>
+<TabItem value="do">
+
+```aiken
+or {
+  input.output.address.payment_credential != my_script_credential,
+  input.output.value |> assets.has_nft_strict(my_nft),
+}
+```
+</TabItem>
+</Tabs>
+
+In this example, comparing credentials is a direct and predictable check. Inspecting the value to determine whether a specific NFT is present is more involved. Since the first condition may already be sufficient to decide the whole expression, putting it first gives the runtime more opportunities to stop early.
+
+### Defer distinctions until they matter
+
+Another common source of unnecessary work comes from splitting terminal cases too early. When several branches eventually collapse into a smaller number of "real" outcomes, it is often better to test the broader condition first and refine only when necessary.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
+<TabItem value="dont">
+
+**mem=85.04K** · **cpu=29.49M**
+
+```aiken
+fn insert_in_order(self: List<Int>, elem: Int) -> List<Int> {
+  when self is {
+    [] -> [elem]
+    [head, ..tail] ->
+      if head == elem {
+        self
+      } else if elem < head {
+        [elem, ..self]
+      } else {
+        [head, ..insert_in_order(tail, elem)]
+      }
+  }
+}
+```
+</TabItem>
+<TabItem value="do">
+
+**mem=72.91K** · **cpu=26.11M**
+
+```aiken
+fn insert_in_order(self: List<Int>, elem: Int) -> List<Int> {
+  when self is {
+    [] -> [elem]
+    [head, ..tail] ->
+      if elem <= head {
+        if head == elem {
+          self
+        } else {
+          [elem, ..self]
+        }
+      } else {
+        [head, ..insert_in_order(tail, elem)]
+      }
+  }
+}
+```
+</TabItem>
+<TabItem value="bench">
+
+```aiken
+test baseline() {
+  and {
+    insert_in_order([], 1) == [1],
+    insert_in_order([1, 2, 3, 4, 5, 6, 7], 8) == [1, 2, 3, 4, 5, 6, 7, 8],
+    insert_in_order([1, 2, 3, 5, 6], 4) == [1, 2, 3, 4, 5, 6],
+    insert_in_order([1, 2, 3, 4, 5], 3) == [1, 2, 3, 4, 5],
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+This is a small transformation, but it matters in tight recursive loops and in code that executes frequently over large structures.
+
+## Choose cheaper representations
+
+Every value a validator builds or compares costs execution units proportional to its shape. Picking a leaner representation is often a larger saving than any change to the logic around it.
 
 ### Use simple(r) structures
 
@@ -154,7 +255,7 @@ Yet, constructing large records to carry context across multiple transaction ele
 <Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
   <TabItem value="dont">
 
-  **mem=5.81M** · **cpu=19.53K**
+  **mem=19.53K** · **cpu=5.81M**
 
   ```aiken
   type MultisigContext {
@@ -175,7 +276,7 @@ Yet, constructing large records to carry context across multiple transaction ele
 
   <TabItem value="do">
 
-  **mem=3.71M** · **cpu=14.12K**
+  **mem=14.12K** · **cpu=3.71M**
 
   ```aiken
   // NOTE: The implementation is irrelevant.
@@ -213,16 +314,177 @@ Yet, constructing large records to carry context across multiple transaction ele
 </Tabs>
 
 
-In particular, if you can avoid it, do not construct `Value` and prefer `Dict` or `Pairs` over `Value` whenever possible.
+In particular, if you can avoid it, do not construct `Assets` and prefer `Dict` or `Pairs` over `Assets` whenever possible.
 
-`Value` preserves two important invariants: it does not contain assets with null quantities or policies with empty assets. If you do not rely on these invariants, you can safely go down to `Dict`.
+`Assets` preserves two important invariants: it does not contain assets with null quantities or policies with empty assets. If you do not rely on these invariants, you can safely go down to `Dict`.
 
 `Dict` preserves two important invariants: their keys are in ascending orders and contain no duplicate. If you do not rely on these invariants, you can safely go down to `Pairs`
 
+### Prefer `Data` equality over manual structural comparisons
 
-### Use fast recursion for infaillible searches
+Aiken programs operate over encoded `Data`, and comparing `Data` values directly is often surprisingly efficient. If two values are expected to match structurally, a raw equality check is almost always cheaper than reconstructing that logic manually.
 
-This is a more specific version of the fail fast stategy that applies to _'infaillible searches'_. This happens when looking for specific elements within a collection without any possible error recovery: if not present, then it's an error and the entire validator must fail.
+This can be particularly helpful when working with datums that represent values or state snapshots.
+
+The standard library already exposes useful helpers for this. For instance, [`assets.match`](https://aiken-lang.github.io/stdlib/cardano/assets.html#match) can compare a runtime `Assets` against a `Data` representation while letting you parameterize how lovelace should be checked:
+
+```aiken
+pub fn match(
+  left: Assets,
+  right: Data,
+  assert_lovelace: fn(Lovelace, Lovelace) -> Bool,
+) -> Bool
+```
+
+The more general lesson is that if most of a structure should remain unchanged, it is often better to compare the unchanged parts directly and isolate only the parts that are expected to vary.
+
+For instance, a powerful optimisation pattern is to quickly split a structure into:
+
+* the part before the variable region,
+* the variable region itself,
+* the part after the variable region.
+
+You can then compare the stable regions directly through data equality and only inspect the changing part in detail.
+
+```aiken
+let input_tokens_before, input_tokens_at, input_tokens_after <- split_at(input.value, policy_id)
+let output_tokens_before, output_tokens_at, output_tokens_after <- split_at(output.value, policy_id)
+```
+
+Then:
+
+```aiken
+expect and {
+  (input_tokens_before == output_tokens_before)?,
+  (input_tokens_after == output_tokens_after)?,
+  (input_tokens_at != output_tokens_at)?,
+}
+```
+
+This is often much cheaper than re-computing full semantic comparisons over complete `Assets` structures.
+
+### Use backpassing when returning more than one value
+
+Returning large tuples or records is convenient, but it also means constructing intermediary values only to immediately destructure them again. In hot paths, that overhead can become noticeable.
+
+Backpassing lets you thread the "continuation" directly through the function instead.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
+<TabItem value="dont">
+
+**mem=63.84K** · **cpu=19.49M**
+
+```aiken
+// Construct and de-construct a 2-tuple on each pass
+pub fn count_and_sum(self: List<Int>) -> (Int, Int) {
+  when self is {
+    [] -> (0, 0)
+    [head, ..tail] -> {
+      let (count, sum) = count_and_sum(tail)
+      (count + 1, sum + head)
+    }
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="do">
+
+**mem=47.26K** · **cpu=12.69M**
+
+```aiken
+// Leverage back-passing to avoid needless tuple constructions
+pub fn count_and_sum_ret(self: List<Int>, return: fn(Int, Int) -> result) -> result {
+  when self is {
+    [] -> return(0, 0)
+    [head, ..tail] -> {
+      let count, sum <- count_and_sum_ret(tail)
+      return(count + 1, sum + head)
+    }
+  }
+}
+```
+</TabItem>
+<TabItem value="bench">
+
+```aiken
+test baseline_tuple() {
+  expect (0, 0) = count_and_sum([])
+  expect (3, 3) = count_and_sum([1, 1, 1])
+  expect (5, 15) = count_and_sum([1, 2, 3, 4, 5])
+  Void
+}
+
+test baseline_backpassing() {
+  expect 0, 0 <- count_and_sum_ret([])
+  expect 3, 3 <- count_and_sum_ret([1, 1, 1])
+  expect 5, 15 <- count_and_sum_ret([1, 2, 3, 4, 5])
+  Void
+}
+```
+</TabItem>
+</Tabs>
+
+This style becomes even more useful in recursive code and stateful folds. It is also the reason helpers such as `list.foldl2` and `list.foldr2` are so valuable: they allow you to accumulate multiple pieces of state without repeatedly packaging and unpackaging them.
+
+### If backpassing is not an option, prefer `Pair` over 2-tuples
+
+When you need to return exactly two values and backpassing would make the code less readable, `Pair<a, b>` is often slightly preferable to `(a, b)`.
+
+Both are ergonomic to access:
+
+* `pair.1st` / `tuple.1st`
+* `pair.2nd` / `tuple.2nd`
+
+But `Pair` integrates more naturally with dictionaries and pairs-based APIs, so it tends to compose better with the rest of the standard library.
+
+This is not usually a game-changing optimisation, but it is a good default when dealing with key-value shaped data.
+
+### Lean more on ByteArrays
+
+Byte arrays are extremely cheap compared to richer structured data. So, when cost is absolutely critical, one option is to give up some of the convenience of structured encodings and operate directly on bytes.
+
+<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}]}>
+<TabItem value="dont">
+
+```aiken
+pub type MyRedeemer {
+  key: ByteArray,
+  signature: ByteArray,
+}
+
+let MyRedeemer { key, signature } = redeemer
+```
+
+</TabItem>
+
+<TabItem value="do">
+
+```aiken
+pub type MyRedeemer = ByteArray
+
+let key = bytearray.slice(redeemer, 0, 31)
+let signature = bytearray.slice(redeemer, 32, 95)
+```
+
+</TabItem> </Tabs>
+
+This comes with obvious trade-offs:
+
+* less self-documenting code,
+* more manual slicing and offset management,
+* fewer type-level guarantees.
+
+So it should only be used when the savings are worth the loss in readability and maintainability.
+
+## Search and recurse efficiently
+
+Most validator cost is a traversal of transaction inputs, outputs, or a datum collection. How you write the recursion, and whether you exploit any ordering the data already has, sets what that traversal costs.
+
+### Use fast recursion for infallible searches
+
+This is a more specific version of the fail fast strategy that applies to _'infallible searches'_. This happens when looking for specific elements within a collection without any possible error recovery: if not present, then it's an error and the entire validator must fail.
 
 Such a scenario is actually quite common in validators, especially when dealing with elements that are part of a protocol.
 
@@ -336,83 +598,37 @@ In this example, we branch based on the value of some integer chosen between 0 a
 
 The _do_ example, however, arranges the conditions to reduce the amount of evaluations done at each pass. It performs a **binary search** which results in `log2(n)` evaluations. So for `n=7`, that's an average of `3` evaluations.
 
-Morover, the binary search has the benefit of being more **predictable**. In the previous example, it does not only average to 3 conditions evaluations, but it always evaluate 3 conditions per pass. Unlike the _don't_ example, which sometimes evaluate one condition, sometimes three, sometimes seven, etc...
+Moreover, the binary search has the benefit of being more **predictable**. In the previous example, it does not only average to 3 condition evaluations, it always evaluates 3 conditions per pass. Unlike the _don't_ example, which sometimes evaluates one condition, sometimes three, sometimes seven, etc...
 
-### Put cheap and likely checks first
+### Unroll recursions
 
-When chaining conditions with `and` or `or`, order matters. Aiken short-circuits boolean operators, which means that the first satisfied branch of an `or` avoids evaluating the others, and the first failing branch of an `and` stops the rest.
-
-So, when possible, place first the checks that are both:
-
-1. cheaper to evaluate, and
-2. more likely to determine the result (i.e. more frequently `True`)
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}]}>
-<TabItem value="dont">
-
-```aiken
-or {
-  input.output.value |> assets.has_nft_strict(my_nft),
-  input.output.address.payment_credential != my_script_credential,
-}
-```
-</TabItem>
-<TabItem value="do">
-
-```aiken
-or {
-  input.output.address.payment_credential != my_script_credential,
-  input.output.value |> assets.has_nft_strict(my_nft),
-}
-```
-</TabItem>
-</Tabs>
-
-In this example, comparing credentials is a direct and predictable check. Inspecting the value to determine whether a specific NFT is present is more involved. Since the first condition may already be sufficient to decide the whole expression, putting it first gives the runtime more opportunities to stop early.
-
-### Defer distinctions until they matter
-
-Another common source of unnecessary work comes from splitting terminal cases too early. When several branches eventually collapse into a smaller number of "real" outcomes, it is often better to test the broader condition first and refine only when necessary.
+When a recursive function advances one step at a time, its convergence can sometimes be improved by manually unrolling the first few steps. This reduces the number of recursive calls needed in the common case.
 
 <Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
 <TabItem value="dont">
 
-**mem=85.04K** · **cpu=29.49M**
+**mem=47.53K** · **cpu=12.74M**
 
 ```aiken
-fn insert_in_order(self: List<Int>, elem: Int) -> List<Int> {
-  when self is {
-    [] -> [elem]
-    [head, ..tail] ->
-      if head == elem {
-        self
-      } else if elem < head {
-        [elem, ..self]
-      } else {
-        [head, ..insert_in_order(tail, elem)]
-      }
+fn elem_at(elems: List<a>, at: Int) -> a {
+  if at <= 0 {
+    builtin.head_list(elems)
+  } else {
+    elem_at(builtin.tail_list(elems), at - 1)
   }
 }
 ```
 </TabItem>
 <TabItem value="do">
 
-**mem=72.91K** · **cpu=26.11M**
+**mem=35.01K** · **cpu=9.70M**
 
 ```aiken
-fn insert_in_order(self: List<Int>, elem: Int) -> List<Int> {
-  when self is {
-    [] -> [elem]
-    [head, ..tail] ->
-      if elem <= head {
-        if head == elem {
-          self
-        } else {
-          [elem, ..self]
-        }
-      } else {
-        [head, ..insert_in_order_alt(tail, elem)]
-      }
+fn elem_at(elems: List<a>, at: Int) -> a {
+  if at >= 2 {
+    elem_at(builtin.tail_list(builtin.tail_list(elems)), at - 2)
+  } else {
+    builtin.head_list(if at == 1 { builtin.tail_list(elems) } else { elems })
   }
 }
 ```
@@ -422,138 +638,78 @@ fn insert_in_order(self: List<Int>, elem: Int) -> List<Int> {
 ```aiken
 test baseline() {
   and {
-    insert_in_order([], 1) == [1],
-    insert_in_order([1, 2, 3, 4, 5, 6, 7], 8) == [1, 2, 3, 4, 5, 6, 7, 8],
-    insert_in_order([1, 2, 3, 5, 6], 4) == [1, 2, 3, 4, 5, 6],
-    insert_in_order([1, 2, 3, 4, 5], 3) == [1, 2, 3, 4, 5],
+    elem_at([1], 0) == 1,
+    elem_at([1, 2, 3, 4, 5], 0) == 1,
+    elem_at([1, 2, 3, 4, 5], 4) == 5,
+    elem_at([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 9) == 10,
   }
 }
 ```
 </TabItem>
 </Tabs>
 
-This is a small transformation, but it matters in tight recursive loops and in code that executes frequently over large structures.
+This sort of transformation is most useful for small, performance-critical helpers that get called repeatedly.
 
-### Prefer `Data` equality over manual structural comparisons
+### Write tail-recursive functions
 
-Aiken programs operate over encoded `Data`, and comparing `Data` values directly is often surprisingly efficient. If two values are expected to match structurally, a raw equality check is almost always cheaper than reconstructing that logic manually.
-
-This can be particularly helpful when working with datums that represent values or state snapshots.
-
-The standard library already exposes useful helpers for this. For instance, [`assets.match`](https://aiken-lang.github.io/stdlib/cardano/assets.html#match) can compare a runtime `Value` against a `Data` representation while letting you parameterize how lovelace should be checked:
-
-```aiken
-pub fn match(
-  left: Value,
-  right: Data,
-  assert_lovelace: fn(Lovelace, Lovelace) -> Bool,
-) -> Bool
-```
-
-The more general lesson is that if most of a structure should remain unchanged, it is often better to compare the unchanged parts directly and isolate only the parts that are expected to vary.
-
-For instance, a powerful optimisation pattern is to quickly split a structure into:
-
-* the part before the variable region,
-* the variable region itself,
-* the part after the variable region.
-
-You can then compare the stable regions directly through data equality and only inspect the changing part in detail.
-
-```aiken
-let input_tokens_before, input_tokens_at, input_tokens_after <- split_at(input.value, policy_id)
-let output_tokens_before, output_tokens_at, output_tokens_after <- split_at(output.value, policy_id)
-```
-
-Then:
-
-```aiken
-expect and {
-  (input_tokens_before == output_tokens_before)?,
-  (input_tokens_after == output_tokens_after)?,
-  (input_tokens_at != output_tokens_at)?,
-}
-```
-
-This is often much cheaper than re-computing full semantic comparisons over complete `Value` structures.
-
-### Use backpassing when returning more than one value
-
-Returning large tuples or records is convenient, but it also means constructing intermediary values only to immediately destructure them again. In hot paths, that overhead can become noticeable.
-
-Backpassing lets you thread the "continuation" directly through the function instead.
+The Plutus VM usually behaves better with tail-recursive functions, especially when working with bytes and accumulators. So when you can express a function as a loop with an explicit accumulator, prefer that form.
 
 <Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
 <TabItem value="dont">
 
-**mem=63.84K** · **cpu=19.49M**
+**mem=80.36K** · **cpu=21.83M**
 
 ```aiken
-// Construct and de-construct a 2-tuple on each pass
-pub fn count_and_sum(self: List<Int>) -> (Int, Int) {
-  when self is {
-    [] -> (0, 0)
-    [head, ..tail] -> {
-      let (count, sum) = count_and_sum(tail)
-      (count + 1, sum + head)
-    }
-  }
+fn fib(n: Int) -> Int {
+  if n <= 1 { 1 }
+  else { fib(n - 1) + fib(n - 2) }
 }
 ```
-
 </TabItem>
-
 <TabItem value="do">
 
-**mem=47.26K** · **cpu=12.69M**
+**mem=49.98K** · **cpu=12.60M**
 
 ```aiken
-// Leverage back-passing to avoid needless tuple constructions
-pub fn count_and_sum_ret(self: List<Int>, return: fn(Int, Int) -> result) -> result {
-  when self is {
-    [] -> return(0, 0)
-    [head, ..tail] -> {
-      let count, sum <- count_and_sum_ret(tail)
-      return(count + 1, sum + head)
-    }
-  }
+fn fib(n: Int) -> Int {
+  do_fib(1, 1, n)
+}
+
+fn do_fib(last: Int, current: Int, n: Int) -> Int {
+  if n <= 1 { current }
+  else { do_fib(current, current + last, n - 1) }
 }
 ```
 </TabItem>
 <TabItem value="bench">
 
 ```aiken
-test baseline_tuple() {
-  expect (0, 0) = count_and_sum([])
-  expect (3, 3) = count_and_sum([1, 1, 1])
-  expect (5, 15) = count_and_sum([1, 2, 3, 4, 5])
-  Void
-}
-
-test baseline_backpassing() {
-  expect 0, 0 <- count_and_sum([])
-  expect 3, 3 <- count_and_sum([1, 1, 1])
-  expect 5, 15 <- count_and_sum([1, 2, 3, 4, 5])
-  Void
+test baseline() {
+  and {
+    fib(0) == 1,
+    fib(1) == 1,
+    fib(2) == 2,
+    fib(3) == 3,
+    fib(4) == 5,
+    fib(5) == 8,
+  }
 }
 ```
 </TabItem>
 </Tabs>
 
-This style becomes even more useful in recursive code and stateful folds. It is also the reason helpers such as `list.foldl2` and `list.foldr2` are so valuable: they allow you to accumulate multiple pieces of state without repeatedly packaging and unpackaging them.
+The tail-recursive version makes the control flow more explicit and typically avoids building up deferred work across calls.
 
-### If backpassing is not an option, prefer `Pair` over 2-tuples
+This pattern is especially relevant for:
 
-When you need to return exactly two values and backpassing would make the code less readable, `Pair<a, b>` is often slightly preferable to `(a, b)`.
+* folds,
+* list traversals,
+* byte processing,
+* numeric loops.
 
-Both are ergonomic to access:
+## Traverse once
 
-* `pair.1st` / `tuple.1st`
-* `pair.2nd` / `tuple.2nd`
-
-But `Pair` integrates more naturally with dictionaries and pairs-based APIs, so it tends to compose better with the rest of the standard library.
-
-This is not usually a game-changing optimisation, but it is a good default when dealing with key-value shaped data.
+Each of these replaces several passes over a collection with a single pass, either by combining the work or by keeping what the first pass already computed.
 
 ### Avoid re-traversals
 
@@ -635,7 +791,7 @@ fn validate_outputs(self: Pairs<ByteArray, Int>) -> Void {
 </TabItem>
 <TabItem value="do">
 
-**mem=59.7K** · **cpu=17.44M**
+**mem=59.7K** · **cpu=17.35M**
 
 ```aiken
 fn validate_outputs(self: Pairs<ByteArray, Int>) -> Void {
@@ -650,9 +806,9 @@ fn validate_outputs(self: Pairs<ByteArray, Int>) -> Void {
 
 ```aiken
 test baseline() {
-  validate_outputs([Pair("me", 42), Pair("you", 14), Pair("me", 1337)])
+  validate_outputs([Pair("my_address", 42), Pair("you", 14), Pair("my_address", 1337)])
   validate_outputs([Pair("a", 1), Pair("b", 2), Pair("c", 3)])
-  validate_outputs([Pair("me", 100), Pair("me", 100), Pair("me", 100)])
+  validate_outputs([Pair("my_address", 100), Pair("my_address", 100), Pair("my_address", 100)])
 }
 ```
 </TabItem>
@@ -726,150 +882,9 @@ Conceptually, this transforms the collection into a small decision chain that ca
 
 This is particularly nice when the source collection is static for the whole validator execution, but queried many times.
 
-### Unroll recursions
+## Replace computation with lookup or proof
 
-When a recursive function advances one step at a time, its convergence can sometimes be improved by manually unrolling the first few steps. This reduces the number of recursive calls needed in the common case.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
-<TabItem value="dont">
-
-**mem=47.53K** · **cpu=12.74M**
-
-```aiken
-fn elem_at(elems: List<a>, at: Int) -> a {
-  if at <= 0 {
-    list.head(elems)
-  } else {
-    elem_at(list.tail(elems), at - 1)
-  }
-}
-```
-</TabItem>
-<TabItem value="do">
-
-**mem=35.01K** · **cpu=9.70M**
-
-```aiken
-fn elem_at(elems: List<a>, at: Int) -> a {
-  if at >= 2 {
-    elem_at(list.tail(list.tail(elems)), at - 2)
-  } else {
-    list.head(if at == 1 { list.tail(elems) } else { elems })
-  }
-}
-```
-</TabItem>
-<TabItem value="bench">
-
-```aiken
-test baseline() {
-  and {
-    elem_at([1], 0) == 1,
-    elem_at([1, 2, 3, 4, 5], 0) == 1,
-    elem_at([1, 2, 3, 4, 5], 4) == 5,
-    elem_at([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 9) == 10,
-  }
-}
-```
-</TabItem>
-</Tabs>
-
-This sort of transformation is most useful for small, performance-critical helpers that get called repeatedly.
-
-### Write tail-recursive functions
-
-The Plutus VM usually behaves better with tail-recursive functions, especially when working with bytes and accumulators. So when you can express a function as a loop with an explicit accumulator, prefer that form.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}, {label: 'Bench', value: 'bench'}]}>
-<TabItem value="dont">
-
-**mem=80.36K** · **cpu=21.83M**
-
-```aiken
-fn fib(n: Int) -> Int {
-  if n <= 1 { 1 }
-  else { fib(n - 1) + fib(n - 2) }
-}
-```
-</TabItem>
-<TabItem value="do">
-
-**mem=49.98K** · **cpu=12.60M**
-
-```aiken
-fn fib(n: Int) -> Int {
-  do_fib(1, 1, n)
-}
-
-fn do_fib(last: Int, current: Int, n: Int) -> Int {
-  if n <= 1 { current }
-  else { do_fib(current, current + last, n - 1) }
-}
-```
-</TabItem>
-<TabItem value="bench">
-
-```aiken
-test baseline() {
-  and {
-    fib(0) == 1,
-    fib(1) == 1,
-    fib(2) == 2,
-    fib(3) == 3,
-    fib(4) == 5,
-    fib(5) == 8,
-  }
-}
-```
-</TabItem>
-</Tabs>
-
-The tail-recursive version makes the control flow more explicit and typically avoids building up deferred work across calls.
-
-This pattern is especially relevant for:
-
-* folds,
-* list traversals,
-* byte processing,
-* numeric loops.
-
-
-### Lean more on ByteArrays
-
-Byte arrays are extremely cheap compared to richer structured data. So, when cost is absolutely critical, one option is to give up some of the convenience of structured encodings and operate directly on bytes.
-
-<Tabs groupId="optimization" defaultValue="dont" values={[{label: "Don't", value: 'dont'}, {label: 'Do', value: 'do'}]}>
-<TabItem value="dont">
-
-```aiken
-pub type MyRedeemer {
-  key: ByteArray,
-  signature: ByteArray,
-}
-
-let MyRedeemer { key, signature } = redeemer
-```
-
-</TabItem>
-
-<TabItem value="do">
-
-```aiken
-pub type MyRedeemer = ByteArray
-
-let key = bytearray.slice(redeemer, 0, 32)
-let signature = bytearray.slice(redeemer, 32, 64)
-```
-
-</TabItem> </Tabs>
-
-This comes with obvious trade-offs:
-
-* less self-documenting code,
-* more manual slicing and offset management,
-* fewer type-level guarantees.
-
-So it should only be used when the savings are worth the loss in readability and maintainability.
+The biggest savings come from not computing at all: look the answer up, verify an answer the transaction supplies, or lean on something the ledger has already guaranteed.
 
 ### Replace expensive computations with lookups
 
@@ -1002,7 +1017,7 @@ Many structures that validators inspect already satisfy strong invariants. For e
 
 * inputs are alphabetically ordered,
 * values are ordered by policy and asset name,
-* redeemers and datums are indexed by hashes,
+* datums are indexed by hash, and redeemers by script purpose,
 * output values never contain negative quantities,
 * output values always include ADA.
 * minted values never include ADA.

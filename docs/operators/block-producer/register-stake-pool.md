@@ -55,7 +55,7 @@ cat poolMetaDataHash.txt
 Both hashes must be identical. If they differ, re-upload the file (extra whitespace or encoding differences are common causes).
 
 :::tip SPO identity — Calidus keys
-After registering your pool, consider registering a [Calidus key](/docs/operators/operator-tools/calidus-keys). It lets explorers (Cardanoscan, Cexplorer, AdaStat), governance tools, and APIs verify your SPO identity with a hot key — without ever touching your cold key again.
+After registering your pool, consider registering a [Calidus key](/docs/operators/operator-tools/calidus-keys). It lets [explorers](https://cardano.org/apps/?tags=explorer), governance tools, and APIs verify your SPO identity with a hot key — without ever touching your cold key again.
 :::
 
 ## Generate the pool registration certificate

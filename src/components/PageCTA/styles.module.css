@@ -1,50 +1,104 @@
-.cta {
-  padding: 2.5rem 0;
-  margin-top: 1rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
+/* The shared brand CTA band: navy in both themes. Its buttons are the shared
+   primary primitive, turned amber by the band's context; the talent page
+   passes its artwork through the art slot. */
+
+.ctaSection {
+  padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
 }
 
-.ctaPrimary {
-  background: var(--ifm-color-emphasis-100);
-  padding: 3rem 0;
-  border-top: 0;
-}
-
-.inner {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.title {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-}
-
-.ctaPrimary .title {
-  font-size: 1.75rem;
-}
-
-.description {
-  color: var(--ifm-color-emphasis-700);
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
-}
-
-.ctaPrimary .description {
-  font-size: 1.05rem;
-  margin-bottom: 1.5rem;
-}
-
-.button {
-  display: inline-flex;
+.band {
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
+  --site-button-ring: var(--site-color-cream);
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: clamp(1.5rem, 2.5vw, 2.7rem);
+  padding: clamp(1.75rem, 2.5vw, 2.5rem);
+  border-radius: 20px;
+  background: var(--site-color-card-surface);
+  color: var(--site-color-card-text);
 }
 
-.buttonRow {
-  display: inline-flex;
+/* With artwork the band reserves height for it, tightens its padding, and
+   crops the image at the rounded corners. */
+.bandWithArt {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(230px, 19vw, 370px);
+  padding: clamp(1.5rem, 2vw, 1.875rem);
+}
+
+/* Stroked glyph, colored through currentColor */
+.bandIcon {
+  flex: none;
+  width: clamp(40px, 4vw, 68px);
+  height: auto;
+  color: var(--site-color-brand-blue);
+}
+
+.bandContent {
+  max-width: 811px;
+}
+
+/* Lifted above the absolutely positioned artwork; the percentage cap keeps
+   the copy clear of it, which flex layout does not reserve space for. */
+.bandWithArt .bandIcon,
+.bandWithArt .bandContent {
+  position: relative;
+  z-index: 1;
+}
+
+.bandWithArt .bandContent {
+  max-width: min(55%, 811px);
+}
+
+/* Tight title-to-text pairing, then air before the buttons */
+.bandTitle {
+  margin: 0 0 clamp(0.6rem, 1.1vw, 1.2rem);
+  font-size: clamp(1.9rem, 2.9vw, 3.25rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 0.95;
+  color: var(--site-color-cream);
+}
+
+.bandText {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.65vw, 1.875rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.25;
+  color: var(--site-color-cream);
+}
+
+.pillRow {
+  display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  justify-content: center;
+  gap: clamp(1rem, 2vw, 2.1rem);
+  margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
+}
+
+/* The artwork sits in the band's right ~40%, vertically centered and
+   cropped by the rounded corners, with clear navy between it and the copy */
+.bandArt {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 41%;
+  height: auto;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 996px) {
+  .band {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bandWithArt .bandContent {
+    max-width: 100%;
+  }
+
+  .bandArt {
+    display: none;
+  }
 }

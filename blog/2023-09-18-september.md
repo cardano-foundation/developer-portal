@@ -5,7 +5,6 @@ authors: [denicio]
 tags: [explorer]
 description: "Meet AdaStat, a cutting-edge Cardano (ADA) Blockchain Explorer, crafted by active members of the Russian-speaking Cardano community. It's your independent alternative to standard network-developed explorers. With AdaStat, you can effortlessly explore blocks, transactions, pools, addresses, accounts, epochs, and slots, including active epochs, created blocks, staking rewards, and more.
 Some of AdaStat's unique features include a versatile Chart Maker for custom graphics and a robust pool filter for refining pool searches based on parameters like pledge, delegators, and stake size. For deeper insights into this fascinating explorer, we highly recommend reading through interview with the project's co-founder and Lead Developer, Dmitry Stashenko."
-image: https://developers.cardano.org/img/og/blog/adastat.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';

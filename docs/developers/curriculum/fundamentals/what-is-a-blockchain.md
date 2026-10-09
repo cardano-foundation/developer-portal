@@ -59,7 +59,7 @@ graph LR
     B3 -->|"..."| BN["Block N<br/>prev: hash(B(N-1))"]
 ```
 
-The **genesis block** is the very first block; it has no predecessor. On Cardano it was created in September 2017 (the Byron era). Every block since links back to it through an unbroken chain of hash references. On mainnet a new block is produced roughly every 20 seconds.
+The **genesis block** is the very first block; it has no predecessor. You can open Cardano's on an explorer: [block `5f20df93...`](https://cexplorer.io/block/5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb), dated 23 September 2017 in the Byron era, with an empty parent field and 14,505 transactions handing out the initial 31.1 billion ADA. Every block since links back to it through an unbroken chain of hash references. On mainnet a new block is produced roughly every 20 seconds.
 
 ## Who runs a blockchain network?
 
@@ -68,7 +68,7 @@ A decentralized network of independent node operators runs a blockchain. On Card
 1. **Relay nodes** propagate blocks and transactions across the network.
 2. **Block-producing nodes (stake pools)** create new blocks according to the consensus protocol ([Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros)).
 
-As of 2026, Cardano has roughly 3,000 active stake pools run by independent operators worldwide. No single entity, not even IOG (which built Cardano), controls the network. Decentralization is a spectrum, not a binary, and Cardano's reward design specifically incentivizes spreading stake across many pools.
+Thousands of active stake pools, run by independent operators worldwide, produce Cardano's blocks. No single entity, not even IOG (which built Cardano), controls the network. Decentralization is a spectrum, not a binary, and Cardano's reward design specifically incentivizes spreading stake across many pools.
 
 It helps to separate two properties that are easy to conflate. A system is **distributed** when many independent machines each hold and replicate the data, and **decentralized** when no single party controls it. These are independent axes: a large web service can be highly distributed across data centers yet remain centrally controlled by one company, while a system can be decentralized in authority without being widely distributed. A blockchain deliberately combines both, which is what makes its ledger hard to destroy and hard to capture.
 
@@ -132,4 +132,4 @@ After a few more blocks are added on top, the transaction is considered final wi
 - Cardano's eUTXO model, native tokens, and on-chain governance are the design choices that most affect how you build.
 
 ## Next steps
-Now that you know what a blockchain is, the next page explores the cryptographic building blocks that make it work: hash functions, Merkle trees, and digital signatures. See [Cryptographic Primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives).
+The guarantees on this page all rest on three cryptographic building blocks: hash functions, Merkle trees, and digital signatures. [Cryptographic Primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) covers each one.

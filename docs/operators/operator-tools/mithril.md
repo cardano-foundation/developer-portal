@@ -11,7 +11,7 @@ This unlocks two things that matter for scaling and production.
 
 ## Fast node bootstrap
 
-Syncing a `cardano-node` from genesis takes many hours to days. With Mithril, a node can **download and verify a certified database snapshot** and be ready in minutes instead. The verification is what makes this safe: the snapshot is only accepted if it matches a certificate signed by enough stake. This is the recommended way to stand up a node, see [installing cardano-node](/docs/operators/node/installing-cardano-node) and [production infrastructure](/docs/developers/curriculum/production/infrastructure).
+Syncing a `cardano-node` from genesis takes many hours to days. With Mithril, a node can **download and verify a certified database snapshot** and be ready in minutes instead. The verification is what makes this safe: the snapshot is only accepted if it matches a certificate signed by enough stake. This is the recommended way to stand up a node, see [installing cardano-node](/docs/operators/node/installing-cardano-node) and [self-hosting chain access](/docs/developers/curriculum/production/self-hosting).
 
 ## Trustless light clients
 
@@ -61,5 +61,5 @@ If you operate a stake pool, running a Mithril signer contributes to the certifi
 
 ## Next steps
 
-- [Production infrastructure](/docs/developers/curriculum/production/infrastructure): where fast bootstrap fits in your stack
+- [Self-hosting chain access](/docs/developers/curriculum/production/self-hosting): where fast bootstrap fits in your stack
 - [Mithril documentation](https://mithril.network/doc/): the full protocol, networks, and node references

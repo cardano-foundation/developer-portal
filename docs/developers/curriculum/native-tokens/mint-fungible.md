@@ -28,7 +28,7 @@ A fungible token is a native token minted with a quantity greater than one, wher
 <TabItem value="evolution" label="Evolution" default>
 
 ```typescript
-import { Assets, Data, preprod, Client } from "@evolution-sdk/evolution"
+import { Assets, NativeScripts, ScriptHash, preprod, Client } from "@evolution-sdk/evolution"
 
 const client = Client.make(preprod)
   .withBlockfrost({
@@ -37,9 +37,10 @@ const client = Client.make(preprod)
   })
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
-declare const mintingPolicy: any   // native script or smart contract, see Minting policies
+const { paymentCredential } = await client.address()
+const mintingPolicy = NativeScripts.makeScriptPubKey(paymentCredential.hash)   // signature policy, see Minting policies
 
-const policyId = "7edb7a2d9fbc4d2a68e4c9e9d3d7a5c8f2d1e9f8a7b6c5d4e3f2a1b0"
+const policyId = ScriptHash.toHex(ScriptHash.fromScript(mintingPolicy))
 const assetName = "4d79546f6b656e"          // "MyToken" in hex
 
 let assets = Assets.fromLovelace(0n)
@@ -47,7 +48,7 @@ assets = Assets.addByHex(assets, policyId, assetName, 1000n)   // quantity > 1
 
 const tx = await client
   .newTx()
-  .mintAssets({ assets, redeemer: Data.constr(0n, []), label: "mint-my-token" })
+  .mintAssets({ assets })
   .attachScript({ script: mintingPolicy })
   .build()
 
@@ -55,25 +56,24 @@ const signed = await tx.sign()
 await signed.submit()
 ```
 
-The builder tracks the policy, indexes redeemers, evaluates execution units, and calculates fees for you.
+The builder tracks the policy and calculates fees for you. A native policy takes no redeemer and no collateral: your key's signature satisfies it.
 
 </TabItem>
 <TabItem value="mesh" label="Mesh">
 
-```javascript
-import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex, BlockfrostProvider } from '@meshsdk/core';
-import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
+```typescript
+import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex, BlockfrostProvider, MeshWallet } from '@meshsdk/core';
 
 const provider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY!);
-const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+const wallet = new MeshWallet({
   networkId: 0,                          // 0 = preprod/preview testnet
-  walletAddressType: AddressType.Base,
   fetcher: provider,
   submitter: provider,
-  mnemonic: process.env.WALLET_MNEMONIC!.split(" "),
+  key: { type: "mnemonic", words: process.env.WALLET_MNEMONIC!.split(" ") },
 });
+await wallet.init();
 
-const changeAddress = await wallet.getChangeAddressBech32();
+const changeAddress = await wallet.getChangeAddress();
 const forgingScript = ForgeScript.withOneSignature(changeAddress);
 
 const policyId = resolveScriptHash(forgingScript);
@@ -84,7 +84,7 @@ const unsignedTx = await txBuilder
   .mint("1000000", policyId, stringToHex(tokenName))   // quantity > 1
   .mintingScript(forgingScript)
   .changeAddress(changeAddress)
-  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .selectUtxosFrom(await wallet.getUtxos())
   .complete();
 
 const signedTx = await wallet.signTx(unsignedTx);
@@ -107,9 +107,9 @@ Signature policy (`policy/policy.script`):
 Get the policy ID, then build, sign, and submit (token name hex-encoded):
 
 ```bash
-cardano-cli conway transaction policyid --script-file policy/policy.script > policy/policyID
+cardano-cli latest transaction policyid --script-file policy/policy.script > policy/policyID
 
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
   --fee $fee \
   --tx-in $txhash#$txix \
   --tx-out "$address+$output+$amount $policyid.$tokenname" \
@@ -117,10 +117,10 @@ cardano-cli conway transaction build-raw \
   --minting-script-file policy/policy.script \
   --out-file matx.raw
 # calculate-min-fee, rebuild with the fee, then:
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --signing-key-file payment.skey --signing-key-file policy/policy.skey \
   --tx-body-file matx.raw --out-file matx.signed
-cardano-cli conway transaction submit --tx-file matx.signed
+cardano-cli latest transaction submit --tx-file matx.signed
 ```
 
 </TabItem>
@@ -134,12 +134,13 @@ Burning is minting with a negative quantity, authorized by the same policy.
 <TabItem value="evolution" label="Evolution" default>
 
 ```typescript
+// same imports, client, mintingPolicy, policyId, and assetName as "Mint it" above
 let burn = Assets.fromLovelace(0n)
 burn = Assets.addByHex(burn, policyId, assetName, -500n)
 
 const tx = await client
   .newTx()
-  .mintAssets({ assets: burn, redeemer: Data.constr(1n, []), label: "burn-tokens" })
+  .mintAssets({ assets: burn })
   .attachScript({ script: mintingPolicy })
   .build()
 
@@ -149,14 +150,14 @@ await (await tx.sign()).submit()
 </TabItem>
 <TabItem value="mesh" label="Mesh">
 
-```javascript
+```typescript
 // same imports, provider, wallet, forgingScript, policyId, and tokenName as "Mint it" above
 const txBuilder = new MeshTxBuilder({ fetcher: provider });
 const unsignedTx = await txBuilder
   .mint("-500", policyId, stringToHex(tokenName))   // negative quantity burns
   .mintingScript(forgingScript)                     // same policy that minted
-  .changeAddress(await wallet.getChangeAddressBech32())
-  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .changeAddress(await wallet.getChangeAddress())
+  .selectUtxosFrom(await wallet.getUtxos())
   .complete();
 
 const signedTx = await wallet.signTx(unsignedTx);
@@ -167,7 +168,7 @@ const txHash = await wallet.submitTx(signedTx);
 <TabItem value="cardano-cli" label="cardano-cli">
 
 ```bash
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
   --tx-in $txhash#$txix \
   --tx-out "$address+$output+$remaining $policyid.$tokenname" \
   --mint "-500 $policyid.$tokenname" \

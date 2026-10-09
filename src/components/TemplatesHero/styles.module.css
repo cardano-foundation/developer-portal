@@ -1,0 +1,95 @@
+/* Metadata row under the tabs, inside the navy band. Both templates routes
+   render one so the band keeps the same height across the tab switch: the
+   min-height levels the contracts row (which carries 30px source avatars)
+   with the templates row (which is text only).
+
+   Everything here composites over navy in both themes, like the tabs, so the
+   palette is cream-based rather than theme-paired. */
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.1rem;
+  min-height: 30px;
+}
+
+/* Narrow enough that the contracts row no longer fits on one line, so it
+   wraps to two and the templates row would sit 36px shorter. Reserving the
+   taller count keeps the two bands level, the same way the description's
+   line count is reserved. The threshold is where the row actually wraps,
+   which is narrower than the layout breakpoint. */
+@media (max-width: 560px) {
+  .meta {
+    min-height: 66px;
+    align-items: flex-start;
+  }
+}
+
+/* 9.27:1 over the navy band */
+.metaText {
+  font-size: 0.9rem;
+  color: rgb(var(--site-color-cream-rgb) / 0.75);
+}
+
+.avatarStack {
+  display: flex;
+  align-items: center;
+}
+
+/* The ring is the band colour, so overlapping avatars stay separated */
+.avatar {
+  display: inline-flex;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--site-color-navy);
+  margin-left: -9px;
+  background: rgb(var(--site-color-cream-rgb) / 0.15);
+  transition: transform 120ms ease;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar:hover {
+  transform: translateY(-2px);
+  z-index: 1;
+}
+
+.avatar:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* "+N more source(s)": a link to the contributor guide, so anyone can
+   propose another source. */
+.sourcesMore {
+  font-size: 0.85rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--site-color-cream);
+  text-decoration: none;
+}
+
+.sourcesMore:hover {
+  color: var(--site-color-cream);
+  text-decoration: underline;
+}
+
+/* Cream ring, in both themes: the row sits on the navy band, where the usual
+   navy-in-light ring would be invisible. */
+.sourcesMore:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
+}

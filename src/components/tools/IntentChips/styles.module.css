@@ -1,0 +1,128 @@
+.intentSection {
+  margin-bottom: 3rem;
+}
+
+.intentTitle {
+  margin: 0 0 1.1rem;
+  font-size: 1.75rem;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.01em;
+  color: var(--ifm-font-color-base);
+}
+
+/* Intents are a tile grid rather than a pill row: they are the page's primary
+   wayfinding, and equal-width tiles give them equal weight. auto-fit keeps
+   four across at full width and reflows down to one without breakpoints. */
+.intentList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Eight intents read as 4x2 in the design. auto-fit gives five across on a
+   wide browse column and leaves a ragged second row, so the count is fixed
+   once the rail is alongside. */
+@media (min-width: 997px) {
+  .intentList {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.intentItem {
+  margin: 0;
+}
+
+.intentLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+/* The glyph must not shrink when a label wraps. */
+.intentChip svg {
+  flex: none;
+}
+
+.intentChip {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  /* Two labels wrap to two lines at this column width ("Write smart
+     contracts", "Set up a dev environment") and the rest do not. The floor is
+     the two-line height so every tile matches regardless. grid-auto-rows: 1fr
+     does not solve this: without a definite container height, 1fr resolves
+     against content and each row still sizes itself. */
+  min-height: 62px;
+  text-align: left;
+  background: var(--site-color-surface-raised);
+  border: 1px solid transparent;
+  color: var(--ifm-font-color-base);
+  border-radius: var(--site-radius-md);
+  padding: 0.7rem 0.95rem;
+  font-size: 0.92rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease,
+    color 150ms ease;
+}
+
+.intentChip:hover {
+  background: var(--site-color-surface-raised-hover);
+  border-color: var(--site-color-brand-blue);
+  color: var(--site-color-brand-blue);
+}
+
+/* The hover wash lightens the surface under the label, which drops plain
+   primary to 4.3:1. The next step up clears the text floor. */
+html[data-theme="dark"] .intentChip:hover {
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
+  border-color: var(--ifm-color-primary-light);
+  color: var(--ifm-color-primary-light);
+}
+
+/* Surface-aware rings: the chips sit on the page background */
+.intentChip:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .intentChip:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* State selectors stay compound (.intentChip.intentChipActive) so they beat
+   the base rule on specificity: the CSS minifier dedupes identical-bodied
+   rules across module files into the earliest position, so source order
+   cannot be trusted. */
+.intentChip.intentChipActive,
+.intentChip.intentChipActive:hover,
+html[data-theme="dark"] .intentChip.intentChipActive,
+html[data-theme="dark"] .intentChip.intentChipActive:hover {
+  background: var(--site-color-brand-blue);
+  border-color: var(--site-color-brand-blue);
+  color: var(--site-color-cream);
+}
+
+@media (max-width: 600px) {
+  /* The base list is a grid, where flex-wrap is inert; the strip needs flex
+     for nowrap + horizontal scroll to actually happen. */
+  .intentList {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scroll-snap-type: x proximity;
+  }
+
+  .intentItem {
+    scroll-snap-align: start;
+  }
+}
