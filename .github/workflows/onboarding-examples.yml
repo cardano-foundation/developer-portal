@@ -1,122 +1,88 @@
 name: "Onboarding examples"
 
-# The onboarding lectures import their code from the projects under
-# examples/onboarding, and print validator hashes from the committed
-# blueprints. This runs each project the way a reader would, so a broken or
-# stale snippet fails here before a reader finds it.
-#
-# - On-chain (Aiken): `aiken check` with the compiler the project pins, then a
-#   rebuild that must reproduce the committed plutus.json and its off-chain
-#   copies.
-# - Off-chain (npm): a fresh `npm install`, then `npm test` and `npm run build`.
-#
-# Pull requests and pushes run when examples change. The weekly run catches
-# breakage from outside the repo, such as a new release of an npm dependency.
+# Runs every onboarding example project, so a broken snippet or a stale
+# validator hash in the lectures fails here first.
 
 on:
   pull_request:
     paths:
       - "examples/onboarding/**"
       - ".github/workflows/onboarding-examples.yml"
-      - ".github/scripts/check-blueprints.sh"
-  push:
-    branches: [staging, new-onboarding]
-    paths:
-      - "examples/onboarding/**"
   schedule:
     - cron: "0 6 * * 1"
   workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  select:
-    name: Find projects
-    runs-on: ubuntu-latest
-    outputs:
-      on-chain: ${{ steps.select.outputs.on-chain }}
-      off-chain: ${{ steps.select.outputs.off-chain }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: List Aiken and npm projects
-        id: select
-        run: |
-          on_chain=$(git ls-files 'examples/onboarding/**aiken.toml' | while read -r toml; do
-            dir=$(dirname "$toml")
-            aiken=$(sed -n 's/^compiler = "\(.*\)"/\1/p' "$toml")
-            jq -cn --arg dir "$dir" --arg aiken "$aiken" '{dir: $dir, name: ($dir | ltrimstr("examples/onboarding/")), aiken: $aiken}'
-          done | jq -cs .)
-          off_chain=$(git ls-files 'examples/onboarding/**package.json' | while read -r pkg; do
-            dir=$(dirname "$pkg")
-            jq -cn --arg dir "$dir" '{dir: $dir, name: ($dir | ltrimstr("examples/onboarding/"))}'
-          done | jq -cs .)
-          echo "on-chain=$on_chain" >> "$GITHUB_OUTPUT"
-          echo "off-chain=$off_chain" >> "$GITHUB_OUTPUT"
-
   on-chain:
-    name: ${{ matrix.project.name }}
-    needs: select
-    if: needs.select.outputs.on-chain != '[]'
+    name: ${{ matrix.project }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        project: ${{ fromJson(needs.select.outputs.on-chain) }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Set up Aiken ${{ matrix.project.aiken }}
-        uses: aiken-lang/setup-aiken@v1
-        with:
-          version: ${{ matrix.project.aiken }}
-
-      - name: Compile and run the tests
-        working-directory: ${{ matrix.project.dir }}
-        run: aiken check
-
-      - name: Check the committed blueprints
-        run: bash .github/scripts/check-blueprints.sh "${{ matrix.project.dir }}"
-
-  off-chain:
-    name: ${{ matrix.project.name }}
-    needs: select
-    if: needs.select.outputs.off-chain != '[]'
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        project: ${{ fromJson(needs.select.outputs.off-chain) }}
+        project:
+          - atomic-swap
+          - lectures/intermediate/vault
+          - lectures/intermediate/vesting
+          - lectures/intermediate/giftcard
+          - lectures/intermediate/oracle
     defaults:
       run:
-        working-directory: ${{ matrix.project.dir }}
+        working-directory: examples/onboarding/${{ matrix.project }}/on-chain/aiken
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
 
-      - name: Set up Node
-        uses: actions/setup-node@v7
+      - name: Read the Aiken version
+        id: aiken
+        run: echo "version=$(sed -n 's/^compiler = "\(.*\)"/\1/p' aiken.toml)" >> "$GITHUB_OUTPUT"
+
+      - uses: aiken-lang/setup-aiken@v1
+        with:
+          version: ${{ steps.aiken.outputs.version }}
+
+      - name: Compile and test
+        run: aiken check
+
+      - name: Check plutus.json is up to date
+        run: |
+          jq -S '[.validators[] | {title, hash}]' plutus.json > /tmp/committed.json
+          aiken build
+          jq -S '[.validators[] | {title, hash}]' plutus.json | diff /tmp/committed.json -
+
+      - name: Check the off-chain copy is up to date
+        run: |
+          shopt -s nullglob
+          for copy in ../../off-chain/*/plutus.json ../../off-chain/*/blueprints/*.plutus.json; do
+            echo "$copy"
+            jq -e --slurpfile fresh plutus.json \
+              '[.validators[] | {title, hash}] - [$fresh[0].validators[] | {title, hash}] == []' "$copy"
+          done
+
+  off-chain:
+    name: ${{ matrix.project }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - atomic-swap/off-chain/mesh
+          - lectures/beginner/mesh
+          - lectures/intermediate/vault/off-chain/mesh
+          - lectures/intermediate/vesting/off-chain/mesh
+          - lectures/intermediate/giftcard/off-chain/mesh
+          - lectures/intermediate/oracle/off-chain/mesh
+    defaults:
+      run:
+        working-directory: examples/onboarding/${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
 
-      - name: Cache npm downloads
-        uses: actions/cache@v6
-        with:
-          path: ~/.npm
-          key: npm-${{ matrix.project.name }}-${{ hashFiles(format('{0}/package.json', matrix.project.dir)) }}
-
-      - name: Install
-        run: npm install --no-audit --no-fund
-
-      - name: Test
-        run: npm test
-
-      - name: Build
-        run: npm run --if-present build
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - run: npm run --if-present build
