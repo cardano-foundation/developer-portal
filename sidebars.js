@@ -600,5 +600,22 @@ module.exports = {
         },
       ],
     },
+    {
+      type: "category",
+      label: "Design patterns",
+      collapsed: false,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/design-patterns/introduction",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "developers/onboarding/design-patterns/introduction",
+          label: "Introduction",
+        },
+        "developers/onboarding/design-patterns/transaction-level-validation",
+      ],
+    },
   ],
 };

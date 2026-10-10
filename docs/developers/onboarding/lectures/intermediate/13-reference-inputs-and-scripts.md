@@ -279,6 +279,7 @@ Along the way you built a vault with an admin key and its own token, a deadline,
 Everything else is a larger version of these same parts. When the size grows, the mechanism does not change, but you need more care: the ways contracts get attacked, the patterns that prevent those attacks, and the cost of running them.
 
 - The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
+- The **[Design patterns](/docs/developers/onboarding/design-patterns/introduction)** section covers the shapes contracts take as they grow: each pattern on its own page, compared with the naive contract and measured.
 - The handbook's **[security](/docs/developers/curriculum/smart-contracts/security)** page: read it before anything you write holds real funds.
 
 ## Go deeper

@@ -25,7 +25,9 @@ Smart contracts from scratch: their structure, their role, on-chain vs off-chain
 
 ### Advanced: Production-ready smart contracts
 
-Going from "it works" to "it's safe and scalable": common vulnerabilities, design patterns, optimization, and getting to production. After this, you'll be able to write **secure, scalable, high-quality** contracts.
+Going from "it works" to "it's safe and scalable": common vulnerabilities, optimization, and getting to production. After this, you'll be able to write **secure, scalable, high-quality** contracts.
+
+The reusable on-chain patterns that production protocols are built from have a section of their own, **[Design patterns](/docs/developers/onboarding/design-patterns/introduction)**. Its pages stand alone, so read them in any order once you have finished Intermediate.
 
 ## What you need
 
