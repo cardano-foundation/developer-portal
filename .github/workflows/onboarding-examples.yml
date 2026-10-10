@@ -1,0 +1,88 @@
+name: "Onboarding examples"
+
+# Runs every onboarding example project, so a broken snippet or a stale
+# validator hash in the lectures fails here first.
+
+on:
+  pull_request:
+    paths:
+      - "examples/onboarding/**"
+      - ".github/workflows/onboarding-examples.yml"
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  on-chain:
+    name: ${{ matrix.project }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - atomic-swap
+          - lectures/intermediate/vault
+          - lectures/intermediate/vesting
+          - lectures/intermediate/giftcard
+          - lectures/intermediate/oracle
+    defaults:
+      run:
+        working-directory: examples/onboarding/${{ matrix.project }}/on-chain/aiken
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read the Aiken version
+        id: aiken
+        run: echo "version=$(sed -n 's/^compiler = "\(.*\)"/\1/p' aiken.toml)" >> "$GITHUB_OUTPUT"
+
+      - uses: aiken-lang/setup-aiken@v1
+        with:
+          version: ${{ steps.aiken.outputs.version }}
+
+      - name: Compile and test
+        run: aiken check
+
+      - name: Check plutus.json is up to date
+        run: |
+          jq -S '[.validators[] | {title, hash}]' plutus.json > /tmp/committed.json
+          aiken build
+          jq -S '[.validators[] | {title, hash}]' plutus.json | diff /tmp/committed.json -
+
+      - name: Check the off-chain copy is up to date
+        run: |
+          shopt -s nullglob
+          for copy in ../../off-chain/*/plutus.json ../../off-chain/*/blueprints/*.plutus.json; do
+            echo "$copy"
+            jq -e --slurpfile fresh plutus.json \
+              '[.validators[] | {title, hash}] - [$fresh[0].validators[] | {title, hash}] == []' "$copy"
+          done
+
+  off-chain:
+    name: ${{ matrix.project }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - atomic-swap/off-chain/mesh
+          - lectures/beginner/mesh
+          - lectures/intermediate/vault/off-chain/mesh
+          - lectures/intermediate/vesting/off-chain/mesh
+          - lectures/intermediate/giftcard/off-chain/mesh
+          - lectures/intermediate/oracle/off-chain/mesh
+    defaults:
+      run:
+        working-directory: examples/onboarding/${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - run: npm run --if-present build
