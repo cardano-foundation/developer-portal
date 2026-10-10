@@ -9,6 +9,7 @@ import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
 import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/validators/vault_simple.ak";
+import VaultWithDatum from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/validators/vault_with_datum.ak";
 import validatorHash from "@site/src/utils/validatorHash";
 import VaultBlueprint from "@site/examples/onboarding/lectures/intermediate/vault/on-chain/aiken/plutus.json";
 
@@ -121,23 +122,9 @@ Then write the datum and the redeemer themselves, **between the imports and the 
 
 Lastly, **replace the whole `validator` block** with this one. The contract behavior changed slightly: it still always allows anyone to spend the UTxO because it ends in `True`, but only if the datum has the expected shape (`VaultDatum`).
 
-```aiken title="validators/vault.ak"
-validator vault {
-  spend(
-    datum: Option<VaultDatum>,
-    _redeemer: VaultAction,
-    _own_ref: OutputReference,
-    _self: Transaction,
-  ) {
-    expect Some(VaultDatum { owner }) = datum
-    True
-  }
-
-  else(_) {
-    fail
-  }
-}
-```
+<CodeBlock language="aiken" title="validators/vault.ak">
+  {extractRegion(VaultWithDatum, "validator")}
+</CodeBlock>
 
 Save it, and:
 
@@ -145,7 +132,7 @@ Save it, and:
 aiken check
 ```
 
-Everything should be working. **What changed:**
+It compiles with one warning: `owner` is an **unused identifier**. That is expected. The contract reads the owner here but does nothing with it yet; the [next lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context) puts it to work, and the warning goes away. **What changed:**
 
 - `datum: Option<VaultDatum>` uses `Option` because an output at a script address **might have no datum at all**. Anyone can send funds there without one. The contract has to handle that case rather than assume.
 - `expect Some(VaultDatum { owner }) = datum` means "there must be a datum, it must be a `VaultDatum`, and I want its `owner`". If any of that is untrue, the validator fails and refuses the spend. The `expect` keyword is special: it lets us recursively pattern-match the shape of a type and bind its inner values to names (like we did with `owner`), and if one thing is wrong, it automatically rejects the transaction. You can learn more about how this works [here](https://aiken-lang.org/language-tour/control-flow#expect).

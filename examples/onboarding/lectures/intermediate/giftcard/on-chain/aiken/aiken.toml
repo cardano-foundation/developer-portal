@@ -1,6 +1,6 @@
 name = "cardano-foundation/onboarding-giftcard"
 version = "0.0.0"
-compiler = "v1.1.23"
+compiler = "v1.1.24"
 plutus = "v3"
 license = "Apache-2.0"
 description = "The gift card contract from the onboarding Intermediate lectures"
@@ -12,7 +12,7 @@ platform = "github"
 
 [[dependencies]]
 name = "aiken-lang/stdlib"
-version = "v3.1.0"
+version = "v4.0.0"
 source = "github"
 
 [config]

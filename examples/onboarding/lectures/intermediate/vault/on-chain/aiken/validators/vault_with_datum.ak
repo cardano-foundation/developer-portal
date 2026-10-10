@@ -18,6 +18,7 @@ pub type VaultAction {
   Unlock
 }
 
+// #region validator
 validator vault {
   spend(
     datum: Option<VaultDatum>,
@@ -33,3 +34,5 @@ validator vault {
     fail
   }
 }
+
+// #endregion validator

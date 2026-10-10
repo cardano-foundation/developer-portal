@@ -1,14 +1,11 @@
 use aiken/collection/list
 use cardano/address.{Address, Inline, VerificationKey, from_verification_key}
 use cardano/assets.{
-  AssetName, PolicyId, Value, from_asset, from_lovelace, quantity_of,
+  AssetName, Assets, PolicyId, from_asset, from_lovelace, quantity_of,
 }
-use cardano/transaction.{InlineDatum, Output, OutputReference, Transaction}
-use mocktail.{
-  complete, mocktail_tx, required_signer_hash, tx_out, tx_out_inline_datum,
+use cardano/transaction.{
+  Datum, InlineDatum, NoDatum, Output, OutputReference, Transaction,
 }
-use mocktail/virgin_key_hash.{mock_policy_id, mock_pub_key_hash}
-use mocktail/virgin_output_reference.{mock_utxo_ref}
 
 // #region types
 // One asset the maker wants in return, with the exact quantity.
@@ -102,7 +99,7 @@ fn pays_to_owner(output: Output, owner: Address) -> Bool {
 }
 
 // Does `value` contain at least each asset in `price`?
-fn covers_price(value: Value, price: List<PricedAsset>) -> Bool {
+fn covers_price(value: Assets, price: List<PricedAsset>) -> Bool {
   list.all(
     price,
     fn(asset) {
@@ -115,76 +112,94 @@ fn covers_price(value: Value, price: List<PricedAsset>) -> Bool {
 
 // Tests (not imported into the docs).
 
-const owner_key = mock_pub_key_hash(1)
+// Key hashes and policy ids are 28 bytes, so any 28 bytes stand in for one.
+const owner_key = #"00000000000000000000000000000000000000000000000000000001"
 
-const owner_stake_key = mock_pub_key_hash(3)
+const owner_stake_key =
+  #"00000000000000000000000000000000000000000000000000000003"
 
-const silver = mock_policy_id(2)
+const silver = #"00000000000000000000000000000000000000000000000000000002"
 
-const own_ref = mock_utxo_ref(0, 0)
+// The offer being spent. Its reference is what the payment has to be marked with.
+const own_ref =
+  OutputReference {
+    transaction_id: #"0000000000000000000000000000000000000000000000000000000000000000",
+    output_index: 0,
+  }
 
 // The owner's full wallet address: payment key + stake key.
-fn owner_address() -> Address {
+const owner_address =
   Address {
     payment_credential: VerificationKey(owner_key),
     stake_credential: Some(Inline(VerificationKey(owner_stake_key))),
   }
-}
 
-fn offer() -> SwapDatum {
+const offer =
   SwapDatum {
-    owner: owner_address(),
+    owner: owner_address,
     price: [
       PricedAsset { policy_id: silver, asset_name: "SILVER", quantity: 1 },
     ],
   }
+
+// One output, to `address`, holding `value`, carrying `datum`.
+fn output(address: Address, value: Assets, datum: Datum) -> Output {
+  Output { address, value, datum, reference_script: None }
 }
 
+// The marker: this UTxO's reference as the payment's inline datum.
+const marked = InlineDatum(own_ref)
+
 test swap_ok_when_owner_paid_and_marked() {
-  let tx = mocktail_tx()
-    |> tx_out(True, owner_address(), from_asset(silver, "SILVER", 1))
-    |> tx_out_inline_datum(True, own_ref)
-    |> complete()
-  swap.spend(Some(offer()), Swap, own_ref, tx)
+  let tx = Transaction {
+    ..transaction.placeholder,
+    outputs: [output(owner_address, from_asset(silver, "SILVER", 1), marked)],
+  }
+  swap.spend(Some(offer), Swap, own_ref, tx)
 }
 
 test swap_fails_when_payment_not_marked() fail {
   // Owner is paid, but the output is not marked with this UTxO's reference.
-  let tx = mocktail_tx()
-    |> tx_out(True, owner_address(), from_asset(silver, "SILVER", 1))
-    |> complete()
-  swap.spend(Some(offer()), Swap, own_ref, tx)
+  let tx = Transaction {
+    ..transaction.placeholder,
+    outputs: [output(owner_address, from_asset(silver, "SILVER", 1), NoDatum)],
+  }
+  swap.spend(Some(offer), Swap, own_ref, tx)
 }
 
 test swap_fails_when_underpaid() fail {
   // Output is marked, but pays no SILVER (only lovelace).
-  let tx = mocktail_tx()
-    |> tx_out(True, owner_address(), from_lovelace(2_000_000))
-    |> tx_out_inline_datum(True, own_ref)
-    |> complete()
-  swap.spend(Some(offer()), Swap, own_ref, tx)
+  let tx = Transaction {
+    ..transaction.placeholder,
+    outputs: [output(owner_address, from_lovelace(2_000_000), marked)],
+  }
+  swap.spend(Some(offer), Swap, own_ref, tx)
 }
 
 test swap_fails_when_paid_to_bare_payment_address() fail {
   // Pays the right payment key but at a bare enterprise address (no stake part),
   // so it isn't the owner's real wallet address. Rejected.
-  let tx = mocktail_tx()
-    |> tx_out(
-        True,
+  let tx = Transaction {
+    ..transaction.placeholder,
+    outputs: [
+      output(
         from_verification_key(owner_key),
         from_asset(silver, "SILVER", 1),
-      )
-    |> tx_out_inline_datum(True, own_ref)
-    |> complete()
-  swap.spend(Some(offer()), Swap, own_ref, tx)
+        marked,
+      ),
+    ],
+  }
+  swap.spend(Some(offer), Swap, own_ref, tx)
 }
 
 test cancel_ok_when_signed_by_owner() {
-  let tx = mocktail_tx() |> required_signer_hash(True, owner_key) |> complete()
-  swap.spend(Some(offer()), Cancel, own_ref, tx)
+  let tx = Transaction {
+    ..transaction.placeholder,
+    extra_signatories: [owner_key],
+  }
+  swap.spend(Some(offer), Cancel, own_ref, tx)
 }
 
 test cancel_fails_when_not_signed() fail {
-  let tx = mocktail_tx() |> complete()
-  swap.spend(Some(offer()), Cancel, own_ref, tx)
+  swap.spend(Some(offer), Cancel, own_ref, transaction.placeholder)
 }
