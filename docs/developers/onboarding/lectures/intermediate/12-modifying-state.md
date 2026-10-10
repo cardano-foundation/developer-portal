@@ -393,6 +393,6 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 - [Missing UTxO authentication](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication): the attack the beacon prevents, worked through on an oracle, and how a beacon can be stolen when a contract forgets to check that it goes back.
 - [Token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security): what goes wrong when a token is used as a key.
 - [Design patterns](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview): how contracts store state across many UTxOs when one is not enough.
-- [A prediction market](/docs/developers/curriculum/dapps/oracles/prediction-market): this pattern at real size, with a real oracle behind it.
+- [Integrate a price feed](/docs/developers/curriculum/dapps/oracles/pyth#validator-patterns): a production oracle read inside a validator, including how to reject a stale price and settle an outcome at a deadline.
 
 Next: **[Reference inputs & reference scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)**.

@@ -59,14 +59,15 @@ const redirects = [
     from: '/docs/get-started/smart-contracts-signpost',
   },
   {
-    // the old funding category overview now points to the funding page
-    to: '/docs/community/funding',
-    from: '/docs/fund-your-project/',
-  },
-  {
-    // redirect to the new funding page
-    to: '/docs/community/funding',
-    from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
+    // funding moved to cardano.org/grants-funding
+    to: 'https://cardano.org/grants-funding/',
+    from: [
+      '/docs/community/funding',
+      '/docs/fund-your-project/',
+      '/docs/fund-your-project/project-catalyst',
+      '/docs/fund-your-project/alternatives',
+      '/docs/get-started/funding',
+    ],
   },
   {
     // redirect as many pages as possible from old SPO course to new SPO course
@@ -204,10 +205,6 @@ const redirects = [
   {
     to: '/docs/community/cardano-developer-community',
     from: '/docs/get-started/cardano-developer-community',
-  },
-  {
-    to: '/docs/community/funding',
-    from: '/docs/get-started/funding',
   },
   {
     to: '/docs/developers/curriculum/fundamentals/core-concepts/overview',
@@ -1143,6 +1140,10 @@ const redirects = [
   { to: '/docs/operators/relay-configuration/relay-node-configuration', from: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration' },
   { to: '/docs/operators/security/air-gap', from: '/docs/learn/educational-resources/air-gap' },
   { to: '/docs/operators/security/secure-workflow', from: '/docs/learn/cardano-cli/security/secure-workflow' },
+  // The MCP page merged into the AI agents overview (2026-09-22).
+  { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/developers/curriculum/dapps/ai-agents/mcp' },
+  // The prediction-market walkthrough was removed; its oracle patterns live in the Pyth guide (2026-09-30).
+  { to: '/docs/developers/curriculum/dapps/oracles/pyth', from: '/docs/developers/curriculum/dapps/oracles/prediction-market' },
 ];
 
 module.exports = redirects;

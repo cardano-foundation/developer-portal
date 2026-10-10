@@ -35,4 +35,4 @@ Inspect transactions, addresses, and blocks at [explorer.cardano.org](https://ex
 ## Next steps
 
 - [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): now build, sign, and submit one
-- [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development): what the Cardano context contains, and how to add it to any agent
+- [Cardano Dev Skills](/docs/developers/curriculum/start-building/ai-assisted-development): give your coding agent the go-to Cardano toolkit

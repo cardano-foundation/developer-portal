@@ -1,7 +1,40 @@
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet"
 import { NetworkType } from "@cardano-foundation/cardano-connect-with-wallet-core"
+import { Address, Client, Transaction, TransactionWitnessSet } from "@evolution-sdk/evolution"
 import { useState } from "react"
-import { Address, Assets, Client, mainnet, preprod, preview, TransactionHash } from "@evolution-sdk/evolution"
+
+import { chain, explorerTxUrl, isMainnet, network, networkId } from "../config"
+
+// Calls the payment API in server/payments.ts and returns its JSON.
+async function post<T>(path: string, body: object): Promise<T> {
+  const res = await fetch(path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error ?? `Request failed (${res.status}).`)
+  return data as T
+}
+
+// CIP-30 wallets reject with plain objects ({ code, info }), not Error instances.
+function describeError(err: unknown): string {
+  if (err instanceof Error) return err.message
+  if (typeof err === "object" && err !== null) {
+    const { code, info } = err as { code?: number; info?: string }
+    if (code === 2) return "Cancelled in the wallet."
+    if (info) return info
+  }
+  return "Transaction failed."
+}
+
+function isAddressOnNetwork(bech32: string): boolean {
+  try {
+    return Address.fromBech32(bech32).networkId === networkId
+  } catch {
+    return false
+  }
+}
 
 export default function TransactionBuilder() {
   const [txHash, setTxHash] = useState<string | null>(null)
@@ -10,95 +43,50 @@ export default function TransactionBuilder() {
   const [recipientAddress, setRecipientAddress] = useState("")
   const [amount, setAmount] = useState("")
 
-  // Determine network from environment variable
-  const networkEnv = import.meta.env.VITE_NETWORK || "preprod"
-  const network = networkEnv === "mainnet" ? NetworkType.MAINNET : NetworkType.TESTNET
-
-  const { isConnected, enabledWallet } = useCardano({
-    limitNetwork: network
+  const { enabledWallet, isConnected } = useCardano({
+    limitNetwork: isMainnet ? NetworkType.MAINNET : NetworkType.TESTNET
   })
 
-  const handleBuildTransaction = async () => {
-    if (!isConnected || !enabledWallet) {
-      setError("Wallet not connected")
-      return
-    }
-
-    if (!recipientAddress || !amount) {
-      setError("Please enter recipient address and amount")
-      return
-    }
-
-    const amountLovelace = parseFloat(amount)
-    if (isNaN(amountLovelace) || amountLovelace <= 0) {
-      setError("Invalid amount")
-      return
-    }
-
-    setIsLoading(true)
+  const handleSend = async () => {
     setError(null)
     setTxHash(null)
 
+    const to = recipientAddress.trim()
+    if (!isAddressOnNetwork(to)) return setError(`Enter a ${network} address.`)
+
+    const ada = Number(amount)
+    if (!Number.isFinite(ada) || ada <= 0) return setError("Enter an amount in ADA.")
+    // Round, don't floor: 1.005 * 1e6 is 1004999.999... in floating point.
+    const lovelace = Math.round(ada * 1_000_000)
+
+    if (isMainnet && !window.confirm(`Send ${ada} ADA on mainnet to ${to}?`)) return
+
+    setIsLoading(true)
     try {
-      // Get wallet API
-      const api = await window.cardano?.[enabledWallet]?.enable()
-      if (!api) {
-        throw new Error("Failed to enable wallet")
-      }
+      const api = await window.cardano?.[enabledWallet ?? ""]?.enable()
+      if (!api) throw new Error("Could not reach the wallet. Reconnect and try again.")
 
-      // Determine chain and provider
-      const blockfrostUrls = {
-        preprod: "https://cardano-preprod.blockfrost.io/api/v0",
-        preview: "https://cardano-preview.blockfrost.io/api/v0",
-        mainnet: "https://cardano-mainnet.blockfrost.io/api/v0"
-      } as const
+      // The browser client has no provider: it only reads the wallet and signs.
+      const client = Client.make(chain).withCip30(api)
+      const from = Address.toBech32(await client.address())
 
-      const chainPresets = { preprod, preview, mainnet }
-      const chain = chainPresets[networkEnv as keyof typeof chainPresets] ?? preprod
+      // The server builds the transaction with the Blockfrost key.
+      const { txCbor } = await post<{ txCbor: string }>("/api/build-payment", {
+        from,
+        to,
+        lovelace: lovelace.toString()
+      })
 
-      const txClient = Client.make(chain)
-        .withBlockfrost({
-          baseUrl: blockfrostUrls[networkEnv as keyof typeof blockfrostUrls] ?? blockfrostUrls.preprod,
-          projectId: import.meta.env.VITE_BLOCKFROST_PROJECT_ID || ""
-        })
-        .withCip30(api)
+      // The wallet asks the user to approve, then returns its signatures.
+      const witnessSet = await client.signTx(txCbor)
+      const signedTxCbor = Transaction.addVKeyWitnessesHex(txCbor, TransactionWitnessSet.toCBORHex(witnessSet))
 
-      // Build transaction (convert ADA to lovelace: 1 ADA = 1,000,000 lovelace)
-      const lovelaceAmount = BigInt(Math.floor(amountLovelace * 1_000_000))
-
-      // Parse address - support both Bech32 (addr1...) and hex formats
-      let parsedAddress: Address.Address
-      try {
-        parsedAddress = Address.fromBech32(recipientAddress)
-      } catch {
-        try {
-          parsedAddress = Address.fromHex(recipientAddress)
-        } catch {
-          throw new Error("Invalid address format. Use Bech32 (addr1...) or hex format.")
-        }
-      }
-
-      // Create assets
-      const assetsToSend = Assets.fromLovelace(lovelaceAmount)
-
-      // Build, sign, and submit transaction
-      const tx = await txClient
-        .newTx()
-        .payToAddress({
-          address: parsedAddress,
-          assets: assetsToSend
-        })
-        .build()
-
-      const signed = await tx.sign()
-      const hash = await signed.submit()
-
-      setTxHash(TransactionHash.toHex(hash))
+      const { txHash } = await post<{ txHash: string }>("/api/submit-tx", { signedTxCbor })
+      setTxHash(txHash)
       setRecipientAddress("")
       setAmount("")
     } catch (err) {
-      console.error(err)
-      setError(err instanceof Error ? err.message : "Unknown error")
+      setError(describeError(err))
     } finally {
       setIsLoading(false)
     }
@@ -107,101 +95,79 @@ export default function TransactionBuilder() {
   if (!isConnected) {
     return (
       <div className="px-5 py-8 flex items-center justify-center min-h-[150px]">
-        <p className="text-xs text-zinc-500">Connect your wallet to continue</p>
+        <p className="text-xs text-zinc-400">Connect your wallet to continue</p>
       </div>
     )
   }
 
+  const inputClass =
+    "w-full px-3 py-2 bg-zinc-800/60 border border-zinc-700/50 rounded-md text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-600/60"
+
   return (
     <div className="px-5 py-4 space-y-4">
-      {/* Recipient Address Input */}
+      <p className={isMainnet ? "text-xs font-semibold text-orange-400" : "text-xs text-zinc-400"}>
+        Network: {network}
+        {isMainnet && " (real ADA)"}
+      </p>
+
       <div className="space-y-2">
-        <label className="text-xs font-medium text-zinc-400">
-          Recipient Address
-          <span className="text-[10px] text-zinc-500 ml-2">(Bech32 or hex)</span>
+        <label htmlFor="recipient" className="text-xs font-medium text-zinc-400">
+          Recipient address
         </label>
         <input
+          id="recipient"
           type="text"
           value={recipientAddress}
           onChange={(e) => setRecipientAddress(e.target.value)}
-          placeholder="addr_test1... or addr1..."
-          className="w-full px-3 py-2 bg-zinc-800/60 border border-zinc-700/50 rounded-md text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-orange-700/30 focus:border-orange-700/50"
+          placeholder={isMainnet ? "addr1..." : "addr_test1..."}
+          className={inputClass}
           disabled={isLoading}
         />
       </div>
 
-      {/* Amount Input */}
       <div className="space-y-2">
-        <label className="text-xs font-medium text-zinc-400">Amount (ADA)</label>
+        <label htmlFor="amount" className="text-xs font-medium text-zinc-400">
+          Amount (ADA)
+        </label>
         <input
-          type="number"
+          id="amount"
+          inputMode="decimal"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="0.00"
-          step="0.01"
-          min="0"
-          className="w-full px-3 py-2 bg-zinc-800/60 border border-zinc-700/50 rounded-md text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-orange-700/30 focus:border-orange-700/50"
+          placeholder="1.5"
+          className={inputClass}
           disabled={isLoading}
         />
       </div>
 
-      {/* Send Button */}
       <button
-        className={`w-full py-2.5 rounded-md text-xs font-medium transition-all focus:outline-none focus:ring-1 ${
-          isLoading
-            ? "bg-zinc-800/80 text-zinc-400 cursor-not-allowed"
-            : "bg-orange-900/90 hover:bg-orange-800 text-zinc-100 border border-orange-900/60 focus:ring-orange-700/30"
-        }`}
-        onClick={handleBuildTransaction}
-        disabled={isLoading || !isConnected}
+        className="w-full py-2.5 rounded-md text-xs font-medium transition-all bg-orange-900/90 hover:bg-orange-800 text-zinc-100 border border-orange-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-600/60 disabled:bg-zinc-800/80 disabled:text-zinc-400 disabled:cursor-not-allowed"
+        onClick={handleSend}
+        disabled={isLoading}
       >
-        {isLoading ? (
-          <div className="flex items-center justify-center gap-2">
-            <svg
-              className="animate-spin h-3 w-3 text-zinc-300"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
-            <span>Sending Transaction...</span>
-          </div>
-        ) : (
-          "Send ADA"
-        )}
+        {isLoading ? "Sending..." : "Send ADA"}
       </button>
 
-      {/* Error Display */}
       {error && (
-        <div className="py-2 px-3 bg-orange-950/30 border border-orange-900/30 rounded-md text-orange-400 text-xs">
+        <p
+          role="alert"
+          className="py-2 px-3 bg-orange-950/30 border border-orange-900/30 rounded-md text-orange-400 text-xs"
+        >
           {error}
-        </div>
+        </p>
       )}
 
-      {/* Success Display */}
       {txHash && (
-        <div className="space-y-2">
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 rounded-full bg-green-500"></div>
-            <span className="text-xs font-medium text-green-400">Transaction Submitted</span>
-          </div>
-          <div className="bg-zinc-900/60 border border-zinc-800/60 rounded-md overflow-hidden">
-            <div className="px-3 py-2 border-b border-zinc-800/40 text-[10px] text-zinc-400">Transaction Hash</div>
-            <div className="px-3 py-2 font-mono text-xs text-zinc-300 break-all">{txHash}</div>
-          </div>
+        <div role="status" className="space-y-2">
+          <p className="text-xs font-medium text-green-400">Transaction submitted</p>
+          <p className="font-mono text-xs text-zinc-300 break-all">{txHash}</p>
           <a
-            href={`https://${networkEnv !== "mainnet" ? `${networkEnv}.` : ""}cardanoscan.io/transaction/${txHash}`}
+            href={explorerTxUrl(txHash)}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full text-center py-2 text-xs text-orange-400 hover:text-orange-300 transition-colors"
+            className="block text-center py-2 text-xs text-orange-400 hover:text-orange-300"
           >
-            View on CardanoScan →
+            View on CardanoScan
           </a>
         </div>
       )}

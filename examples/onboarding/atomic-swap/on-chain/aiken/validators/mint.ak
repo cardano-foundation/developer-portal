@@ -2,8 +2,6 @@ use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/assets.{PolicyId}
 use cardano/transaction.{Transaction}
-use mocktail.{complete, mocktail_tx, required_signer_hash}
-use mocktail/virgin_key_hash.{mock_policy_id, mock_pub_key_hash}
 
 // #region mint
 // A minting policy for the demo tokens (GOLD, SILVER).
@@ -25,14 +23,16 @@ validator token(owner: VerificationKeyHash) {
 
 // Tests (not imported into the docs).
 
+// Key hashes and policy ids are 28 bytes, so any 28 bytes stand in for one.
+const owner = #"00000000000000000000000000000000000000000000000000000001"
+
+const policy_id = #"00000000000000000000000000000000000000000000000000000000"
+
 test mint_ok_when_signed_by_owner() {
-  let owner = mock_pub_key_hash(1)
-  let tx = mocktail_tx() |> required_signer_hash(True, owner) |> complete()
-  token.mint(owner, 0, mock_policy_id(0), tx)
+  let tx = Transaction { ..transaction.placeholder, extra_signatories: [owner] }
+  token.mint(owner, 0, policy_id, tx)
 }
 
 test mint_fails_when_not_signed() fail {
-  let owner = mock_pub_key_hash(1)
-  let tx = mocktail_tx() |> complete()
-  token.mint(owner, 0, mock_policy_id(0), tx)
+  token.mint(owner, 0, policy_id, transaction.placeholder)
 }

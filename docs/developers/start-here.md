@@ -33,7 +33,7 @@ Pick where you want to start.
 
 <div className="row margin-bottom--md">
   <div className="col col--6">
-    <DocCard item={{type: 'link', href: '/docs/developers/curriculum/start-building/ai-assisted-development', label: 'Set up your assistant', description: 'Cardano Dev Skills, or an agent over MCP.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/curriculum/start-building/ai-assisted-development', label: 'Set up your coding agent', description: 'Cardano Dev Skills, or an agent over MCP.'}} />
   </div>
   <div className="col col--6">
     <DocCard item={{type: 'link', href: '/tools', label: 'Browse Builder Tools', description: 'SDKs, APIs, and libraries by language.'}} />
@@ -63,5 +63,5 @@ Module 6 also carries the applied tracks: [payments](/docs/developers/curriculum
 - **[Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers)**: the model translated concept by concept from the EVM.
 - **[Exchange integrations](/docs/developers/exchange-integrations)**: deposits and withdrawals for custodial platforms.
 - **[Operator handbook](/docs/operators/)**: running a node or a stake pool.
-- **[Dev blog](/blog)**, the [developer community](/docs/community/cardano-developer-community), [grants and funding](/docs/community/funding), and the [talent pool](/talent).
+- **[Dev blog](/blog)**, the [developer community](/docs/community/cardano-developer-community), [grants and funding](https://cardano.org/grants-funding/), and the [talent pool](/talent).
 - **[Contributing](/docs/contribute/portal-contribute)**: this portal is open source. If a page here is wrong or missing, send a pull request.
