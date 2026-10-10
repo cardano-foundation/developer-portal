@@ -1,0 +1,19 @@
+name = "cardano-foundation/onboarding-payout-queue"
+version = "0.0.0"
+compiler = "v1.1.24"
+plutus = "v3"
+license = "Apache-2.0"
+description = "The payout queue from the onboarding Advanced lecture on optimization: one contract, made cheaper three times"
+
+[repository]
+user = "cardano-foundation"
+project = "developer-portal"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v4.0.0"
+source = "github"
+
+
+[config]
