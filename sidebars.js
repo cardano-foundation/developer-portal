@@ -615,6 +615,8 @@ module.exports = {
           label: "Introduction",
         },
         "developers/onboarding/design-patterns/transaction-level-validation",
+        "developers/onboarding/design-patterns/utxo-indexers",
+        "developers/onboarding/design-patterns/batch-indexers",
       ],
     },
   ],

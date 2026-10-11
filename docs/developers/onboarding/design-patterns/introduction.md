@@ -16,6 +16,8 @@ Each page explains one pattern on its own. It is **not a sequence**: arrive with
 ## The patterns
 
 - **[Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)**: spending _N_ UTxOs from one script runs the same check _N_ times. Run it once instead, with a withdraw-zero stake validator or a minting policy as the coordinator.
+- **[UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers)**: each input searching the transaction for its own output costs _N²_. Pass the output's index in the redeemer instead, and check what is there.
+- **[Batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers)**: when a check spans a whole batch, every input repeats it. One coordinator walks the batch once instead, with an index for each input's outputs.
 
 The section's other patterns are still being written. Until their pages exist, the **[design patterns reference](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview)** covers them.
 
@@ -56,19 +58,21 @@ npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/desi
 
 ```
 design-patterns/
-└── tx-level-validation/
-    ├── on-chain/aiken/
-    │   ├── lib/                the check, shared by every version
-    │   ├── validators/
-    │   │   ├── naive.ak        the baseline the page measures against
-    │   │   ├── by_hand.ak      the pattern written out
-    │   │   └── with_library.ak the same with aiken-design-patterns
-    │   └── plutus.json         the compiled blueprint, committed
-    └── off-chain/mesh/
-        ├── blueprints/         a copy of plutus.json
-        ├── src/lib/            the transaction builders
-        ├── src/*.test.ts       every transaction, run through the real scripts
-        └── costs.json          the measured figures the page shows
+├── tx-level-validation/
+│   ├── on-chain/aiken/
+│   │   ├── lib/                the check, shared by every version
+│   │   ├── validators/
+│   │   │   ├── naive.ak        the baseline the page measures against
+│   │   │   ├── by_hand.ak      the pattern written out
+│   │   │   └── with_library.ak the same with aiken-design-patterns
+│   │   └── plutus.json         the compiled blueprint, committed
+│   └── off-chain/mesh/
+│       ├── blueprints/         a copy of plutus.json
+│       ├── src/lib/            the transaction builders
+│       ├── src/*.test.ts       every transaction, run through the real scripts
+│       └── costs.json          the measured figures the page shows
+├── utxo-indexers/              the same layout
+└── batch-indexers/             the same layout
 ```
 
 **Each folder is a project in its own right**, and nothing in it reaches into a sibling. There is no browser app and nothing to submit: every transaction is built and evaluated offline, so you need no wallet, test ADA or provider key.

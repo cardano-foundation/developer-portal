@@ -61,3 +61,23 @@ export function costSaving(costs, baseline, path) {
   const after = lookup(costs, path);
   return `${Math.round((1 - after / before) * 100)}%`;
 }
+
+const limits = { mem: 'memory', cpu: 'CPU', size: 'size' };
+
+/**
+ * Name the transaction limit recorded at `path`, as a page would say it.
+ *
+ *     costLimit(Costs, "books.naive.limitedBy") // "memory"
+ *
+ * @param {object} costs  The parsed `costs.json`.
+ * @param {string} path  Dot-separated path to a limit: "mem", "cpu" or "size".
+ * @returns {string}
+ * @throws If the path does not lead to one of those three.
+ */
+export function costLimit(costs, path) {
+  const value = path.split('.').reduce((node, key) => node?.[key], costs);
+  if (!(value in limits)) {
+    throw new Error(`costLimit: no limit at "${path}" in costs.json`);
+  }
+  return limits[value];
+}

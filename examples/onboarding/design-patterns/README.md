@@ -9,6 +9,8 @@ transaction builders, and a benchmark that measures them.
 | Folder | Pattern |
 |---|---|
 | `tx-level-validation/` | Transaction-level validation: a withdraw-zero or minting-policy coordinator |
+| `utxo-indexers/` | UTxO indexers: each input told where its output is, in the redeemer |
+| `batch-indexers/` | Batch indexers: one coordinator checks a whole batch, with an index for each input's output |
 
 Get just this folder (no need to clone the whole repo):
 
