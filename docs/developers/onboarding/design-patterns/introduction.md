@@ -18,20 +18,22 @@ Each page explains one pattern on its own. It is **not a sequence**: arrive with
 - **[Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)**: spending _N_ UTxOs from one script runs the same check _N_ times. Run it once instead, with a withdraw-zero stake validator or a minting policy as the coordinator.
 - **[UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers)**: each input searching the transaction for its own output costs _N²_. Pass the output's index in the redeemer instead, and check what is there.
 - **[Batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers)**: when a check spans a whole batch, every input repeats it. One coordinator walks the batch once instead, with an index for each input's outputs.
-
-The section's other patterns are still being written. Until their pages exist, the **[design patterns reference](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview)** covers them.
+- **[Validity range normalization](/docs/developers/onboarding/design-patterns/validity-range-normalization)**: an interval has many encodings. Reduce it to one canonical form before reading time from it: a clarity gain for the transaction's own window, and a correctness fix for an interval stored in a datum.
+- **[Parameter validation](/docs/developers/onboarding/design-patterns/parameter-validation)**: a validator sees only a script's hash. Rebuild an instance's hash from the compiled script and its parameter, to recognize every instance of a parameterized script without a list.
+- **[Merkelized validator](/docs/developers/onboarding/design-patterns/merkelized-validator)**: split large logic into independently published withdrawal workers, pin their hashes and arguments, and load only the modules an action needs.
+- **[Linked list](/docs/developers/onboarding/design-patterns/linked-list)**: split a growing registry across authenticated UTxOs, change only its neighbors, and prove membership or absence from one reference input.
+- **[Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree)**: commit a large allowlist to a 32-byte root and verify membership from a logarithmic-size proof built off-chain.
+- **[Merkle Patricia trie](/docs/developers/onboarding/design-patterns/merkle-patricia-trie)**: a registry too large for one datum. Keep it as a trie off-chain and its 32-byte root on-chain, and prove every insert, update, delete and lookup, absence included.
 
 ## How a pattern is measured
 
 Every pattern here trades something for something else, usually a little more code for a lot less cost, so each page measures it. Three figures matter:
 
-- **Execution units.** Every script run uses **memory** units and **CPU** steps. A transaction has a limit on each, summed over all the scripts it runs, and a transaction over either limit is refused. A contract that is too expensive does not just cost more: past a certain size, its transaction cannot exist.
-- **Size.** Every byte of a transaction, compiled scripts included, counts toward a size limit and toward the fee.
-- **The fee.** It is computed from the size and the execution units, so it summarizes the other two in ADA.
+- **Execution units:** Every script run uses **memory** units and **CPU** steps. A transaction has a limit on each, summed over all the scripts it runs, and a transaction over either limit is refused. A contract that is too expensive does not just cost more: past a certain size, its transaction is rejected.
+- **Size:** Every byte of a transaction, compiled scripts included, counts toward a size limit and toward the fee.
+- **The fee:** It is computed from the size and the execution units, so it summarizes the other two in ADA. **[Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees)** covers how they combine.
 
-**[Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees)** covers how they combine.
-
-The figures on each page are measured, not estimated, and none of them is typed by hand. Each example builds its transactions on an in-memory chain with fixed inputs, runs the real compiled scripts on them, and writes the results to a `costs.json` file that the page reads. Fixed inputs give fixed numbers, so a test fails if the file drifts from the code.
+The figures on each page are measured. Each example builds its transactions on an in-memory chain with fixed inputs, runs the real compiled scripts on them, and writes the results to a `costs.json` file that the page reads. Fixed inputs give fixed numbers, so a test fails if the file drifts from the code.
 
 ## How each page is laid out
 
@@ -40,9 +42,9 @@ Every page follows the same outline, so after one you know where to look in the 
 1. **The problem**: a concrete situation, with a diagram of the transaction.
 2. **The naive contract**: the obvious version, and what it costs.
 3. **The pattern**: the idea, and the transaction with the pattern applied.
-4. **Design**: the four questions from the Intermediate track.
-5. **Write it by hand**: the smallest implementation, so the mechanism is visible.
-6. **The same with the library**: the [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns) equivalent, and what it does differently.
+4. **Design**: the four questions to account for when designing a protocol (learned from the Intermediate lectures).
+5. **Write it by hand**: a simple implementation of the pattern from scratch, so the mechanism is visible.
+6. **The same with the library**: For most cases, there's no need to implement it from scratch. So, we also show how to use it from a library, usually [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns), and what it does differently. Merkle tree uses a compatibility port of the standalone `aiken-merkle-tree` library.
 7. **Build the transaction**: the off-chain side.
 8. **The numbers**: naive against pattern, measured.
 9. **When to use it, and when not**: the trade-offs, security caveats included.
@@ -60,11 +62,11 @@ npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/desi
 design-patterns/
 ├── tx-level-validation/
 │   ├── on-chain/aiken/
-│   │   ├── lib/                the check, shared by every version
+│   │   ├── lib/                functions shared by every version
 │   │   ├── validators/
 │   │   │   ├── naive.ak        the baseline the page measures against
-│   │   │   ├── by_hand.ak      the pattern written out
-│   │   │   └── with_library.ak the same with aiken-design-patterns
+│   │   │   ├── by_hand.ak      the pattern written by hand
+│   │   │   └── with_library.ak the pattern usign a library
 │   │   └── plutus.json         the compiled blueprint, committed
 │   └── off-chain/mesh/
 │       ├── blueprints/         a copy of plutus.json
@@ -72,7 +74,13 @@ design-patterns/
 │       ├── src/*.test.ts       every transaction, run through the real scripts
 │       └── costs.json          the measured figures the page shows
 ├── utxo-indexers/              the same layout
-└── batch-indexers/             the same layout
+├── batch-indexers/             the same layout
+├── validity-range/             the same layout
+├── parameter-validation/       the same layout
+├── merkelized-validator/       the same layout
+├── linked-list/                the same layout
+├── merkle-tree/                the same layout
+└── merkle-patricia-trie/       the same layout
 ```
 
 **Each folder is a project in its own right**, and nothing in it reaches into a sibling. There is no browser app and nothing to submit: every transaction is built and evaluated offline, so you need no wallet, test ADA or provider key.
