@@ -4,8 +4,8 @@ use fixtures.{member_key, spend_after, spend_before, stranger_key, unlock_at}
 use lockups
 
 // #region lockup
-/// A lock-up: whatever it holds goes to `owner`, after `unlock_at`. One
-/// instance per member and per date, each with its own address.
+/// A lock-up: only `owner` can authorize spending, after `unlock_at`.
+/// The owner chooses the destination. One instance per member and per date.
 validator lockup(unlock_at: Int, owner: VerificationKeyHash) {
   spend(
     _datum: Option<Data>,

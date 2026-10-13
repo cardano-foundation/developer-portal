@@ -34,7 +34,7 @@ export const REWARD_NAME_HEX = stringToHex("REWARD");
 
 /// A member of the rewards program: their key hash, and when their lock-up
 /// opens, in POSIX milliseconds. The first three policies give every member
-/// the program's date; the last two let each member have their own.
+/// the program's date; the last two allow that date or a later one per member.
 export type Member = { owner: string; unlockAt: number };
 
 type Blueprint = { validators: { title: string; compiledCode: string }[] };
@@ -202,8 +202,9 @@ function applyWithLongLast(code: string, params: Data[], last: string): string {
 // ---------------------------------------------------------------------------
 // The reward policies.
 
-/// `policy` compiled for a program run by `admin` whose lock-ups open at
-/// `unlockAt`. The naive policy also needs the list of lock-ups it accepts.
+/// `policy` compiled for a program run by `admin`. `unlockAt` is the common
+/// date for key-only lock-ups and the minimum date for the terms policies.
+/// The naive policy trusts the supplied list of lock-ups instead.
 export function policyScriptCbor(policy: Policy, admin: string, unlockAt: number, listed: string[] = []): string {
   const code = compiledCode(`${POLICIES[policy]}.mint`);
   switch (policy) {
@@ -213,9 +214,9 @@ export function policyScriptCbor(policy: Policy, admin: string, unlockAt: number
     case "withLibrary":
       return applyWithLongLast(code, [admin], lockupPrefix(unlockAt));
     case "hashedTerms":
-      return applyWithLongLast(code, [admin], termsPrefix());
+      return applyWithLongLast(code, [admin, unlockAt], termsPrefix());
     case "rawTerms":
-      return applyWithLongLast(code, [admin], rawFlatPrefix());
+      return applyWithLongLast(code, [admin, unlockAt], rawFlatPrefix());
   }
 }
 

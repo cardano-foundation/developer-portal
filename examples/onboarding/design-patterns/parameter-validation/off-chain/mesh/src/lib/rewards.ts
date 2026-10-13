@@ -24,7 +24,7 @@ export type Mint = {
   policy: Policy;
   /// The admin's key hash, a parameter of the policy.
   admin: string;
-  /// When the program's lock-ups open.
+  /// The program's unlock date; the terms policies allow later member dates.
   unlockAt: number;
   /// Each member, and the reward tokens their lock-up receives.
   rewards: { member: Member; quantity: number }[];
@@ -52,6 +52,7 @@ function mintRedeemer(policy: Policy, members: Member[]): Data {
 /// Mint reward tokens straight into each member's lock-up.
 export async function buildMintRewardsTx(mint: Mint): Promise<string> {
   const policyCbor = policyScriptCbor(mint.policy, mint.admin, mint.unlockAt, mint.listed);
+  const rewardUnit = policyId(policyCbor) + REWARD_NAME_HEX;
   const total = mint.rewards.reduce((sum, r) => sum + r.quantity, 0);
   const txBuilder = new MeshTxBuilder({ fetcher: mint.provider, evaluator: mint.evaluator })
     .mintPlutusScriptV3()
@@ -64,12 +65,13 @@ export async function buildMintRewardsTx(mint: Mint): Promise<string> {
     txBuilder
       .txOut(lockupAddress(mint.policy, member, mint.networkId), [
         { unit: "lovelace", quantity: "2000000" },
-        { unit: policyId(policyCbor) + REWARD_NAME_HEX, quantity: quantity.toString() },
+        { unit: rewardUnit, quantity: quantity.toString() },
       ])
       .txOutInlineDatumValue(LOCKUP_DATUM);
   }
   txBuilder.requiredSignerHash(mint.admin);
-  return await finish(txBuilder, mint.wallet);
+  // Minting and moving existing rewards are separate transactions.
+  return await finish(txBuilder, mint.wallet, rewardUnit);
 }
 // #endregion mint
 
@@ -79,8 +81,9 @@ export function listedLockups(policy: Policy, members: Member[]): string[] {
 }
 
 // #region withdraw
-/// The member takes everything their lock-up holds, after it opens. `from` is
-/// the slot the transaction's window starts at.
+/// The owner authorizes spending after the lock-up opens. Funds go to
+/// `wallet`'s change address; the owner's signature is required even if this
+/// is another wallet. `from` is the slot the transaction's window starts at.
 export async function buildWithdrawTx(
   wallet: IWallet,
   provider: IFetcher,
@@ -104,8 +107,9 @@ export async function buildWithdrawTx(
 }
 // #endregion withdraw
 
-/// Add collateral, balance from `wallet`, and complete.
-async function finish(txBuilder: MeshTxBuilder, wallet: IWallet): Promise<string> {
+/// Add collateral, balance from `wallet`, and complete. A mint excludes inputs
+/// carrying `rewardUnit`; withdrawals may consume existing rewards normally.
+async function finish(txBuilder: MeshTxBuilder, wallet: IWallet, rewardUnit?: string): Promise<string> {
   const collateral = (await wallet.getCollateral())[0];
   if (!collateral) {
     throw new Error(
@@ -113,6 +117,18 @@ async function finish(txBuilder: MeshTxBuilder, wallet: IWallet): Promise<string
         "Send it some test ADA and try again.",
     );
   }
+  // #region funding
+  const funding = (await wallet.getUtxos()).filter(
+    ({ input, output }) =>
+      (input.txHash !== collateral.input.txHash || input.outputIndex !== collateral.input.outputIndex) &&
+      !output.amount.some((asset) => asset.unit === rewardUnit && BigInt(asset.quantity) > 0n),
+  );
+  if (rewardUnit && funding.length === 0) {
+    throw new Error(
+      "no mint funding UTxOs without this program's REWARD tokens: fund the wallet with a separate ADA UTxO",
+    );
+  }
+  // #endregion funding
   return await txBuilder
     .txInCollateral(
       collateral.input.txHash,
@@ -121,11 +137,6 @@ async function finish(txBuilder: MeshTxBuilder, wallet: IWallet): Promise<string
       collateral.output.address,
     )
     .changeAddress(await wallet.getChangeAddress())
-    .selectUtxosFrom(
-      (await wallet.getUtxos()).filter(
-        ({ input }) =>
-          input.txHash !== collateral.input.txHash || input.outputIndex !== collateral.input.outputIndex,
-      ),
-    )
+    .selectUtxosFrom(funding)
     .complete();
 }

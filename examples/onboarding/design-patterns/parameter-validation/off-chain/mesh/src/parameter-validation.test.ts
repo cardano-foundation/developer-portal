@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { MeshTxBuilder } from "@meshsdk/core";
+import { deserializeTx } from "@meshsdk/core-csl";
 import {
   POLICIES,
   REWARD_NAME_HEX,
@@ -57,7 +58,7 @@ test("a terms lock-up's hash is the hash of the prefix, the terms' hash and the 
 // The builders: every honest transaction is approved.
 
 for (const policy of ALL) {
-  test(`${policy}: minting into three members' lock-ups runs the policy once`, async () => {
+  test(`${policy}: minting runs the policy once and measures its signed size`, async () => {
     const chain = await offlineChain();
     const members = membersFor(chain, policy, 3);
     const tx = await buildMintRewardsTx({
@@ -71,6 +72,48 @@ for (const policy of ALL) {
       networkId: NETWORK,
       evaluator: chain.evaluator,
     });
+    assert.deepEqual(tags(await chain.evaluator.evaluateTx(tx, [], [])), ["MINT"]);
+    const signed = await chain.adminWallet.signTx(tx);
+    assert.equal(deserializeTx(signed).witness_set().vkeys()!.len(), 1);
+    assert.ok(signed.length > tx.length, "the size measurement must include the admin's witness");
+    assert.equal((await measure(policy, 3)).size, signed.length / 2);
+  });
+
+  test(`${policy}: mint funding excludes existing rewards but permits unrelated tokens`, async (t) => {
+    const chain = await offlineChain();
+    const members = membersFor(chain, policy, 1);
+    const listed = listedLockups(policy, members);
+    const unit = policyId(policyScriptCbor(policy, chain.admin, chain.unlockAt, listed)) + REWARD_NAME_HEX;
+    const existing = chain.addUtxo(chain.adminAddress, [
+      { unit: "lovelace", quantity: "1000000000" },
+      { unit, quantity: "1" },
+    ]);
+    const collateral = (await chain.adminWallet.getCollateral())[0]!;
+    const available = [existing, collateral];
+    t.mock.method(chain.adminWallet, "getUtxos", async () => available);
+    const mint = {
+      wallet: chain.adminWallet,
+      provider: chain.fetcher,
+      policy,
+      admin: chain.admin,
+      unlockAt: chain.unlockAt,
+      rewards: members.map((member) => ({ member, quantity: 10 })),
+      listed,
+      networkId: NETWORK,
+      evaluator: chain.evaluator,
+    };
+    await assert.rejects(buildMintRewardsTx(mint), /no mint funding UTxOs without this program's REWARD tokens/);
+
+    const funding = chain.addUtxo(chain.adminAddress, [
+      { unit: "lovelace", quantity: "1000000000" },
+      { unit: "ff".repeat(28) + REWARD_NAME_HEX, quantity: "1" },
+    ]);
+    available.push(funding);
+    const tx = await buildMintRewardsTx(mint);
+    const inputs = deserializeTx(tx).body().inputs();
+    const spent = Array.from({ length: inputs.len() }, (_, i) => inputs.get(i).transaction_id().to_hex());
+    assert.ok(spent.includes(funding.input.txHash));
+    assert.ok(!spent.includes(existing.input.txHash));
     assert.deepEqual(tags(await chain.evaluator.evaluateTx(tx, [], [])), ["MINT"]);
   });
 
@@ -96,6 +139,26 @@ for (const policy of ALL) {
     const lockup = chain.rewarded(policy, member, 10);
     const tx = await buildWithdrawTx(chain.memberWallet, chain.fetcher, policy, member, lockup, UNLOCK_SLOT - 10);
     await assert.rejects(chain.evaluator.evaluateTx(tx, [], []), /"tag":"spend"/);
+  });
+
+  test(`${policy}: the owner can authorize withdrawal to another wallet`, async () => {
+    const chain = await offlineChain();
+    const tx = await buildWithdrawTx(
+      chain.adminWallet,
+      chain.fetcher,
+      policy,
+      chain.member,
+      chain.rewarded(policy, chain.member, 10),
+      UNLOCK_SLOT + 1,
+      chain.evaluator,
+    );
+    const body = deserializeTx(tx).body();
+    assert.equal(body.outputs().get(0).address().to_bech32(), chain.adminAddress);
+    assert.equal(body.required_signers()!.get(0).to_hex(), chain.member.owner);
+    const ownerSigned = await chain.memberWallet.signTx(tx, true);
+    const signed = await chain.adminWallet.signTx(ownerSigned, true);
+    assert.equal(deserializeTx(signed).witness_set().vkeys()!.len(), 2);
+    assert.deepEqual(tags(await chain.evaluator.evaluateTx(signed, [], [])), ["SPEND"]);
   });
 }
 
@@ -136,6 +199,8 @@ type Forgery = {
   outputs: { address: string; quantity: number }[];
   /// The lock-ups the naive policy lists.
   listed: Member[];
+  /// Previously minted rewards spent as an input, separate from the new mint.
+  existing?: number;
 };
 
 async function forge(build: (chain: Chain) => Forgery) {
@@ -146,7 +211,7 @@ async function forge(build: (chain: Chain) => Forgery) {
   const collateral = (await signerWallet.getCollateral())[0]!;
   const listed = listedLockups(forgery.policy, forgery.listed);
   const policyCbor = policyScriptCbor(forgery.policy, chain.admin, chain.unlockAt, listed);
-  const minted = forgery.outputs.reduce((total, o) => total + o.quantity, 0);
+  const minted = forgery.outputs.reduce((total, o) => total + o.quantity, 0) - (forgery.existing ?? 0);
   const redeemer =
     forgery.policy === "naive"
       ? []
@@ -158,6 +223,13 @@ async function forge(build: (chain: Chain) => Forgery) {
     .mint(minted.toString(), policyId(policyCbor), REWARD_NAME_HEX)
     .mintingScript(policyCbor)
     .mintRedeemerValue(redeemer);
+  if (forgery.existing) {
+    const input = chain.addUtxo(signerAddress, [
+      { unit: "lovelace", quantity: "2000000" },
+      { unit: policyId(policyCbor) + REWARD_NAME_HEX, quantity: forgery.existing.toString() },
+    ]);
+    txBuilder.txIn(input.input.txHash, input.input.outputIndex, input.output.amount, input.output.address);
+  }
   for (const { address, quantity } of forgery.outputs) {
     txBuilder
       .txOut(address, [
@@ -200,6 +272,9 @@ for (const policy of ALL) {
   test(`theft: ${policy} refuses a mint the admin did not sign`, () =>
     refused(honest, () => ({ signer: "member" })));
 
+  test(`${policy}: minting cannot consume existing rewards even when all outputs are lock-ups`, () =>
+    refused(honest, () => ({ existing: 1 })));
+
   // Ten tokens into a lock-up, ten more into the admin's own wallet.
   test(`theft: ${policy} refuses rewards kept outside the lock-ups`, () =>
     refused(honest, (chain) => ({
@@ -226,6 +301,37 @@ for (const policy of ALL) {
   if (policy !== "naive") {
     test(`theft: ${policy} refuses rewards in another member's lock-up`, () =>
       refused(honest, (chain) => ({ named: [...honest(chain).named].reverse() })));
+  }
+
+  if (policy === "hashedTerms" || policy === "rawTerms") {
+    test(`${policy}: the policy ID commits to the minimum unlock date`, async () => {
+      const chain = await offlineChain();
+      assert.notEqual(
+        policyId(policyScriptCbor(policy, chain.admin, chain.unlockAt)),
+        policyId(policyScriptCbor(policy, chain.admin, chain.unlockAt - 1)),
+      );
+    });
+
+    for (const date of ["zero", "just before minimum"] as const) {
+      test(`theft: ${policy} refuses matching redeemer and output dates at ${date}`, () =>
+        refused(honest, (chain) => {
+          const early = { ...chain.member, unlockAt: date === "zero" ? 0 : chain.unlockAt - 1 };
+          return {
+            named: [early],
+            outputs: [{ address: lockupAddress(policy, early, NETWORK), quantity: 10 }],
+          };
+        }));
+    }
+
+    test(`${policy}: a later member date still restricts withdrawal after the program minimum`, async () => {
+      const chain = await offlineChain();
+      const member = { ...chain.member, unlockAt: chain.unlockAt + 10_000 };
+      const lockup = chain.rewarded(policy, member, 10);
+      const early = await buildWithdrawTx(chain.memberWallet, chain.fetcher, policy, member, lockup, UNLOCK_SLOT + 1);
+      await assert.rejects(chain.evaluator.evaluateTx(early, [], []), /"tag":"spend"/);
+      const after = await buildWithdrawTx(chain.memberWallet, chain.fetcher, policy, member, lockup, UNLOCK_SLOT + 11);
+      assert.deepEqual(tags(await chain.evaluator.evaluateTx(after, [], [])), ["SPEND"]);
+    });
   }
 }
 

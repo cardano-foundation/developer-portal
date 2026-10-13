@@ -1,10 +1,10 @@
 use cardano/transaction.{OutputReference, Transaction}
-use fixtures.{member_key, spend_after, spend_before, terms}
+use fixtures.{member_key, spend_after, spend_before, stranger_key, terms}
 use lockups.{Terms}
 
 // #region lockup-raw
-/// The same lock-up, with its terms as the parameter itself: no hash, no
-/// redeemer.
+/// The same lock-up, with its terms as the parameter itself: no hash and no
+/// terms to supply in the redeemer.
 validator lockup_raw(terms: Terms) {
   spend(
     _datum: Option<Data>,
@@ -28,4 +28,14 @@ test withdraw_ok_after_the_unlock_date() {
 
 test withdraw_fails_before_the_unlock_date() fail {
   lockup_raw.spend(terms, None, Void, fixtures.ref(0), spend_before(member_key))
+}
+
+test withdraw_fails_without_the_owner() fail {
+  lockup_raw.spend(
+    terms,
+    None,
+    Void,
+    fixtures.ref(0),
+    spend_after(stranger_key),
+  )
 }

@@ -1,5 +1,7 @@
 //// The reward token, and the checks every version of its minting policy
 //// shares. The versions differ only in how they recognize a lock-up.
+//// Positive mints require the output total to equal the minted quantity.
+//// By value conservation, they cannot consume existing reward tokens.
 
 use aiken/collection/dict
 use aiken/collection/list

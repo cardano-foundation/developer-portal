@@ -2,7 +2,7 @@ use aiken/cbor
 use aiken/crypto.{Blake2b_224, Hash, blake2b_224}
 use aiken_design_patterns/parameter_validation.{Parameter}
 use cardano/transaction.{OutputReference, Transaction}
-use fixtures.{member_key, spend_after, terms}
+use fixtures.{member_key, spend_after, stranger_key, terms}
 use lockups.{Terms}
 
 // #region lockup-terms
@@ -52,5 +52,15 @@ test withdraw_fails_with_other_terms() fail {
     Parameter { param: earlier },
     fixtures.ref(0),
     spend_after(member_key),
+  )
+}
+
+test withdraw_fails_without_the_owner_even_with_correct_terms() fail {
+  lockup_terms.spend(
+    blake2b_224(cbor.serialise(terms)),
+    None,
+    Parameter { param: terms },
+    fixtures.ref(0),
+    spend_after(stranger_key),
   )
 }

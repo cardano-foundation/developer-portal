@@ -12,7 +12,7 @@ transaction builders, and a benchmark that measures them.
 | `tx-level-validation/` | Transaction-level validation: a withdraw-zero or minting-policy coordinator |
 | `utxo-indexers/` | UTxO indexers: each input told where its output is, in the redeemer |
 | `batch-indexers/` | Batch indexers: one coordinator checks a whole batch, with an index for each input's output |
-| `parameter-validation/` | Parameter validation: a policy that mints only into lock-ups, recognizing each by rebuilding its script hash |
+| `parameter-validation/` | Parameter validation: reward lock-ups recognized by rebuilding their script hashes; minimum unlock dates, separate mint funding, and signed-transaction benchmarks |
 | `merkelized-validator/` | Merkelized validator: purchase vouchers with delegated price computation and redemption-code validation; inline/reference comparisons, deployment costs, and a wider policy that outgrows a monolith |
 | `linked-list/` | Linked list: an authenticated participant registry with local mutations and reference-input membership/absence proofs, compared with one array datum; tested advanced and nested helper examples |
 | `merkle-tree/` | Merkle tree: an allowlisted grant with a SHA-256 root and off-chain membership proof, compared with a list datum; includes a documented compatibility port of `aiken-merkle-tree` |

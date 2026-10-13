@@ -17,7 +17,7 @@ export const LIMITS = {
 };
 
 /// What one mint costs: the policy's execution units, the fee in lovelace,
-/// the transaction's size, the size of the policy script it carries, and
+/// the signed transaction's size, the size of the policy script it carries, and
 /// whether it fits in one transaction.
 export type Cost = {
   mem: number;
@@ -82,7 +82,9 @@ export async function measure(policy: Policy, paid: number, listed = paid): Prom
   } catch {
     // The policy ran out of budget: it does not fit.
   }
-  const size = unsignedTx.length / 2;
+  // Witnesses count toward the ledger's transaction-size limit too.
+  const signedTx = await chain.adminWallet.signTx(unsignedTx);
+  const size = signedTx.length / 2;
   return {
     mem,
     cpu,

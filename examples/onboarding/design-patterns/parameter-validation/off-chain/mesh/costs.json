@@ -11,7 +11,7 @@
           "mem": 80054,
           "cpu": 23689128,
           "fee": 212309,
-          "size": 1044,
+          "size": 1150,
           "scriptSize": 618,
           "fits": true
         },
@@ -19,7 +19,7 @@
           "mem": 233750,
           "cpu": 69201728,
           "fee": 245446,
-          "size": 1521,
+          "size": 1627,
           "scriptSize": 738,
           "fits": true
         },
@@ -27,7 +27,7 @@
           "mem": 496295,
           "cpu": 146424558,
           "fee": 292387,
-          "size": 2117,
+          "size": 2223,
           "scriptSize": 889,
           "fits": true
         },
@@ -35,7 +35,7 @@
           "mem": 1256135,
           "cpu": 368643818,
           "fee": 404656,
-          "size": 3308,
+          "size": 3414,
           "scriptSize": 1190,
           "fits": true
         }
@@ -49,7 +49,7 @@
           "mem": 82078,
           "cpu": 25647555,
           "fee": 228979,
-          "size": 1417,
+          "size": 1523,
           "scriptSize": 962,
           "fits": true
         },
@@ -57,7 +57,7 @@
           "mem": 204314,
           "cpu": 68064839,
           "fee": 260078,
-          "size": 1894,
+          "size": 2000,
           "scriptSize": 962,
           "fits": true
         },
@@ -65,7 +65,7 @@
           "mem": 357109,
           "cpu": 121086444,
           "fee": 298897,
-          "size": 2489,
+          "size": 2595,
           "scriptSize": 962,
           "fits": true
         },
@@ -73,7 +73,7 @@
           "mem": 662699,
           "cpu": 227129654,
           "fee": 376535,
-          "size": 3679,
+          "size": 3785,
           "scriptSize": 962,
           "fits": true
         }
@@ -87,7 +87,7 @@
           "mem": 82579,
           "cpu": 27050162,
           "fee": 229329,
-          "size": 1422,
+          "size": 1528,
           "scriptSize": 967,
           "fits": true
         },
@@ -95,7 +95,7 @@
           "mem": 206819,
           "cpu": 75077874,
           "fee": 260948,
-          "size": 1899,
+          "size": 2005,
           "scriptSize": 967,
           "fits": true
         },
@@ -103,7 +103,7 @@
           "mem": 362119,
           "cpu": 135112514,
           "fee": 300417,
-          "size": 2494,
+          "size": 2600,
           "scriptSize": 967,
           "fits": true
         },
@@ -111,7 +111,7 @@
           "mem": 672719,
           "cpu": 255181794,
           "fee": 379356,
-          "size": 3684,
+          "size": 3790,
           "scriptSize": 967,
           "fits": true
         }
@@ -122,77 +122,77 @@
     "hashedTerms": {
       "mints": {
         "1": {
-          "mem": 87951,
-          "cpu": 33746377,
-          "fee": 238129,
-          "size": 1604,
-          "scriptSize": 1136,
+          "mem": 92445,
+          "cpu": 34927144,
+          "fee": 240454,
+          "size": 1755,
+          "scriptSize": 1181,
           "fits": true
         },
         "5": {
-          "mem": 233679,
-          "cpu": 108558949,
-          "fee": 275208,
-          "size": 2133,
-          "scriptSize": 1136,
+          "mem": 250821,
+          "cpu": 113547808,
+          "fee": 278537,
+          "size": 2284,
+          "scriptSize": 1181,
           "fits": true
         },
         "10": {
-          "mem": 415839,
-          "cpu": 202074664,
-          "fee": 321501,
-          "size": 2793,
-          "scriptSize": 1136,
+          "mem": 448791,
+          "cpu": 211823638,
+          "fee": 326085,
+          "size": 2944,
+          "scriptSize": 1181,
           "fits": true
         },
         "20": {
-          "mem": 780159,
-          "cpu": 389106094,
-          "fee": 414087,
-          "size": 4113,
-          "scriptSize": 1136,
+          "mem": 844731,
+          "cpu": 408375298,
+          "fee": 421182,
+          "size": 4264,
+          "scriptSize": 1181,
           "fits": true
         }
       },
-      "largestMint": 112,
+      "largestMint": 111,
       "limitedBy": "size"
     },
     "rawTerms": {
       "mints": {
         "1": {
-          "mem": 98368,
-          "cpu": 38348667,
-          "fee": 244034,
-          "size": 1717,
-          "scriptSize": 1249,
+          "mem": 102862,
+          "cpu": 39529434,
+          "fee": 246359,
+          "size": 1868,
+          "scriptSize": 1294,
           "fits": true
         },
         "5": {
-          "mem": 284964,
-          "cpu": 131442399,
-          "fee": 284789,
-          "size": 2246,
-          "scriptSize": 1249,
+          "mem": 302106,
+          "cpu": 136431258,
+          "fee": 288118,
+          "size": 2397,
+          "scriptSize": 1294,
           "fits": true
         },
         "10": {
-          "mem": 518209,
-          "cpu": 247809564,
-          "fee": 335677,
-          "size": 2906,
-          "scriptSize": 1249,
+          "mem": 551161,
+          "cpu": 257558538,
+          "fee": 340261,
+          "size": 3057,
+          "scriptSize": 1294,
           "fits": true
         },
         "20": {
-          "mem": 984699,
-          "cpu": 480543894,
-          "fee": 437454,
-          "size": 4226,
-          "scriptSize": 1249,
+          "mem": 1049271,
+          "cpu": 499813098,
+          "fee": 444549,
+          "size": 4377,
+          "scriptSize": 1294,
           "fits": true
         }
       },
-      "largestMint": 111,
+      "largestMint": 110,
       "limitedBy": "size"
     }
   },
