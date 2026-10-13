@@ -26,7 +26,9 @@ This pattern combines indices with **[transaction-level validation](/docs/develo
 
 ## The protocol
 
-**The order book from [UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers#the-protocol), with a protocol fee.** A buyer locks ADA with a datum that says which token they want, how many, and where to deliver them. A seller fills many orders in one transaction, delivers each one's tokens, and keeps the ADA. What is new: every batch pays the protocol's **treasury** a fee of 1 ADA **for each order it fills**, in a single output.
+**The order book from [UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers#the-protocol), initially restricted to full fills and cancellation, with a protocol fee:** A buyer locks ADA with a datum that says which token they want, how many, and where to deliver them. A seller fills many orders in one transaction, delivers each one's tokens, and keeps the ADA. What is new: every batch pays the protocol's **treasury** a fee of 1 ADA **for each order it fills**, in a single output.
+
+We'll add Partial fills back in [Mixed batches](#mixed-batches-reading-each-orders-redeemer), where the coordinator reads each order's redeemer to distinguish full and partial fills.
 
 ```mermaid
 flowchart LR
@@ -74,7 +76,7 @@ flowchart LR
     style O3 stroke-dasharray:4 3
 ```
 
-Each order is paid exactly as on the UTxO indexers page, with the same checks: the owner's exact address, only the token ordered, and the order's own output reference as the tag. The fee is the new check:
+Each full fill is checked exactly as on the UTxO indexers page: the owner's exact address, only the token ordered, and the order's own output reference as the tag. The fee adds a batch-wide check:
 
 <CodeBlock language="aiken" title="lib/order_book.ak">
   {extractRegion(OrderBookAiken, "fee")}
@@ -84,7 +86,7 @@ The fee output is tagged with the book's hash, for the same reason payments are 
 
 ## Checking the batch from every order (the problem)
 
-The book from the UTxO indexers page, with the fee added. Each order still goes straight to its payment by index, but the fee depends on how many orders the batch fills, and an order only learns that by counting them:
+The full-fill version of the book from the UTxO indexers page, with the fee added. Each order still goes straight to its payment by index, but the fee depends on how many orders the batch fills, and an order only learns that by counting them:
 
 <CodeBlock language="aiken" title="validators/per_order.ak">
   {extractRegion(PerOrderAiken, "per-order")}
@@ -314,7 +316,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 ## The numbers
 
-Every figure below is measured, not estimated. `npm run bench` builds each batch on an in-memory chain with a fixed wallet and fixed orders of 10 ADA for 100 tokens each, runs every script in it with Mesh's `OfflineEvaluator`, and writes the totals to `costs.json`. This page reads that file. `npm test` measures again and fails if the file is out of date. The limits and fees come from Mesh's default protocol parameters, so check the live network's before you rely on an exact maximum.
+Every figure below is measured, not estimated. `npm run bench` builds each batch on an in-memory chain with a fixed wallet and fixed orders of 10 ADA for 100 tokens each, runs every script in it with Mesh's `OfflineEvaluator`, and writes the totals to `costs.json`. This page reads that file. The limits and fees come from Mesh's default protocol parameters, so check the live network's before you rely on an exact maximum.
 
 **Memory units used by one batch of whole fills**, all scripts added up:
 

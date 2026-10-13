@@ -1,0 +1,204 @@
+{
+  "limits": {
+    "mem": 16000000,
+    "cpu": 10000000000,
+    "size": 16384
+  },
+  "versions": {
+    "naive": {
+      "register": {
+        "10": {
+          "mem": 326248,
+          "cpu": 110967276,
+          "fee": 323315,
+          "size": 3101,
+          "proofBytes": 0,
+          "fits": true
+        },
+        "100": {
+          "mem": 1389148,
+          "cpu": 467008356,
+          "fee": 560839,
+          "size": 6522,
+          "proofBytes": 0,
+          "fits": true
+        }
+      },
+      "operations": {
+        "retarget": {
+          "mem": 1923147,
+          "cpu": 622983726,
+          "fee": 599728,
+          "size": 6450,
+          "proofBytes": 0,
+          "fits": true
+        },
+        "release": {
+          "mem": 1882497,
+          "cpu": 609959978,
+          "fee": 594200,
+          "size": 6399,
+          "proofBytes": 0,
+          "fits": true
+        }
+      },
+      "scriptSize": 2123
+    },
+    "byHand": {
+      "register": {
+        "10": {
+          "mem": 362027,
+          "cpu": 112828006,
+          "fee": 432961,
+          "size": 5543,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "100": {
+          "mem": 362027,
+          "cpu": 112828006,
+          "fee": 432961,
+          "size": 5543,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "1000": {
+          "mem": 438893,
+          "cpu": 134794361,
+          "fee": 445096,
+          "size": 5682,
+          "proofBytes": 419,
+          "fits": true
+        },
+        "10000": {
+          "mem": 508327,
+          "cpu": 154154174,
+          "fee": 456614,
+          "size": 5821,
+          "proofBytes": 558,
+          "fits": true
+        }
+      },
+      "operations": {
+        "retarget": {
+          "mem": 341635,
+          "cpu": 105294991,
+          "fee": 429790,
+          "size": 5510,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "release": {
+          "mem": 344128,
+          "cpu": 106567905,
+          "fee": 429409,
+          "size": 5496,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "resolve": {
+          "mem": 210064,
+          "cpu": 67195226,
+          "fee": 346807,
+          "size": 3859,
+          "proofBytes": 280,
+          "fits": true
+        }
+      },
+      "scriptSize": 4665
+    },
+    "withLibrary": {
+      "register": {
+        "10": {
+          "mem": 359815,
+          "cpu": 112325524,
+          "fee": 432489,
+          "size": 5536,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "100": {
+          "mem": 359815,
+          "cpu": 112325524,
+          "fee": 432489,
+          "size": 5536,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "1000": {
+          "mem": 436681,
+          "cpu": 134291879,
+          "fee": 444624,
+          "size": 5675,
+          "proofBytes": 419,
+          "fits": true
+        },
+        "10000": {
+          "mem": 506115,
+          "cpu": 153651692,
+          "fee": 456143,
+          "size": 5814,
+          "proofBytes": 558,
+          "fits": true
+        }
+      },
+      "operations": {
+        "retarget": {
+          "mem": 339423,
+          "cpu": 104792509,
+          "fee": 429318,
+          "size": 5503,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "release": {
+          "mem": 341916,
+          "cpu": 106065423,
+          "fee": 428937,
+          "size": 5489,
+          "proofBytes": 280,
+          "fits": true
+        },
+        "resolve": {
+          "mem": 210064,
+          "cpu": 67195226,
+          "fee": 346807,
+          "size": 3859,
+          "proofBytes": 280,
+          "fits": true
+        }
+      },
+      "scriptSize": 4658
+    }
+  },
+  "largestNaiveRegistry": 350,
+  "example": {
+    "names": [
+      "alice",
+      "bob",
+      "carol",
+      "dave",
+      "erin",
+      "frank",
+      "grace",
+      "heidi"
+    ],
+    "root": "01194523899e1f8c1d5d9c6ab04085bf49632c7ff6839d87d0bd5f5d99a55b4c",
+    "name": "carol",
+    "steps": [
+      {
+        "type": "branch",
+        "skip": 0,
+        "neighbors": "0407e40f8828ad0de7aab019d44e427b1d3ef007db3a83743d1759a0f71f06e685c09af929492a871e4fae32d9d5c36e352471cd659bcdb61de08f1722acc3b10eb923b0cbd24df54401d998531feead35a47a99f4deed205de4af81120f97610000000000000000000000000000000000000000000000000000000000000000"
+      },
+      {
+        "type": "leaf",
+        "skip": 0,
+        "neighbor": {
+          "key": "08d9ca92d3b33365b8a3f1e92562aadb060b8bbc182fd8a10ac61c0137e1d46b",
+          "value": "fc70b39499e1bb660634896b5b031cfb73909637186132cfb1b98ae0766a6c7e"
+        }
+      }
+    ]
+  }
+}

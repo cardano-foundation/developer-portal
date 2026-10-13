@@ -1,0 +1,373 @@
+{
+  "limits": {
+    "mem": 16000000,
+    "cpu": 10000000000,
+    "size": 16384
+  },
+  "versions": {
+    "naive": {
+      "scriptSize": 225,
+      "sizes": {
+        "1": {
+          "claim": {
+            "mem": 25966,
+            "cpu": 7964781,
+            "size": 689,
+            "fee": 187770,
+            "fits": true
+          },
+          "lock": {
+            "size": 349,
+            "fee": 170737,
+            "minimumAda": 1043020
+          },
+          "datumSize": 36,
+          "proofSteps": 0,
+          "proofSize": 0
+        },
+        "5": {
+          "claim": {
+            "mem": 38486,
+            "cpu": 11579373,
+            "size": 689,
+            "fee": 188753,
+            "fits": true
+          },
+          "lock": {
+            "size": 469,
+            "fee": 176017,
+            "minimumAda": 1560220
+          },
+          "datumSize": 156,
+          "proofSteps": 0,
+          "proofSize": 0
+        },
+        "10": {
+          "claim": {
+            "mem": 54136,
+            "cpu": 16097613,
+            "size": 689,
+            "fee": 189982,
+            "fits": true
+          },
+          "lock": {
+            "size": 620,
+            "fee": 182661,
+            "minimumAda": 2211030
+          },
+          "datumSize": 306,
+          "proofSteps": 0,
+          "proofSize": 0
+        },
+        "20": {
+          "claim": {
+            "mem": 85436,
+            "cpu": 25134093,
+            "size": 691,
+            "fee": 192527,
+            "fits": true
+          },
+          "lock": {
+            "size": 920,
+            "fee": 195861,
+            "minimumAda": 3504030
+          },
+          "datumSize": 606,
+          "proofSteps": 0,
+          "proofSize": 0
+        },
+        "100": {
+          "claim": {
+            "mem": 335836,
+            "cpu": 97425933,
+            "size": 691,
+            "fee": 212188,
+            "fits": true
+          },
+          "lock": {
+            "size": 3320,
+            "fee": 301461,
+            "minimumAda": 13848030
+          },
+          "datumSize": 3006,
+          "proofSteps": 0,
+          "proofSize": 0
+        },
+        "256": {
+          "claim": {
+            "mem": 824116,
+            "cpu": 238395021,
+            "size": 691,
+            "fee": 250525,
+            "fits": true
+          },
+          "lock": {
+            "size": 8000,
+            "fee": 507381,
+            "minimumAda": 34018830
+          },
+          "datumSize": 7686,
+          "proofSteps": 0,
+          "proofSize": 0
+        }
+      }
+    },
+    "byHand": {
+      "scriptSize": 573,
+      "sizes": {
+        "1": {
+          "claim": {
+            "mem": 38204,
+            "cpu": 12263544,
+            "size": 1042,
+            "fee": 204318,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 0,
+          "proofSize": 1
+        },
+        "5": {
+          "claim": {
+            "mem": 88418,
+            "cpu": 29127681,
+            "size": 1159,
+            "fee": 213579,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 3,
+          "proofSize": 116
+        },
+        "10": {
+          "claim": {
+            "mem": 105156,
+            "cpu": 34749060,
+            "size": 1197,
+            "fee": 216622,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 4,
+          "proofSize": 154
+        },
+        "20": {
+          "claim": {
+            "mem": 121894,
+            "cpu": 40370439,
+            "size": 1235,
+            "fee": 219665,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 5,
+          "proofSize": 192
+        },
+        "100": {
+          "claim": {
+            "mem": 155370,
+            "cpu": 51613197,
+            "size": 1311,
+            "fee": 225752,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 7,
+          "proofSize": 268
+        },
+        "256": {
+          "claim": {
+            "mem": 172108,
+            "cpu": 57234576,
+            "size": 1349,
+            "fee": 228795,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 8,
+          "proofSize": 306
+        }
+      }
+    },
+    "withLibrary": {
+      "scriptSize": 671,
+      "sizes": {
+        "1": {
+          "claim": {
+            "mem": 40352,
+            "cpu": 12835928,
+            "size": 1140,
+            "fee": 208795,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 0,
+          "proofSize": 1
+        },
+        "5": {
+          "claim": {
+            "mem": 106322,
+            "cpu": 34289276,
+            "size": 1257,
+            "fee": 219297,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 3,
+          "proofSize": 116
+        },
+        "10": {
+          "claim": {
+            "mem": 128312,
+            "cpu": 41440392,
+            "size": 1295,
+            "fee": 222753,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 4,
+          "proofSize": 154
+        },
+        "20": {
+          "claim": {
+            "mem": 150302,
+            "cpu": 48591508,
+            "size": 1333,
+            "fee": 226209,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 5,
+          "proofSize": 192
+        },
+        "100": {
+          "claim": {
+            "mem": 194282,
+            "cpu": 62893740,
+            "size": 1409,
+            "fee": 233122,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 7,
+          "proofSize": 268
+        },
+        "256": {
+          "claim": {
+            "mem": 216272,
+            "cpu": 70044856,
+            "size": 1447,
+            "fee": 236579,
+            "fits": true
+          },
+          "lock": {
+            "size": 351,
+            "fee": 170825,
+            "minimumAda": 1051640
+          },
+          "datumSize": 38,
+          "proofSteps": 8,
+          "proofSize": 306
+        }
+      }
+    }
+  },
+  "listPublicationLimit": {
+    "members": 535,
+    "limitedBy": "size",
+    "lastSize": 16370,
+    "nextSize": null
+  },
+  "largeTree": {
+    "members": 65536,
+    "byHand": {
+      "claim": {
+        "mem": 306012,
+        "cpu": 102205608,
+        "size": 1653,
+        "fee": 253139,
+        "fits": true
+      },
+      "lock": {
+        "size": 351,
+        "fee": 170825,
+        "minimumAda": 1051640
+      },
+      "datumSize": 38,
+      "proofSteps": 16,
+      "proofSize": 610
+    },
+    "withLibrary": {
+      "claim": {
+        "mem": 392192,
+        "cpu": 127253784,
+        "size": 1751,
+        "fee": 264230,
+        "fits": true
+      },
+      "lock": {
+        "size": 351,
+        "fee": 170825,
+        "minimumAda": 1051640
+      },
+      "datumSize": 38,
+      "proofSteps": 16,
+      "proofSize": 610
+    }
+  }
+}
