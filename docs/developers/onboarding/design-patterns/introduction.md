@@ -18,12 +18,12 @@ Each page explains one pattern on its own. It is **not a sequence**: arrive with
 - **[Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)**: spending _N_ UTxOs from one script runs the same check _N_ times. Run it once instead, with a withdraw-zero stake validator or a minting policy as the coordinator.
 - **[UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers)**: each input searching the transaction for its own output costs _N²_. Pass the output's index in the redeemer instead, and check what is there.
 - **[Batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers)**: when a check spans a whole batch, every input repeats it. One coordinator walks the batch once instead, with an index for each input's outputs.
-- **[Validity range normalization](/docs/developers/onboarding/design-patterns/validity-range-normalization)**: an interval has many encodings. Reduce it to one canonical form before reading time from it: a clarity gain for the transaction's own window, and a correctness fix for an interval stored in a datum.
 - **[Parameter validation](/docs/developers/onboarding/design-patterns/parameter-validation)**: a validator sees only a script's hash. Rebuild an instance's hash from the compiled script and its parameter, to recognize every instance of a parameterized script without a list.
 - **[Merkelized validator](/docs/developers/onboarding/design-patterns/merkelized-validator)**: split large logic into independently published withdrawal workers, pin their hashes and arguments, and load only the modules an action needs.
 - **[Linked list](/docs/developers/onboarding/design-patterns/linked-list)**: split a growing registry across authenticated UTxOs, change only its neighbors, and prove membership or absence from one reference input.
 - **[Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree)**: commit a large allowlist to a 32-byte root and verify membership from a logarithmic-size proof built off-chain.
 - **[Merkle Patricia trie](/docs/developers/onboarding/design-patterns/merkle-patricia-trie)**: a registry too large for one datum. Keep it as a trie off-chain and its 32-byte root on-chain, and prove every insert, update, delete and lookup, absence included.
+- **[Validity range normalization](/docs/developers/onboarding/design-patterns/validity-range-normalization)**: an interval has many encodings. Reduce it to one canonical form before reading time from it: a clarity gain for the transaction's own window, and a correctness fix for an interval stored in a datum.
 
 ## How a pattern is measured
 
@@ -75,12 +75,12 @@ design-patterns/
 │       └── costs.json          the measured figures the page shows
 ├── utxo-indexers/              the same layout
 ├── batch-indexers/             the same layout
-├── validity-range/             the same layout
 ├── parameter-validation/       the same layout
 ├── merkelized-validator/       the same layout
 ├── linked-list/                the same layout
 ├── merkle-tree/                the same layout
-└── merkle-patricia-trie/       the same layout
+├── merkle-patricia-trie/       the same layout
+└── validity-range/             the same layout
 ```
 
 **Each folder is a project in its own right**, and nothing in it reaches into a sibling. There is no browser app and nothing to submit: every transaction is built and evaluated offline, so you need no wallet, test ADA or provider key.
