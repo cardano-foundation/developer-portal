@@ -1,7 +1,7 @@
 ---
 title: "Optimization"
 sidebar_label: "Optimization"
-description: "The three limits a transaction has to fit under, how to measure what a validator costs before you change it, and the three places a contract can be made cheaper."
+description: "The three limits a transaction has to fit under, how to measure what a validator costs before you change it, and the four places a contract can be made cheaper."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -61,7 +61,7 @@ The blueprint your compiler writes holds the compiled script. Its length in byte
 
 Then change the part the measurement points at, and measure again. The handbook's optimization page starts with the same advice, in [before optimizing](/docs/developers/curriculum/smart-contracts/advanced/optimization#before-optimizing).
 
-## Three places to optimize
+## Four places to optimize
 
 A **local** change stays inside one function, and nothing outside it can see a difference: a cheaper representation, one walk over a list where there were two, the cheap check before the expensive one. The handbook groups these under [choose cheaper representations](/docs/developers/curriculum/smart-contracts/advanced/optimization#choose-cheaper-representations) and [traverse once](/docs/developers/curriculum/smart-contracts/advanced/optimization#traverse-once).
 
@@ -88,6 +88,37 @@ flowchart TB
 ```
 
 A minting policy runs once per transaction whatever it mints. A contract with nothing to mint can use the withdraw purpose from [validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes). A transaction that withdraws zero ADA from the script's own reward account makes the script run one more time, as a withdrawal validator, and that run can carry the check for everything else. This is called the **withdraw zero trick**. The handbook explains it on its [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) page, and the minting version on [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter).
+
+A **protocol-level** change is about the shape of the whole contract: how many UTxOs hold its state, what each one holds, and how many transactions a job takes. The other three levels make a design cheaper. This one chooses the design, and it sets what every transaction has to read, write and carry, so it decides more than the other three together.
+
+State in one shared UTxO is the simplest design, and the most expensive one to grow. A UTxO can be spent once, so two users who build a transaction against the same UTxO cannot both succeed: the second one fails, and has to be rebuilt against the new UTxO. Its datum also grows with every user, and every transaction that changes it writes the whole datum out again, in bytes the transaction pays for. Giving each user a UTxO of their own keeps every datum small and lets their transactions go through side by side.
+
+```mermaid
+flowchart TB
+    subgraph SHARED["one UTxO for everyone"]
+        direction LR
+        SU1["user 1"] -->|spends| S{{"the state<br/>every user's entry"}}
+        SU2["user 2"] -->|spends| S
+        SU3["user 3"] -->|spends| S
+    end
+    subgraph SPLIT["one UTxO per user"]
+        direction LR
+        PU1["user 1"] -->|spends| P1{{"user 1's state"}}
+        PU2["user 2"] -->|spends| P2{{"user 2's state"}}
+        PU3["user 3"] -->|spends| P3{{"user 3's state"}}
+    end
+    SHARED ~~~ SPLIT
+```
+
+Split state needs a way to tell the protocol's UTxOs from anything else at the address, since anyone can send a UTxO there. That is the job of the beacon from [which UTxO is the oracle](/docs/developers/onboarding/lectures/intermediate/modifying-state#which-utxo-is-the-oracle), one per UTxO. The design patterns have the shapes split state can take:
+
+- **[One UTxO per user](/docs/developers/onboarding/design-patterns/one-utxo-per-user)**: each user's state in its own UTxO, marked by a token.
+- **[Linked list](/docs/developers/onboarding/design-patterns/linked-list)**: a set with one entry per UTxO, each pointing to the next, so adding an entry touches two UTxOs whatever the size of the set.
+- **[Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree)**: only a root hash in the datum, and the transaction carries a proof for the one entry it needs.
+- **[Batching](/docs/developers/onboarding/design-patterns/batching)**: each user locks a request in a UTxO of their own, and a batcher spends many requests in one transaction, with the checks for the whole batch run once.
+- **[Merkelized validator](/docs/developers/onboarding/design-patterns/merkelized-validator)**: a rarely used branch kept in a separate script, so the transactions that do not need it do not carry it.
+
+The payout queue in the exercise below already makes one of these choices: each debt is a UTxO of its own, not an entry in one list. The **[design patterns](/docs/developers/onboarding/design-patterns)** section has every pattern, with when to use it and what it costs.
 
 ## Optimize before you deploy
 
@@ -389,3 +420,5 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 - [Transaction building](/docs/developers/curriculum/start-building/transaction-building#batching-and-airdrops): splitting the work across transactions when one of them can no longer hold it.
 - [Debugging CBOR](/docs/developers/curriculum/smart-contracts/advanced/debug-cbor): reading a transaction's bytes to see what takes the space.
 - [Going to production](/docs/developers/curriculum/production/going-to-production#4-optimize): where optimization sits among the other steps before a launch.
+
+Next: **[Higher assurance](/docs/developers/onboarding/lectures/advanced/higher-assurance)**.
