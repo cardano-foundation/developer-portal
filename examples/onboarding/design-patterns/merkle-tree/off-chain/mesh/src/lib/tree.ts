@@ -80,7 +80,7 @@ export function proofAt(tree: Tree, index: number): Proof {
 // #endregion construction
 
 // #region encoding
-/// Public Step wire format, identical for the hand-written and library wrappers.
+/// Wire format for the Aiken validator's public Step constructors.
 export function proofData(proof: Proof) {
   return proof.map(({ side, hash }) =>
     side === "left" ? mConStr0([hash]) : mConStr1([hash]),

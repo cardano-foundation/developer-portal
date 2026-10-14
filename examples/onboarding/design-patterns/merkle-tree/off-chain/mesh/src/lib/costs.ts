@@ -85,7 +85,6 @@ export async function measureAll() {
     largeTree: {
       members: 65_536,
       byHand: await measure("byHand", 65_536),
-      withLibrary: await measure("withLibrary", 65_536),
     },
   };
 }

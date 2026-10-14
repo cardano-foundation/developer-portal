@@ -44,7 +44,7 @@ Every page follows the same outline, so after one you know where to look in the 
 3. **The pattern**: the idea, and the transaction with the pattern applied.
 4. **Design**: the four questions to account for when designing a protocol (learned from the Intermediate lectures).
 5. **Write it by hand**: a simple implementation of the pattern from scratch, so the mechanism is visible.
-6. **The same with the library**: For most cases, there's no need to implement it from scratch. So, we also show how to use it from a library, usually [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns), and what it does differently. Merkle tree uses a compatibility port of the standalone `aiken-merkle-tree` library.
+6. **The same with the library**: For most cases, there's no need to implement it from scratch. So, we also show how to use it from a library, usually [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns), and what it does differently. The Merkle tree page compares the baseline with a hand-written verifier and links to older library implementations as references.
 7. **Build the transaction**: the off-chain side.
 8. **The numbers**: naive against pattern, measured.
 9. **When to use it, and when not**: the trade-offs, security caveats included.

@@ -4,10 +4,10 @@ import { proofData } from "./tree.ts";
 import blueprint from "../../blueprints/merkle-tree.plutus.json" with { type: "json" };
 
 // #region versions
-export const VERSIONS = ["naive", "byHand", "withLibrary"] as const;
+export const VERSIONS = ["naive", "byHand"] as const;
 export type Version = typeof VERSIONS[number];
 // #endregion versions
-const TITLES = { naive: "naive.listed_grant", byHand: "by_hand.committed_grant", withLibrary: "with_library.committed_grant" };
+const TITLES = { naive: "naive.listed_grant", byHand: "by_hand.committed_grant" };
 
 export function grantScript(version: Version): string {
   const title = `${TITLES[version]}.else`;

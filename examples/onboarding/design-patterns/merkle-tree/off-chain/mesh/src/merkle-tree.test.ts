@@ -103,7 +103,8 @@ function changedProof(chain: Chain, proof: Proof) {
   return claimRedeemer(chain.version, chain.beneficiary, proof);
 }
 
-for (const version of ["byHand", "withLibrary"] as const) {
+for (const version of VERSIONS) {
+  if (version === "naive") continue;
   for (const [label, mutate] of [
     ["a changed sibling", (p: Proof): Proof => [{ ...p[0]!, hash: "00".repeat(32) }, ...p.slice(1)]],
     ["a reversed direction", (p: Proof): Proof => [{ ...p[0]!, side: p[0]!.side === "left" ? "right" : "left" }, ...p.slice(1)]],
