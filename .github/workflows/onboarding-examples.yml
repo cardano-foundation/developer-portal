@@ -1,7 +1,7 @@
 name: "Onboarding examples"
 
-# Runs every onboarding example project, so a broken snippet or a stale
-# validator hash in the lectures fails here first.
+# Discovers every Aiken and Node project under examples/onboarding, so new
+# examples automatically get tests, type-checks, builds and blueprint checks.
 
 on:
   pull_request:
@@ -16,21 +16,37 @@ permissions:
   contents: read
 
 jobs:
+  discover:
+    name: Discover onboarding projects
+    runs-on: ubuntu-latest
+    outputs:
+      on-chain: ${{ steps.discover.outputs.on-chain }}
+      off-chain: ${{ steps.discover.outputs.off-chain }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: List projects
+        id: discover
+        run: |
+          on_chain=$(git ls-files 'examples/onboarding/**/aiken.toml' | jq -Rsc '
+            split("\n") | map(select(. != "") | ltrimstr("examples/onboarding/") | rtrimstr("/aiken.toml"))')
+          off_chain=$(git ls-files 'examples/onboarding/**/package.json' | jq -Rsc '
+            split("\n") | map(select(. != "") | ltrimstr("examples/onboarding/") | rtrimstr("/package.json"))')
+          echo "on-chain=$on_chain" >> "$GITHUB_OUTPUT"
+          echo "off-chain=$off_chain" >> "$GITHUB_OUTPUT"
+
   on-chain:
     name: ${{ matrix.project }}
+    needs: discover
+    if: needs.discover.outputs.on-chain != '[]'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        project:
-          - atomic-swap
-          - lectures/intermediate/vault
-          - lectures/intermediate/vesting
-          - lectures/intermediate/giftcard
-          - lectures/intermediate/oracle
+        project: ${{ fromJson(needs.discover.outputs.on-chain) }}
     defaults:
       run:
-        working-directory: examples/onboarding/${{ matrix.project }}/on-chain/aiken
+        working-directory: examples/onboarding/${{ matrix.project }}
     steps:
       - uses: actions/checkout@v7
 
@@ -62,17 +78,13 @@ jobs:
 
   off-chain:
     name: ${{ matrix.project }}
+    needs: discover
+    if: needs.discover.outputs.off-chain != '[]'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        project:
-          - atomic-swap/off-chain/mesh
-          - lectures/beginner/mesh
-          - lectures/intermediate/vault/off-chain/mesh
-          - lectures/intermediate/vesting/off-chain/mesh
-          - lectures/intermediate/giftcard/off-chain/mesh
-          - lectures/intermediate/oracle/off-chain/mesh
+        project: ${{ fromJson(needs.discover.outputs.off-chain) }}
     defaults:
       run:
         working-directory: examples/onboarding/${{ matrix.project }}
@@ -83,6 +95,24 @@ jobs:
         with:
           node-version: 22
 
+      # Some pretest scripts rebuild the sibling Aiken project.
+      - name: Read the Aiken version
+        id: aiken
+        run: |
+          if [ -f ../../on-chain/aiken/aiken.toml ]; then
+            echo "version=$(sed -n 's/^compiler = "\(.*\)"/\1/p' ../../on-chain/aiken/aiken.toml)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: aiken-lang/setup-aiken@v1
+        if: steps.aiken.outputs.version != ''
+        with:
+          version: ${{ steps.aiken.outputs.version }}
+
       - run: npm install --no-audit --no-fund
       - run: npm test
+      - run: npm run --if-present typecheck
       - run: npm run --if-present build
+        env:
+          # The advanced oracle validates these at build time; no API calls are made.
+          VITE_NETWORK: preprod
+          BLOCKFROST_API_KEY: preprod-ci-placeholder
