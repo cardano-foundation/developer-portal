@@ -16,8 +16,9 @@ export const LIMITS = {
   referenceBytes: 200 * 1024,
 };
 
-/// Conway's tier calculation, using integers/rationals and rounding once at
+/// Conway's tier calculation, using integers/rationals and flooring once at
 /// the end. A duplicate script in a different referenced UTxO counts again.
+/// https://github.com/IntersectMBO/cardano-ledger/blob/cardano-ledger-conway-1.19.0.0/eras/conway/impl/src/Cardano/Ledger/Conway/Tx.hs
 export function referenceFee(bytes: number): number {
   let left = BigInt(bytes);
   let numerator = BigInt(DEFAULT_PROTOCOL_PARAMETERS.minFeeRefScriptCostPerByte);
@@ -30,7 +31,7 @@ export function referenceFee(bytes: number): number {
     numerator *= 6n;
     left -= chunk;
   }
-  return Number((total + denominator - 1n) / denominator);
+  return Number(total / denominator);
 }
 
 type Cost = {

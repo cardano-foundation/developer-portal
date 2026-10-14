@@ -11,16 +11,16 @@
       "setup": {
         "modules": {
           "root": {
-            "scriptSize": 8641,
-            "txSize": 8986,
-            "fee": 550765,
-            "minimumAda": 38268490,
+            "scriptSize": 8618,
+            "txSize": 8963,
+            "fee": 549753,
+            "minimumAda": 38169360,
             "fits": true
           }
         },
-        "totalScriptSize": 8641,
-        "totalPublicationFee": 550765,
-        "totalMinimumAda": 38268490,
+        "totalScriptSize": 8618,
+        "totalPublicationFee": 549753,
+        "totalMinimumAda": 38169360,
         "registrationFee": 0,
         "stakeDeposits": 0
       },
@@ -28,37 +28,37 @@
         "inline": {
           "purchase": {
             "1": {
-              "mem": 814226,
-              "cpu": 261952166,
-              "size": 9200,
-              "fee": 626049,
+              "mem": 811986,
+              "cpu": 261195812,
+              "size": 9177,
+              "fee": 624853,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "5": {
-              "mem": 4089478,
-              "cpu": 1315023796,
-              "size": 9884,
-              "fee": 921054,
+              "mem": 4078278,
+              "cpu": 1311242026,
+              "size": 9861,
+              "fee": 919123,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "10": {
-              "mem": 8215810,
-              "cpu": 2640843275,
-              "size": 10739,
-              "fee": 1292355,
+              "mem": 8193410,
+              "cpu": 2633279735,
+              "size": 10716,
+              "fee": 1289505,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "20": {
-              "mem": 16570020,
-              "cpu": 5322507550,
-              "size": 12449,
-              "fee": 2042980,
+              "mem": 16525220,
+              "cpu": 5307380470,
+              "size": 12426,
+              "fee": 2038293,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": false
@@ -66,37 +66,37 @@
           },
           "cancel": {
             "1": {
-              "mem": 31358,
-              "cpu": 9752287,
-              "size": 9081,
-              "fee": 557458,
+              "mem": 29118,
+              "cpu": 8995933,
+              "size": 9058,
+              "fee": 556262,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "5": {
-              "mem": 156790,
-              "cpu": 48761435,
-              "size": 9289,
-              "fee": 576660,
+              "mem": 145590,
+              "cpu": 44979665,
+              "size": 9266,
+              "fee": 574729,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "10": {
-              "mem": 313580,
-              "cpu": 97522870,
-              "size": 9549,
-              "fee": 600662,
+              "mem": 291180,
+              "cpu": 89959330,
+              "size": 9526,
+              "fee": 597813,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "20": {
-              "mem": 627160,
-              "cpu": 195045740,
-              "size": 10069,
-              "fee": 648667,
+              "mem": 582360,
+              "cpu": 179918660,
+              "size": 10046,
+              "fee": 643980,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
@@ -110,77 +110,77 @@
         "reference": {
           "purchase": {
             "1": {
-              "mem": 814226,
-              "cpu": 261952166,
+              "mem": 811986,
+              "cpu": 261195812,
               "size": 592,
-              "fee": 376912,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 376383,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": true
             },
             "5": {
-              "mem": 4089478,
-              "cpu": 1315023796,
+              "mem": 4078278,
+              "cpu": 1311242026,
               "size": 1276,
-              "fee": 671917,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 670653,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": true
             },
             "10": {
-              "mem": 8215810,
-              "cpu": 2640843275,
+              "mem": 8193410,
+              "cpu": 2633279735,
               "size": 2131,
-              "fee": 1043218,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 1041035,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": true
             },
             "20": {
-              "mem": 16570020,
-              "cpu": 5322507550,
+              "mem": 16525220,
+              "cpu": 5307380470,
               "size": 3841,
-              "fee": 1793843,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 1789823,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": false
             }
           },
           "cancel": {
             "1": {
-              "mem": 31358,
-              "cpu": 9752287,
+              "mem": 29118,
+              "cpu": 8995933,
               "size": 473,
-              "fee": 308321,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 307792,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": true
             },
             "5": {
-              "mem": 156790,
-              "cpu": 48761435,
+              "mem": 145590,
+              "cpu": 44979665,
               "size": 681,
-              "fee": 327523,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 326259,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": true
             },
             "10": {
-              "mem": 313580,
-              "cpu": 97522870,
+              "mem": 291180,
+              "cpu": 89959330,
               "size": 941,
-              "fee": 351525,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 349343,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": true
             },
             "20": {
-              "mem": 627160,
-              "cpu": 195045740,
+              "mem": 582360,
+              "cpu": 179918660,
               "size": 1461,
-              "fee": 399530,
-              "referenceBytes": 8641,
-              "referenceFee": 129615,
+              "fee": 395510,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
               "fits": true
             }
           },
@@ -195,10 +195,10 @@
       "setup": {
         "modules": {
           "root": {
-            "scriptSize": 1456,
-            "txSize": 1801,
-            "fee": 234625,
-            "minimumAda": 7301140,
+            "scriptSize": 1433,
+            "txSize": 1778,
+            "fee": 233613,
+            "minimumAda": 7202010,
             "fits": true
           },
           "quote": {
@@ -216,9 +216,9 @@
             "fits": true
           }
         },
-        "totalScriptSize": 9748,
-        "totalPublicationFee": 940595,
-        "totalMinimumAda": 45091220,
+        "totalScriptSize": 9725,
+        "totalPublicationFee": 939583,
+        "totalMinimumAda": 44992090,
         "registrationFee": 170341,
         "stakeDeposits": 4000000
       },
@@ -226,37 +226,37 @@
         "inline": {
           "purchase": {
             "1": {
-              "mem": 923460,
-              "cpu": 306709475,
-              "size": 10495,
-              "fee": 692559,
+              "mem": 921220,
+              "cpu": 305953121,
+              "size": 10472,
+              "fee": 691363,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "5": {
-              "mem": 1534180,
-              "cpu": 534075389,
-              "size": 11179,
-              "fee": 774287,
+              "mem": 1522980,
+              "cpu": 530293619,
+              "size": 11156,
+              "fee": 772356,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "10": {
-              "mem": 2454407,
-              "cpu": 864501623,
-              "size": 12034,
-              "fee": 888827,
+              "mem": 2432007,
+              "cpu": 856938083,
+              "size": 12011,
+              "fee": 885978,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "20": {
-              "mem": 4811607,
-              "cpu": 1677842408,
-              "size": 13744,
-              "fee": 1158720,
+              "mem": 4766807,
+              "cpu": 1662715328,
+              "size": 13721,
+              "fee": 1154032,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
@@ -264,126 +264,126 @@
           },
           "cancel": {
             "1": {
-              "mem": 31058,
-              "cpu": 9692705,
-              "size": 1896,
-              "fee": 241296,
+              "mem": 28818,
+              "cpu": 8936351,
+              "size": 1873,
+              "fee": 240101,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "5": {
-              "mem": 155290,
-              "cpu": 48463525,
-              "size": 2104,
-              "fee": 260412,
+              "mem": 144090,
+              "cpu": 44681755,
+              "size": 2081,
+              "fee": 258481,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "10": {
-              "mem": 310580,
-              "cpu": 96927050,
-              "size": 2364,
-              "fee": 284306,
+              "mem": 288180,
+              "cpu": 89363510,
+              "size": 2341,
+              "fee": 281457,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "20": {
-              "mem": 621160,
-              "cpu": 193854100,
-              "size": 2884,
-              "fee": 332095,
+              "mem": 576360,
+              "cpu": 178727020,
+              "size": 2861,
+              "fee": 327408,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             }
           },
           "largestPurchase": {
-            "count": 34,
+            "count": 35,
             "limitedBy": "size"
           }
         },
         "reference": {
           "purchase": {
             "1": {
-              "mem": 923460,
-              "cpu": 306709475,
+              "mem": 921220,
+              "cpu": 305953121,
               "size": 846,
-              "fee": 414223,
-              "referenceBytes": 9748,
-              "referenceFee": 146220,
+              "fee": 413694,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
               "fits": true
             },
             "5": {
-              "mem": 1534180,
-              "cpu": 534075389,
+              "mem": 1522980,
+              "cpu": 530293619,
               "size": 1530,
-              "fee": 495951,
-              "referenceBytes": 9748,
-              "referenceFee": 146220,
+              "fee": 494687,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
               "fits": true
             },
             "10": {
-              "mem": 2454407,
-              "cpu": 864501623,
+              "mem": 2432007,
+              "cpu": 856938083,
               "size": 2385,
-              "fee": 610491,
-              "referenceBytes": 9748,
-              "referenceFee": 146220,
+              "fee": 608309,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
               "fits": true
             },
             "20": {
-              "mem": 4811607,
-              "cpu": 1677842408,
+              "mem": 4766807,
+              "cpu": 1662715328,
               "size": 4095,
-              "fee": 880384,
-              "referenceBytes": 9748,
-              "referenceFee": 146220,
+              "fee": 876363,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
               "fits": true
             }
           },
           "cancel": {
             "1": {
-              "mem": 31058,
-              "cpu": 9692705,
+              "mem": 28818,
+              "cpu": 8936351,
               "size": 473,
-              "fee": 200524,
-              "referenceBytes": 1456,
-              "referenceFee": 21840,
+              "fee": 199996,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
               "fits": true
             },
             "5": {
-              "mem": 155290,
-              "cpu": 48463525,
+              "mem": 144090,
+              "cpu": 44681755,
               "size": 681,
-              "fee": 219640,
-              "referenceBytes": 1456,
-              "referenceFee": 21840,
+              "fee": 218376,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
               "fits": true
             },
             "10": {
-              "mem": 310580,
-              "cpu": 96927050,
+              "mem": 288180,
+              "cpu": 89363510,
               "size": 941,
-              "fee": 243534,
-              "referenceBytes": 1456,
-              "referenceFee": 21840,
+              "fee": 241352,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
               "fits": true
             },
             "20": {
-              "mem": 621160,
-              "cpu": 193854100,
+              "mem": 576360,
+              "cpu": 178727020,
               "size": 1461,
-              "fee": 291323,
-              "referenceBytes": 1456,
-              "referenceFee": 21840,
+              "fee": 287303,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
               "fits": true
             }
           },
           "largestPurchase": {
-            "count": 49,
+            "count": 50,
             "limitedBy": "mem"
           }
         }
@@ -393,10 +393,10 @@
       "setup": {
         "modules": {
           "root": {
-            "scriptSize": 1484,
-            "txSize": 1829,
-            "fee": 235857,
-            "minimumAda": 7421820,
+            "scriptSize": 1461,
+            "txSize": 1806,
+            "fee": 234845,
+            "minimumAda": 7322690,
             "fits": true
           },
           "quote": {
@@ -414,9 +414,9 @@
             "fits": true
           }
         },
-        "totalScriptSize": 9777,
-        "totalPublicationFee": 941871,
-        "totalMinimumAda": 45216210,
+        "totalScriptSize": 9754,
+        "totalPublicationFee": 940859,
+        "totalMinimumAda": 45117080,
         "registrationFee": 170341,
         "stakeDeposits": 4000000
       },
@@ -424,37 +424,37 @@
         "inline": {
           "purchase": {
             "1": {
-              "mem": 936458,
-              "cpu": 311185432,
-              "size": 10524,
-              "fee": 694908,
+              "mem": 934218,
+              "cpu": 310429078,
+              "size": 10501,
+              "fee": 693712,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "5": {
-              "mem": 1689666,
-              "cpu": 584544974,
-              "size": 11208,
-              "fee": 788173,
+              "mem": 1678466,
+              "cpu": 580763204,
+              "size": 11185,
+              "fee": 786242,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "10": {
-              "mem": 2987443,
-              "cpu": 1033590073,
-              "size": 12063,
-              "fee": 933051,
+              "mem": 2965043,
+              "cpu": 1026026533,
+              "size": 12040,
+              "fee": 930201,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "20": {
-              "mem": 6764543,
-              "cpu": 2287924688,
-              "size": 13773,
-              "fee": 1316667,
+              "mem": 6719743,
+              "cpu": 2272797608,
+              "size": 13750,
+              "fee": 1311979,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
@@ -462,37 +462,37 @@
           },
           "cancel": {
             "1": {
-              "mem": 31058,
-              "cpu": 9692705,
-              "size": 1924,
-              "fee": 242528,
+              "mem": 28818,
+              "cpu": 8936351,
+              "size": 1901,
+              "fee": 241333,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "5": {
-              "mem": 155290,
-              "cpu": 48463525,
-              "size": 2132,
-              "fee": 261644,
+              "mem": 144090,
+              "cpu": 44681755,
+              "size": 2109,
+              "fee": 259713,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "10": {
-              "mem": 310580,
-              "cpu": 96927050,
-              "size": 2392,
-              "fee": 285538,
+              "mem": 288180,
+              "cpu": 89363510,
+              "size": 2369,
+              "fee": 282689,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
             },
             "20": {
-              "mem": 621160,
-              "cpu": 193854100,
-              "size": 2912,
-              "fee": 333327,
+              "mem": 576360,
+              "cpu": 178727020,
+              "size": 2889,
+              "fee": 328640,
               "referenceBytes": 0,
               "referenceFee": 0,
               "fits": true
@@ -506,77 +506,77 @@
         "reference": {
           "purchase": {
             "1": {
-              "mem": 936458,
-              "cpu": 311185432,
+              "mem": 934218,
+              "cpu": 310429078,
               "size": 846,
-              "fee": 415731,
-              "referenceBytes": 9777,
-              "referenceFee": 146655,
+              "fee": 415202,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
               "fits": true
             },
             "5": {
-              "mem": 1689666,
-              "cpu": 584544974,
+              "mem": 1678466,
+              "cpu": 580763204,
               "size": 1530,
-              "fee": 508996,
-              "referenceBytes": 9777,
-              "referenceFee": 146655,
+              "fee": 507732,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
               "fits": true
             },
             "10": {
-              "mem": 2987443,
-              "cpu": 1033590073,
+              "mem": 2965043,
+              "cpu": 1026026533,
               "size": 2385,
-              "fee": 653874,
-              "referenceBytes": 9777,
-              "referenceFee": 146655,
+              "fee": 651691,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
               "fits": true
             },
             "20": {
-              "mem": 6764543,
-              "cpu": 2287924688,
+              "mem": 6719743,
+              "cpu": 2272797608,
               "size": 4095,
-              "fee": 1037490,
-              "referenceBytes": 9777,
-              "referenceFee": 146655,
+              "fee": 1033469,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
               "fits": true
             }
           },
           "cancel": {
             "1": {
-              "mem": 31058,
-              "cpu": 9692705,
+              "mem": 28818,
+              "cpu": 8936351,
               "size": 473,
-              "fee": 200944,
-              "referenceBytes": 1484,
-              "referenceFee": 22260,
+              "fee": 200416,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
               "fits": true
             },
             "5": {
-              "mem": 155290,
-              "cpu": 48463525,
+              "mem": 144090,
+              "cpu": 44681755,
               "size": 681,
-              "fee": 220060,
-              "referenceBytes": 1484,
-              "referenceFee": 22260,
+              "fee": 218796,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
               "fits": true
             },
             "10": {
-              "mem": 310580,
-              "cpu": 96927050,
+              "mem": 288180,
+              "cpu": 89363510,
               "size": 941,
-              "fee": 243954,
-              "referenceBytes": 1484,
-              "referenceFee": 22260,
+              "fee": 241772,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
               "fits": true
             },
             "20": {
-              "mem": 621160,
-              "cpu": 193854100,
+              "mem": 576360,
+              "cpu": 178727020,
               "size": 1461,
-              "fee": 291743,
-              "referenceBytes": 1484,
-              "referenceFee": 22260,
+              "fee": 287723,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
               "fits": true
             }
           },
@@ -593,26 +593,26 @@
     "naive": {
       "modules": {
         "root": {
-          "scriptSize": 21010,
+          "scriptSize": 20987,
           "txSize": null,
           "fee": null,
-          "minimumAda": 91578880,
+          "minimumAda": 91479750,
           "fits": false
         }
       },
-      "totalScriptSize": 21010,
+      "totalScriptSize": 20987,
       "totalPublicationFee": 0,
-      "totalMinimumAda": 91578880,
+      "totalMinimumAda": 91479750,
       "registrationFee": 0,
       "stakeDeposits": 0
     },
     "byHand": {
       "modules": {
         "root": {
-          "scriptSize": 1456,
-          "txSize": 1801,
-          "fee": 234625,
-          "minimumAda": 7301140,
+          "scriptSize": 1433,
+          "txSize": 1778,
+          "fee": 233613,
+          "minimumAda": 7202010,
           "fits": true
         },
         "quote": {
@@ -630,19 +630,19 @@
           "fits": true
         }
       },
-      "totalScriptSize": 22117,
-      "totalPublicationFee": 1484831,
-      "totalMinimumAda": 98401610,
+      "totalScriptSize": 22094,
+      "totalPublicationFee": 1483819,
+      "totalMinimumAda": 98302480,
       "registrationFee": 170341,
       "stakeDeposits": 4000000
     },
     "withLibrary": {
       "modules": {
         "root": {
-          "scriptSize": 1484,
-          "txSize": 1829,
-          "fee": 235857,
-          "minimumAda": 7421820,
+          "scriptSize": 1461,
+          "txSize": 1806,
+          "fee": 234845,
+          "minimumAda": 7322690,
           "fits": true
         },
         "quote": {
@@ -660,28 +660,28 @@
           "fits": true
         }
       },
-      "totalScriptSize": 22146,
-      "totalPublicationFee": 1486107,
-      "totalMinimumAda": 98526600,
+      "totalScriptSize": 22123,
+      "totalPublicationFee": 1485095,
+      "totalMinimumAda": 98427470,
       "registrationFee": 170341,
       "stakeDeposits": 4000000
     },
     "purchaseByHand": {
-      "mem": 2115780,
-      "cpu": 683334115,
+      "mem": 2113540,
+      "cpu": 682577761,
       "size": 846,
-      "fee": 695709,
-      "referenceBytes": 22117,
-      "referenceFee": 331755,
+      "fee": 695181,
+      "referenceBytes": 22094,
+      "referenceFee": 331410,
       "fits": true
     },
     "purchaseWithLibrary": {
-      "mem": 2128778,
-      "cpu": 687810072,
+      "mem": 2126538,
+      "cpu": 687053718,
       "size": 846,
-      "fee": 697217,
-      "referenceBytes": 22146,
-      "referenceFee": 332190,
+      "fee": 696688,
+      "referenceBytes": 22123,
+      "referenceFee": 331845,
       "fits": true
     }
   }

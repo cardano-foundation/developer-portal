@@ -47,7 +47,7 @@ export async function offlineChain(version: Version, count = 1, policySize = 96)
   const collateral = addUtxo(ownerAddress, [{ unit: "lovelace", quantity: "5000000" }]);
   const policy = policyOf(policySize);
   const deployment = deploy(version, merchantAddress, policy);
-  const voucher: Voucher = { owner, sku: policy.catalogue.at(-1)!.sku, units: 2, redemptionCode: policy.codes.at(-1)! };
+  const voucher: Voucher = { owner, serviceId: policy.catalogue.at(-1)!.serviceId, units: 2, redemptionCode: policy.codes.at(-1)! };
   const vouchers = Array.from({ length: count }, () => addUtxo(deployment.root.address, [{ unit: "lovelace", quantity: "10000000" }], voucherDatum(voucher)));
   // Large deposits are fixtures, not the minimum required to publish code.
   const references = new Map<string, UTxO>();

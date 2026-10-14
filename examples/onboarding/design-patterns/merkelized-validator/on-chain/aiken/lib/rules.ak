@@ -5,9 +5,10 @@ use voucher.{Price, QuoteInput}
 // #region quote
 /// The deployed catalogue is embedded in the script, not supplied by a buyer.
 pub fn quote(catalogue: List<Price>, input: QuoteInput) -> Int {
-  expect bytearray.length(input.sku) == 32
+  expect bytearray.length(input.service_id) == 32
   expect input.units > 0 && input.units <= 1_000
-  let price = list.expect_find(catalogue, fn(price) { price.sku == input.sku })
+  let price =
+    list.expect_find(catalogue, fn(price) { price.service_id == input.service_id })
   expect price.unit_price >= 2_000_000
   price.unit_price * input.units
 }

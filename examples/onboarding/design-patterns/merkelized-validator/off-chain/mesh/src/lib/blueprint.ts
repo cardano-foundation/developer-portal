@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import {
-  applyCborEncoding, applyParamsToScript, deserializeAddress, mConStr0, mPubKeyAddress,
+  applyCborEncoding, applyParamsToScript, deserializeAddress, mConStr0, mPubKeyAddress, mScriptAddress,
   resolveScriptHash, resolveScriptRef, serializePlutusScript, serializeRewardAddress,
 } from "@meshsdk/core";
 import type { Data } from "@meshsdk/core";
@@ -11,18 +11,18 @@ import blueprint from "../../blueprints/merkelized-validator.plutus.json" with {
 export const VERSIONS = ["naive", "byHand", "withLibrary"] as const;
 export type Version = typeof VERSIONS[number];
 export type Source = "inline" | "reference";
-export type Price = { sku: string; unitPrice: number };
+export type Price = { serviceId: string; unitPrice: number };
 export type Policy = { catalogue: Price[]; codes: string[] };
 export type Script = { cbor: string; hash: string; size: number; scriptRef: string; address: string; rewardAddress: string };
 export type Deployment = { version: Version; root: Script; quote?: Script; code?: Script };
-export type Voucher = { owner: string; sku: string; units: number; redemptionCode: string };
+export type Voucher = { owner: string; serviceId: string; units: number; redemptionCode: string };
 // #endregion types
 
 /// Synthetic policy fixtures, embedded as immutable deployment parameters.
 export function policyOf(count = 96): Policy {
   const digest = (text: string) => createHash("sha256").update(text).digest("hex");
   return {
-    catalogue: Array.from({ length: count }, (_, n) => ({ sku: digest(`service:${n}`), unitPrice: 2_000_000 + n * 10_000 })),
+    catalogue: Array.from({ length: count }, (_, n) => ({ serviceId: digest(`service:${n}`), unitPrice: 2_000_000 + n * 10_000 })),
     codes: Array.from({ length: count }, (_, n) => digest(`redemption:${n}`)),
   };
 }
@@ -57,9 +57,17 @@ export function scriptRefObject(scriptRef: string) {
 // #region deployment
 /// Instantiate workers first; their hashes are immutable parameters of the gate.
 export function deploy(version: Version, merchant: string, policy: Policy): Deployment {
-  const catalogue = policy.catalogue.map(({ sku, unitPrice }) => mConStr0([sku, unitPrice]));
-  const { pubKeyHash, stakeCredentialHash } = deserializeAddress(merchant);
-  const merchantData = mPubKeyAddress(pubKeyHash, stakeCredentialHash || undefined);
+  const address = csl.Address.from_bech32(merchant);
+  if (!csl.BaseAddress.from_address(address) && !csl.EnterpriseAddress.from_address(address)) {
+    throw new Error("Merchant must be a base or enterprise payment address");
+  }
+  const catalogue = policy.catalogue.map(({ serviceId, unitPrice }) => mConStr0([serviceId, unitPrice]));
+  const { pubKeyHash, scriptHash, stakeCredentialHash, stakeScriptCredentialHash } = deserializeAddress(merchant);
+  const stakeHash = stakeCredentialHash || stakeScriptCredentialHash || undefined;
+  const stakeIsScript = Boolean(stakeScriptCredentialHash);
+  const merchantData = pubKeyHash
+    ? mPubKeyAddress(pubKeyHash, stakeHash, stakeIsScript)
+    : mScriptAddress(scriptHash, stakeHash, stakeIsScript);
   if (version === "naive") {
     return { version, root: script("naive.monolith", [merchantData, catalogue, policy.codes]) };
   }
@@ -73,15 +81,15 @@ export function deploy(version: Version, merchant: string, policy: Policy): Depl
 
 // #region data
 export function voucherDatum(v: Voucher) {
-  return mConStr0([v.owner, v.sku, v.units, v.redemptionCode]);
+  return mConStr0([v.owner, v.serviceId, v.units, v.redemptionCode]);
 }
 
 export function quoteInput(v: Voucher) {
-  return mConStr0([v.sku, v.units]);
+  return mConStr0([v.serviceId, v.units]);
 }
 
 export function quotedPrice(policy: Policy, v: Voucher): number {
-  const entry = policy.catalogue.find((p) => p.sku === v.sku);
+  const entry = policy.catalogue.find((p) => p.serviceId === v.serviceId);
   if (!entry || v.units < 1 || v.units > 1_000) throw new Error("invalid purchase request");
   return entry.unitPrice * v.units;
 }

@@ -24,17 +24,18 @@ pub const quote_hash =
 pub const code_hash =
   #"00000000000000000000000000000000000000000000000000000022"
 
-pub const sku =
+pub const service_id =
   #"0000000000000000000000000000000000000000000000000000000000000001"
 
 pub const code =
   #"000000000000000000000000000000000000000000000000000000000000000a"
 
-pub const catalogue = [Price { sku, unit_price: 3_000_000 }]
+pub const catalogue = [Price { service_id, unit_price: 3_000_000 }]
 
 pub const codes = [code]
 
-pub const a_voucher = Voucher { owner, sku, units: 2, redemption_code: code }
+pub const a_voucher =
+  Voucher { owner, service_id, units: 2, redemption_code: code }
 
 pub fn ref(n: Int) -> OutputReference {
   OutputReference {

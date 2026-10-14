@@ -3,8 +3,8 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { MeshTxBuilder, mConStr0, mOutputReference, resolveTxHash } from "@meshsdk/core";
 import type { UTxO } from "@meshsdk/core";
-import { deserializeTx } from "@meshsdk/core-csl";
-import { VERSIONS, deploy, quoteInput, quotedPrice } from "./lib/blueprint.ts";
+import { csl, deserializeTx } from "@meshsdk/core-csl";
+import { VERSIONS, deploy, quoteInput, quotedPrice, voucherDatum } from "./lib/blueprint.ts";
 import type { Script, Source, Version } from "./lib/blueprint.ts";
 import { measureAll, referenceFee } from "./lib/costs.ts";
 import { offlineChain } from "./lib/offline.ts";
@@ -17,12 +17,15 @@ const body = (tx: string) => JSON.parse(deserializeTx(tx).to_json()).body;
 const quoteWithdrawal = (plan: Plan, chain: Chain) => plan.withdrawals.find((w) => w.script.hash === chain.deployment.quote!.hash)!;
 const codeWithdrawal = (plan: Plan, chain: Chain) => plan.withdrawals.find((w) => w.script.hash === chain.deployment.code!.hash)!;
 
-test("reference fees use Conway tiers and one final ceiling", () => {
+test("reference fees use Conway tiers and one final floor", () => {
   assert.equal(referenceFee(0), 0);
   assert.equal(referenceFee(25_600), 384_000);
   assert.equal(referenceFee(25_601), 384_018);
   assert.equal(referenceFee(51_200), 844_800);
-  assert.equal(referenceFee(51_201), 844_822);
+  assert.equal(referenceFee(51_201), 844_821); // floor(844_800 + 21.6)
+  assert.equal(referenceFee(51_202), 844_843); // Floor the sum, not each byte's fee.
+  assert.equal(referenceFee(76_800), 1_397_760);
+  assert.equal(referenceFee(76_801), 1_397_785); // floor(1_397_760 + 25.92)
 });
 
 for (const version of VERSIONS) {
@@ -56,9 +59,72 @@ async function forge(version: Version, action: Action, change: (plan: Plan, chai
 }
 
 for (const version of VERSIONS) {
+  for (const paymentKind of ["key", "script"] as const) {
+    for (const stakeKind of ["key", "script", "none"] as const) {
+      test(`${version}: preserves the merchant's ${paymentKind}/${stakeKind} credentials`, async () => {
+        // Identical hash bytes with different credential types must stay distinct.
+        const credential = (kind: "key" | "script", hash: string) => kind === "key"
+          ? csl.Credential.from_keyhash(csl.Ed25519KeyHash.from_hex(hash))
+          : csl.Credential.from_scripthash(csl.ScriptHash.from_hex(hash));
+        const payment = credential(paymentKind, "ab".repeat(28));
+        const stake = stakeKind === "none" ? undefined : credential(stakeKind, "cd".repeat(28));
+        const address = (pay: typeof payment, staking = stake) => (staking
+          ? csl.BaseAddress.new(0, pay, staking)
+          : csl.EnterpriseAddress.new(0, pay)).to_address().to_bech32();
+        const c = await offlineChain(version);
+        c.merchantAddress = address(payment);
+        c.deployment = deploy(version, c.merchantAddress, c.policy);
+        c.vouchers = [c.addUtxo(c.deployment.root.address, c.vouchers[0]!.output.amount, voucherDatum(c.voucher))];
+        for (const script of [c.deployment.root, c.deployment.quote, c.deployment.code]) {
+          if (script) c.publishFixture(script);
+        }
+        const plan = transactionPlan(c, "purchase");
+        const evaluate = async () => c.evaluator.evaluateTx(await buildTransaction(c, plan, "reference"), [], []);
+        assert.deepEqual(tags(await evaluate()), version === "naive" ? ["SPEND"] : ["REWARD", "REWARD", "SPEND"]);
+
+        const wrongAddresses = [address(credential(paymentKind === "key" ? "script" : "key", "ab".repeat(28)))];
+        if (stakeKind === "none") {
+          wrongAddresses.push(address(payment, credential("key", "cd".repeat(28))));
+        } else {
+          wrongAddresses.push(csl.EnterpriseAddress.new(0, payment).to_address().to_bech32());
+          wrongAddresses.push(address(payment, credential(stakeKind === "key" ? "script" : "key", "cd".repeat(28))));
+        }
+        for (const wrongAddress of wrongAddresses) {
+          plan.payments[0]!.address = wrongAddress;
+          await assert.rejects(evaluate(), /"tag":"spend"/);
+        }
+      });
+    }
+  }
+  test(`${version}: refuses unsupported merchant address forms`, async () => {
+    const c = await offlineChain(version);
+    const pointer = csl.PointerAddress.new(
+      0, csl.Credential.from_keyhash(csl.Ed25519KeyHash.from_hex(c.owner)), csl.Pointer.new(1, 2, 3),
+    ).to_address().to_bech32();
+    for (const merchant of [c.deployment.root.rewardAddress, pointer]) {
+      assert.throws(() => deploy(version, merchant, c.policy), /base or enterprise payment address/);
+    }
+  });
   for (const action of ["purchase", "cancel"] as const) {
     test(`${version}: only the owner may ${action}`, async () => {
       await assert.rejects(forge(version, action, (p) => { p.signed = false; }), /"tag":"spend"/);
+    });
+    test(`${version}: malformed owner hashes cannot authorize ${action}`, async () => {
+      for (const length of [0, 27, 29]) {
+        await assert.rejects(forge(version, action, (p, c) => {
+          // Keep the real 28-byte signer; vary only the owner in the untrusted datum.
+          const owner = (c.owner + "00").slice(0, length * 2);
+          const utxo = c.addUtxo(
+            c.deployment.root.address, c.vouchers[0]!.output.amount,
+            voucherDatum({ ...c.voucher, owner }),
+          );
+          p.inputs[0]!.utxo = utxo;
+          // Preserve the payment binding so an incorrect tag cannot cause the refusal.
+          if (action === "purchase") {
+            p.payments[0]!.datum = mOutputReference(utxo.input.txHash, utxo.input.outputIndex);
+          }
+        }), /"tag":"spend"/);
+      }
     });
   }
   test(`${version}: verified price must be paid`, async () => {
@@ -86,9 +152,9 @@ for (const version of ["byHand", "withLibrary"] as const) {
       p.payments[0]!.lovelace = fabricated;
     }), /"tag":"reward"/);
   });
-  test(`${version}: another SKU's correct price cannot be substituted`, async () => {
+  test(`${version}: another service's correct price cannot be substituted`, async () => {
     await assert.rejects(forge(version, "purchase", (p, c) => {
-      const different = { ...c.voucher, sku: c.policy.catalogue[0]!.sku };
+      const different = { ...c.voucher, serviceId: c.policy.catalogue[0]!.serviceId };
       const price = quotedPrice(c.policy, different);
       quoteWithdrawal(p, c).redeemer = mConStr0([quoteInput(different), price]);
       p.payments[0]!.lovelace = price;
@@ -125,7 +191,7 @@ for (const version of ["byHand", "withLibrary"] as const) {
   }
   test(`${version}: a different correctly executing worker cannot replace the pinned one`, async () => {
     await assert.rejects(forge(version, "purchase", (p, c) => {
-      const policy = { ...c.policy, catalogue: [{ sku: c.voucher.sku, unitPrice: 2_000_000 }] };
+      const policy = { ...c.policy, catalogue: [{ serviceId: c.voucher.serviceId, unitPrice: 2_000_000 }] };
       const alternative = deploy(version, c.merchantAddress, policy).quote!;
       assert.notEqual(alternative.hash, c.deployment.quote!.hash);
       c.deployment.quote = alternative; // The old gate's code and hash stay fixed.

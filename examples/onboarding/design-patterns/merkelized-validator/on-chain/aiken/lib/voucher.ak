@@ -1,7 +1,6 @@
 // #region imports
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
-use aiken/primitive/bytearray
 use aiken_design_patterns/merkelized_validator.{
   ComputationRedeemer, ValidationRedeemer,
 }
@@ -12,20 +11,20 @@ use cardano/transaction.{InlineDatum, Output, OutputReference, Transaction}
 
 // #region types
 pub type Price {
-  sku: ByteArray,
+  service_id: ByteArray,
   unit_price: Int,
 }
 
 /// Every version remembers the same purchase request in its datum.
 pub type Voucher {
   owner: VerificationKeyHash,
-  sku: ByteArray,
+  service_id: ByteArray,
   units: Int,
   redemption_code: ByteArray,
 }
 
 pub type QuoteInput {
-  sku: ByteArray,
+  service_id: ByteArray,
   units: Int,
 }
 
@@ -45,14 +44,12 @@ pub type Action {
 
 // #region request
 pub fn quote_input(voucher: Voucher) -> QuoteInput {
-  QuoteInput { sku: voucher.sku, units: voucher.units }
+  QuoteInput { service_id: voucher.service_id, units: voucher.units }
 }
 
 pub fn owner_signs(voucher: Voucher, tx: Transaction) -> Bool {
-  bytearray.length(voucher.owner) == 28 && list.has(
-    tx.extra_signatories,
-    voucher.owner,
-  )
+  // Ledger-provided signatories are 28-byte key hashes; equality establishes length.
+  list.has(tx.extra_signatories, voucher.owner)
 }
 
 // #endregion request
