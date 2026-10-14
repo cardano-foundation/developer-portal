@@ -112,7 +112,7 @@ test claim_fails_for_two_grants_at_once() fail {
   linear_vesting.spend(Some(grant), Claim, grant_ref(0), tx)
 }
 
-// The window ends at 6,000,000 excluded, so 5,998,999 ms have vested at most:
+// The window ends at 6,000,000 excluded, so 4,999,999 ms have vested at most:
 // 4,999,999 lovelace to the beneficiary, 5,000,001 back to the grantor.
 test clawback_ok_pays_what_has_vested() {
   let tx = spend(
@@ -141,8 +141,8 @@ test clawback_fails_without_the_grantor_signature() fail {
   linear_vesting.spend(Some(grant), Clawback, grant_ref(0), tx)
 }
 
-// The right amount at the right address, but no tag: another contract could
-// count the same payment as its own.
+// The right amount at the right address, but no tag. Tagging binds the payment
+// to this input; another contract must also check tags to avoid sharing it.
 test clawback_fails_when_the_payment_is_not_tagged() fail {
   let tx = spend(
     grantor_key,
@@ -170,11 +170,10 @@ test clawback_ok_takes_everything_before_the_start() {
 // Where reading the bounds directly goes wrong. Every test below passes, and
 // that is the problem: each one is a window the naive grant misreads.
 
-// Before the Conway hard fork, the ledger encoded a window with only an upper
-// bound as closed: the bound itself was the last moment. A clawback with that
-// window may happen at 6,000,000, when 5,000,000 lovelace have vested. The
-// naive grant takes 5,999,999 as the last moment and lets the grantor pay one
-// lovelace short.
+// A synthetic inclusive interval includes 6,000,000. The naive code prices it
+// one millisecond early. This is not a historical ledger exploit: pre-Conway
+// upper-only contexts had an inclusive endpoint, but phase one still required
+// slot < invalidHereafter. That extra context endpoint was not admissible.
 test naive_lets_the_grantor_underpay_under_a_closed_upper_bound() {
   let tx = spend(
     grantor_key,

@@ -1,16 +1,18 @@
 import {
   MeshTxBuilder,
   SLOT_CONFIG_NETWORK,
-  deserializeAddress,
   mConStr0,
   mConStr1,
   mOutputReference,
+  serializeData,
   slotToBeginUnixTime,
 } from "@meshsdk/core";
 import { csl } from "@meshsdk/core-csl";
-import type { IEvaluator, IFetcher, IWallet, UTxO } from "@meshsdk/core";
-import { grantAddress, grantDatum, grantScriptCbor } from "./blueprint.ts";
-import type { Grant, Version } from "./blueprint.ts";
+import type { Data, IEvaluator, IFetcher, IWallet, UTxO } from "@meshsdk/core";
+import { grantAddress, grantDatum, grantScriptCbor, isScheduled, paymentKey } from "./blueprint.ts";
+import type { Grant, LinearVersion, ScheduledVersion, Version } from "./blueprint.ts";
+import { scheduledDatum } from "./schedule.ts";
+import type { Period } from "./schedule.ts";
 
 /// The network whose slot length and start the transactions' slots are
 /// converted with. It must match the evaluator's.
@@ -33,7 +35,7 @@ export type Spend = {
   /// The UTxO holding the grant.
   grantUtxo: UTxO;
   window: Window;
-  /// Pass one to run the scripts while building, as every test here does.
+  /// Pass one to run the scripts while building. Attack tests evaluate later.
   evaluator?: IEvaluator;
 };
 
@@ -44,14 +46,14 @@ export function slotTime(slot: number): number {
 }
 
 // #region unvested
-/// How much of the grant is still unvested at moment `at`, rounded up: the
-/// same fraction the validator compares against, without rounding.
-export function unvested(grant: Grant, at: number): bigint {
+/// Round the unvested fraction up for a claim's rest, down for a clawback's
+/// retention. Each direction protects the party who did not build the tx.
+export function unvested(grant: Grant, at: number, rounding: "up" | "down"): bigint {
   if (at >= grant.end) return 0n;
   if (at <= grant.start) return grant.total;
   const numerator = grant.total * BigInt(grant.end - at);
   const denominator = BigInt(grant.end - grant.start);
-  return (numerator + denominator - 1n) / denominator;
+  return rounding === "up" ? (numerator + denominator - 1n) / denominator : numerator / denominator;
 }
 // #endregion unvested
 
@@ -60,13 +62,45 @@ export function unvested(grant: Grant, at: number): bigint {
 export async function buildLockTx(
   wallet: IWallet,
   provider: IFetcher,
-  version: Version,
+  version: LinearVersion,
   grant: Grant,
   networkId: number,
 ): Promise<string> {
+  if (isScheduled(version)) throw new Error("use buildScheduledLockTx for a scheduled grant");
+  return lockWithDatum(wallet, provider, version, grant, grantDatum(grant), networkId);
+}
+
+// #region lock-scheduled
+/// A scheduled validator needs ScheduledGrant, not the linear Grant datum.
+export async function buildScheduledLockTx(
+  wallet: IWallet,
+  provider: IFetcher,
+  version: ScheduledVersion,
+  grant: Grant,
+  period: Period,
+  networkId: number,
+): Promise<string> {
+  if (!isScheduled(version)) throw new Error("use buildLockTx for a linear grant");
+  return lockWithDatum(wallet, provider, version, grant, scheduledDatum(grant, period), networkId);
+}
+// #endregion lock-scheduled
+
+async function lockWithDatum(
+  wallet: IWallet,
+  provider: IFetcher,
+  version: Version,
+  grant: Grant,
+  datum: Data,
+  networkId: number,
+): Promise<string> {
+  if (grant.total <= 0n) throw new Error("a grant must hold a positive amount");
+  const address = grantAddress(version, networkId);
+  const datumCbor = serializeData(datum);
+  const minimum = await withMinimumLovelace(provider, address, grant.total, datumCbor);
+  if (grant.total < minimum) throw new Error(`a grant needs at least ${minimum} lovelace for its output`);
   return await new MeshTxBuilder({ fetcher: provider })
-    .txOut(grantAddress(version, networkId), [{ unit: "lovelace", quantity: grant.total.toString() }])
-    .txOutInlineDatumValue(grantDatum(grant))
+    .txOut(address, [{ unit: "lovelace", quantity: grant.total.toString() }])
+    .txOutInlineDatumValue(datumCbor, "CBOR")
     .changeAddress(await wallet.getChangeAddress())
     .selectUtxosFrom(await wallet.getUtxos())
     .complete();
@@ -80,20 +114,21 @@ export async function buildClaimTx(spend: Spend): Promise<string> {
   const { from } = spend.window;
   if (from === undefined) throw new Error("a claim needs a lower bound");
   const earliest = slotTime(from);
-  const owed = unvested(spend.grant, earliest);
+  const owed = unvested(spend.grant, earliest, "up");
   const txBuilder = spendGrant(spend, CLAIM);
   if (owed > 0n) {
     // Near the end, what is unvested can be less than the ledger accepts in
     // an output. Send back the minimum instead: the validator accepts more.
-    const minimum = await minLovelace(spend, spend.grantUtxo.output.address, owed);
-    const rest = owed > minimum ? owed : minimum;
+    const rest = await withMinimumLovelace(
+      spend.provider, spend.grantUtxo.output.address, owed, datumOf(spend.grantUtxo),
+    );
     txBuilder
       .txOut(spend.grantUtxo.output.address, [{ unit: "lovelace", quantity: rest.toString() }])
       // The same datum the grant was spent with, byte for byte.
       .txOutInlineDatumValue(datumOf(spend.grantUtxo), "CBOR");
   }
   // The signature the validator looks for.
-  txBuilder.requiredSignerHash(deserializeAddress(spend.grant.beneficiaryAddress).pubKeyHash);
+  txBuilder.requiredSignerHash(paymentKey(spend.grant.beneficiaryAddress));
   return await finish(txBuilder, spend);
 }
 // #endregion claim
@@ -109,15 +144,19 @@ export async function buildClawbackTx(spend: Spend): Promise<string> {
   // before `until`, so its last moment is just before `until` starts.
   const latest = slotTime(until) - 1;
   const held = lovelaceOf(spend.grantUtxo);
-  const owed = held - unvested(spend.grant, latest);
+  const owed = held - unvested(spend.grant, latest, "down");
   const txBuilder = spendGrant(spend, CLAWBACK);
   if (owed > 0n) {
     const { txHash, outputIndex } = spend.grantUtxo.input;
+    const tag = serializeData(mOutputReference(txHash, outputIndex));
+    // A small tagged payment still has to meet the output minimum. The
+    // grantor funds any top-up through balancing; paying more is permitted.
+    const payment = await withMinimumLovelace(spend.provider, spend.grant.beneficiaryAddress, owed, tag);
     txBuilder
-      .txOut(spend.grant.beneficiaryAddress, [{ unit: "lovelace", quantity: owed.toString() }])
-      .txOutInlineDatumValue(mOutputReference(txHash, outputIndex));
+      .txOut(spend.grant.beneficiaryAddress, [{ unit: "lovelace", quantity: payment.toString() }])
+      .txOutInlineDatumValue(tag, "CBOR");
   }
-  txBuilder.requiredSignerHash(deserializeAddress(spend.grant.grantorAddress).pubKeyHash);
+  txBuilder.requiredSignerHash(paymentKey(spend.grant.grantorAddress));
   return await finish(txBuilder, spend);
 }
 // #endregion clawback
@@ -174,18 +213,27 @@ function datumOf(utxo: UTxO): string {
   return utxo.output.plutusData;
 }
 
-/// The least lovelace the ledger accepts in an output to `address` carrying
-/// the grant's datum. It grows with the output's size.
-async function minLovelace(spend: Spend, address: string, lovelace: bigint): Promise<bigint> {
+/// Raise an output to the ledger minimum for its actual address and datum.
+/// Recheck after raising the amount, since the coin's encoding can grow too.
+async function withMinimumLovelace(
+  provider: IFetcher,
+  address: string,
+  lovelace: bigint,
+  datumCbor: string,
+): Promise<bigint> {
   // NaN asks a provider for the current epoch's parameters.
-  const { coinsPerUtxoSize } = await spend.provider.fetchProtocolParameters(Number.NaN);
-  const output = csl.TransactionOutput.new(
-    csl.Address.from_bech32(address),
-    csl.Value.new(csl.BigNum.from_str(lovelace.toString())),
-  );
-  output.set_plutus_data(csl.PlutusData.from_hex(datumOf(spend.grantUtxo)));
+  const { coinsPerUtxoSize } = await provider.fetchProtocolParameters(Number.NaN);
   const dataCost = csl.DataCost.new_coins_per_byte(csl.BigNum.from_str(coinsPerUtxoSize.toString()));
-  return BigInt(csl.min_ada_for_output(output, dataCost).to_str());
+  while (true) {
+    const output = csl.TransactionOutput.new(
+      csl.Address.from_bech32(address),
+      csl.Value.new(csl.BigNum.from_str(lovelace.toString())),
+    );
+    output.set_plutus_data(csl.PlutusData.from_hex(datumCbor));
+    const minimum = BigInt(csl.min_ada_for_output(output, dataCost).to_str());
+    if (lovelace >= minimum) return lovelace;
+    lovelace = minimum;
+  }
 }
 
 function lovelaceOf(utxo: UTxO): bigint {

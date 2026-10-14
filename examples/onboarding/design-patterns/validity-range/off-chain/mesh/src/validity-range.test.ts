@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { MeshTxBuilder, deserializeAddress, mOutputReference } from "@meshsdk/core";
-import { deserializeTx } from "@meshsdk/core-csl";
+import { csl, deserializeTx } from "@meshsdk/core-csl";
 import { VERSIONS, grantScriptCbor } from "./lib/blueprint.ts";
 import type { Version } from "./lib/blueprint.ts";
 import { SCENARIOS, measure } from "./lib/costs.ts";
@@ -78,7 +78,10 @@ for (const version of ALL) {
     const tx = await buildClaimTx(spend);
     const rest = BigInt(outputsOf(tx)[0]!.amount.coin);
     assert.ok(rest > 1_000n, `the rest holds ${rest} lovelace`);
-    assert.ok(rest >= 1_000_000n, "an output with a datum needs at least 1 ADA");
+    const { coinsPerUtxoSize } = await chain.fetcher.fetchProtocolParameters(Number.NaN);
+    const cost = csl.DataCost.new_coins_per_byte(csl.BigNum.from_str(coinsPerUtxoSize.toString()));
+    const minimum = BigInt(csl.min_ada_for_output(deserializeTx(tx).body().outputs().get(0), cost).to_str());
+    assert.ok(rest >= minimum, `the rest needs ${minimum} lovelace`);
     assert.deepEqual(tags(await chain.evaluator.evaluateTx(tx, [], [])), ["SPEND"]);
   });
 
@@ -97,7 +100,7 @@ test("a clawback owes what has vested one millisecond before its upper bound", a
   const until = START_SLOT + VESTING_SLOTS / 2;
   const { chain, spend } = await spendOf("byHand", "grantor", { until });
   const [payment] = outputsOf(await buildClawbackTx(spend));
-  assert.equal(BigInt(payment!.amount.coin), chain.grant.total - unvested(chain.grant, slotTime(until) - 1));
+  assert.equal(BigInt(payment!.amount.coin), chain.grant.total - unvested(chain.grant, slotTime(until) - 1, "down"));
   assert.equal(payment!.amount.coin, "4999999");
 });
 

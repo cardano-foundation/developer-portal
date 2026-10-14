@@ -29,8 +29,8 @@ validator scheduled_vesting {
       // vests then.
       FromNegInf { upper } ->
         Some(schedule.vesting_between(scheduled, upper, upper))
-      // No last moment, or no moment at all: it never finishes vesting, so
-      // nothing ever vests.
+      // Protocol policy: these periods vest nothing and allow a refund.
+      // This policy is separate from interval normalization.
       ToPosInf { .. } |
       Always |
       InvalidRange -> None
@@ -57,7 +57,8 @@ validator scheduled_vesting {
             }
             vesting.clawback_ok(self, own_ref, grant, latest)
           }
-          // Nothing ever vests, so all of it is the grantor's to take back.
+          // The refund policy needs only authorization, not a time bound or
+          // one-grant restriction. There is no beneficiary payment to share.
           None -> vesting.signed_by(self, VerificationKey(scheduled.grantor))
         }
     }
@@ -132,7 +133,7 @@ test clawback_fails_short_after_the_cliff() fail {
   scheduled_vesting.spend(Some(datum), Clawback, grant_ref(0), tx)
 }
 
-// A period with no end: nothing ever vests, and the grantor can take it back.
+// Our policy for a period with no end: nothing vests and the grantor can refund.
 
 test claim_fails_when_the_period_never_ends() fail {
   let datum = scheduled(window(Finite(start), True, PositiveInfinity, True))
@@ -178,4 +179,62 @@ test claim_ok_at_a_one_moment_period() {
   let datum = scheduled(window(Finite(end), True, Finite(end), True))
   let tx = spend_scheduled(datum, beneficiary_key, today(end, end + 1_000), [])
   scheduled_vesting.spend(Some(datum), Claim, grant_ref(0), tx)
+}
+
+test singleton_cliff_rejects_underpayment_after_it_vests() fail {
+  let datum = scheduled(window(Finite(end), True, Finite(end), True))
+  let tx = spend_scheduled(
+    datum,
+    grantor_key,
+    today(end, end + 1_000),
+    [payment(fixtures.grant.total - 1, grant_ref(0))],
+  )
+  scheduled_vesting.spend(Some(datum), Clawback, grant_ref(0), tx)
+}
+
+test refund_policy_covers_unbounded_and_empty_periods() {
+  let periods = [
+    window(Finite(start), True, PositiveInfinity, True),
+    window(NegativeInfinity, False, PositiveInfinity, False),
+    window(Finite(end), False, Finite(end), True),
+    window(Finite(end), True, Finite(start), True),
+    window(PositiveInfinity, True, PositiveInfinity, True),
+    window(NegativeInfinity, True, NegativeInfinity, True),
+  ]
+  list.all(
+    periods,
+    fn(period) {
+      let datum = scheduled(period)
+      let window = window(NegativeInfinity, True, PositiveInfinity, True)
+      let tx = spend_scheduled(datum, grantor_key, window, [])
+      and {
+        scheduled_vesting.spend(Some(datum), Clawback, grant_ref(0), tx),
+        !scheduled_vesting.spend(
+          Some(datum),
+          Clawback,
+          grant_ref(0),
+          Transaction { ..tx, extra_signatories: [stranger_key] },
+        ),
+      }
+    },
+  )
+}
+
+test refund_policy_allows_multiple_grants_without_a_time_bound() {
+  let datum = scheduled(window(NegativeInfinity, True, PositiveInfinity, True))
+  let first = fixtures.scheduled_input(datum)
+  let second = transaction.Input { ..first, output_reference: grant_ref(1) }
+  let tx = Transaction {
+    ..spend_scheduled(
+      datum,
+      grantor_key,
+      window(NegativeInfinity, True, PositiveInfinity, True),
+      [],
+    ),
+    inputs: [first, second],
+  }
+  and {
+    scheduled_vesting.spend(Some(datum), Clawback, grant_ref(0), tx),
+    scheduled_vesting.spend(Some(datum), Clawback, grant_ref(1), tx),
+  }
 }

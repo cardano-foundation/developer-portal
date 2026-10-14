@@ -23,7 +23,7 @@ Each page explains one pattern on its own. It is **not a sequence**: arrive with
 - **[Linked list](/docs/developers/onboarding/design-patterns/linked-list)**: split a growing registry across authenticated UTxOs, change only its neighbors, and prove membership or absence from one reference input.
 - **[Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree)**: commit a large allowlist to a 32-byte root and verify membership from a logarithmic-size proof built off-chain.
 - **[Merkle Patricia trie](/docs/developers/onboarding/design-patterns/merkle-patricia-trie)**: a registry too large for one datum. Keep it as a trie off-chain and its 32-byte root on-chain, and prove every insert, update, delete and lookup, absence included.
-- **[Validity range normalization](/docs/developers/onboarding/design-patterns/validity-range-normalization)**: an interval has many encodings. Reduce it to one canonical form before reading time from it: a clarity gain for the transaction's own window, and a correctness fix for an interval stored in a datum.
+- **[Validity range normalization](/docs/developers/onboarding/design-patterns/validity-range-normalization)**: an optional simplification for code that shares interval calculations. Preserve equivalent encodings in one canonical form, and compare its overhead with smaller endpoint helpers.
 
 ## How a pattern is measured
 

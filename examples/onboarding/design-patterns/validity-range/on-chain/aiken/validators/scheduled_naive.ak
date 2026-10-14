@@ -49,6 +49,23 @@ test claim_ok_halfway_through_a_closed_period() {
   scheduled_vesting.spend(Some(datum), Claim, grant_ref(0), tx)
 }
 
+test naive_answers_differently_for_equivalent_finite_periods() {
+  let claim = fn(period) {
+    let datum = scheduled(period)
+    let tx = spend_scheduled(
+      datum,
+      beneficiary_key,
+      today(6_000_000, 6_001_000),
+      [rest_of(datum, 5_000_000)],
+    )
+    scheduled_vesting.spend(Some(datum), Claim, grant_ref(0), tx)
+  }
+  and {
+    claim(window(Finite(start), True, Finite(end), True)),
+    !claim(window(Finite(start), True, Finite(end + 1), False)),
+  }
+}
+
 // ---------------------------------------------------------------------------
 // A period with no start is a cliff: nothing vests until its end, everything
 // vests then. Nothing stopped the grantor from writing one, and the naive grant

@@ -3,14 +3,15 @@ import {
   deserializeAddress,
   mConStr0,
   mPubKeyAddress,
+  pubKeyAddress,
   resolveScriptHash,
+  serializeAddressObj,
   serializePlutusScript,
 } from "@meshsdk/core";
 
 // The `plutus.json` that `aiken build` wrote for this project, copied in from
-// `../../on-chain/aiken/plutus.json`. It holds three versions of the grant,
-// the naive one and the normalized one written by hand and with the library,
-// and two of the grant whose period is an interval in its datum.
+// `../../on-chain/aiken/plutus.json`. `npm run compile` refreshes this copy
+// before tests and benchmarks run.
 import blueprint from "../../blueprints/validity-range.plutus.json" with { type: "json" };
 
 const PLUTUS_VERSION = "V3";
@@ -19,6 +20,7 @@ const PLUTUS_VERSION = "V3";
 /// without its handler.
 export const VERSIONS = {
   naive: "naive.linear_vesting",
+  withEndpoints: "with_endpoints.linear_vesting",
   byHand: "by_hand.linear_vesting",
   withLibrary: "with_library.linear_vesting",
   // The second example: the vesting period is an interval in the datum.
@@ -27,9 +29,11 @@ export const VERSIONS = {
 } as const;
 
 export type Version = keyof typeof VERSIONS;
+export type ScheduledVersion = "scheduledNaive" | "scheduled";
+export type LinearVersion = Exclude<Version, ScheduledVersion>;
 
 /// Whether `version` reads its period from an interval in the datum.
-export function isScheduled(version: Version): boolean {
+export function isScheduled(version: Version): version is ScheduledVersion {
   return version === "scheduledNaive" || version === "scheduled";
 }
 
@@ -82,13 +86,38 @@ export type Grant = {
 /// The grant as the datum the validator reads: `Grant` in `lib/vesting.ak`,
 /// field for field.
 export function grantDatum(grant: Grant) {
-  const { pubKeyHash, stakeCredentialHash } = deserializeAddress(grant.beneficiaryAddress);
   return mConStr0([
-    mPubKeyAddress(pubKeyHash, stakeCredentialHash || undefined),
-    deserializeAddress(grant.grantorAddress).pubKeyHash,
+    beneficiaryDatum(grant.beneficiaryAddress),
+    paymentKey(grant.grantorAddress),
     grant.start,
     grant.end,
     grant.total,
   ]);
 }
 // #endregion grant
+
+// #region address
+/// Preserve both the hash and the type of the stake credential. These builders
+/// support base and enterprise addresses with a key payment credential.
+export function beneficiaryDatum(address: string) {
+  const { stakeCredentialHash, stakeScriptCredentialHash } = deserializeAddress(address);
+  const parts = [
+    paymentKey(address),
+    stakeCredentialHash || stakeScriptCredentialHash || undefined,
+    Boolean(stakeScriptCredentialHash),
+  ] as const;
+  const json = pubKeyAddress(...parts);
+  // Reject address forms we cannot round-trip, rather than silently losing a
+  // staking pointer or another part of the supplied address.
+  if (serializeAddressObj(json, 0) !== address && serializeAddressObj(json, 1) !== address) {
+    throw new Error("beneficiary must be a base or enterprise key address");
+  }
+  return mPubKeyAddress(...parts);
+}
+
+export function paymentKey(address: string): string {
+  const { pubKeyHash } = deserializeAddress(address);
+  if (!pubKeyHash) throw new Error("the address must have a key payment credential");
+  return pubKeyHash;
+}
+// #endregion address

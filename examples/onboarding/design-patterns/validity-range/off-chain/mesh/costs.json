@@ -35,6 +35,36 @@
         "scriptSize": 1311
       }
     },
+    "withEndpoints": {
+      "claimFrom": {
+        "mem": 109289,
+        "cpu": 43274264,
+        "fee": 251004,
+        "size": 1853,
+        "scriptSize": 1368
+      },
+      "claimBetween": {
+        "mem": 109289,
+        "cpu": 43274264,
+        "fee": 251268,
+        "size": 1859,
+        "scriptSize": 1368
+      },
+      "clawbackUntil": {
+        "mem": 121785,
+        "cpu": 44947099,
+        "fee": 248765,
+        "size": 1783,
+        "scriptSize": 1368
+      },
+      "clawbackBetween": {
+        "mem": 121785,
+        "cpu": 44947099,
+        "fee": 249029,
+        "size": 1789,
+        "scriptSize": 1368
+      }
+    },
     "byHand": {
       "claimFrom": {
         "mem": 121869,

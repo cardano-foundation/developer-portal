@@ -5,8 +5,11 @@
   "type": "module",
   "description": "Off-chain code for the linear vesting grant from the onboarding Design patterns section: the claim and clawback transactions, built with Mesh, and the benchmark that measures them.",
   "scripts": {
+    "compile": "node src/compile.ts",
+    "pretest": "npm run compile",
     "test": "node --test 'src/*.test.ts'",
     "typecheck": "tsc",
+    "prebench": "npm run compile",
     "bench": "node src/bench.ts"
   },
   "dependencies": {

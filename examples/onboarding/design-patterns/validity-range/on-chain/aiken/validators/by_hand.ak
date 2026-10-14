@@ -1,4 +1,9 @@
-use aiken/interval.{Finite, Interval, NegativeInfinity, PositiveInfinity}
+use aiken/collection/list
+use aiken/fuzz
+use aiken/interval.{
+  Finite, Interval, IntervalBound, IntervalBoundType, NegativeInfinity,
+  PositiveInfinity,
+}
 use cardano/transaction.{OutputReference, Transaction, ValidityRange}
 use fixtures.{
   beneficiary_key, end, grant, grant_ref, grantor_key, payment, rest, spend,
@@ -184,8 +189,8 @@ test claim_answers_the_same_for_the_same_window() {
   }
 }
 
-// The pre-Conway encoding the naive grant misreads: 6,000,000 is included,
-// so 5,000,000 lovelace have vested by the last moment, and all of it is owed.
+// A synthetic inclusive window: the amount must cover its included endpoint.
+// This checks interval interpretation, not pre-Conway ledger admission.
 test clawback_fails_one_lovelace_short_under_a_closed_upper_bound() fail {
   let tx = spend(
     grantor_key,
@@ -240,4 +245,90 @@ test claim_fails_in_a_window_no_moment_fits() fail {
     [],
   )
   linear_vesting.spend(Some(grant), Claim, grant_ref(0), tx)
+}
+
+// Membership is the semantic oracle: normalization must preserve the set,
+// including singletons, empty intervals, negative times and infinite bounds.
+fn arbitrary_bound() -> Fuzzer<IntervalBound> {
+  let kind = fuzz.either(
+    fuzz.map(fuzz.int(), Finite),
+    fuzz.either(
+      fuzz.constant(NegativeInfinity),
+      fuzz.constant(PositiveInfinity),
+    ),
+  )
+  fuzz.map2(kind, fuzz.bool(), IntervalBound)
+}
+
+fn nearby(bound: IntervalBoundType) -> List<Int> {
+  when bound is {
+    Finite(t) -> [t - 1, t, t + 1]
+    _ -> []
+  }
+}
+
+test normalization_preserves_membership(
+  range via fuzz.map2(arbitrary_bound(), arbitrary_bound(), Interval),
+) {
+  let points = list.concat(
+    [-1, 0, 1],
+    list.concat(
+      nearby(range.lower_bound.bound_type),
+      nearby(range.upper_bound.bound_type),
+    ),
+  )
+  list.all(
+    points,
+    fn(point) {
+      let contained = when normalize(range) is {
+        ClosedRange { lower, upper } -> lower <= point && point <= upper
+        FromNegInf { upper } -> point <= upper
+        ToPosInf { lower } -> lower <= point
+        Always -> True
+        InvalidRange -> False
+      }
+      contained == interval.contains(range, point)
+    },
+  )
+}
+
+test equivalent_finite_encodings_have_one_form(
+  bounds via fuzz.both(fuzz.int(), fuzz.int()),
+) {
+  let (lower, upper) = bounds
+  let expected = normalize(window(Finite(lower), True, Finite(upper), True))
+  and {
+    normalize(window(Finite(lower - 1), False, Finite(upper), True)) == expected,
+    normalize(window(Finite(lower), True, Finite(upper + 1), False)) == expected,
+    normalize(window(Finite(lower - 1), False, Finite(upper + 1), False)) == expected,
+  }
+}
+
+test a_changed_endpoint_is_not_just_an_equivalent_encoding() {
+  and {
+    normalize(window(NegativeInfinity, True, Finite(10), True)) == FromNegInf {
+      upper: 10,
+    },
+    normalize(window(NegativeInfinity, True, Finite(10), False)) == FromNegInf {
+      upper: 9,
+    },
+  }
+}
+
+test every_singleton_encoding_keeps_its_member() {
+  let encodings = [
+    window(Finite(10), True, Finite(10), True),
+    window(Finite(9), False, Finite(10), True),
+    window(Finite(10), True, Finite(11), False),
+    window(Finite(9), False, Finite(11), False),
+  ]
+  list.all(
+    encodings,
+    fn(range) {
+      interval.contains(range, 10) && normalize(range) == ClosedRange {
+        lower: 10,
+        upper: 10,
+      }
+    },
+  )
 }

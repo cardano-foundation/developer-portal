@@ -1,3 +1,4 @@
+use aiken/collection/list
 use aiken/interval.{Finite, NegativeInfinity, PositiveInfinity}
 use aiken_design_patterns/validity_range_normalization.{
   Always, ClosedRange, FromNegInf, InvalidRange, ToPosInf, normalize_time_range,
@@ -61,11 +62,26 @@ test library_gives_every_encoding_of_a_window_one_form() {
   }
 }
 
-// The one difference: a window holding a single moment is refused, where
-// `by_hand.ak` keeps it. The ledger never produces one, because a window runs
-// from the start of one slot to the start of a later one.
+// v1.9.0 incorrectly classifies nonempty singleton integer intervals as empty.
+// Current slot-derived transaction windows cannot be singletons, but datum
+// intervals can. Keep this limitation explicit when upgrading the dependency.
 test library_refuses_a_one_moment_window() {
   normalize_time_range(window(Finite(9), False, Finite(11), False)) == InvalidRange
+}
+
+test library_loses_the_member_of_every_singleton_encoding() {
+  let encodings = [
+    window(Finite(10), True, Finite(10), True),
+    window(Finite(9), False, Finite(10), True),
+    window(Finite(10), True, Finite(11), False),
+    window(Finite(9), False, Finite(11), False),
+  ]
+  list.all(
+    encodings,
+    fn(range) {
+      interval.contains(range, 10) && normalize_time_range(range) == InvalidRange
+    },
+  )
 }
 
 test claim_ok_halfway() {

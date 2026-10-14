@@ -1,5 +1,6 @@
-import { deserializeAddress, mBool, mConStr0, mConStr1, mConStr2, mPubKeyAddress } from "@meshsdk/core";
+import { mBool, mConStr0, mConStr1, mConStr2 } from "@meshsdk/core";
 import type { Data } from "@meshsdk/core";
+import { beneficiaryDatum, paymentKey } from "./blueprint.ts";
 import type { Grant } from "./blueprint.ts";
 
 // The second example: a grant whose vesting period is an interval in the
@@ -10,7 +11,8 @@ import type { Grant } from "./blueprint.ts";
 /// for an upper one.
 export type Bound = { at?: number; included: boolean };
 
-/// A period exactly as it goes into the datum: `Interval` in the stdlib.
+/// Finite bounds and the usual infinities, as `Interval` in the stdlib.
+/// Inverted infinities (+∞ below or −∞ above) require raw data in a test.
 export type Period = { lower: Bound; upper: Bound };
 
 /// The period as on-chain data. Bound types are `NegativeInfinity`,
@@ -23,10 +25,9 @@ export function periodData({ lower, upper }: Period) {
 
 /// The datum: `ScheduledGrant` in `lib/schedule.ak`, field for field.
 export function scheduledDatum(grant: Grant, period: Period) {
-  const { pubKeyHash, stakeCredentialHash } = deserializeAddress(grant.beneficiaryAddress);
   return mConStr0([
-    mPubKeyAddress(pubKeyHash, stakeCredentialHash || undefined),
-    deserializeAddress(grant.grantorAddress).pubKeyHash,
+    beneficiaryDatum(grant.beneficiaryAddress),
+    paymentKey(grant.grantorAddress),
     periodData(period),
     grant.total,
   ]);

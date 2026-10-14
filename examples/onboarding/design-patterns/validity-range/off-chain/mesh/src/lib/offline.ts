@@ -10,7 +10,7 @@ import type { Asset, Data, UTxO } from "@meshsdk/core";
 import { OfflineEvaluator } from "@meshsdk/core-csl";
 import { MeshWallet } from "@meshsdk/wallet";
 import { grantAddress, grantDatum, isScheduled } from "./blueprint.ts";
-import type { Grant, Version } from "./blueprint.ts";
+import type { Grant, ScheduledVersion, Version } from "./blueprint.ts";
 import { scheduledDatum, vestingOf } from "./schedule.ts";
 import type { Period } from "./schedule.ts";
 import { slotTime } from "./vesting.ts";
@@ -92,8 +92,8 @@ export async function offlineChain() {
     upper: { at: grant.end, included: true },
   };
 
-  /// Lock the test grant at `version`'s address, as `buildLockTx` would. A
-  /// version that reads an interval from its datum gets `period`.
+  /// Inject a benchmark fixture. Builder regression tests instead record the
+  /// actual output of buildLockTx or buildScheduledLockTx.
   function lock(version: Version): UTxO {
     return isScheduled(version) ? lockScheduled(version, period).utxo : addGrant(version, grantDatum(grant));
   }
@@ -101,7 +101,7 @@ export async function offlineChain() {
   /// Lock the test grant with `vestingPeriod` as its period, at a version that
   /// reads an interval from its datum. Returns the UTxO, and the grant the
   /// period gives, for the builders' arithmetic.
-  function lockScheduled(version: Version, vestingPeriod: Period) {
+  function lockScheduled(version: ScheduledVersion, vestingPeriod: Period) {
     return {
       utxo: addGrant(version, scheduledDatum(grant, vestingPeriod)),
       grant: vestingOf(grant, vestingPeriod),
