@@ -29,6 +29,8 @@ Going from "it works" to "it's safe and scalable": common vulnerabilities, optim
 
 The reusable on-chain patterns that production protocols are built from have a section of their own, **[Design patterns](/docs/developers/onboarding/design-patterns/introduction)**. Its pages stand alone, so read them in any order once you have finished Intermediate.
 
+**[Start the Advanced module](/docs/developers/onboarding/lectures/advanced/introduction)**
+
 ## What you need
 
 Depending on the lecture, you'll want:
