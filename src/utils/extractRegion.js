@@ -34,7 +34,7 @@
 const ANY_REGION_MARKER = /^[^\w]*#(?:end)?region\s+\S+[^\w]*$/;
 const REPLACE_MARKER = /^[^\w]*#replace\s+(.+)$/;
 const REPLACE_PAIR = /^(.*?)\s+->\s+(.*)$/;
-const COMMENT_TAIL = /\s*(?:\*\/|-->)\s*$/;
+const COMMENT_TAIL = /\s*(?:\*\/|--!?>)\s*$/;
 const QUOTED = /^(["'])(.*)\1$/;
 
 const escapeForRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
