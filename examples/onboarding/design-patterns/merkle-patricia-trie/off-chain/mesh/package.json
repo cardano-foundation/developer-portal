@@ -5,8 +5,11 @@
   "type": "module",
   "description": "Off-chain code for the name registry from the onboarding Design patterns section: the registry transactions, built with Mesh, and the benchmark that measures them.",
   "scripts": {
+    "compile": "node src/compile.ts",
+    "pretest": "node src/check-blueprint.ts",
     "test": "node --test 'src/*.test.ts'",
     "typecheck": "tsc",
+    "prebench": "node src/check-blueprint.ts",
     "bench": "node src/bench.ts"
   },
   "dependencies": {

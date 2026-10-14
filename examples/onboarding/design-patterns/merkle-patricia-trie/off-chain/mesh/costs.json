@@ -8,154 +8,91 @@
     "naive": {
       "register": {
         "10": {
-          "mem": 326248,
-          "cpu": 110967276,
-          "fee": 323315,
-          "size": 3101,
+          "mem": 359070,
+          "cpu": 119727239,
+          "fee": 329184,
+          "size": 3283,
           "proofBytes": 0,
           "fits": true
         },
         "100": {
-          "mem": 1389148,
-          "cpu": 467008356,
-          "fee": 560839,
-          "size": 6522,
+          "mem": 1421970,
+          "cpu": 475768319,
+          "fee": 566708,
+          "size": 6704,
           "proofBytes": 0,
           "fits": true
         }
       },
       "operations": {
         "retarget": {
-          "mem": 1923147,
-          "cpu": 622983726,
-          "fee": 599728,
-          "size": 6450,
+          "mem": 1974811,
+          "cpu": 638531350,
+          "fee": 608758,
+          "size": 6668,
           "proofBytes": 0,
           "fits": true
         },
         "release": {
-          "mem": 1882497,
-          "cpu": 609959978,
-          "fee": 594200,
-          "size": 6399,
+          "mem": 1932649,
+          "cpu": 625124163,
+          "fee": 603115,
+          "size": 6617,
           "proofBytes": 0,
           "fits": true
         }
       },
-      "scriptSize": 2123
-    },
-    "byHand": {
-      "register": {
-        "10": {
-          "mem": 362027,
-          "cpu": 112828006,
-          "fee": 432961,
-          "size": 5543,
-          "proofBytes": 280,
-          "fits": true
-        },
-        "100": {
-          "mem": 362027,
-          "cpu": 112828006,
-          "fee": 432961,
-          "size": 5543,
-          "proofBytes": 280,
-          "fits": true
-        },
-        "1000": {
-          "mem": 438893,
-          "cpu": 134794361,
-          "fee": 445096,
-          "size": 5682,
-          "proofBytes": 419,
-          "fits": true
-        },
-        "10000": {
-          "mem": 508327,
-          "cpu": 154154174,
-          "fee": 456614,
-          "size": 5821,
-          "proofBytes": 558,
-          "fits": true
-        }
-      },
-      "operations": {
-        "retarget": {
-          "mem": 341635,
-          "cpu": 105294991,
-          "fee": 429790,
-          "size": 5510,
-          "proofBytes": 280,
-          "fits": true
-        },
-        "release": {
-          "mem": 344128,
-          "cpu": 106567905,
-          "fee": 429409,
-          "size": 5496,
-          "proofBytes": 280,
-          "fits": true
-        },
-        "resolve": {
-          "mem": 210064,
-          "cpu": 67195226,
-          "fee": 346807,
-          "size": 3859,
-          "proofBytes": 280,
-          "fits": true
-        }
-      },
-      "scriptSize": 4665
+      "scriptSize": 2199
     },
     "withLibrary": {
       "register": {
         "10": {
-          "mem": 359815,
-          "cpu": 112325524,
-          "fee": 432489,
-          "size": 5536,
+          "mem": 391873,
+          "cpu": 120942162,
+          "fee": 438129,
+          "size": 5714,
           "proofBytes": 280,
           "fits": true
         },
         "100": {
-          "mem": 359815,
-          "cpu": 112325524,
-          "fee": 432489,
-          "size": 5536,
+          "mem": 391873,
+          "cpu": 120942162,
+          "fee": 438129,
+          "size": 5714,
           "proofBytes": 280,
           "fits": true
         },
         "1000": {
-          "mem": 436681,
-          "cpu": 134291879,
-          "fee": 444624,
-          "size": 5675,
+          "mem": 468739,
+          "cpu": 142908517,
+          "fee": 450263,
+          "size": 5853,
           "proofBytes": 419,
           "fits": true
         },
         "10000": {
-          "mem": 506115,
-          "cpu": 153651692,
-          "fee": 456143,
-          "size": 5814,
+          "mem": 538173,
+          "cpu": 162268330,
+          "fee": 461782,
+          "size": 5992,
           "proofBytes": 558,
           "fits": true
         }
       },
       "operations": {
         "retarget": {
-          "mem": 339423,
-          "cpu": 104792509,
-          "fee": 429318,
-          "size": 5503,
+          "mem": 391087,
+          "cpu": 120340133,
+          "fee": 438172,
+          "size": 5717,
           "proofBytes": 280,
           "fits": true
         },
         "release": {
-          "mem": 341916,
-          "cpu": 106065423,
-          "fee": 428937,
-          "size": 5489,
+          "mem": 392068,
+          "cpu": 121229608,
+          "fee": 437676,
+          "size": 5703,
           "proofBytes": 280,
           "fits": true
         },
@@ -163,15 +100,26 @@
           "mem": 210064,
           "cpu": 67195226,
           "fee": 346807,
-          "size": 3859,
+          "size": 3965,
           "proofBytes": 280,
           "fits": true
         }
       },
-      "scriptSize": 4658
+      "scriptSize": 4730
     }
   },
-  "largestNaiveRegistry": 350,
+  "naiveLimit": {
+    "largestExisting": 348,
+    "last": {
+      "mem": 4350850,
+      "cpu": 1456859295,
+      "fee": 1232053,
+      "size": 16377,
+      "proofBytes": 0,
+      "fits": true
+    },
+    "next": null
+  },
   "example": {
     "names": [
       "alice",

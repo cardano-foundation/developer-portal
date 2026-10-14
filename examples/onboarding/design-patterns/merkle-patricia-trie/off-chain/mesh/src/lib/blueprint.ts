@@ -7,9 +7,8 @@ import {
 import type { UTxO } from "@meshsdk/core";
 
 // The `plutus.json` that `aiken build` wrote for this project, copied in from
-// `../../on-chain/aiken/plutus.json`. It holds three versions of the registry,
-// the naive one and the trie written by hand and with the library, and the
-// contract that pays a name.
+// `../../on-chain/aiken/plutus.json`. It holds the naive list registry, the
+// registry using Merkle Patricia Forestry, and the contract that pays a name.
 import blueprint from "../../blueprints/merkle-patricia-trie.plutus.json" with { type: "json" };
 
 const PLUTUS_VERSION = "V3";
@@ -17,7 +16,6 @@ const PLUTUS_VERSION = "V3";
 /// Every version of the registry, by the validator's title without its handler.
 export const VERSIONS = {
   naive: "naive.registry",
-  byHand: "by_hand.registry",
   withLibrary: "with_library.registry",
 } as const;
 

@@ -11,8 +11,8 @@ use cardano/transaction.{
 }
 
 // #region token
-/// The token that marks the one registry UTxO. Names are minted under the same
-/// policy, with the name as the token name, so a name may never be empty.
+/// The registry token uses the empty asset name. User-registered names must
+/// be nonempty so their tokens cannot collide with it under this policy.
 pub const registry_token: AssetName = ""
 
 // #endregion token
@@ -34,8 +34,8 @@ pub type Action<proof> {
 // #region continuation
 /// The registry being spent, and the registry it becomes. Checks the input is
 /// the registry, by its token, and the output is the one registry UTxO again:
-/// the same address, holding only ADA and the registry token. Returns the
-/// policy, the old datum and the new one.
+/// the same address, holding only ADA and the registry token, preserving its
+/// ADA deposit. Returns the policy, the old datum and the new one.
 pub fn continuation(
   self: Transaction,
   own_ref: OutputReference,
@@ -55,6 +55,7 @@ pub fn continuation(
       (policy, registry_token, 1),
     ]
   expect next.reference_script == None
+  expect assets.lovelace_of(next.value) >= assets.lovelace_of(value)
   expect InlineDatum(new) = next.datum
   (policy, old, new)
 }

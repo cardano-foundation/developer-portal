@@ -1,12 +1,11 @@
 import { DEFAULT_PROTOCOL_PARAMETERS, mConStr0, serializeData } from "@meshsdk/core";
 import type { Data } from "@meshsdk/core";
-import { deserializeTx } from "@meshsdk/core-csl";
+import { csl, deserializeTx } from "@meshsdk/core-csl";
 import { Trie } from "@aiken-lang/merkle-patricia-forestry";
 import { scriptSize } from "./blueprint.ts";
 import type { Version } from "./blueprint.ts";
 import { offlineChain } from "./offline.ts";
 import { buildChangeTx, buildReleasePaymentTx } from "./registry.ts";
-import type { Registry } from "./registry.ts";
 import {
   nameHex,
   proveRegister,
@@ -33,7 +32,7 @@ export const LIMITS = {
 };
 
 /// What one transaction costs: every script run added up, the fee in
-/// lovelace, its size in bytes, the proof's size in bytes (none for the naive
+/// lovelace, its signed size in bytes, the proof's size in bytes (none for the naive
 /// registry), and whether it fits in one transaction.
 export type Cost = { mem: number; cpu: number; fee: number; size: number; proofBytes: number; fits: boolean };
 
@@ -43,8 +42,8 @@ export type Operation = "register" | "retarget" | "release" | "resolve";
 export type Costs = {
   limits: typeof LIMITS;
   versions: Record<Version, { register: Record<string, Cost>; operations: Record<string, Cost>; scriptSize: number }>;
-  /// The most names the naive registry can hold and still register one more.
-  largestNaiveRegistry: number;
+  /// Largest pre-insertion count for this fixture and builder.
+  naiveLimit: { largestExisting: number; last: Cost; next: Cost | null };
   /// A small registry and one proof from it, for the page to show.
   example: Example;
 };
@@ -69,8 +68,8 @@ const targetAt = (i: number) => (i + 1).toString(16).padStart(56, "0");
 
 const tries = new Map<number, Trie>();
 
-/// A trie holding names 0 to `size - 1`, built once and reused: every
-/// measurement undoes its change.
+/// A trie holding names 0 to `size - 1`, built once and reused. Preparing a
+/// change leaves it at its confirmed root.
 async function filledTrie(size: number): Promise<Trie> {
   let trie = tries.get(size);
   if (!trie) {
@@ -96,32 +95,22 @@ const NEWCOMER = "newcomer";
 /// chain.
 export async function measure(version: Version, operation: Operation, size: number): Promise<Cost> {
   const chain = await offlineChain();
-  // Built with the evaluator, so the fee pays for what the scripts really use.
-  // Past a limit the evaluator refuses to build, so build without it, to
-  // measure anyway.
-  const withEvaluator = chain.registry(version);
-  const withoutEvaluator = { ...withEvaluator, evaluator: undefined };
-  const build = async (make: (registry: Registry) => Promise<string>) => {
-    try {
-      return await make(withEvaluator);
-    } catch {
-      return await make(withoutEvaluator);
-    }
-  };
-  let tx: (registry: Registry) => Promise<string>;
+  // Evaluate during construction so fees include the actual execution budget.
+  // Script failures are errors, rather than being reported as capacity limits.
+  let tx: () => Promise<string>;
   let proof: Data = mConStr0([]);
-  let undo = async () => {};
 
   if (version === "naive") {
+    const registry = { ...chain.registry(version), funding: chain.funding };
     const names = naiveNames(size);
     const current = chain.registryAt(version, names);
     const first = nameHex(nameAt(0));
     switch (operation) {
       case "register":
-        tx = (registry) => buildChangeTx(registry, current, register(NEWCOMER, chain.alice, proof), new Map([[nameHex(NEWCOMER), chain.alice], ...names]), { name: NEWCOMER, quantity: 1 });
+        tx = () => buildChangeTx(registry, current, register(NEWCOMER, chain.alice, proof), new Map([[nameHex(NEWCOMER), chain.alice], ...names]), { name: NEWCOMER, quantity: 1 });
         break;
       case "retarget":
-        tx = (registry) => buildChangeTx(
+        tx = () => buildChangeTx(
           registry,
           current,
           retarget(nameAt(0), targetAt(0), chain.bob, proof),
@@ -131,7 +120,7 @@ export async function measure(version: Version, operation: Operation, size: numb
         );
         break;
       case "release":
-        tx = (registry) => buildChangeTx(
+        tx = () => buildChangeTx(
           registry,
           current,
           release(nameAt(0), targetAt(0), proof),
@@ -144,103 +133,102 @@ export async function measure(version: Version, operation: Operation, size: numb
         throw new Error("the naive registry has no contract that pays a name");
     }
   } else {
+    const registry = { ...chain.registry(version), funding: chain.funding };
     const trie = await filledTrie(size);
     const current = chain.registryAt(version, rootOf(trie));
     switch (operation) {
-      case "register":
-        proof = await proveRegister(trie, NEWCOMER, chain.alice);
-        undo = async () => void (await trie.delete(NEWCOMER));
-        tx = (registry) => buildChangeTx(registry, current, register(NEWCOMER, chain.alice, proof), rootOf(trie), { name: NEWCOMER, quantity: 1 });
+      case "register": {
+        const change = await proveRegister(trie, NEWCOMER, chain.alice);
+        proof = change.proof;
+        tx = () => buildChangeTx(registry, current, register(NEWCOMER, chain.alice, proof), change.after, { name: NEWCOMER, quantity: 1 });
         break;
-      case "retarget":
-        proof = await proveRetarget(trie, nameAt(0), chain.bob);
-        undo = async () => {
-          await trie.delete(nameAt(0));
-          await trie.insert(nameAt(0), Buffer.from(targetAt(0), "hex"));
-        };
-        tx = (registry) => buildChangeTx(
+      }
+      case "retarget": {
+        const change = await proveRetarget(trie, nameAt(0), chain.bob);
+        proof = change.proof;
+        tx = () => buildChangeTx(
           registry,
           current,
           retarget(nameAt(0), targetAt(0), chain.bob, proof),
-          rootOf(trie),
+          change.after,
           undefined,
           chain.holding(version, chain.aliceAddress, nameAt(0)),
         );
         break;
-      case "release":
-        proof = await proveRelease(trie, nameAt(0));
-        undo = async () => void (await trie.insert(nameAt(0), Buffer.from(targetAt(0), "hex")));
-        tx = (registry) => buildChangeTx(
+      }
+      case "release": {
+        const change = await proveRelease(trie, nameAt(0));
+        proof = change.proof;
+        tx = () => buildChangeTx(
           registry,
           current,
           release(nameAt(0), targetAt(0), proof),
-          rootOf(trie),
+          change.after,
           { name: nameAt(0), quantity: -1 },
           chain.holding(version, chain.aliceAddress, nameAt(0)),
         );
         break;
+      }
       case "resolve": {
         const resolution = await proveResolution(trie, nameAt(0));
         proof = resolution.proof;
-        tx = (registry) => buildReleasePaymentTx(registry, chain.paidToName(version, nameAt(0), "10000000"), current, resolution);
+        tx = () => buildReleasePaymentTx(registry, chain.paidToName(version, nameAt(0), "10000000"), current, resolution);
         break;
       }
     }
   }
 
-  try {
-    const unsignedTx = await build(tx);
-    let mem = Number.MAX_SAFE_INTEGER;
-    let cpu = Number.MAX_SAFE_INTEGER;
-    try {
-      const runs = await chain.evaluator.evaluateTx(unsignedTx, [], []);
-      mem = runs.reduce((total, run) => total + run.budget.mem, 0);
-      cpu = runs.reduce((total, run) => total + run.budget.steps, 0);
-    } catch {
-      // Out of budget: it does not fit.
+  const unsignedTx = await tx();
+  const outputs = deserializeTx(unsignedTx).body().outputs();
+  const dataCost = csl.DataCost.new_coins_per_byte(csl.BigNum.from_str(String(DEFAULT_PROTOCOL_PARAMETERS.coinsPerUtxoSize)));
+  for (let i = 0; i < outputs.len(); i++) {
+    const output = outputs.get(i);
+    if (BigInt(output.amount().coin().to_str()) < BigInt(csl.min_ada_for_output(output, dataCost).to_str())) {
+      throw new Error(`benchmark output ${i} is below minimum ADA`);
     }
-    const txSize = unsignedTx.length / 2;
-    return {
-      mem,
-      cpu,
-      fee: Number(deserializeTx(unsignedTx).body().fee().to_str()),
-      size: txSize,
-      proofBytes: version === "naive" ? 0 : serializeData(proof).length / 2,
-      fits: mem <= LIMITS.mem && cpu <= LIMITS.cpu && txSize <= LIMITS.size,
-    };
-  } finally {
-    await undo();
   }
+  const runs = await chain.evaluator.evaluateTx(unsignedTx, [], []);
+  const mem = runs.reduce((total, run) => total + run.budget.mem, 0);
+  const cpu = runs.reduce((total, run) => total + run.budget.steps, 0);
+  const txSize = (await chain.aliceWallet.signTx(unsignedTx)).length / 2;
+  return {
+    mem, cpu,
+    fee: Number(deserializeTx(unsignedTx).body().fee().to_str()),
+    size: txSize,
+    proofBytes: version === "naive" ? 0 : serializeData(proof).length / 2,
+    fits: mem <= LIMITS.mem && cpu <= LIMITS.cpu && txSize <= LIMITS.size,
+  };
 }
 
 /// Whether registering into a naive registry of `size` names fits. Far past
 /// the size limit Mesh refuses to build at all, which also means it does not.
-async function naiveFits(size: number): Promise<boolean> {
+async function naiveCost(size: number): Promise<Cost | null> {
   try {
-    return (await measure("naive", "register", size)).fits;
-  } catch {
-    return false;
+    return await measure("naive", "register", size);
+  } catch (error) {
+    if (String(error).includes("Maximum Input Count Exceeded")) return null;
+    throw error;
   }
 }
 
-export async function largestNaiveRegistry(): Promise<number> {
-  let fitting = 1;
-  let failing = 2;
-  while (await naiveFits(failing)) {
+export async function naiveLimit(): Promise<Costs["naiveLimit"]> {
+  let fitting = 0;
+  let failing = 1;
+  while ((await naiveCost(failing))?.fits) {
     fitting = failing;
     failing *= 2;
   }
   while (failing - fitting > 1) {
     const middle = Math.floor((fitting + failing) / 2);
-    if (await naiveFits(middle)) fitting = middle;
+    if ((await naiveCost(middle))?.fits) fitting = middle;
     else failing = middle;
   }
-  return fitting;
+  return { largestExisting: fitting, last: (await naiveCost(fitting))!, next: await naiveCost(failing) };
 }
 
 export async function measureAll(): Promise<Costs> {
   const versions = {} as Costs["versions"];
-  for (const version of ["naive", "byHand", "withLibrary"] as Version[]) {
+  for (const version of ["naive", "withLibrary"] as Version[]) {
     const sizes = version === "naive" ? NAIVE_SIZES : TRIE_SIZES;
     const registerCosts: Record<string, Cost> = {};
     for (const size of sizes) registerCosts[size] = await measure(version, "register", size);
@@ -249,5 +237,5 @@ export async function measureAll(): Promise<Costs> {
     for (const op of ops) operations[op] = await measure(version, op, OPERATIONS_AT);
     versions[version] = { register: registerCosts, operations, scriptSize: scriptSize(version) };
   }
-  return { limits: LIMITS, versions, largestNaiveRegistry: await largestNaiveRegistry(), example: await example() };
+  return { limits: LIMITS, versions, naiveLimit: await naiveLimit(), example: await example() };
 }

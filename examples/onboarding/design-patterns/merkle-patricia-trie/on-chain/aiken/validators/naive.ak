@@ -1,5 +1,6 @@
 use aiken/collection/list
 use aiken/collection/pairs
+use aiken/primitive/bytearray
 use cardano/assets.{PolicyId}
 use cardano/transaction.{OutputReference, Transaction}
 use fixtures.{alice, bob, change, holding, mint_name, policy, ref, seed}
@@ -24,12 +25,14 @@ validator registry(seed: OutputReference) {
     when action is {
       Register { name, target, .. } -> and {
           name != registry_token,
+          bytearray.length(target) == 28,
           minted == [Pair(name, 1)],
           !pairs.has_key(old, name),
           new == [Pair(name, target), ..old],
         }
       Retarget { name, old: from, new: to, .. } -> and {
           minted == [],
+          bytearray.length(to) == 28,
           names.holds_name(self.inputs, policy, name),
           pairs.get_first(old, name) == Some(from),
           new == list.map(
@@ -167,4 +170,56 @@ test genesis_fails_without_the_seed() fail {
     mint: mint_name(registry_token, 1),
   }
   registry.mint(seed, Void, policy, tx)
+}
+
+test register_fails_with_a_malformed_target() fail {
+  let tx = change(
+    as_data([]),
+    as_data([Pair("alice", #"00")]),
+    mint_name("alice", 1),
+    [],
+  )
+  registry.spend(seed, None, Register("alice", #"00", Void), ref(0), tx)
+}
+
+test retarget_fails_with_a_malformed_target() fail {
+  let tx = change(
+    as_data(one),
+    as_data([Pair("alice", #"00")]),
+    assets.zero,
+    [holding(alice, "alice")],
+  )
+  registry.spend(seed, None, Retarget("alice", alice, #"00", Void), ref(0), tx)
+}
+
+test register_fails_when_the_deposit_is_withdrawn() fail {
+  let tx = change(as_data([]), as_data(one), mint_name("alice", 1), [])
+  let reduced = transaction.Output {
+    ..fixtures.registry(as_data(one)),
+    value: assets.from_lovelace(2_000_000)
+      |> assets.add(policy, registry_token, 1),
+  }
+  registry.spend(
+    seed,
+    None,
+    Register("alice", alice, Void),
+    ref(0),
+    transaction.Transaction { ..tx, outputs: [reduced] },
+  )
+}
+
+test register_ok_when_the_deposit_is_increased() {
+  let tx = change(as_data([]), as_data(one), mint_name("alice", 1), [])
+  let funded = transaction.Output {
+    ..fixtures.registry(as_data(one)),
+    value: assets.from_lovelace(10_000_000)
+      |> assets.add(policy, registry_token, 1),
+  }
+  registry.spend(
+    seed,
+    None,
+    Register("alice", alice, Void),
+    ref(0),
+    transaction.Transaction { ..tx, outputs: [funded] },
+  )
 }

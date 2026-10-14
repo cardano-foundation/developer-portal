@@ -37,7 +37,7 @@ The figures on each page are measured. Each example builds its transactions on a
 
 ## How each page is laid out
 
-Every page follows the same outline, so after one you know where to look in the next:
+The pages follow this outline, combining implementation sections where appropriate:
 
 1. **The problem**: a concrete situation, with a diagram of the transaction.
 2. **The naive contract**: the obvious version, and what it costs.
@@ -49,6 +49,8 @@ Every page follows the same outline, so after one you know where to look in the 
 8. **The numbers**: naive against pattern, measured.
 9. **When to use it, and when not**: the trade-offs, security caveats included.
 10. **Go deeper**: the reference pages, the library module, the related security pages.
+
+The Merkle Patricia trie page compares a list datum with a registry using Merkle Patricia Forestry. Its two-root explanation leads directly to the library-based validator.
 
 ## The playground {#the-playground}
 
@@ -79,7 +81,7 @@ design-patterns/
 ├── merkelized-validator/       the same layout
 ├── linked-list/                the same layout
 ├── merkle-tree/                the same layout
-├── merkle-patricia-trie/       the same layout
+├── merkle-patricia-trie/        baseline, MPF registry and payment reader
 └── validity-range/             the same layout
 ```
 
@@ -124,5 +126,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 </Tabs>
 
 Change a validator, rebuild, copy the blueprint across, and `npm test` tells you whether the figures on the page still hold. `npm run bench` updates them.
+
+For Merkle Patricia trie, use `npm run compile` from `off-chain/mesh` to rebuild and copy the blueprint together with its source fingerprint, then run `npm run bench` and `npm test`.
 
 Start with whichever problem you have. If none is pressing yet, **[transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)** is the one the others most often build on.

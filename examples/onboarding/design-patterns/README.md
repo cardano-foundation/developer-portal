@@ -2,10 +2,10 @@
 
 One self-contained project per pattern, used by the onboarding **Design patterns** section
 (`docs/developers/onboarding/design-patterns/`). Each project holds the naive contract the pattern
-replaces, the pattern written by hand, the same with
-[`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns) (Merkle tree uses a
-compatibility port of the standalone `aiken-merkle-tree` library), the Mesh
-transaction builders, and a benchmark that measures them.
+replaces, the pattern implementation, the Mesh transaction builders, and a benchmark that measures
+them. Most compare a hand-written implementation with a library version, usually using
+[`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns). Merkle Patricia trie
+compares the list baseline with one registry using Merkle Patricia Forestry.
 
 | Folder | Pattern |
 |---|---|
@@ -16,7 +16,7 @@ transaction builders, and a benchmark that measures them.
 | `merkelized-validator/` | Merkelized validator: purchase vouchers with delegated price computation and redemption-code validation; inline/reference comparisons, deployment costs, and a wider policy that outgrows a monolith |
 | `linked-list/` | Linked list: an authenticated participant registry with local mutations and reference-input membership/absence proofs, compared with one array datum; tested advanced and nested helper examples |
 | `merkle-tree/` | Merkle tree: an allowlisted grant with a SHA-256 root and off-chain membership proof, compared with a list datum; includes a documented compatibility port of `aiken-merkle-tree` |
-| `merkle-patricia-trie/` | Merkle Patricia trie: an open name registry kept as a trie off-chain, with its root on-chain, compared with a list datum |
+| `merkle-patricia-trie/` | Merkle Patricia trie: an open name registry using Merkle Patricia Forestry, with its root on-chain, compared with a list datum |
 | `validity-range/` | Validity range normalization: a vesting grant that reads time from one canonical form of an interval, from the transaction's window and from a period in its datum |
 
 Get just this folder (no need to clone the whole repo):
@@ -37,6 +37,9 @@ aiken check    # compile + run the inline tests
 aiken build    # regenerate plutus.json
 cp plutus.json ../../off-chain/mesh/blueprints/<pattern>.plutus.json
 ```
+
+For Merkle Patricia trie, `npm run compile` from `off-chain/mesh` performs the build and copy and
+updates the source fingerprint checked by its tests and benchmark.
 
 ## Off-chain (Mesh) and the benchmark
 
