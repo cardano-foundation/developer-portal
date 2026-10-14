@@ -1,0 +1,57 @@
+# Onboarding Design patterns — runnable examples
+
+One self-contained project per pattern, used by the onboarding **Design patterns** section
+(`docs/developers/onboarding/design-patterns/`). Each project holds the naive contract the pattern
+replaces, the pattern implementation, the Mesh transaction builders, and a benchmark that measures
+them. Most compare a hand-written implementation with a library version, usually using
+[`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns). Merkle Patricia trie
+compares the list baseline with one registry using Merkle Patricia Forestry.
+
+| Folder | Pattern |
+|---|---|
+| `tx-level-validation/` | Transaction-level validation: a withdraw-zero or minting-policy coordinator |
+| `utxo-indexers/` | UTxO indexers: each input told where its output is, in the redeemer |
+| `batch-indexers/` | Batch indexers: one coordinator checks a whole batch, with an index for each input's output |
+| `parameter-validation/` | Parameter validation: reward lock-ups recognized by rebuilding their script hashes; minimum unlock dates, separate mint funding, and signed-transaction benchmarks |
+| `merkelized-validator/` | Merkelized validator: purchase vouchers with delegated price computation and redemption-code validation; inline/reference comparisons, deployment costs, and a wider policy that outgrows a monolith |
+| `linked-list/` | Linked list: an authenticated participant registry with local mutations and reference-input membership/absence proofs, compared with one array datum; tested advanced and nested helper examples |
+| `merkle-tree/` | Merkle tree: an allowlisted grant with a SHA-256 root and off-chain membership proof, compared with a list datum; includes a documented compatibility port of `aiken-merkle-tree` |
+| `merkle-patricia-trie/` | Merkle Patricia trie: an open name registry using Merkle Patricia Forestry, with its root on-chain, compared with a list datum |
+| `validity-range/` | Validity range normalization: a vesting grant that reads time from one canonical form of an interval, from the transaction's window and from a period in its datum |
+
+Get just this folder (no need to clone the whole repo):
+
+```bash
+npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/design-patterns design-patterns
+cd design-patterns/<pattern>
+```
+
+## On-chain (Aiken)
+
+The compiled blueprint `plutus.json` is **committed** (and copied into `off-chain/mesh/blueprints/`), so
+you don't need Aiken to run the off-chain code. To re-check or recompile it:
+
+```bash
+cd on-chain/aiken
+aiken check    # compile + run the inline tests
+aiken build    # regenerate plutus.json
+cp plutus.json ../../off-chain/mesh/blueprints/<pattern>.plutus.json
+```
+
+For Merkle Patricia trie, `npm run compile` from `off-chain/mesh` performs the build and copy and
+updates the source fingerprint checked by its tests and benchmark.
+
+## Off-chain (Mesh) and the benchmark
+
+Everything runs offline, against an in-memory chain: no wallet, no provider key, nothing submitted.
+
+```bash
+cd off-chain/mesh
+npm install
+npm test         # build and evaluate every transaction, and fail if costs.json is stale
+npm run bench    # measure again and rewrite costs.json
+npm run typecheck
+```
+
+`costs.json` is **committed**: the docs page reads its figures from it. After changing a validator or a
+transaction builder, run `npm run bench` and commit the result.

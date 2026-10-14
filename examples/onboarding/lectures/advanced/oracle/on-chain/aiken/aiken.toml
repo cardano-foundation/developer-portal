@@ -1,0 +1,18 @@
+name = "cardano-foundation/onboarding-oracle-production"
+version = "0.0.0"
+compiler = "v1.1.24"
+plutus = "v3"
+license = "Apache-2.0"
+description = "The Intermediate oracle and its consumer, ready to deploy: the same three validators, plus one that never lets anything leave its address"
+
+[repository]
+user = "cardano-foundation"
+project = "developer-portal"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v4.0.0"
+source = "github"
+
+[config]

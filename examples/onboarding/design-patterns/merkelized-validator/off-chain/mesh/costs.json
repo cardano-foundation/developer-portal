@@ -1,0 +1,688 @@
+{
+  "limits": {
+    "mem": 16000000,
+    "cpu": 10000000000,
+    "size": 16384,
+    "referenceBytes": 204800
+  },
+  "policySize": 96,
+  "versions": {
+    "naive": {
+      "setup": {
+        "modules": {
+          "root": {
+            "scriptSize": 8618,
+            "txSize": 8963,
+            "fee": 549753,
+            "minimumAda": 38169360,
+            "fits": true
+          }
+        },
+        "totalScriptSize": 8618,
+        "totalPublicationFee": 549753,
+        "totalMinimumAda": 38169360,
+        "registrationFee": 0,
+        "stakeDeposits": 0
+      },
+      "sources": {
+        "inline": {
+          "purchase": {
+            "1": {
+              "mem": 811986,
+              "cpu": 261195812,
+              "size": 9177,
+              "fee": 624853,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "5": {
+              "mem": 4078278,
+              "cpu": 1311242026,
+              "size": 9861,
+              "fee": 919123,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "10": {
+              "mem": 8193410,
+              "cpu": 2633279735,
+              "size": 10716,
+              "fee": 1289505,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "20": {
+              "mem": 16525220,
+              "cpu": 5307380470,
+              "size": 12426,
+              "fee": 2038293,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": false
+            }
+          },
+          "cancel": {
+            "1": {
+              "mem": 29118,
+              "cpu": 8995933,
+              "size": 9058,
+              "fee": 556262,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "5": {
+              "mem": 145590,
+              "cpu": 44979665,
+              "size": 9266,
+              "fee": 574729,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "10": {
+              "mem": 291180,
+              "cpu": 89959330,
+              "size": 9526,
+              "fee": 597813,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "20": {
+              "mem": 582360,
+              "cpu": 179918660,
+              "size": 10046,
+              "fee": 643980,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            }
+          },
+          "largestPurchase": {
+            "count": 19,
+            "limitedBy": "mem"
+          }
+        },
+        "reference": {
+          "purchase": {
+            "1": {
+              "mem": 811986,
+              "cpu": 261195812,
+              "size": 592,
+              "fee": 376383,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": true
+            },
+            "5": {
+              "mem": 4078278,
+              "cpu": 1311242026,
+              "size": 1276,
+              "fee": 670653,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": true
+            },
+            "10": {
+              "mem": 8193410,
+              "cpu": 2633279735,
+              "size": 2131,
+              "fee": 1041035,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": true
+            },
+            "20": {
+              "mem": 16525220,
+              "cpu": 5307380470,
+              "size": 3841,
+              "fee": 1789823,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": false
+            }
+          },
+          "cancel": {
+            "1": {
+              "mem": 29118,
+              "cpu": 8995933,
+              "size": 473,
+              "fee": 307792,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": true
+            },
+            "5": {
+              "mem": 145590,
+              "cpu": 44979665,
+              "size": 681,
+              "fee": 326259,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": true
+            },
+            "10": {
+              "mem": 291180,
+              "cpu": 89959330,
+              "size": 941,
+              "fee": 349343,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": true
+            },
+            "20": {
+              "mem": 582360,
+              "cpu": 179918660,
+              "size": 1461,
+              "fee": 395510,
+              "referenceBytes": 8618,
+              "referenceFee": 129270,
+              "fits": true
+            }
+          },
+          "largestPurchase": {
+            "count": 19,
+            "limitedBy": "mem"
+          }
+        }
+      }
+    },
+    "byHand": {
+      "setup": {
+        "modules": {
+          "root": {
+            "scriptSize": 1433,
+            "txSize": 1778,
+            "fee": 233613,
+            "minimumAda": 7202010,
+            "fits": true
+          },
+          "quote": {
+            "scriptSize": 4667,
+            "txSize": 5012,
+            "fee": 375909,
+            "minimumAda": 21140550,
+            "fits": true
+          },
+          "code": {
+            "scriptSize": 3625,
+            "txSize": 3970,
+            "fee": 330061,
+            "minimumAda": 16649530,
+            "fits": true
+          }
+        },
+        "totalScriptSize": 9725,
+        "totalPublicationFee": 939583,
+        "totalMinimumAda": 44992090,
+        "registrationFee": 170341,
+        "stakeDeposits": 4000000
+      },
+      "sources": {
+        "inline": {
+          "purchase": {
+            "1": {
+              "mem": 921220,
+              "cpu": 305953121,
+              "size": 10472,
+              "fee": 691363,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "5": {
+              "mem": 1522980,
+              "cpu": 530293619,
+              "size": 11156,
+              "fee": 772356,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "10": {
+              "mem": 2432007,
+              "cpu": 856938083,
+              "size": 12011,
+              "fee": 885978,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "20": {
+              "mem": 4766807,
+              "cpu": 1662715328,
+              "size": 13721,
+              "fee": 1154032,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            }
+          },
+          "cancel": {
+            "1": {
+              "mem": 28818,
+              "cpu": 8936351,
+              "size": 1873,
+              "fee": 240101,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "5": {
+              "mem": 144090,
+              "cpu": 44681755,
+              "size": 2081,
+              "fee": 258481,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "10": {
+              "mem": 288180,
+              "cpu": 89363510,
+              "size": 2341,
+              "fee": 281457,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "20": {
+              "mem": 576360,
+              "cpu": 178727020,
+              "size": 2861,
+              "fee": 327408,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            }
+          },
+          "largestPurchase": {
+            "count": 35,
+            "limitedBy": "size"
+          }
+        },
+        "reference": {
+          "purchase": {
+            "1": {
+              "mem": 921220,
+              "cpu": 305953121,
+              "size": 846,
+              "fee": 413694,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
+              "fits": true
+            },
+            "5": {
+              "mem": 1522980,
+              "cpu": 530293619,
+              "size": 1530,
+              "fee": 494687,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
+              "fits": true
+            },
+            "10": {
+              "mem": 2432007,
+              "cpu": 856938083,
+              "size": 2385,
+              "fee": 608309,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
+              "fits": true
+            },
+            "20": {
+              "mem": 4766807,
+              "cpu": 1662715328,
+              "size": 4095,
+              "fee": 876363,
+              "referenceBytes": 9725,
+              "referenceFee": 145875,
+              "fits": true
+            }
+          },
+          "cancel": {
+            "1": {
+              "mem": 28818,
+              "cpu": 8936351,
+              "size": 473,
+              "fee": 199996,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
+              "fits": true
+            },
+            "5": {
+              "mem": 144090,
+              "cpu": 44681755,
+              "size": 681,
+              "fee": 218376,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
+              "fits": true
+            },
+            "10": {
+              "mem": 288180,
+              "cpu": 89363510,
+              "size": 941,
+              "fee": 241352,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
+              "fits": true
+            },
+            "20": {
+              "mem": 576360,
+              "cpu": 178727020,
+              "size": 1461,
+              "fee": 287303,
+              "referenceBytes": 1433,
+              "referenceFee": 21495,
+              "fits": true
+            }
+          },
+          "largestPurchase": {
+            "count": 50,
+            "limitedBy": "mem"
+          }
+        }
+      }
+    },
+    "withLibrary": {
+      "setup": {
+        "modules": {
+          "root": {
+            "scriptSize": 1461,
+            "txSize": 1806,
+            "fee": 234845,
+            "minimumAda": 7322690,
+            "fits": true
+          },
+          "quote": {
+            "scriptSize": 4668,
+            "txSize": 5013,
+            "fee": 375953,
+            "minimumAda": 21144860,
+            "fits": true
+          },
+          "code": {
+            "scriptSize": 3625,
+            "txSize": 3970,
+            "fee": 330061,
+            "minimumAda": 16649530,
+            "fits": true
+          }
+        },
+        "totalScriptSize": 9754,
+        "totalPublicationFee": 940859,
+        "totalMinimumAda": 45117080,
+        "registrationFee": 170341,
+        "stakeDeposits": 4000000
+      },
+      "sources": {
+        "inline": {
+          "purchase": {
+            "1": {
+              "mem": 934218,
+              "cpu": 310429078,
+              "size": 10501,
+              "fee": 693712,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "5": {
+              "mem": 1678466,
+              "cpu": 580763204,
+              "size": 11185,
+              "fee": 786242,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "10": {
+              "mem": 2965043,
+              "cpu": 1026026533,
+              "size": 12040,
+              "fee": 930201,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "20": {
+              "mem": 6719743,
+              "cpu": 2272797608,
+              "size": 13750,
+              "fee": 1311979,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            }
+          },
+          "cancel": {
+            "1": {
+              "mem": 28818,
+              "cpu": 8936351,
+              "size": 1901,
+              "fee": 241333,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "5": {
+              "mem": 144090,
+              "cpu": 44681755,
+              "size": 2109,
+              "fee": 259713,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "10": {
+              "mem": 288180,
+              "cpu": 89363510,
+              "size": 2369,
+              "fee": 282689,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            },
+            "20": {
+              "mem": 576360,
+              "cpu": 178727020,
+              "size": 2889,
+              "fee": 328640,
+              "referenceBytes": 0,
+              "referenceFee": 0,
+              "fits": true
+            }
+          },
+          "largestPurchase": {
+            "count": 34,
+            "limitedBy": "size"
+          }
+        },
+        "reference": {
+          "purchase": {
+            "1": {
+              "mem": 934218,
+              "cpu": 310429078,
+              "size": 846,
+              "fee": 415202,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
+              "fits": true
+            },
+            "5": {
+              "mem": 1678466,
+              "cpu": 580763204,
+              "size": 1530,
+              "fee": 507732,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
+              "fits": true
+            },
+            "10": {
+              "mem": 2965043,
+              "cpu": 1026026533,
+              "size": 2385,
+              "fee": 651691,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
+              "fits": true
+            },
+            "20": {
+              "mem": 6719743,
+              "cpu": 2272797608,
+              "size": 4095,
+              "fee": 1033469,
+              "referenceBytes": 9754,
+              "referenceFee": 146310,
+              "fits": true
+            }
+          },
+          "cancel": {
+            "1": {
+              "mem": 28818,
+              "cpu": 8936351,
+              "size": 473,
+              "fee": 200416,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
+              "fits": true
+            },
+            "5": {
+              "mem": 144090,
+              "cpu": 44681755,
+              "size": 681,
+              "fee": 218796,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
+              "fits": true
+            },
+            "10": {
+              "mem": 288180,
+              "cpu": 89363510,
+              "size": 941,
+              "fee": 241772,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
+              "fits": true
+            },
+            "20": {
+              "mem": 576360,
+              "cpu": 178727020,
+              "size": 1461,
+              "fee": 287723,
+              "referenceBytes": 1461,
+              "referenceFee": 21915,
+              "fits": true
+            }
+          },
+          "largestPurchase": {
+            "count": 35,
+            "limitedBy": "mem"
+          }
+        }
+      }
+    }
+  },
+  "wide": {
+    "policySize": 256,
+    "naive": {
+      "modules": {
+        "root": {
+          "scriptSize": 20987,
+          "txSize": null,
+          "fee": null,
+          "minimumAda": 91479750,
+          "fits": false
+        }
+      },
+      "totalScriptSize": 20987,
+      "totalPublicationFee": 0,
+      "totalMinimumAda": 91479750,
+      "registrationFee": 0,
+      "stakeDeposits": 0
+    },
+    "byHand": {
+      "modules": {
+        "root": {
+          "scriptSize": 1433,
+          "txSize": 1778,
+          "fee": 233613,
+          "minimumAda": 7202010,
+          "fits": true
+        },
+        "quote": {
+          "scriptSize": 11574,
+          "txSize": 11919,
+          "fee": 679817,
+          "minimumAda": 50909720,
+          "fits": true
+        },
+        "code": {
+          "scriptSize": 9087,
+          "txSize": 9432,
+          "fee": 570389,
+          "minimumAda": 40190750,
+          "fits": true
+        }
+      },
+      "totalScriptSize": 22094,
+      "totalPublicationFee": 1483819,
+      "totalMinimumAda": 98302480,
+      "registrationFee": 170341,
+      "stakeDeposits": 4000000
+    },
+    "withLibrary": {
+      "modules": {
+        "root": {
+          "scriptSize": 1461,
+          "txSize": 1806,
+          "fee": 234845,
+          "minimumAda": 7322690,
+          "fits": true
+        },
+        "quote": {
+          "scriptSize": 11575,
+          "txSize": 11920,
+          "fee": 679861,
+          "minimumAda": 50914030,
+          "fits": true
+        },
+        "code": {
+          "scriptSize": 9087,
+          "txSize": 9432,
+          "fee": 570389,
+          "minimumAda": 40190750,
+          "fits": true
+        }
+      },
+      "totalScriptSize": 22123,
+      "totalPublicationFee": 1485095,
+      "totalMinimumAda": 98427470,
+      "registrationFee": 170341,
+      "stakeDeposits": 4000000
+    },
+    "purchaseByHand": {
+      "mem": 2113540,
+      "cpu": 682577761,
+      "size": 846,
+      "fee": 695181,
+      "referenceBytes": 22094,
+      "referenceFee": 331410,
+      "fits": true
+    },
+    "purchaseWithLibrary": {
+      "mem": 2126538,
+      "cpu": 687053718,
+      "size": 846,
+      "fee": 696688,
+      "referenceBytes": 22123,
+      "referenceFee": 331845,
+      "fits": true
+    }
+  }
+}
