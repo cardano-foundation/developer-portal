@@ -1,5 +1,8 @@
 // #region splitter-imports
 use aiken/collection/list
+// #region property-import
+use aiken/fuzz
+// #endregion property-import
 // #region attack-import
 use aiken/primitive/bytearray
 // #endregion attack-import
@@ -248,3 +251,48 @@ test split_with_60_dust_tokens() {
   splitter.spend(beacon, benefactors, None, Split, pot_ref, tx)
 }
 // #endregion attack-dust-closed
+
+// Higher assurance: the attack above as a property. The unit test donates five
+// tokens under one policy. This one tries a hundred donations, each with its own
+// tokens and its own ADA, and is marked `fail` because every one of them has to
+// be refused.
+// #region property-dust
+// One token a donor might add: any policy, any name, any positive quantity.
+fn any_token() -> Fuzzer<(PolicyId, ByteArray, Int)> {
+  fuzz.tuple3(
+    fuzz.bytearray_fixed(28),
+    fuzz.bytearray_between(0, 32),
+    fuzz.int_between(1, 1_000_000),
+  )
+}
+
+// A donation that adds at least one token: some ADA, from none to 50 ADA, and
+// one to three tokens.
+fn any_donation_with_tokens() -> Fuzzer<Assets> {
+  fuzz.map2(
+    fuzz.int_between(0, 50_000_000),
+    fuzz.list_between(any_token(), 1, 3),
+    fn(lovelace, tokens) {
+      list.foldl(
+        tokens,
+        assets.from_lovelace(lovelace),
+        fn(token, value) {
+          let (policy_id, name, quantity) = token
+          assets.add(value, policy_id, name, quantity)
+        },
+      )
+    },
+  )
+}
+
+test any_donation_with_tokens_is_refused(
+  donation via any_donation_with_tokens(),
+) fail {
+  let before = pot_holding(100_000_000)
+  let tx = spend_pot(
+    before,
+    [output_at(pot_address, assets.merge(before, donation))],
+  )
+  splitter.spend(beacon, benefactors, None, Donate, pot_ref, tx)
+}
+// #endregion property-dust

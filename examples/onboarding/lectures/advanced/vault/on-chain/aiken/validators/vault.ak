@@ -1,6 +1,9 @@
 // #region vault-imports
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
+// #region property-import
+use aiken/fuzz
+// #endregion property-import
 use cardano/address.{Address, Script}
 use cardano/assets.{PolicyId}
 use cardano/transaction.{
@@ -176,3 +179,59 @@ test donate_moves_the_stake_part() fail {
   vault.spend(beacon, Some(owner), Donate, vault_ref, tx)
 }
 // #endregion attack-stake-closed
+
+// Higher assurance: two properties. The first is the attack above for every
+// stake part, not only the attacker's key, and is marked `fail` because every
+// one of those donations has to be refused. The second is the other half of
+// the guarantee: a vault at any address still accepts an honest donation.
+// #region property-stake
+// A stake part: a key or a script, either one with any 28-byte hash.
+fn any_stake_part() -> Fuzzer<address.StakeCredential> {
+  fuzz.either(
+    fuzz.map(
+      fuzz.bytearray_fixed(28),
+      fn(hash) { address.Inline(address.VerificationKey(hash)) },
+    ),
+    fuzz.map(
+      fuzz.bytearray_fixed(28),
+      fn(hash) { address.Inline(Script(hash)) },
+    ),
+  )
+}
+
+test any_other_stake_part_is_refused(stake via any_stake_part()) fail {
+  let elsewhere = Address {
+    payment_credential: Script(script_hash),
+    stake_credential: Some(stake),
+  }
+  let tx = spend_vault([vault_at(elsewhere, 100_000_000)], [attacker])
+  vault.spend(beacon, Some(owner), Donate, vault_ref, tx)
+}
+// #endregion property-stake
+
+// #region property-home
+// A vault at `home`, holding 100 ADA, put back at `home` with `extra` more.
+fn donate_at(home: Address, extra: Int) -> Transaction {
+  Transaction {
+    ..transaction.placeholder,
+    inputs: [
+      Input { output_reference: vault_ref, output: vault_at(home, 100_000_000) },
+    ],
+    outputs: [vault_at(home, 100_000_000 + extra)],
+  }
+}
+
+test any_vault_accepts_an_honest_donation(
+  donation via fuzz.both(
+    fuzz.option(any_stake_part()),
+    fuzz.int_between(0, 50_000_000),
+  ),
+) {
+  let (stake, extra) = donation
+  let home = Address {
+    payment_credential: Script(script_hash),
+    stake_credential: stake,
+  }
+  vault.spend(beacon, Some(owner), Donate, vault_ref, donate_at(home, extra))
+}
+// #endregion property-home

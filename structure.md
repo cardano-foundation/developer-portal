@@ -81,8 +81,7 @@ Goal: go from "it works" to "it's safe and production-ready." After this you can
   _Try it:_ spot the bug in a vulnerable validator.
 
 - **Design patterns**
-  Reusable structures that keep contracts correct and efficient, UTxO indexers, state machines, tx-level minting, reference inputs.
-  _Try it:_ apply one pattern to a small contract.
+  Not a lecture: a sister section under onboarding. The Optimization lecture covers protocol-level design and links there for each pattern.
 
 - **Optimization**
   Keep scripts small and cheap, execution units, script size, min-ADA, verify, don't compute.
