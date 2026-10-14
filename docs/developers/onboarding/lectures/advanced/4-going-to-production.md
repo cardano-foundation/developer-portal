@@ -327,7 +327,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 You can think as an attacker before you write a contract and again before you deploy it, write the attacks as tests, and check every guarantee against generated transactions. You can measure what a contract costs and make it cheaper in four places. You can deploy it from a script, write the deployment down, watch it, and plan for the day it has to change.
 
-- The **[design patterns](/docs/developers/onboarding/design-patterns)**: the shapes production contracts take, each with when to use it and what it costs.
+- The **design patterns**: the shapes production contracts take, each with when to use it and what it costs.
 - The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
 - The **[contracts library](https://github.com/input-output-hk/contracts-library)**: contracts with specifications and proofs, to use, compose or fork.
 

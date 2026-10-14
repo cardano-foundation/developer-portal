@@ -112,13 +112,13 @@ flowchart TB
 
 Split state needs a way to tell the protocol's UTxOs from anything else at the address, since anyone can send a UTxO there. That is the job of the beacon from [which UTxO is the oracle](/docs/developers/onboarding/lectures/intermediate/modifying-state#which-utxo-is-the-oracle), one per UTxO. The design patterns have the shapes split state can take:
 
-- **[One UTxO per user](/docs/developers/onboarding/design-patterns/one-utxo-per-user)**: each user's state in its own UTxO, marked by a token.
-- **[Linked list](/docs/developers/onboarding/design-patterns/linked-list)**: a set with one entry per UTxO, each pointing to the next, so adding an entry touches two UTxOs whatever the size of the set.
-- **[Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree)**: only a root hash in the datum, and the transaction carries a proof for the one entry it needs.
-- **[Batching](/docs/developers/onboarding/design-patterns/batching)**: each user locks a request in a UTxO of their own, and a batcher spends many requests in one transaction, with the checks for the whole batch run once.
-- **[Merkelized validator](/docs/developers/onboarding/design-patterns/merkelized-validator)**: a rarely used branch kept in a separate script, so the transactions that do not need it do not carry it.
+- **One UTxO per user**: each user's state in its own UTxO, marked by a token.
+- **Linked list**: a set with one entry per UTxO, each pointing to the next, so adding an entry touches two UTxOs whatever the size of the set.
+- **Merkle tree**: only a root hash in the datum, and the transaction carries a proof for the one entry it needs.
+- **Batching**: each user locks a request in a UTxO of their own, and a batcher spends many requests in one transaction, with the checks for the whole batch run once.
+- **Merkelized validator**: a rarely used branch kept in a separate script, so the transactions that do not need it do not carry it.
 
-The payout queue in the exercise below already makes one of these choices: each debt is a UTxO of its own, not an entry in one list. The **[design patterns](/docs/developers/onboarding/design-patterns)** section has every pattern, with when to use it and what it costs.
+The payout queue in the exercise below already makes one of these choices: each debt is a UTxO of its own, not an entry in one list. The **design patterns** section has every pattern, with when to use it and what it costs.
 
 ## Optimize before you deploy
 
