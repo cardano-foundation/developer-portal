@@ -1,0 +1,33 @@
+name = "cardano-foundation/onboarding-tx-level-validation"
+version = "0.0.0"
+compiler = "v1.1.24"
+plutus = "v3"
+license = "Apache-2.0"
+description = "A donation pool swept naively, then with transaction-level validation, from the onboarding Design patterns section"
+
+[repository]
+user = "cardano-foundation"
+project = "developer-portal"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v4.0.0"
+source = "github"
+
+[[dependencies]]
+name = "anastasia-labs/aiken-design-patterns"
+version = "v1.9.0"
+source = "github"
+
+[[dependencies]]
+name = "aiken-lang/fuzz"
+version = "v3.0.0"
+source = "github"
+
+[[dependencies]]
+name = "keyan-m/aiken-scott-utils"
+version = "v1.5.0"
+source = "github"
+
+[config]
