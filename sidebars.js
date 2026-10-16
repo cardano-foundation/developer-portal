@@ -498,4 +498,107 @@ module.exports = {
       ],
     },
   ],
+
+  onboardingSidebar: [
+    {
+      type: "doc",
+      id: "developers/onboarding/introduction/overview",
+      label: "Introduction",
+    },
+    {
+      type: "doc",
+      id: "developers/onboarding/get-started/overview",
+      label: "Get started",
+    },
+    {
+      type: "doc",
+      id: "developers/onboarding/what-to-build/overview",
+      label: "What to build",
+    },
+    {
+      type: "category",
+      label: "Tutorial",
+      collapsed: false,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/tutorial/overview",
+      },
+      items: [
+        { type: "doc", id: "developers/onboarding/tutorial/overview", label: "Overview" },
+        "developers/onboarding/tutorial/environment",
+        "developers/onboarding/tutorial/on-chain",
+        "developers/onboarding/tutorial/off-chain",
+        "developers/onboarding/tutorial/frontend",
+      ],
+    },
+    {
+      type: "category",
+      label: "Lectures",
+      collapsed: false,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/lectures/introduction",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "developers/onboarding/lectures/introduction",
+          label: "Introduction",
+        },
+        {
+          type: "category",
+          label: "Beginner",
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "developers/onboarding/lectures/beginner/introduction",
+          },
+          items: [
+            "developers/onboarding/lectures/beginner/wallets-keys-addresses",
+            "developers/onboarding/lectures/beginner/utxos-and-transactions",
+            "developers/onboarding/lectures/beginner/time-on-cardano",
+            "developers/onboarding/lectures/beginner/native-scripts-and-metadata",
+            "developers/onboarding/lectures/beginner/tokens-fungible-and-nfts",
+            "developers/onboarding/lectures/beginner/providers-and-explorers",
+          ],
+        },
+        {
+          type: "category",
+          label: "Intermediate",
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "developers/onboarding/lectures/intermediate/introduction",
+          },
+          items: [
+            "developers/onboarding/lectures/intermediate/on-chain-vs-off-chain",
+            "developers/onboarding/lectures/intermediate/tools",
+            "developers/onboarding/lectures/intermediate/what-is-a-validator",
+            "developers/onboarding/lectures/intermediate/datum-and-redeemer",
+            "developers/onboarding/lectures/intermediate/transaction-context",
+            "developers/onboarding/lectures/intermediate/testing",
+            "developers/onboarding/lectures/intermediate/parameters",
+            "developers/onboarding/lectures/intermediate/validator-purposes",
+            "developers/onboarding/lectures/intermediate/frontend-integration",
+            "developers/onboarding/lectures/intermediate/handling-time",
+            "developers/onboarding/lectures/intermediate/multi-validators",
+            "developers/onboarding/lectures/intermediate/modifying-state",
+            "developers/onboarding/lectures/intermediate/reference-inputs-and-scripts",
+          ],
+        },
+        {
+          type: "category",
+          label: "Advanced",
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "developers/onboarding/lectures/advanced/introduction",
+          },
+          items: [
+            "developers/onboarding/lectures/advanced/lecture-1",
+          ],
+        },
+      ],
+    },
+  ],
 };

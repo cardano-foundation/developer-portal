@@ -65,6 +65,7 @@ function getNavbarItems(repository) {
         {
           title: 'Build',
           items: [
+            {to: '/docs/developers/onboarding/introduction/overview/', label: 'Onboarding', description: 'Hands-on, do-it-now path where every step ends in a real result', icon: 'book'},
             {to: '/tools/', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'gear'},
             {to: '/templates/', label: 'Templates', description: 'Runnable dApp starters you can scaffold in one command', icon: 'template'},
             {to: '/templates/contracts/', label: 'Contracts Library', description: 'Reference smart contracts by use case', icon: 'build'},

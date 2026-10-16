@@ -48,6 +48,9 @@
       "last 1 safari version"
     ]
   },
+  "devDependencies": {
+    "raw-loader": "^4.0.2"
+  },
   "engines": {
     "node": ">=22"
   }
