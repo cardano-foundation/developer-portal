@@ -1,0 +1,76 @@
+name: "LLM output preview"
+
+on:
+  push:
+    branches:
+      - new-onboarding
+      - advanced-lectures
+      - design-patterns-onboarding
+      - onboarding-examples-ci
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    name: Publish LLM output
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn build
+
+      - name: Check out the llms-preview branch
+        run: |
+          if git fetch --depth=1 origin llms-preview; then
+            git worktree add -B llms-preview preview FETCH_HEAD
+          else
+            git worktree add --orphan -b llms-preview preview
+          fi
+
+      - name: Copy the LLM files
+        run: |
+          rm -rf "preview/${BRANCH:?}"
+          mkdir -p "preview/$BRANCH"
+          cp build/llms.txt build/llms-full.txt "preview/$BRANCH/"
+          (cd build && find docs -name '*.md' -exec cp --parents {} "../preview/$BRANCH/" \;)
+
+      - name: Write the README
+        run: |
+          cat > "preview/$BRANCH/README.md" <<EOF
+          # LLM output of \`$BRANCH\`
+
+          Built from $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$GITHUB_SHA.
+
+          - [llms.txt](llms.txt)
+          - [llms-full.txt](https://raw.githubusercontent.com/$GITHUB_REPOSITORY/llms-preview/$BRANCH/llms-full.txt)
+          - [docs/](docs/)
+          EOF
+
+      - name: Push
+        working-directory: preview
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Preview $BRANCH at ${GITHUB_SHA::7}"
+          for _ in 1 2 3; do
+            git push origin llms-preview && exit 0
+            git pull --rebase origin llms-preview
+          done
+          exit 1
