@@ -92,38 +92,38 @@ function fenced(code, attributes) {
   return `${fence}${attribute("language") || ""}${title}\n${code}\n${fence}`;
 }
 
-function collectSnippets(helpers) {
-  const snippets = new Map();
+function snippetsOf(docFile, helpers) {
+  const docText = read(docFile);
+  const doc = path.relative(ROOT, docFile);
+  const imports = importsOf(docFile, docText);
 
-  for (const docFile of listFiles(DOCS, /\.mdx?$/)) {
-    const docText = read(docFile);
-    const doc = path.relative(ROOT, docFile);
-    const imports = importsOf(docFile, docText);
-
-    for (const [block, attributes, body] of docText.matchAll(CODE_BLOCK)) {
-      const code = evaluate(body, imports, helpers, doc);
-
-      const existing = snippets.get(block);
-      if (existing && existing.code !== code) {
-        throw new Error(
-          `${doc} and ${existing.doc} contain the identical <CodeBlock> but different code. ` +
-            `Give one of them a distinct title so they can be told apart.`,
-        );
-      }
-      snippets.set(block, { doc, code, replacement: fenced(code, attributes) });
-    }
-  }
-  return snippets;
+  return [...docText.matchAll(CODE_BLOCK)].map(([block, attributes, body]) => {
+    const code = evaluate(body, imports, helpers, doc);
+    return { block, code, replacement: fenced(code, attributes) };
+  });
 }
 
-function expandOutputs(files, snippets) {
-  for (const file of files) {
-    let text = read(file);
-    for (const [block, { replacement }] of snippets) {
-      text = text.split(block).join(replacement);
-    }
-    fs.writeFileSync(file, text);
+function pageOf(docFile) {
+  const relative = path.relative(DOCS, docFile).replace(/\.mdx?$/, ".md");
+  return path.join(BUILD, "docs", relative);
+}
+
+function sectionOf(fullText, pageText) {
+  const lines = pageText.split("\n");
+  for (let skip = 0; skip < Math.min(8, lines.length); skip += 1) {
+    const section = lines.slice(skip).join("\n").trim();
+    const first = fullText.indexOf(section);
+    if (first === -1) continue;
+    return fullText.indexOf(section, first + 1) === -1 ? section : null;
   }
+  return null;
+}
+
+function expand(text, snippets) {
+  return snippets.reduce(
+    (result, { block, replacement }) => result.split(block).join(replacement),
+    text,
+  );
 }
 
 function fail(message, items) {
@@ -138,29 +138,50 @@ async function main() {
     validatorHash: await loadHelper("validatorHash"),
   };
 
-  const snippets = collectSnippets(helpers);
-  const pages = listFiles(path.join(BUILD, "docs"), /\.md$/);
-  const outputs = [path.join(BUILD, "llms.txt"), LLMS_FULL, ...pages].filter(
-    fs.existsSync,
-  );
+  let fullText = read(LLMS_FULL);
+  let total = 0;
+  const missing = [];
 
-  expandOutputs(outputs, snippets);
+  for (const docFile of listFiles(DOCS, /\.mdx?$/)) {
+    const snippets = snippetsOf(docFile, helpers);
+    if (!snippets.length) continue;
 
-  const fullText = read(LLMS_FULL);
-  const pagesText = pages.map(read).join("\n");
-  const missing = [...snippets.values()].filter(
-    ({ code }) => !fullText.includes(code) || !pagesText.includes(code),
-  );
+    const doc = path.relative(ROOT, docFile);
+    const page = pageOf(docFile);
+    const pageText = read(page);
+    const section = sectionOf(fullText, pageText);
+    if (!pageText || !section) {
+      throw new Error(
+        `${doc}: its page is missing from build/docs or llms-full.txt`,
+      );
+    }
+
+    const expandedPage = expand(pageText, snippets);
+    const expandedSection = expand(section, snippets);
+    fs.writeFileSync(page, expandedPage);
+    fullText = fullText.replace(section, () => expandedSection);
+
+    total += snippets.length;
+    for (const { code } of snippets) {
+      if (!expandedPage.includes(code) || !expandedSection.includes(code)) {
+        missing.push(doc);
+      }
+    }
+  }
+  fs.writeFileSync(LLMS_FULL, fullText);
+
   console.log(
-    `[fix-llms-snippets] ${snippets.size - missing.length}/${snippets.size} snippet(s) in the llms output`,
+    `[fix-llms-snippets] ${total - missing.length}/${total} snippet(s) in the llms output`,
   );
   if (missing.length) {
     fail(
       `${missing.length} snippet(s) missing; docusaurus-plugin-llms may have stopped passing <CodeBlock> through as text:`,
-      missing.map(({ doc }) => doc),
+      [...new Set(missing)],
     );
   }
 
+  const pages = listFiles(path.join(BUILD, "docs"), /\.md$/);
+  const outputs = [path.join(BUILD, "llms.txt"), LLMS_FULL, ...pages];
   const unexpanded = outputs.filter((file) => UNEXPANDED.test(read(file)));
   if (unexpanded.length) {
     fail(
