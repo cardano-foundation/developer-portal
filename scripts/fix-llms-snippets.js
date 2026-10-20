@@ -1,198 +1,172 @@
-// Expands imported code snippets in the docusaurus-plugin-llms output: raw-loader only resolves
-// for the rendered site, so llms.txt and the per-page .md files get the literal <CodeBlock> text
-// instead of the code. We re-read the imports from the source doc and substitute a fenced block.
-//
-// A build step rather than a plugin because Docusaurus runs postBuild hooks concurrently.
-// Delete once upstream resolves raw-loader imports.
-
 const fs = require("fs");
 const path = require("path");
 const { pathToFileURL } = require("url");
 
 const ROOT = path.resolve(__dirname, "..");
 const BUILD = path.join(ROOT, "build");
-const DOCS_BUILD = path.join(BUILD, "docs");
-const DOCS_SOURCE = path.join(ROOT, "docs");
+const DOCS = path.join(ROOT, "docs");
+const LLMS_FULL = path.join(BUILD, "llms-full.txt");
 
-// extractRegion is an ES module shared with the site, so it is loaded with import() in main().
-let extractRegion;
-
-// <CodeBlock language="ts" title="x.ts">{extractRegion(Name, "region")}</CodeBlock>
-// The body may also be a template literal that joins several calls with text:
-// {`${extractRegion(Name, "a")}\n${extractRegion(Name, "b")}`}
 const CODE_BLOCK =
-  /<CodeBlock\b([^>]*)>\s*\{\s*(extractRegion\([^)]*\)|`(?:[^`\\]|\\.)*`)\s*\}\s*<\/CodeBlock>/g;
-// The optional third argument names nested regions to omit: "name" or ["a", "b"].
+  /<CodeBlock\b([^>]*)>\s*\{\s*((?:extractRegion|validatorHash)\([^)]*\)|`(?:[^`\\]|\\.)*`)\s*\}\s*<\/CodeBlock>/g;
 const CALL =
-  /^extractRegion\(\s*(\w+)\s*,\s*['"]([^'"]+)['"]\s*(?:,\s*(['"][^'"]+['"]|\[[^\]]*\])\s*)?\)$/;
+  /^(extractRegion|validatorHash)\(\s*(\w+)\s*,\s*['"]([^'"]+)['"]\s*(?:,\s*(['"][^'"]+['"]|\[[^\]]*\])\s*)?\)$/;
+const IMPORT =
+  /^\s*import\s+(\w+)\s+from\s+['"](?:!!raw-loader!)?([^'"]+)['"];?\s*$/gm;
 const INTERPOLATION = /\$\{([^}]*)\}/g;
-const QUOTED_STRING = /['"]([^'"]+)['"]/g;
-const TEMPLATE_ESCAPE = /\\(n|t|`|\$|\\)/g;
-const TEMPLATE_ESCAPES = { n: "\n", t: "\t", "`": "`", $: "$", "\\": "\\" };
-// import Name from "!!raw-loader!@site/examples/x.ts";
-const RAW_LOADER_IMPORT =
-  /^\s*import\s+(\w+)\s+from\s+['"]!!raw-loader!([^'"]+)['"];?\s*$/gm;
+const QUOTED = /['"]([^'"]+)['"]/g;
+const ESCAPE = /\\(n|t|`|\$|\\)/g;
+const ESCAPED = { n: "\n", t: "\t", "`": "`", $: "$", "\\": "\\" };
+const UNEXPANDED = /\{\s*(?:extractRegion|validatorHash)\(/;
 
-const attributeValue = (attributes, key) =>
-  (attributes.match(new RegExp(`${key}=["']([^"']*)["']`)) || [])[1];
+const read = (file) =>
+  fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
 
-function findFiles(directory, matches, found = []) {
+function listFiles(directory, extension, found = []) {
   if (!fs.existsSync(directory)) return found;
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    const entryPath = path.join(directory, entry.name);
-    if (entry.isDirectory()) findFiles(entryPath, matches, found);
-    else if (matches(entry.name)) found.push(entryPath);
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) listFiles(file, extension, found);
+    else if (extension.test(entry.name)) found.push(file);
   }
   return found;
 }
 
-function collectSnippets() {
+async function loadHelper(name) {
+  const file = path.join(ROOT, "src/utils", `${name}.js`);
+  const { default: helper } = await import(pathToFileURL(file).href);
+  return helper;
+}
+
+function importsOf(docFile, docText) {
+  const imports = new Map();
+  for (const [, name, importPath] of docText.matchAll(IMPORT)) {
+    const file = importPath.startsWith("@site/")
+      ? path.join(ROOT, importPath.slice("@site/".length))
+      : path.resolve(path.dirname(docFile), importPath);
+    imports.set(name, file);
+  }
+  return imports;
+}
+
+function runCall(expression, imports, helpers, doc) {
+  const call = CALL.exec(expression.trim());
+  if (!call) throw new Error(`${doc}: cannot expand "${expression.trim()}"`);
+
+  const [, helper, name, key, omit = ""] = call;
+  const file = imports.get(name);
+  if (!file || !fs.existsSync(file)) {
+    throw new Error(`${doc}: ${name} is not imported from a file`);
+  }
+
+  if (helper === "validatorHash") {
+    return helpers.validatorHash(JSON.parse(read(file)), key);
+  }
+  const omitted = [...omit.matchAll(QUOTED)].map(([, region]) => region);
+  return helpers.extractRegion(read(file), key, omitted);
+}
+
+function evaluate(body, imports, helpers, doc) {
+  if (!body.startsWith("`")) return runCall(body, imports, helpers, doc);
+
+  return body
+    .slice(1, -1)
+    .split(INTERPOLATION)
+    .map((part, index) =>
+      index % 2 === 1
+        ? runCall(part, imports, helpers, doc)
+        : part.replace(ESCAPE, (_, char) => ESCAPED[char]),
+    )
+    .join("");
+}
+
+function fenced(code, attributes) {
+  const attribute = (key) =>
+    (attributes.match(new RegExp(`${key}=["']([^"']*)["']`)) || [])[1];
+  const longestRun = Math.max(
+    0,
+    ...(code.match(/`+/g) || []).map((run) => run.length),
+  );
+  const fence = "`".repeat(Math.max(3, longestRun + 1));
+  const title = attribute("title") ? ` title="${attribute("title")}"` : "";
+  return `${fence}${attribute("language") || ""}${title}\n${code}\n${fence}`;
+}
+
+function collectSnippets(helpers) {
   const snippets = new Map();
-  const docPaths = findFiles(DOCS_SOURCE, (name) => /\.mdx?$/.test(name));
 
-  for (const docPath of docPaths) {
-    const docText = fs.readFileSync(docPath, "utf8");
-    const importedFiles = new Map();
-    for (const [, name, importPath] of docText.matchAll(RAW_LOADER_IMPORT)) {
-      importedFiles.set(name, importPath);
-    }
+  for (const docFile of listFiles(DOCS, /\.mdx?$/)) {
+    const docText = read(docFile);
+    const doc = path.relative(ROOT, docFile);
+    const imports = importsOf(docFile, docText);
 
-    for (const match of docText.matchAll(CODE_BLOCK)) {
-      const [blockText, attributes, body] = match;
-      const doc = path.relative(ROOT, docPath);
-      const sources = [];
-      const resolveCall = (expression) => {
-        const call = CALL.exec(expression.trim());
-        if (!call) {
-          throw new Error(
-            `${doc}: cannot expand "${expression.trim()}" in a <CodeBlock>`,
-          );
-        }
-        const [, name, region, omitArgument = ""] = call;
-        const importPath = importedFiles.get(name);
-        if (!importPath) {
-          throw new Error(`${doc}: ${name} is not imported with raw-loader`);
-        }
-        const sourcePath = importPath.startsWith("@site/")
-          ? path.join(ROOT, importPath.slice("@site/".length))
-          : path.resolve(path.dirname(docPath), importPath);
-        const omit = [...omitArgument.matchAll(QUOTED_STRING)].map(
-          ([, omitted]) => omitted,
-        );
-        sources.push(`"${region}" from ${path.relative(ROOT, sourcePath)}`);
-        return extractRegion(fs.readFileSync(sourcePath, "utf8"), region, omit);
-      };
+    for (const [block, attributes, body] of docText.matchAll(CODE_BLOCK)) {
+      const code = evaluate(body, imports, helpers, doc);
 
-      // In a template, unescape only the literal text: the extracted code is inserted as is.
-      const code = body.startsWith("`")
-        ? body
-            .slice(1, -1)
-            .split(INTERPOLATION)
-            .map((part, index) =>
-              index % 2
-                ? resolveCall(part)
-                : part.replace(TEMPLATE_ESCAPE, (_, c) => TEMPLATE_ESCAPES[c]),
-            )
-            .join("")
-        : resolveCall(body);
-      const backtickRuns = (code.match(/`+/g) || []).map(
-        (run) => run.length + 1,
-      );
-      const fence = "`".repeat(Math.max(3, ...backtickRuns));
-      const language = attributeValue(attributes, "language") || "";
-      const titleText = attributeValue(attributes, "title");
-      const title = titleText ? ` title="${titleText}"` : "";
-
-      // Identical blocks are indistinguishable in the output, so one page would silently show the
-      // other's code, and nothing downstream could catch it.
-      const existing = snippets.get(blockText);
+      const existing = snippets.get(block);
       if (existing && existing.code !== code) {
         throw new Error(
           `${doc} and ${existing.doc} contain the identical <CodeBlock> but different code. ` +
             `Give one of them a distinct title so they can be told apart.`,
         );
       }
-
-      snippets.set(blockText, {
-        doc,
-        sources: sources.join(" + "),
-        code,
-        replacement: `${fence}${language}${title}\n${code}\n${fence}`,
-      });
+      snippets.set(block, { doc, code, replacement: fenced(code, attributes) });
     }
   }
   return snippets;
 }
 
-const readFile = (filePath) =>
-  fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
+function expandOutputs(files, snippets) {
+  for (const file of files) {
+    let text = read(file);
+    for (const [block, { replacement }] of snippets) {
+      text = text.split(block).join(replacement);
+    }
+    fs.writeFileSync(file, text);
+  }
+}
+
+function fail(message, items) {
+  console.error(`[fix-llms-snippets] ${message}`);
+  for (const item of items) console.error(`  - ${item}`);
+  process.exit(1);
+}
 
 async function main() {
-  ({ default: extractRegion } = await import(
-    pathToFileURL(path.join(ROOT, "src/utils/extractRegion.js")).href
-  ));
+  const helpers = {
+    extractRegion: await loadHelper("extractRegion"),
+    validatorHash: await loadHelper("validatorHash"),
+  };
 
-  const snippets = collectSnippets();
-  const markdownPages = findFiles(DOCS_BUILD, (name) => name.endsWith(".md"));
-  const outputFiles = [
-    path.join(BUILD, "llms.txt"),
-    path.join(BUILD, "llms-full.txt"),
-    ...markdownPages,
-  ].filter((filePath) => fs.existsSync(filePath));
+  const snippets = collectSnippets(helpers);
+  const pages = listFiles(path.join(BUILD, "docs"), /\.md$/);
+  const outputs = [path.join(BUILD, "llms.txt"), LLMS_FULL, ...pages].filter(
+    fs.existsSync,
+  );
 
-  let expanded = 0;
-  for (const filePath of outputFiles) {
-    const before = readFile(filePath);
-    let after = before;
-    for (const [blockText, { replacement }] of snippets) {
-      const parts = after.split(blockText);
-      expanded += parts.length - 1;
-      after = parts.join(replacement);
-    }
-    if (after !== before) fs.writeFileSync(filePath, after);
-  }
+  expandOutputs(outputs, snippets);
 
-  // Verify the code is present rather than that work happened, so this also catches the plugin
-  // dropping the <CodeBlock> entirely (docusaurus-plugin-llms >= 0.5 deletes component tags).
-  const llmsFullText = readFile(path.join(BUILD, "llms-full.txt"));
-  const markdownPagesText = markdownPages.map(readFile).join("\n");
+  const fullText = read(LLMS_FULL);
+  const pagesText = pages.map(read).join("\n");
   const missing = [...snippets.values()].filter(
-    ({ code }) =>
-      !llmsFullText.includes(code) || !markdownPagesText.includes(code),
+    ({ code }) => !fullText.includes(code) || !pagesText.includes(code),
   );
-
   console.log(
-    `[fix-llms-snippets] ${snippets.size - missing.length}/${snippets.size} ` +
-      `snippet(s) present in the llms output (${expanded} replacements)`,
+    `[fix-llms-snippets] ${snippets.size - missing.length}/${snippets.size} snippet(s) in the llms output`,
   );
-
   if (missing.length) {
-    console.error(
-      `[fix-llms-snippets] ${missing.length} snippet(s) missing from the llms output:`,
+    fail(
+      `${missing.length} snippet(s) missing; docusaurus-plugin-llms may have stopped passing <CodeBlock> through as text:`,
+      missing.map(({ doc }) => doc),
     );
-    for (const { doc, sources } of missing) {
-      console.error(`  - ${doc}: ${sources}`);
-    }
-    console.error(
-      "  docusaurus-plugin-llms is probably not passing the <CodeBlock> through as text any more " +
-        "(>= 0.5 deletes component tags), so there was nothing here to expand.",
-    );
-    process.exit(1);
   }
 
-  // A call the pattern above does not recognise is never expanded and never reported as missing,
-  // so also fail on any extractRegion() text that reached the output.
-  const unexpanded = outputFiles.filter((filePath) =>
-    /\{\s*extractRegion\(/.test(readFile(filePath)),
-  );
+  const unexpanded = outputs.filter((file) => UNEXPANDED.test(read(file)));
   if (unexpanded.length) {
-    console.error(
-      `[fix-llms-snippets] ${unexpanded.length} file(s) still contain an unexpanded extractRegion() call:`,
+    fail(
+      "unexpanded snippet calls left in:",
+      unexpanded.map((file) => path.relative(ROOT, file)),
     );
-    for (const filePath of unexpanded) {
-      console.error(`  - ${path.relative(ROOT, filePath)}`);
-    }
-    process.exit(1);
   }
 }
 
