@@ -1,0 +1,66 @@
+# Get Started in the Cardano Developer Community
+
+> Get Started in the Cardano Developer Community.
+
+Thousands of Cardano developers and enthusiasts gather across these online communities to share knowledge, discuss technical developments, get support, and collaborate on building the future of Cardano.
+
+:::tip Join Weekly Developer Office Hours
+
+Get your questions answered directly by Cardano Foundation engineers every week!
+
+Join [**Developer Office Hours**](https://www.addevent.com/calendar/TG807216) - a opportunity to interact live with CF engineers and community experts. Each weekly 1-hour session features a different topic presented by the creators behind it, followed by an open Q&A where you can ask anything.
+
+All presentation portions are recorded and available on the [Cardano Community YouTube channel](https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr). If you prefer not to ask your questions during the live call, you can submit them anonymously through this [form](https://cardanocommunity.typeform.com/DevOfficeHours)!
+
+:::
+
+## Forums & Q&A
+
+[**Cardano Stack Exchange**](https://cardano.stackexchange.com)  
+The primary question-and-answer platform for Cardano developers. Get technical help, share knowledge, and find solutions to specific development challenges.
+
+[**Cardano Forum - Developers**](https://forum.cardano.org/c/developers/29)  
+Long-form discussions, technical debates, and community support. Perfect for in-depth conversations and sharing detailed insights about Cardano development.
+
+[**r/CardanoDevelopers**](https://www.reddit.com/r/CardanoDevelopers/)  
+Reddit community dedicated to everyone building on the Cardano blockchain. Share projects, ask questions, and connect with fellow developers.
+
+## Chat Communities
+
+[**Cardano Developers Telegram**](https://t.me/CardanoDevelopersOfficial)  
+One of the oldest Cardano developer community groups on Telegram. Good to get in touch with the general developer community, have active conversations and get community support.
+
+[**CIP Biweekly Meetings**](https://discord.com/invite/Jy9YM69Ezf)  
+Join Cardano Improvement Proposal discussions every two weeks. Participate in technical standards development and ongoing Cardano protocol improvement conversations.
+
+[**Engineering and Development Discord**](https://discord.gg/MmeqpAzKbp)  
+Chat with general developer community channels. Great for quick questions, community discussions, and staying up-to-date with the latest developments.
+
+[**IOG Technical Discord**](https://discord.com/invite/w6TwW9bGA6)  
+Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pioneers](https://github.com/input-output-hk/plutus-pioneer-program) and technical discussions with IOG developers.
+
+## Talent Pool & Hackathons
+
+Sign up for the Cardano developer talent pool to hear about hackathons, jobs, and grants in the ecosystem.
+
+:::info Hear About New Opportunities
+
+Sign up once and we'll reach out when relevant hackathons, jobs, or grants come up.
+
+[**Join the Talent Pool**](/talent)
+
+:::
+
+## Jobs and careers
+
+Many teams across the ecosystem hire remotely. To find roles and the organizations behind them:
+
+- [Browse Cardano ecosystem entities](https://cardano.org/entities) to see who is building, across DeFi, NFTs, gaming, identity, and more.
+- [Cardano Foundation careers](https://cardanofoundation.org/careers), [EMURGO careers](https://emurgo.io/careers/), and [Input Output careers](https://apply.workable.com/io-global/) for roles at the founding entities.
+- Sign up for the [Talent Pool](/talent) to hear about jobs as they come up.
+
+## Developer Surveys
+
+An annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem.
+
+- You can find the annual survey reports in this [repository](https://github.com/cardano-foundation/state-of-the-developer-ecosystem).
