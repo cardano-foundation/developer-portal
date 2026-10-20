@@ -70,6 +70,8 @@ A proposed action then runs a fixed lifecycle, which is what your tooling reads 
 
 Most action types also carry a pointer to the last enacted action of the same kind, so an action ratifies against the state it was proposed against (treasury withdrawals and info actions are exempt). The deposit is returned to the proposer's reward account once the action leaves the live state.
 
+Before an action reaches the chain, it is often deliberated off-chain. For constitution changes, that can happen on Intersect's [Constitutional Amendment Portal](https://cap.intersectmbo.org/), where amendment proposals and issue statements are discussed before a new-constitution action is submitted. The portal is optional; the ledger accepts the action either way.
+
 ## Next steps
 
 - [DReps & vote delegation](/docs/developers/curriculum/staking-governance/drep-and-delegation): register a DRep (key- or script-based) and delegate voting power
