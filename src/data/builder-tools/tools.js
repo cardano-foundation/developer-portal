@@ -1118,6 +1118,15 @@ export const BuilderTools = [
     category: "dev-env",
     properties: ["haskell"],
   },
+  {
+    title: "cardano.nix",
+    description: "Nix packages and NixOS modules for running cardano-node, Ogmios and other Cardano services declaratively, with generated module documentation and VM-based integration tests.",
+    website: "https://mlabs-haskell.github.io/cardano.nix/",
+    docs: "https://mlabs-haskell.github.io/cardano.nix/",
+    repository: "https://github.com/mlabs-haskell/cardano.nix",
+    category: "operations",
+    properties: [],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
