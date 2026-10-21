@@ -75,4 +75,5 @@ A skill is a focused workflow guide: scaffolding a project, writing a validator,
 
 - SDKs and protocols ship their own AI context to layer on top: [Mesh AI](https://meshjs.dev/ai) for the Mesh API, [Masumi Skills](https://www.masumi.network/dev/masumi/documentation/integrations/masumi-skills) for Masumi's agent stack.
 - An agent can also work against live chain state, reading your balances and drafting transactions you sign: [chain access over MCP](/docs/developers/curriculum/dapps/ai-agents/overview#chain-access-over-mcp).
+- For a guided course, [Agentic Coding on Cardano](https://cardanofoundation.org/en/academy/course/agentic-coding) from the Cardano Academy teaches you to direct an agent through specifying, generating and auditing validators, and to prove each result with a transaction on preprod.
 - With the agent set up, [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) is the natural next build.
