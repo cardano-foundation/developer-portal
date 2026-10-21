@@ -63,7 +63,7 @@ See [other install methods](https://aiken-lang.org/installation-instructions) fo
 To go deeper:
 
 - [aiken-lang.org](https://aiken-lang.org) for the language tour, guides, and standard library
-- [I Can Aiken](https://book.io/book/i-can-aiken/), an open book from the Cardano Foundation Academy
+- [I Can Aiken (2026 Edition)](https://book.io/book/i-can-aiken-2026-edition/), a book on the eUTxO model and Aiken, with a second half on writing and auditing Aiken with an AI coding agent
 - [Aiken video course](https://www.youtube.com/playlist?list=PLCuyQuWCJVQ1Zz9ySRMH_J6EymxhnZ0Hu), a multi-part walkthrough
 - [Awesome Aiken](https://github.com/aiken-lang/awesome-aiken) for community projects and reusable libraries
 
