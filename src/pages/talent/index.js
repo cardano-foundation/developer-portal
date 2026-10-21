@@ -79,7 +79,7 @@ function JoinSection() {
             />
           </div>
           <div className={styles.photoCard}>
-            <img src={useBaseUrl("img/talent/join-rooftop.webp")} alt="Developers looking out over a city at sunset" />
+            <img src={useBaseUrl("img/talent/join-desk-coding.webp")} alt="Two developers working at a shared desk" />
           </div>
         </div>
       </div>

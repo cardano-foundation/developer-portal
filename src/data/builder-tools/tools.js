@@ -1035,7 +1035,7 @@ export const BuilderTools = [
   {
     title: "Nexus",
     icon: "/img/tools/nexus.svg",
-    description: "Hosted Cardano API with REST and WebSocket access to chain data: addresses, transactions, stake pools, DReps, and market data.",
+    description: "Hosted REST and WebSocket API for Cardano, Bitcoin, and Midnight. On Cardano it covers chain data, DEX market data, wallet analytics, and unsigned transaction building.",
     website: "https://nexus.gerowallet.io",
     docs: "https://nexus.gerowallet.io/docs",
     repository: "https://github.com/Gero-Labs/nexus-sdk",
