@@ -197,7 +197,7 @@ Then the datum and the validator:
   {extractRegion(Swap, "swap")}
 </CodeBlock>
 
-And the function that adds up the payment:
+Below the validator, add `paid_to`, the function the `Swap` branch calls to add up the payment, and `marked_with`, which reads an output's tag:
 
 <CodeBlock language="aiken" title="validators/swap.ak">
   {extractRegion(Swap, "paid-to")}
@@ -244,39 +244,11 @@ Then the benchmark. A `bench` takes a sampler: a function that turns a size into
 aiken bench --max-size 50
 ```
 
-The runner prints two plots, memory and CPU against the number of offers. The memory plot:
+`--max-size 50` sets that maximum. Here a size is a number of offers, so the runner measures transactions that fill from 1 offer up to 50. It prints two plots, memory and CPU against that number. Both lines bend upward: each offer costs more than the one before it.
 
-```text
-┍━ swap ━━━━━━━━━━━━━━━━━━━━━━━━━
-│ batch (projected max size = 26)
-│   memory units
-│   ⡁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⠀⠁⠈⢀⠕⡁ 44.12 M
-│   ⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠊⠀⠄
-│   ⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠃⠀⠀⠀⠂
-│   ⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠜⠀⠀⠀⠀⠀⡁
-│   ⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠊⠀⠀⠀⠀⠀⠀⠀⠄
-│   ⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂
-│   ⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠤⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡁
-│   ⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄
-│   ⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂
-│   ⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠔⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡁
-│   ⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠔⠊⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄
-│   ⠂⠀⠀⠀⠀⠀⠀⠀⣀⣀⠔⠒⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂
-│   ⠥⠤⠤⠔⠲⠊⠍⠩⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠁ 85.35 K
-│   1.0                                 50.0
-┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+Above the plots, `projected max size = 26` is where the runner expects the cost to cross the budget. It fits a straight line through its measurements and takes the lower of the memory crossing and the CPU crossing. Because the real lines bend, the real limit is a little lower than 26.
 
-The line bends upward: each offer costs more than the one before it. Above the plots, `projected max size = 26` is where the runner expects the line to cross the budget. It fits a straight line through its measurements and takes the lower of the memory crossing and the CPU crossing. The real line bends upward, so the real limit is a little lower than 26.
-
-The third measurement is the size of the compiled script. Build the blueprint and count it:
-
-```bash
-aiken build
-awk -F'"' '/compiledCode/ {print length($4)/2 " bytes"; exit}' plutus.json
-```
-
-616 bytes.
+The third measurement is the size of the compiled script. As first written, the swap compiles to 616 bytes.
 
 ### Walk the outputs once
 
