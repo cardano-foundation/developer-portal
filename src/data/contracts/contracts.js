@@ -73,7 +73,7 @@ export const Contracts = [
     description:
       "Let two players stake an equal amount and have a restricted oracle announce the winner, who then claims the whole pot.",
     category: "defi",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/bet`,
@@ -81,9 +81,10 @@ export const Contracts = [
   {
     title: "Constant product AMM",
     description:
-      "A written specification for an automated market maker that prices swaps with the constant product formula and lets anyone provide liquidity.",
+      "Run an automated market maker that prices swaps with the constant product formula and lets anyone provide liquidity.",
     category: "defi",
-    reference: true,
+    onchain: ["scalus"],
+    offchain: [],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/constant-product-amm`,
   },
@@ -92,7 +93,7 @@ export const Contracts = [
     description:
       "Collect donations toward a funding goal where the beneficiary withdraws only if the goal is met by the deadline, and contributors otherwise reclaim their funds.",
     category: "defi",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/crowdfund`,
@@ -102,7 +103,7 @@ export const Contracts = [
     description:
       "Manage self-sovereign identities where an address controls ownership through signatures and can authorize time-limited delegates.",
     category: "identity",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/decentralized-identity`,
@@ -110,9 +111,10 @@ export const Contracts = [
   {
     title: "Editable NFT",
     description:
-      "A written specification for an NFT whose owner can update its data, transfer it, and permanently seal it against further edits.",
+      "Mint an NFT whose owner can update its data, transfer it, and permanently seal it against further edits.",
     category: "tokens",
-    reference: true,
+    onchain: ["scalus"],
+    offchain: [],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/editable-nft`,
   },
@@ -121,7 +123,7 @@ export const Contracts = [
     description:
       "Hold assets from two parties until both sign off, then complete or cancel the exchange.",
     category: "payments",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/escrow`,
@@ -131,7 +133,7 @@ export const Contracts = [
     description:
       "Deterministically create and track many product contracts from a single factory instance using a marker NFT and on-chain registry.",
     category: "access",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/factory`,
@@ -141,7 +143,7 @@ export const Contracts = [
     description:
       "Lock funds behind a secret and an expiry so anyone can claim them by guessing the secret before the deadline, after which the owner reclaims them.",
     category: "payments",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/htlc`,
@@ -151,7 +153,7 @@ export const Contracts = [
     description:
       "Run a fair two-player lottery using a commit-reveal-punish protocol that needs no external randomness or oracle.",
     category: "defi",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/lottery`,
@@ -171,7 +173,7 @@ export const Contracts = [
     description:
       "Let two players bet on whether an oracle exchange rate reaches a target before a deadline, with the pot going to the winning side.",
     category: "defi",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/pricebet`,
@@ -181,7 +183,7 @@ export const Contracts = [
     description:
       "Deposit assets at a script and name a receiver who can later withdraw them.",
     category: "basics",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/simple-transfer`,
@@ -201,7 +203,7 @@ export const Contracts = [
     description:
       "Anchor SHA-256 commitments of off-chain data on-chain so anyone can re-hash the data and verify its integrity and existence.",
     category: "data",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["blaze", "ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/storage`,
@@ -221,7 +223,7 @@ export const Contracts = [
     description:
       "Point a stable proxy address at a logic script hash stored in its datum, so the logic version can be swapped by updating the datum.",
     category: "access",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/upgradable-proxy`,
@@ -231,7 +233,7 @@ export const Contracts = [
     description:
       "Protect funds with time-delayed withdrawals and a separate recovery key that can cancel a pending withdrawal during the wait period.",
     category: "access",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/vault`,
@@ -241,7 +243,7 @@ export const Contracts = [
     description:
       "Lock funds for a period and let the beneficiary withdraw them once the lockup elapses.",
     category: "payments",
-    onchain: ["aiken"],
+    onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/vesting`,
