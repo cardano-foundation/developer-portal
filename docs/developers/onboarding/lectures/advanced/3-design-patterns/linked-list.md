@@ -23,7 +23,7 @@ import Costs from "@site/examples/onboarding/design-patterns/linked-list/off-cha
 
 A growing collection eventually stops fitting comfortably in one datum. Every change has to replace that whole datum, every lookup has to search it, and every writer competes for the same UTxO. A **linked list** stores each entry in its own authenticated UTxO, with a pointer to the next entry. A change touches its neighbors rather than the whole collection.
 
-This page builds a participant registry in three versions: one array datum, a linked list written by hand, and the same list with [`aiken-design-patterns` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/tree/v1.9.0). It also covers the library's unordered operations, advanced list, and nested list. We asume you went over the [onboarding course](../lectures/introduction.md) or that you have built Cardano protocols in the past.
+This page builds a participant registry in three versions: one array datum, a linked list written by hand, and the same list with [`aiken-design-patterns` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/tree/v1.9.0). It also covers the library's unordered operations, advanced list, and nested list. We asume you went over the [onboarding course](../../../lectures/introduction.md) or that you have built Cardano protocols in the past.
 
 ## The protocol
 
@@ -78,7 +78,7 @@ The redeemers cover the lifecycle:
   {extractRegion(RegistryAiken, "actions")}
 </CodeBlock>
 
-The common checks enforce the label/key sizes, the operator's signature, and exact mint quantities. Each registry is one multi-purpose script, so its minting policy ID and spending credential are the same hash. The seed fixes the one-time initialization, as in [the oracle](../lectures/intermediate/12-modifying-state.md).
+The common checks enforce the label/key sizes, the operator's signature, and exact mint quantities. Each registry is one multi-purpose script, so its minting policy ID and spending credential are the same hash. The seed fixes the one-time initialization, as in [the oracle](../../../lectures/intermediate/12-modifying-state.md).
 
 <CodeBlock language="aiken" title="lib/registry.ak">
   {extractRegion(RegistryAiken, "application")}
@@ -185,7 +185,7 @@ flowchart LR
     style B stroke-dasharray:4 3
 ```
 
-Relabeling spends and reproduces **only that node**, without minting anything. Its address, NFT, and link stay the same. Two relabels of distinct nodes can use disjoint inputs. Two insertions into the same gap, or a relabel and removal of the same node, still compete. A linked list reduces the scope of [UTxO contention](../../curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion.md#utxo-contention); it does not eliminate it.
+Relabeling spends and reproduces **only that node**, without minting anything. Its address, NFT, and link stay the same. Two relabels of distinct nodes can use disjoint inputs. Two insertions into the same gap, or a relabel and removal of the same node, still compete. A linked list reduces the scope of [UTxO contention](../../../../curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion.md#utxo-contention); it does not eliminate it.
 
 ### Membership and absence
 
@@ -463,7 +463,7 @@ What these measurements say:
 
 - **For a tiny directory, one datum is cheaper to mutate.** It needs no node NFT mint and has a smaller script. Splitting the state adds fixed work.
 - **The list's local cost does not depend on the whole registry size.** At 100 participants, hand-written insertion uses {costSaving(Costs, "versions.naive.scenarios.insert.100.mem", "versions.byHand.scenarios.insert.100.mem")} less memory than the baseline. Insertion into a registry with {costFigure(Costs, "largeList.size")} participants still uses {costFigure(Costs, "largeList.byHand.mem")} by hand and {costFigure(Costs, "largeList.withLibrary.mem")} with the library. This is constant in total collection size, not in the number of other inputs or outputs you put in a transaction.
-- **The library needs fewer execution units but a higher insertion fee than the hand-written version.** Its larger included script outweighs that execution saving here. [Reference scripts](../lectures/intermediate/13-reference-inputs-and-scripts.md) change that trade-off; these measurements include the scripts directly.
+- **The library needs fewer execution units but a higher insertion fee than the hand-written version.** Its larger included script outweighs that execution saving here. [Reference scripts](../../../lectures/intermediate/13-reference-inputs-and-scripts.md) change that trade-off; these measurements include the scripts directly.
 - **The single-datum insertion limit is finite.** This fixture can add one participant with at most {costFigure(Costs, "arrayLimit.largestExisting")} already present. The last fitting signed transaction is {costFigure(Costs, "arrayLimit.last.size")} bytes against a {costFigure(Costs, "limits.size")}-byte limit, and the first limit reached is {costLimit(Costs, "arrayLimit.limitedBy")}. Beyond it, Mesh refuses construction. Different labels, witnesses, script deployment, or datum layouts change that threshold. This is an insertion limit for this builder, not a universal maximum for every action.
 - **Reference inputs avoid copying the datum into the body, not reading it on-chain.** The naive membership transaction's size stays flat, but its execution cost grows as it scans the referenced array. The linked reader authenticates only one fixed-size element.
 
@@ -513,9 +513,9 @@ The blueprint and measured figures ship with the example, so the Mesh tests can 
 
 ## Go deeper
 
-- [Modifying state](../lectures/intermediate/12-modifying-state.md): continuing outputs and beacon authentication.
-- [Missing UTxO authentication](../../curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication.md): why the NFT, not the address, establishes state identity.
-- [Resource exhaustion](../../curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion.md): growing datums and UTxO contention.
+- [Modifying state](../../../lectures/intermediate/12-modifying-state.md): continuing outputs and beacon authentication.
+- [Missing UTxO authentication](../../../../curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication.md): why the NFT, not the address, establishes state identity.
+- [Resource exhaustion](../../../../curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion.md): growing datums and UTxO contention.
 - [Merkle Patricia trie](./merkle-patricia-trie.md) and [Merkle tree](./merkle-tree.md): other ways to organize or commit to large collections.
 - [`linked_list` API](https://anastasia-labs.github.io/aiken-design-patterns/aiken_design_patterns/linked_list.html), [`advanced` API](https://anastasia-labs.github.io/aiken-design-patterns/aiken_design_patterns/linked_list/advanced.html), and [`nested` API](https://anastasia-labs.github.io/aiken-design-patterns/aiken_design_patterns/linked_list/nested.html): the library's contracts for callers.
 - [Plutonomicon associative data structures](https://github.com/Plutonomicon/plutonomicon/blob/main/assoc.md#overview): the structure behind these local transitions.

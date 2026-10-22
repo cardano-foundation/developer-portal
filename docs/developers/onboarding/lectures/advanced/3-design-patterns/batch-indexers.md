@@ -20,13 +20,13 @@ import Costs from "@site/examples/onboarding/design-patterns/batch-indexers/off-
 
 # Batch indexers
 
-**[UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers)** point each script input at its own outputs, and each input checks itself. That is the right tool while every check is about one input. When a check is about the **whole batch**, such as a fee that depends on how many inputs there are, every input has to look at every other one, and the work grows with the square of the batch again.
+**[UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers)** point each script input at its own outputs, and each input checks itself. That is the right tool while every check is about one input. When a check is about the **whole batch**, such as a fee that depends on how many inputs there are, every input has to look at every other one, and the work grows with the square of the batch again.
 
-This pattern combines indices with **[transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)**: one **coordinator** walks every input of the batch once, in the ledger's order, and an index for each tells it where that input's outputs are. It covers the two **multi** indexers of the [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns) library: one where the coordinator only needs the indices, and one where it also reads each input's own redeemer. Both are written by hand and with the library, and measured.
+This pattern combines indices with **[transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation)**: one **coordinator** walks every input of the batch once, in the ledger's order, and an index for each tells it where that input's outputs are. It covers the two **multi** indexers of the [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns) library: one where the coordinator only needs the indices, and one where it also reads each input's own redeemer. Both are written by hand and with the library, and measured.
 
 ## The protocol
 
-**The order book from [UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers#the-protocol), initially restricted to full fills and cancellation, with a protocol fee:** A buyer locks ADA with a datum that says which token they want, how many, and where to deliver them. A seller fills many orders in one transaction, delivers each one's tokens, and keeps the ADA. What is new: every batch pays the protocol's **treasury** a fee of 1 ADA **for each order it fills**, in a single output.
+**The order book from [UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers#the-protocol), initially restricted to full fills and cancellation, with a protocol fee:** A buyer locks ADA with a datum that says which token they want, how many, and where to deliver them. A seller fills many orders in one transaction, delivers each one's tokens, and keeps the ADA. What is new: every batch pays the protocol's **treasury** a fee of 1 ADA **for each order it fills**, in a single output.
 
 We'll add Partial fills back in [Mixed batches](#mixed-batches-reading-each-orders-redeemer), where the coordinator reads each order's redeemer to distinguish full and partial fills.
 
@@ -362,7 +362,7 @@ What the tables say:
 
 ### When the coordinator does not pay off
 
-The fee is what made the coordinator worth it. Take the fee away, and each order's check is about that order alone. A coordinator then saves nothing: it runs each order's check in a second script, while every order's spend still runs to confirm the coordinator is there, so the batch costs more, not less. If nothing in the check spans the batch, stay with **[UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers)**.
+The fee is what made the coordinator worth it. Take the fee away, and each order's check is about that order alone. A coordinator then saves nothing: it runs each order's check in a second script, while every order's spend still runs to confirm the coordinator is there, so the batch costs more, not less. If nothing in the check spans the batch, stay with **[UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers)**.
 
 ## When to use it, and when not
 
@@ -370,8 +370,8 @@ The fee is what made the coordinator worth it. Take the fee away, and each order
 
 **Skip it** when:
 
-- **The check is about each input alone.** Use [UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers).
-- **The check is about the whole transaction and no input has outputs of its own**, such as everything taken going to one beneficiary. Use [transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation) without indices.
+- **The check is about each input alone.** Use [UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers).
+- **The check is about the whole transaction and no input has outputs of its own**, such as everything taken going to one beneficiary. Use [transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation) without indices.
 - **Batches are usually one or two inputs.** The coordinator is a second script run.
 
 **Which coordinator?** Use the one that only takes indices when every input in a batch is treated the same. Read the inputs' redeemers only when inputs choose between actions, and read them by the input they spend.
@@ -395,7 +395,7 @@ What the books leave to you, beyond what the UTxO indexers page lists:
 
 ## Run it
 
-The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/design-patterns/introduction#the-playground)** for the layout.
+The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/design-patterns/introduction#the-playground)** for the layout.
 
 ```bash
 npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/design-patterns/batch-indexers batch-indexers
@@ -409,7 +409,7 @@ npm run bench                    # measure again and rewrite costs.json
 
 ## Go deeper
 
-- [UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers): the singular indexers, and the order book this page builds on.
-- [Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation): the withdraw-zero coordinator.
+- [UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers): the singular indexers, and the order book this page builds on.
+- [Transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation): the withdraw-zero coordinator.
 - [Double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction): why payments and the fee carry tags.
 - [`aiken-design-patterns` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/tree/v1.9.0): the library's source and its own examples.

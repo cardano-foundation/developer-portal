@@ -44,7 +44,7 @@ holds. Two files:
 - `validators/splitter.ak`: the door closed. A donation may add ADA and nothing else, and the dust
   donation test is marked `fail`.
 
-`splitter.ak` also holds the property from lecture 3, Higher assurance: every generated donation that
+`splitter.ak` also holds the property from lecture 4, Higher assurance: every generated donation that
 adds a token is refused.
 
 ## vault (lecture 1, Detecting vulnerabilities)
@@ -57,7 +57,7 @@ A vault that belongs to one owner, where anybody may donate ADA. Two files:
 - `validators/vault.ak`: the door closed. A donation puts the vault back at exactly the address it came
   from, and the attack test is marked `fail`.
 
-`vault.ak` also holds the two properties from lecture 3, Higher assurance: a donation to an address
+`vault.ak` also holds the two properties from lecture 4, Higher assurance: a donation to an address
 with any other stake part is refused, and an honest donation to a vault at any address is accepted.
 
 ```bash
@@ -87,7 +87,7 @@ aiken bench --max-size 70   # how each one grows, and where it crosses the budge
 aiken build                 # regenerate plutus.json
 ```
 
-## oracle (lecture 4, Going to production)
+## oracle (lecture 5, Going to production)
 
 The oracle and its consumer from the Intermediate lectures, taken to Preprod. The three validators
 compile to the same code as in Intermediate. What changes is who runs what:
