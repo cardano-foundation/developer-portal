@@ -1,21 +1,23 @@
 ---
 title: "Optimization"
 sidebar_label: "Optimization"
-description: "The three limits a transaction has to fit under, how to measure what a validator costs before you change it, and the four places a contract can be made cheaper."
+description: "The three limits a transaction has to fit under, how to measure what a validator costs before you change it, and the four levels where a contract can be made cheaper, from the protocol down to one function."
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
-import Queue from "!!raw-loader!@site/examples/onboarding/lectures/advanced/payout-queue/on-chain/aiken/validators/payout_queue.ak";
-import QueueIndexed from "!!raw-loader!@site/examples/onboarding/lectures/advanced/payout-queue/on-chain/aiken/validators/payout_queue_indexed.ak";
-import QueueBatch from "!!raw-loader!@site/examples/onboarding/lectures/advanced/payout-queue/on-chain/aiken/validators/payout_queue_batch.ak";
-import QueueLean from "!!raw-loader!@site/examples/onboarding/lectures/advanced/payout-queue/on-chain/aiken/validators/payout_queue_lean.ak";
+import Swap from "!!raw-loader!@site/examples/onboarding/lectures/advanced/atomic-swap/on-chain/aiken/validators/swap.ak";
+import SwapOnePass from "!!raw-loader!@site/examples/onboarding/lectures/advanced/atomic-swap/on-chain/aiken/validators/swap_one_pass.ak";
+import SwapAddressFirst from "!!raw-loader!@site/examples/onboarding/lectures/advanced/atomic-swap/on-chain/aiken/validators/swap_address_first.ak";
+import SwapStopEarly from "!!raw-loader!@site/examples/onboarding/lectures/advanced/atomic-swap/on-chain/aiken/validators/swap_stop_early.ak";
 
 # Optimization
 
-A validator can be correct and still be useless. In [resource limit](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#resource-limit) an attacker filled the splitter's pot with dust until the split needed more than a transaction is allowed to use, and the funds stayed locked. A contract reaches the same limit without any attacker: a treasury that pays ten people in one transaction is cheap, and the same treasury paying sixty reaches the limit.
+A validator can be correct and still be useless. In [resource limit](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#resource-limit) an attacker filled the splitter's pot with dust until the split needed more than a transaction is allowed to use, and the funds stayed locked. A contract reaches the same limit without any attacker: a transaction that takes ten swap offers at once is cheap, and the same transaction taking thirty reaches the limit.
+
+Some protocols are so complex, or need so many inputs to be profitable, that they do not fit in one transaction. An aggregator that earns a small fee on every offer it fills only makes money when one transaction fills many offers. In many of those cases the protocol is still viable: optimized enough, it fits.
 
 This lecture makes a contract cheaper to run. Whoever submits a transaction pays for every unit its scripts use, so a cheaper contract lowers the fees your users pay. It also lets one transaction do more work, so fewer transactions are needed. The app does not get faster: a transaction waits for its block, whatever its scripts cost.
 
@@ -61,13 +63,50 @@ The blueprint your compiler writes holds the compiled script. Its length in byte
 
 Then change the part the measurement points at, and measure again. The handbook's optimization page starts with the same advice, in [before optimizing](/docs/developers/curriculum/smart-contracts/advanced/optimization#before-optimizing).
 
-## Four places to optimize
+## Four levels to optimize
 
-A **local** change stays inside one function, and nothing outside it can see a difference: a cheaper representation, one walk over a list where there were two, the cheap check before the expensive one. The handbook groups these under [choose cheaper representations](/docs/developers/curriculum/smart-contracts/advanced/optimization#choose-cheaper-representations) and [traverse once](/docs/developers/curriculum/smart-contracts/advanced/optimization#traverse-once).
+A contract can be made cheaper at four levels. From the highest to the lowest, they are the protocol, the transaction, the validator, and the code inside one function.
 
-A **validator-level** change moves work from the validator to the app that builds the transaction. Searching a list for one element is work, and the app already knows where that element sits, so it can put the position in the redeemer. The validator reads the position and checks that the input it finds there is the one being spent. That check has to stay, because anyone can put any number in a redeemer. The handbook calls the principle [don't compute, verify](/docs/developers/curriculum/smart-contracts/advanced/optimization#dont-compute-verify), and its [UTxO indexers](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers) page has the pattern in four shapes.
+Start at the top. The shape of the protocol sets what every transaction has to read, write and carry, so a change there usually saves more than the other three levels together. A change inside one function saves the least. While the levels above it are still wrong, you usually do not need it yet.
 
-A **transaction-level** change is about how the runs inside one transaction share their work. Some facts belong to the whole transaction, and every run that works one out gets the same answer.
+### Protocol level
+
+A protocol-level change is about the shape of the whole contract: how many UTxOs hold its state, what each one holds, and how many transactions a job takes.
+
+Take a name registry, where every name can be registered once. The first design keeps every name in the datum of one UTxO. To register a name, a transaction spends that UTxO, checks that the name is not in the list, and creates a new UTxO with the longer list.
+
+At a hundred names it works. As the registry grows, three things go wrong together. Each check walks a longer list. Each registration writes the whole list out again, in bytes the transaction pays for. And a UTxO can be spent only once, so two people who register at the same time cannot both succeed: the second transaction fails and has to be built again against the new UTxO. At some size the list no longer fits in a transaction, and the registry stops.
+
+A **linked list** gives each name a UTxO of its own. The names are kept in order, and each UTxO's datum points to the next name. To register `dave`, a transaction spends the UTxO of the name just before it, `carol`, which points to `erin`. Because `carol` points straight to `erin`, `dave` is not registered yet. The transaction puts `carol` back pointing to `dave`, and creates `dave` pointing to `erin`:
+
+```mermaid
+flowchart TB
+    subgraph ONE["one UTxO holds every name"]
+        L{{"alice, bob, carol, erin, ...<br/>every registration rewrites all of it"}}
+    end
+    subgraph LIST["one UTxO per name, each pointing to the next"]
+        direction LR
+        A{{"alice"}} --> B{{"bob"}} --> C{{"carol"}}
+        C -. "register dave:<br/>spend carol" .-> D{{"dave"}}
+        D -.-> E{{"erin"}}
+    end
+    ONE ~~~ LIST
+```
+
+A registration now touches two UTxOs, whatever the size of the registry. Its datums stay small, and two people who register names in different places in the list do not spend the same UTxO.
+
+Anyone can send a UTxO to the script's address, so the protocol has to tell its own UTxOs from anything else there. Each name's UTxO carries a token, like the beacon from [which UTxO is the oracle](/docs/developers/onboarding/lectures/intermediate/modifying-state#which-utxo-is-the-oracle).
+
+The linked list is one of several shapes split state can take. The handbook explains it in full on its [linked list](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list) page. Two more shapes:
+
+- **[Merkle tree](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/merkle-tree)**: only a root hash in the datum, and the transaction carries a proof for the one entry it needs.
+- **[Merkelized validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator)**: a rarely used branch kept in a separate script, so the transactions that do not need it do not carry it.
+
+### Transaction level
+
+A transaction-level change is about how the script runs inside one transaction share their work.
+
+Take an aggregator that fills thirty swap offers in one transaction. The swap script runs thirty times, once for each offer, and each run walks every output to find the payment for its own offer. Some facts belong to the whole transaction, and every run that works one out gets the same answer. "Is every offer paid?" is one of them, so one run can answer it for all thirty:
 
 ```mermaid
 flowchart TB
@@ -87,38 +126,43 @@ flowchart TB
     BEFORE ~~~ AFTER
 ```
 
-A minting policy runs once per transaction whatever it mints. A contract with nothing to mint can use the withdraw purpose from [validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes). A transaction that withdraws zero ADA from the script's own reward account makes the script run one more time, as a withdrawal validator, and that run can carry the check for everything else. This is called the **withdraw zero trick**. The handbook explains it on its [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) page, and the minting version on [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter).
+A minting policy runs once per transaction whatever it mints. A contract with nothing to mint can use the withdraw purpose from [validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes). A transaction that withdraws zero ADA from the script's own reward account makes the script run one more time, as a withdrawal validator, and that run can carry the check for everything else. This is called the **withdraw zero trick**. Each spend run then only checks that the withdrawal is in the transaction. The handbook explains it on its [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) page, and the minting version on [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter).
 
-A **protocol-level** change is about the shape of the whole contract: how many UTxOs hold its state, what each one holds, and how many transactions a job takes. The other three levels make a design cheaper. This one chooses the design, and it sets what every transaction has to read, write and carry, so it decides more than the other three together.
+### Validator level
 
-State in one shared UTxO is the simplest design, and the most expensive one to grow. A UTxO can be spent once, so two users who build a transaction against the same UTxO cannot both succeed: the second one fails, and has to be rebuilt against the new UTxO. Its datum also grows with every user, and every transaction that changes it writes the whole datum out again, in bytes the transaction pays for. Giving each user a UTxO of their own keeps every datum small and lets their transactions go through side by side.
+A validator-level change moves work from the validator to the app that builds the transaction.
+
+Stay with the swap. Each run searches the outputs for its payment: it compares every output with the offer, one after the other, until it has seen them all. Thirty runs over sixty outputs make 1,800 comparisons. The app that built the transaction already knows where each payment sits, because it put it there.
+
+So the app writes the positions of each offer's payment outputs in its redeemer, and the validator reads the outputs at those positions. Reaching a position still steps over the outputs before it, but stepping is cheap, since nothing is compared on the way. The validator still checks the outputs it finds there: the right address, the offer's tag, enough to cover the price. That check has to stay, because anyone can put any number in a redeemer.
 
 ```mermaid
-flowchart TB
-    subgraph SHARED["one UTxO for everyone"]
-        direction LR
-        SU1["user 1"] -->|spends| S{{"the state<br/>every user's entry"}}
-        SU2["user 2"] -->|spends| S
-        SU3["user 3"] -->|spends| S
+flowchart LR
+    subgraph IN["INPUTS"]
+        I1["`**offer 1**
+        redeemer: payment at position 2`"]
     end
-    subgraph SPLIT["one UTxO per user"]
-        direction LR
-        PU1["user 1"] -->|spends| P1{{"user 1's state"}}
-        PU2["user 2"] -->|spends| P2{{"user 2's state"}}
-        PU3["user 3"] -->|spends| P3{{"user 3's state"}}
+    subgraph OUT["OUTPUTS"]
+        O0["position 0"]
+        O1["position 1"]
+        O2["`**position 2**
+        to the seller of offer 1
+        tagged for offer 1`"]
     end
-    SHARED ~~~ SPLIT
+    I1 -->|"reads and checks"| O2
 ```
 
-Split state needs a way to tell the protocol's UTxOs from anything else at the address, since anyone can send a UTxO there. That is the job of the beacon from [which UTxO is the oracle](/docs/developers/onboarding/lectures/intermediate/modifying-state#which-utxo-is-the-oracle), one per UTxO. The design patterns have the shapes split state can take:
+The handbook calls the principle [don't compute, verify](/docs/developers/curriculum/smart-contracts/advanced/optimization#dont-compute-verify), and its [UTxO indexers](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers) page has the pattern in four shapes.
 
-- **One UTxO per user**: each user's state in its own UTxO, marked by a token.
-- **Linked list**: a set with one entry per UTxO, each pointing to the next, so adding an entry touches two UTxOs whatever the size of the set.
-- **Merkle tree**: only a root hash in the datum, and the transaction carries a proof for the one entry it needs.
-- **Batching**: each user locks a request in a UTxO of their own, and a batcher spends many requests in one transaction, with the checks for the whole batch run once.
-- **Merkelized validator**: a rarely used branch kept in a separate script, so the transactions that do not need it do not carry it.
+### Local level
 
-The payout queue in the exercise below already makes one of these choices: each debt is a UTxO of its own, not an entry in one list. The **design patterns** section has every pattern, with when to use it and what it costs.
+A local change stays inside one function, and nothing outside it can see a difference: a cheaper representation, one walk over a list where there were two, the cheap check before the expensive one.
+
+Take a condition made of two checks joined by "and". It stops at the first check that is false, so the second check runs only when the first one passes. Put first the check that is cheaper, and the one more likely to decide the answer on its own.
+
+The swap looks for outputs that go to the offer's seller and carry the offer's tag. Comparing the address is one comparison. Reading the tag means opening the output's datum first. In a transaction that fills many offers from many sellers, most outputs go to somebody else. Comparing the address first decides those outputs, and the tag is read only for the few that are left.
+
+The handbook explains it in [put cheap and likely checks first](/docs/developers/curriculum/smart-contracts/advanced/optimization#put-cheap-and-likely-checks-first), and groups the other local changes under [choose cheaper representations](/docs/developers/curriculum/smart-contracts/advanced/optimization#choose-cheaper-representations) and [traverse once](/docs/developers/curriculum/smart-contracts/advanced/optimization#traverse-once). The [Try it](#try-it) below makes three local changes to the swap and measures each one.
 
 ## Optimize before you deploy
 
@@ -129,277 +173,154 @@ Each of these changes produces a different compiled script, and [the hash is the
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-### Write the payout queue
+### Write the swap
 
-A treasury owes money to many people. Each debt is one UTxO locked at the script's address, and its datum says who is owed and how much. Anyone may release the queue: one transaction spends some of those UTxOs, and each one has to pay the person its datum names.
+This is the swap from the [tutorial](/docs/developers/onboarding/tutorial/overview), with one change: the price, in lovelace, may be paid across several outputs, so several buyers can each pay part of it. Every output that pays an offer carries the offer's output reference as its inline datum. That tag stops one payment from counting for two offers, as in the tutorial.
 
 Start a new project:
 
 ```bash
-aiken new my-name/payout-queue
-cd payout-queue
+aiken new my-name/atomic-swap
+cd atomic-swap
 rm validators/placeholder.ak
 ```
 
-Create `validators/payout_queue.ak`, starting with the imports:
+Create `validators/swap.ak`, starting with the imports:
 
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(Queue, "imports")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(Swap, "imports")}
 </CodeBlock>
 
-Then the datum, the validator, and the function that walks the inputs:
+Then the datum and the validator:
 
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(Queue, "queue")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(Swap, "swap")}
 </CodeBlock>
 
-The payment for a queued payout is the output at the same position as its input:
+Below the validator, add `paid_to`, the function the `Swap` branch calls to add up the payment, and `marked_with`, which reads an output's tag:
 
-```mermaid
-flowchart LR
-    subgraph IN["INPUTS: UTxOs spent, in the ledger's order"]
-        I0["`**position 0**
-        address: the payout queue
-        datum: pay Alice 10 ADA`"]
-        I1["`**position 1**
-        address: the payout queue
-        datum: pay Bob 20 ADA`"]
-    end
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(Swap, "paid-to")}
+</CodeBlock>
 
-    subgraph OUT["OUTPUTS: UTxOs created"]
-        O0["`**position 0**
-        address: Alice
-        value: 10 ADA`"]
-        O1["`**position 1**
-        address: Bob
-        value: 20 ADA`"]
-    end
-
-    I0 -->|"its spend run checks"| O0
-    I1 -->|"its spend run checks"| O1
-
-    style I0 stroke-dasharray:4 3
-    style I1 stroke-dasharray:4 3
-```
-
-Two payouts cannot be released by one payment, because two inputs cannot sit at the same position. The ledger sorts the inputs of a transaction before any validator sees them: by transaction id first, then by output index. So the app has to put each payment at the position its input will have after sorting.
-
-Every input takes a position, including one that is not a queued payout, such as the wallet input that pays the fee. Nothing checks the output at that position, so the app can put the change there.
-
-`position_of` is where the cost is. It walks the inputs until it reaches the UTxO being spent, and it does that once for every payout the transaction releases. The gift card shop's count in [count the cards](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#count-the-cards) has the same shape.
+`list.filter` walks the outputs and keeps the ones tagged for this offer that go to its seller. `list.foldl` walks what is left and adds up the lovelace.
 
 Then the tests:
 
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(Queue, "tests")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(Swap, "tests")}
 </CodeBlock>
 
 ```bash
 aiken check
 ```
 
-Five passes.
+Seven passes.
 
 ### Measure it
 
-Add a builder for a release of any size, a function that runs every handler the chain would run, and three tests:
+Add a builder for a transaction that fills any number of offers, a function that runs the spend handler once for each offer, as the chain would, and two tests. Each offer is paid in two outputs, and three sellers share the offers:
 
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(Queue, "measure")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(Swap, "measure")}
 </CodeBlock>
 
-Run `aiken check` again. Eight passes. Read the memory and CPU beside each test name, as you did for the splitter's split in [donate dust](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#donate-dust):
+Run `aiken check` again. Nine passes. Read the memory and CPU beside each test name, as you did for the splitter's split in [donate dust](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#donate-dust):
 
 | test | memory | CPU |
 | --- | --- | --- |
-| `ten_payouts_are_released` | 1.06 M | 416.29 M |
-| `thirty_payouts_are_released` | 5.22 M | 2.31 B |
-| `sixty_payouts_are_released` | 16.59 M | 7.85 B |
+| `ten_offers_are_taken` | 2.65 M | 1.12 B |
+| `thirty_offers_are_taken` | 17.80 M | 8.19 B |
 
-Three times as many payouts cost five times the memory. Six times as many cost more than fifteen times. At sixty payouts the test reports 16.59 M, just over the 16.5 M limit. The chain's number differs: building the release inside the test costs about 1.9 M of it. A release of sixty is close to the limit, and each payout after that costs more than the one before.
+Thirty offers need more than the 16.5 M memory limit. Three times as many offers cost almost seven times as much memory, because there are three times as many runs and each run walks three times as many outputs.
 
-The size limit is further away. Each payout adds an input, an output and a redeemer to the transaction, about 120 bytes together when the script comes from a reference input. Sixty payouts take about 7,700 of the 16,384 bytes, and a release reaches the size limit at about 130 payouts. Memory runs out first.
+Then the benchmark. A `bench` takes a sampler: a function that turns a size into a generator of inputs. The runner calls it with every size up to a maximum. The generator is the same kind that `fuzz.bytearray()` gave you in [property tests](/docs/developers/onboarding/lectures/intermediate/testing#property-tests): a `Fuzzer`, which is a function that takes the random state and returns `Some` with the state and a value. This one gives the state back unchanged, and returns the transaction for that many offers together with the count. `Fuzzer` is part of the language, so the benchmark needs no new library:
 
-Then the benchmark. A `bench` takes a sampler: a function that turns a size into a generator of transactions. The runner calls it with every size up to a maximum. The generator is the same kind that `fuzz.bytearray()` gave you in [property tests](/docs/developers/onboarding/lectures/intermediate/testing#property-tests): a `Fuzzer`, which is a function that takes the random state and returns `Some` with the state and a value. This one gives the state back unchanged and returns the release of that size. `Fuzzer` is part of the language, so the benchmark needs no new library:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(Queue, "bench")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(Swap, "bench")}
 </CodeBlock>
 
 ```bash
-aiken bench --max-size 70
+aiken bench --max-size 50
 ```
 
-Two plots, memory and CPU against the number of payouts, and one line above them: `release (projected max size = 67)`. The runner fits a straight line through its measurements and reports where that line crosses the budget, taking the lower of the memory crossing and the CPU crossing. Both plots bend upward, so the real limit is lower than 67.
+`--max-size 50` sets that maximum. Here a size is a number of offers, so the runner measures transactions that fill from 1 offer up to 50. It prints two plots, memory and CPU against that number. Both lines bend upward: each offer costs more than the one before it.
 
-The third measurement is the size of the compiled script. Build the blueprint and count it:
+Above the plots, `projected max size = 26` is where the runner expects the cost to cross the budget. It fits a straight line through its measurements and takes the lower of the memory crossing and the CPU crossing. Because the real lines bend, the real limit is a little lower than 26.
 
-```bash
-aiken build
-awk -F'"' '/compiledCode/ {print length($4)/2 " bytes"; exit}' plutus.json
-```
+The third measurement is the size of the compiled script. As first written, the swap compiles to 616 bytes.
 
-507 bytes.
+### Walk the outputs once
 
-### Point at the input
+The filter walks the outputs to build a new list, and the sum walks that list again. One walk can do both jobs: check each output, and add its lovelace when it is a payment. Replace `paid_to`:
 
-The app that builds the release knows where each queued payout sits among the inputs, so the redeemer can carry that position. Replace the spend handler, and delete `position_of` with it:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueIndexed, "spend-indexed")}
-</CodeBlock>
-
-`list.at` reads the input at the given position, and the first line of the `and` compares it with `own_ref`. Without that comparison, a redeemer could name any input at all.
-
-Every call to the spend handler now passes a position in place of `Void`: `0` for the first queued UTxO of a test, `1` for the second, and `n` inside `run_release`. One more test proves the position is checked:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueIndexed, "wrong-position-test")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(SwapOnePass, "paid-to-one-pass")}
 </CodeBlock>
 
 Run `aiken check`. Nine passes:
 
 | test | memory | CPU |
 | --- | --- | --- |
-| `ten_payouts_are_released` | 1.09 M | 357.13 M |
-| `thirty_payouts_are_released` | 5.08 M | 1.61 B |
-| `sixty_payouts_are_released` | 15.67 M | 4.89 B |
+| `ten_offers_are_taken` | 2.57 M | 1.10 B |
+| `thirty_offers_are_taken` | 17.42 M | 8.10 B |
 
-CPU at sixty payouts drops by more than a third and memory hardly moves. The walk this change removes was comparing output references, which takes many steps and builds almost no values. Run `aiken bench --max-size 70` again, and the projected maximum goes from 67 to 73.
+About two percent less, and `aiken bench --max-size 50` still projects 26. The second walk was over the list the filter kept, which holds only the two payments for the offer. A second walk costs as much as the list it walks, and this one was short. The handbook's [avoid re-traversals](/docs/developers/curriculum/smart-contracts/advanced/optimization#avoid-re-traversals) shows a case where the second walk is long.
 
-### Check the queue once
+### Compare the address first
 
-Every spend run still reads a datum, looks up a payment and compares it. Whether every payout is paid is one fact about the whole transaction, so one run can answer it for all of them. This contract has nothing to mint, so it uses the withdraw zero trick. The release withdraws zero ADA from the script's own reward account, and the script runs once more, as a withdrawal validator:
+Each output is still checked for the tag first. Reading the tag means opening the output's datum, while comparing the address is one comparison. Most outputs in the transaction go to a different seller, and the address alone decides them. Compare the address first, and read the tag only when the address matches:
 
-```mermaid
-flowchart LR
-    subgraph IN["INPUTS: UTxOs spent"]
-        I0["`**position 0**
-        queued payout to Alice
-        spend run: is the withdrawal here?`"]
-        I1["`**position 1**
-        queued payout to Bob
-        spend run: is the withdrawal here?`"]
-    end
-
-    W["`**withdrawal: 0 ADA**
-    from the script's reward account
-    withdraw run: is every payout paid?`"]
-
-    TX{{"`**release**
-    the script runs three times`"}}
-
-    subgraph OUT["OUTPUTS: UTxOs created"]
-        O0["`**position 0**
-        to Alice, 10 ADA`"]
-        O1["`**position 1**
-        to Bob, 20 ADA`"]
-    end
-
-    I0 --> TX
-    I1 --> TX
-    W --> TX
-    TX --> O0
-    TX --> O1
-
-    style I0 stroke-dasharray:4 3
-    style I1 stroke-dasharray:4 3
-```
-
-With two payouts the script runs three times instead of two. With sixty it runs sixty-one times, and only one of those runs checks the payments.
-
-The imports gain the withdrawals lookup and the credential type:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueBatch, "batch-imports")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(SwapAddressFirst, "paid-to-address-first")}
 </CodeBlock>
 
-The spend handler keeps its position and asks one question:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueBatch, "spend-batch")}
-</CodeBlock>
-
-The key it looks for among the withdrawals is the payment credential of its own address. The script's hash is also the credential of its reward account, so one `Script` credential names both.
-
-The new handler carries the rule. Add it inside the validator, after `spend`. Its `account` is the script's own credential, handed to it by the ledger, which is why it needs no search of its own:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueBatch, "withdraw-batch")}
-</CodeBlock>
-
-Put the check below the validator. It walks the inputs beside the outputs:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueBatch, "every-payout-is-paid")}
-</CodeBlock>
-
-`list.zip` puts each input next to the output at its position, and it stops at the shorter of the two lists. Without the length check, a payout at the end of the queue would be left out of the pairs and never checked.
-
-Every transaction that should go through now needs the withdrawal in it. The two tests that check a payment call the withdraw handler, not the spend handler. Replace everything from the constants to the last test:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueBatch, "batch-tests")}
-</CodeBlock>
-
-`refuses_a_release_without_the_withdrawal` is the new one. The rule is now in the withdrawal, so a transaction without one may spend nothing at all.
-
-The release you measure needs the withdrawal too. Replace the measurement section, from `person` to `sixty_payouts_are_released`. `release_of` now withdraws zero ADA, and `run_release` runs the withdraw handler once as well as every spend:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueBatch, "batch-measure")}
-</CodeBlock>
-
-Add a second benchmark, on the check alone:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueBatch, "check-bench")}
-</CodeBlock>
-
-Run `aiken check`. Ten passes:
+Run `aiken check`. Nine passes:
 
 | test | memory | CPU |
 | --- | --- | --- |
-| `ten_payouts_are_released` | 1.24 M | 438.84 M |
-| `thirty_payouts_are_released` | 4.59 M | 1.57 B |
-| `sixty_payouts_are_released` | 11.90 M | 3.97 B |
+| `ten_offers_are_taken` | 2.09 M | 1.02 B |
+| `thirty_offers_are_taken` | 13.18 M | 7.53 B |
 
-Ten payouts cost a little more than they did, because the transaction now runs one handler more. Sixty cost a quarter less memory and close to a fifth less CPU. Run `aiken bench --max-size 70`: the release's projected maximum goes from 73 to 100, and the check on its own reports `check_queue (projected max size = 373)`.
+A quarter less memory. Thirty offers now fit under the 16.5 M memory limit, and `aiken bench --max-size 50` projects 33. The handbook has the idea in [put cheap and likely checks first](/docs/developers/curriculum/smart-contracts/advanced/optimization#put-cheap-and-likely-checks-first) and [defer distinctions until they matter](/docs/developers/curriculum/smart-contracts/advanced/optimization#defer-distinctions-until-they-matter).
 
-The saving has a price in bytes. Build the blueprint and count the compiled script again, with the same two commands. It grew from 507 bytes to 837, because it now holds a handler it did not have before. A withdrawal of zero ADA also costs something outside the contract. The script's reward account has to be registered on the chain, which is a deposit paid once, and every release has to include the withdrawal. The handbook's [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) page covers what that involves.
+### Stop when the price is covered
 
-### One walk instead of four
+The walk still reads every output, even after the payments it found already cover the price. It can stop there. Replace `paid_to` with a function that counts down what is still owed, and stops as soon as nothing is:
 
-`every_payout_is_paid` measures two lists, builds a list of pairs, and then walks the pairs. Walking the inputs and the outputs together does the same job in one pass:
-
-<CodeBlock language="aiken" title="validators/payout_queue.ak">
-  {extractRegion(QueueLean, "every-payout-is-paid-lean")}
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(SwapStopEarly, "paid-to-stop-early")}
 </CodeBlock>
 
-When the outputs run out while a payout is still waiting, the recursion returns `False`, which is what the old length check did. An input that is not a queued payout skips its output, as it did in the pairs. Nothing outside the function changes. Run `aiken check`. Ten passes:
+The function answers yes or no, so the `Swap` branch of the spend handler calls it directly. Replace the `when` in the spend handler:
+
+<CodeBlock language="aiken" title="validators/swap.ak">
+  {extractRegion(SwapStopEarly, "swap-stop-early")}
+</CodeBlock>
+
+The swap still accepts the same transactions. An output always holds a positive amount of lovelace, so the total only grows as the walk goes on. Once it covers the price, the outputs after it cannot change the answer.
+
+Run `aiken check`. Nine passes:
 
 | test | memory | CPU |
 | --- | --- | --- |
-| `ten_payouts_are_released` | 1.17 M | 413.30 M |
-| `thirty_payouts_are_released` | 4.38 M | 1.50 B |
-| `sixty_payouts_are_released` | 11.50 M | 3.82 B |
+| `ten_offers_are_taken` | 1.64 M | 709.80 M |
+| `thirty_offers_are_taken` | 8.54 M | 4.39 B |
 
-The whole release costs about four percent less. Run `aiken bench --max-size 70` to see the change on the function itself: `check_queue` goes from a projected 373 to 459, and at seventy payouts from 3.10 M memory to 2.52 M. Build the blueprint again and the script is 795 bytes, 42 fewer than before.
+On average, the payments for an offer sit in the middle of the outputs, so a run now reads about half of them. `aiken bench --max-size 50` projects 51.
 
 ### The four moments
 
-| moment | memory at 60 | CPU at 60 | projected maximum | compiled script |
+| moment | memory at 30 | CPU at 30 | projected maximum | compiled script |
 | --- | --- | --- | --- | --- |
-| as first written | 16.59 M | 7.85 B | 67 | 507 bytes |
-| the position in the redeemer | 15.67 M | 4.89 B | 73 | 507 bytes |
-| the queue checked once | 11.90 M | 3.97 B | 100 | 837 bytes |
-| one walk over the queue | 11.50 M | 3.82 B | 105 | 795 bytes |
+| as first written | 17.80 M | 8.19 B | 26 | 616 bytes |
+| one walk | 17.42 M | 8.10 B | 26 | 577 bytes |
+| the address first | 13.18 M | 7.53 B | 33 | 578 bytes |
+| stop when covered | 8.54 M | 4.39 B | 51 | 606 bytes |
 
-At today's mainnet prices, 0.0577 lovelace per memory unit and 0.0000721 lovelace per CPU unit, the scripts' part of the fee for a release of sixty is about 1.52 ADA as first written and about 0.94 ADA after the three changes. The test also builds the release, so the real fee is a little lower in both cases.
+None of the three changes is visible outside `paid_to`, so the app that builds the transaction does not change. Each run still walks the outputs to find its own payment, and the number of runs still grows with the number of offers. Removing those costs is work for the levels above: the payment's position in the redeemer, or one run for the whole transaction.
 
-The change that saved the most is the one that changed the design. The change that saved the least is the only one the app never sees, and the only one you can still make after the app is written.
-
-Stuck? The four moments are in the example project, `payout_queue.ak`, `payout_queue_indexed.ak`, `payout_queue_batch.ak` and `payout_queue_lean.ak`. See the **[introduction](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)**.
+Stuck? The four moments are in the example project, `swap.ak`, `swap_one_pass.ak`, `swap_address_first.ak` and `swap_stop_early.ak`. See the **[introduction](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)**.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -413,6 +334,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 
 - [Contract optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization): the handbook's catalog, benchmarks first, then the techniques grouped by the kind of saving each one makes.
 - [Fees](/docs/developers/curriculum/fundamentals/core-concepts/fees): the fee formula, the price of execution units, and what a reference script costs.
+- [Linked list](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list): a growing set split across UTxOs, with inserts, removals, and proofs that a name is or is not in the set.
 - [UTxO indexers](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers): the position in the redeemer, for one input, for one input and its outputs, and for many of each.
 - [Transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter): one check per transaction, run by a minting policy.
 - [Stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator): the withdraw zero trick, and what registering the reward account involves.

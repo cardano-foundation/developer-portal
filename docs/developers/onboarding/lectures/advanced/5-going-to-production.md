@@ -78,7 +78,7 @@ Four habits make a deployment one you can trust:
 
 Your tests built one transaction against a chain that held still. A public network does not hold still:
 
-- **Contention.** Two users who build against the same UTxO cannot both succeed: the second transaction fails, because its input is gone. The oracle avoids this for its readers, who only reference it. **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization#four-places-to-optimize)** covers designs that avoid it for writers.
+- **Contention.** Two users who build against the same UTxO cannot both succeed: the second transaction fails, because its input is gone. The oracle avoids this for its readers, who only reference it. **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization#protocol-level)** covers designs that avoid it for writers.
 - **Stale reads.** A provider can be a block or two behind the tip, and your app can be holding a UTxO that was spent a moment ago. A retry has to read the chain again and rebuild, not resend the old transaction. See [resilient submission](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe).
 - **Validity windows.** A transaction built with a window from **[handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)** that waits too long for a signature is no longer valid when it arrives.
 - **Rollbacks.** A transaction your app showed as done can disappear with its block. Show users the difference between submitted, in a block, and settled.
@@ -325,7 +325,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 ## You have finished the Advanced track
 
-You can think as an attacker before you write a contract and again before you deploy it, write the attacks as tests, and check every guarantee against generated transactions. You can measure what a contract costs and make it cheaper in four places. You can deploy it from a script, write the deployment down, watch it, and plan for the day it has to change.
+You can think as an attacker before you write a contract and again before you deploy it, write the attacks as tests, and check every guarantee against generated transactions. You can measure what a contract costs and make it cheaper at four levels. You can deploy it from a script, write the deployment down, watch it, and plan for the day it has to change.
 
 - The **design patterns**: the shapes production contracts take, each with when to use it and what it costs.
 - The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.

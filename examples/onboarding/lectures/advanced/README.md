@@ -66,24 +66,22 @@ aiken check
 aiken build
 ```
 
-## payout-queue (lecture 2, Optimization)
+## atomic-swap (lecture 2, Optimization)
 
-A treasury that owes money to many people, with one UTxO locked behind each debt. Four files hold the
-same contract at four moments, each one the previous plus a single change:
+The swap from the onboarding tutorial, with a price in lovelace that may be paid across several
+outputs, each tagged with the offer's output reference. Four files hold the same contract at four
+moments, each one the previous plus a single change inside the function that checks the payment:
 
-- `validators/payout_queue.ak`: as first written. Every spend run walks the inputs to find its own,
-  and sixty payouts go over the memory limit.
-- `validators/payout_queue_indexed.ak`: the redeemer carries the position of the input being spent,
-  and the validator checks it.
-- `validators/payout_queue_batch.ak`: the whole queue is checked once, in a withdrawal of zero ADA,
-  and each spend run only checks that the withdrawal is there.
-- `validators/payout_queue_lean.ak`: that one check walks the inputs and the outputs together,
-  instead of measuring two lists and building a third.
+- `validators/swap.ak`: as first written. It filters the outputs, then adds up what the filter kept,
+  and thirty offers in one transaction go over the memory limit.
+- `validators/swap_one_pass.ak`: one walk over the outputs does both jobs.
+- `validators/swap_address_first.ak`: the address is compared before the tag is read.
+- `validators/swap_stop_early.ak`: the walk stops as soon as the price is covered.
 
 ```bash
-cd payout-queue/on-chain/aiken
+cd atomic-swap/on-chain/aiken
 aiken check                 # the tests of all four, with the memory and CPU of each
-aiken bench --max-size 70   # how each one grows, and where it crosses the budget
+aiken bench --max-size 50   # how each one grows, and where it crosses the budget
 aiken build                 # regenerate plutus.json
 ```
 
