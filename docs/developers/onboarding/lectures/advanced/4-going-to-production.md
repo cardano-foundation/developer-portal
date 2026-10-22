@@ -1,31 +1,26 @@
 ---
 title: "Going to production"
 sidebar_label: "Going to production"
-description: "From a contract that passes its tests to one running on a public network: where the chain data comes from, how a deployment is done and recorded, what fails only when real people use it, how to watch it, and how to change it."
+description: "The infrastructure under a Cardano app: hosted providers, when to run your own, custom pipelines, and rollbacks. Then deploying the contract and the app, watching them, and changing a live contract."
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
-import Never from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/on-chain/aiken/validators/never.ak";
-import Blueprint from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/src/lib/blueprint.ts";
-import ReferenceScript from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/src/lib/reference-script.ts";
-import Network from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/src/lib/network.ts";
-import ViteConfig from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/vite.config.ts";
-import Operator from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/scripts/operator.ts";
-import Record from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/src/lib/deployment.ts";
 import Confirm from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/src/lib/confirm.ts";
-import Deploy from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/scripts/deploy.ts";
-import App from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/src/app.tsx";
 import Health from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/src/lib/health.ts";
 import Monitor from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/scripts/monitor.ts";
+import VercelProxy from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/api/blockfrost.ts";
+import VercelJson from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/vercel.json";
+import VercelIgnore from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/.vercelignore";
+import CloudflareProxy from "!!raw-loader!@site/examples/onboarding/lectures/advanced/oracle/off-chain/mesh/functions/api/blockfrost/[[path]].ts";
 
 # Going to production
 
-**[Optimization](/docs/developers/onboarding/lectures/advanced/optimization#optimize-before-you-deploy)** ended on a rule: what you deploy is what you live with, because the hash is the address. Until now, deploying meant pressing a button in a page on Preview, and the only user was you.
+**[Optimization](/docs/developers/onboarding/lectures/advanced/optimization#optimize-before-you-deploy)** ended on a rule: what you deploy is what you live with, because the hash is the address. Until now, the only user of your app was you, on a test network, with the app running on your own machine.
 
-In production other people use the contract, and it holds value they cannot afford to lose. This lecture covers what changes: the network, where the chain data comes from, how a deployment is done and written down, what fails only when real people use it, how to watch it, and how to change it once it is live.
+In production, other people use the contract, and it holds value they cannot afford to lose. This lecture starts with the infrastructure under the app: where it reads the chain from, when that has to change, and what to do when the chain takes a block back. Then it deploys the contract and the app, and shows how to watch them and how to change a contract that is already live.
 
 ## The path to mainnet
 
@@ -46,33 +41,94 @@ flowchart LR
     real value`"]
 ```
 
-Preview gets protocol upgrades first, which is why the Intermediate track ran there. **Preprod** runs with the protocol parameters mainnet has, so the limits and prices from optimization are the ones mainnet uses. It is the last rehearsal: deploy there from the same scripts, with the same steps, that you will use on mainnet. The handbook's **[testnets are your staging environments](/docs/developers/curriculum/production/going-to-production#testnets-are-your-staging-environments)** has the details of each network.
+**Preprod** runs with the protocol parameters mainnet has, so the limits and prices from optimization are the ones mainnet uses. It is the last rehearsal: deploy there with the same scripts and the same steps you will use on mainnet. The handbook's **[testnets are your staging environments](/docs/developers/curriculum/production/going-to-production#testnets-are-your-staging-environments)** has the details of each network.
 
 ## Where the chain data comes from
 
-Your app reads UTxOs, evaluates scripts and submits transactions through a **provider**. Blockfrost has been yours since **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**. There are three ways to get one:
+Your app reads UTxOs, evaluates scripts and submits transactions through a **provider**. Blockfrost has been yours since **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**. As an app grows, what sits behind that word changes, from a service you rent to infrastructure you run:
 
-- **A hosted provider**, such as Blockfrost, Koios or Maestro. Fastest to start. You live with its rate limits, and your app stops when it does.
-- **Your own infrastructure**: a node with a query layer beside it. Most control, and you run it.
-- **A managed platform** that runs that infrastructure for you.
+```mermaid
+flowchart LR
+    H["`**hosted API**
+    Blockfrost, Maestro, Koios`"] --> M["`**managed platform**
+    Demeter`"]
+    M --> S["`**your own node**
+    and a query layer`"]
+    S --> C["`**custom pipeline**
+    Oura, an indexer`"]
+```
 
-In Mesh a provider is an interface, `IFetcher`, and every builder in the oracle takes one as an argument. Switching providers or networks changes no builder. The same interface lets you put two providers behind one, so a failure of the first falls through to the second. **[Harden your provider](/docs/developers/curriculum/production/going-to-production#harden-your-provider)** has the pattern, and **[connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)** compares every option.
+Each step to the right gives you more control and more to run. Most apps never need the last one.
 
-The key stays where the browser cannot reach it, as it did in **[the browser cannot keep a secret](/docs/developers/onboarding/lectures/intermediate/frontend-integration#the-browser-cannot-keep-a-secret)**.
+### Start with a hosted provider
 
-## Deploy
+A hosted API such as **Blockfrost**, **Maestro** or **Koios** runs the node, the database and the API for you. You get a base URL and a key, and you can start in minutes. In return you live with its rate limits and its prices, and your app stops when the provider does.
 
-Nothing is uploaded when a Cardano contract is deployed. A deployment is a few transactions that create the UTxOs your protocol starts from: for the oracle, the beacon and the first rate at the oracle's address, and the consumer's code published as a reference script. Their order is fixed by the chain of hashes from **[which UTxO is the oracle?](/docs/developers/onboarding/lectures/intermediate/modifying-state#which-utxo-is-the-oracle)**: the seed decides the policy ID, and the policy ID decides the addresses.
+**Demeter** is a different kind of service. It does not give you one API of its own. It runs the pieces you would otherwise run yourself, such as node access, Ogmios, Kupo and db-sync, and gives you each one as a service. Choose it when you want to work with those pieces directly but do not want to run servers.
 
-Four habits make a deployment one you can trust:
+Your off-chain library talks to every provider through the same interface. In Mesh that is `IFetcher`, and every builder in the oracle takes one as an argument, so changing the provider changes no builder. The same interface lets you put two providers behind one, so that a failure of the first falls through to the second. **[Harden your provider](/docs/developers/curriculum/production/going-to-production#harden-your-provider)** has the pattern, and **[use a provider](/docs/developers/curriculum/production/use-a-provider)** sets up each hosted API.
 
-**Deploy from a script, not a page.** A script runs the same steps every time, on Preprod and then on mainnet. It waits for each transaction, and it writes down what it did. It signs with an **operator key** that does one job, not with your personal wallet. On mainnet that key signs offline, as in the [secure transaction workflow](/docs/operators/security/secure-workflow).
+### When to run your own
 
-**Publish reference scripts where nothing can spend them.** **[Reference scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts#what-to-watch-out-for)** warned that the UTxO holding one must stay unspent. At your own address, one careless transaction of yours spends it and breaks every transaction that points at it. At the address of a validator that says no to everything, nobody can spend it, you included. The ADA beside the script is locked there for good too, so it should be the least the ledger accepts.
+A hosted provider stays the right choice for a long time. Start thinking about your own infrastructure when one of these becomes true:
 
-**Wait before you build on it.** A transaction in the newest block can still be rolled back, and a deployment built on one that was rolled back points at UTxOs that do not exist. Every block added on top makes that less likely. The handbook's **[finality](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work)** section puts practical finality at 10 to 20 blocks, a few minutes.
+- **Limits or cost.** Your traffic reaches the provider's rate limits, or its bill at your volume costs more than running a server.
+- **One point of failure.** The provider being down means your app is down, and a second provider is not enough.
+- **Data the API does not give.** You need a query the API does not offer, or answers faster than a round trip to it.
+- **Rules about data.** Your users, or the law, do not allow a third party to see what your app asks.
 
-**Write it down.** The Intermediate app remembered its oracle in one browser's storage. A deployment belongs in a file in the repository: the seed, the operator, the addresses, where the reference script is, and the transactions that created them. Nothing in it is secret, and everyone reads the same one: the operator's scripts, the app, an auditor, and you a year from now.
+Running your own means a Cardano node and a query layer beside it, on servers you operate. The node alone holds the chain but cannot answer "which UTxOs are at this address" quickly, so a tool such as Kupo or db-sync builds that index. **[Self-hosting](/docs/developers/curriculum/production/self-hosting)** shows the common stacks, and **[connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)** compares every option.
+
+### When you need something custom
+
+A provider answers questions: what is at this address now? Some apps need the chain to tell them when something happens: a payment arrives at the script, an order is placed, a beacon moves. Asking the provider again and again works for a while, and stops working as the app grows.
+
+At that point you build a **pipeline**. It follows the chain block by block, keeps only the events your app cares about, and sends each one on. **[Oura](https://docs.txpipe.io/oura/v2)**, from TxPipe, is one such tool. You describe a pipeline in a configuration file: where the blocks come from (a node, or a service), which events to keep, and where to send them, such as a webhook, a queue like Kafka or Redis, or a database. An **indexer** goes one step further and stores exactly the slice of the chain your app queries.
+
+This lecture does not build one. **[Indexing and analytics](/docs/developers/curriculum/production/indexing-and-analytics)** in the handbook covers indexers, and the Oura documentation has the sources, filters and sinks a pipeline can use.
+
+## Rollbacks
+
+The newest blocks are not final. Two stake pools can each produce a block for the same slot, and for a short time different nodes follow different versions of the chain. The network settles on the longer one, and the blocks on the other version are dropped, with every transaction in them:
+
+```mermaid
+flowchart LR
+    A["block 100"] --> B["`**block 101**
+    your transaction`"]
+    A --> C["block 101, from another pool"]
+    C --> D["block 102"]
+    D --> E["block 103"]
+    style B stroke-dasharray:4 3
+```
+
+The dashed block was dropped. A transaction in it can still land in a later block if it is submitted again and its inputs are still unspent. But anything your app did because it saw that block, such as showing "paid" or recording an order, is now wrong.
+
+Every block added on top makes a rollback less likely. The handbook's **[finality](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work)** section puts practical finality at 10 to 20 blocks, a few minutes. There are three ways to handle the time before that.
+
+**Wait for a buffer of blocks.** Treat a transaction as done only when a number of blocks sit on top of it. This is the simplest way, and it is correct. The cost is delay: at a block about every 20 seconds, ten blocks is more than three minutes, and users wait that long to see the result. The deploy script in the Try it below waits like this.
+
+**React to rollback events.** Act on new blocks at once, and undo when the chain takes one back. A node, or a pipeline that follows it, sends a rollback event that names the last block still on the chain. Your app removes everything it recorded after that block. Users see results right away, and your code has to be able to undo each of its actions.
+
+**Use a tool that handles it.** Many tools do one of the two for you. Oura's **rollback buffer** filter holds blocks until they reach a depth you choose, and sends a rollback event only when a rollback goes deeper than that. Indexers such as Kupo and db-sync remove the dropped blocks from their own data, so a query to them only answers from the current chain.
+
+Whichever you choose, show users the difference between submitted, in a block, and settled.
+
+## Deploy the contract
+
+Nothing is uploaded when a Cardano contract is deployed. A deployment is a few transactions that create the UTxOs your protocol starts from. For the oracle these are the beacon and the first rate at the oracle's address, and the consumer's code published as a reference script. Four habits make a deployment one you can trust:
+
+- **Deploy from a script, not a page.** A script runs the same steps every time, on Preprod and then on mainnet. It signs with an **operator key** that does one job, not with your personal wallet. On mainnet that key signs offline, as in the [secure transaction workflow](/docs/operators/security/secure-workflow).
+- **Publish reference scripts where nothing can spend them.** The UTxO holding a **[reference script](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts#what-to-watch-out-for)** must stay unspent. At the address of a validator that refuses every spend, nobody can spend it, you included.
+- **Wait before you build on it.** Each deployment transaction waits for its buffer of blocks before the next one uses it.
+- **Write it down.** The seed, the operator, the addresses, where the reference script is, and the transactions that created them go in a file in the repository. Nothing in it is secret, and the operator's scripts, the app and an auditor all read the same one.
+
+## Deploy the app
+
+A Cardano app usually has two parts to deploy. The page is static files that any host can serve. The provider key needs a server, because **[the browser cannot keep a secret](/docs/developers/onboarding/lectures/intermediate/frontend-integration#the-browser-cannot-keep-a-secret)**. In the Intermediate app that server was the development server on your machine, which is not there in production.
+
+For a simple app, a host that serves static files and runs small **serverless functions** covers both parts. Vercel and Cloudflare are two of them: the page is served from their network, and a function of a few lines adds the key to each request on its way to the provider. There is no server to keep running, and their free plans are enough to try it.
+
+As the app grows, the same two parts move to infrastructure you control. Once you run your own node or a pipeline, the app's server usually runs beside them, in containers on your own cluster or with a cloud provider, and the page can stay on a static host. The parts do not change, only where they run.
 
 ## What fails only in production
 
@@ -81,40 +137,40 @@ Your tests built one transaction against a chain that held still. A public netwo
 - **Contention.** Two users who build against the same UTxO cannot both succeed: the second transaction fails, because its input is gone. The oracle avoids this for its readers, who only reference it. **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization#protocol-level)** covers designs that avoid it for writers.
 - **Stale reads.** A provider can be a block or two behind the tip, and your app can be holding a UTxO that was spent a moment ago. A retry has to read the chain again and rebuild, not resend the old transaction. See [resilient submission](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe).
 - **Validity windows.** A transaction built with a window from **[handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)** that waits too long for a signature is no longer valid when it arrives.
-- **Rollbacks.** A transaction your app showed as done can disappear with its block. Show users the difference between submitted, in a block, and settled.
+- **Rollbacks.** A transaction your app showed as done can disappear with its block. See **[rollbacks](#rollbacks)**.
 - **Changed parameters.** The limits and prices from optimization are protocol parameters, and governance can change them. A contract with no headroom can stop fitting the day they change.
 
 ## Watch it
 
-Once a contract is live, the chain is the only place that knows whether it still works. Ask it on a schedule, and alert when the answer is wrong. For each guarantee you wrote down, ask the chain whether it still holds:
+Once a contract is live, the chain is the only place that knows whether it still works. Ask it on a schedule, and alert when the answer is wrong:
 
 - The state UTxOs exist, and each one carries its beacon. The beacon is nowhere else.
 - The data in them is something the protocol can use.
 - The reference scripts are still where the deployment record says.
 - The record still matches the compiled code. A rebuild from changed code gives different addresses.
 
-Then the things that move slowly until they stop everything: the value at the script's address, how close each validator is to the limits at the largest size you expect, and the transactions your own code failed to submit. When a question needs every event rather than the current state, an indexer answers it. See **[indexing and analytics](/docs/developers/curriculum/production/indexing-and-analytics)**.
+Watch the slow numbers too: the value at the script's address, how close each validator is to the limits at the largest size you expect, and the transactions your own code failed to submit.
 
 ## When you have to change it
 
-A fix is a new contract at a new address. The UTxOs at the old address stay under the old rules, and they move to the new contract only if the old rules allow it. A vault's owner can take the funds out and lock them again. A vesting contract keeps its funds until the date, whatever is wrong with it.
-
-So the plan for changing a contract has to exist before it holds anything, and it has two shapes:
+A fix is a new contract at a new address. The UTxOs at the old address stay under the old rules, and they move to the new contract only if the old rules allow it. So the plan for changing a contract has to exist before it holds anything, and it has two shapes:
 
 - **Migration.** Every rule leaves a way out to a new version, and the app moves users across. Simple, and slow, because every user has to act.
-- **Upgradability.** The validator does not hold all of its logic. It checks that a second script approved the transaction, and reads that script's hash from a UTxO the protocol controls, marked by a beacon. Changing the hash in that UTxO changes the rules without changing the address. This is the withdraw zero trick from optimization, with the hash read from state instead of fixed in a parameter.
+- **Upgradability.** The validator checks that a second script approved the transaction, and reads that script's hash from a UTxO the protocol controls. Changing that hash changes the rules without changing the address.
 
-Upgradability moves trust. Whoever can change that hash can change every rule, including who may take the funds. That power is a guarantee you have to write down and protect, usually with several signatures and a delay before a change takes effect, so users can leave first. The **[contracts library](https://github.com/input-output-hk/contracts-library)** has a ready-to-use upgradability protocol, so you do not have to design that part yourself.
+Upgradability moves trust: whoever can change the hash can change every rule, including who may take the funds. Protect that power with several signatures and a delay before a change takes effect, so users can leave first. The **[contracts library](https://github.com/input-output-hk/contracts-library)** has a ready-to-use upgradability protocol.
 
 ## Launch checklist
 
 - Every guarantee is written down, and every attack you know of is a test that is refused. ([Detecting vulnerabilities](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities))
 - Costs are measured, with headroom at the largest size you expect. ([Optimization](/docs/developers/onboarding/lectures/advanced/optimization))
 - Every guarantee has a property, and the audit question is decided. ([Higher assurance](/docs/developers/onboarding/lectures/advanced/higher-assurance))
+- The provider is chosen, with a second one to fall back to, and you know which signal would make you run your own.
+- The app knows what it does when a block is rolled back.
 - The deployment is rehearsed on Preprod, from the scripts that will deploy mainnet.
-- The provider key is server-side, and the operator key does one job and signs offline on mainnet.
-- Reference scripts sit at an address nothing can spend.
-- The deployment record is committed.
+- The provider key lives only on the server, and the operator key does one job and signs offline on mainnet.
+- Reference scripts sit at an address nothing can spend, and the deployment record is committed.
+- The app is deployed from files you checked, with no secrets among them.
 - A monitor runs on a schedule and alerts on a failed check.
 - The plan for changing the contract is written down.
 
@@ -125,174 +181,161 @@ The handbook's **[going to production](/docs/developers/curriculum/production/go
 <Tabs groupId="offchain">
 <TabItem value="mesh" label="Mesh" default>
 
-Take the oracle from **[modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)** to Preprod. The beacon, the oracle and the consumer stay byte for byte the same. Who runs what changes: the operator deploys, updates and monitors the oracle from scripts on their own machine, and the page in the browser is for the oracle's users.
+Take the oracle from **[modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)** to Preprod, then put its page on the internet. The contract stays byte for byte the same. The operator deploys, updates and watches the oracle with scripts on their own machine, and the page is for the oracle's users.
 
-You need a [Blockfrost](https://blockfrost.io/) project for **Preprod**, a key that starts with `preprod`, and Lace switched to Preprod with some test ADA from the [faucet](/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada).
+You need a [Blockfrost](https://blockfrost.io/) project for **Preprod**, with a key that starts with `preprod`, and Lace switched to Preprod with some test ADA from the [faucet](/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada). For the last steps, you need a free account with the host you choose.
 
-Start from a copy of the oracle in your Intermediate playground:
+### 1. Deploy the oracle to Preprod
 
-```bash
-cp -r playground/oracle oracle-production
-cd oracle-production
-```
-
-You change the files you already know by hand. The files that are new hold more plumbing than ideas, so you copy those from `oracle/off-chain/mesh/` in the **[example project](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)**, and read the part of each that matters.
-
-### 1. Park the script where nothing can spend it
-
-Add a fourth validator to the on-chain project, in `on-chain/aiken/validators/never.ak`:
-
-<CodeBlock language="aiken" title="on-chain/aiken/validators/never.ak">
-  {extractRegion(Never, "never")}
-</CodeBlock>
-
-Every spend returns `False`, and every other purpose fails. It has no parameters, so its address is the same for everyone who compiles it, and anyone can check what it does by compiling it. Build the blueprint and copy it across, as in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**:
+Download the **[example project](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)** into `advanced/`, and start from its finished oracle:
 
 ```bash
-cd on-chain/aiken
-aiken build
-cp plutus.json ../../off-chain/mesh/blueprints/oracle.plutus.json
-cd ../../off-chain/mesh
+cp -r advanced/oracle oracle-production
+cd oracle-production/off-chain/mesh
+npm install
+cp .env.example .env
 ```
 
-The three validators you already had compile to the same code as before, so their hashes do not change.
-
-Every command from here runs from `off-chain/mesh/`. Add the address to `src/lib/blueprint.ts`, and import `applyCborEncoding` from `@meshsdk/core` beside `applyParamsToScript`:
-
-<CodeBlock language="ts" title="src/lib/blueprint.ts">
-  {extractRegion(Blueprint, "never-address")}
-</CodeBlock>
-
-Then replace the publish builder in `src/lib/reference-script.ts`, and add `neverAddress` to its import from `./blueprint.ts`:
-
-<CodeBlock language="ts" title="src/lib/reference-script.ts">
-  {extractRegion(ReferenceScript, "publish-reference-script")}
-</CodeBlock>
-
-The builder gives an output with no amount the least the ledger accepts for its size. For the consumer that is about 2.87 ADA, where the Intermediate app put 10 ADA you could take back.
-
-### 2. One name for the network
-
-The Intermediate app wrote Preview into the key, the network ID and the explorer link. Create `src/lib/network.ts`, so one name decides all three:
-
-<CodeBlock language="ts" title="src/lib/network.ts">
-  {extractRegion(Network, "networks")}
-</CodeBlock>
-
-Replace `vite.config.ts`, so the proxy targets the named network and refuses a key for another one before it starts:
-
-<CodeBlock language="ts" title="vite.config.ts">
-  {ViteConfig}
-</CodeBlock>
-
-And replace `.env`. `OPERATOR_MNEMONIC` stays empty until the next step:
-
-```bash title=".env"
-BLOCKFROST_API_KEY=preprodYourKeyHere
-VITE_NETWORK=preprod
-OPERATOR_MNEMONIC=
-```
-
-### 3. The operator's scripts
-
-Copy the `scripts/` folder from the example project into `off-chain/mesh/`, beside `src/`, and copy `src/lib/deployment.ts`, `src/lib/confirm.ts` and `src/lib/health.ts` into your `src/lib/`. The scripts run with Node directly, as the tests do. Add `"scripts"` to `"include"` in `tsconfig.json`, so `npm run typecheck` checks them too, and register them:
-
-```bash
-npm pkg set scripts.operator:new="node scripts/new-operator.ts"
-npm pkg set scripts.deploy="node scripts/deploy.ts"
-npm pkg set scripts.update="node scripts/update.ts"
-npm pkg set scripts.monitor="node scripts/monitor.ts"
-```
-
-`scripts/operator.ts` is what every script shares. Its top half:
-
-<CodeBlock language="ts" title="scripts/operator.ts">
-  {extractRegion(Operator, "setup")}
-</CodeBlock>
-
-`process.loadEnvFile` reads `.env` into `process.env` without a library. These scripts never reach a browser, so they may read the key and the recovery phrase. The provider gets the key itself, and the wallet is a `MeshWallet` built from the operator's recovery phrase, the same kind of wallet your offline tests use.
-
-The rest of `scripts/operator.ts` reads and writes the deployment record, signs and submits a transaction and waits for it, and sets up collateral. A faucet pays into a single UTxO, and a script transaction needs a second one of pure ADA as collateral, so the operator pays 5 ADA to itself once. `scripts/new-operator.ts` and `scripts/update.ts` are a few lines each.
-
-Create the operator's key:
+Put your Preprod key in `.env` as `BLOCKFROST_API_KEY`. Then create the operator's key:
 
 ```bash
 npm run operator:new
 ```
 
-It prints a recovery phrase and an address. Put the phrase in `.env` as `OPERATOR_MNEMONIC`, in double quotes, and send test ADA to the address from the faucet.
-
-### 4. Deploy, and write it down
-
-The record is a type in `src/lib/deployment.ts`:
-
-<CodeBlock language="ts" title="src/lib/deployment.ts">
-  {extractRegion(Record, "record")}
-</CodeBlock>
-
-The seed and the operator are the inputs. Everything under them is derived from them and the blueprint. The file also has `derive`, which computes those values, and two small helpers. The waiting is in `src/lib/confirm.ts`:
-
-<CodeBlock language="ts" title="src/lib/confirm.ts">
-  {extractRegion(Confirm, "wait-for-confirmations")}
-</CodeBlock>
-
-A provider reports how many blocks sit on top of the block a transaction is in, and the script asks again until there are enough. Then the body of `scripts/deploy.ts`:
-
-<CodeBlock language="ts" title="scripts/deploy.ts">
-  {extractRegion(Deploy, "deploy")}
-</CodeBlock>
-
-The two builders are the ones the Intermediate page called from its buttons, with the operator's wallet in place of Lace. The script refuses to run when a record exists: a second run would mint a second beacon from a second seed, which is a second oracle at a second address.
-
-One change to a builder makes this safe to run from a fresh wallet. `buildOracleCreateTx` in `src/lib/oracle.ts` picked the first UTxO as the seed, and that can be the collateral. Pick the first one that is not:
-
-```ts title="src/lib/oracle.ts"
-  const seedUtxo = utxos.find(
-    (utxo) =>
-      utxo.input.txHash !== collateral.input.txHash ||
-      utxo.input.outputIndex !== collateral.input.outputIndex,
-  );
-```
-
-Deploy:
+It prints a recovery phrase and an address. Put the phrase in `.env` as `OPERATOR_MNEMONIC`, in double quotes, and send test ADA to the address from the faucet. Then deploy:
 
 ```bash
 npm run deploy
 ```
 
-It sets up collateral, then sends two transactions and waits for ten blocks on top of each, so it takes several minutes. Each transaction prints its explorer link. When it finishes, open `deployments/preprod.json`. The first transaction is the one **[modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state#then-run-it)** showed: the seed, the minted beacon and the oracle's output. The second has one output at `never`, with the consumer's code attached. In a real project you commit the record.
+The script sends two transactions: one mints the beacon and locks the first rate, and one publishes the consumer's code at an address nothing can spend. After each one it waits for a buffer of ten blocks, so it takes several minutes. The waiting is this function in `src/lib/confirm.ts`:
 
-### 5. The page for its users
-
-The page publishes nothing now, and remembers nothing. Everything it needs to find is in the record. Replace `src/app.tsx` with the one in the example project. It reads the record for the network in `.env`:
-
-<CodeBlock language="tsx" title="src/app.tsx">
-  {extractRegion(App, "load-record")}
+<CodeBlock language="ts" title="src/lib/confirm.ts">
+  {extractRegion(Confirm, "wait-for-confirmations")}
 </CodeBlock>
 
-The publish, update, close and publish-script buttons are gone. What is left is what a user does: read the rate, lock ADA at the consumer, and unlock it through the published script. Run it:
+When it finishes, `deployments/preprod.json` holds the record. In a real project you commit it. Check the page on your machine:
 
 ```bash
 npm run dev
 ```
 
-Connect Lace on Preprod, set up collateral, lock 5 ADA, refresh, and unlock it. On the explorer, the unlock has the oracle as a reference input and the script UTxO at `never` as a second one, and carries no script of its own.
+Connect Lace on Preprod, lock 5 ADA at the consumer, refresh, and unlock it.
 
-### 6. Update it, and watch it
+### 2. Move the key into a function
 
-The operator updates the rate from a script:
+On your machine, the page reaches Blockfrost through the proxy in `vite.config.ts`, which only exists while `npm run dev` runs. A host needs the same proxy as a function. The page's provider sends every call to `/api/blockfrost/...`, so the function has to answer every path under it. The example has one function for each host. Open the one for yours.
+
+<Tabs groupId="hosting">
+<TabItem value="vercel" label="Vercel" default>
+
+A Vercel function is a file in `api/`. The proxy is `api/blockfrost.ts`:
+
+<CodeBlock language="ts" title="api/blockfrost.ts">
+  {extractRegion(VercelProxy, "vercel")}
+</CodeBlock>
+
+Below it, in the same file, `forward` sends the request on to Blockfrost with the key added:
+
+<CodeBlock language="ts" title="api/blockfrost.ts">
+  {extractRegion(VercelProxy, "forward")}
+</CodeBlock>
+
+The function refuses a key for another network, and passes only reads and submissions. One file answers one path, so a rewrite in `vercel.json` sends every path under `/api/blockfrost/` to it, with the rest of the path in the `path` query parameter:
+
+<CodeBlock language="json" title="vercel.json">
+  {VercelJson}
+</CodeBlock>
+
+The Vercel command line uploads every file in the folder that it is not told to ignore, and it does not ignore `.env` on its own. Your `.env` holds the operator's recovery phrase, which is why the example has a `.vercelignore`:
+
+<CodeBlock language="bash" title=".vercelignore">
+  {VercelIgnore}
+</CodeBlock>
+
+</TabItem>
+<TabItem value="cloudflare" label="Cloudflare">
+
+A Cloudflare Pages function is a file in `functions/`, and its path is the URL it answers. The name `[[path]]` makes one file answer every path under its folder. The proxy is `functions/api/blockfrost/[[path]].ts`:
+
+<CodeBlock language="ts" title="functions/api/blockfrost/[[path]].ts">
+  {extractRegion(CloudflareProxy, "cloudflare")}
+</CodeBlock>
+
+Below it, in the same file, `forward` sends the request on to Blockfrost with the key added:
+
+<CodeBlock language="ts" title="functions/api/blockfrost/[[path]].ts">
+  {extractRegion(CloudflareProxy, "forward")}
+</CodeBlock>
+
+The function refuses a key for another network, and passes only reads and submissions. Cloudflare reads the key from `context.env`, where you put it in the next step. The deploy uploads only the built page and this function, so `.env` never leaves your machine.
+
+</TabItem>
+</Tabs>
+
+`src/proxy.test.ts` runs both functions against a stand-in for Blockfrost, so `npm test` checks them without a network or an account.
+
+### 3. Deploy the page
+
+<Tabs groupId="hosting">
+<TabItem value="vercel" label="Vercel" default>
+
+Link the folder to a new Vercel project, and give it the two variables. Each command asks for the value:
+
+```bash
+npx vercel@65 link
+npx vercel@65 env add BLOCKFROST_API_KEY --environment production
+npx vercel@65 env add VITE_NETWORK --environment production
+```
+
+Vercel builds the page on its own servers, with `npm run build`, so the build reads these variables there. Deploy:
+
+```bash
+npx vercel@65 deploy --prod
+```
+
+It prints the address of your app.
+
+</TabItem>
+<TabItem value="cloudflare" label="Cloudflare">
+
+Create a Pages project, and give it the two variables. Each `secret put` asks for the value:
+
+```bash
+npx wrangler@4 pages project create oracle-production --production-branch main
+npx wrangler@4 pages secret put BLOCKFROST_API_KEY --project-name oracle-production
+npx wrangler@4 pages secret put VITE_NETWORK --project-name oracle-production
+```
+
+Cloudflare serves the page you build on your machine. Build it, and deploy the result:
+
+```bash
+npm run build
+npx wrangler@4 pages deploy dist --project-name oracle-production
+```
+
+It prints the address of your app.
+
+</TabItem>
+</Tabs>
+
+Open the address, connect Lace on Preprod, and lock and unlock 5 ADA as you did on your machine. In the browser's network tab, every call to Blockfrost goes to your own address, and none of them carries the key.
+
+### 4. Update it, and watch it
+
+The operator updates the rate from a script, on their own machine:
 
 ```bash
 npm run update -- 150
 ```
 
-The checks are the function in `src/lib/health.ts`:
+Reload the page and the new rate is there. The monitor asks the chain whether the deployment still holds. Its checks are the function in `src/lib/health.ts`:
 
 <CodeBlock language="ts" title="src/lib/health.ts">
   {extractRegion(Health, "checks")}
 </CodeBlock>
 
-Each check asks the chain, never the record alone or the last transaction you sent. Below the function are two helpers: one turns a provider error into an empty answer, so the check that needed it fails, and one turns a datum that does not decode into no rate. `scripts/monitor.ts` prints the answers and sets the exit code:
+`scripts/monitor.ts` prints each answer and sets the exit code:
 
 <CodeBlock language="ts" title="scripts/monitor.ts">
   {extractRegion(Monitor, "monitor")}
@@ -302,16 +345,14 @@ Each check asks the chain, never the record alone or the last transaction you se
 npm run monitor
 ```
 
-Four lines, each starting with `ok`. Now publish a rate the consumer refuses, and ask again:
+Four lines, each starting with `ok`. Publish a rate the consumer refuses, and ask again:
 
 ```bash
 npm run update -- 0
 npm run monitor; echo "exit code: $?"
 ```
 
-The rate check fails, and the exit code is 1. That code is what a scheduler or a CI job alerts on: run the monitor every few minutes, and page someone when it exits with 1. Put the rate back with `npm run update -- 150`.
-
-The example project's `src/oracle.test.ts` builds a deployment in memory and breaks it in the ways the monitor looks for: a stray beacon, a rate of zero, an edited record, a missing script. It also tests the publish builder's new address. Copy it over yours, since your old tests call the publish builder without a network, and run `npm test`.
+The rate check fails, and the exit code is 1. That code is what a scheduler alerts on: run the monitor every few minutes, from a scheduled job in your CI or on your own server, and page someone when it exits with 1. Put the rate back with `npm run update -- 150`.
 
 Stuck? The finished code is `oracle/` in the example project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)**.
 
@@ -325,7 +366,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 ## You have finished the Advanced track
 
-You can think as an attacker before you write a contract and again before you deploy it, write the attacks as tests, and check every guarantee against generated transactions. You can measure what a contract costs and make it cheaper at four levels. You can deploy it from a script, write the deployment down, watch it, and plan for the day it has to change.
+You can think as an attacker before you write a contract and again before you deploy it, write the attacks as tests, and check every guarantee against generated transactions. You can measure what a contract costs and make it cheaper at four levels. You know what runs under a Cardano app, when to change it, and how to handle a rollback. You can deploy a contract and its app, watch them, and plan for the day the contract has to change.
 
 - The **design patterns**: the shapes production contracts take, each with when to use it and what it costs.
 - The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
@@ -335,9 +376,10 @@ You can think as an attacker before you write a contract and again before you de
 
 - [Going to production](/docs/developers/curriculum/production/going-to-production): the handbook's checklist for the whole app, from tests to onboarding users.
 - [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain): every kind of provider and infrastructure, and how to choose.
-- [Use a provider](/docs/developers/curriculum/production/use-a-provider): keys, endpoints and limits.
-- [Self-hosting](/docs/developers/curriculum/production/self-hosting): running your own node and query layer.
-- [Transaction chaining](/docs/developers/curriculum/production/transaction-chaining): building the next transaction before the last one is in a block.
-- [Indexing and analytics](/docs/developers/curriculum/production/indexing-and-analytics): following every event instead of reading the current state, and handling rollbacks.
+- [Use a provider](/docs/developers/curriculum/production/use-a-provider): keys, endpoints and limits for each hosted API.
+- [Self-hosting](/docs/developers/curriculum/production/self-hosting): running your own node and query layer, and Demeter as the managed version.
+- [Indexing and analytics](/docs/developers/curriculum/production/indexing-and-analytics): indexing only the data your app needs, and handling rollbacks while you do.
+- [Oura](https://docs.txpipe.io/oura/v2): pipelines that follow the chain and send events to your app, including the rollback buffer.
 - [Consensus and Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work): why a block can be rolled back, and when it no longer can.
+- [Transaction chaining](/docs/developers/curriculum/production/transaction-chaining): building the next transaction before the last one is in a block.
 - [Secure transaction workflow](/docs/operators/security/secure-workflow): build online, sign offline, submit online.
