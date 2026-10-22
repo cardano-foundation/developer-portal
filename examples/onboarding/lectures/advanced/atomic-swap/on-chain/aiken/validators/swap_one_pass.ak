@@ -79,15 +79,12 @@ fn marked_with(output: Output, tag: Data) -> Bool {
 // #endregion marked-with
 
 // #region tests
-// Three sellers. 28 bytes each, like any key hash.
+// Two sellers. 28 bytes each, like any key hash.
 const alice: ByteArray =
   #"00000000000000000000000000000000000000000000000000000001"
 
 const bob: ByteArray =
   #"00000000000000000000000000000000000000000000000000000002"
-
-const carol: ByteArray =
-  #"00000000000000000000000000000000000000000000000000000003"
 
 fn wallet(key: ByteArray) -> Address {
   Address { payment_credential: VerificationKey(key), stake_credential: None }
@@ -162,6 +159,10 @@ test nobody_else_can_cancel() fail {
 // #endregion tests
 
 // #region measure
+// A third seller, for the transactions that fill many offers.
+const carol: ByteArray =
+  #"00000000000000000000000000000000000000000000000000000003"
+
 // The seller of offer number n.
 fn seller(n: Int) -> ByteArray {
   when n % 3 is {
