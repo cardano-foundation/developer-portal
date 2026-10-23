@@ -1,7 +1,7 @@
 ---
 title: "Going to production"
 sidebar_label: "Going to production"
-description: "The infrastructure under a Cardano app: hosted providers, when to run your own, custom pipelines, and rollbacks. Then deploying the contract and the app, watching them, and changing a live contract."
+description: "The infrastructure under a Cardano app: hosted providers, when to run your own, custom pipelines, and rollbacks. Then deploying the contract and the app, watching them, and planning for a fix."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -20,28 +20,33 @@ import CloudflareProxy from "!!raw-loader!@site/examples/onboarding/lectures/adv
 
 **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization#optimize-before-you-deploy)** ended on a rule: what you deploy is what you live with, because the hash is the address. Until now, the only user of your app was you, on a test network, with the app running on your own machine.
 
-In production, other people use the contract, and it holds value they cannot afford to lose. This lecture starts with the infrastructure under the app: where it reads the chain from, when that has to change, and what to do when the chain takes a block back. Then it deploys the contract and the app, and shows how to watch them and how to change a contract that is already live.
+In production, other people use the contract, and it holds value they cannot afford to lose. This lecture starts with the infrastructure under the app: where it reads the chain from, when that has to change, and what to do when the chain takes a block back. Then it deploys the contract and the app, and shows how to watch them and what a fix means once the contract is live.
 
-## The path to mainnet
+## The path to production
 
-Every network on the way catches something the one before it cannot:
+Going to production is a short list of steps:
 
 ```mermaid
 flowchart LR
-    T["`**tests**
-    the validator on its own`"] --> D["`**local devnet**
-    real transactions, in seconds`"]
-    D --> PV["`**Preview**
-    real wallets, real timing,
-    new features first`"]
-    PV --> PP["`**Preprod**
-    the same protocol parameters
-    as mainnet`"]
-    PP --> M["`**mainnet**
-    real value`"]
+    A["`**the app is done**
+    tested on Preview and Preprod`"] --> P["`**choose the chain provider**
+    a hosted one, or your own`"]
+    P --> H["`**choose where the app runs**
+    Vercel, Cloudflare,
+    your own cluster`"]
+    H --> D["`**deploy**
+    the contract, then the app`"]
+    D --> T["`**test it in production**
+    and keep watching it`"]
 ```
 
-**Preprod** runs with the protocol parameters mainnet has, so the limits and prices from optimization are the ones mainnet uses. It is the last rehearsal: deploy there with the same scripts and the same steps you will use on mainnet. The handbook's **[testnets are your staging environments](/docs/developers/curriculum/production/going-to-production#testnets-are-your-staging-environments)** has the details of each network.
+1. **The app is done.** The contract passes its tests, and the whole app has run on a test network. **Preprod** has the protocol parameters mainnet has, so it is the last rehearsal: run there the same scripts and steps you will run on mainnet. The handbook's **[testnets are your staging environments](/docs/developers/curriculum/production/going-to-production#testnets-are-your-staging-environments)** has the details of each network.
+2. **Choose the chain provider**: the service, or your own node, that the app reads the chain through. See **[where the chain data comes from](#where-the-chain-data-comes-from)**, and **[rollbacks](#rollbacks)** for what the app does when the chain takes a block back.
+3. **Choose where the app runs**: a host for the page and for the small server that keeps the provider key. See **[deploy the app](#deploy-the-app)**.
+4. **Deploy**: first the contract, see **[deploy the contract](#deploy-the-contract)**, then the app.
+5. **Test it in production**, and keep watching it. See **[watch it](#watch-it)**.
+
+The **[Try it](#try-it)** takes the same steps with the oracle, on Preprod.
 
 ## Where the chain data comes from
 
@@ -49,43 +54,60 @@ Your app reads UTxOs, evaluates scripts and submits transactions through a **pro
 
 ```mermaid
 flowchart LR
-    H["`**hosted API**
-    Blockfrost, Maestro, Koios`"] --> M["`**managed platform**
-    Demeter`"]
-    M --> S["`**your own node**
-    and a query layer`"]
-    S --> C["`**custom pipeline**
-    Oura, an indexer`"]
+    subgraph RENT["the provider runs it"]
+        H["`**hosted provider**
+        Blockfrost, Maestro,
+        Koios, Demeter`"]
+    end
+    subgraph RUN["you run it"]
+        S["`**your own query layer**
+        Dolos, Kupo, Ogmios, etc.
+        and a node, if one needs it`"]
+        C["`**custom pipeline**
+        Oura or an indexer,
+        sending events to your app`"]
+    end
+    H -- "it limits you" --> S
+    S -- "the app needs events" --> C
 ```
 
-Each step to the right gives you more control and more to run. Most apps never need the last one.
+Each step to the right gives you more control and more to run. You need the last one when your app has to react to events on the chain, such as a transaction reaching an address. Then you build a pipeline with a tool such as Oura.
 
 ### Start with a hosted provider
 
-A hosted API such as **Blockfrost**, **Maestro** or **Koios** runs the node, the database and the API for you. You get a base URL and a key, and you can start in minutes. In return you live with its rate limits and its prices, and your app stops when the provider does.
+A hosted provider such as **Blockfrost**, **Maestro**, **Koios** or **Demeter** runs the node, the database and the API for you. You get a base URL and a key, and you can start in minutes. In return you live with its rate limits and its prices, and your app stops when the provider does.
 
-**Demeter** is a different kind of service. It does not give you one API of its own. It runs the pieces you would otherwise run yourself, such as node access, Ogmios, Kupo and db-sync, and gives you each one as a service. Choose it when you want to work with those pieces directly but do not want to run servers.
+Demeter also hosts the tools you would otherwise run yourself, such as node access, Ogmios, Kupo, Dolos, etc., each one as a service. Choose it when you want to work with those tools directly but do not want to run servers.
 
-Your off-chain library talks to every provider through the same interface. In Mesh that is `IFetcher`, and every builder in the oracle takes one as an argument, so changing the provider changes no builder. The same interface lets you put two providers behind one, so that a failure of the first falls through to the second. **[Harden your provider](/docs/developers/curriculum/production/going-to-production#harden-your-provider)** has the pattern, and **[use a provider](/docs/developers/curriculum/production/use-a-provider)** sets up each hosted API.
+Most providers offer a REST API, so each query is an HTTP request: the UTxOs at an address, the current protocol parameters, or the submission of a signed transaction. Some tools, such as Ogmios, use a WebSocket instead, which keeps one connection open for many requests. You can also put two providers behind one, so that a failure of the first falls through to the second. **[Harden your provider](/docs/developers/curriculum/production/going-to-production#harden-your-provider)** has the pattern, and **[use a provider](/docs/developers/curriculum/production/use-a-provider)** sets up each hosted API.
+
+Your SDK usually sends these requests for you, through a built-in client for each provider it supports. Each provider also documents its own API, so your app can call it directly. You need this when your SDK does not support a provider yet, which is common for a new one, or does not cover one of its endpoints.
 
 ### When to run your own
 
-A hosted provider stays the right choice for a long time. Start thinking about your own infrastructure when one of these becomes true:
+Start thinking about your own infrastructure when one of these becomes true:
 
 - **Limits or cost.** Your traffic reaches the provider's rate limits, or its bill at your volume costs more than running a server.
 - **One point of failure.** The provider being down means your app is down, and a second provider is not enough.
 - **Data the API does not give.** You need a query the API does not offer, or answers faster than a round trip to it.
-- **Rules about data.** Your users, or the law, do not allow a third party to see what your app asks.
 
-Running your own means a Cardano node and a query layer beside it, on servers you operate. The node alone holds the chain but cannot answer "which UTxOs are at this address" quickly, so a tool such as Kupo or db-sync builds that index. **[Self-hosting](/docs/developers/curriculum/production/self-hosting)** shows the common stacks, and **[connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)** compares every option.
+### Your own query layer
+
+A query layer is the software that reads the chain and answers your app's questions, on servers you operate. A full Cardano node is optional:
+
+- **Dolos**, from TxPipe, needs no full node. It follows the chain from a relay you trust, keeps the data in one process, and serves it to your app, including a Blockfrost-compatible API.
+- **Kupo** sits beside a Cardano node you run. The node alone holds the chain but cannot answer "which UTxOs are at this address" quickly. Kupo builds that index and serves it over HTTP.
+- **Ogmios** sits beside a Cardano node you run. It gives your app the node's queries, script evaluation and transaction submission over WebSocket.
+
+**[Self-hosting](/docs/developers/curriculum/production/self-hosting)** shows the common stacks, and **[connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)** compares every option.
 
 ### When you need something custom
 
 A provider answers questions: what is at this address now? Some apps need the chain to tell them when something happens: a payment arrives at the script, an order is placed, a beacon moves. Asking the provider again and again works for a while, and stops working as the app grows.
 
-At that point you build a **pipeline**. It follows the chain block by block, keeps only the events your app cares about, and sends each one on. **[Oura](https://docs.txpipe.io/oura/v2)**, from TxPipe, is one such tool. You describe a pipeline in a configuration file: where the blocks come from (a node, or a service), which events to keep, and where to send them, such as a webhook, a queue like Kafka or Redis, or a database. An **indexer** goes one step further and stores exactly the slice of the chain your app queries.
+At that point you build a **pipeline**, with a tool such as **[Oura](https://docs.txpipe.io/oura/v2)**, from TxPipe. A pipeline is a chain of stages. A **source** follows the chain block by block, from a node or a service. **Filters** keep only the events your app cares about. A **sink** sends each event on, to a webhook, a queue or a database. When no built-in filter does what you need, you can write your own stage and compile it to WebAssembly. An **indexer** goes one step further and stores exactly the slice of the chain your app queries.
 
-This lecture does not build one. **[Indexing and analytics](/docs/developers/curriculum/production/indexing-and-analytics)** in the handbook covers indexers, and the Oura documentation has the sources, filters and sinks a pipeline can use.
+**[Indexing and analytics](/docs/developers/curriculum/production/indexing-and-analytics)** in the handbook covers indexers, and the Oura documentation has the sources, filters and sinks a pipeline can use.
 
 ## Rollbacks
 
@@ -105,13 +127,21 @@ The dashed block was dropped. A transaction in it can still land in a later bloc
 
 Every block added on top makes a rollback less likely. The handbook's **[finality](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work)** section puts practical finality at 10 to 20 blocks, a few minutes. There are three ways to handle the time before that.
 
-**Wait for a buffer of blocks.** Treat a transaction as done only when a number of blocks sit on top of it. This is the simplest way, and it is correct. The cost is delay: at a block about every 20 seconds, ten blocks is more than three minutes, and users wait that long to see the result. The deploy script in the Try it below waits like this.
+**Wait for a buffer of blocks.** Treat a transaction as done only when a number of blocks sit on top of it. This is the simplest way. The cost is delay: at a block about every 20 seconds, ten blocks is more than three minutes, and users wait that long to see the result. The deploy script in the Try it below waits like this.
 
 **React to rollback events.** Act on new blocks at once, and undo when the chain takes one back. A node, or a pipeline that follows it, sends a rollback event that names the last block still on the chain. Your app removes everything it recorded after that block. Users see results right away, and your code has to be able to undo each of its actions.
 
-**Use a tool that handles it.** Many tools do one of the two for you. Oura's **rollback buffer** filter holds blocks until they reach a depth you choose, and sends a rollback event only when a rollback goes deeper than that. Indexers such as Kupo and db-sync remove the dropped blocks from their own data, so a query to them only answers from the current chain.
+**Use a tool that handles it.** Oura's **rollback buffer** filter holds blocks until they reach a depth you choose, and sends a rollback event only when a rollback goes deeper than that. Indexers such as Kupo remove the dropped blocks from their own data, so a query to them only answers from the current chain.
 
 Whichever you choose, show users the difference between submitted, in a block, and settled.
+
+## Deploy the app
+
+A Cardano app usually has two parts to deploy. The page is static files that any host can serve. The provider key needs a server, because **[the browser cannot keep a secret](/docs/developers/onboarding/lectures/intermediate/frontend-integration#the-browser-cannot-keep-a-secret)**. In the Intermediate app that server was the development server on your machine, which is not there in production.
+
+For a simple app, a host that serves static files and runs small **serverless functions** covers both parts. Vercel and Cloudflare are two of them: the page is served from their network, and a function of a few lines adds the key to each request on its way to the provider. There is no server to keep running, and their free plans are enough to try it.
+
+As the app grows, the same two parts move to infrastructure you control. Once you run your own node or a pipeline, the app's server usually runs beside them, in containers on your own cluster or with a cloud provider, and the page can stay on a static host.
 
 ## Deploy the contract
 
@@ -122,14 +152,6 @@ Nothing is uploaded when a Cardano contract is deployed. A deployment is a few t
 - **Wait before you build on it.** Each deployment transaction waits for its buffer of blocks before the next one uses it.
 - **Write it down.** The seed, the operator, the addresses, where the reference script is, and the transactions that created them go in a file in the repository. Nothing in it is secret, and the operator's scripts, the app and an auditor all read the same one.
 
-## Deploy the app
-
-A Cardano app usually has two parts to deploy. The page is static files that any host can serve. The provider key needs a server, because **[the browser cannot keep a secret](/docs/developers/onboarding/lectures/intermediate/frontend-integration#the-browser-cannot-keep-a-secret)**. In the Intermediate app that server was the development server on your machine, which is not there in production.
-
-For a simple app, a host that serves static files and runs small **serverless functions** covers both parts. Vercel and Cloudflare are two of them: the page is served from their network, and a function of a few lines adds the key to each request on its way to the provider. There is no server to keep running, and their free plans are enough to try it.
-
-As the app grows, the same two parts move to infrastructure you control. Once you run your own node or a pipeline, the app's server usually runs beside them, in containers on your own cluster or with a cloud provider, and the page can stay on a static host. The parts do not change, only where they run.
-
 ## What fails only in production
 
 Your tests built one transaction against a chain that held still. A public network does not hold still:
@@ -138,7 +160,7 @@ Your tests built one transaction against a chain that held still. A public netwo
 - **Stale reads.** A provider can be a block or two behind the tip, and your app can be holding a UTxO that was spent a moment ago. A retry has to read the chain again and rebuild, not resend the old transaction. See [resilient submission](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe).
 - **Validity windows.** A transaction built with a window from **[handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)** that waits too long for a signature is no longer valid when it arrives.
 - **Rollbacks.** A transaction your app showed as done can disappear with its block. See **[rollbacks](#rollbacks)**.
-- **Changed parameters.** The limits and prices from optimization are protocol parameters, and governance can change them. A contract with no headroom can stop fitting the day they change.
+- **Changed parameters.** The limits from optimization are protocol parameters, and governance can change them. If your contract uses almost all of a limit and the limit goes down, its transactions no longer fit, and funds that only those transactions can unlock stay locked.
 
 ## Watch it
 
@@ -151,20 +173,12 @@ Once a contract is live, the chain is the only place that knows whether it still
 
 Watch the slow numbers too: the value at the script's address, how close each validator is to the limits at the largest size you expect, and the transactions your own code failed to submit.
 
-## When you have to change it
-
-A fix is a new contract at a new address. The UTxOs at the old address stay under the old rules, and they move to the new contract only if the old rules allow it. So the plan for changing a contract has to exist before it holds anything, and it has two shapes:
-
-- **Migration.** Every rule leaves a way out to a new version, and the app moves users across. Simple, and slow, because every user has to act.
-- **Upgradability.** The validator checks that a second script approved the transaction, and reads that script's hash from a UTxO the protocol controls. Changing that hash changes the rules without changing the address.
-
-Upgradability moves trust: whoever can change the hash can change every rule, including who may take the funds. Protect that power with several signatures and a delay before a change takes effect, so users can leave first. The **[contracts library](https://github.com/input-output-hk/contracts-library)** has a ready-to-use upgradability protocol.
+When a check finds a bug in the contract, the fix is a new contract at a new address. The UTxOs at the old address stay under the old rules, and they move to the new contract only if those rules allow it. So decide before launch how users will move to a new version, and check that the rules let them.
 
 ## Launch checklist
 
 - Every guarantee is written down, and every attack you know of is a test that is refused. ([Detecting vulnerabilities](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities))
 - Costs are measured, with headroom at the largest size you expect. ([Optimization](/docs/developers/onboarding/lectures/advanced/optimization))
-- Every guarantee has a property, and the audit question is decided. ([Higher assurance](/docs/developers/onboarding/lectures/advanced/higher-assurance))
 - The provider is chosen, with a second one to fall back to, and you know which signal would make you run your own.
 - The app knows what it does when a block is rolled back.
 - The deployment is rehearsed on Preprod, from the scripts that will deploy mainnet.
@@ -294,7 +308,7 @@ Vercel builds the page on its own servers, with `npm run build`, so the build re
 npx vercel@65 deploy --prod
 ```
 
-It prints the address of your app.
+It prints your app's URL.
 
 </TabItem>
 <TabItem value="cloudflare" label="Cloudflare">
@@ -314,12 +328,12 @@ npm run build
 npx wrangler@4 pages deploy dist --project-name oracle-production
 ```
 
-It prints the address of your app.
+It prints your app's URL.
 
 </TabItem>
 </Tabs>
 
-Open the address, connect Lace on Preprod, and lock and unlock 5 ADA as you did on your machine. In the browser's network tab, every call to Blockfrost goes to your own address, and none of them carries the key.
+Open the URL, connect Lace on Preprod, and lock and unlock 5 ADA as you did on your machine. In the browser's network tab, every call to Blockfrost goes to your own site, and none of them carries the key.
 
 ### 4. Update it, and watch it
 
@@ -352,7 +366,7 @@ npm run update -- 0
 npm run monitor; echo "exit code: $?"
 ```
 
-The rate check fails, and the exit code is 1. That code is what a scheduler alerts on: run the monitor every few minutes, from a scheduled job in your CI or on your own server, and page someone when it exits with 1. Put the rate back with `npm run update -- 150`.
+The rate check fails, and the exit code is 1. That code is what a scheduler alerts on: run the monitor every few minutes, from a scheduled job in your CI or on your own server, and alert the operator when it exits with 1. Put the rate back with `npm run update -- 150`.
 
 Stuck? The finished code is `oracle/` in the example project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/introduction#the-example-project)**.
 
@@ -370,7 +384,7 @@ You can think as an attacker before you write a contract and again before you de
 
 - The **design patterns**: the shapes production contracts take, each with when to use it and what it costs.
 - The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
-- The **[contracts library](https://github.com/input-output-hk/contracts-library)**: contracts with specifications and proofs, to use, compose or fork.
+- The **[contracts library](https://github.com/input-output-hk/contracts-library)**: contracts with specifications and proofs, to use or fork. Its first one, linear vesting, is still in progress.
 
 ## Go deeper
 
