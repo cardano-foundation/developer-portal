@@ -98,6 +98,10 @@ compile to the same code as in Intermediate. What changes is who runs what:
   deployment and exits with 1 when a check fails.
 - `off-chain/mesh/src/app.tsx`: the users' side, a page that reads the deployment record, the rate,
   and locks and unlocks ADA at the consumer through the published script.
+- `off-chain/mesh/api/blockfrost.ts` and `off-chain/mesh/functions/api/blockfrost/[[path]].ts`: the
+  Blockfrost proxy as a Vercel function and as a Cloudflare Pages function, so the page can be hosted
+  with the key kept on the server. `vercel.json` routes every proxy path to the Vercel function, and
+  `.vercelignore` keeps `.env` out of a Vercel upload.
 
 The compiled blueprint is committed and copied into `off-chain/mesh/blueprints/`. To rebuild it:
 
@@ -118,5 +122,8 @@ npm run operator:new      # put the phrase it prints in .env, fund the address i
 npm run deploy
 npm run dev               # the page, for users
 npm run monitor           # the operator's health check
-npm test                  # the builders and the checks, offline
+npm test                  # the builders, the checks and both proxies, offline
 ```
+
+To host the page, deploy `off-chain/mesh` with `npx vercel@65 deploy --prod`, or build it and run
+`npx wrangler@4 pages deploy dist`. Lecture 4 has the steps, including where the two variables go.
