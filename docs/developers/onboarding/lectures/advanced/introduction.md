@@ -26,7 +26,7 @@ You finished Intermediate, so you can take an idea, design a contract, write it,
 1. **[Detecting vulnerabilities](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities)**: the five goals an attacker has, attacks that fit in one transaction, attacks that take several, and three contracts whose doors you find and close: a gift card shop, a shared pot and a vault.
 2. **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization)**: the three limits a transaction has to fit under, how to measure what a validator costs, the four levels where it can be made cheaper, and an atomic swap you make cheaper three times.
 3. **[Higher assurance](/docs/developers/onboarding/lectures/advanced/higher-assurance)**: guarantees written as property tests, the weaker fixes they catch that unit tests miss, and what an audit and a formal proof add.
-4. **[Going to production](/docs/developers/onboarding/lectures/advanced/going-to-production)**: the infrastructure under an app (hosted providers, when to run your own, custom pipelines), rollbacks, deploying the contract and the app, monitoring, and changing a live contract. You take the Intermediate oracle to Preprod and put its page on Vercel or Cloudflare.
+4. **[Going to production](/docs/developers/onboarding/lectures/advanced/going-to-production)**: the infrastructure under an app (hosted providers, when to run your own, custom pipelines), rollbacks, deploying the contract and the app, monitoring, and planning for a fix. You take the Intermediate oracle to Preprod and put its page on Vercel or Cloudflare.
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
