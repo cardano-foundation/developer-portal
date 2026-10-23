@@ -603,5 +603,30 @@ module.exports = {
         },
       ],
     },
+    {
+      type: "category",
+      label: "Design patterns",
+      collapsed: false,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/design-patterns/introduction",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "developers/onboarding/design-patterns/introduction",
+          label: "Introduction",
+        },
+        "developers/onboarding/design-patterns/transaction-level-validation",
+        "developers/onboarding/design-patterns/utxo-indexers",
+        "developers/onboarding/design-patterns/batch-indexers",
+        "developers/onboarding/design-patterns/parameter-validation",
+        "developers/onboarding/design-patterns/merkelized-validator",
+        "developers/onboarding/design-patterns/linked-list",
+        "developers/onboarding/design-patterns/merkle-tree",
+        "developers/onboarding/design-patterns/merkle-patricia-trie",
+        "developers/onboarding/design-patterns/validity-range-normalization",
+      ],
+    },
   ],
 };

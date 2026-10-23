@@ -1,0 +1,204 @@
+{
+  "limits": {
+    "mem": 16000000,
+    "cpu": 10000000000,
+    "size": 16384
+  },
+  "books": {
+    "naive": {
+      "fills": {
+        "1": {
+          "mem": 72725,
+          "cpu": 27175308,
+          "fee": 250285,
+          "size": 1911,
+          "fits": true
+        },
+        "5": {
+          "mem": 498395,
+          "cpu": 223767330,
+          "fee": 325629,
+          "size": 2743,
+          "fits": true
+        },
+        "10": {
+          "mem": 1333715,
+          "cpu": 667261635,
+          "fee": 451562,
+          "size": 3783,
+          "fits": true
+        },
+        "20": {
+          "mem": 4015130,
+          "cpu": 2213431170,
+          "fee": 809279,
+          "size": 5863,
+          "fits": true
+        }
+      },
+      "largestFill": 44,
+      "limitedBy": "mem",
+      "partialFills": {
+        "1": {
+          "mem": 144690,
+          "cpu": 59885744,
+          "fee": 264188,
+          "size": 2079,
+          "fits": true
+        },
+        "5": {
+          "mem": 906110,
+          "cpu": 399525250,
+          "fee": 398786,
+          "size": 3583,
+          "fits": true
+        },
+        "10": {
+          "mem": 2268870,
+          "cpu": 1049291825,
+          "fee": 606985,
+          "size": 5463,
+          "fits": true
+        },
+        "20": {
+          "mem": 6364340,
+          "cpu": 3099548950,
+          "fee": 1156601,
+          "size": 9224,
+          "fits": true
+        }
+      },
+      "largestPartialFill": 35
+    },
+    "byHand": {
+      "fills": {
+        "1": {
+          "mem": 80578,
+          "cpu": 29628119,
+          "fee": 256723,
+          "size": 2043,
+          "fits": true
+        },
+        "5": {
+          "mem": 433570,
+          "cpu": 157383065,
+          "fee": 323262,
+          "size": 2883,
+          "fits": true
+        },
+        "10": {
+          "mem": 943840,
+          "cpu": 337872305,
+          "fee": 411918,
+          "size": 3933,
+          "fits": true
+        },
+        "20": {
+          "mem": 2194480,
+          "cpu": 768169310,
+          "fee": 607504,
+          "size": 6033,
+          "fits": true
+        }
+      },
+      "largestFill": 68,
+      "limitedBy": "size",
+      "partialFills": {
+        "1": {
+          "mem": 152950,
+          "cpu": 59626629,
+          "fee": 270674,
+          "size": 2216,
+          "fits": true
+        },
+        "5": {
+          "mem": 860790,
+          "cpu": 326330635,
+          "fee": 398154,
+          "size": 3748,
+          "fits": true
+        },
+        "10": {
+          "mem": 1961680,
+          "cpu": 723154995,
+          "fee": 574546,
+          "size": 5663,
+          "fits": true
+        },
+        "20": {
+          "mem": 4883760,
+          "cpu": 1728284890,
+          "fee": 984536,
+          "size": 9502,
+          "fits": true
+        }
+      },
+      "largestPartialFill": 37
+    },
+    "withLibrary": {
+      "fills": {
+        "1": {
+          "mem": 100881,
+          "cpu": 37668817,
+          "fee": 269606,
+          "size": 2296,
+          "fits": true
+        },
+        "5": {
+          "mem": 565765,
+          "cpu": 206829025,
+          "fee": 346467,
+          "size": 3156,
+          "fits": true
+        },
+        "10": {
+          "mem": 1284930,
+          "cpu": 459870400,
+          "fee": 453507,
+          "size": 4231,
+          "fits": true
+        },
+        "20": {
+          "mem": 3183460,
+          "cpu": 1104590200,
+          "fee": 704136,
+          "size": 6381,
+          "fits": true
+        }
+      },
+      "largestFill": 58,
+      "limitedBy": "mem",
+      "partialFills": {
+        "1": {
+          "mem": 192911,
+          "cpu": 71286416,
+          "fee": 284864,
+          "size": 2467,
+          "fits": true
+        },
+        "5": {
+          "mem": 1117955,
+          "cpu": 402644430,
+          "fee": 430066,
+          "size": 4011,
+          "fits": true
+        },
+        "10": {
+          "mem": 2619410,
+          "cpu": 920819735,
+          "fee": 638981,
+          "size": 5941,
+          "fits": true
+        },
+        "20": {
+          "mem": 6772820,
+          "cpu": 2303762970,
+          "fee": 1148931,
+          "size": 9818,
+          "fits": true
+        }
+      },
+      "largestPartialFill": 35
+    }
+  }
+}
