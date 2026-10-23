@@ -1,0 +1,19 @@
+name = "cardano-foundation/onboarding-atomic-swap"
+version = "0.0.0"
+compiler = "v1.1.24"
+plutus = "v3"
+license = "Apache-2.0"
+description = "The atomic swap from the onboarding Advanced lecture on optimization: one check, made cheaper twice"
+
+[repository]
+user = "cardano-foundation"
+project = "developer-portal"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v4.0.0"
+source = "github"
+
+
+[config]

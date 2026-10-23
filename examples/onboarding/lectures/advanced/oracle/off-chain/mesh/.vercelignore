@@ -1,0 +1,3 @@
+# The Vercel CLI uploads every file it does not ignore, and it does not ignore
+# .env on its own. This one holds the operator's recovery phrase.
+.env
