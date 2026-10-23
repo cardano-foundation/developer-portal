@@ -1118,6 +1118,20 @@ export const BuilderTools = [
     category: "dev-env",
     properties: ["haskell"],
   },
+  {
+    title: "Dandelion Lite",
+    description: "Self-hostable Cardano node, indexer and APIs for developers and independent operators.  Db-sync, Ogmios, Cardano GraphQL MKII, PostgREST, Blockfrost. Volumen snapshots for faster syncing P2P database replication and manifests for peer discovery to decentralize wallets and dApps.",
+    category: "api",
+    properties: ["rest", "graphql", "websocket"],
+    website: "https://github.com/GameChangerFinance/dandelion-lite",
+    repository: "https://github.com/GameChangerFinance/dandelion-lite",
+    docs: "https://github.com/GameChangerFinance/dandelion-lite#readme",
+    icon: "/img/tools/dandelion-lite.jpg",
+    screenshots: [
+      { src: "/img/tools/screenshots/dandelion-home.webp", alt: "A Dandelion Lite home page, with links to all the services and reward address" },
+      { src: "/img/tools/screenshots/dandelion-dandoman.webp", alt: "The admin tool and CLI with one of it's sub-menus showing full volume backup, restore and download to avoid syncing node and db-sync database from genesis" },
+    ]
+  }
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
