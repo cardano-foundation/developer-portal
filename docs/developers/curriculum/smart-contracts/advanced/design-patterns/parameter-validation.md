@@ -211,6 +211,8 @@ Full working example: [parameter-validation.ak](https://github.com/Anastasia-Lab
 
 Library implementation: [parameter_validation module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/parameter-validation.ak)
 
+Scalus implementation: [ParameterValidation.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/ParameterValidation.scala), with an example in [ParameterValidationExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/ParameterValidationExample.scala)
+
 ## Considerations
 
 This design pattern only works under the assumption that the parameter is constant size (this holds true for `TxOutRef`). If a script accepts parameters with dynamic size (ie. arbitrary size integer / bytestring) then to use it with this design pattern you should modify the parameter to be the hash of the original parameter, and then allow the pre-image to be provided in the tx and verify that it matches the hash.
