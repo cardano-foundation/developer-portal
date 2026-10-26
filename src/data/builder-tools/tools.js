@@ -1119,6 +1119,15 @@ export const BuilderTools = [
     properties: ["haskell"],
   },
   {
+    title: "cardano.nix",
+    description: "Nix packages and NixOS modules for running cardano-node, Ogmios and other Cardano services declaratively, with generated module documentation and VM-based integration tests.",
+    website: "https://mlabs-haskell.github.io/cardano.nix/",
+    docs: "https://mlabs-haskell.github.io/cardano.nix/",
+    repository: "https://github.com/mlabs-haskell/cardano.nix",
+    category: "operations",
+    properties: [],
+  },
+  {
     title: "VIA Network",
     icon: "/img/tools/via-network.svg",
     description: "Cross-chain messaging network that connects Cardano smart contracts to 150+ blockchains, including EVM chains and Midnight. Projects deploy and own their cross-chain contracts and use them for liquidity transfers, oracle feeds, and AI agent integrations.",
