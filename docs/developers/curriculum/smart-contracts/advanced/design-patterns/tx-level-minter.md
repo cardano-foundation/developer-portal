@@ -266,6 +266,8 @@ Library implementation: [tx_level_minter module](https://github.com/Anastasia-La
 
 Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/spend-logic.ak)
 
+Scalus implementation: [TransactionLevelMinterValidator.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/TransactionLevelMinterValidator.scala), with an example in [TransactionLevelMinterValidatorExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/TransactionLevelMinterValidatorExample.scala)
+
 ## Related Patterns
 
 - [Stake Validator](../stake-validator) - Alternative approach with lower ExUnits cost
