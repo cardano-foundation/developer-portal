@@ -47,6 +47,7 @@ function adapt(tool) {
     properties: tool.properties || [],
     maintainerPick: !!tool.maintainerPick,
     icon: tool.icon ?? null,
+    screenshots: tool.screenshots ?? [],
   };
 }
 

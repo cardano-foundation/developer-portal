@@ -504,6 +504,26 @@ html[data-theme="dark"] .navbar {
   height: 40px;
 }
 
+/* Infima lets the brand shrink when the bar runs short of room, which slid
+   the nav links over the logo on narrow desktops. */
+.navbar__brand {
+  flex-shrink: 0;
+}
+
+/* Narrow desktops: search collapses to its icon, as DocSearch does below
+   768px, so the nav links keep their room. Set in em so the range widens
+   with the visitor's browser font size. */
+@media (min-width: 997px) and (max-width: 70em) {
+  .navbar .DocSearch-Button {
+    width: auto;
+  }
+
+  .navbar .DocSearch-Button-Placeholder,
+  .navbar .DocSearch-Button-Keys {
+    display: none;
+  }
+}
+
 .navbar .DocSearch-Button {
   background: var(--site-color-gray-light);
   border: 1px solid var(--site-color-light-grey);
@@ -714,7 +734,7 @@ html[data-theme="dark"] .navbar__item--mega[data-open] .megaMenuTrigger {
   --mega-chip-bg: rgba(172, 166, 166, 0.2);
   position: absolute;
   top: calc(100% + 10px);
-  left: 50%;
+  left: calc(50% + var(--mega-menu-shift, 0px));
   z-index: 10;
   width: max-content;
   max-width: min(1010px, calc(100vw - 2rem));
@@ -727,7 +747,7 @@ html[data-theme="dark"] .navbar__item--mega[data-open] .megaMenuTrigger {
   box-shadow: 4px 8px 15px rgb(var(--site-color-navy-rgb) / 0.1);
   opacity: 0;
   visibility: hidden;
-  transform: translate(calc(-50% + var(--mega-menu-shift, 0px)), 6px);
+  transform: translate(-50%, 6px);
   pointer-events: none;
   transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
 }
@@ -743,7 +763,7 @@ html[data-theme="dark"] .megaMenuPanel {
 .navbar__item--mega[data-open] .megaMenuPanel {
   opacity: 1;
   visibility: visible;
-  transform: translate(calc(-50% + var(--mega-menu-shift, 0px)), 0);
+  transform: translate(-50%, 0);
   pointer-events: auto;
 }
 
@@ -802,13 +822,14 @@ html[data-theme="dark"] .megaMenuColumnTitle {
   gap: 10px;
 }
 
-/* Items are outlined cards on the panel, one fixed-height row each */
+/* Items are outlined cards on the panel, 70px rows that grow when a
+   larger browser font size wraps the copy onto more lines */
 .megaMenuItemLink {
   display: flex;
   align-items: center;
   gap: 14px;
-  height: 70px;
-  padding: 0 10px;
+  min-height: 70px;
+  padding: 10px;
   border: 1px solid var(--mega-item-border);
   border-radius: var(--site-radius-md);
   text-decoration: none !important;

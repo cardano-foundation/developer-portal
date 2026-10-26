@@ -1,6 +1,6 @@
 # AGENTS.md — AI agent guide for the Cardano Developer Portal
 
-> Use **yarn**, not npm, for all dependency and script management. Requires **Node 22** (see `.nvmrc`). The self-contained apps under `examples/` are the exception: each manages its own dependencies with its own package manager.
+> Use **yarn**, not npm, for all dependency and script management. Requires **Node 24 or newer** (see `.nvmrc`). The self-contained apps under `examples/` are the exception: each manages its own dependencies with its own package manager.
 
 This file gives AI coding agents (and their operators) the context to contribute correctly to the Cardano Developer Portal (`developers.cardano.org`), a [Docusaurus](https://docusaurus.io/) site. Read it before making changes. Human contributors should start with [README.md](./README.md) and [CONTRIBUTING.md](./CONTRIBUTING.md).
 

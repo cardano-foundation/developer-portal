@@ -16,10 +16,9 @@ import { ExactCardanoScheme } from "@x402/cardano/exact/facilitator";
 
 config();
 
-const projectId =
-  process.env.BLOCKFROST_PROJECT_ID ?? process.env.NEXT_PUBLIC_BLOCKFROST_PROJECT_ID;
+const projectId = process.env.BLOCKFROST_PROJECT_ID;
 if (!projectId) {
-  console.error("Set NEXT_PUBLIC_BLOCKFROST_PROJECT_ID in .env");
+  console.error("Set BLOCKFROST_PROJECT_ID in .env");
   process.exit(1);
 }
 
@@ -78,6 +77,7 @@ app.post("/settle", async (req, res) => {
         success: false,
         errorReason: error.message.replace("Settlement aborted: ", ""),
         network: req.body?.paymentPayload?.network ?? "unknown",
+        transaction: "",
       });
     }
     res.status(500).json({ error: error instanceof Error ? error.message : "Unknown error" });

@@ -32,6 +32,7 @@ Field conventions:
 - **Category**: exactly one, from the 12 defined in `src/data/builder-tools/tags.js`. For tools that read, serve, or index chain data, or run/talk to a node, the [data & node category layers](https://developers.cardano.org/docs/contribute/portal-contribute/#how-the-data--node-categories-relate) explain which layer to pick.
 - **Properties**: the language(s) the tool is written in, plus its interface (`rest` / `graphql` / `grpc` / `websocket`) where relevant — all defined in `tags.js`.
 - **Repository**: a public source repo adds an "Open Source" badge and a GitHub link; hosted or closed services use `null`.
+- **Screenshots** (optional): up to three images of the tool in use, shown on its detail page. Worth adding for tools with a UI or visual output, left out otherwise. Put the files in `static/img/tools/screenshots/` (PNG, JPG or WebP, 500 KB at most, WebP converts well with `cwebp -q 80 -m 6 in.png -o out.webp`) and add `screenshots: [{ src: "/img/tools/screenshots/your-tool.webp", alt: "What the image shows" }]` to the entry. `yarn build` checks the paths, sizes and alt texts.
 - Don't set `maintainerPick` yourself (maintainers choose those).
 
 For what belongs in the directory and how tools are curated, see the [portal contribution guide](https://developers.cardano.org/docs/contribute/portal-contribute/).

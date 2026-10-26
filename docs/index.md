@@ -17,7 +17,7 @@ The Cardano Developer Portal documentation is organized by what you want to do. 
 ## Community
 
 - [Developer community](/docs/community/cardano-developer-community) lists the forums, chats, and weekly office hours where Cardano developers gather.
-- [Funding and grants](/docs/community/funding) maps the ways to fund your project, from community grants to the on-chain treasury.
+- [Funding and grants](https://cardano.org/grants-funding/) maps the ways to fund your project, from community grants to the on-chain treasury.
 
 ## Contribute
 

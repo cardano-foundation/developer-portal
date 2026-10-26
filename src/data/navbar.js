@@ -110,7 +110,7 @@ function getNavbarItems(repository) {
           items: [
             {to: '/docs/community/cardano-developer-community/', label: 'Community', description: 'Forums, chats, and weekly office hours', icon: 'people'},
             {to: '/talent/', label: 'Talent Pool', description: 'Hackathons, jobs, and grants for developers', icon: 'profile'},
-            {to: '/docs/community/funding/', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'payments'},
+            {href: 'https://cardano.org/grants-funding/', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'payments'},
           ],
         },
         {

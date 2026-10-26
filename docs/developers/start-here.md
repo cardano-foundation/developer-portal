@@ -63,5 +63,5 @@ Module 6 also carries the applied tracks: [payments](/docs/developers/curriculum
 - **[Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers)**: the model translated concept by concept from the EVM.
 - **[Exchange integrations](/docs/developers/exchange-integrations)**: deposits and withdrawals for custodial platforms.
 - **[Operator handbook](/docs/operators/)**: running a node or a stake pool.
-- **[Dev blog](/blog)**, the [developer community](/docs/community/cardano-developer-community), [grants and funding](/docs/community/funding), and the [talent pool](/talent).
+- **[Dev blog](/blog)**, the [developer community](/docs/community/cardano-developer-community), [grants and funding](https://cardano.org/grants-funding/), and the [talent pool](/talent).
 - **[Contributing](/docs/contribute/portal-contribute)**: this portal is open source. If a page here is wrong or missing, send a pull request.

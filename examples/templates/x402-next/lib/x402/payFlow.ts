@@ -21,7 +21,7 @@ export type FlowStep =
   | { id: "pay"; title: string }
   | { id: "settled"; title: string; detail: unknown };
 
-interface PreparedPayment {
+export interface PreparedPayment {
   url: string;
   headers: Record<string, string>;
   payload: PaymentPayload;
@@ -30,8 +30,8 @@ interface PreparedPayment {
 export type FlowOutcome =
   | { status: "settled"; body: unknown; receipt: unknown }
   | { status: "failed"; message: string }
-  | { status: "pending"; message: string; transaction: string }
-  | { status: "unknown"; message: string; transaction?: string };
+  | { status: "pending"; message: string; transaction: string; payment?: PreparedPayment }
+  | { status: "unknown"; message: string; transaction?: string; payment?: PreparedPayment };
 
 export interface FlowOptions {
   asset?: string;
@@ -77,14 +77,38 @@ export async function runPaymentFlow(
     headers: http.encodePaymentSignatureHeader(payload),
   };
 
+  return confirm(payment, onStep, options, false);
+}
+
+/**
+ * Check an open payment again. While a payment is pending or unknown, call
+ * this instead of runPaymentFlow: a new transaction could charge twice.
+ */
+export function checkPayment(
+  payment: PreparedPayment,
+  onStep: (step: FlowStep) => void,
+  options: FlowOptions = {},
+): Promise<FlowOutcome> {
+  return confirm(payment, onStep, options, true);
+}
+
+async function confirm(
+  payment: PreparedPayment,
+  onStep: (step: FlowStep) => void,
+  options: FlowOptions,
+  resuming: boolean,
+): Promise<FlowOutcome> {
   const limit = Math.min(5, Math.max(0, Math.trunc(options.automaticChecks ?? 3)));
-  let outcome = await sendPayment(payment, onStep, false);
+  let outcome = await sendPayment(payment, onStep, resuming);
   let checks = 0;
   while ((outcome.status === "pending" || outcome.status === "unknown") && checks < limit) {
     await new Promise(resolve => setTimeout(resolve, options.retryDelayMs ?? 5_000));
     checks++;
     outcome = await sendPayment(payment, onStep, true);
   }
+  // Still open: hand the signed payment back so the caller can check it
+  // again rather than build a new one.
+  if (outcome.status === "pending" || outcome.status === "unknown") return { ...outcome, payment };
   return outcome;
 }
 

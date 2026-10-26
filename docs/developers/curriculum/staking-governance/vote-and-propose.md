@@ -186,7 +186,7 @@ Every action takes `--governance-action-deposit`, `--deposit-return-stake-verifi
 
 - **Treasury withdrawal** (`create-treasury-withdrawal`): adds `--funds-receiving-stake-verification-key-file`, `--transfer <lovelace>`, and `--constitution-script-hash`.
 - **Protocol-parameter update** (`create-protocol-parameters-update`): the parameter flags being changed, plus `--constitution-script-hash`.
-- **Constitution / guardrails** (`create-constitution`): `--constitution-url`, `--constitution-hash`, and `--constitution-script-hash`.
+- **Constitution / guardrails** (`create-constitution`): `--constitution-url`, `--constitution-hash`, and `--constitution-script-hash`. Amendments are usually drafted and discussed off-chain first, as a Constitutional Amendment Proposal on Intersect's [Constitutional Amendment Portal](https://cap.intersectmbo.org/); see [how the constitution changes](https://cardano.org/constitution/).
 - **Update committee** (`governance action update-committee`): `--add-cc-cold-verification-key-hash <hash>` paired with `--epoch <expiry>`, `--remove-cc-cold-verification-key-hash <hash>`, and `--threshold <fraction>`.
 - **No confidence** (`create-no-confidence`): the common flags plus the previous committee-action reference.
 - **Hard fork** (`create-hard-fork`): initiates a protocol upgrade.

@@ -27,9 +27,9 @@ const url = `${process.env.SELLER_URL ?? "http://localhost:4021"}/api/message`;
 
 async function main() {
   // lovelace is not USD-pegged, so the default spend controls would reject
-  // it — allow it explicitly for this network.
+  // it — allow it explicitly, capped at 5 tADA per payment.
   const client = new x402Client().setSpendControls({
-    allowedAssets: [{ network: "cardano:*", asset: "lovelace" }],
+    allowedAssets: [{ network: "cardano:*", asset: "lovelace", maxAmountPerPayment: "5000000" }],
   });
 
   const signer = toClientCardanoSigner({

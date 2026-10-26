@@ -121,6 +121,33 @@ html[data-theme="dark"] .breadcrumb a:focus-visible {
   margin-bottom: 1rem;
 }
 
+.screenshotList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.screenshot {
+  margin: 0;
+}
+
+.screenshot a {
+  display: block;
+  border-radius: var(--site-radius-lg);
+}
+
+.screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--site-color-light-grey);
+  border-radius: var(--site-radius-lg);
+}
+
+html[data-theme="dark"] .screenshot img {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 .related {
   margin-top: 1rem;
 }
@@ -140,14 +167,21 @@ html[data-theme="dark"] .breadcrumb a:focus-visible {
   font-size: 0.95rem;
 }
 
-.relatedMore:focus-visible {
+.relatedMore:focus-visible,
+.screenshot a:focus-visible {
   outline: 2px solid var(--site-color-navy);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-html[data-theme="dark"] .relatedMore:focus-visible {
+html[data-theme="dark"] .relatedMore:focus-visible,
+html[data-theme="dark"] .screenshot a:focus-visible {
   outline-color: var(--site-color-amber);
+}
+
+/* The shared ring above is sized for text links, the image needs its own corners */
+.screenshot a:focus-visible {
+  border-radius: var(--site-radius-lg);
 }
 
 @media (max-width: 600px) {

@@ -31,7 +31,7 @@ The simplest policies use Cardano's native script language, just signatures and 
 
   ```json
   { "type": "all", "scripts": [
-    { "type": "before", "slot": 1000000 },
+    { "type": "before", "slot": <future slot> },
     { "type": "sig", "keyHash": "<issuer key hash>" }
   ] }
   ```

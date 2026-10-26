@@ -28,7 +28,6 @@ What runs underneath an application, where the eUTXO model shapes the design:
 - **[DeFi on Cardano](/docs/developers/curriculum/dapps/defi)**: DEXes, AMMs, liquidity pools, lending, and the eUTXO-specific answers to concurrency (order batching, pool sharding, transaction chaining).
 - **[Oracles on Cardano](/docs/developers/curriculum/dapps/oracles/overview)**: how off-chain data gets on-chain, the push and pull models, and what each trust choice buys you.
 - **[Integrate a price feed](/docs/developers/curriculum/dapps/oracles/pyth)**: the practice, a working Pyth integration in three steps plus the validator patterns that use it.
-- **[A price-settled prediction market](/docs/developers/curriculum/dapps/oracles/prediction-market)**: those patterns assembled into one complete oracle-consuming dApp, walked end to end.
 - **[On-chain randomness](/docs/developers/curriculum/dapps/oracles/randomness)**: why a validator cannot generate a random number, and the constructions that work anyway.
 
 ## Side-track: AI agents
