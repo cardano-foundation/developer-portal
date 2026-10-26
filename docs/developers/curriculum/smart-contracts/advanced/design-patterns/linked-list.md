@@ -118,6 +118,8 @@ Example validator: [linked_list example](https://github.com/Anastasia-Labs/aiken
 
 Test suite: [linked_list tests](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/tests/linked-list.ak)
 
+Scalus implementation: [LinkedList.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/LinkedList.scala)
+
 ## Acknowledgments
 
 This documentation and the linked list implementation draw inspiration from original ideas presented in the Plutonomicon. For further details on the foundational concepts, see the [Plutonomicon's Associative Data Structures Overview](https://github.com/Plutonomicon/plutonomicon/blob/main/assoc.md#overview).
