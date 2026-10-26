@@ -524,7 +524,6 @@ module.exports = {
         id: "developers/onboarding/tutorial/overview",
       },
       items: [
-        { type: "doc", id: "developers/onboarding/tutorial/overview", label: "Overview" },
         "developers/onboarding/tutorial/environment",
         "developers/onboarding/tutorial/on-chain",
         "developers/onboarding/tutorial/off-chain",
@@ -540,11 +539,6 @@ module.exports = {
         id: "developers/onboarding/lectures/introduction",
       },
       items: [
-        {
-          type: "doc",
-          id: "developers/onboarding/lectures/introduction",
-          label: "Introduction",
-        },
         {
           type: "category",
           label: "Beginner",

@@ -76,7 +76,7 @@ function Hero() {
               in between. Docs, tools, and SDKs for Cardano.
             </p>
             <div className={styles.heroActions}>
-              <Link to={useBaseUrl("docs/developers/")} className="button button--primary">
+              <Link to={useBaseUrl("docs/developers/onboarding/introduction/overview/")} className="button button--primary">
                 Start Here
               </Link>
               <Link
@@ -154,14 +154,14 @@ function BentoSection() {
         <div className={styles.bentoGrid}>
           {/* Start Here — large card with coil artwork */}
           <Link
-            to={useBaseUrl("docs/developers/")}
+            to={useBaseUrl("docs/developers/onboarding/introduction/overview/")}
             className={clsx(styles.bentoCard, styles.bentoLarge)}
           >
             <div className={styles.bentoCardContent}>
               <h3>Start Here</h3>
-              <p>The 7-module path from zero to shipping, fundamentals through production.</p>
+              <p>A hands-on path from your first wallet to a smart contract ready for mainnet.</p>
               <div className={styles.bentoCardFooter}>
-                <span className={styles.bentoLink}>Start the Curriculum</span>
+                <span className={styles.bentoLink}>Start the onboarding</span>
               </div>
             </div>
             <img

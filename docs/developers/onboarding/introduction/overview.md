@@ -4,6 +4,8 @@ sidebar_label: "Introduction"
 description: "Welcome to the Cardano onboarding: what it is, who it is for, what it covers, and where to start."
 ---
 
+import DocCard from '@theme/DocCard';
+
 # Welcome to the Cardano onboarding
 
 This is the hands-on path to building on Cardano. It takes you from a new project to a smart contract that is ready for mainnet: the tools, how Cardano holds value, how to write, test and secure a contract, and how to take it to production.
@@ -27,8 +29,14 @@ It does not choose your tools for you. Cardano has several languages for smart c
 
 ## Where to start
 
-To see the whole picture first, run the **[Tutorial](/docs/developers/onboarding/tutorial/overview)**. It shows every part of a Cardano app working together, and the lectures then explain each part in depth.
-
-To learn step by step, start the **[Beginner](/docs/developers/onboarding/lectures/beginner/introduction)** module and take the lectures in order.
-
-If you already know what you want to build, **[Get started](/docs/developers/onboarding/get-started/overview)** creates the project, and the lectures are there when you need them.
+<div className="row margin-bottom--md">
+  <div className="col col--4">
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/tutorial/overview', label: 'See the whole app', description: 'Run the Tutorial. It shows every part of a Cardano app working together, and the lectures then explain each part in depth.'}} />
+  </div>
+  <div className="col col--4">
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/lectures/beginner/introduction', label: 'Learn step by step', description: 'Start the Beginner module and take the lectures in order.'}} />
+  </div>
+  <div className="col col--4">
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/get-started/overview', label: 'Start your own project', description: 'Get started creates the project, and the lectures are there when you need them.'}} />
+  </div>
+</div>

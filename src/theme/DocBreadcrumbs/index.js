@@ -6,12 +6,18 @@
 import React from 'react';
 import OriginalDocBreadcrumbs from '@theme-original/DocBreadcrumbs';
 import CopyMarkdownActions from '@site/src/components/CopyMarkdownActions';
+import OnboardingTrack from '@site/src/components/OnboardingTrack';
 
+// On onboarding pages, the track bar sits under the breadcrumb row. It renders
+// nothing elsewhere.
 export default function DocBreadcrumbsWrapper(props) {
   return (
-    <div className="docbreadcrumbs-with-actions">
-      <OriginalDocBreadcrumbs {...props} />
-      <CopyMarkdownActions />
-    </div>
+    <>
+      <div className="docbreadcrumbs-with-actions">
+        <OriginalDocBreadcrumbs {...props} />
+        <CopyMarkdownActions />
+      </div>
+      <OnboardingTrack />
+    </>
   );
 }
