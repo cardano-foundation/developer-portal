@@ -153,7 +153,7 @@ For **content writers and developers** who want to work on documentation, blog p
 
 ### Local Development Setup
 
-Follow the [local development setup](https://github.com/cardano-foundation/developer-portal/blob/staging/README.md#local-development-setup) in the README: fork, clone, `yarn install`, `yarn build`, `yarn start`. It requires Node.js 22 (the pinned version lives in `.nvmrc`, so `nvm use` picks it up) and Yarn 1.20+.
+Follow the [local development setup](https://github.com/cardano-foundation/developer-portal/blob/staging/README.md#local-development-setup) in the README: fork, clone, `yarn install`, `yarn build`, `yarn start`. It requires Node.js 24 or newer (the pinned version lives in `.nvmrc`, so `nvm use` picks it up) and Yarn 1.20+.
 
 :::info Development vs Production
 
@@ -201,7 +201,7 @@ developer-portal/
 ### Troubleshooting
 
 **Node.js version error:** `[ERROR] Minimum Node.js version not met`
-**Solution:** Use Node.js 22. With nvm installed, `nvm use` in the repo root switches to the version pinned in `.nvmrc`.
+**Solution:** Use Node.js 24 or newer. With nvm installed, `nvm use` in the repo root switches to the version pinned in `.nvmrc`.
 
 ## More Ways to Contribute
 
