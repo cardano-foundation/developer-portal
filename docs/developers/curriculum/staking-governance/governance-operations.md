@@ -89,7 +89,7 @@ cardano-cli latest query proposals --all-proposals           # actions eligible 
 </TabItem>
 </Tabs>
 
-`query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. Query APIs (Blockfrost, Koios, Maestro) expose the same data over HTTP; see [Use a provider](/docs/developers/curriculum/production/use-a-provider).
+`query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. Query APIs (Blockfrost, Koios) expose the same data over HTTP; see [Use a provider](/docs/developers/curriculum/production/use-a-provider).
 
 ## Browser wallet APIs (CIP-95)
 

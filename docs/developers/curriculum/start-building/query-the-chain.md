@@ -19,7 +19,6 @@ A provider is the data source your SDK talks to. Most SDKs support several behin
 | Provider | Hosting | API key | Rate limits |
 |---|---|---|---|
 | **Blockfrost** | Hosted | Required | Yes (free tier limited) |
-| **Maestro** | Hosted | Required | Yes (free tier limited) |
 | **Nexus** | Hosted | Required (scoped per chain + network) | Yes (tier-based) |
 | **Koios** | Hosted (community) or self-hosted | Optional | Yes (higher with a key) |
 | **Kupmios** | Self-hosted (Ogmios + Kupo) | Not applicable | None (your own infra) |
@@ -46,12 +45,6 @@ const kupmios = Client.make(mainnet).withKupmios({
   kupoUrl: "http://localhost:1442"
 })
 
-// Maestro (hosted)
-const maestro = Client.make(mainnet).withMaestro({
-  baseUrl: "https://mainnet.gomaestro-api.org/v1",
-  apiKey: process.env.MAESTRO_API_KEY!
-})
-
 // Koios (community)
 const koios = Client.make(mainnet).withKoios({ baseUrl: "https://api.koios.rest/api/v1" })
 ```
@@ -60,16 +53,13 @@ const koios = Client.make(mainnet).withKoios({ baseUrl: "https://api.koios.rest/
 <TabItem value="mesh" label="Mesh">
 
 ```typescript
-import { BlockfrostProvider, KoiosProvider, MaestroProvider, OgmiosProvider } from "@meshsdk/core"
+import { BlockfrostProvider, KoiosProvider, OgmiosProvider } from "@meshsdk/core"
 
 // Blockfrost (hosted), network auto-detected from the key prefix
 const bf = new BlockfrostProvider(process.env.BLOCKFROST_PROJECT_ID!)
 
 // Koios (community), pass the network
 const koios = new KoiosProvider("mainnet")
-
-// Maestro (hosted)
-const maestro = new MaestroProvider({ network: "Mainnet", apiKey: process.env.MAESTRO_API_KEY! })
 
 // Ogmios (self-hosted; Mesh has no single "Kupmios", pair it with Kupo for indexed reads)
 const ogmios = new OgmiosProvider("ws://localhost:1337")
@@ -101,7 +91,7 @@ const client = Client.make(mainnet).withKupmios({
 
 Mesh has no single Kupmios provider; pair `OgmiosProvider` with Kupo and pass the Demeter keys through each provider's connection options.
 
-Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself, see [Use a provider](/docs/developers/curriculum/production/use-a-provider) (Blockfrost, Koios, and Maestro projects) and [Self-hosting](/docs/developers/curriculum/production/self-hosting) (your own node + Kupo + Ogmios, a data node, Demeter).
+Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself, see [Use a provider](/docs/developers/curriculum/production/use-a-provider) (Blockfrost, Koios, and Nexus projects) and [Self-hosting](/docs/developers/curriculum/production/self-hosting) (your own node + Kupo + Ogmios, a data node, Demeter).
 
 :::tip Privacy and trust
 A **hosted** provider sees every address you query and every transaction you submit, along with your IP. It's a third party in your data path, with rate limits and an uptime you don't control. **Self-hosting** (your own node + Kupo + Ogmios, or Kupmios) keeps that data private and removes the dependency, at the cost of running the infrastructure. Pick based on how sensitive your queries are and how much ops you want to own.
