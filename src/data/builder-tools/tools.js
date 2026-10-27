@@ -1127,6 +1127,16 @@ export const BuilderTools = [
     category: "operations",
     properties: [],
   },
+  {
+    title: "VIA Network",
+    icon: "/img/tools/via-network.svg",
+    description: "Cross-chain messaging network live on Cardano mainnet and preprod, with routes to Midnight and EVM networks. Projects deploy their own Cardano contracts and use VIA to pass messages and tokens to contracts on other chains.",
+    website: "https://vialabs.tech/overview",
+    docs: "https://developer.vialabs.tech/docs/examples/cardano/overview/",
+    repository: null,
+    category: "integration",
+    properties: ["typescript"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
