@@ -591,7 +591,7 @@ export default function X402Page() {
               <div className={styles.templateGrid}>
                 <TemplateCard
                   title="Express starter"
-                  body="Client and server on the hosted facilitator, ready to run with one command."
+                  body="Client and server on the hosted facilitator, with a local one included for offline runs."
                   href="/templates/x402-express/"
                   linkLabel="View the template"
                 />
