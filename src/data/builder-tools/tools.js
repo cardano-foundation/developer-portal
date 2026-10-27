@@ -298,16 +298,6 @@ export const BuilderTools = [
     properties: ["javascript"],
   },
   {
-    title: "Lucid",
-    icon: "/img/tools/lucid.svg",
-    description: "TypeScript library for building Cardano transactions and off-chain Plutus code.",
-    website: "https://github.com/Berry-Pool/lucid#readme",
-    docs: "https://lucid.spacebudz.io/docs/getting-started/choose-wallet/",
-    repository: "https://github.com/spacebudz/lucid",
-    category: "sdk",
-    properties: ["typescript"],
-  },
-  {
     title: "Lucid Evolution",
     icon: "/img/tools/lucid-evolution.svg",
     description: "TypeScript library for building Cardano transactions and off-chain code, a maintained fork of Lucid by Anastasia Labs.",
