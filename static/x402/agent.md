@@ -1,6 +1,5 @@
 # x402 on Cardano — context for coding agents
 
-Hackathon track context: "Agentic Commerce" at TOKEN2049 Origins 2026.
 Feed this file to your coding agent (Claude Code, Codex, Cursor, …) so it
 works from current facts instead of stale training data. Human-readable
 hub: https://developers.cardano.org/x402
@@ -20,18 +19,30 @@ change, it lands as signed or not at all); the facilitator holds no
 keys and no funds and cannot alter a signed transaction; there are no
 standing approvals — every payment is one discrete signed tx.
 
-## Track facts
+## Networks, packages and assets
 
-- Network: **Cardano preprod only** (`cardano:preprod`). No mainnet.
-- Packages: all `@x402/*` packages pinned **exactly 2.26.0** (content
-  freeze for the event — do not upgrade mid-hackathon).
+- Networks: **Cardano preprod** (`cardano:preprod`) for building and
+  testing, which everything below uses, and Cardano mainnet
+  (`cardano:mainnet`).
+- Packages: the templates pin all `@x402/*` packages at **2.26.0**.
+  Newer versions are on npm; check `npm view @x402/cardano version` and
+  test before upgrading.
 - Recommended asset: **tADA** (`asset: "lovelace"`, amounts in lovelace,
   1 ADA = 1,000,000 lovelace). For cent-level prices use **tUSDM**
   (preprod USDM, 6 decimals, unit constant `USDM_PREPROD_ASSET` in
   `@x402/cardano`); self-serve claim at https://tusdm.moneta.global.
+  Masumi's dispenser (https://dispenser.masumi.network) gives a
+  different preprod tUSDM (policy `16a55b2a…`): same name, different
+  asset. A wallet funded there cannot pay a route priced in the SDK's
+  tUSDM, and the other way round.
 - The facilitator verifies and settles payments. It holds no keys and no
-  funds; the client pays the network fee. The hosted facilitator URL is
-  announced at the Oct 6 morning session — until then run the local one.
+  funds; the client pays the network fee. The Cardano Foundation runs
+  hosted facilitators for preprod
+  (https://x402.preprod.dev.ecosyseng.cf-deployments.org, the default in
+  both templates) and mainnet
+  (https://x402.mainnet.dev.ecosyseng.cf-deployments.org). Each lists
+  what it supports at `/supported`. The templates also ship a minimal
+  local facilitator for offline work.
 
 ## The starter template
 
@@ -46,7 +57,7 @@ Files (~290 lines total):
   via x402. Replace its route with your idea.
 - `src/buyer.ts` (73 lines) — the paying agent: gets the 402, builds and
   signs a real Cardano tx, retries with `PAYMENT-SIGNATURE`.
-- `src/facilitator.ts` (101 lines) — minimal local facilitator on port
+- `src/facilitator.ts` (102 lines) — minimal local facilitator on port
   4022 (offline fallback; needs only a Blockfrost project id).
 - `src/wallet.ts` (17 lines) — generates a preprod wallet, prints the
   `MNEMONIC=` line and the address to fund.
@@ -78,20 +89,22 @@ only, so the Cardano browser side ships inside the template
   waits for one block confirmation (20–60s; the UI shows a counter).
   If the server reports `settlement_pending`, the flow re-checks the
   SAME signed payment and never pays twice.
-- `npm run facilitator` starts the same minimal local facilitator;
-  `npm run dev` serves on port 3002. `NEXT_PUBLIC_BLOCKFROST_PROJECT_ID`
-  ships the id to the browser — preprod keys only, never a mainnet key.
+- `npm run dev` serves on port 3002. `BLOCKFROST_PROJECT_ID` stays on
+  the server: the paywall reaches Blockfrost through the
+  `/api/blockfrost` route. `npm run facilitator` starts the same minimal
+  local facilitator if you want to work offline.
 
 `.env` for the Express starter (from `cp .env.example .env`):
 
-    FACILITATOR_URL=http://localhost:4022   # hosted URL announced at the Oct 6 morning session
+    FACILITATOR_URL=https://x402.preprod.dev.ecosyseng.cf-deployments.org   # or http://localhost:4022 for the local one
     SELLER_ADDRESS=addr_test1...            # receives the payment
     SELLER_PORT=4021
     MNEMONIC=...                            # from npm run wallet, funded
     BLOCKFROST_PROJECT_ID=preprod...        # free at blockfrost.io
 
-The Next.js template needs `FACILITATOR_URL`, `SELLER_ADDRESS` and
-`NEXT_PUBLIC_BLOCKFROST_PROJECT_ID`, and no mnemonic: the browser wallet pays.
+The Next.js template needs `FACILITATOR_URL`, `SELLER_ADDRESS` and a
+server-only `BLOCKFROST_PROJECT_ID`, and no mnemonic: the browser wallet
+pays.
 
 ## The payment flow
 
@@ -152,8 +165,8 @@ the tx on preprod.cardanoscan.io.
    leaving `withX402`'s `syncFacilitatorOnStart` at its default is
    required — setting it to false breaks route support detection.
 10. **The public x402.org facilitator does not support Cardano.** Its
-    `/supported` lists no cardano kind. Use the local facilitator or the
-    hosted one announced for the event.
+    `/supported` lists no cardano kind. Use the Cardano Foundation's
+    hosted facilitator or the local one.
 11. **Cardano is TypeScript-only for now.** The Python and Go x402 SDKs
     have no Cardano support yet (a Python implementation is in review
     upstream). Don't hand-roll a client; call a small TypeScript
@@ -169,29 +182,34 @@ the tx on preprod.cardanoscan.io.
     x402 payment. For fast answers on cheap routes, lower
     `extra.confirmationPolicy.l1Confirmations` (`0` waits for block
     inclusion; `-1` accepts on network acceptance and needs a
-    facilitator with `acceptMempool`).
+    facilitator with `acceptMempool`. The hosted facilitators accept 0
+    to 20, so use `0` there).
 14. **The x402 `masumi` method only locks funds.** Result delivery,
     refunds and disputes follow the Masumi escrow lifecycle, and the
     Masumi Payment Service does not manage locks created by
     `@x402/cardano`. The demo's Masumi routes lock real preprod funds,
     so start with the address-payment routes.
 
-## Judging
+## Paid per job: Masumi and Sokosumi
 
-Required: working prototype on Cardano · open-source repo with docs ·
-demo video (max 3 min) · short write-up (problem, technical approach,
-how it could be deployed or scaled).
-
-Weights: technical execution and use of Cardano tech 30% (Masumi,
-eUTxO, native tokens, smart contracts) · innovation 20% · user
-experience 20% · impact and feasibility 20% · pitch 10%.
+x402 covers payment per request. For work paid per job, Masumi extends
+x402 on Cardano with escrow, refunds and disputes, agent identity and an
+on-chain registry. Agents registered on Masumi can be listed as
+Coworkers on Sokosumi, an agent marketplace, and hired for tasks there.
+Start from Masumi's documentation and skills (links below). Gotcha 14
+explains how the x402 `masumi` method relates to the Masumi escrow.
 
 ## Links
 
-- Track hub (live, updated through the event): https://developers.cardano.org/x402
+- The x402 page on the developer portal: https://developers.cardano.org/x402
 - Official x402 docs, Cardano pages: https://docs.x402.org/core-concepts/network-and-token-support
   and the Cardano Setup section of https://docs.x402.org/schemes/exact
 - The Cardano scheme spec: https://github.com/x402-foundation/x402/blob/main/specs/schemes/exact/scheme_exact_cardano.md
 - Masumi (escrow, agent identity, registry — extends x402 on Cardano): https://www.masumi.network/x402
+- Masumi documentation: https://www.masumi.network/dev/masumi/documentation
+  and skills for coding agents: https://www.masumi.network/dev/masumi/documentation/integrations/masumi-skills
+- Sokosumi (agent marketplace): https://www.sokosumi.com and its CLI:
+  https://github.com/masumi-network/sokosumi/tree/main/apps/cli
+- Cardano Dev Skills (current Cardano context for coding agents): https://github.com/cardano-foundation/cardano-dev-skills
 - Full protocol demo (browser wallet, USDM, escrow routes): https://github.com/cardano-foundation/x402-cardano-demo
 - Next.js paywall template source: https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/x402-next
