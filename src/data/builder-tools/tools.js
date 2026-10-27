@@ -489,16 +489,6 @@ export const BuilderTools = [
     properties: ["python"],
   },
   {
-    title: "Maestro",
-    icon: "/img/tools/maestro.jpg",
-    description: "Hosted Cardano API with chain indexing, transaction management, and DeFi market data.",
-    website: "https://www.gomaestro.org/",
-    docs: "https://docs.gomaestro.org/",
-    repository: null,
-    category: "api",
-    properties: ["rest"],
-  },
-  {
     title: "NOWNodes",
     icon: "/img/tool-icons/nownodes.jpg",
     description: "Hosted Cardano API exposing Blockfrost-compatible REST, Rosetta, and Ogmios WebSocket endpoints.",
