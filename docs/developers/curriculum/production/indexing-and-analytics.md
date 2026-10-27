@@ -189,7 +189,7 @@ ORDER BY epoch;
 
 (`main` in the path is the source schema name; adjust to your export location.) Because partition-aware queries read only the files they need, questions like this return in seconds even against full-history exports.
 
-The built-in exporters mirror tables one to one, but real questions often span tables. For those, **custom exporters** are defined entirely in YAML: give the module SQL with joins, a name, and a partition strategy, and it produces a fresh Parquet dataset on the same schedule, filling in `{source}`, `{start_slot}`, `{end_slot}` and `{epoch}` per partition. Enable them with the `custom-exporters` profile alongside `analytics`; the [Analytics Store docs](https://store.yaci.xyz/docs/v2/analytics/overview) carry the full configuration surface.
+The built-in exporters mirror tables one to one, but real questions often span tables. For those, **custom exporters** are defined entirely in YAML: give the module SQL with joins, a name, and a partition strategy, and it produces a fresh Parquet dataset on the same schedule, filling in `{source}`, `{start_slot}`, `{end_slot}` and `{epoch}` per partition. Enable them with the `custom-exporters` profile alongside `analytics`; the [Analytics Store docs](https://store.yaci.xyz/docs/v3/analytics/overview) carry the full configuration surface.
 
 :::info Beta, and you produce the files yourself
 The Analytics Store ships in the 3.0.0 beta line rather than the current stable releases, and there is no public dataset mirror yet, so you run Yaci Store once to produce the export. The output is the stable part: standard Parquet files that remain useful regardless of what produced them.
