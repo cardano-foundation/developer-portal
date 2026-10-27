@@ -1130,7 +1130,7 @@ export const BuilderTools = [
   {
     title: "VIA Network",
     icon: "/img/tools/via-network.svg",
-    description: "Cross-chain messaging network that connects Cardano smart contracts to 150+ blockchains, including EVM chains and Midnight. Projects deploy and own their cross-chain contracts and use them for liquidity transfers, oracle feeds, and AI agent integrations.",
+    description: "Cross-chain messaging network live on Cardano mainnet and preprod, with routes to Midnight and EVM networks. Projects deploy their own Cardano contracts and use VIA to pass messages and tokens to contracts on other chains.",
     website: "https://vialabs.tech/overview",
     docs: "https://developer.vialabs.tech/docs/examples/cardano/overview/",
     repository: null,
