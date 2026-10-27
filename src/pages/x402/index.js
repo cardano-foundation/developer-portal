@@ -536,8 +536,8 @@ export default function X402Page() {
                   <p>Register the Cardano scheme, declare a price.</p>
                 </div>
                 <p className={styles.panelBody}>
-                  The middleware, the client that pays and retries, and a local facilitator are
-                  already wired in the Express template. The full reference, including the{" "}
+                  The middleware, the client that pays and retries, and the facilitator settings
+                  are already wired in the Express template. The full reference, including the{" "}
                   <a
                     href="https://docs.x402.org/schemes/exact#cardano-setup"
                     {...EXTERNAL_LINK_PROPS}
@@ -591,7 +591,7 @@ export default function X402Page() {
               <div className={styles.templateGrid}>
                 <TemplateCard
                   title="Express starter"
-                  body="Client, server and a local facilitator, ready to run in two terminals."
+                  body="Client and server on the hosted facilitator, ready to run with one command."
                   href="/templates/x402-express/"
                   linkLabel="View the template"
                 />

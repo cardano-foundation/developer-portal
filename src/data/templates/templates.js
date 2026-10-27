@@ -84,8 +84,10 @@ export const Templates = [
           ],
         },
         {
-          lead: ["Run it, in two terminals:"],
-          code: "npm run facilitator\nnpm run demo",
+          lead: [
+            "Run it. The template uses the Cardano Foundation's hosted facilitator on preprod; the README explains how to run a local one.",
+          ],
+          code: "npm run demo",
         },
       ],
       after: [
@@ -126,8 +128,10 @@ export const Templates = [
           code: "cd my-app\nnpm install\ncp .env.example .env",
         },
         {
-          lead: ["Start the local facilitator and the dev server, in two terminals:"],
-          code: "npm run facilitator\nnpm run dev",
+          lead: [
+            "Start the dev server. The template uses the Cardano Foundation's hosted facilitator on preprod; the README explains how to run a local one.",
+          ],
+          code: "npm run dev",
         },
         {
           lead: ["Open http://localhost:3002 and pay a route from your wallet."],
