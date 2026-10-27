@@ -24,7 +24,7 @@ const footer = {
     {
       title: 'Build',
       items: [
-        {label: 'Get Started', to: '/docs/developers/onboarding/introduction/overview/'},
+        {label: 'Get Started', to: '/docs/developers/onboarding/get-started/overview/'},
         {label: 'Builder Tools', to: '/tools/'},
         {label: 'Templates', to: '/templates/'},
         {label: 'Contracts Library', to: '/templates/contracts/'},
