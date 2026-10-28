@@ -16,7 +16,7 @@ Pick where you want to start.
 ## Want to jump into building?
 
   
-    <DocCard item={{type: 'link', href: '/templates', label: 'Scaffold a dApp', description: 'A wallet-connected app in one command.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/get-started/overview', label: 'Scaffold a dApp', description: 'One command creates a contract, off-chain code and a local network.'}} />
   
   
     <DocCard item={{type: 'link', href: '/docs/developers/curriculum/start-building/your-first-transaction', label: 'Send your first transaction', description: 'Build, sign, and submit on a testnet.'}} />
@@ -25,7 +25,7 @@ Pick where you want to start.
 ## Want to learn how Cardano works?
 
   
-    <DocCard item={{type: 'link', href: '/docs/developers/curriculum/fundamentals/overview', label: 'Learn the fundamentals', description: 'The ledger, keys, transactions, and fees.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/lectures/beginner/introduction', label: 'Learn the fundamentals', description: 'Wallets, UTxOs, transactions and tokens, step by step.'}} />
   
 
 ## Coding with an AI agent?

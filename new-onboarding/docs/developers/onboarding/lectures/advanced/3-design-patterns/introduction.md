@@ -34,8 +34,8 @@ The figures on each page are measured. Each example builds its transactions on a
 
 The pages follow this outline, combining implementation sections where appropriate:
 
-1. **The problem**: a concrete situation, with a diagram of the transaction.
-2. **The naive contract**: the obvious version, and what it costs.
+1. **The protocol**: a concrete situation, with a diagram of the transaction.
+2. **The naive contract**: the obvious version, the problem it has, and what it costs.
 3. **The pattern**: the idea, and the transaction with the pattern applied.
 4. **Design**: the four questions to account for when designing a protocol (learned from the Intermediate lectures).
 5. **Write it by hand**: a simple implementation of the pattern from scratch, so the mechanism is visible.
@@ -43,9 +43,12 @@ The pages follow this outline, combining implementation sections where appropria
 7. **Build the transaction**: the off-chain side.
 8. **The numbers**: naive against pattern, measured.
 9. **When to use it, and when not**: the trade-offs, security caveats included.
-10. **Go deeper**: the reference pages, the library module, the related security pages.
+10. **Run it**: download the example and run its tests on your machine.
+11. **Go deeper**: the reference pages, the library module, the related security pages.
 
 The Merkle Patricia trie page compares a list datum with a registry using Merkle Patricia Forestry. Its two-root explanation leads directly to the library-based validator.
+
+The Validity range normalization page starts from how much interval handling a contract needs. It compares reading the validity range directly with normalizing the whole interval, so it has no hand-written and library versions to compare.
 
 ## The playground {#the-playground}
 

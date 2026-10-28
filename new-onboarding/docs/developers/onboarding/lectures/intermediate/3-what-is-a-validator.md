@@ -65,9 +65,9 @@ A validator guarding a locked UTxO is a function of three things:
 validator(datum, redeemer, context) -> True | False
 ```
 
-- **datum** the information attached to the locked UTxO,
-- **redeemer** what the spender provides when unlocking,
-- **context** the whole transaction around it.
+- **datum**: the information attached to the locked UTxO,
+- **redeemer**: what the spender provides when unlocking,
+- **context**: the whole transaction around it.
 
 Depending on the language you choose to write your validators in, you can see more or fewer arguments.
 

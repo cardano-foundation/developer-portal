@@ -8,8 +8,8 @@
 
 The contract is written in a smart-contract language (pick one in the tabs below). Either way, it's really two small rules that work together:
 
-- **minting policy** the rule that controls creating and destroying tokens (making a new token is called _minting_, destroying the token is called _burning_). It decides who and how is allowed to create and destroy GOLD and SILVER tokens, so nobody can create tokens they shouldn't.
-- **swap validator** the rule that guards a locked token. Whenever someone tries to take the GOLD out of the contract, this rule runs and lets the trade go through only if it's fair, meaning the seller is paid exactly what they asked for.
+- **minting policy**: the rule that controls creating and destroying tokens (making a new token is called _minting_, destroying the token is called _burning_). It decides who and how is allowed to create and destroy GOLD and SILVER tokens, so nobody can create tokens they shouldn't.
+- **swap validator**: the rule that guards a locked token. Whenever someone tries to take the GOLD out of the contract, this rule runs and lets the trade go through only if it's fair, meaning the seller is paid exactly what they asked for.
 
 Both rules are just **yes/no functions**. The network hands each one the whole transaction, and it returns exactly one thing: **`true`** (allow) or **`false`** (reject). A contract never moves tokens or does anything on its own, the transaction is already fully built before the rule runs. All the rule does is _judge_ it: return `true` and the transaction goes through as written, return `false` and the whole thing is rejected, so nothing happens.
 
@@ -71,7 +71,7 @@ Why bother? Imagine two separate offers that both say _"pay 5 SILVER to Bob."_ W
 Double-satisfaction is a subtle attack, you don't have to fully understand it to follow along. When you're ready to go deeper, the [Double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) page covers it in detail.
 :::
 
-```aiken title="swap.ak — the rule"
+```aiken title="swap.ak: the rule"
 validator swap {
   // `spend` defines the rules for spending (taking) a UTxO locked at this contract.
   spend(
@@ -117,7 +117,7 @@ validator swap {
 
 The small helper functions it uses:
 
-```aiken title="swap.ak — helpers"
+```aiken title="swap.ak: helpers"
 // Is this output tagged with `expected` (the spent UTxO's reference) as its
 // inline datum? `expected` is typed as `Data` so the `OutputReference` passed
 // at the call site is upcast and compared against the raw inline datum.
@@ -150,7 +150,7 @@ fn covers_price(value: Assets, price: List<PricedAsset>) -> Bool {
 
 Alice and Bob each need a token to trade, so they each create ("mint") one. This rule says a token can only be minted by its owner. Because the rule is tied to each person's key, Alice's SILVER and Bob's GOLD are automatically two different tokens.
 
-```aiken title="mint.ak — who can create tokens"
+```aiken title="mint.ak: who can create tokens"
 // A minting policy for the demo tokens (GOLD, SILVER).
 //
 // Parameterized by an owner key: only the owner can mint or burn under this
@@ -174,7 +174,7 @@ Turn the contract into something the blockchain can run (this step needs [Aiken]
 ```bash
 cd on-chain/aiken
 aiken check   # run the contract's tests
-aiken build   # compile it — writes plutus.json
+aiken build   # compile it and write plutus.json
 ```
 
 :::tip What just happened

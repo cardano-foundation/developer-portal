@@ -24,12 +24,12 @@ After this track you'll be able to:
 
 ## The lectures
 
-1. **[Wallets, keys & addresses](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)** — your account and identity on Cardano.
-2. **[UTxOs & Transactions](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions)** — how value is stored and moved, and how to build a transaction in code with an SDK.
-3. **[Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano)** — slots, and why "now" doesn't exist on-chain.
-4. **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)** — simple on-chain rules and durable transaction notes, no smart contract needed.
-5. **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)** — custom assets, with a native script as their minting policy.
-6. **[Providers & explorers](/docs/developers/onboarding/lectures/beginner/providers-and-explorers)** — how you and your app read the chain.
+1. **[Wallets, keys & addresses](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)**: your account and identity on Cardano.
+2. **[UTxOs & Transactions](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions)**: how value is stored and moved, and how to build a transaction in code with an SDK.
+3. **[Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano)**: slots, and why "now" doesn't exist on-chain.
+4. **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)**: simple on-chain rules and durable transaction notes, no smart contract needed.
+5. **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)**: custom assets, with a native script as their minting policy.
+6. **[Providers & explorers](/docs/developers/onboarding/lectures/beginner/providers-and-explorers)**: how you and your app read the chain.
 
 Each lecture has a **Try it** you can finish in a few minutes and a **Go deeper** link into the handbook when you want the full detail.
 

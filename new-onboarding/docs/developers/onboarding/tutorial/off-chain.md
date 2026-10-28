@@ -316,7 +316,7 @@ export async function buildCancelTx(
 </TabItem>
 <TabItem value="evolution" label="Evolution">
 
-An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version of the same steps is coming soon. The contract is identical — only the library calls differ.
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version of the same steps is coming soon. The contract is identical. Only the library calls differ.
 
 </TabItem>
 </Tabs>

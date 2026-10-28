@@ -31,8 +31,8 @@ Cardano is **deterministic**: whether a transaction is valid depends only on thi
 
 Instead, a transaction carries a **validity interval**: the slot window in which it is allowed to be included in a block. It has up to two bounds:
 
-- **`invalidBefore`** the earliest slot the transaction may appear in ("not before this time").
-- **`invalidHereafter`** (also called the **TTL**) the latest slot it may appear in ("expires after this time").
+- **`invalidBefore`**: the earliest slot the transaction may appear in ("not before this time").
+- **`invalidHereafter`** (also called the **TTL**): the latest slot it may appear in ("expires after this time").
 
 The **ledger** checks that window against the current slot before the transaction is accepted. So when a native script says _"only after slot X,"_ it doesn't look up the time itself, it relies on the window the ledger already verified. **Your app is the one holding a real clock**: it turns a date into a slot number when it builds the transaction.
 
@@ -94,8 +94,8 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 ## Go deeper
 
-- [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) — how slots structure time, and where epochs come in.
-- [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time) — the bounds in detail, and slot↔time conversion.
-- [Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers) — why there's no `block.timestamp`.
+- [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros): how slots structure time, and where epochs come in.
+- [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time): the bounds in detail, and slot↔time conversion.
+- [Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers): why there's no `block.timestamp`.
 
 Next: **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)**.

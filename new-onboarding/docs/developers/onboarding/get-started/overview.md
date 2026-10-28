@@ -139,8 +139,8 @@ Want to see a real project end to end and understand how the pieces fit together
 
 Go deeper with the lectures:
 
-- [Beginner](/docs/developers/onboarding/lectures/beginner/introduction) — Cardano's fundamentals: wallets, UTxOs, transactions, tokens, and reading the chain.
-- [Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction) — smart contracts from scratch: validators, datum & redeemer, and the tools to write and run them.
-- [Advanced](/docs/developers/onboarding/lectures/advanced/introduction) — production-ready contracts: security, optimization, design patterns, and getting to production.
+- [Beginner](/docs/developers/onboarding/lectures/beginner/introduction): Cardano's fundamentals: wallets, UTxOs, transactions, tokens, and reading the chain.
+- [Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction): smart contracts from scratch: validators, datum & redeemer, and the tools to write and run them.
+- [Advanced](/docs/developers/onboarding/lectures/advanced/introduction): production-ready contracts: security, optimization, design patterns, and getting to production.
 
 And to get the most from your AI assistant, see [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development).

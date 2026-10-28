@@ -151,12 +151,12 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 ## Go deeper
 
-- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) — the model behind inputs, outputs, and change.
-- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions) — a transaction's full anatomy.
-- [Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees) — how the fee is calculated and where it goes.
-- [What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) — how blocks link together into a chain.
-- [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools) — Mesh, Evolution, and how to pick an SDK.
-- [Coin selection](/docs/developers/curriculum/start-building/transaction-building#coin-selection) — how an SDK picks which UTxOs to spend.
-- [Transaction building](/docs/developers/curriculum/start-building/transaction-building) — building and balancing transactions in depth.
+- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): the model behind inputs, outputs, and change.
+- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions): a transaction's full anatomy.
+- [Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees): how the fee is calculated and where it goes.
+- [What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain): how blocks link together into a chain.
+- [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools): Mesh, Evolution, and how to pick an SDK.
+- [Coin selection](/docs/developers/curriculum/start-building/transaction-building#coin-selection): how an SDK picks which UTxOs to spend.
+- [Transaction building](/docs/developers/curriculum/start-building/transaction-building): building and balancing transactions in depth.
 
 Next: **[Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano)**.

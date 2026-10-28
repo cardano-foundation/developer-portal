@@ -25530,9 +25530,9 @@ Want to see a real project end to end and understand how the pieces fit together
 
 Go deeper with the lectures:
 
-- [Beginner](/docs/developers/onboarding/lectures/beginner/introduction) — Cardano's fundamentals: wallets, UTxOs, transactions, tokens, and reading the chain.
-- [Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction) — smart contracts from scratch: validators, datum & redeemer, and the tools to write and run them.
-- [Advanced](/docs/developers/onboarding/lectures/advanced/introduction) — production-ready contracts: security, optimization, design patterns, and getting to production.
+- [Beginner](/docs/developers/onboarding/lectures/beginner/introduction): Cardano's fundamentals: wallets, UTxOs, transactions, tokens, and reading the chain.
+- [Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction): smart contracts from scratch: validators, datum & redeemer, and the tools to write and run them.
+- [Advanced](/docs/developers/onboarding/lectures/advanced/introduction): production-ready contracts: security, optimization, design patterns, and getting to production.
 
 And to get the most from your AI assistant, see [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development).
 
@@ -28538,8 +28538,8 @@ The figures on each page are measured. Each example builds its transactions on a
 
 The pages follow this outline, combining implementation sections where appropriate:
 
-1. **The problem**: a concrete situation, with a diagram of the transaction.
-2. **The naive contract**: the obvious version, and what it costs.
+1. **The protocol**: a concrete situation, with a diagram of the transaction.
+2. **The naive contract**: the obvious version, the problem it has, and what it costs.
 3. **The pattern**: the idea, and the transaction with the pattern applied.
 4. **Design**: the four questions to account for when designing a protocol (learned from the Intermediate lectures).
 5. **Write it by hand**: a simple implementation of the pattern from scratch, so the mechanism is visible.
@@ -28547,9 +28547,12 @@ The pages follow this outline, combining implementation sections where appropria
 7. **Build the transaction**: the off-chain side.
 8. **The numbers**: naive against pattern, measured.
 9. **When to use it, and when not**: the trade-offs, security caveats included.
-10. **Go deeper**: the reference pages, the library module, the related security pages.
+10. **Run it**: download the example and run its tests on your machine.
+11. **Go deeper**: the reference pages, the library module, the related security pages.
 
 The Merkle Patricia trie page compares a list datum with a registry using Merkle Patricia Forestry. Its two-root explanation leads directly to the library-based validator.
+
+The Validity range normalization page starts from how much interval handling a contract needs. It compares reading the validity range directly with normalizing the whole interval, so it has no hand-written and library versions to compare.
 
 ## The playground {#the-playground}
 
@@ -33932,7 +33935,7 @@ What makes these pools safe, each item with a test that expects the attack to be
 
 - **The spend looks for its own coordinator.** A spend that accepted _any_ withdrawal or mint would let a sweeper attach an always-true script of their own and skip the check. Sharing one hash leaves the spend nothing else to point at.
 - **The coordinator finds the inputs it is responsible for itself**: every input under its own hash. A coordinator that took that list from a redeemer could be handed one that leaves some donations out.
-- **Payments are matched on the full address and tagged with the pool's hash**, which closes the staking redirection and double satisfaction described in [the naive contract](#the-naive-contract).
+- **Payments are matched on the full address and tagged with the pool's hash**, which closes the staking redirection and double satisfaction described in [the naive contract](#the-naive-contract-the-problem).
 - **Rewards withdrawn from the pool's account are owed to the beneficiary.** A coordinator that insisted on a zero withdrawal instead would be worse: one reward payment into the account, and no transaction could ever satisfy it again, freezing every donation.
 - **Only the beneficiary can switch the coordinator off, and nobody can delegate it.** See [Staking and certificate control](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates).
 - **The `SWEEP` token is meaningless.** Anyone can mint one, one per transaction, sweep or not. Never treat a token minted by a transaction-level coordinator as evidence of anything, unless its policy was written to make it so.
@@ -36032,8 +36035,8 @@ Your app reads UTxOs, evaluates scripts and submits transactions through a **pro
 flowchart LR
     subgraph RENT["the provider runs it"]
         H["`**hosted provider**
-        Blockfrost, Maestro,
-        Koios, Demeter`"]
+        Blockfrost, Koios,
+        Demeter`"]
     end
     subgraph RUN["you run it"]
         S["`**your own query layer**
@@ -36051,7 +36054,7 @@ Each step to the right gives you more control and more to run. You need the last
 
 ### Start with a hosted provider
 
-A hosted provider such as **Blockfrost**, **Maestro**, **Koios** or **Demeter** runs the node, the database and the API for you. You get a base URL and a key, and you can start in minutes. In return you live with its rate limits and its prices, and your app stops when the provider does.
+A hosted provider such as **Blockfrost**, **Koios** or **Demeter** runs the node, the database and the API for you. You get a base URL and a key, and you can start in minutes. In return you live with its rate limits and its prices, and your app stops when the provider does.
 
 Demeter also hosts the tools you would otherwise run yourself, such as node access, Ogmios, Kupo, Dolos, etc., each one as a service. Choose it when you want to work with those tools directly but do not want to run servers.
 
@@ -36499,9 +36502,12 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 You can think as an attacker before you write a contract and again before you deploy it, write the attacks as tests, and check every guarantee against generated transactions. You can measure what a contract costs and make it cheaper at four levels. You know what runs under a Cardano app, when to change it, and how to handle a rollback. You can deploy a contract and its app, watch them, and plan for the day the contract has to change.
 
-- The **design patterns**: the shapes production contracts take, each with when to use it and what it costs.
-- The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
+This is the end of the onboarding. From here:
+
+- **[What to build](/docs/developers/onboarding/what-to-build/overview)** lists what people build on Cardano today and the open spaces nobody has filled yet.
 - The **[contracts library](https://github.com/input-output-hk/contracts-library)**: contracts with specifications and proofs, to use or fork. Its first one, linear vesting, is still in progress.
+- The **[developer community](/docs/community/cardano-developer-community)** is where you ask questions and show what you built.
+- The **[talent pool](/talent)** and **[grants and funding](https://cardano.org/grants-funding/)** connect you with hackathons, jobs and money to build your idea.
 
 ## Go deeper
 
@@ -36765,13 +36771,13 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 ## Go deeper
 
-- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) — the model behind inputs, outputs, and change.
-- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions) — a transaction's full anatomy.
-- [Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees) — how the fee is calculated and where it goes.
-- [What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) — how blocks link together into a chain.
-- [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools) — Mesh, Evolution, and how to pick an SDK.
-- [Coin selection](/docs/developers/curriculum/start-building/transaction-building#coin-selection) — how an SDK picks which UTxOs to spend.
-- [Transaction building](/docs/developers/curriculum/start-building/transaction-building) — building and balancing transactions in depth.
+- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): the model behind inputs, outputs, and change.
+- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions): a transaction's full anatomy.
+- [Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees): how the fee is calculated and where it goes.
+- [What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain): how blocks link together into a chain.
+- [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools): Mesh, Evolution, and how to pick an SDK.
+- [Coin selection](/docs/developers/curriculum/start-building/transaction-building#coin-selection): how an SDK picks which UTxOs to spend.
+- [Transaction building](/docs/developers/curriculum/start-building/transaction-building): building and balancing transactions in depth.
 
 Next: **[Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano)**.
 
@@ -36807,8 +36813,8 @@ Cardano is **deterministic**: whether a transaction is valid depends only on thi
 
 Instead, a transaction carries a **validity interval**: the slot window in which it is allowed to be included in a block. It has up to two bounds:
 
-- **`invalidBefore`** the earliest slot the transaction may appear in ("not before this time").
-- **`invalidHereafter`** (also called the **TTL**) the latest slot it may appear in ("expires after this time").
+- **`invalidBefore`**: the earliest slot the transaction may appear in ("not before this time").
+- **`invalidHereafter`** (also called the **TTL**): the latest slot it may appear in ("expires after this time").
 
 The **ledger** checks that window against the current slot before the transaction is accepted. So when a native script says _"only after slot X,"_ it doesn't look up the time itself, it relies on the window the ledger already verified. **Your app is the one holding a real clock**: it turns a date into a slot number when it builds the transaction.
 
@@ -36870,9 +36876,9 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 ## Go deeper
 
-- [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) — how slots structure time, and where epochs come in.
-- [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time) — the bounds in detail, and slot↔time conversion.
-- [Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers) — why there's no `block.timestamp`.
+- [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros): how slots structure time, and where epochs come in.
+- [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time): the bounds in detail, and slot↔time conversion.
+- [Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers): why there's no `block.timestamp`.
 
 Next: **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)**.
 
@@ -37100,10 +37106,10 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 ## Go deeper
 
-- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) — the "Native script policies" section shows these scripts in full.
-- [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry) — the metadata standards: CIP-25 (NFTs), CIP-68 (on-chain datum), CIP-26 (registry).
-- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions) — metadata is part of a transaction's anatomy.
-- [Datum, redeemer & script context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context) — the on-chain data a contract _can_ read, where a full smart contract picks up when signatures, time, and metadata aren't enough.
+- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies): the "Native script policies" section shows these scripts in full.
+- [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry): the metadata standards: CIP-25 (NFTs), CIP-68 (on-chain datum), CIP-26 (registry).
+- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions): metadata is part of a transaction's anatomy.
+- [Datum, redeemer & script context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context): the on-chain data a contract _can_ read, where a full smart contract picks up when signatures, time, and metadata aren't enough.
 
 Next: **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)**.
 
@@ -37232,7 +37238,7 @@ Next: **[Providers & explorers](/docs/developers/onboarding/lectures/beginner/pr
 
 You've been reading the chain by pasting addresses into an explorer. But how does an _app_ read the chain? Two tools you'll use constantly: a **provider** (for your code) and an **explorer** (for your eyes).
 
-Your app can't talk to the blockchain directly. It calls a **provider**: a hosted service that runs the heavy Cardano infrastructure and answers questions over a normal web API, just like calling a **weather API** instead of launching your own satellites. **[Blockfrost](https://blockfrost.io/)** is the most common, with **Maestro** and **Koios** as alternatives.
+Your app can't talk to the blockchain directly. It calls a **provider**: a hosted service that runs the heavy Cardano infrastructure and answers questions over a normal web API, just like calling a **weather API** instead of launching your own satellites. **[Blockfrost](https://blockfrost.io/)** is the most common, with **Koios** and **Demeter** as alternatives.
 
 A provider handles _reading_ the chain and submitting transactions. To _build_ those transactions in code you pair it with an **off-chain SDK** like **[Mesh](https://meshsdk.dev/)** or **[Evolution](https://no-witness-labs.github.io/evolution-sdk/)** (both TypeScript), you'll use these in the Intermediate track.
 
@@ -37244,7 +37250,7 @@ Here's the whole picture, both roads lead to the same chain:
 
 ```mermaid
 flowchart LR
-    App["Your app(code + an SDK)"] <-->|"read + submit"| Provider["Provider(Blockfrost, Demeter, Maestro, Koios)"]
+    App["Your app(code + an SDK)"] <-->|"read + submit"| Provider["Provider(Blockfrost, Koios, Demeter)"]
     You["You (a person)"] -->|browser| Explorer["Explorer(Cardanoscan, Cardano explorer)"]
     Provider <--> Chain[("Cardano network")]
     Explorer --> Chain
@@ -37298,13 +37304,13 @@ That JSON is the same UTxOs the explorer drew as a balance, the explorer made it
 
 - [Use a provider](/docs/developers/curriculum/production/use-a-provider)
 - [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)
-- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain) — providers compared, plus self-hosted Kupmios (Ogmios + Kupo) and Demeter.
+- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain): providers compared, plus self-hosted Kupmios (Ogmios + Kupo) and Demeter.
 
 ## You've got the base
 
 Wallets and keys are your identity, UTxOs and transactions move value, tokens are custom assets, metadata and native scripts add notes and simple rules, and providers and explorers are how you read it all.
 
-Next, build something end to end in the **[Tutorial](/docs/developers/onboarding/tutorial/overview)**, or browse **[What to build](/docs/developers/onboarding/what-to-build/overview)** for ideas.
+Next, the **[Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction)** module teaches you to write smart contracts: rules the chain enforces on how value moves. To see a whole app working first, run the **[Tutorial](/docs/developers/onboarding/tutorial/overview)**.
 
 ---
 
@@ -37331,12 +37337,12 @@ After this track you'll be able to:
 
 ## The lectures
 
-1. **[Wallets, keys & addresses](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)** — your account and identity on Cardano.
-2. **[UTxOs & Transactions](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions)** — how value is stored and moved, and how to build a transaction in code with an SDK.
-3. **[Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano)** — slots, and why "now" doesn't exist on-chain.
-4. **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)** — simple on-chain rules and durable transaction notes, no smart contract needed.
-5. **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)** — custom assets, with a native script as their minting policy.
-6. **[Providers & explorers](/docs/developers/onboarding/lectures/beginner/providers-and-explorers)** — how you and your app read the chain.
+1. **[Wallets, keys & addresses](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)**: your account and identity on Cardano.
+2. **[UTxOs & Transactions](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions)**: how value is stored and moved, and how to build a transaction in code with an SDK.
+3. **[Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano)**: slots, and why "now" doesn't exist on-chain.
+4. **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)**: simple on-chain rules and durable transaction notes, no smart contract needed.
+5. **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)**: custom assets, with a native script as their minting policy.
+6. **[Providers & explorers](/docs/developers/onboarding/lectures/beginner/providers-and-explorers)**: how you and your app read the chain.
 
 Each lecture has a **Try it** you can finish in a few minutes and a **Go deeper** link into the handbook when you want the full detail.
 
@@ -39546,9 +39552,9 @@ A validator guarding a locked UTxO is a function of three things:
 validator(datum, redeemer, context) -> True | False
 ```
 
-- **datum** the information attached to the locked UTxO,
-- **redeemer** what the spender provides when unlocking,
-- **context** the whole transaction around it.
+- **datum**: the information attached to the locked UTxO,
+- **redeemer**: what the spender provides when unlocking,
+- **context**: the whole transaction around it.
 
 Depending on the language you choose to write your validators in, you can see more or fewer arguments.
 
@@ -42184,9 +42190,9 @@ Going from "it works" to "it's safe and scalable": common vulnerabilities, optim
 
 Depending on the lecture, you'll want:
 
-- **A browser and a wallet** — a browser wallet like **[Lace](https://www.lace.io/)** switched to a **test network**, plus free test ADA from the **[faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)**. Test coins have no real value, so you can experiment safely.
-- **Latest [Node.js](https://nodejs.org/):** it runs the TypeScript examples directly.
-- **Sometimes:** a free **[Blockfrost](https://blockfrost.io/)** Preview API key (for lectures that query the live chain), and **[Aiken](https://aiken-lang.org/)** (for the Intermediate and Advanced lectures that compile on-chain code).
+- **A browser and a wallet**: a browser wallet like **[Lace](https://www.lace.io/)** switched to a **test network**, plus free test ADA from the **[faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)**. Test coins have no real value, so you can experiment safely.
+- **Latest [Node.js](https://nodejs.org/)**: it runs the TypeScript examples directly.
+- **Sometimes**: a free **[Blockfrost](https://blockfrost.io/)** Preview API key (for lectures that query the live chain), and **[Aiken](https://aiken-lang.org/)** (for the Intermediate and Advanced lectures that compile on-chain code).
 
 The code you see is imported straight from tested example projects, so **what you read is exactly what runs**.
 
@@ -42229,8 +42235,8 @@ To run the example, you only need Node.js:
 
 These are optional, only if you want to go beyond just running it:
 
-- **[Aiken](https://aiken-lang.org/)** the language this example's smart contract is written in. You do **not** need it to run the tutorial, the contract is already compiled to a file (`plutus.json`) that ships with the example. Install it with [`aikup`](https://aiken-lang.org/installation-instructions) only if you want to change or recompile the contract yourself, which the [On-chain](/docs/developers/onboarding/tutorial/on-chain) page walks through.
-- **A code editor** any editor works, but something like [VS Code](https://code.visualstudio.com/) with a TypeScript and an Aiken extension gives you syntax highlighting and autocomplete, which makes reading along smoother.
+- **[Aiken](https://aiken-lang.org/)**: the language this example's smart contract is written in. You do **not** need it to run the tutorial, the contract is already compiled to a file (`plutus.json`) that ships with the example. Install it with [`aikup`](https://aiken-lang.org/installation-instructions) only if you want to change or recompile the contract yourself, which the [On-chain](/docs/developers/onboarding/tutorial/on-chain) page walks through.
+- **A code editor**: any editor works, but something like [VS Code](https://code.visualstudio.com/) with a TypeScript and an Aiken extension gives you syntax highlighting and autocomplete, which makes reading along smoother.
 
 ## A wallet
 
@@ -42264,7 +42270,7 @@ This example is set up to use **[Blockfrost](https://blockfrost.io/)**, a hosted
 
 You're not locked into Blockfrost, though. The SDK works with several providers, and switching is a small code change (swap `BlockfrostProvider` in the code for the one you want):
 
-- **Hosted** (nothing to run yourself): **[Blockfrost](https://blockfrost.io/)** (used here), **[Maestro](https://www.gomaestro.org/)**, or **[Demeter](https://demeter.run/)**.
+- **Hosted** (nothing to run yourself): **[Blockfrost](https://blockfrost.io/)** (used here), **[Koios](https://koios.rest/)**, or **[Demeter](https://demeter.run/)**.
 - **Self-hosted** (you run it, for full control): **[Kupo](https://github.com/CardanoSolutions/kupo)**, **[Ogmios](https://github.com/CardanoSolutions/ogmios)**, or **[Dolos](https://github.com/txpipe/dolos)**.
 - **Local** (a whole test network on your own machine): **[Yaci DevKit](https://github.com/bloxbean/yaci-devkit)**.
 
@@ -42283,12 +42289,12 @@ The example also comes with a small web page, so you can run the whole swap with
 
 Two words you'll see here:
 
-- **Sign** approve a transaction. When the app builds one, your wallet pops up and asks you to confirm; signing proves the transaction is really from you.
-- **Submit** send the signed transaction to the network so it takes effect.
+- **Sign**: approve a transaction. When the app builds one, your wallet pops up and asks you to confirm; signing proves the transaction is really from you.
+- **Submit**: send the signed transaction to the network so it takes effect.
 
 The app builds a transaction with the lib, then just asks the wallet to **sign and submit** it:
 
-```tsx title="main.tsx — sign & submit"
+```tsx title="main.tsx: sign & submit"
 // The connected browser wallet has the same methods the tested lib expects, so
 // we build the transaction with the lib and only sign + submit it here.
 // `true` = partial sign: the wallet signs just its own inputs and leaves the
@@ -42301,7 +42307,7 @@ async function signAndSubmit(unsignedTx: string) {
 
 Every button follows that same shape, build, sign, submit. For example, accepting an offer:
 
-```tsx title="main.tsx — the swap button"
+```tsx title="main.tsx: the swap button"
 const swap = (offer: Offer) =>
   run(async () => signAndSubmit(await buildSwapTx(wallet!, provider, offer)));
 ```
@@ -42325,11 +42331,11 @@ A real swap has two people, a seller and a buyer. To keep this simple, you'll pl
 
 The page walks you through it in five numbered steps:
 
-1. **Connect your wallet** click **Connect Lace**. Your address and holdings appear.
-2. **Set up collateral** click **Check collateral**. If it's not set, add it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then check again. Minting and swapping stay disabled until it shows ✓ set. (Collateral is a small ADA deposit smart-contract transactions require, see [Set up collateral](/docs/developers/onboarding/tutorial/environment#set-up-collateral-in-your-wallet).)
-3. **Create your tokens** click **Mint GOLD**, approve in Lace, and wait about a minute for it to confirm. Do the same for **Mint SILVER** (that one mints **5** SILVER). Now you hold **1 GOLD and 5 SILVER**.
-4. **Make an offer** leave **Give** at **1 · your GOLD** and **Want** at **5 · your SILVER** (the defaults for a self-swap), then read the _"You'll lock 1 GOLD and receive 5 SILVER"_ line to confirm. Click **Create offer** and sign. Once it confirms, your GOLD is locked in the contract as an open offer. _(For a real trade with a second wallet, set **Want** to **other token…** and paste that wallet's token id, see [below](#go-further-a-real-two-party-swap).)_
-5. **Accept the offer** now you're the buyer. Click **Refresh offers**, your offer appears as _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
+1. **Connect your wallet**: click **Connect Lace**. Your address and holdings appear.
+2. **Set up collateral**: click **Check collateral**. If it's not set, add it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then check again. Minting and swapping stay disabled until it shows ✓ set. (Collateral is a small ADA deposit smart-contract transactions require, see [Set up collateral](/docs/developers/onboarding/tutorial/environment#set-up-collateral-in-your-wallet).)
+3. **Create your tokens**: click **Mint GOLD**, approve in Lace, and wait about a minute for it to confirm. Do the same for **Mint SILVER** (that one mints **5** SILVER). Now you hold **1 GOLD and 5 SILVER**.
+4. **Make an offer**: leave **Give** at **1 · your GOLD** and **Want** at **5 · your SILVER** (the defaults for a self-swap), then read the _"You'll lock 1 GOLD and receive 5 SILVER"_ line to confirm. Click **Create offer** and sign. Once it confirms, your GOLD is locked in the contract as an open offer. _(For a real trade with a second wallet, set **Want** to **other token…** and paste that wallet's token id, see [below](#go-further-a-real-two-party-swap).)_
+5. **Accept the offer**: now you're the buyer. Click **Refresh offers**, your offer appears as _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
 
 On your own offers you'll also see a **Cancel** button. Instead of accepting, an owner can click it to reclaim the locked token, useful when no one takes the offer. It runs the contract's `Cancel` action and returns the GOLD to you.
 
@@ -42345,19 +42351,21 @@ The one-wallet flow runs the whole mechanism, but both sides are you. To see val
 
 Then trade for real. Say profile **A** is the seller and profile **B** is the buyer:
 
-1. **Buyer (B)** open the app, connect, and **Mint SILVER**. Under _Create your tokens_, click **copy** next to **SILVER** to copy that token's id, and send it to the seller (paste it in a chat, a note, anywhere).
-2. **Seller (A)** open the app in the other profile, connect, and **Mint GOLD**. In _Make an offer_, set **Give** to **1 · your GOLD**, set **Want** to **other token…**, and paste **B's SILVER id** into the box that appears. Click **Create offer** and sign.
-3. **Buyer (B)** click **Refresh offers**. A's offer appears, _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
+1. **Buyer (B)**: open the app, connect, and **Mint SILVER**. Under _Create your tokens_, click **copy** next to **SILVER** to copy that token's id, and send it to the seller (paste it in a chat, a note, anywhere).
+2. **Seller (A)**: open the app in the other profile, connect, and **Mint GOLD**. In _Make an offer_, set **Give** to **1 · your GOLD**, set **Want** to **other token…**, and paste **B's SILVER id** into the box that appears. Click **Create offer** and sign.
+3. **Buyer (B)**: click **Refresh offers**. A's offer appears, _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
 
 Now the GOLD really moves to B and the SILVER to A, a genuine trustless trade between two wallets. Each profile is an independent wallet (the app connects to whichever Lace is in the current profile), and offers are read from the chain, so both profiles see them.
 
 ### If something's off
 
-- **"wallet has no collateral UTxO"** the wallet has no collateral set. Set it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then try again.
-- **Your offer doesn't appear after Refresh** the lock transaction hasn't confirmed yet. Wait a moment and click **Refresh** again.
-- **A button fails the instant you click it** (an error shows in the status line instead of your wallet popping up) the app couldn't reach the chain to build the transaction. Check that your Blockfrost key is set in `.env.local`, and that your wallet is on the **Preview** network.
+- **"wallet has no collateral UTxO"**: the wallet has no collateral set. Set it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then try again.
+- **Your offer doesn't appear after Refresh**: the lock transaction hasn't confirmed yet. Wait a moment and click **Refresh** again.
+- **A button fails the instant you click it** (an error shows in the status line instead of your wallet popping up): the app couldn't reach the chain to build the transaction. Check that your Blockfrost key is set in `.env.local`, and that your wallet is on the **Preview** network.
 
-**Go deeper:** the [Build a dApp](/docs/developers/curriculum/dapps/overview) curriculum takes frontends, wallets, and dApp patterns much further.
+## Next
+
+You have run every part of a Cardano app. The **[Lectures](/docs/developers/onboarding/lectures/introduction)** explain each part in depth. **[Beginner](/docs/developers/onboarding/lectures/beginner/introduction)** covers the UTxOs, transactions and tokens the swap moves. **[Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction)** teaches you to write a contract like the swap validator and connect it to a page.
 
 ---
 
@@ -42676,7 +42684,7 @@ export async function buildCancelTx(
 </TabItem>
 <TabItem value="evolution" label="Evolution">
 
-An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version of the same steps is coming soon. The contract is identical — only the library calls differ.
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version of the same steps is coming soon. The contract is identical. Only the library calls differ.
 
 </TabItem>
 </Tabs>
@@ -42694,8 +42702,8 @@ Next: [put a web page on it](/docs/developers/onboarding/tutorial/frontend).
 
 The contract is written in a smart-contract language (pick one in the tabs below). Either way, it's really two small rules that work together:
 
-- **minting policy** the rule that controls creating and destroying tokens (making a new token is called _minting_, destroying the token is called _burning_). It decides who and how is allowed to create and destroy GOLD and SILVER tokens, so nobody can create tokens they shouldn't.
-- **swap validator** the rule that guards a locked token. Whenever someone tries to take the GOLD out of the contract, this rule runs and lets the trade go through only if it's fair, meaning the seller is paid exactly what they asked for.
+- **minting policy**: the rule that controls creating and destroying tokens (making a new token is called _minting_, destroying the token is called _burning_). It decides who and how is allowed to create and destroy GOLD and SILVER tokens, so nobody can create tokens they shouldn't.
+- **swap validator**: the rule that guards a locked token. Whenever someone tries to take the GOLD out of the contract, this rule runs and lets the trade go through only if it's fair, meaning the seller is paid exactly what they asked for.
 
 Both rules are just **yes/no functions**. The network hands each one the whole transaction, and it returns exactly one thing: **`true`** (allow) or **`false`** (reject). A contract never moves tokens or does anything on its own, the transaction is already fully built before the rule runs. All the rule does is _judge_ it: return `true` and the transaction goes through as written, return `false` and the whole thing is rejected, so nothing happens.
 
@@ -42757,7 +42765,7 @@ Why bother? Imagine two separate offers that both say _"pay 5 SILVER to Bob."_ W
 Double-satisfaction is a subtle attack, you don't have to fully understand it to follow along. When you're ready to go deeper, the [Double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) page covers it in detail.
 :::
 
-```aiken title="swap.ak — the rule"
+```aiken title="swap.ak: the rule"
 validator swap {
   // `spend` defines the rules for spending (taking) a UTxO locked at this contract.
   spend(
@@ -42803,7 +42811,7 @@ validator swap {
 
 The small helper functions it uses:
 
-```aiken title="swap.ak — helpers"
+```aiken title="swap.ak: helpers"
 // Is this output tagged with `expected` (the spent UTxO's reference) as its
 // inline datum? `expected` is typed as `Data` so the `OutputReference` passed
 // at the call site is upcast and compared against the raw inline datum.
@@ -42836,7 +42844,7 @@ fn covers_price(value: Assets, price: List<PricedAsset>) -> Bool {
 
 Alice and Bob each need a token to trade, so they each create ("mint") one. This rule says a token can only be minted by its owner. Because the rule is tied to each person's key, Alice's SILVER and Bob's GOLD are automatically two different tokens.
 
-```aiken title="mint.ak — who can create tokens"
+```aiken title="mint.ak: who can create tokens"
 // A minting policy for the demo tokens (GOLD, SILVER).
 //
 // Parameterized by an owner key: only the owner can mint or burn under this
@@ -42860,7 +42868,7 @@ Turn the contract into something the blockchain can run (this step needs [Aiken]
 ```bash
 cd on-chain/aiken
 aiken check   # run the contract's tests
-aiken build   # compile it — writes plutus.json
+aiken build   # compile it and write plutus.json
 ```
 
 :::tip What just happened
@@ -42891,11 +42899,12 @@ That app is an **atomic swap**, a way for two people to trade tokens directly, w
 :::info New to Cardano? Start here
 A few words you'll see throughout in plain terms:
 
-- **Token** a digital item you can own and transfer. Here we'll create two, called GOLD and SILVER. **Wallet**, an app that holds your tokens and money and lets you approve actions. It's your account and your identity. In a real swap two people would use two wallets, but in this hands-on demo you'll use a single wallet and play both sides, to keep it simple.
-- **Transaction** a single instruction that changes the blockchain (for example, "move this token from here to there"). Every transaction costs a tiny fee, paid in Cardano's coin, **ADA**.
-- **UTxO** short for "unspent transaction output". On Cardano your balance isn't a single number, it's made up of separate chunks of value, like the individual bills and coins in a wallet. Each chunk is one UTxO. Paying works just like using cash: you hand over whole chunks and get new ones back as change.
-- **Smart contract** a small program stored on the blockchain that can hold tokens and enforce rules. Once it's deployed, nobody can bypass its rules, not even the person who wrote it.
-- **dApp** a "decentralized app": a normal app whose important logic runs on the blockchain (in a smart contract) instead of on a company's server.
+- **Token**: a digital item you can own and transfer. Here we'll create two, called GOLD and SILVER.
+- **Wallet**: an app that holds your tokens and money and lets you approve actions. It's your account and your identity. In a real swap two people would use two wallets, but in this hands-on demo you'll use a single wallet and play both sides, to keep it simple.
+- **Transaction**: a single instruction that changes the blockchain (for example, "move this token from here to there"). Every transaction costs a tiny fee, paid in Cardano's coin, **ADA**.
+- **UTxO**: short for "unspent transaction output". On Cardano your balance isn't a single number, it's made up of separate chunks of value, like the individual bills and coins in a wallet. Each chunk is one UTxO. Paying works just like using cash: you hand over whole chunks and get new ones back as change.
+- **Smart contract**: a small program stored on the blockchain that can hold tokens and enforce rules. Once it's deployed, nobody can bypass its rules, not even the person who wrote it.
+- **dApp**: short for "decentralized app", a normal app whose important logic runs on the blockchain (in a smart contract) instead of on a company's server.
 
 Don't worry about memorizing these, we'll explain each one again as you use it.
 :::
@@ -43131,7 +43140,7 @@ Pick where you want to start.
 ## Want to jump into building?
 
   
-    <DocCard item={{type: 'link', href: '/templates', label: 'Scaffold a dApp', description: 'A wallet-connected app in one command.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/get-started/overview', label: 'Scaffold a dApp', description: 'One command creates a contract, off-chain code and a local network.'}} />
   
   
     <DocCard item={{type: 'link', href: '/docs/developers/curriculum/start-building/your-first-transaction', label: 'Send your first transaction', description: 'Build, sign, and submit on a testnet.'}} />
@@ -43140,7 +43149,7 @@ Pick where you want to start.
 ## Want to learn how Cardano works?
 
   
-    <DocCard item={{type: 'link', href: '/docs/developers/curriculum/fundamentals/overview', label: 'Learn the fundamentals', description: 'The ledger, keys, transactions, and fees.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/lectures/beginner/introduction', label: 'Learn the fundamentals', description: 'Wallets, UTxOs, transactions and tokens, step by step.'}} />
   
 
 ## Coding with an AI agent?

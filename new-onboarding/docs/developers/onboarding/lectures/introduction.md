@@ -30,9 +30,9 @@ Going from "it works" to "it's safe and scalable": common vulnerabilities, optim
 
 Depending on the lecture, you'll want:
 
-- **A browser and a wallet** — a browser wallet like **[Lace](https://www.lace.io/)** switched to a **test network**, plus free test ADA from the **[faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)**. Test coins have no real value, so you can experiment safely.
-- **Latest [Node.js](https://nodejs.org/):** it runs the TypeScript examples directly.
-- **Sometimes:** a free **[Blockfrost](https://blockfrost.io/)** Preview API key (for lectures that query the live chain), and **[Aiken](https://aiken-lang.org/)** (for the Intermediate and Advanced lectures that compile on-chain code).
+- **A browser and a wallet**: a browser wallet like **[Lace](https://www.lace.io/)** switched to a **test network**, plus free test ADA from the **[faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)**. Test coins have no real value, so you can experiment safely.
+- **Latest [Node.js](https://nodejs.org/)**: it runs the TypeScript examples directly.
+- **Sometimes**: a free **[Blockfrost](https://blockfrost.io/)** Preview API key (for lectures that query the live chain), and **[Aiken](https://aiken-lang.org/)** (for the Intermediate and Advanced lectures that compile on-chain code).
 
 The code you see is imported straight from tested example projects, so **what you read is exactly what runs**.
 

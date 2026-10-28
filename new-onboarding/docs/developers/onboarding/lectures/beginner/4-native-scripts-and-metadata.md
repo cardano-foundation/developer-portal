@@ -223,9 +223,9 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 ## Go deeper
 
-- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) — the "Native script policies" section shows these scripts in full.
-- [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry) — the metadata standards: CIP-25 (NFTs), CIP-68 (on-chain datum), CIP-26 (registry).
-- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions) — metadata is part of a transaction's anatomy.
-- [Datum, redeemer & script context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context) — the on-chain data a contract _can_ read, where a full smart contract picks up when signatures, time, and metadata aren't enough.
+- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies): the "Native script policies" section shows these scripts in full.
+- [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry): the metadata standards: CIP-25 (NFTs), CIP-68 (on-chain datum), CIP-26 (registry).
+- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions): metadata is part of a transaction's anatomy.
+- [Datum, redeemer & script context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context): the on-chain data a contract _can_ read, where a full smart contract picks up when signatures, time, and metadata aren't enough.
 
 Next: **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)**.

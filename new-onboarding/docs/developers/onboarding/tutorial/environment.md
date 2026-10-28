@@ -36,8 +36,8 @@ To run the example, you only need Node.js:
 
 These are optional, only if you want to go beyond just running it:
 
-- **[Aiken](https://aiken-lang.org/)** the language this example's smart contract is written in. You do **not** need it to run the tutorial, the contract is already compiled to a file (`plutus.json`) that ships with the example. Install it with [`aikup`](https://aiken-lang.org/installation-instructions) only if you want to change or recompile the contract yourself, which the [On-chain](/docs/developers/onboarding/tutorial/on-chain) page walks through.
-- **A code editor** any editor works, but something like [VS Code](https://code.visualstudio.com/) with a TypeScript and an Aiken extension gives you syntax highlighting and autocomplete, which makes reading along smoother.
+- **[Aiken](https://aiken-lang.org/)**: the language this example's smart contract is written in. You do **not** need it to run the tutorial, the contract is already compiled to a file (`plutus.json`) that ships with the example. Install it with [`aikup`](https://aiken-lang.org/installation-instructions) only if you want to change or recompile the contract yourself, which the [On-chain](/docs/developers/onboarding/tutorial/on-chain) page walks through.
+- **A code editor**: any editor works, but something like [VS Code](https://code.visualstudio.com/) with a TypeScript and an Aiken extension gives you syntax highlighting and autocomplete, which makes reading along smoother.
 
 ## A wallet
 
@@ -71,7 +71,7 @@ This example is set up to use **[Blockfrost](https://blockfrost.io/)**, a hosted
 
 You're not locked into Blockfrost, though. The SDK works with several providers, and switching is a small code change (swap `BlockfrostProvider` in the code for the one you want):
 
-- **Hosted** (nothing to run yourself): **[Blockfrost](https://blockfrost.io/)** (used here), **[Maestro](https://www.gomaestro.org/)**, or **[Demeter](https://demeter.run/)**.
+- **Hosted** (nothing to run yourself): **[Blockfrost](https://blockfrost.io/)** (used here), **[Koios](https://koios.rest/)**, or **[Demeter](https://demeter.run/)**.
 - **Self-hosted** (you run it, for full control): **[Kupo](https://github.com/CardanoSolutions/kupo)**, **[Ogmios](https://github.com/CardanoSolutions/ogmios)**, or **[Dolos](https://github.com/txpipe/dolos)**.
 - **Local** (a whole test network on your own machine): **[Yaci DevKit](https://github.com/bloxbean/yaci-devkit)**.
 
