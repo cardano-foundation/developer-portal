@@ -393,7 +393,7 @@ What makes these pools safe, each item with a test that expects the attack to be
 
 - **The spend looks for its own coordinator.** A spend that accepted _any_ withdrawal or mint would let a sweeper attach an always-true script of their own and skip the check. Sharing one hash leaves the spend nothing else to point at.
 - **The coordinator finds the inputs it is responsible for itself**: every input under its own hash. A coordinator that took that list from a redeemer could be handed one that leaves some donations out.
-- **Payments are matched on the full address and tagged with the pool's hash**, which closes the staking redirection and double satisfaction described in [the naive contract](#the-naive-contract).
+- **Payments are matched on the full address and tagged with the pool's hash**, which closes the staking redirection and double satisfaction described in [the naive contract](#the-naive-contract-the-problem).
 - **Rewards withdrawn from the pool's account are owed to the beneficiary.** A coordinator that insisted on a zero withdrawal instead would be worse: one reward payment into the account, and no transaction could ever satisfy it again, freezing every donation.
 - **Only the beneficiary can switch the coordinator off, and nobody can delegate it.** See [Staking and certificate control](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates).
 - **The `SWEEP` token is meaningless.** Anyone can mint one, one per transaction, sweep or not. Never treat a token minted by a transaction-level coordinator as evidence of anything, unless its policy was written to make it so.

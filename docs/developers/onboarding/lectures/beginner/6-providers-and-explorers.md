@@ -1,7 +1,7 @@
 ---
 title: "Providers & explorers"
 sidebar_label: "Providers & explorers"
-description: "The two ways to read the chain — a provider for your app, an explorer for you."
+description: "The two ways to read the chain: a provider for your app, an explorer for you."
 pagination_next: developers/onboarding/tutorial/overview
 ---
 
@@ -9,7 +9,7 @@ pagination_next: developers/onboarding/tutorial/overview
 
 You've been reading the chain by pasting addresses into an explorer. But how does an _app_ read the chain? Two tools you'll use constantly: a **provider** (for your code) and an **explorer** (for your eyes).
 
-Your app can't talk to the blockchain directly. It calls a **provider**: a hosted service that runs the heavy Cardano infrastructure and answers questions over a normal web API, just like calling a **weather API** instead of launching your own satellites. **[Blockfrost](https://blockfrost.io/)** is the most common, with **Maestro** and **Koios** as alternatives.
+Your app can't talk to the blockchain directly. It calls a **provider**: a hosted service that runs the heavy Cardano infrastructure and answers questions over a normal web API, just like calling a **weather API** instead of launching your own satellites. **[Blockfrost](https://blockfrost.io/)** is the most common, with **Koios** and **Demeter** as alternatives.
 
 A provider handles _reading_ the chain and submitting transactions. To _build_ those transactions in code you pair it with an **off-chain SDK** like **[Mesh](https://meshsdk.dev/)** or **[Evolution](https://no-witness-labs.github.io/evolution-sdk/)** (both TypeScript), you'll use these in the Intermediate track.
 
@@ -21,7 +21,7 @@ Here's the whole picture, both roads lead to the same chain:
 
 ```mermaid
 flowchart LR
-    App["Your app<br/>(code + an SDK)"] <-->|"read + submit"| Provider["Provider<br/>(Blockfrost, Demeter, Maestro, Koios)"]
+    App["Your app<br/>(code + an SDK)"] <-->|"read + submit"| Provider["Provider<br/>(Blockfrost, Koios, Demeter)"]
     You["You (a person)"] -->|browser| Explorer["Explorer<br/>(Cardanoscan, Cardano explorer)"]
     Provider <--> Chain[("Cardano network")]
     Explorer --> Chain
@@ -75,10 +75,10 @@ That JSON is the same UTxOs the explorer drew as a balance, the explorer made it
 
 - [Use a provider](/docs/developers/curriculum/production/use-a-provider)
 - [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)
-- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain) — providers compared, plus self-hosted Kupmios (Ogmios + Kupo) and Demeter.
+- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain): providers compared, plus self-hosted Kupmios (Ogmios + Kupo) and Demeter.
 
 ## You've got the base
 
 Wallets and keys are your identity, UTxOs and transactions move value, tokens are custom assets, metadata and native scripts add notes and simple rules, and providers and explorers are how you read it all.
 
-Next, build something end to end in the **[Tutorial](/docs/developers/onboarding/tutorial/overview)**, or browse **[What to build](/docs/developers/onboarding/what-to-build/overview)** for ideas.
+Next, the **[Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction)** module teaches you to write smart contracts: rules the chain enforces on how value moves. To see a whole app working first, run the **[Tutorial](/docs/developers/onboarding/tutorial/overview)**.

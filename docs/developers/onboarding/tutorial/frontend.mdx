@@ -14,18 +14,18 @@ The example also comes with a small web page, so you can run the whole swap with
 
 Two words you'll see here:
 
-- **Sign** approve a transaction. When the app builds one, your wallet pops up and asks you to confirm; signing proves the transaction is really from you.
-- **Submit** send the signed transaction to the network so it takes effect.
+- **Sign**: approve a transaction. When the app builds one, your wallet pops up and asks you to confirm; signing proves the transaction is really from you.
+- **Submit**: send the signed transaction to the network so it takes effect.
 
 The app builds a transaction with the lib, then just asks the wallet to **sign and submit** it:
 
-<CodeBlock language="tsx" title="main.tsx — sign & submit">
+<CodeBlock language="tsx" title="main.tsx: sign & submit">
   {extractRegion(Ui, "connect")}
 </CodeBlock>
 
 Every button follows that same shape, build, sign, submit. For example, accepting an offer:
 
-<CodeBlock language="tsx" title="main.tsx — the swap button">
+<CodeBlock language="tsx" title="main.tsx: the swap button">
   {extractRegion(Ui, "swap")}
 </CodeBlock>
 
@@ -48,11 +48,11 @@ A real swap has two people, a seller and a buyer. To keep this simple, you'll pl
 
 The page walks you through it in five numbered steps:
 
-1. **Connect your wallet** click **Connect Lace**. Your address and holdings appear.
-2. **Set up collateral** click **Check collateral**. If it's not set, add it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then check again. Minting and swapping stay disabled until it shows ✓ set. (Collateral is a small ADA deposit smart-contract transactions require, see [Set up collateral](/docs/developers/onboarding/tutorial/environment#set-up-collateral-in-your-wallet).)
-3. **Create your tokens** click **Mint GOLD**, approve in Lace, and wait about a minute for it to confirm. Do the same for **Mint SILVER** (that one mints **5** SILVER). Now you hold **1 GOLD and 5 SILVER**.
-4. **Make an offer** leave **Give** at **1 · your GOLD** and **Want** at **5 · your SILVER** (the defaults for a self-swap), then read the _"You'll lock 1 GOLD and receive 5 SILVER"_ line to confirm. Click **Create offer** and sign. Once it confirms, your GOLD is locked in the contract as an open offer. _(For a real trade with a second wallet, set **Want** to **other token…** and paste that wallet's token id, see [below](#go-further-a-real-two-party-swap).)_
-5. **Accept the offer** now you're the buyer. Click **Refresh offers**, your offer appears as _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
+1. **Connect your wallet**: click **Connect Lace**. Your address and holdings appear.
+2. **Set up collateral**: click **Check collateral**. If it's not set, add it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then check again. Minting and swapping stay disabled until it shows ✓ set. (Collateral is a small ADA deposit smart-contract transactions require, see [Set up collateral](/docs/developers/onboarding/tutorial/environment#set-up-collateral-in-your-wallet).)
+3. **Create your tokens**: click **Mint GOLD**, approve in Lace, and wait about a minute for it to confirm. Do the same for **Mint SILVER** (that one mints **5** SILVER). Now you hold **1 GOLD and 5 SILVER**.
+4. **Make an offer**: leave **Give** at **1 · your GOLD** and **Want** at **5 · your SILVER** (the defaults for a self-swap), then read the _"You'll lock 1 GOLD and receive 5 SILVER"_ line to confirm. Click **Create offer** and sign. Once it confirms, your GOLD is locked in the contract as an open offer. _(For a real trade with a second wallet, set **Want** to **other token…** and paste that wallet's token id, see [below](#go-further-a-real-two-party-swap).)_
+5. **Accept the offer**: now you're the buyer. Click **Refresh offers**, your offer appears as _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
 
 On your own offers you'll also see a **Cancel** button. Instead of accepting, an owner can click it to reclaim the locked token, useful when no one takes the offer. It runs the contract's `Cancel` action and returns the GOLD to you.
 
@@ -68,16 +68,18 @@ The one-wallet flow runs the whole mechanism, but both sides are you. To see val
 
 Then trade for real. Say profile **A** is the seller and profile **B** is the buyer:
 
-1. **Buyer (B)** open the app, connect, and **Mint SILVER**. Under _Create your tokens_, click **copy** next to **SILVER** to copy that token's id, and send it to the seller (paste it in a chat, a note, anywhere).
-2. **Seller (A)** open the app in the other profile, connect, and **Mint GOLD**. In _Make an offer_, set **Give** to **1 · your GOLD**, set **Want** to **other token…**, and paste **B's SILVER id** into the box that appears. Click **Create offer** and sign.
-3. **Buyer (B)** click **Refresh offers**. A's offer appears, _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
+1. **Buyer (B)**: open the app, connect, and **Mint SILVER**. Under _Create your tokens_, click **copy** next to **SILVER** to copy that token's id, and send it to the seller (paste it in a chat, a note, anywhere).
+2. **Seller (A)**: open the app in the other profile, connect, and **Mint GOLD**. In _Make an offer_, set **Give** to **1 · your GOLD**, set **Want** to **other token…**, and paste **B's SILVER id** into the box that appears. Click **Create offer** and sign.
+3. **Buyer (B)**: click **Refresh offers**. A's offer appears, _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
 
 Now the GOLD really moves to B and the SILVER to A, a genuine trustless trade between two wallets. Each profile is an independent wallet (the app connects to whichever Lace is in the current profile), and offers are read from the chain, so both profiles see them.
 
 ### If something's off
 
-- **"wallet has no collateral UTxO"** the wallet has no collateral set. Set it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then try again.
-- **Your offer doesn't appear after Refresh** the lock transaction hasn't confirmed yet. Wait a moment and click **Refresh** again.
-- **A button fails the instant you click it** (an error shows in the status line instead of your wallet popping up) the app couldn't reach the chain to build the transaction. Check that your Blockfrost key is set in `.env.local`, and that your wallet is on the **Preview** network.
+- **"wallet has no collateral UTxO"**: the wallet has no collateral set. Set it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then try again.
+- **Your offer doesn't appear after Refresh**: the lock transaction hasn't confirmed yet. Wait a moment and click **Refresh** again.
+- **A button fails the instant you click it** (an error shows in the status line instead of your wallet popping up): the app couldn't reach the chain to build the transaction. Check that your Blockfrost key is set in `.env.local`, and that your wallet is on the **Preview** network.
 
-**Go deeper:** the [Build a dApp](/docs/developers/curriculum/dapps/overview) curriculum takes frontends, wallets, and dApp patterns much further.
+## Next
+
+You have run every part of a Cardano app. The **[Lectures](/docs/developers/onboarding/lectures/introduction)** explain each part in depth. **[Beginner](/docs/developers/onboarding/lectures/beginner/introduction)** covers the UTxOs, transactions and tokens the swap moves. **[Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction)** teaches you to write a contract like the swap validator and connect it to a page.

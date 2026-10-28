@@ -56,8 +56,8 @@ Your app reads UTxOs, evaluates scripts and submits transactions through a **pro
 flowchart LR
     subgraph RENT["the provider runs it"]
         H["`**hosted provider**
-        Blockfrost, Maestro,
-        Koios, Demeter`"]
+        Blockfrost, Koios,
+        Demeter`"]
     end
     subgraph RUN["you run it"]
         S["`**your own query layer**
@@ -75,7 +75,7 @@ Each step to the right gives you more control and more to run. You need the last
 
 ### Start with a hosted provider
 
-A hosted provider such as **Blockfrost**, **Maestro**, **Koios** or **Demeter** runs the node, the database and the API for you. You get a base URL and a key, and you can start in minutes. In return you live with its rate limits and its prices, and your app stops when the provider does.
+A hosted provider such as **Blockfrost**, **Koios** or **Demeter** runs the node, the database and the API for you. You get a base URL and a key, and you can start in minutes. In return you live with its rate limits and its prices, and your app stops when the provider does.
 
 Demeter also hosts the tools you would otherwise run yourself, such as node access, Ogmios, Kupo, Dolos, etc., each one as a service. Choose it when you want to work with those tools directly but do not want to run servers.
 
@@ -382,9 +382,12 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 
 You can think as an attacker before you write a contract and again before you deploy it, write the attacks as tests, and check every guarantee against generated transactions. You can measure what a contract costs and make it cheaper at four levels. You know what runs under a Cardano app, when to change it, and how to handle a rollback. You can deploy a contract and its app, watch them, and plan for the day the contract has to change.
 
-- The **design patterns**: the shapes production contracts take, each with when to use it and what it costs.
-- The **[Tutorial](/docs/developers/onboarding/tutorial/overview)** builds an atomic swap from end to end, front end included.
+This is the end of the onboarding. From here:
+
+- **[What to build](/docs/developers/onboarding/what-to-build/overview)** lists what people build on Cardano today and the open spaces nobody has filled yet.
 - The **[contracts library](https://github.com/input-output-hk/contracts-library)**: contracts with specifications and proofs, to use or fork. Its first one, linear vesting, is still in progress.
+- The **[developer community](/docs/community/cardano-developer-community)** is where you ask questions and show what you built.
+- The **[talent pool](/talent)** and **[grants and funding](https://cardano.org/grants-funding/)** connect you with hackathons, jobs and money to build your idea.
 
 ## Go deeper
 

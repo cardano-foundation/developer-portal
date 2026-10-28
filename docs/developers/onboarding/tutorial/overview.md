@@ -14,11 +14,12 @@ That app is an **atomic swap**, a way for two people to trade tokens directly, w
 :::info New to Cardano? Start here
 A few words you'll see throughout in plain terms:
 
-- **Token** a digital item you can own and transfer. Here we'll create two, called GOLD and SILVER. **Wallet**, an app that holds your tokens and money and lets you approve actions. It's your account and your identity. In a real swap two people would use two wallets, but in this hands-on demo you'll use a single wallet and play both sides, to keep it simple.
-- **Transaction** a single instruction that changes the blockchain (for example, "move this token from here to there"). Every transaction costs a tiny fee, paid in Cardano's coin, **ADA**.
-- **UTxO** short for "unspent transaction output". On Cardano your balance isn't a single number, it's made up of separate chunks of value, like the individual bills and coins in a wallet. Each chunk is one UTxO. Paying works just like using cash: you hand over whole chunks and get new ones back as change.
-- **Smart contract** a small program stored on the blockchain that can hold tokens and enforce rules. Once it's deployed, nobody can bypass its rules, not even the person who wrote it.
-- **dApp** a "decentralized app": a normal app whose important logic runs on the blockchain (in a smart contract) instead of on a company's server.
+- **Token**: a digital item you can own and transfer. Here we'll create two, called GOLD and SILVER.
+- **Wallet**: an app that holds your tokens and money and lets you approve actions. It's your account and your identity. In a real swap two people would use two wallets, but in this hands-on demo you'll use a single wallet and play both sides, to keep it simple.
+- **Transaction**: a single instruction that changes the blockchain (for example, "move this token from here to there"). Every transaction costs a tiny fee, paid in Cardano's coin, **ADA**.
+- **UTxO**: short for "unspent transaction output". On Cardano your balance isn't a single number, it's made up of separate chunks of value, like the individual bills and coins in a wallet. Each chunk is one UTxO. Paying works just like using cash: you hand over whole chunks and get new ones back as change.
+- **Smart contract**: a small program stored on the blockchain that can hold tokens and enforce rules. Once it's deployed, nobody can bypass its rules, not even the person who wrote it.
+- **dApp**: short for "decentralized app", a normal app whose important logic runs on the blockchain (in a smart contract) instead of on a company's server.
 
 Don't worry about memorizing these, we'll explain each one again as you use it.
 :::
