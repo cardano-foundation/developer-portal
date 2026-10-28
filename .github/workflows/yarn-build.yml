@@ -24,6 +24,7 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
+          check-latest: true
           cache: yarn
 
       - name: Install

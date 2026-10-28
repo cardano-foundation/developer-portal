@@ -14,7 +14,7 @@ The example uses **mainnet data** (the original CardanoThings wallet). API endpo
 
 ## Steps
 
-1. **[Gathering Data](./01-gathering-data.md)** - APIs and endpoints used: Koios for stake balance, MinSwap portfolio API for token prices, Cexplorer for NFT collection floor prices. Includes a note on TapTools and Charli3 for production use.
+1. **[Gathering Data](./01-gathering-data.md)** - APIs and endpoints used: Koios for stake balance, MinSwap wallet API for token prices, Cexplorer for NFT collection floor prices. Includes a note on Charli3 for production use.
 2. **[Building the Ticker](./02-building-the-ticker.md)** - Walk through a multi-file Arduino project: WiFi manager, data fetcher, four data screens (wallet, tokens, NFTs, status) and the scrolling ticker.
 
 ## What you'll need
