@@ -439,7 +439,7 @@ What the policy leaves to you:
 
 ## Run it
 
-The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/design-patterns/introduction#the-playground)** for the layout.
+The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/design-patterns/introduction#the-playground)** for the layout.
 
 ```bash
 npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/design-patterns/parameter-validation parameter-validation
@@ -455,4 +455,4 @@ npm run bench                    # measure again and rewrite costs.json
 
 - [Parameters](/docs/developers/onboarding/lectures/intermediate/parameters): how a parameter changes a script's hash and address.
 - [`parameter_validation`](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/parameter-validation.ak) and [`parameter_validation/advanced`](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/parameter-validation/advanced.ak): the library's source.
-- [Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation): another way two scripts recognize each other, by sharing one hash.
+- [Transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation): another way two scripts recognize each other, by sharing one hash.
