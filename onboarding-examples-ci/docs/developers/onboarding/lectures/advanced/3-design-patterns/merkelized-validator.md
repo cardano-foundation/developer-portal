@@ -6,7 +6,7 @@ Different actions can need very different amounts of logic. Confirming an order 
 
 A **merkelized validator** separates the contract into a small gate and independently deployed workers. The gate pins each worker's script hash and checks its input/output redeemer in the current transaction. A withdraw-zero operation makes the ledger execute the worker, and a reference script supplies its code without putting the full program in the transaction's witness set.
 
-This page compares a monolith with hand-written and [`aiken-design-patterns` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/tree/v1.9.0) delegation. It covers **delegated computation** and **delegated validation**, including deployment costs and the remaining limits. The prerequisite is the whole [onboarding course](../lectures/introduction.md).
+This page compares a monolith with hand-written and [`aiken-design-patterns` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/tree/v1.9.0) delegation. It covers **delegated computation** and **delegated validation**, including deployment costs and the remaining limits. The prerequisite is the whole [onboarding course](../../../lectures/introduction.md).
 
 Despite the name, this example does not construct a [Merkle tree](./merkle-tree.md). It authenticates modules by their script hashes, not by a tree-membership proof.
 
@@ -55,7 +55,7 @@ flowchart LR
 The two actions have different needs: purchase uses both tables, while cancel uses neither. Putting everything in one validator means:
 
 - **Publishing it requires room for both tables in one transaction.** A reference script still has to be published in full before anyone can reference it.
-- **Cancelling still loads the whole script.** Supplying it by reference makes the transaction smaller, but the referenced bytes still incur [per-byte fees](../../curriculum/fundamentals/core-concepts/fees.md#reference-script-fees).
+- **Cancelling still loads the whole script.** Supplying it by reference makes the transaction smaller, but the referenced bytes still incur [per-byte fees](../../../../curriculum/fundamentals/core-concepts/fees.md#reference-script-fees).
 
 The goal is to keep the same purchase and cancellation rules while publishing the large parts separately. Pricing illustrates **delegated computation**, because it produces an amount. The code check illustrates **delegated validation**, because it only approves or rejects an input. Cancellation shows why a small action should be able to omit both workers. The benchmark later grows the tables until the monolith no longer fits, while the individual modules still do.
 
@@ -168,7 +168,7 @@ pub fn pays_merchant(
 }
 ```
 
-It must go to the merchant's exact address, including the stake credential, hold only ada, carry no reference script, and identify **this voucher** by its `OutputReference`. Otherwise two identical vouchers could share one payment, the [double-satisfaction attack](../../curriculum/smart-contracts/security/vulnerabilities/double-satisfaction.md).
+It must go to the merchant's exact address, including the stake credential, hold only ada, carry no reference script, and identify **this voucher** by its `OutputReference`. Otherwise two identical vouchers could share one payment, the [double-satisfaction attack](../../../../curriculum/smart-contracts/security/vulnerabilities/double-satisfaction.md).
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -280,7 +280,7 @@ For validation, there is no result to read. The gate matches the expected code t
 
 The total protocol can span several independently published scripts. This makes room for larger tables, specialized branches, or optimizations that increase code size, such as unrolling and inlining. The example uses embedded tables and unchanged lookup functions; it does not claim to optimize a function merely by moving it.
 
-Each module must still fit in its **own publication transaction**. Every script executed contributes to the same transaction-wide CPU and memory budget. Under Conway, the sum of reference-script bytes in spent and referenced outputs is capped at {costFigure(Costs, "limits.referenceBytes")} bytes and pays [tiered per-byte fees](../../curriculum/fundamentals/core-concepts/fees.md#reference-script-fees), even for unused reference code. Capacity is not infinite.
+Each module must still fit in its **own publication transaction**. Every script executed contributes to the same transaction-wide CPU and memory budget. Under Conway, the sum of reference-script bytes in spent and referenced outputs is capped at {costFigure(Costs, "limits.referenceBytes")} bytes and pays [tiered per-byte fees](../../../../curriculum/fundamentals/core-concepts/fees.md#reference-script-fees), even for unused reference code. Capacity is not infinite.
 
 ## Design
 
@@ -980,8 +980,8 @@ The blueprint and figures ship with the example. Rebuild and copy the blueprint 
 
 - [`merkelized_validator` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/merkelized-validator.ak): delegation and worker wrappers.
 - [Transaction-level validation](./transaction-level-validation.md): the withdraw-zero coordination mechanism.
-- [Reference inputs & reference scripts](../lectures/intermediate/13-reference-inputs-and-scripts.md): code publication, availability, and reference use.
-- [Parameters](../lectures/intermediate/7-parameters.md): why worker parameters and hashes identify distinct deployments.
-- [Reference-script fees](../../curriculum/fundamentals/core-concepts/fees.md#reference-script-fees) and [Conway's fee implementation](https://github.com/IntersectMBO/cardano-ledger/blob/cardano-ledger-conway-1.19.0.0/eras/conway/impl/src/Cardano/Ledger/Conway/Tx.hs): charging referenced bytes, used or not, and rounding the tier total down.
+- [Reference inputs & reference scripts](../../../lectures/intermediate/13-reference-inputs-and-scripts.md): code publication, availability, and reference use.
+- [Parameters](../../../lectures/intermediate/7-parameters.md): why worker parameters and hashes identify distinct deployments.
+- [Reference-script fees](../../../../curriculum/fundamentals/core-concepts/fees.md#reference-script-fees) and [Conway's fee implementation](https://github.com/IntersectMBO/cardano-ledger/blob/cardano-ledger-conway-1.19.0.0/eras/conway/impl/src/Cardano/Ledger/Conway/Tx.hs): charging referenced bytes, used or not, and rounding the tier total down.
 - [Conway reference-size validation](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/src/Cardano/Ledger/Conway/Rules/Ledger.hs) and [Conway parameters](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/src/Cardano/Ledger/Conway/PParams.hs): the reference-byte cap and tiers.
 - [Additional delegation sample](https://github.com/keyan-m/aiken-delegation-sample): architectural examples; its current generic helper API differs from the pinned v1.9.0 API used here.

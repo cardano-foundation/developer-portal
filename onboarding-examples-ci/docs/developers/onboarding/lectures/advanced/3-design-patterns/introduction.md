@@ -4,21 +4,21 @@
 
 # Design patterns
 
-The onboarding lectures end with contracts that work and are ready for production. This section is about the shapes those contracts take once they hold many UTxOs, serve many users, or outgrow a single script. Production protocols on Cardano keep reusing the same few solutions to the same few problems. These solutions are **design patterns**.
+**[Optimization](/docs/developers/onboarding/lectures/advanced/optimization)** ended at the protocol level, where the shape of the whole contract decides what it costs. This lecture is about the shapes contracts take once they hold many UTxOs, serve many users, or outgrow a single script. Production protocols on Cardano keep reusing the same few solutions to the same few problems. These solutions are **design patterns**.
 
-Each page explains one pattern on its own. It is **not a sequence**: arrive with a problem, read the page that solves it, and leave. Pages link to each other where one pattern builds on another, but none needs another read first. Every page assumes you have finished the **[onboarding lectures](/docs/developers/onboarding/lectures/introduction)**: Beginner, Intermediate, and Advanced.
+Each page explains one pattern on its own. It is **not a sequence**: arrive with a problem, read the page that solves it, and leave. Pages link to each other where one pattern builds on another, but none needs another read first. Every page assumes you have finished the **[Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction)** lectures and the first two Advanced ones, **[Detecting vulnerabilities](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities)** and **[Optimization](/docs/developers/onboarding/lectures/advanced/optimization)**.
 
 ## The patterns
 
-- **[Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)**: spending _N_ UTxOs from one script runs the same check _N_ times. Run it once instead, with a withdraw-zero stake validator or a minting policy as the coordinator.
-- **[UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers)**: each input searching the transaction for its own output costs _N²_. Pass the output's index in the redeemer instead, and check what is there.
-- **[Batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers)**: when a check spans a whole batch, every input repeats it. One coordinator walks the batch once instead, with an index for each input's outputs.
-- **[Parameter validation](/docs/developers/onboarding/design-patterns/parameter-validation)**: a validator sees only a script's hash. Rebuild an instance's hash from the compiled script and its parameter, to recognize every instance of a parameterized script without a list.
-- **[Merkelized validator](/docs/developers/onboarding/design-patterns/merkelized-validator)**: split large logic into independently published withdrawal workers, pin their hashes and arguments, and load only the modules an action needs.
-- **[Linked list](/docs/developers/onboarding/design-patterns/linked-list)**: split a growing registry across authenticated UTxOs, change only its neighbors, and prove membership or absence from one reference input.
-- **[Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree)**: commit a large allowlist to a 32-byte root and verify membership from a logarithmic-size proof built off-chain.
-- **[Merkle Patricia trie](/docs/developers/onboarding/design-patterns/merkle-patricia-trie)**: a registry too large for one datum. Keep it as a trie off-chain and its 32-byte root on-chain, and prove every insert, update, delete and lookup, absence included.
-- **[Validity range normalization](/docs/developers/onboarding/design-patterns/validity-range-normalization)**: an optional simplification for code that shares interval calculations. Preserve equivalent encodings in one canonical form, and compare its overhead with smaller endpoint helpers.
+- **[Transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation)**: spending _N_ UTxOs from one script runs the same check _N_ times. Run it once instead, with a withdraw-zero stake validator or a minting policy as the coordinator.
+- **[UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers)**: each input searching the transaction for its own output costs _N²_. Pass the output's index in the redeemer instead, and check what is there.
+- **[Batch indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/batch-indexers)**: when a check spans a whole batch, every input repeats it. One coordinator walks the batch once instead, with an index for each input's outputs.
+- **[Parameter validation](/docs/developers/onboarding/lectures/advanced/design-patterns/parameter-validation)**: a validator sees only a script's hash. Rebuild an instance's hash from the compiled script and its parameter, to recognize every instance of a parameterized script without a list.
+- **[Merkelized validator](/docs/developers/onboarding/lectures/advanced/design-patterns/merkelized-validator)**: split large logic into independently published withdrawal workers, pin their hashes and arguments, and load only the modules an action needs.
+- **[Linked list](/docs/developers/onboarding/lectures/advanced/design-patterns/linked-list)**: split a growing registry across authenticated UTxOs, change only its neighbors, and prove membership or absence from one reference input.
+- **[Merkle tree](/docs/developers/onboarding/lectures/advanced/design-patterns/merkle-tree)**: commit a large allowlist to a 32-byte root and verify membership from a logarithmic-size proof built off-chain.
+- **[Merkle Patricia trie](/docs/developers/onboarding/lectures/advanced/design-patterns/merkle-patricia-trie)**: a registry too large for one datum. Keep it as a trie off-chain and its 32-byte root on-chain, and prove every insert, update, delete and lookup, absence included.
+- **[Validity range normalization](/docs/developers/onboarding/lectures/advanced/design-patterns/validity-range-normalization)**: an optional simplification for code that shares interval calculations. Preserve equivalent encodings in one canonical form, and compare its overhead with smaller endpoint helpers.
 
 ## How a pattern is measured
 
@@ -124,4 +124,6 @@ Change a validator, rebuild, copy the blueprint across, and `npm test` tells you
 
 For Merkle Patricia trie, use `npm run compile` from `off-chain/mesh` to rebuild and copy the blueprint together with its source fingerprint, then run `npm run bench` and `npm test`.
 
-Start with whichever problem you have. If none is pressing yet, **[transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)** is the one the others most often build on.
+Start with whichever problem you have. If none is pressing yet, **[transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation)** is the one the others most often build on.
+
+The next lecture, **[Higher assurance](/docs/developers/onboarding/lectures/advanced/higher-assurance)**, does not need any of the patterns.
