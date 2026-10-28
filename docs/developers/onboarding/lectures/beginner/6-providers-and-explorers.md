@@ -2,6 +2,7 @@
 title: "Providers & explorers"
 sidebar_label: "Providers & explorers"
 description: "The two ways to read the chain — a provider for your app, an explorer for you."
+pagination_next: developers/onboarding/tutorial/overview
 ---
 
 # Providers & explorers

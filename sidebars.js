@@ -524,7 +524,6 @@ module.exports = {
         id: "developers/onboarding/tutorial/overview",
       },
       items: [
-        { type: "doc", id: "developers/onboarding/tutorial/overview", label: "Overview" },
         "developers/onboarding/tutorial/environment",
         "developers/onboarding/tutorial/on-chain",
         "developers/onboarding/tutorial/off-chain",
@@ -540,11 +539,6 @@ module.exports = {
         id: "developers/onboarding/lectures/introduction",
       },
       items: [
-        {
-          type: "doc",
-          id: "developers/onboarding/lectures/introduction",
-          label: "Introduction",
-        },
         {
           type: "category",
           label: "Beginner",
@@ -597,6 +591,26 @@ module.exports = {
           items: [
             "developers/onboarding/lectures/advanced/detecting-vulnerabilities",
             "developers/onboarding/lectures/advanced/optimization",
+            {
+              type: "category",
+              label: "Design patterns",
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "developers/onboarding/lectures/advanced/design-patterns/introduction",
+              },
+              items: [
+                "developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation",
+                "developers/onboarding/lectures/advanced/design-patterns/utxo-indexers",
+                "developers/onboarding/lectures/advanced/design-patterns/batch-indexers",
+                "developers/onboarding/lectures/advanced/design-patterns/parameter-validation",
+                "developers/onboarding/lectures/advanced/design-patterns/merkelized-validator",
+                "developers/onboarding/lectures/advanced/design-patterns/linked-list",
+                "developers/onboarding/lectures/advanced/design-patterns/merkle-tree",
+                "developers/onboarding/lectures/advanced/design-patterns/merkle-patricia-trie",
+                "developers/onboarding/lectures/advanced/design-patterns/validity-range-normalization",
+              ],
+            },
             "developers/onboarding/lectures/advanced/higher-assurance",
             "developers/onboarding/lectures/advanced/going-to-production",
           ],

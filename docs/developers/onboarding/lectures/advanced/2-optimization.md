@@ -343,4 +343,4 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 - [Debugging CBOR](/docs/developers/curriculum/smart-contracts/advanced/debug-cbor): reading a transaction's bytes to see what takes the space.
 - [Going to production](/docs/developers/curriculum/production/going-to-production#4-optimize): where optimization sits among the other steps before a launch.
 
-Next: **[Higher assurance](/docs/developers/onboarding/lectures/advanced/higher-assurance)**.
+Next: **[Design patterns](/docs/developers/onboarding/lectures/advanced/design-patterns/introduction)**.
