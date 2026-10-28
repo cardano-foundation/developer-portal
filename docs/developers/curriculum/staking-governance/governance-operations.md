@@ -97,7 +97,7 @@ For a browser dApp, [CIP-95](https://cips.cardano.org/cip/CIP-0095) adds governa
 
 It is an **optional extension**, not part of the CIP-30 core, so two things follow. You have to ask for it when you connect, and a wallet is free to say no. Plenty of wallets implement core CIP-30 only, and your dApp has to handle that rather than assume the methods are there.
 
-<Tabs>
+<Tabs groupId="sdk">
 <TabItem value="browser" label="Browser API" default>
 
 ```typescript
