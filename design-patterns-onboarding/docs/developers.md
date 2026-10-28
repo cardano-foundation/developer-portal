@@ -4,6 +4,15 @@
 
 Pick where you want to start.
 
+## New to Cardano?
+
+  
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/introduction/overview', label: 'Start the onboarding', description: 'A hands-on path from your first wallet to a smart contract ready for mainnet.'}} />
+  
+  
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/tutorial/overview', label: 'Build your first dApp', description: 'Download and run an atomic swap, end to end.'}} />
+  
+
 ## Want to jump into building?
 
   

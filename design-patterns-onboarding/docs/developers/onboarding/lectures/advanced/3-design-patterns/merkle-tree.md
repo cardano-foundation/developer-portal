@@ -4,7 +4,7 @@
 
 A **Merkle tree** lets a contract remember a large collection as one small commitment: a root hash. To prove that one item is included, the transaction supplies the item and the sibling hashes on its path to the root. The contract hashes that path and compares the result with the root it already trusts.
 
-The tree and its proofs are built **off-chain**. On-chain work grows with the proof's depth, about the logarithm of the collection size, instead of searching every item. This page uses a SHA-256 tree to authorize an allowlisted grant, compares it with a list in the datum, and measures both implementations. We asume you went over the [onboarding course](../lectures/introduction.md) or that you have built Cardano protocols in the past.
+The tree and its proofs are built **off-chain**. On-chain work grows with the proof's depth, about the logarithm of the collection size, instead of searching every item. This page uses a SHA-256 tree to authorize an allowlisted grant, compares it with a list in the datum, and measures both implementations. We asume you went over the [onboarding course](../../../lectures/introduction.md) or that you have built Cardano protocols in the past.
 
 ## The protocol
 
@@ -220,7 +220,7 @@ The four questions from Intermediate:
 3. **What must be true.** The claim names a 28-byte signing key. In the baseline it occurs in the datum list. In the pattern its serialized leaf and correctly ordered, bounded proof reconstruct the datum's 32-byte root. No prefix of the proof is accepted early: every supplied step must be consumed before comparing roots.
 4. **What must be remembered.** The baseline remembers the members; the pattern remembers the root. The claimant supplies a proof, but not the trusted root. Nothing remembers whether this beneficiary has claimed a different grant.
 
-The datum root is sufficient to protect **the funds in this grant**. It is not an authenticated global directory. Anyone can create another UTxO at this script address with another root. A contract reading a shared root as a reference input would need to authenticate that configuration, for example with the beacon pattern from [modifying state](../lectures/intermediate/12-modifying-state.md).
+The datum root is sufficient to protect **the funds in this grant**. It is not an authenticated global directory. Anyone can create another UTxO at this script address with another root. A contract reading a shared root as a reference input would need to authenticate that configuration, for example with the beacon pattern from [modifying state](../../../lectures/intermediate/12-modifying-state.md).
 
 ## Write it by hand
 
@@ -575,7 +575,7 @@ The largest allowlist this fixture can **publish as one list datum** is {costFig
 
 For a Merkle allowlist with **{costFigure(Costs, "largeTree.members")} members**, the claimant supplies {costFigure(Costs, "largeTree.byHand.proofSteps")} sibling steps, encoded in {costFigure(Costs, "largeTree.byHand.proofSize")} proof bytes. The claim uses {costFigure(Costs, "largeTree.byHand.claim.mem")} memory units and costs {costFigure(Costs, "largeTree.byHand.claim.fee", "ada")} ada. Publication still uses the same fixed-size root datum.
 
-There is no batch maximum here: each transaction claims one grant. Increasing the dataset requires off-chain storage and construction work, while on-chain claims grow with proof depth. These figures include each spending script directly; using a [reference script](../lectures/intermediate/13-reference-inputs-and-scripts.md) changes the byte/fee trade-off.
+There is no batch maximum here: each transaction claims one grant. Increasing the dataset requires off-chain storage and construction work, while on-chain claims grow with proof depth. These figures include each spending script directly; using a [reference script](../../../lectures/intermediate/13-reference-inputs-and-scripts.md) changes the byte/fee trade-off.
 
 ## When to use it, and when not
 
@@ -628,9 +628,9 @@ The compiled blueprint and figures ship with the project. After changing a valid
 
 ## Go deeper
 
-- [Cryptographic primitives](../../curriculum/fundamentals/cryptographic-primitives.md#how-do-merkle-trees-enable-efficient-verification): hashing and the membership-proof idea.
+- [Cryptographic primitives](../../../../curriculum/fundamentals/cryptographic-primitives.md#how-do-merkle-trees-enable-efficient-verification): hashing and the membership-proof idea.
 - [`aiken-merkle-tree` 0.0.1 source](https://github.com/Anastasia-Labs/aiken-merkle-tree/blob/0.0.1/lib/aiken_merkle_tree/mt.ak): an older standalone implementation from Anastasia Labs.
 - [`aiken-lang/trees`](https://github.com/aiken-lang/trees): the earlier Aiken tree implementation it derives from.
 - [Linked list](./linked-list.md) and [Merkle Patricia trie](./merkle-patricia-trie.md): other collection/proof structures.
-- [Missing UTxO authentication](../../curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication.md): how to authenticate a shared root read from a reference UTxO.
-- [Double satisfaction](../../curriculum/smart-contracts/security/vulnerabilities/double-satisfaction.md): why an inclusion check alone cannot bind a payment or entitlement to exactly one action.
+- [Missing UTxO authentication](../../../../curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication.md): how to authenticate a shared root read from a reference UTxO.
+- [Double satisfaction](../../../../curriculum/smart-contracts/security/vulnerabilities/double-satisfaction.md): why an inclusion check alone cannot bind a payment or entitlement to exactly one action.

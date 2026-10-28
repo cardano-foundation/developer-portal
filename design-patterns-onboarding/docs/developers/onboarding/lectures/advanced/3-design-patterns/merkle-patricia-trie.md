@@ -4,7 +4,7 @@
 
 A registry that only grows cannot live in one datum for long. Every entry makes the datum larger, every check reads all of it, and at some point the transaction that rewrites it no longer fits. This pattern keeps the whole registry **off-chain**, as a trie, and puts only its **root**, 32 bytes, on-chain. A transaction that changes the registry brings a short **proof** that the change is correct, and the validator checks it against the root.
 
-The trie is a **Merkle Patricia trie**, as implemented by [Merkle Patricia Forestry](https://github.com/aiken-lang/merkle-patricia-forestry), the library from the Aiken team. It is a map from keys to values with five operations: insert, update, delete, prove a key is present, and prove a key is absent. That last one is what a plain [Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree) cannot do cheaply, and it is what a registry of unique names needs.
+The trie is a **Merkle Patricia trie**, as implemented by [Merkle Patricia Forestry](https://github.com/aiken-lang/merkle-patricia-forestry), the library from the Aiken team. It is a map from keys to values with five operations: insert, update, delete, prove a key is present, and prove a key is absent. That last one is what a plain [Merkle tree](/docs/developers/onboarding/lectures/advanced/design-patterns/merkle-tree) cannot do cheaply, and it is what a registry of unique names needs.
 
 ## The protocol
 
@@ -175,7 +175,7 @@ pub fn mint_ok(
 }
 ```
 
-The spend handler and the mint handler are one validator, so the registry's address and its policy ID are the same hash, as in **[transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)**.
+The spend handler and the mint handler are one validator, so the registry's address and its policy ID are the same hash, as in **[transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation)**.
 
 ## The naive contract (the problem)
 
@@ -757,8 +757,8 @@ What the tables say:
 
 | If you need | Prefer | Because |
 |---|---|---|
-| A fixed list, such as an allowlist decided once | [Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree) | Simpler proofs. No absence proofs needed. |
-| Many people changing the registry at the same time | [Linked list](/docs/developers/onboarding/design-patterns/linked-list) | Changes touching disjoint node UTxOs can happen in parallel. Each node locks its own minimum ada. |
+| A fixed list, such as an allowlist decided once | [Merkle tree](/docs/developers/onboarding/lectures/advanced/design-patterns/merkle-tree) | Simpler proofs. No absence proofs needed. |
+| Many people changing the registry at the same time | [Linked list](/docs/developers/onboarding/lectures/advanced/design-patterns/linked-list) | Changes touching disjoint node UTxOs can happen in parallel. Each node locks its own minimum ada. |
 | A few dozen entries at most | A list in the datum | Cheaper, as the 10-name row shows, and nothing to keep off-chain. |
 
 **The costs you take on:**
@@ -792,7 +792,7 @@ A trie can also be kept on-chain node by node, one UTxO per node, so disjoint br
 
 ## Run it
 
-The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/design-patterns/introduction#the-playground)** for the layout.
+The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/design-patterns/introduction#the-playground)** for the layout.
 
 ```bash
 npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/design-patterns/merkle-patricia-trie merkle-patricia-trie
@@ -811,5 +811,5 @@ The blueprint and its source fingerprint ship with the example. `npm test` and `
 ## Go deeper
 
 - [Merkle Patricia Forestry](https://github.com/aiken-lang/merkle-patricia-forestry): the libraries, on-chain and off-chain, and [the technical analysis](https://github.com/aiken-lang/merkle-patricia-forestry/wiki/Technical-analysis) behind the forestry.
-- [Merkle tree](/docs/developers/onboarding/design-patterns/merkle-tree) and [Linked list](/docs/developers/onboarding/design-patterns/linked-list): the other ways to keep a large set.
-- [Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation): one validator with spend and mint handlers sharing one hash.
+- [Merkle tree](/docs/developers/onboarding/lectures/advanced/design-patterns/merkle-tree) and [Linked list](/docs/developers/onboarding/lectures/advanced/design-patterns/linked-list): the other ways to keep a large set.
+- [Transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation): one validator with spend and mint handlers sharing one hash.
