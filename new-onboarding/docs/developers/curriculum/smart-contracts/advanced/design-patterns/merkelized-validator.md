@@ -215,3 +215,5 @@ Full working example: [merkelized-validator.ak](https://github.com/Anastasia-Lab
 Library implementation: [merkelized_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/merkelized-validator.ak)
 
 Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/main-contract.ak)
+
+Scalus implementation: [MerkelizedValidator.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/MerkelizedValidator.scala)

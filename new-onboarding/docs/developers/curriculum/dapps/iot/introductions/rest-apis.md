@@ -1,10 +1,10 @@
 # REST APIs
 
-> An architectural style for designing networked applications - the foundation for how the workshops talk to Koios, Blockfrost, Maestro, and other Cardano data providers.
+> An architectural style for designing networked applications - the foundation for how the workshops talk to Koios, Blockfrost, and other Cardano data providers.
 
 **REST** (Representational State Transfer) is an architectural style for networked applications, especially web services. It defines a set of constraints and principles for building scalable, stateless, and interoperable APIs that use standard HTTP methods to interact with resources identified by URIs.
 
-Every Cardano data provider used in this section - [Koios](https://api.koios.rest/), [Blockfrost](https://blockfrost.io/), [Maestro](https://www.gomaestro.org/) - is a REST API. Understanding the basics makes the workshops easier to follow.
+Every Cardano data provider used in this section - [Koios](https://api.koios.rest/) and [Blockfrost](https://blockfrost.io/) - is a REST API. Understanding the basics makes the workshops easier to follow.
 
 ## Brief history
 

@@ -133,6 +133,19 @@ extern const char *cexplorerApiUrl;  // Cexplorer API - for NFT floor prices
 
 > Source: [`Workshop-04/examples/CardanoTicker/config.cpp`](https://github.com/CardanoThings/Workshops/blob/main/Workshop-04/examples/CardanoTicker/config.cpp), [`config.h`](https://github.com/CardanoThings/Workshops/blob/main/Workshop-04/examples/CardanoTicker/config.h)
 
+:::warning MinSwap endpoint retired
+The workshop code calls MinSwap's `monorepo-mainnet-prod.minswap.org/v1/portfolio/tokens` endpoint, which no longer resolves, so the token and NFT screens stay empty. To use MinSwap's [wallet endpoint](./01-gathering-data.md#fetching-from-minswap) instead, set `minswapApiUrl` to `https://agg-api.minswap.org/aggregator/wallet`, replace the `only_minswap` and `filter_small_value` query parameters in `fetchMinSwapData()` with `amount_in_decimal=true`, and map the fields as follows.
+
+| The sketch reads | The wallet endpoint returns |
+| --- | --- |
+| `positions.asset_positions[]` | `balance[]` entries that have a `price_by_ada` |
+| `asset.metadata.ticker` and `asset.metadata.name` | `asset.ticker` and `asset.project_name` |
+| `amount` as a number | `amount` as a string, so convert it, for example with `toFloat()` |
+| `price_usd` | `asset.price_by_ada` multiplied by the ADA price from `/aggregator/ada-price?currency=usd` |
+| `pnl_24h_percent` | Not included. Leave it at 0, or read `price_change_24h` from MinSwap's public API |
+| `positions.nft_positions[].currency_symbol` | The first 56 characters of `asset.token_id`, for `balance[]` entries with no price and an `amount` of `"1"` |
+:::
+
 ### `secrets.h` - WiFi credentials
 
 Stored separately so it can be `.gitignore`d. Copy `secrets.h.example` to `secrets.h` and fill in `WIFI_SSID` / `WIFI_PASSWORD`.
@@ -956,7 +969,7 @@ void fetchCexplorerData(const String &policyId) {
   HTTPClient http;
 
   // Build URL with Policy ID as query parameter
-  // Example: https://api.cexplorer.io/v1/policy/detail?id=f0ff48bbb7...
+  // Example: https://api-mainnet-stage.cexplorer.io/v1/policy/detail?id=f0ff48bbb7...
   String fullUrl = String(cexplorerApiUrl);
   fullUrl += "?id=";
   fullUrl += policyId;

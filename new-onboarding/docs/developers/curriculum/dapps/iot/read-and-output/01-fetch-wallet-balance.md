@@ -385,10 +385,6 @@ void fetchStakeBalance() {
 If you use PlatformIO, Blockfrost ships an official Arduino SDK that handles auth and serialization: [github.com/blockfrost/blockfrost-arduino](https://github.com/blockfrost/blockfrost-arduino).
 :::
 
-### Maestro
-
-[Maestro](https://www.gomaestro.org/) is another Cardano API provider with a free tier and similar coverage to Blockfrost and Koios.
-
 ### Dolos
 
 You can also self-host with [TxPipe Dolos](https://docs.txpipe.io/dolos), which exposes a [Mini Blockfrost API](https://docs.txpipe.io/dolos/apis/minibf) over your own node.
@@ -398,7 +394,6 @@ You can also self-host with [TxPipe Dolos](https://docs.txpipe.io/dolos), which 
 - [Koios Documentation](https://preprod.koios.rest/) - full endpoint reference.
 - [Blockfrost](https://blockfrost.io/) - alternate API with free tier.
 - [Blockfrost API docs](https://docs.blockfrost.io/) - endpoint reference.
-- [Maestro](https://www.gomaestro.org/) - another provider.
 - [TxPipe Dolos](https://docs.txpipe.io/dolos) - self-host a Mini Blockfrost API.
 - [ArduinoJSON Library](https://docs.arduino.cc/libraries/arduinojson/) - JSON parsing in Arduino.
 

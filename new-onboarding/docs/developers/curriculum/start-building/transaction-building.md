@@ -343,7 +343,7 @@ SDKs build a transaction against a live provider. `cardano-cli` can also build o
 # 1. Protocol parameters (needs a node, once)
 cardano-cli query protocol-parameters --out-file pparams.json
 
-# 2. Draft with fee 0 (the change output holds the full input for now)
+# 2. Draft with fee 0 and change = inputs - sent (not 0)
 cardano-cli latest transaction build-raw \
   --tx-in <TxHash>#<TxIx> \
   --tx-out "$(< payment2.addr)+1000000000" \
@@ -365,6 +365,8 @@ cardano-cli latest transaction build-raw \
 
 </TabItem>
 </Tabs>
+
+The fee is priced per byte, so the draft needs the real amounts. `--fee 0` is fine, since `calculate-min-fee` accounts for the fee's own size, but a `0` in an output takes fewer bytes than the real amount and the fee comes out too low, which the node rejects with `FeeTooSmallUTxO`. Lowering the change in step 4 never adds bytes, so one pass is enough. To check before signing, run `calculate-min-fee` on `tx.raw`. It returns the same fee. If you raise an amount or add anything after step 3, run `calculate-min-fee` again.
 
 `--witness-count` is how many signatures the transaction will carry. It affects the fee. Inspect any draft with `cardano-cli debug transaction view --tx-body-file tx.draft`.
 

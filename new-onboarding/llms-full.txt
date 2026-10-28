@@ -1310,68 +1310,69 @@ The next sections add token prices and NFT floors on top.
 
 ## Fetching from MinSwap
 
-[MinSwap](https://minswap.org/) is a DEX on Cardano. It exposes an endpoint to fetch all tokens (and prices) for a wallet address:
+[MinSwap](https://minswap.org/) is a DEX on Cardano. Its [Aggregator API](https://docs.minswap.org/developer/aggregator-api) has an endpoint that returns every token in a wallet, with prices for the tokens MinSwap trades:
 
 ```
-https://monorepo-mainnet-prod.minswap.org/v1/portfolio/tokens?address=[WALLETADDRESS]&only_minswap=true&filter_small_value=false
+https://agg-api.minswap.org/aggregator/wallet?address=[WALLETADDRESS]&amount_in_decimal=true
 ```
 
-Replace `[WALLETADDRESS]` with your wallet address. The response is JSON:
+Replace `[WALLETADDRESS]` with your wallet address. With `amount_in_decimal=true`, amounts come back in whole units, ADA instead of lovelace. The response is JSON, shown here with three of its entries:
 
 ```json
 {
-  "positions": {
-    "nft_positions": [
-      {
-        "currency_symbol": "f0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a",
-        "token_name": "000de14063617264616e6f7468696e6773",
-        "is_verified": true
-      }
-    ],
-    "asset_positions": [
-      {
-        "asset": {
-          "currency_symbol": "",
-          "token_name": "",
-          "is_verified": true,
-          "metadata": {
-            "decimals": 6,
-            "name": "Cardano",
-            "ticker": "ADA"
-          }
-        },
-        "price_usd": 0.3864,
-        "amount": 11.37058,
-        "amount_usd": 4.393592112,
-        "pnl_24h_usd": -0.3466696040696063,
-        "pnl_24h_percent": -7.8903456495828275
+  "wallet": "addr1...",
+  "ada": "9.173282",
+  "minimum_lovelace": "2.845947",
+  "balance": [
+    {
+      "asset": {
+        "token_id": "lovelace",
+        "logo": "https://asset-logos.minswap.org/lovelace",
+        "ticker": "ADA",
+        "is_verified": true,
+        "project_name": "Cardano",
+        "price_by_ada": 1,
+        "decimals": 6
       },
-      {
-        "asset": {
-          "currency_symbol": "3d77d63dfa6033be98021417e08e3368cc80e67f8d7afa196aaa0b39",
-          "token_name": "53746172636820546f6b656e",
-          "is_verified": true,
-          "metadata": {
-            "name": "STRCH",
-            "url": "https://starch.one",
-            "ticker": "STRCH",
-            "decimals": 0,
-            "description": ""
-          }
-        },
-        "price_usd": 3.0215906268916395e-9,
-        "amount": 114081,
-        "amount_usd": 0.00034470608030642515,
-        "pnl_24h_usd": -0.00005476157689164048,
-        "pnl_24h_percent": -15.88645516289135
-      }
-    ],
-    "lp_asset_positions": []
-  }
+      "amount": "9.173282"
+    },
+    {
+      "asset": {
+        "token_id": "3e4be1669f4e0f92f3e6421307ba24e31fc192029268ecb4242a5abb537461726368204d696e657220233030383038"
+      },
+      "amount": "1"
+    },
+    {
+      "asset": {
+        "token_id": "3d77d63dfa6033be98021417e08e3368cc80e67f8d7afa196aaa0b3953746172636820546f6b656e",
+        "logo": "https://asset-logos.minswap.org/3d77d63dfa6033be98021417e08e3368cc80e67f8d7afa196aaa0b3953746172636820546f6b656e",
+        "ticker": "STRCH",
+        "is_verified": true,
+        "price_by_ada": 1.3539651837524176e-8,
+        "price_by_usd": 2.802707930367504e-9,
+        "project_name": "STRCH",
+        "decimals": 0
+      },
+      "amount": "100000000"
+    }
+  ],
+  "amount_in_decimal": true
 }
 ```
 
-You get NFTs in the wallet, tokens, USD price per token, amounts, 24h USD change, and 24h percent change - enough to render token rows on the ticker.
+Tokens that MinSwap prices carry a `ticker`, `decimals` and `price_by_ada`, and current responses also include `price_by_usd`, though MinSwap's published schema doesn't list it. NFTs come back with only a `token_id` and an `amount` of `"1"`. The first 56 characters of `token_id` are the policy ID, which the NFT floor lookup below needs.
+
+For USD values from the documented fields, fetch the ADA price and multiply it by `price_by_ada`:
+
+```
+https://agg-api.minswap.org/aggregator/ada-price?currency=usd
+```
+
+```json
+{ "currency": "usd", "value": { "change_24h": 0.39, "price": 0.207 } }
+```
+
+The wallet endpoint has no 24-hour change per token. MinSwap's [public API](https://docs.minswap.org/developer/minswap-apis) reports `price_change_24h` per asset if you want that figure on the ticker.
 
 ## Fetching from JPG.store (no longer)
 
@@ -1439,9 +1440,8 @@ Include your API key in the `api-key` request header. Without it you'll get 401 
 
 ## Other APIs
 
-For production tickers, two paid options worth considering:
+For production tickers, consider a dedicated price API:
 
-- **[TapTools](https://www.taptools.io/)** - a Cardano analytics platform with detailed token, portfolio, and market data; tiered pricing. [API docs](https://openapi.taptools.io/).
 - **[Charli3](https://charli3.io/)** - a Cardano oracle / API provider with historical and live token prices, free + paid tiers. [Token API](https://charli3.io/api).
 
 ## Next steps
@@ -1452,7 +1452,6 @@ You now have all the data the ticker needs. The next lesson assembles it into a 
 - [MinSwap](https://minswap.org/) - Cardano DEX.
 - [Cexplorer.io](https://cexplorer.io/) - explorer + free-tier API.
 - [JPG.store](https://www.jpg.store/) - NFT marketplace.
-- [TapTools](https://www.taptools.io/) - analytics platform.
 - [Charli3](https://charli3.io/) - oracle / token-price API.
 
 ---
@@ -1593,6 +1592,19 @@ extern const char *cexplorerApiUrl;  // Cexplorer API - for NFT floor prices
 ```
 
 > Source: [`Workshop-04/examples/CardanoTicker/config.cpp`](https://github.com/CardanoThings/Workshops/blob/main/Workshop-04/examples/CardanoTicker/config.cpp), [`config.h`](https://github.com/CardanoThings/Workshops/blob/main/Workshop-04/examples/CardanoTicker/config.h)
+
+:::warning MinSwap endpoint retired
+The workshop code calls MinSwap's `monorepo-mainnet-prod.minswap.org/v1/portfolio/tokens` endpoint, which no longer resolves, so the token and NFT screens stay empty. To use MinSwap's [wallet endpoint](./01-gathering-data.md#fetching-from-minswap) instead, set `minswapApiUrl` to `https://agg-api.minswap.org/aggregator/wallet`, replace the `only_minswap` and `filter_small_value` query parameters in `fetchMinSwapData()` with `amount_in_decimal=true`, and map the fields as follows.
+
+| The sketch reads | The wallet endpoint returns |
+| --- | --- |
+| `positions.asset_positions[]` | `balance[]` entries that have a `price_by_ada` |
+| `asset.metadata.ticker` and `asset.metadata.name` | `asset.ticker` and `asset.project_name` |
+| `amount` as a number | `amount` as a string, so convert it, for example with `toFloat()` |
+| `price_usd` | `asset.price_by_ada` multiplied by the ADA price from `/aggregator/ada-price?currency=usd` |
+| `pnl_24h_percent` | Not included. Leave it at 0, or read `price_change_24h` from MinSwap's public API |
+| `positions.nft_positions[].currency_symbol` | The first 56 characters of `asset.token_id`, for `balance[]` entries with no price and an `amount` of `"1"` |
+:::
 
 ### `secrets.h` - WiFi credentials
 
@@ -2417,7 +2429,7 @@ void fetchCexplorerData(const String &policyId) {
   HTTPClient http;
 
   // Build URL with Policy ID as query parameter
-  // Example: https://api.cexplorer.io/v1/policy/detail?id=f0ff48bbb7...
+  // Example: https://api-mainnet-stage.cexplorer.io/v1/policy/detail?id=f0ff48bbb7...
   String fullUrl = String(cexplorerApiUrl);
   fullUrl += "?id=";
   fullUrl += policyId;
@@ -3631,7 +3643,7 @@ The example uses **mainnet data** (the original CardanoThings wallet). API endpo
 
 ## Steps
 
-1. **[Gathering Data](./01-gathering-data.md)** - APIs and endpoints used: Koios for stake balance, MinSwap portfolio API for token prices, Cexplorer for NFT collection floor prices. Includes a note on TapTools and Charli3 for production use.
+1. **[Gathering Data](./01-gathering-data.md)** - APIs and endpoints used: Koios for stake balance, MinSwap wallet API for token prices, Cexplorer for NFT collection floor prices. Includes a note on Charli3 for production use.
 2. **[Building the Ticker](./02-building-the-ticker.md)** - Walk through a multi-file Arduino project: WiFi manager, data fetcher, four data screens (wallet, tokens, NFTs, status) and the scrolling ticker.
 
 ## What you'll need
@@ -5684,7 +5696,7 @@ If you're new to embedded development or web APIs, here are quick primers on the
 
 - **[Arduino](./arduino.md)** - the platform you'll write your sketches in.
 - **[ESP32 / D1 Microcontrollers](./esp32-d1-microcontrollers.md)** - the boards you'll run them on.
-- **[REST APIs](./rest-apis.md)** - how the workshops talk to Cardano data providers like Koios, Blockfrost, and Maestro.
+- **[REST APIs](./rest-apis.md)** - how the workshops talk to Cardano data providers like Koios and Blockfrost.
 
 For Cardano itself, see the [Core Concepts](/docs/developers/curriculum/fundamentals/core-concepts/overview) section.
 
@@ -5698,7 +5710,7 @@ For Cardano itself, see the [Core Concepts](/docs/developers/curriculum/fundamen
 
 **REST** (Representational State Transfer) is an architectural style for networked applications, especially web services. It defines a set of constraints and principles for building scalable, stateless, and interoperable APIs that use standard HTTP methods to interact with resources identified by URIs.
 
-Every Cardano data provider used in this section - [Koios](https://api.koios.rest/), [Blockfrost](https://blockfrost.io/), [Maestro](https://www.gomaestro.org/) - is a REST API. Understanding the basics makes the workshops easier to follow.
+Every Cardano data provider used in this section - [Koios](https://api.koios.rest/) and [Blockfrost](https://blockfrost.io/) - is a REST API. Understanding the basics makes the workshops easier to follow.
 
 ## Brief history
 
@@ -8548,10 +8560,6 @@ void fetchStakeBalance() {
 If you use PlatformIO, Blockfrost ships an official Arduino SDK that handles auth and serialization: [github.com/blockfrost/blockfrost-arduino](https://github.com/blockfrost/blockfrost-arduino).
 :::
 
-### Maestro
-
-[Maestro](https://www.gomaestro.org/) is another Cardano API provider with a free tier and similar coverage to Blockfrost and Koios.
-
 ### Dolos
 
 You can also self-host with [TxPipe Dolos](https://docs.txpipe.io/dolos), which exposes a [Mini Blockfrost API](https://docs.txpipe.io/dolos/apis/minibf) over your own node.
@@ -8561,7 +8569,6 @@ You can also self-host with [TxPipe Dolos](https://docs.txpipe.io/dolos), which 
 - [Koios Documentation](https://preprod.koios.rest/) - full endpoint reference.
 - [Blockfrost](https://blockfrost.io/) - alternate API with free tier.
 - [Blockfrost API docs](https://docs.blockfrost.io/) - endpoint reference.
-- [Maestro](https://www.gomaestro.org/) - another provider.
 - [TxPipe Dolos](https://docs.txpipe.io/dolos) - self-host a Mini Blockfrost API.
 - [ArduinoJSON Library](https://docs.arduino.cc/libraries/arduinojson/) - JSON parsing in Arduino.
 
@@ -12619,7 +12626,7 @@ A wallet is software that stores your keys, scans the chain for UTXOs at your ad
 
 CIP-30 is the dApp connector standard. The wallet exposes an API; it signs only what the user approves and never exposes private keys, much like "Sign in with Google" hands an app a token, not your password.
 
-<Tabs>
+<Tabs groupId="sdk">
 <TabItem value="browser" label="Browser API" default>
 
 ```typescript
@@ -13326,6 +13333,8 @@ cardano-cli latest transaction sign \
   --tx-body-file matx.raw --out-file matx.signed
 cardano-cli latest transaction submit --tx-file matx.signed
 ```
+
+For calculating the fee, see [Offline builds](/docs/developers/curriculum/start-building/transaction-building#offline-builds-air-gapped).
 
 </TabItem>
 </Tabs>
@@ -14349,7 +14358,7 @@ You have used both workflows since Module 2, always through a **provider** ([Que
 
 If you have run web infrastructure, the categories map onto things you know:
 
-- A **query API** (Blockfrost, Koios, Maestro) is a managed database service, the Cardano equivalent of RDS or Supabase: trade some control for zero operations.
+- A **query API** (Blockfrost, Koios, Nexus) is a managed database service, the Cardano equivalent of RDS or Supabase: trade some control for zero operations.
 - **cardano-node** is running your own database server: full control, full operational commitment (storage, updates, monitoring).
 - **Ogmios** is a database driver: it translates the node's wire protocol into a developer-friendly interface, like `pg` for PostgreSQL.
 - **Indexers** are materialized views and read replicas: db-sync is a full materialized view of the chain; Kupo is a targeted one for the UTXOs you care about.
@@ -14393,7 +14402,7 @@ The landscape looks crowded until you sort it by what each thing conceptually is
 
 ### Query APIs
 
-**Blockfrost, Koios, Maestro.** A complete data service behind one HTTP API: someone else runs the node, the indexer, and the API layer, and you get a base URL and usually a key. They are operated commercially (Blockfrost, Maestro) or by a community cluster with no single operator (Koios, which you can also self-host). This is the category most applications start with, and many never need anything else. [Use a provider](/docs/developers/curriculum/production/use-a-provider) sets up all three with one skeleton, and [Builder Tools](/tools/?tags=api) has the rest, including narrower services built for one kind of data.
+**Blockfrost, Koios, Nexus.** A complete data service behind one HTTP API: someone else runs the node, the indexer, and the API layer, and you get a base URL and usually a key. They are operated commercially (Blockfrost, Nexus) or by a community cluster with no single operator (Koios, which you can also self-host). This is the category most applications start with, and many never need anything else. [Use a provider](/docs/developers/curriculum/production/use-a-provider) sets up all three with one skeleton, and [Builder Tools](/tools/?tags=api) has the rest, including narrower services built for one kind of data.
 
 ### Node interfaces
 
@@ -14487,7 +14496,7 @@ Most teams combine approaches: a hosted query API while developing, self-hosted 
 
 ## Next steps
 
-- [Use a provider](/docs/developers/curriculum/production/use-a-provider): set up Blockfrost, Koios, or Maestro, one skeleton for all three
+- [Use a provider](/docs/developers/curriculum/production/use-a-provider): set up Blockfrost, Koios, or Nexus, one skeleton for all three
 - [Self-hosting](/docs/developers/curriculum/production/self-hosting): run a data node, a Kupmios stack, or a full node, with Demeter as the managed variant
 - [Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics): the indexer shapes, and building an index of your own
 
@@ -14987,7 +14996,7 @@ ORDER BY epoch;
 
 (`main` in the path is the source schema name; adjust to your export location.) Because partition-aware queries read only the files they need, questions like this return in seconds even against full-history exports.
 
-The built-in exporters mirror tables one to one, but real questions often span tables. For those, **custom exporters** are defined entirely in YAML: give the module SQL with joins, a name, and a partition strategy, and it produces a fresh Parquet dataset on the same schedule, filling in `{source}`, `{start_slot}`, `{end_slot}` and `{epoch}` per partition. Enable them with the `custom-exporters` profile alongside `analytics`; the [Analytics Store docs](https://store.yaci.xyz/docs/v2/analytics/overview) carry the full configuration surface.
+The built-in exporters mirror tables one to one, but real questions often span tables. For those, **custom exporters** are defined entirely in YAML: give the module SQL with joins, a name, and a partition strategy, and it produces a fresh Parquet dataset on the same schedule, filling in `{source}`, `{start_slot}`, `{end_slot}` and `{epoch}` per partition. Enable them with the `custom-exporters` profile alongside `analytics`; the [Analytics Store docs](https://store.yaci.xyz/docs/v3/analytics/overview) carry the full configuration surface.
 
 :::info Beta, and you produce the files yourself
 The Analytics Store ships in the 3.0.0 beta line rather than the current stable releases, and there is no public dataset mirror yet, so you run Yaci Store once to produce the export. The output is the stable part: standard Parquet files that remain useful regardless of what produced them.
@@ -15128,7 +15137,7 @@ Shipping is readiness plus infrastructure. The readiness half is a checklist; th
 
 - **[Going to production](/docs/developers/curriculum/production/going-to-production)**: the pre-mainnet checklist: testing, security, reliable transactions, optimization, key safety, and the staging path through the testnets.
 - **[Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)**: the concept map of chain access: what query APIs, node interfaces, indexers, data nodes, full nodes, and managed platforms each are, which of them are genuine alternatives to each other, and the axes to choose by.
-- **[Use a provider](/docs/developers/curriculum/production/use-a-provider)**: the hosted path in practice: Blockfrost, Koios, and Maestro, set up with one identical skeleton.
+- **[Use a provider](/docs/developers/curriculum/production/use-a-provider)**: the hosted path in practice: Blockfrost, Koios, and Nexus, set up with one identical skeleton.
 - **[Self-hosting](/docs/developers/curriculum/production/self-hosting)**: the self-run path in practice: a Dolos data node, a node with Ogmios and Kupo, or a full node, with Demeter as the managed variant.
 - **[Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics)**: when your application needs its own slice of the chain, or answers over its full history.
 - **[The network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol)**: an appendix on the wire protocol everything above abstracts, and how to speak it directly.
@@ -15406,7 +15415,7 @@ Reach for chaining when you have many dependent transactions to submit from one 
 
 ## Use a Provider
 
-A [query API](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis) is the fastest way to serve your application the chain: someone else runs the node and the indexer, and your SDK points at a URL. The four documented here are directly comparable, they answer the same REST-shaped reads and accept the same transaction submissions, so this page sets all four up with one identical skeleton: create access, find your network's endpoint, make a first raw request, point your SDK at it, and know the limits. Pick one tab and the rest of the curriculum works the same; switching later is a configuration change.
+A [query API](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis) is the fastest way to serve your application the chain: someone else runs the node and the indexer, and your SDK points at a URL. The three documented here are directly comparable, they answer the same REST-shaped reads and accept the same transaction submissions, so this page sets all three up with one identical skeleton: create access, find your network's endpoint, make a first raw request, point your SDK at it, and know the limits. Pick one tab and the rest of the curriculum works the same; switching later is a configuration change.
 
 The differences that matter are operational, not functional: who operates it, how access is granted, and how usage is limited. Where they genuinely differ, the tabs say so.
 
@@ -15425,11 +15434,6 @@ Create a free account at [blockfrost.io](https://blockfrost.io/auth/signin). Aft
 <TabItem value="koios" label="Koios">
 
 Nothing to create for basic use: Koios is a community-run cluster and its **public tier needs no key**. For higher limits, generate a free auth token from your [Koios profile](https://koios.rest/) and send it as a `Authorization: Bearer <token>` header. The same token works across networks.
-
-</TabItem>
-<TabItem value="maestro" label="Maestro">
-
-Create a free account at [dashboard.gomaestro.org](https://dashboard.gomaestro.org/). Create a project, selecting **Cardano** and your network, then copy the project's API key from the dashboard. Each project is scoped to one network.
 
 </TabItem>
 <TabItem value="nexus" label="Nexus">
@@ -15460,15 +15464,6 @@ Each network has its own base URL, and your access is scoped to the network you 
 | Mainnet | `https://api.koios.rest/api/v1` |
 | Preprod | `https://preprod.koios.rest/api/v1` |
 | Preview | `https://preview.koios.rest/api/v1` |
-
-</TabItem>
-<TabItem value="maestro" label="Maestro">
-
-| Network | Base URL |
-| --- | --- |
-| Mainnet | `https://mainnet.gomaestro-api.org/v1` |
-| Preprod | `https://preprod.gomaestro-api.org/v1` |
-| Preview | `https://preview.gomaestro-api.org/v1` |
 
 </TabItem>
 <TabItem value="nexus" label="Nexus">
@@ -15532,18 +15527,6 @@ curl https://preprod.koios.rest/api/v1/tip
 Koios is built on [PostgREST](https://postgrest.org/), so every endpoint supports column selection, filtering, ordering, and paging through query parameters; the [API usage guide](https://api.koios.rest/#overview--api-usage) covers the syntax.
 
 </TabItem>
-<TabItem value="maestro" label="Maestro">
-
-Authentication is the `api-key` header:
-
-```bash
-curl -H "api-key: $MAESTRO_API_KEY" \
-  https://preprod.gomaestro-api.org/v1/chain-tip
-```
-
-The response is the current chain tip: block hash, height, and slot. Responses are cursor-paginated where lists are involved: pass the returned `next_cursor` back as the `cursor` query parameter to fetch the next page.
-
-</TabItem>
 <TabItem value="nexus" label="Nexus">
 
 Authentication is the `X-Api-Key` header:
@@ -15575,12 +15558,6 @@ const bf = Client.make(preprod).withBlockfrost({
 
 // Koios
 const koios = Client.make(preprod).withKoios({ baseUrl: "https://preprod.koios.rest/api/v1" })
-
-// Maestro
-const maestro = Client.make(preprod).withMaestro({
-  baseUrl: "https://preprod.gomaestro-api.org/v1",
-  apiKey: process.env.MAESTRO_API_KEY!
-})
 ```
 
 </TabItem>
@@ -15593,9 +15570,6 @@ const bf = new BlockfrostProvider(process.env.BLOCKFROST_PROJECT_ID!)
 
 // Koios, pass the network
 const koios = new KoiosProvider("preprod")
-
-// Maestro
-const maestro = new MaestroProvider({ network: "Preprod", apiKey: process.env.MAESTRO_API_KEY! })
 ```
 
 </TabItem>
@@ -15616,11 +15590,6 @@ The free tier is rate-limited per project, with paid tiers above it; current num
 The public tier carries shared rate limits that protect the community cluster; an auth token raises them. Review the [limits](https://api.koios.rest/#overview--limits) before you integrate. Response times can vary by instance, since the cluster is served by independent community operators.
 
 </TabItem>
-<TabItem value="maestro" label="Maestro">
-
-Requests per second depend on your subscription plan, and each call also consumes **compute credits** from a tier-dependent allowance (heavier queries cost more). The `X-RateLimit-*` and `X-Maestro-Credits-*` response headers report where you stand. Current tiers are on [gomaestro.org/developer](https://gomaestro.org/developer).
-
-</TabItem>
 <TabItem value="nexus" label="Nexus">
 
 Access is gated by your subscription tier, and each key is scoped to one chain and one network — a request whose network disagrees with the key is rejected. Extras such as market data and IPFS are addon-gated. Current tiers and addons are on [nexus.gerowallet.io](https://nexus.gerowallet.io).
@@ -15634,12 +15603,11 @@ Each provider's own documentation is the authority on its endpoints:
 
 - **Blockfrost**: [blockfrost.dev](https://blockfrost.dev/), with official SDKs for 15+ languages beyond the Cardano SDK providers above
 - **Koios**: [api.koios.rest](https://api.koios.rest/), every endpoint with a runnable sample query
-- **Maestro**: [docs.gomaestro.org](https://docs.gomaestro.org/cardano), covering the indexer plus transaction-management extras
 - **Nexus**: [nexus.gerowallet.io/docs](https://nexus.gerowallet.io/docs), covering Cardano, Bitcoin, and Midnight plus market data; a typed client is published as [`@adlabs/nexus`](https://www.npmjs.com/package/@adlabs/nexus)
 
 ## The same APIs, self-hosted
 
-Two of the four are open source end to end, so outgrowing a hosted tier does not mean leaving the API behind:
+Two of the three are open source end to end, so outgrowing a hosted tier does not mean leaving the API behind:
 
 - **Blockfrost**: the backend ([blockfrost-backend-ryo](https://github.com/blockfrost/blockfrost-backend-ryo)), SDKs, and [OpenAPI spec](https://github.com/blockfrost/openapi) are open source; a Docker image runs your own instance against your own node and db-sync.
 - **Koios**: the [guild-operators suite](https://cardano-community.github.io/guild-operators/Build/grest/) deploys a full gRest instance (node, db-sync, PostgREST, HAProxy) with the same API, removing shared rate limits; you can also [contribute the instance back](https://github.com/cardano-community/koios-artifacts/tree/main/topology) to the community cluster.
@@ -15654,7 +15622,7 @@ One hosted API is a single point of failure, and chatty code hits rate limits. B
 
 - [Self-hosting](/docs/developers/curriculum/production/self-hosting): the same two workflows served from infrastructure you run
 - [Going to production](/docs/developers/curriculum/production/going-to-production): the pre-mainnet checklist, including provider hardening
-- [Builder Tools](/tools/?tags=api): the hosted providers in full, beyond the four set up here
+- [Builder Tools](/tools/?tags=api): the hosted providers in full, beyond the three set up here
 
 ---
 
@@ -16367,6 +16335,8 @@ Example validator: [linked_list example](https://github.com/Anastasia-Labs/aiken
 
 Test suite: [linked_list tests](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/tests/linked-list.ak)
 
+Scalus implementation: [LinkedList.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/LinkedList.scala)
+
 ## Acknowledgments
 
 This documentation and the linked list implementation draw inspiration from original ideas presented in the Plutonomicon. For further details on the foundational concepts, see the [Plutonomicon's Associative Data Structures Overview](https://github.com/Plutonomicon/plutonomicon/blob/main/assoc.md#overview).
@@ -16588,6 +16558,8 @@ Full working example: [merkelized-validator.ak](https://github.com/Anastasia-Lab
 Library implementation: [merkelized_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/merkelized-validator.ak)
 
 Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/main-contract.ak)
+
+Scalus implementation: [MerkelizedValidator.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/MerkelizedValidator.scala)
 
 ---
 
@@ -16936,6 +16908,8 @@ Full working example: [parameter-validation.ak](https://github.com/Anastasia-Lab
 
 Library implementation: [parameter_validation module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/parameter-validation.ak)
 
+Scalus implementation: [ParameterValidation.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/ParameterValidation.scala), with an example in [ParameterValidationExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/ParameterValidationExample.scala)
+
 ## Considerations
 
 This design pattern only works under the assumption that the parameter is constant size (this holds true for `TxOutRef`). If a script accepts parameters with dynamic size (ie. arbitrary size integer / bytestring) then to use it with this design pattern you should modify the parameter to be the hash of the original parameter, and then allow the pre-image to be provided in the tx and verify that it matches the hash.
@@ -17215,6 +17189,8 @@ See [UTxO Indexers](../utxo-indexers) for robust input/output pairing patterns.
 Full working example: [stake-validator.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/stake-validator.ak)
 
 Library implementation: [stake_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/stake-validator.ak)
+
+Scalus implementation: [StakeValidator.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/StakeValidator.scala), with an example in [StakeValidatorExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/StakeValidatorExample.scala)
 
 ## When to Use
 
@@ -17554,6 +17530,8 @@ Library implementation: [tx_level_minter module](https://github.com/Anastasia-La
 
 Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/spend-logic.ak)
 
+Scalus implementation: [TransactionLevelMinterValidator.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/TransactionLevelMinterValidator.scala), with an example in [TransactionLevelMinterValidatorExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/TransactionLevelMinterValidatorExample.scala)
+
 ## Related Patterns
 
 - [Stake Validator](../stake-validator) - Alternative approach with lower ExUnits cost
@@ -17832,6 +17810,8 @@ one_to_one(validate, 1, 0, ...)  // Input 1 -> Output 0 (same!)
 - [multi-utxo-indexer.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/multi-utxo-indexer.ak)
 - [Library implementation](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/multi-utxo-indexer.ak)
 
+**Scalus:** both variants are in [UtxoIndexer.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/UtxoIndexer.scala), with an example in [UtxoIndexerExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/UtxoIndexerExample.scala)
+
 ## Related Patterns
 
 - [Stake Validator](../stake-validator) - Multi-indexers work best with stake validators
@@ -17918,6 +17898,8 @@ validator my_validator {
 ## Example Code
 
 Full working example: [validity-range-normalization.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/validity-range-normalization.ak)
+
+Scalus implementation: [NormalizedInterval.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/NormalizedInterval.scala)
 
 ---
 
@@ -18994,7 +18976,7 @@ At the lowest level, all Cardano smart contracts execute as **Untyped Plutus Cor
 
 ### What is UPLC?
 
-UPLC is the "assembly language" of Cardano smart contracts. Every smart contract language (Aiken, Plutus Haskell, OpShin, etc.) compiles down to UPLC before execution. Think of it as the intermediate representation that the Cardano virtual machine actually executes. (Why several languages target it, and how to pick one, is [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language).)
+UPLC is the "assembly language" of Cardano smart contracts. Every smart contract language (Aiken, Plutus Haskell, Scalus, OpShin, etc.) compiles down to UPLC before execution. Think of it as the intermediate representation that the Cardano virtual machine actually executes. (Why several languages target it, and how to pick one, is [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language).)
 
 **Compilation Pipeline:**
 
@@ -19276,7 +19258,7 @@ See [other install methods](https://aiken-lang.org/installation-instructions) fo
 To go deeper:
 
 - [aiken-lang.org](https://aiken-lang.org) for the language tour, guides, and standard library
-- [I Can Aiken](https://book.io/book/i-can-aiken/), an open book from the Cardano Foundation Academy
+- [I Can Aiken (2026 Edition)](https://book.io/book/i-can-aiken-2026-edition/), a book on the eUTxO model and Aiken, with a second half on writing and auditing Aiken with an AI coding agent
 - [Aiken video course](https://www.youtube.com/playlist?list=PLCuyQuWCJVQ1Zz9ySRMH_J6EymxhnZ0Hu), a multi-part walkthrough
 - [Awesome Aiken](https://github.com/aiken-lang/awesome-aiken) for community projects and reusable libraries
 
@@ -22992,7 +22974,7 @@ cardano-cli latest query proposals --all-proposals           # actions eligible 
 </TabItem>
 </Tabs>
 
-`query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. Query APIs (Blockfrost, Koios, Maestro) expose the same data over HTTP; see [Use a provider](/docs/developers/curriculum/production/use-a-provider).
+`query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. Query APIs (Blockfrost, Koios) expose the same data over HTTP; see [Use a provider](/docs/developers/curriculum/production/use-a-provider).
 
 ## Browser wallet APIs (CIP-95)
 
@@ -23000,7 +22982,7 @@ For a browser dApp, [CIP-95](https://cips.cardano.org/cip/CIP-0095) adds governa
 
 It is an **optional extension**, not part of the CIP-30 core, so two things follow. You have to ask for it when you connect, and a wallet is free to say no. Plenty of wallets implement core CIP-30 only, and your dApp has to handle that rather than assume the methods are there.
 
-<Tabs>
+<Tabs groupId="sdk">
 <TabItem value="browser" label="Browser API" default>
 
 ```typescript
@@ -23105,6 +23087,8 @@ A proposed action then runs a fixed lifecycle, which is what your tooling reads 
 4. **Expired** if it never reaches its thresholds within its lifetime.
 
 Most action types also carry a pointer to the last enacted action of the same kind, so an action ratifies against the state it was proposed against (treasury withdrawals and info actions are exempt). The deposit is returned to the proposer's reward account once the action leaves the live state.
+
+Before an action reaches the chain, it is often deliberated off-chain. For constitution changes, that can happen on Intersect's [Constitutional Amendment Portal](https://cap.intersectmbo.org/), where amendment proposals and issue statements are discussed before a new-constitution action is submitted. The portal is optional; the ledger accepts the action either way.
 
 ## Next steps
 
@@ -23613,7 +23597,7 @@ Every action takes `--governance-action-deposit`, `--deposit-return-stake-verifi
 
 - **Treasury withdrawal** (`create-treasury-withdrawal`): adds `--funds-receiving-stake-verification-key-file`, `--transfer <lovelace>`, and `--constitution-script-hash`.
 - **Protocol-parameter update** (`create-protocol-parameters-update`): the parameter flags being changed, plus `--constitution-script-hash`.
-- **Constitution / guardrails** (`create-constitution`): `--constitution-url`, `--constitution-hash`, and `--constitution-script-hash`.
+- **Constitution / guardrails** (`create-constitution`): `--constitution-url`, `--constitution-hash`, and `--constitution-script-hash`. Amendments are usually drafted and discussed off-chain first, as a Constitutional Amendment Proposal on Intersect's [Constitutional Amendment Portal](https://cap.intersectmbo.org/); see [how the constitution changes](https://cardano.org/constitution/).
 - **Update committee** (`governance action update-committee`): `--add-cc-cold-verification-key-hash <hash>` paired with `--epoch <expiry>`, `--remove-cc-cold-verification-key-hash <hash>`, and `--threshold <fraction>`.
 - **No confidence** (`create-no-confidence`): the common flags plus the previous committee-action reference.
 - **Hard fork** (`create-hard-fork`): initiates a protocol upgrade.
@@ -23697,6 +23681,7 @@ A skill is a focused workflow guide: scaffolding a project, writing a validator,
 
 - SDKs and protocols ship their own AI context to layer on top: [Mesh AI](https://meshjs.dev/ai) for the Mesh API, [Masumi Skills](https://www.masumi.network/dev/masumi/documentation/integrations/masumi-skills) for Masumi's agent stack.
 - An agent can also work against live chain state, reading your balances and drafting transactions you sign: [chain access over MCP](/docs/developers/curriculum/dapps/ai-agents/overview#chain-access-over-mcp).
+- For a guided course, [Agentic Coding on Cardano](https://cardanofoundation.org/en/academy/course/agentic-coding) from the Cardano Academy teaches you to direct an agent through specifying, generating and auditing validators, and to prove each result with a transaction on preprod.
 - With the agent set up, [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) is the natural next build.
 
 ---
@@ -24007,7 +23992,6 @@ A provider is the data source your SDK talks to. Most SDKs support several behin
 | Provider | Hosting | API key | Rate limits |
 |---|---|---|---|
 | **Blockfrost** | Hosted | Required | Yes (free tier limited) |
-| **Maestro** | Hosted | Required | Yes (free tier limited) |
 | **Nexus** | Hosted | Required (scoped per chain + network) | Yes (tier-based) |
 | **Koios** | Hosted (community) or self-hosted | Optional | Yes (higher with a key) |
 | **Kupmios** | Self-hosted (Ogmios + Kupo) | Not applicable | None (your own infra) |
@@ -24033,12 +24017,6 @@ const kupmios = Client.make(mainnet).withKupmios({
   kupoUrl: "http://localhost:1442"
 })
 
-// Maestro (hosted)
-const maestro = Client.make(mainnet).withMaestro({
-  baseUrl: "https://mainnet.gomaestro-api.org/v1",
-  apiKey: process.env.MAESTRO_API_KEY!
-})
-
 // Koios (community)
 const koios = Client.make(mainnet).withKoios({ baseUrl: "https://api.koios.rest/api/v1" })
 ```
@@ -24053,9 +24031,6 @@ const bf = new BlockfrostProvider(process.env.BLOCKFROST_PROJECT_ID!)
 
 // Koios (community), pass the network
 const koios = new KoiosProvider("mainnet")
-
-// Maestro (hosted)
-const maestro = new MaestroProvider({ network: "Mainnet", apiKey: process.env.MAESTRO_API_KEY! })
 
 // Ogmios (self-hosted; Mesh has no single "Kupmios", pair it with Kupo for indexed reads)
 const ogmios = new OgmiosProvider("ws://localhost:1337")
@@ -24087,7 +24062,7 @@ const client = Client.make(mainnet).withKupmios({
 
 Mesh has no single Kupmios provider; pair `OgmiosProvider` with Kupo and pass the Demeter keys through each provider's connection options.
 
-Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself, see [Use a provider](/docs/developers/curriculum/production/use-a-provider) (Blockfrost, Koios, and Maestro projects) and [Self-hosting](/docs/developers/curriculum/production/self-hosting) (your own node + Kupo + Ogmios, a data node, Demeter).
+Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself, see [Use a provider](/docs/developers/curriculum/production/use-a-provider) (Blockfrost, Koios, and Nexus projects) and [Self-hosting](/docs/developers/curriculum/production/self-hosting) (your own node + Kupo + Ogmios, a data node, Demeter).
 
 :::tip Privacy and trust
 A **hosted** provider sees every address you query and every transaction you submit, along with your IP. It's a third party in your data path, with rate limits and an uptime you don't control. **Self-hosting** (your own node + Kupo + Ogmios, or Kupmios) keeps that data private and removes the dependency, at the cost of running the infrastructure. Pick based on how sensitive your queries are and how much ops you want to own.
@@ -24710,7 +24685,7 @@ SDKs build a transaction against a live provider. `cardano-cli` can also build o
 # 1. Protocol parameters (needs a node, once)
 cardano-cli query protocol-parameters --out-file pparams.json
 
-# 2. Draft with fee 0 (the change output holds the full input for now)
+# 2. Draft with fee 0 and change = inputs - sent (not 0)
 cardano-cli latest transaction build-raw \
   --tx-in <TxHash>#<TxIx> \
   --tx-out "$(< payment2.addr)+1000000000" \
@@ -24732,6 +24707,8 @@ cardano-cli latest transaction build-raw \
 
 </TabItem>
 </Tabs>
+
+The fee is priced per byte, so the draft needs the real amounts. `--fee 0` is fine, since `calculate-min-fee` accounts for the fee's own size, but a `0` in an output takes fewer bytes than the real amount and the fee comes out too low, which the node rejects with `FeeTooSmallUTxO`. Lowering the change in step 4 never adds bytes, so one pass is enough. To check before signing, run `calculate-min-fee` on `tx.raw`. It returns the same fee. If you raise an amount or add anything after step 3, run `calculate-min-fee` again.
 
 `--witness-count` is how many signatures the transaction will carry. It affects the fee. Inspect any draft with `cardano-cli debug transaction view --tx-body-file tx.draft`.
 
@@ -47090,7 +47067,7 @@ Cardano requires specific versions of `sodium`, `secp256k1`, and `blst`. Determi
 
 ```bash
 CARDANO_NODE_VERSION='11.0.1'
-IOHKNIX_VERSION=$(curl -s https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')
+IOHKNIX_VERSION=$(curl -s https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.iohkNix].locked.rev')
 ```
 
 :::caution
@@ -47107,7 +47084,7 @@ cd ~/src
 **sodium** (Cardano uses a custom fork with additional cryptographic functions):
 
 ```bash
-SODIUM_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.sodium.original.rev')
+SODIUM_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.sodium].original.rev')
 git clone https://github.com/intersectmbo/libsodium
 cd libsodium && git checkout $SODIUM_VERSION
 ./autogen.sh && ./configure
@@ -47118,7 +47095,7 @@ cd ~/src
 **secp256k1**:
 
 ```bash
-SECP256K1_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.secp256k1.original.ref')
+SECP256K1_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.secp256k1].original.ref')
 git clone --depth 1 --branch ${SECP256K1_VERSION} https://github.com/bitcoin-core/secp256k1
 cd secp256k1
 ./autogen.sh && ./configure --enable-module-schnorrsig --enable-experimental
@@ -47129,7 +47106,7 @@ cd ~/src
 **blst**:
 
 ```bash
-BLST_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.blst.original.ref')
+BLST_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.blst].original.ref')
 git clone --depth 1 --branch ${BLST_VERSION} https://github.com/supranational/blst
 cd blst && ./build.sh
 cat > libblst.pc << EOF
@@ -49179,7 +49156,7 @@ For **content writers and developers** who want to work on documentation, blog p
 
 ### Local Development Setup
 
-Follow the [local development setup](https://github.com/cardano-foundation/developer-portal/blob/staging/README.md#local-development-setup) in the README: fork, clone, `yarn install`, `yarn build`, `yarn start`. It requires Node.js 22 (the pinned version lives in `.nvmrc`, so `nvm use` picks it up) and Yarn 1.20+.
+Follow the [local development setup](https://github.com/cardano-foundation/developer-portal/blob/staging/README.md#local-development-setup) in the README: fork, clone, `yarn install`, `yarn build`, `yarn start`. It requires Node.js 24 or newer (the pinned version lives in `.nvmrc`, so `nvm use` picks it up) and Yarn 1.20+.
 
 :::info Development vs Production
 
@@ -49227,7 +49204,7 @@ developer-portal/
 ### Troubleshooting
 
 **Node.js version error:** `[ERROR] Minimum Node.js version not met`
-**Solution:** Use Node.js 22. With nvm installed, `nvm use` in the repo root switches to the version pinned in `.nvmrc`.
+**Solution:** Use Node.js 24 or newer. With nvm installed, `nvm use` in the repo root switches to the version pinned in `.nvmrc`.
 
 ## More Ways to Contribute
 

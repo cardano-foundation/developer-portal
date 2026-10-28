@@ -10,7 +10,7 @@ Shipping is readiness plus infrastructure. The readiness half is a checklist; th
 
 - **[Going to production](/docs/developers/curriculum/production/going-to-production)**: the pre-mainnet checklist: testing, security, reliable transactions, optimization, key safety, and the staging path through the testnets.
 - **[Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)**: the concept map of chain access: what query APIs, node interfaces, indexers, data nodes, full nodes, and managed platforms each are, which of them are genuine alternatives to each other, and the axes to choose by.
-- **[Use a provider](/docs/developers/curriculum/production/use-a-provider)**: the hosted path in practice: Blockfrost, Koios, and Maestro, set up with one identical skeleton.
+- **[Use a provider](/docs/developers/curriculum/production/use-a-provider)**: the hosted path in practice: Blockfrost, Koios, and Nexus, set up with one identical skeleton.
 - **[Self-hosting](/docs/developers/curriculum/production/self-hosting)**: the self-run path in practice: a Dolos data node, a node with Ogmios and Kupo, or a full node, with Demeter as the managed variant.
 - **[Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics)**: when your application needs its own slice of the chain, or answers over its full history.
 - **[The network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol)**: an appendix on the wire protocol everything above abstracts, and how to speak it directly.

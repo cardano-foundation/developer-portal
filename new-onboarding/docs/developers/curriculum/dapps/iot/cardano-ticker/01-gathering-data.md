@@ -21,68 +21,69 @@ The next sections add token prices and NFT floors on top.
 
 ## Fetching from MinSwap
 
-[MinSwap](https://minswap.org/) is a DEX on Cardano. It exposes an endpoint to fetch all tokens (and prices) for a wallet address:
+[MinSwap](https://minswap.org/) is a DEX on Cardano. Its [Aggregator API](https://docs.minswap.org/developer/aggregator-api) has an endpoint that returns every token in a wallet, with prices for the tokens MinSwap trades:
 
 ```
-https://monorepo-mainnet-prod.minswap.org/v1/portfolio/tokens?address=[WALLETADDRESS]&only_minswap=true&filter_small_value=false
+https://agg-api.minswap.org/aggregator/wallet?address=[WALLETADDRESS]&amount_in_decimal=true
 ```
 
-Replace `[WALLETADDRESS]` with your wallet address. The response is JSON:
+Replace `[WALLETADDRESS]` with your wallet address. With `amount_in_decimal=true`, amounts come back in whole units, ADA instead of lovelace. The response is JSON, shown here with three of its entries:
 
 ```json
 {
-  "positions": {
-    "nft_positions": [
-      {
-        "currency_symbol": "f0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a",
-        "token_name": "000de14063617264616e6f7468696e6773",
-        "is_verified": true
-      }
-    ],
-    "asset_positions": [
-      {
-        "asset": {
-          "currency_symbol": "",
-          "token_name": "",
-          "is_verified": true,
-          "metadata": {
-            "decimals": 6,
-            "name": "Cardano",
-            "ticker": "ADA"
-          }
-        },
-        "price_usd": 0.3864,
-        "amount": 11.37058,
-        "amount_usd": 4.393592112,
-        "pnl_24h_usd": -0.3466696040696063,
-        "pnl_24h_percent": -7.8903456495828275
+  "wallet": "addr1...",
+  "ada": "9.173282",
+  "minimum_lovelace": "2.845947",
+  "balance": [
+    {
+      "asset": {
+        "token_id": "lovelace",
+        "logo": "https://asset-logos.minswap.org/lovelace",
+        "ticker": "ADA",
+        "is_verified": true,
+        "project_name": "Cardano",
+        "price_by_ada": 1,
+        "decimals": 6
       },
-      {
-        "asset": {
-          "currency_symbol": "3d77d63dfa6033be98021417e08e3368cc80e67f8d7afa196aaa0b39",
-          "token_name": "53746172636820546f6b656e",
-          "is_verified": true,
-          "metadata": {
-            "name": "STRCH",
-            "url": "https://starch.one",
-            "ticker": "STRCH",
-            "decimals": 0,
-            "description": ""
-          }
-        },
-        "price_usd": 3.0215906268916395e-9,
-        "amount": 114081,
-        "amount_usd": 0.00034470608030642515,
-        "pnl_24h_usd": -0.00005476157689164048,
-        "pnl_24h_percent": -15.88645516289135
-      }
-    ],
-    "lp_asset_positions": []
-  }
+      "amount": "9.173282"
+    },
+    {
+      "asset": {
+        "token_id": "3e4be1669f4e0f92f3e6421307ba24e31fc192029268ecb4242a5abb537461726368204d696e657220233030383038"
+      },
+      "amount": "1"
+    },
+    {
+      "asset": {
+        "token_id": "3d77d63dfa6033be98021417e08e3368cc80e67f8d7afa196aaa0b3953746172636820546f6b656e",
+        "logo": "https://asset-logos.minswap.org/3d77d63dfa6033be98021417e08e3368cc80e67f8d7afa196aaa0b3953746172636820546f6b656e",
+        "ticker": "STRCH",
+        "is_verified": true,
+        "price_by_ada": 1.3539651837524176e-8,
+        "price_by_usd": 2.802707930367504e-9,
+        "project_name": "STRCH",
+        "decimals": 0
+      },
+      "amount": "100000000"
+    }
+  ],
+  "amount_in_decimal": true
 }
 ```
 
-You get NFTs in the wallet, tokens, USD price per token, amounts, 24h USD change, and 24h percent change - enough to render token rows on the ticker.
+Tokens that MinSwap prices carry a `ticker`, `decimals` and `price_by_ada`, and current responses also include `price_by_usd`, though MinSwap's published schema doesn't list it. NFTs come back with only a `token_id` and an `amount` of `"1"`. The first 56 characters of `token_id` are the policy ID, which the NFT floor lookup below needs.
+
+For USD values from the documented fields, fetch the ADA price and multiply it by `price_by_ada`:
+
+```
+https://agg-api.minswap.org/aggregator/ada-price?currency=usd
+```
+
+```json
+{ "currency": "usd", "value": { "change_24h": 0.39, "price": 0.207 } }
+```
+
+The wallet endpoint has no 24-hour change per token. MinSwap's [public API](https://docs.minswap.org/developer/minswap-apis) reports `price_change_24h` per asset if you want that figure on the ticker.
 
 ## Fetching from JPG.store (no longer)
 
@@ -150,9 +151,8 @@ Include your API key in the `api-key` request header. Without it you'll get 401 
 
 ## Other APIs
 
-For production tickers, two paid options worth considering:
+For production tickers, consider a dedicated price API:
 
-- **[TapTools](https://www.taptools.io/)** - a Cardano analytics platform with detailed token, portfolio, and market data; tiered pricing. [API docs](https://openapi.taptools.io/).
 - **[Charli3](https://charli3.io/)** - a Cardano oracle / API provider with historical and live token prices, free + paid tiers. [Token API](https://charli3.io/api).
 
 ## Next steps
@@ -163,7 +163,6 @@ You now have all the data the ticker needs. The next lesson assembles it into a 
 - [MinSwap](https://minswap.org/) - Cardano DEX.
 - [Cexplorer.io](https://cexplorer.io/) - explorer + free-tier API.
 - [JPG.store](https://www.jpg.store/) - NFT marketplace.
-- [TapTools](https://www.taptools.io/) - analytics platform.
 - [Charli3](https://charli3.io/) - oracle / token-price API.
 
 ---

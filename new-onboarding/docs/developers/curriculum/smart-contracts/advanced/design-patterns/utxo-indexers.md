@@ -271,6 +271,8 @@ one_to_one(validate, 1, 0, ...)  // Input 1 -> Output 0 (same!)
 - [multi-utxo-indexer.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/validators/examples/multi-utxo-indexer.ak)
 - [Library implementation](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/multi-utxo-indexer.ak)
 
+**Scalus:** both variants are in [UtxoIndexer.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/UtxoIndexer.scala), with an example in [UtxoIndexerExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/UtxoIndexerExample.scala)
+
 ## Related Patterns
 
 - [Stake Validator](../stake-validator) - Multi-indexers work best with stake validators

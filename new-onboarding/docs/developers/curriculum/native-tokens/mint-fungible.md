@@ -115,6 +115,8 @@ cardano-cli latest transaction sign \
 cardano-cli latest transaction submit --tx-file matx.signed
 ```
 
+For calculating the fee, see [Offline builds](/docs/developers/curriculum/start-building/transaction-building#offline-builds-air-gapped).
+
 </TabItem>
 </Tabs>
 

@@ -272,6 +272,8 @@ Full working example: [stake-validator.ak](https://github.com/Anastasia-Labs/aik
 
 Library implementation: [stake_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/stake-validator.ak)
 
+Scalus implementation: [StakeValidator.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/patterns/StakeValidator.scala), with an example in [StakeValidatorExample.scala](https://github.com/scalus3/scalus/blob/v1.4.0/scalus-design-patterns/src/main/scala/scalus/examples/StakeValidatorExample.scala)
+
 ## When to Use
 
 **Use stake validators when:**
