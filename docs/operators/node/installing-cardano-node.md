@@ -239,7 +239,7 @@ Cardano requires specific versions of `sodium`, `secp256k1`, and `blst`. Determi
 
 ```bash
 CARDANO_NODE_VERSION='11.0.1'
-IOHKNIX_VERSION=$(curl -s https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')
+IOHKNIX_VERSION=$(curl -s https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.iohkNix].locked.rev')
 ```
 
 :::caution
@@ -256,7 +256,7 @@ cd ~/src
 **sodium** (Cardano uses a custom fork with additional cryptographic functions):
 
 ```bash
-SODIUM_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.sodium.original.rev')
+SODIUM_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.sodium].original.rev')
 git clone https://github.com/intersectmbo/libsodium
 cd libsodium && git checkout $SODIUM_VERSION
 ./autogen.sh && ./configure
@@ -267,7 +267,7 @@ cd ~/src
 **secp256k1**:
 
 ```bash
-SECP256K1_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.secp256k1.original.ref')
+SECP256K1_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.secp256k1].original.ref')
 git clone --depth 1 --branch ${SECP256K1_VERSION} https://github.com/bitcoin-core/secp256k1
 cd secp256k1
 ./autogen.sh && ./configure --enable-module-schnorrsig --enable-experimental
@@ -278,7 +278,7 @@ cd ~/src
 **blst**:
 
 ```bash
-BLST_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.blst.original.ref')
+BLST_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes[.nodes.root.inputs.blst].original.ref')
 git clone --depth 1 --branch ${BLST_VERSION} https://github.com/supranational/blst
 cd blst && ./build.sh
 cat > libblst.pc << EOF

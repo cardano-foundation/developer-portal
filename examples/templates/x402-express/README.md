@@ -72,11 +72,11 @@ mnemonic; rotate the Blockfrost key in your Blockfrost dashboard.
 
 The x402 packages (`@x402/express` for the seller, `@x402/fetch` for the
 buyer, `@x402/cardano` for the Cardano scheme) come straight from npm,
-pinned exactly at **2.26.0**, as is `@evolution-sdk/evolution`
-(content freeze for the hackathon — the x402 release train ships weekly, and
-a version range would change what participants install mid-event). To bump
-later: check `npm view @x402/cardano version`, update the four `@x402/*`
-versions in `package.json`, and rerun `npm install`.
+pinned exactly at **2.26.0**, and `@evolution-sdk/evolution` exactly at
+**0.5.14**. Exact pins keep installs reproducible while the x402 release
+train ships often. To bump: check `npm view @x402/cardano version`, update
+the four `@x402/*` versions in `package.json`, rerun `npm install`, and run
+the demo again.
 
 ## Building with a coding agent
 

@@ -89,7 +89,7 @@ cardano-cli latest query proposals --all-proposals           # actions eligible 
 </TabItem>
 </Tabs>
 
-`query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. Query APIs (Blockfrost, Koios, Maestro) expose the same data over HTTP; see [Use a provider](/docs/developers/curriculum/production/use-a-provider).
+`query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. Query APIs (Blockfrost, Koios) expose the same data over HTTP; see [Use a provider](/docs/developers/curriculum/production/use-a-provider).
 
 ## Browser wallet APIs (CIP-95)
 
@@ -97,7 +97,7 @@ For a browser dApp, [CIP-95](https://cips.cardano.org/cip/CIP-0095) adds governa
 
 It is an **optional extension**, not part of the CIP-30 core, so two things follow. You have to ask for it when you connect, and a wallet is free to say no. Plenty of wallets implement core CIP-30 only, and your dApp has to handle that rather than assume the methods are there.
 
-<Tabs>
+<Tabs groupId="sdk">
 <TabItem value="browser" label="Browser API" default>
 
 ```typescript

@@ -719,27 +719,27 @@ const redirects = [
   // cardano-cli docs moved from get-started/infrastructure/cardano-cli to learn/cardano-cli
   { to: '/docs/developers/curriculum/start-building/your-first-transaction', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started', '/docs/learn/cardano-cli/basic-operations/get-started'] },
   { to: '/docs/developers/curriculum/start-building/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions', '/docs/learn/cardano-cli/basic-operations/simple-transactions'] },
-  // cardano-cli stake ops dissolved into the staking topic (concept + Evolution/Mesh/cli tabs)
-  { to: '/docs/developers/curriculum/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/stakeaddress-registration', '/docs/learn/cardano-cli/basic-operations/stake-address-registration'] },
-  { to: '/docs/developers/curriculum/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/stake-address-delegation', '/docs/learn/cardano-cli/basic-operations/delegate-to-stake-pool'] },
-  { to: '/docs/developers/curriculum/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/deregister-stake-address', '/docs/learn/cardano-cli/basic-operations/deregister-stake-address'] },
-  { to: '/docs/developers/curriculum/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/withdraw-rewards', '/docs/learn/cardano-cli/basic-operations/withdraw-rewards'] },
-  { to: '/docs/developers/curriculum/start-building/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/treasury-donations', '/docs/learn/cardano-cli/basic-operations/treasury-donation'] },
+  // cardano-cli stake ops moved to the staking pages that carry the cardano-cli tabs
+  { to: '/docs/developers/curriculum/staking-governance/delegate-and-withdraw', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/stakeaddress-registration', '/docs/learn/cardano-cli/basic-operations/stake-address-registration', '/docs/learn/cardano-cli/basic-operations/stakeaddress-registration'] },
+  { to: '/docs/developers/curriculum/staking-governance/delegate-and-withdraw', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/stake-address-delegation', '/docs/learn/cardano-cli/basic-operations/delegate-to-stake-pool', '/docs/learn/cardano-cli/basic-operations/stake-address-delegation'] },
+  { to: '/docs/developers/curriculum/staking-governance/manage-stake', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/deregister-stake-address', '/docs/learn/cardano-cli/basic-operations/deregister-stake-address'] },
+  { to: '/docs/developers/curriculum/staking-governance/delegate-and-withdraw', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/withdraw-rewards', '/docs/learn/cardano-cli/basic-operations/withdraw-rewards'] },
+  { to: '/docs/developers/curriculum/start-building/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/treasury-donations', '/docs/learn/cardano-cli/basic-operations/treasury-donation', '/docs/learn/cardano-cli/basic-operations/treasury-donations'] },
   { to: '/docs/developers/curriculum/start-building/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/multi-witness-transactions', '/docs/learn/cardano-cli/multi-witness-transactions'] },
   { to: '/docs/operators/security/secure-workflow', from: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow' },
   // cardano-cli governance guides moved from the legacy learn/ bucket into Module 6
-  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/voting', '/docs/learn/cardano-cli/governance/submit-votes'] },
-  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/gov-queries', '/docs/learn/cardano-cli/governance/gov-queries'] },
-  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/governance-actions', '/docs/learn/cardano-cli/governance/create-governance-actions'] },
-  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee', '/docs/learn/cardano-cli/governance/constitutional-committee'] },
-  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote', '/docs/learn/cardano-cli/governance/delegate-to-a-drep'] },
-  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/register-drep', '/docs/learn/cardano-cli/governance/register-drep'] },
+  { to: '/docs/developers/curriculum/staking-governance/vote-and-propose', from: ['/docs/get-started/infrastructure/cardano-cli/governance/voting', '/docs/learn/cardano-cli/governance/submit-votes', '/docs/learn/cardano-cli/governance/voting'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance-operations', from: ['/docs/get-started/infrastructure/cardano-cli/governance/gov-queries', '/docs/learn/cardano-cli/governance/gov-queries'] },
+  { to: '/docs/developers/curriculum/staking-governance/vote-and-propose', from: ['/docs/get-started/infrastructure/cardano-cli/governance/governance-actions', '/docs/learn/cardano-cli/governance/create-governance-actions', '/docs/learn/cardano-cli/governance/governance-actions'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance-operations', from: ['/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee', '/docs/learn/cardano-cli/governance/constitutional-committee'] },
+  { to: '/docs/developers/curriculum/staking-governance/drep-and-delegation', from: ['/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote', '/docs/learn/cardano-cli/governance/delegate-to-a-drep', '/docs/learn/cardano-cli/governance/delegating-vote'] },
+  { to: '/docs/developers/curriculum/staking-governance/drep-and-delegation', from: ['/docs/get-started/infrastructure/cardano-cli/governance/register-drep', '/docs/learn/cardano-cli/governance/register-drep'] },
   // the standalone governance section was folded into the developer curriculum (Module 6); participation now lives at cardano.org/governance
   { to: '/docs/developers/curriculum/staking-governance/overview', from: '/docs/governance/' },
   { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/governance/overview', '/docs/governance/cardano-governance/overview', '/docs/governance/cardano-governance/cardano-governance', '/docs/governance/cardano-governance/governance-actions', '/docs/governance/cardano-governance/submitting-governance-actions', '/docs/governance/cardano-governance/constitutional-committee-guide'] },
-  { to: '/docs/developers/curriculum/native-tokens/mint-fungible', from: ['/docs/get-started/infrastructure/cardano-cli/native-assets/native-assets', '/docs/learn/cardano-cli/native-assets'] },
-  { to: '/docs/developers/curriculum/smart-contracts/write-a-validator', from: ['/docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts', '/docs/learn/cardano-cli/simple-scripts'] },
-  { to: '/docs/developers/curriculum/smart-contracts/lock-and-spend', from: ['/docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts', '/docs/learn/cardano-cli/plutus-scripts'] },
+  { to: '/docs/developers/curriculum/native-tokens/mint-fungible', from: ['/docs/get-started/infrastructure/cardano-cli/native-assets/native-assets', '/docs/learn/cardano-cli/native-assets', '/docs/learn/cardano-cli/native-assets/native-assets'] },
+  { to: '/docs/developers/curriculum/smart-contracts/write-a-validator', from: ['/docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts', '/docs/learn/cardano-cli/simple-scripts', '/docs/learn/cardano-cli/simple-scripts/simple-scripts'] },
+  { to: '/docs/developers/curriculum/smart-contracts/lock-and-spend', from: ['/docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts', '/docs/learn/cardano-cli/plutus-scripts', '/docs/learn/cardano-cli/plutus-scripts/plutus-scripts'] },
   // deleted SPO docs
   { to: '/docs/operators/', from: '/docs/operate-a-stake-pool/basics/scaling-node-operations' },
   { to: '/docs/operators/relay-configuration/relay-node-configuration', from: '/docs/operate-a-stake-pool/relay-configuration/mithril-relay' },
@@ -1012,20 +1012,6 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/curriculum/start-building/transaction-building',
-    from: [
-      '/docs/learn/cardano-cli/basic-operations/stake-address-delegation',
-      '/docs/learn/cardano-cli/basic-operations/stakeaddress-registration',
-      '/docs/learn/cardano-cli/basic-operations/treasury-donations',
-      '/docs/learn/cardano-cli/governance/delegating-vote',
-      '/docs/learn/cardano-cli/governance/governance-actions',
-      '/docs/learn/cardano-cli/governance/voting',
-      '/docs/learn/cardano-cli/native-assets/native-assets',
-      '/docs/learn/cardano-cli/plutus-scripts/plutus-scripts',
-      '/docs/learn/cardano-cli/simple-scripts/simple-scripts',
-    ],
-  },
-  {
     to: '/docs/developers/curriculum/dapps/oracles/overview',
     from: [
       '/docs/build/integrate/oracles/charli3',
@@ -1144,6 +1130,14 @@ const redirects = [
   { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/developers/curriculum/dapps/ai-agents/mcp' },
   // The prediction-market walkthrough was removed; its oracle patterns live in the Pyth guide (2026-09-30).
   { to: '/docs/developers/curriculum/dapps/oracles/pyth', from: '/docs/developers/curriculum/dapps/oracles/prediction-market' },
+  // Module root URLs have no page of their own; send each to its module overview (2026-10-20).
+  { to: '/docs/developers/curriculum/fundamentals/overview', from: '/docs/developers/curriculum/fundamentals/' },
+  { to: '/docs/developers/curriculum/start-building/overview', from: '/docs/developers/curriculum/start-building/' },
+  { to: '/docs/developers/curriculum/native-tokens/overview', from: '/docs/developers/curriculum/native-tokens/' },
+  { to: '/docs/developers/curriculum/staking-governance/overview', from: '/docs/developers/curriculum/staking-governance/' },
+  { to: '/docs/developers/curriculum/smart-contracts/overview', from: '/docs/developers/curriculum/smart-contracts/' },
+  { to: '/docs/developers/curriculum/dapps/overview', from: '/docs/developers/curriculum/dapps/' },
+  { to: '/docs/developers/curriculum/production/overview', from: '/docs/developers/curriculum/production/' },
 ];
 
 module.exports = redirects;
