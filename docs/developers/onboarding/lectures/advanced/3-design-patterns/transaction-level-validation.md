@@ -362,7 +362,7 @@ What the tables say:
 
 - **For a single donation, the naive pool is cheaper.** The pattern adds a second script run, and with one input there is nothing to share.
 - **From a handful of donations on, the pattern wins, and the gap widens.** At 10 donations withdraw-zero uses {costSaving(Costs, "pools.naive.sweeps.10.mem", "pools.withdrawByHand.sweeps.10.mem")} less memory and pays a {costSaving(Costs, "pools.naive.sweeps.10.fee", "pools.withdrawByHand.sweeps.10.fee")} lower fee.
-- **The pattern's cost still grows faster than the number of donations.** Each spend still searches the inputs for its own, and that search is what remains of the _N²_. The [UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers) pattern removes it by passing each input's position in the redeemer.
+- **The pattern's cost still grows faster than the number of donations.** Each spend still searches the inputs for its own, and that search is what remains of the _N²_. The [UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers) pattern removes it by passing each input's position in the redeemer.
 - **Withdraw-zero is slightly cheaper than minting.** The minting policy also checks the token it mints.
 
 The library versions cost the same as the hand-written minting pool ({costFigure(Costs, "pools.mintLibrary.sweeps.10.mem")} at 10 donations) and slightly more than the hand-written withdraw pool ({costFigure(Costs, "pools.withdrawLibrary.sweeps.10.mem")} against {costFigure(Costs, "pools.withdrawByHand.sweeps.10.mem")}). A search through a single withdrawal ends at the first step, so the index only adds work here: decoding the redeemer and checking the entry. It helps a transaction that carries several withdrawals.
@@ -406,7 +406,7 @@ What the pools leave to you:
 
 ## Run it
 
-The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/design-patterns/introduction#the-playground)** for the layout.
+The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/design-patterns/introduction#the-playground)** for the layout.
 
 ```bash
 npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/design-patterns/tx-level-validation tx-level-validation
@@ -422,7 +422,7 @@ npm run bench                    # measure again and rewrite costs.json
 
 - [Stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator): the withdraw-zero trick in reference form, and the credential's registration as one bit of global state.
 - [Transaction-level minter](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter): the minting-policy coordinator.
-- [UTxO indexers](/docs/developers/onboarding/design-patterns/utxo-indexers): remove the search each spend still does.
-- [Batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers): a coordinator that also checks each input's own outputs.
+- [UTxO indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/utxo-indexers): remove the search each spend still does.
+- [Batch indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/batch-indexers): a coordinator that also checks each input's own outputs.
 - [Double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) and [Staking and certificate control](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates): the attacks above, in full.
 - [`aiken-design-patterns` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/tree/v1.9.0): the library's source and its own examples.

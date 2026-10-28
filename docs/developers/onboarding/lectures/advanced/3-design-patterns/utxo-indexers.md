@@ -20,7 +20,7 @@ import Costs from "@site/examples/onboarding/design-patterns/utxo-indexers/off-c
 
 A validator often has to find something in its transaction: the output that pays for its input, or its own input among all the others. Searching for it means walking the list and inspecting each element until one matches, and when many inputs from the same script each search, the work grows with the square of the batch. This pattern does the search **off-chain**, where it is free, and passes the result in the redeemer as an **index**. The validator goes straight to that position and checks what it finds there.
 
-This page covers the two **singular** indexers, where each input is pointed at its own outputs: **one-to-one**, one input and one output, and **one-to-many**, one input and several outputs. It writes both by hand and with the [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns) library, and mesures the costs of all variants. The evolution of this, **multi** indexers, where one coordinator checks every input at once, is in **[batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers)**.
+This page covers the two **singular** indexers, where each input is pointed at its own outputs: **one-to-one**, one input and one output, and **one-to-many**, one input and several outputs. It writes both by hand and with the [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns) library, and mesures the costs of all variants. The evolution of this, **multi** indexers, where one coordinator checks every input at once, is in **[batch indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/batch-indexers)**.
 
 ## The protocol
 
@@ -323,7 +323,7 @@ The same book, with the library's `one_to_one` finding the input and the output 
 - `one_to_one` takes **two** indices, the input's and the output's, reads both, and checks that the input at its index is the one being spent. It then hands both to your function. That costs more here, because this book never uses the input, but it is what you want when the check needs the input's own value or address, which a spend handler is not given directly.
 - `double_satisfaction_prevented` is a reminder, not a check. The library requires it to be `True` and does nothing else with it. Passing `True` is a promise that your check closes double satisfaction, which `is_filled_by` does with the tag.
 - `one_to_many` takes a list of output indices that must go up, and runs two functions of yours: one on each output with its index, and one on all of them together. The outputs of a partial fill only make sense together, so the per-output function accepts everything and the collective one does the work. It does not check the indices are next to each other: that rule is this book's, so the book checks it before calling.
-- [`multi_utxo_indexer`](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/multi-utxo-indexer.ak) moves the indices into a single coordinator that checks every input at once. That is the subject of **[batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers)**, and it pays off only when the check spans the whole batch.
+- [`multi_utxo_indexer`](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/v1.9.0/lib/aiken-design-patterns/multi-utxo-indexer.ak) moves the indices into a single coordinator that checks every input at once. That is the subject of **[batch indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/batch-indexers)**, and it pays off only when the check spans the whole batch.
 
 The library finds the input and the output. What makes an output acceptable is still yours to write.
 
@@ -436,7 +436,7 @@ What the tables say:
 **Skip it** when:
 
 - **UTxOs are almost always spent one at a time.** The 1-order row above: the index costs more.
-- **The check is about the whole transaction**, such as a total paid or a conservation of value. Every input would run the same check, with or without an index. Run it once instead, with **[transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation)**.
+- **The check is about the whole transaction**, such as a total paid or a conservation of value. Every input would run the same check, with or without an index. Run it once instead, with **[transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation)**.
 
 ### Security
 
@@ -461,7 +461,7 @@ What the books leave to you:
 
 ## Run it
 
-The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/design-patterns/introduction#the-playground)** for the layout.
+The whole example is one self-contained project. See the **[introduction](/docs/developers/onboarding/lectures/advanced/design-patterns/introduction#the-playground)** for the layout.
 
 ```bash
 npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/design-patterns/utxo-indexers utxo-indexers
@@ -475,7 +475,7 @@ npm run bench                    # measure again and rewrite costs.json
 
 ## Go deeper
 
-- [Batch indexers](/docs/developers/onboarding/design-patterns/batch-indexers): the multi indexers, one coordinator for a whole batch.
-- [Transaction-level validation](/docs/developers/onboarding/design-patterns/transaction-level-validation): the coordinator the multi indexers are built on.
+- [Batch indexers](/docs/developers/onboarding/lectures/advanced/design-patterns/batch-indexers): the multi indexers, one coordinator for a whole batch.
+- [Transaction-level validation](/docs/developers/onboarding/lectures/advanced/design-patterns/transaction-level-validation): the coordinator the multi indexers are built on.
 - [Double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction): the attack the tag closes, in full.
 - [`aiken-design-patterns` v1.9.0](https://github.com/Anastasia-Labs/aiken-design-patterns/tree/v1.9.0): the library's source and its own examples.

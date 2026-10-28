@@ -1,7 +1,7 @@
 # Onboarding Design patterns — runnable examples
 
 One self-contained project per pattern, used by the onboarding **Design patterns** section
-(`docs/developers/onboarding/design-patterns/`). Each project holds the naive contract the pattern
+(`docs/developers/onboarding/lectures/advanced/3-design-patterns/`). Each project holds the naive contract the pattern
 replaces, the pattern implementation, the Mesh transaction builders, and a benchmark that measures
 them. Most compare a hand-written implementation with a library version, usually using
 [`aiken-design-patterns`](https://github.com/Anastasia-Labs/aiken-design-patterns). Merkle Patricia trie
