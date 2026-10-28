@@ -55,10 +55,10 @@ function getNavbarItems(repository) {
       featured: {
         title: 'Start Here',
         description:
-          'The 7-module path from zero to shipping, fundamentals through production.',
+          'A hands-on path from your first wallet to a smart contract ready for mainnet.',
         image: '/img/home/rebrand/bento-start-here.webp',
-        to: '/docs/developers/',
-        cta: 'Start the Curriculum',
+        to: '/docs/developers/onboarding/introduction/overview/',
+        cta: 'Start the onboarding',
         placement: 'start',
       },
       columns: [
@@ -76,6 +76,7 @@ function getNavbarItems(repository) {
         {
           title: 'Guides',
           items: [
+            {to: '/docs/developers/', label: 'Curriculum', description: 'The reference: every topic in depth, fundamentals through production', icon: 'overview'},
             {to: '/docs/developers/cardano-for-ethereum-developers/', label: 'Cardano for Ethereum Developers', description: 'Map your existing mental model to Cardano', icon: 'eth'},
             {to: '/docs/developers/exchange-integrations/', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration', icon: 'exchange'},
           ],
