@@ -10,11 +10,22 @@ import DocCard from '@theme/DocCard';
 
 Pick where you want to start.
 
+## New to Cardano?
+
+<div className="row margin-bottom--md">
+  <div className="col col--6">
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/introduction/overview', label: 'Start the onboarding', description: 'A hands-on path from your first wallet to a smart contract ready for mainnet.'}} />
+  </div>
+  <div className="col col--6">
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/tutorial/overview', label: 'Build your first dApp', description: 'Download and run an atomic swap, end to end.'}} />
+  </div>
+</div>
+
 ## Want to jump into building?
 
 <div className="row margin-bottom--md">
   <div className="col col--6">
-    <DocCard item={{type: 'link', href: '/templates', label: 'Scaffold a dApp', description: 'A wallet-connected app in one command.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/get-started/overview', label: 'Scaffold a dApp', description: 'One command creates a contract, off-chain code and a local network.'}} />
   </div>
   <div className="col col--6">
     <DocCard item={{type: 'link', href: '/docs/developers/curriculum/start-building/your-first-transaction', label: 'Send your first transaction', description: 'Build, sign, and submit on a testnet.'}} />
@@ -25,7 +36,7 @@ Pick where you want to start.
 
 <div className="row margin-bottom--md">
   <div className="col col--6">
-    <DocCard item={{type: 'link', href: '/docs/developers/curriculum/fundamentals/overview', label: 'Learn the fundamentals', description: 'The ledger, keys, transactions, and fees.'}} />
+    <DocCard item={{type: 'link', href: '/docs/developers/onboarding/lectures/beginner/introduction', label: 'Learn the fundamentals', description: 'Wallets, UTxOs, transactions and tokens, step by step.'}} />
   </div>
 </div>
 

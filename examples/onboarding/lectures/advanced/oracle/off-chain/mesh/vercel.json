@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/api/blockfrost/:path*", "destination": "/api/blockfrost" }]
+}
