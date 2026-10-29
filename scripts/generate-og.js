@@ -1,7 +1,7 @@
 //
 // Generates branded Open Graph cards for every doc under docs/, every post under
 // blog/, and the handful of site pages that live outside both (landing, tools,
-// templates, contracts, talent, blog index).
+// templates, contracts, talent, programmable tokens, blog index).
 //
 // For each page we stamp its title and a section eyebrow onto one of the brand
 // background frames (exported from the design template with the Cardano lockup
@@ -10,7 +10,7 @@
 // frontmatter:
 //   docs  -> src/theme/DocItem/Metadata/index.js
 //   blog  -> src/theme/BlogPostPage/Metadata/index.js
-//   pages -> src/pages/{tools,talent,templates}, src/components/{Tool,Template}Detail,
+//   pages -> src/pages/{tools,talent,templates,programmable-tokens}, src/components/{Tool,Template}Detail,
 //            src/theme/BlogListPage, each looking up its key in pages/manifest.json.
 //            docusaurus.config.js points the site-wide fallback (themeConfig.image)
 //            at pages/home.jpg, so the landing page and anything without a card of
@@ -117,6 +117,7 @@ const PAGES = [
   { key: 'templates', eyebrow: 'TEMPLATES', title: 'Scaffold a wallet-connected dApp in one\u00A0command' },
   { key: 'contracts', eyebrow: 'CONTRACTS LIBRARY', title: 'Reference contracts, indexed by use\u00A0case' },
   { key: 'talent', eyebrow: 'TALENT POOL', title: 'Hackathons, jobs and grants for\u00A0builders' },
+  { key: 'programmable-tokens', eyebrow: 'PROGRAMMABLE TOKENS', title: 'Native tokens that enforce their own\u00A0rules' },
   { key: 'blog', eyebrow: '', title: 'Developer Blog' },
 ];
 const PAGES_OUT_DIR = path.join(ROOT, 'static', 'img', 'og', 'pages');
