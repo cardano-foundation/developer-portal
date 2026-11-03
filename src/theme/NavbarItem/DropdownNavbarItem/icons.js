@@ -10,10 +10,13 @@
  *    the tile's `currentColor` does not recolor them. File name = key;
  *    design variant names where they differ: package = Variant5,
  *    payments = Icon Temp, people = Talent, eye = CIP, dev = Dev1.
+ *    book.svg is not in the design file: it was drawn later in the same
+ *    style for the Onboarding item.
  *
  * 2. The legacy single-color line set (*-solid.svg), which inherits
  *    `currentColor`. Kept for any item without a brand mapping.
  */
+import BookIcon from '@site/static/img/icons/brand/book.svg';
 import BuildIcon from '@site/static/img/icons/brand/build.svg';
 import ChainIcon from '@site/static/img/icons/brand/chain.svg';
 import DevIcon from '@site/static/img/icons/brand/dev.svg';
@@ -31,7 +34,6 @@ import SunIcon from '@site/static/img/icons/brand/sun.svg';
 import TemplateIcon from '@site/static/img/icons/brand/template.svg';
 import WalletIcon from '@site/static/img/icons/brand/wallet.svg';
 
-import BookIcon from '@site/static/img/icons/book-solid.svg';
 import BuildingIcon from '@site/static/img/icons/building-solid.svg';
 import ChartLineIcon from '@site/static/img/icons/chart-line-solid.svg';
 import CodeIcon from '@site/static/img/icons/code-solid.svg';
@@ -45,6 +47,7 @@ import WrenchIcon from '@site/static/img/icons/wrench-solid.svg';
 
 const icons = {
   // Brand set
+  book: BookIcon,
   build: BuildIcon,
   chain: ChainIcon,
   dev: DevIcon,
@@ -62,7 +65,6 @@ const icons = {
   template: TemplateIcon,
   wallet: WalletIcon,
   // Legacy line set
-  book: BookIcon,
   building: BuildingIcon,
   'chart-line': ChartLineIcon,
   code: CodeIcon,

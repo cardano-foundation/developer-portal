@@ -1,0 +1,25 @@
+{
+  "name": "onboarding-parameter-validation-mesh",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Off-chain code for the reward lock-ups from the onboarding Design patterns section: the minting and withdrawal transactions, built with Mesh, and the benchmark that measures them.",
+  "scripts": {
+    "test": "node --test 'src/*.test.ts'",
+    "typecheck": "tsc",
+    "bench": "node src/bench.ts"
+  },
+  "dependencies": {
+    "@meshsdk/core": "^1.9.1",
+    "@meshsdk/core-csl": "^1.9.1",
+    "@meshsdk/wallet": "^1.9.1",
+    "blakejs": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "libsodium-wrappers-sumo": "^0.8.4"
+  }
+}

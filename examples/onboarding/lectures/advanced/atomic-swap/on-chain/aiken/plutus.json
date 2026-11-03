@@ -1,0 +1,407 @@
+{
+  "preamble": {
+    "title": "cardano-foundation/onboarding-atomic-swap",
+    "description": "The atomic swap from the onboarding Advanced lecture on optimization: one check, made cheaper twice",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.24+unknown"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "swap.swap.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/swap~1SwapDatum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/swap~1SwapAction"
+        }
+      },
+      "compiledCode": "59026501010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cdc3a400530080024888966002600460106ea800e2653001300d00198069807000cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602c00200714a31330020023017001404480a0dd6180a180a980a980a980a980a980a980a980a98089baa009375c602660206ea80062c8070c048c03cdd5000c4cdc49bad3012301300233229800800cc8cc004004dd6180198091baa00a2259800800c52f5c11332259800acc004c96600266e1d20043015375400313375e6032602c6ea800403229410141803180a9baa002899baf30183015375400400f14a0809a26602e00466008008003133004004001404c602c002602e00280a2900020022301330143014001222598008014400633001003980b0014cdc019199119801001000912cc004006007132325980099b91489000018acc004cdc7a4410000189bad3017002802a02a899802002180d801a02a375c602a002603000280b0c8c8cc004004dd5980c180c980a9baa30180052259800800c00e26464b300133722911000018acc004cdc7a4410000189bab3018002802a02c899802002180e001a02c375c602c002603200280b852f5bded8c029000000a006404c8068c044004c034dd5180818069baa0028b2016300c37540103009375400716401c300800130033754011149a26cac80081",
+      "hash": "975e7a809e1f4d83ab8efcfdf58f63516a5bc060cc45ad0c482fca84"
+    },
+    {
+      "title": "swap.swap.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59026501010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cdc3a400530080024888966002600460106ea800e2653001300d00198069807000cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602c00200714a31330020023017001404480a0dd6180a180a980a980a980a980a980a980a980a98089baa009375c602660206ea80062c8070c048c03cdd5000c4cdc49bad3012301300233229800800cc8cc004004dd6180198091baa00a2259800800c52f5c11332259800acc004c96600266e1d20043015375400313375e6032602c6ea800403229410141803180a9baa002899baf30183015375400400f14a0809a26602e00466008008003133004004001404c602c002602e00280a2900020022301330143014001222598008014400633001003980b0014cdc019199119801001000912cc004006007132325980099b91489000018acc004cdc7a4410000189bad3017002802a02a899802002180d801a02a375c602a002603000280b0c8c8cc004004dd5980c180c980a9baa30180052259800800c00e26464b300133722911000018acc004cdc7a4410000189bab3018002802a02c899802002180e001a02c375c602c002603200280b852f5bded8c029000000a006404c8068c044004c034dd5180818069baa0028b2016300c37540103009375400716401c300800130033754011149a26cac80081",
+      "hash": "975e7a809e1f4d83ab8efcfdf58f63516a5bc060cc45ad0c482fca84"
+    },
+    {
+      "title": "swap_address_first.swap.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/swap_address_first~1SwapDatum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/swap_address_first~1SwapAction"
+        }
+      },
+      "compiledCode": "59023f01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cdc3a400530070024888966002600460106ea800e2653001300c00198061806800cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602a00200714a31330020023016001404480a0dd61809980a180a180a180a180a180a180a180a18089baa009375c602460206ea80062c8070c044c03cdd5000c4cdc49bad3011301200232329800800cdd6180118089baa009a400080088896600200510018cc00400e602c005325980099baf30163014375400200d159800992cc004cdc3a400860286ea8006266ebcc05cc054dd5000805c52820263005301437540031337006466446600400400244b3001001801c4c8c96600266e452201000018acc004cdc7a4410000189bad3019002802a02e899802002180e001a02e375c602e002603200280c0c8c8cc004004dd5980c980d180b9baa0042259800800c00e26464b300133722911000018acc004cdc7a4410000189bab301a002802a030899802002180e801a030375c6030002603400280c852f5bded8c0290000014400901244009012180a8012006405046024602660260028068c040004c034dd5180798069baa0028b2016300c37540103009375400716401c30070013003375400f149a26cac8009",
+      "hash": "61907a7eb0be0ef628f37eb174faef5838a9b0de76e11c3f4fba3898"
+    },
+    {
+      "title": "swap_address_first.swap.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59023f01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cdc3a400530070024888966002600460106ea800e2653001300c00198061806800cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602a00200714a31330020023016001404480a0dd61809980a180a180a180a180a180a180a180a18089baa009375c602460206ea80062c8070c044c03cdd5000c4cdc49bad3011301200232329800800cdd6180118089baa009a400080088896600200510018cc00400e602c005325980099baf30163014375400200d159800992cc004cdc3a400860286ea8006266ebcc05cc054dd5000805c52820263005301437540031337006466446600400400244b3001001801c4c8c96600266e452201000018acc004cdc7a4410000189bad3019002802a02e899802002180e001a02e375c602e002603200280c0c8c8cc004004dd5980c980d180b9baa0042259800800c00e26464b300133722911000018acc004cdc7a4410000189bab301a002802a030899802002180e801a030375c6030002603400280c852f5bded8c0290000014400901244009012180a8012006405046024602660260028068c040004c034dd5180798069baa0028b2016300c37540103009375400716401c30070013003375400f149a26cac8009",
+      "hash": "61907a7eb0be0ef628f37eb174faef5838a9b0de76e11c3f4fba3898"
+    },
+    {
+      "title": "swap_one_pass.swap.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/swap_one_pass~1SwapDatum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/swap_one_pass~1SwapAction"
+        }
+      },
+      "compiledCode": "59023e01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cdc3a400530070024888966002600460106ea800e2653001300c00198061806800cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602a00200714a31330020023016001404480a0dd61809980a180a180a180a180a180a180a180a18089baa009375c602460206ea80062c8070c044c03cdd5000c4cdc49bad3011301200232329800800cdd6180118089baa009a400080088896600200510018cc00400e602c0053259800acc004c96600266e1d20043014375400313375e602e602a6ea800402e29410131802980a1baa001899baf30163014375400200d14a08092266e00c8cc88cc0080080048966002003003899192cc004cdc8a45000018acc004cdc7a4410000189bad3019002802a02e899802002180e001a02e375c602e002603200280c0c8c8cc004004dd5980c980d180b9baa0042259800800c00e26464b300133722911000018acc004cdc7a4410000189bab301a002802a030899802002180e801a030375c6030002603400280c852f5bded8c02900000144009012180a8012006405046024602660260028068c040004c034dd5180798069baa0028b2016300c37540103009375400716401c30070013003375400f149a26cac8009",
+      "hash": "2ff0ede0ce6c01da2ffd4439d89038cdcadbfcc44c47dafb80287fc7"
+    },
+    {
+      "title": "swap_one_pass.swap.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59023e01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cdc3a400530070024888966002600460106ea800e2653001300c00198061806800cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602a00200714a31330020023016001404480a0dd61809980a180a180a180a180a180a180a180a18089baa009375c602460206ea80062c8070c044c03cdd5000c4cdc49bad3011301200232329800800cdd6180118089baa009a400080088896600200510018cc00400e602c0053259800acc004c96600266e1d20043014375400313375e602e602a6ea800402e29410131802980a1baa001899baf30163014375400200d14a08092266e00c8cc88cc0080080048966002003003899192cc004cdc8a45000018acc004cdc7a4410000189bad3019002802a02e899802002180e001a02e375c602e002603200280c0c8c8cc004004dd5980c980d180b9baa0042259800800c00e26464b300133722911000018acc004cdc7a4410000189bab301a002802a030899802002180e801a030375c6030002603400280c852f5bded8c02900000144009012180a8012006405046024602660260028068c040004c034dd5180798069baa0028b2016300c37540103009375400716401c30070013003375400f149a26cac8009",
+      "hash": "2ff0ede0ce6c01da2ffd4439d89038cdcadbfcc44c47dafb80287fc7"
+    },
+    {
+      "title": "swap_stop_early.swap.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/swap_stop_early~1SwapDatum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/swap_stop_early~1SwapAction"
+        }
+      },
+      "compiledCode": "59025b01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cdc3a400530070024888966002600460106ea800e2653001300c00198061806800cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602a00200714a31330020023016001404480a0dd61809980a180a180a180a180a180a180a180a18089baa009375c602460206ea80062c8070c044c03cdd5000c4c8ca60020033758600460226ea80266eb4c04cc0500110011112cc00400a294226644b30013375e602e602a6ea800801e2b3001325980099b8748010c054dd5000c4cdd7980c180b1baa00100c8a504050600c602a6ea800a264b30013371200290004528c6600200d002800a00c405066e0400cc8cc88cc0080080048966002003003899192cc004cdc8a441000018acc004cdc7a4410000189bad301a002802a030899802002180e801a030375c6030002603400280c8c8c8cc004004dd5980d180d980c1baa0052259800800c00e26464b300133722911000018acc004cdc7a4410000189bab301b002802a032899802002180f001a032375c6032002603600280d052f5bded8c02900046600200b001801a00a404d19800802c0060068029013180a801180b0012028230123013301300140346020002601a6ea8c03cc034dd500145900b18061baa00818049baa0038b200e180380098019baa0078a4d1365640041",
+      "hash": "2782387b9a8acedee623fae00a0e2b7d966728cb421e8c9e3a2edeab"
+    },
+    {
+      "title": "swap_stop_early.swap.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59025b01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cdc3a400530070024888966002600460106ea800e2653001300c00198061806800cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602a00200714a31330020023016001404480a0dd61809980a180a180a180a180a180a180a180a18089baa009375c602460206ea80062c8070c044c03cdd5000c4c8ca60020033758600460226ea80266eb4c04cc0500110011112cc00400a294226644b30013375e602e602a6ea800801e2b3001325980099b8748010c054dd5000c4cdd7980c180b1baa00100c8a504050600c602a6ea800a264b30013371200290004528c6600200d002800a00c405066e0400cc8cc88cc0080080048966002003003899192cc004cdc8a441000018acc004cdc7a4410000189bad301a002802a030899802002180e801a030375c6030002603400280c8c8c8cc004004dd5980d180d980c1baa0052259800800c00e26464b300133722911000018acc004cdc7a4410000189bab301b002802a032899802002180f001a032375c6032002603600280d052f5bded8c02900046600200b001801a00a404d19800802c0060068029013180a801180b0012028230123013301300140346020002601a6ea8c03cc034dd500145900b18061baa00818049baa0038b200e180380098019baa0078a4d1365640041",
+      "hash": "2782387b9a8acedee623fae00a0e2b7d966728cb421e8c9e3a2edeab"
+    }
+  ],
+  "definitions": {
+    "Int": {
+      "dataType": "integer"
+    },
+    "Option<cardano/address/StakeCredential>": {
+      "title": "Option",
+      "anyOf": [
+        {
+          "title": "Some",
+          "description": "An optional value.",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/cardano~1address~1StakeCredential"
+            }
+          ]
+        },
+        {
+          "title": "None",
+          "description": "Nothing.",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "aiken/crypto/ScriptHash": {
+      "title": "ScriptHash",
+      "dataType": "bytes"
+    },
+    "aiken/crypto/VerificationKeyHash": {
+      "title": "VerificationKeyHash",
+      "dataType": "bytes"
+    },
+    "cardano/address/Address": {
+      "title": "Address",
+      "description": "A Cardano `Address` typically holding one or two credential references.\n\n Note that legacy bootstrap addresses (a.k.a. 'Byron addresses') are\n completely excluded from Plutus contexts. Thus, from an on-chain\n perspective only exists addresses of type 00, 01, ..., 07 as detailed\n in [CIP-0019 :: Shelley Addresses](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0019/#shelley-addresses).",
+      "anyOf": [
+        {
+          "title": "Address",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "payment_credential",
+              "$ref": "#/definitions/cardano~1address~1PaymentCredential"
+            },
+            {
+              "title": "stake_credential",
+              "$ref": "#/definitions/Option<cardano~1address~1StakeCredential>"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/address/Credential": {
+      "title": "Credential",
+      "description": "A general structure for representing an on-chain `Credential`.\n\n Credentials are always one of two kinds: a direct public/private key\n pair, or a script (native or Plutus).",
+      "anyOf": [
+        {
+          "title": "VerificationKey",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        },
+        {
+          "title": "Script",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1ScriptHash"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/address/PaymentCredential": {
+      "title": "PaymentCredential",
+      "description": "A general structure for representing an on-chain `Credential`.\n\n Credentials are always one of two kinds: a direct public/private key\n pair, or a script (native or Plutus).",
+      "anyOf": [
+        {
+          "title": "VerificationKey",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        },
+        {
+          "title": "Script",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1ScriptHash"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/address/StakeCredential": {
+      "title": "StakeCredential",
+      "description": "Represent a type of object that can be represented either inline (by hash)\n or via a reference (i.e. a pointer to an on-chain location).\n\n This is mainly use for capturing pointers to a stake credential\n registration certificate in the case of so-called pointer addresses.",
+      "anyOf": [
+        {
+          "title": "Inline",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/cardano~1address~1Credential"
+            }
+          ]
+        },
+        {
+          "title": "Pointer",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "title": "slot_number",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "transaction_index",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "certificate_index",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "swap/SwapAction": {
+      "title": "SwapAction",
+      "anyOf": [
+        {
+          "title": "Swap",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "Cancel",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "swap/SwapDatum": {
+      "title": "SwapDatum",
+      "anyOf": [
+        {
+          "title": "SwapDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/cardano~1address~1Address"
+            },
+            {
+              "title": "price",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "swap_address_first/SwapAction": {
+      "title": "SwapAction",
+      "anyOf": [
+        {
+          "title": "Swap",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "Cancel",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "swap_address_first/SwapDatum": {
+      "title": "SwapDatum",
+      "anyOf": [
+        {
+          "title": "SwapDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/cardano~1address~1Address"
+            },
+            {
+              "title": "price",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "swap_one_pass/SwapAction": {
+      "title": "SwapAction",
+      "anyOf": [
+        {
+          "title": "Swap",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "Cancel",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "swap_one_pass/SwapDatum": {
+      "title": "SwapDatum",
+      "anyOf": [
+        {
+          "title": "SwapDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/cardano~1address~1Address"
+            },
+            {
+              "title": "price",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "swap_stop_early/SwapAction": {
+      "title": "SwapAction",
+      "anyOf": [
+        {
+          "title": "Swap",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "Cancel",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "swap_stop_early/SwapDatum": {
+      "title": "SwapDatum",
+      "anyOf": [
+        {
+          "title": "SwapDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/cardano~1address~1Address"
+            },
+            {
+              "title": "price",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
