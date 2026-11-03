@@ -2,15 +2,16 @@
 
 The design team's official colour sheet, with the portal's usage notes.
 Backgrounds and artwork across the portal are built from these, so keep any
-custom colours in this range. Primary carries the interface; the secondary
-row is for illustration and artwork, never for UI surfaces, text, or borders.
+custom colours in this range. Primary carries the interface. The secondary
+row is for illustration and artwork, apart from the interface uses the table
+lists for Deep Blue, Neutral Grey, and Slate.
 
 Primary:
 
 | Colour | Hex | Pantone | Use on the portal |
 | --- | --- | --- | --- |
 | Cardano Blue | `#0033AD` | 286 C | Interface blue; chips, pills, announcement bar |
-| Obsidian | `#000629` | 2767 C | Dark background; navbar, hero, and cards in both themes |
+| Obsidian | `#000629` | 2767 C | Dark background; footer, landing feature cards, and call-to-action bands in both themes; navbar and hero in dark mode |
 | Clarity | `#FFFAF3` | Bright White | Light page background |
 | Photon Signal | `#FFB122` | 137 C | Accent; CTAs and arrow buttons |
 | Lavender | `#968CC3` | 7446 C | Artwork accent |
@@ -31,8 +32,8 @@ One more colour appears in the brand artwork without being on the sheet:
 | --- | --- | --- |
 | Bright blue | `#0023EB` | Decorative artwork gradients only, never for UI surfaces |
 
-The developer surfaces (landing sections, generated OG cards) sit on deep navy
-with cream text and lavender accents. The brand fonts are Chivo for text and
+Generated OG cards sit on deep navy with cream text. Landing sections follow
+the theme, and their feature cards stay navy in both. The brand fonts are Chivo for text and
 Chivo Mono for uppercase labels, chips, and badges; both live in
 `static/fonts/` (see the README there).
 
