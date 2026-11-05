@@ -70,6 +70,7 @@ function getNavbarItems(repository) {
             {to: '/templates/contracts/', label: 'Contracts Library', description: 'Reference smart contracts by use case', icon: 'build'},
             {to: '/docs/developers/curriculum/start-building/ai-assisted-development/', label: 'Code with AI', description: 'Cardano Dev Skills, current Cardano context for your coding agent', icon: 'package'},
             {to: '/x402/', label: 'Agentic Commerce', description: 'Internet-native payments on Cardano with x402', icon: 'payments'},
+            {to: '/programmable-tokens/', label: 'Programmable Tokens', description: 'Native tokens with transfer rules, CIP-113', icon: 'chain'},
           ],
         },
         {

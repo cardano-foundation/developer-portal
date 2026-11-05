@@ -5,7 +5,7 @@ sidebar_label: Programmable tokens
 description: Native tokens that run validation logic on every transfer, mint, and burn, enabling compliance rules like freeze, seize, and KYC-gating without a hard fork.
 ---
 
-A plain [native token](/docs/developers/curriculum/native-tokens/overview) has no built-in transfer logic. Once minted, it moves through ordinary transactions with no script execution, which is exactly what makes it cheap and safe, but it also means you cannot enforce rules on who holds it or how it moves. **Programmable tokens** ([CIP-113](https://github.com/cardano-foundation/CIPs/pull/444)) add that missing layer: validation logic that runs on every transfer, mint, and burn.
+A plain [native token](/docs/developers/curriculum/native-tokens/overview) has no built-in transfer logic. Once minted, it moves through ordinary transactions with no script execution, which is exactly what makes it cheap and safe, but it also means you cannot enforce rules on who holds it or how it moves. **Programmable tokens** ([CIP-113](https://cips.cardano.org/cip/CIP-0113)) add that missing layer: validation logic that runs on every transfer, mint, and burn.
 
 ## The idea
 
@@ -16,7 +16,7 @@ The model works without changing the protocol:
 - **Shared script custody.** All programmable tokens of a given standard are locked at a shared smart-contract address rather than sitting free in user wallets. Every transfer is a spend from that script, so the validation logic always runs.
 - **Ownership by stake credential.** Even though the tokens live at a script address, ownership is tracked by stake credential, so standard wallets still control them and the normal send and receive experience is preserved.
 - **An on-chain registry.** A registry records which tokens are programmable and which rules apply, so wallets, indexers, and dApps can discover and respect the logic.
-- **Substandards.** Specific behaviors, such as freeze and seize for a regulated asset, are defined as substandards on top of the shared base framework, so issuers pick the policy they need instead of re-implementing the plumbing.
+- **Modules.** Specific behaviors, such as freeze and seize for a regulated asset, are defined as modules on top of the shared base framework, so issuers pick the policy they need instead of re-implementing the plumbing.
 
 ## Why it matters
 
@@ -32,8 +32,8 @@ Because it builds on Cardano's existing native-asset and scripting machinery, no
 
 Programmability has a cost, and it is the exact thing plain native tokens avoid. Once transfers run through a validator, you are back to script execution on every movement, with the fees and validation surface that come with it. That is the point of the design, not a flaw, but it means programmable tokens are for assets that genuinely need enforced rules, not a default for every token. For a token that only needs control at mint and burn, a plain [minting policy](/docs/developers/curriculum/native-tokens/minting-policies) is still the right tool.
 
-:::info In active development
-CIP-113 is still a draft ([PR #444](https://github.com/cardano-foundation/CIPs/pull/444)) in the CIP editors' final review, and the specification may change until it is merged. According to its repository, the Cardano Foundation's reference implementation has completed a professional security audit and is considered production-ready. Track progress, read the architecture and integration guides, and follow the contracts at the [cip113-programmable-tokens repository](https://github.com/cardano-foundation/cip113-programmable-tokens). Example substandards such as freeze and seize live in the [cip113-programmable-tokens-platform repository](https://github.com/cardano-foundation/cip113-programmable-tokens-platform). This page will be expanded as the standard matures.
+:::info Status
+CIP-113 is merged into the [CIPs repository](https://cips.cardano.org/cip/CIP-0113). The Cardano Foundation's reference implementation has been professionally audited and is production-ready; read the architecture and integration guides and follow the contracts at the [cip113-programmable-tokens repository](https://github.com/cardano-foundation/cip113-programmable-tokens). For an audited module in production use, see the [CMTA reference](https://github.com/cardano-foundation/cpt-rwa-ch-cmta-reference) for tokenized securities. Example modules such as freeze and seize live in the [cip113-programmable-tokens-platform repository](https://github.com/cardano-foundation/cip113-programmable-tokens-platform). For an interactive walkthrough of a transfer and the four actions, see [Programmable Tokens](/programmable-tokens/).
 :::
 
 ## Next steps
