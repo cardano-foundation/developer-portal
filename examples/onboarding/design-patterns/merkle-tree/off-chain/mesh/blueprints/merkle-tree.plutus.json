@@ -1,0 +1,169 @@
+{
+  "preamble": {
+    "title": "cardano-foundation/onboarding-merkle-tree",
+    "description": "Allowlisted grants checked by a list scan or a SHA-256 Merkle proof",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.24+bacbeb3"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "by_hand.committed_grant.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/allowlist~1CommittedGrant"
+        }
+      },
+      "redeemer": {
+        "title": "claim",
+        "schema": {
+          "$ref": "#/definitions/allowlist~1Claim<allowlist~1Proof>"
+        }
+      },
+      "compiledCode": "59023701010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748008c01cdd500144ca60026016003300b300c0019b874800122259800980098059baa00789919912cc004c048006264660020026eb0c04800888c966002005159800980398089baa0088acc004c96600266e1d2038371a003132330010013758602c602e602e602e602e602e602e602e602e60286ea8034896600200314a115980099b8f375c602e00200714a31330020023018001404c80b229410111bae30143012375401b133225980099b8748100dc6801456600266e1d2038371a0031329800800cdc919b8a48810100000029bac30173018301537540214810100111112cc00400a266e3c00c01a264b300133710900000144c96600266e1d2040371a003198008034dc92cc004c03cc064dd500144cdc5000802c4cdc5002800a030980e8024cdc02400200680322c80c166002601c60306ea800626eb8c06cc064dd5000c4dd7180d980c9baa001405d16405c603400480ca294101245282024375c602860246ea8c050c048dd50041bae30143012375401b14a080822c80822646644b3001300a002899192cc004c06800a0071640606eb8c060004c054dd5001c56600266e1d2002002899192cc004c06800a0071640606eb8c060004c054dd5001c5901320263012375400226004602c00660280048098c00800a2c8080dd71807800980800098061baa0078b201418041baa0028b200c180380098019baa0078a4d1365640041",
+      "hash": "9000342eccbd12329f6d1e63f153057c45dcb3999a89239f89aaf620"
+    },
+    {
+      "title": "by_hand.committed_grant.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59023701010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748008c01cdd500144ca60026016003300b300c0019b874800122259800980098059baa00789919912cc004c048006264660020026eb0c04800888c966002005159800980398089baa0088acc004c96600266e1d2038371a003132330010013758602c602e602e602e602e602e602e602e602e60286ea8034896600200314a115980099b8f375c602e00200714a31330020023018001404c80b229410111bae30143012375401b133225980099b8748100dc6801456600266e1d2038371a0031329800800cdc919b8a48810100000029bac30173018301537540214810100111112cc00400a266e3c00c01a264b300133710900000144c96600266e1d2040371a003198008034dc92cc004c03cc064dd500144cdc5000802c4cdc5002800a030980e8024cdc02400200680322c80c166002601c60306ea800626eb8c06cc064dd5000c4dd7180d980c9baa001405d16405c603400480ca294101245282024375c602860246ea8c050c048dd50041bae30143012375401b14a080822c80822646644b3001300a002899192cc004c06800a0071640606eb8c060004c054dd5001c56600266e1d2002002899192cc004c06800a0071640606eb8c060004c054dd5001c5901320263012375400226004602c00660280048098c00800a2c8080dd71807800980800098061baa0078b201418041baa0028b200c180380098019baa0078a4d1365640041",
+      "hash": "9000342eccbd12329f6d1e63f153057c45dcb3999a89239f89aaf620"
+    },
+    {
+      "title": "naive.listed_grant.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/allowlist~1ListedGrant"
+        }
+      },
+      "redeemer": {
+        "title": "beneficiary",
+        "schema": {
+          "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+        }
+      },
+      "compiledCode": "58dd01010029800aba2aba1aab9faab9eaab9dab9a488888966002646464b30013370e900118029baa0018994c004c02400660126014003375c60120069112cc004cdc3a400060126ea800a264b30015980099b87480e0dc680144cc004dd618069807180718071807180718071807180718059baa300d0080028a5040251330013758601a60166ea8c034c02cdd5001801452820122232330010010032259800800c528456600266e3cdd71808000801c528c4cc008008c04400500c201e8b201018031baa0018b20083007300800130070013003375400f149a26cac8009",
+      "hash": "44f5a2b692e4d943bfc6643c9a1a997c7047c1f9b5bda9abbbcc8891"
+    },
+    {
+      "title": "naive.listed_grant.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "58dd01010029800aba2aba1aab9faab9eaab9dab9a488888966002646464b30013370e900118029baa0018994c004c02400660126014003375c60120069112cc004cdc3a400060126ea800a264b30015980099b87480e0dc680144cc004dd618069807180718071807180718071807180718059baa300d0080028a5040251330013758601a60166ea8c034c02cdd5001801452820122232330010010032259800800c528456600266e3cdd71808000801c528c4cc008008c04400500c201e8b201018031baa0018b20083007300800130070013003375400f149a26cac8009",
+      "hash": "44f5a2b692e4d943bfc6643c9a1a997c7047c1f9b5bda9abbbcc8891"
+    }
+  ],
+  "definitions": {
+    "ByteArray": {
+      "dataType": "bytes"
+    },
+    "List<aiken/crypto/VerificationKeyHash>": {
+      "dataType": "list",
+      "items": {
+        "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+      }
+    },
+    "aiken/crypto/VerificationKeyHash": {
+      "title": "VerificationKeyHash",
+      "dataType": "bytes"
+    },
+    "allowlist/Claim<allowlist/Proof>": {
+      "title": "Claim",
+      "anyOf": [
+        {
+          "title": "Claim",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "beneficiary",
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            },
+            {
+              "title": "proof",
+              "$ref": "#/definitions/allowlist~1Proof"
+            }
+          ]
+        }
+      ]
+    },
+    "allowlist/CommittedGrant": {
+      "title": "CommittedGrant",
+      "description": "The pattern carries only a SHA-256 commitment to that same ordered list.",
+      "anyOf": [
+        {
+          "title": "CommittedGrant",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "root",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        }
+      ]
+    },
+    "allowlist/ListedGrant": {
+      "title": "ListedGrant",
+      "description": "The baseline carries the full allowlist in each grant's datum.",
+      "anyOf": [
+        {
+          "title": "ListedGrant",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "members",
+              "$ref": "#/definitions/List<aiken~1crypto~1VerificationKeyHash>"
+            }
+          ]
+        }
+      ]
+    },
+    "allowlist/Proof": {
+      "title": "Proof",
+      "dataType": "list",
+      "items": {
+        "$ref": "#/definitions/allowlist~1Step"
+      }
+    },
+    "allowlist/Step": {
+      "title": "Step",
+      "description": "Left/Right describe the sibling's position, not the claimant's position.\n Proof steps are supplied from the leaf towards the root.",
+      "anyOf": [
+        {
+          "title": "Left",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "hash",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        },
+        {
+          "title": "Right",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "title": "hash",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

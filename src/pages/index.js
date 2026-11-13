@@ -76,14 +76,14 @@ function Hero() {
               in between. Docs, tools, and SDKs for Cardano.
             </p>
             <div className={styles.heroActions}>
-              <Link to={useBaseUrl("docs/developers/")} className="button button--primary">
-                Start Here
+              <Link to={useBaseUrl("docs/developers/onboarding/get-started/overview/")} className="button button--primary">
+                Get started
               </Link>
               <Link
-                to={useBaseUrl("docs/developers/curriculum/start-building/ai-assisted-development/")}
+                to={useBaseUrl("docs/developers/onboarding/introduction/overview/")}
                 className="button button--outline button--primary"
               >
-                Code with AI
+                Start learning
               </Link>
             </div>
           </div>
@@ -99,14 +99,14 @@ function BentoSection() {
       title: "Native Tokens",
       body: "Mint tokens and NFTs without smart contracts. Multi-asset support built into the ledger.",
       cta: "Explore",
-      to: "docs/developers/curriculum/native-tokens/overview",
+      to: "docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts",
       icon: "img/home/rebrand/icon-native-tokens.svg",
     },
     {
       title: "Smart Contracts",
-      body: "Build dApps with Aiken and leverage the eUTxO model for predictable execution.",
+      body: "Write, test and use smart contracts, built on the eUTxO model.",
       cta: "Start building",
-      to: "docs/developers/curriculum/smart-contracts/overview",
+      to: "docs/developers/onboarding/lectures/intermediate/introduction",
       icon: "img/home/rebrand/icon-smart-contracts.svg",
     },
     {
@@ -120,7 +120,7 @@ function BentoSection() {
       title: "Transaction Metadata",
       body: "Attach arbitrary data to transactions on-chain.",
       cta: "Learn more",
-      to: "docs/developers/curriculum/start-building/transaction-building#transaction-metadata",
+      to: "docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata#metadata",
       icon: "img/home/rebrand/icon-transaction-metadata.svg",
     },
     {
@@ -154,14 +154,14 @@ function BentoSection() {
         <div className={styles.bentoGrid}>
           {/* Start Here — large card with coil artwork */}
           <Link
-            to={useBaseUrl("docs/developers/")}
+            to={useBaseUrl("docs/developers/onboarding/introduction/overview/")}
             className={clsx(styles.bentoCard, styles.bentoLarge)}
           >
             <div className={styles.bentoCardContent}>
               <h3>Start Here</h3>
-              <p>The 7-module path from zero to shipping, fundamentals through production.</p>
+              <p>A hands-on path from your first wallet to a smart contract ready for mainnet.</p>
               <div className={styles.bentoCardFooter}>
-                <span className={styles.bentoLink}>Start the Curriculum</span>
+                <span className={styles.bentoLink}>Start the onboarding</span>
               </div>
             </div>
             <img
@@ -483,13 +483,13 @@ function SmartContractsSection() {
               <h3>Smart Contracts</h3>
               <p>Design patterns, examples, and security best practices</p>
               <div className={styles.scLearnLinks}>
-                <Link className="button button--primary button--sm" to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview")}>
+                <Link className="button button--primary button--sm" to={useBaseUrl("docs/developers/onboarding/lectures/advanced/design-patterns/introduction")}>
                   Patterns
                 </Link>
                 <Link className="button button--primary button--sm" to={useBaseUrl("templates/contracts")}>
                   Examples
                 </Link>
-                <Link className="button button--primary button--sm" to={useBaseUrl("docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview")}>
+                <Link className="button button--primary button--sm" to={useBaseUrl("docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities")}>
                   Security
                 </Link>
               </div>

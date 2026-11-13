@@ -1,0 +1,189 @@
+{
+  "limits": {
+    "mem": 16000000,
+    "cpu": 10000000000,
+    "size": 16384
+  },
+  "versions": {
+    "naive": {
+      "claimFrom": {
+        "mem": 106095,
+        "cpu": 42168006,
+        "fee": 248231,
+        "size": 1796,
+        "scriptSize": 1311
+      },
+      "claimBetween": {
+        "mem": 106095,
+        "cpu": 42168006,
+        "fee": 248495,
+        "size": 1802,
+        "scriptSize": 1311
+      },
+      "clawbackUntil": {
+        "mem": 118591,
+        "cpu": 43840841,
+        "fee": 245993,
+        "size": 1726,
+        "scriptSize": 1311
+      },
+      "clawbackBetween": {
+        "mem": 118591,
+        "cpu": 43840841,
+        "fee": 246257,
+        "size": 1732,
+        "scriptSize": 1311
+      }
+    },
+    "withEndpoints": {
+      "claimFrom": {
+        "mem": 109289,
+        "cpu": 43274264,
+        "fee": 251004,
+        "size": 1853,
+        "scriptSize": 1368
+      },
+      "claimBetween": {
+        "mem": 109289,
+        "cpu": 43274264,
+        "fee": 251268,
+        "size": 1859,
+        "scriptSize": 1368
+      },
+      "clawbackUntil": {
+        "mem": 121785,
+        "cpu": 44947099,
+        "fee": 248765,
+        "size": 1783,
+        "scriptSize": 1368
+      },
+      "clawbackBetween": {
+        "mem": 121785,
+        "cpu": 44947099,
+        "fee": 249029,
+        "size": 1789,
+        "scriptSize": 1368
+      }
+    },
+    "byHand": {
+      "claimFrom": {
+        "mem": 121869,
+        "cpu": 47212274,
+        "fee": 267017,
+        "size": 2194,
+        "scriptSize": 1709
+      },
+      "claimBetween": {
+        "mem": 128559,
+        "cpu": 49427214,
+        "fee": 267827,
+        "size": 2200,
+        "scriptSize": 1709
+      },
+      "clawbackUntil": {
+        "mem": 133633,
+        "cpu": 48691446,
+        "fee": 264723,
+        "size": 2124,
+        "scriptSize": 1709
+      },
+      "clawbackBetween": {
+        "mem": 140153,
+        "cpu": 50854841,
+        "fee": 265519,
+        "size": 2130,
+        "scriptSize": 1709
+      }
+    },
+    "withLibrary": {
+      "claimFrom": {
+        "mem": 123636,
+        "cpu": 47829705,
+        "fee": 266196,
+        "size": 2172,
+        "scriptSize": 1687
+      },
+      "claimBetween": {
+        "mem": 126629,
+        "cpu": 48676219,
+        "fee": 266694,
+        "size": 2178,
+        "scriptSize": 1687
+      },
+      "clawbackUntil": {
+        "mem": 134498,
+        "cpu": 49036495,
+        "fee": 263830,
+        "size": 2102,
+        "scriptSize": 1687
+      },
+      "clawbackBetween": {
+        "mem": 138223,
+        "cpu": 50103846,
+        "fee": 264385,
+        "size": 2108,
+        "scriptSize": 1687
+      }
+    },
+    "scheduledNaive": {
+      "claimFrom": {
+        "mem": 124163,
+        "cpu": 50011506,
+        "fee": 256616,
+        "size": 1950,
+        "scriptSize": 1439
+      },
+      "claimBetween": {
+        "mem": 124163,
+        "cpu": 50011506,
+        "fee": 256880,
+        "size": 1956,
+        "scriptSize": 1439
+      },
+      "clawbackUntil": {
+        "mem": 136159,
+        "cpu": 50840529,
+        "fee": 253143,
+        "size": 1854,
+        "scriptSize": 1439
+      },
+      "clawbackBetween": {
+        "mem": 136159,
+        "cpu": 50840529,
+        "fee": 253407,
+        "size": 1860,
+        "scriptSize": 1439
+      }
+    },
+    "scheduled": {
+      "claimFrom": {
+        "mem": 162571,
+        "cpu": 61599007,
+        "fee": 282503,
+        "size": 2469,
+        "scriptSize": 1958
+      },
+      "claimBetween": {
+        "mem": 169261,
+        "cpu": 63813947,
+        "fee": 283313,
+        "size": 2475,
+        "scriptSize": 1958
+      },
+      "clawbackUntil": {
+        "mem": 174135,
+        "cpu": 62282367,
+        "fee": 278996,
+        "size": 2373,
+        "scriptSize": 1958
+      },
+      "clawbackBetween": {
+        "mem": 180655,
+        "cpu": 64445762,
+        "fee": 279792,
+        "size": 2379,
+        "scriptSize": 1958
+      }
+    }
+  }
+}

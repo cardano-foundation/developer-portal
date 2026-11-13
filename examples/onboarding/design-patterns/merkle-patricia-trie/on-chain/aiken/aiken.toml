@@ -1,0 +1,23 @@
+name = "cardano-foundation/onboarding-merkle-patricia-trie"
+version = "0.0.0"
+compiler = "v1.1.24"
+plutus = "v3"
+license = "Apache-2.0"
+description = "An open name registry kept as a Merkle Patricia trie, from the onboarding Design patterns section"
+
+[repository]
+user = "cardano-foundation"
+project = "developer-portal"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v4.0.0"
+source = "github"
+
+[[dependencies]]
+name = "aiken-lang/merkle-patricia-forestry"
+version = "v2.1.0"
+source = "github"
+
+[config]

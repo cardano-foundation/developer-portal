@@ -1,0 +1,249 @@
+{
+  "limits": {
+    "mem": 16000000,
+    "cpu": 10000000000,
+    "size": 16384
+  },
+  "whole": {
+    "perOrder": {
+      "batches": {
+        "1": {
+          "mem": 149564,
+          "cpu": 58685435,
+          "fee": 258927,
+          "size": 1955,
+          "fits": true
+        },
+        "5": {
+          "mem": 1000940,
+          "cpu": 400545315,
+          "fee": 370011,
+          "size": 2803,
+          "fits": true
+        },
+        "10": {
+          "mem": 2634680,
+          "cpu": 1068885980,
+          "fee": 559105,
+          "size": 3863,
+          "fits": true
+        },
+        "20": {
+          "mem": 7800560,
+          "cpu": 3208953360,
+          "fee": 1104755,
+          "size": 5983,
+          "fits": true
+        }
+      },
+      "largestBatch": 30,
+      "limitedBy": "mem"
+    },
+    "byHand": {
+      "batches": {
+        "1": {
+          "mem": 212853,
+          "cpu": 80444696,
+          "fee": 302383,
+          "size": 2824,
+          "fits": true
+        },
+        "5": {
+          "mem": 821369,
+          "cpu": 309449370,
+          "fee": 390790,
+          "size": 3660,
+          "fits": true
+        },
+        "10": {
+          "mem": 1651044,
+          "cpu": 616500770,
+          "fee": 506956,
+          "size": 4709,
+          "fits": true
+        },
+        "20": {
+          "mem": 3540494,
+          "cpu": 1299922095,
+          "fee": 758092,
+          "size": 6819,
+          "fits": true
+        }
+      },
+      "largestBatch": 64,
+      "limitedBy": "size"
+    },
+    "withLibrary": {
+      "batches": {
+        "1": {
+          "mem": 245561,
+          "cpu": 90640155,
+          "fee": 317458,
+          "size": 3107,
+          "fits": true
+        },
+        "5": {
+          "mem": 989897,
+          "cpu": 362751539,
+          "fee": 417337,
+          "size": 3955,
+          "fits": true
+        },
+        "10": {
+          "mem": 2058377,
+          "cpu": 744481884,
+          "fee": 553371,
+          "size": 5020,
+          "fits": true
+        },
+        "20": {
+          "mem": 4655537,
+          "cpu": 1646579624,
+          "fee": 861988,
+          "size": 7150,
+          "fits": true
+        }
+      },
+      "largestBatch": 49,
+      "limitedBy": "mem"
+    },
+    "mixedByHand": {
+      "batches": {
+        "1": {
+          "mem": 235107,
+          "cpu": 88714432,
+          "fee": 331543,
+          "size": 3444,
+          "fits": true
+        },
+        "5": {
+          "mem": 912175,
+          "cpu": 343752770,
+          "fee": 425783,
+          "size": 4280,
+          "fits": true
+        },
+        "10": {
+          "mem": 1827540,
+          "cpu": 683346250,
+          "fee": 549328,
+          "size": 5331,
+          "fits": true
+        },
+        "20": {
+          "mem": 3888370,
+          "cpu": 1431851735,
+          "fee": 815045,
+          "size": 7441,
+          "fits": true
+        }
+      },
+      "largestBatch": 61,
+      "limitedBy": "size"
+    },
+    "mixedLibrary": {
+      "batches": {
+        "1": {
+          "mem": 306829,
+          "cpu": 111136257,
+          "fee": 364534,
+          "size": 4063,
+          "fits": true
+        },
+        "5": {
+          "mem": 1315645,
+          "cpu": 475207439,
+          "fee": 492993,
+          "size": 5063,
+          "fits": true
+        },
+        "10": {
+          "mem": 2783755,
+          "cpu": 992683089,
+          "fee": 670013,
+          "size": 6313,
+          "fits": true
+        },
+        "20": {
+          "mem": 6410275,
+          "cpu": 2235589964,
+          "fee": 1078876,
+          "size": 8813,
+          "fits": true
+        }
+      },
+      "largestBatch": 39,
+      "limitedBy": "mem"
+    }
+  },
+  "mixed": {
+    "mixedByHand": {
+      "batches": {
+        "1": {
+          "mem": 235107,
+          "cpu": 88714432,
+          "fee": 331543,
+          "size": 3444,
+          "fits": true
+        },
+        "5": {
+          "mem": 1034719,
+          "cpu": 393865164,
+          "fee": 451250,
+          "size": 4616,
+          "fits": true
+        },
+        "10": {
+          "mem": 2133900,
+          "cpu": 808627235,
+          "fee": 612998,
+          "size": 6171,
+          "fits": true
+        },
+        "20": {
+          "mem": 4501090,
+          "cpu": 1682413705,
+          "fee": 942648,
+          "size": 9127,
+          "fits": true
+        }
+      },
+      "largestBatch": 43,
+      "limitedBy": "size"
+    },
+    "mixedLibrary": {
+      "batches": {
+        "1": {
+          "mem": 306829,
+          "cpu": 111136257,
+          "fee": 364534,
+          "size": 4063,
+          "fits": true
+        },
+        "5": {
+          "mem": 1481569,
+          "cpu": 538828208,
+          "fee": 521938,
+          "size": 5399,
+          "fits": true
+        },
+        "10": {
+          "mem": 3298275,
+          "cpu": 1181773039,
+          "fee": 750294,
+          "size": 7153,
+          "fits": true
+        },
+        "20": {
+          "mem": 7822815,
+          "cpu": 2729300739,
+          "fee": 1270161,
+          "size": 10499,
+          "fits": true
+        }
+      },
+      "largestBatch": 33,
+      "limitedBy": "mem"
+    }
+  }
+}
