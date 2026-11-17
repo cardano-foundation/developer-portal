@@ -1,0 +1,174 @@
+{
+  "limits": {
+    "mem": 16000000,
+    "cpu": 10000000000,
+    "size": 16384
+  },
+  "pools": {
+    "naive": {
+      "sweeps": {
+        "1": {
+          "mem": 112918,
+          "cpu": 44370991,
+          "fee": 250324,
+          "size": 1831,
+          "fits": true
+        },
+        "5": {
+          "mem": 1476930,
+          "cpu": 542253285,
+          "fee": 374077,
+          "size": 2039,
+          "fits": true
+        },
+        "10": {
+          "mem": 5234710,
+          "cpu": 1885502395,
+          "fee": 699189,
+          "size": 2299,
+          "fits": true
+        },
+        "20": {
+          "mem": 19592820,
+          "cpu": 6974988090,
+          "fee": 1917484,
+          "size": 2819,
+          "fits": false
+        }
+      },
+      "largestSweep": 18
+    },
+    "withdrawByHand": {
+      "sweeps": {
+        "1": {
+          "mem": 137117,
+          "cpu": 53965339,
+          "fee": 264776,
+          "size": 2112,
+          "fits": true
+        },
+        "5": {
+          "mem": 483533,
+          "cpu": 196327793,
+          "fee": 303829,
+          "size": 2312,
+          "fits": true
+        },
+        "10": {
+          "mem": 1004168,
+          "cpu": 432274093,
+          "fee": 361969,
+          "size": 2564,
+          "fits": true
+        },
+        "20": {
+          "mem": 2337488,
+          "cpu": 1097477468,
+          "fee": 509743,
+          "size": 3084,
+          "fits": true
+        }
+      },
+      "largestSweep": 73
+    },
+    "mintByHand": {
+      "sweeps": {
+        "1": {
+          "mem": 151607,
+          "cpu": 56482748,
+          "fee": 263946,
+          "size": 2070,
+          "fits": true
+        },
+        "5": {
+          "mem": 522671,
+          "cpu": 205218102,
+          "fee": 304880,
+          "size": 2270,
+          "fits": true
+        },
+        "10": {
+          "mem": 1074116,
+          "cpu": 449130527,
+          "fee": 365548,
+          "size": 2526,
+          "fits": true
+        },
+        "20": {
+          "mem": 2469056,
+          "cpu": 1130266152,
+          "fee": 518026,
+          "size": 3046,
+          "fits": true
+        }
+      },
+      "largestSweep": 72
+    },
+    "withdrawLibrary": {
+      "sweeps": {
+        "1": {
+          "mem": 149356,
+          "cpu": 57958051,
+          "fee": 271754,
+          "size": 2248,
+          "fits": true
+        },
+        "5": {
+          "mem": 545656,
+          "cpu": 216751953,
+          "fee": 314870,
+          "size": 2448,
+          "fits": true
+        },
+        "10": {
+          "mem": 1128646,
+          "cpu": 473237563,
+          "fee": 378353,
+          "size": 2706,
+          "fits": true
+        },
+        "20": {
+          "mem": 2586676,
+          "cpu": 1179519558,
+          "fee": 536284,
+          "size": 3226,
+          "fits": true
+        }
+      },
+      "largestSweep": 70
+    },
+    "mintLibrary": {
+      "sweeps": {
+        "1": {
+          "mem": 151607,
+          "cpu": 56482748,
+          "fee": 263946,
+          "size": 2070,
+          "fits": true
+        },
+        "5": {
+          "mem": 522671,
+          "cpu": 205218102,
+          "fee": 304880,
+          "size": 2270,
+          "fits": true
+        },
+        "10": {
+          "mem": 1074116,
+          "cpu": 449130527,
+          "fee": 365548,
+          "size": 2526,
+          "fits": true
+        },
+        "20": {
+          "mem": 2469056,
+          "cpu": 1130266152,
+          "fee": 518026,
+          "size": 3046,
+          "fits": true
+        }
+      },
+      "largestSweep": 72
+    }
+  }
+}
