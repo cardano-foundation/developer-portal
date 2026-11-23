@@ -1131,6 +1131,16 @@ export const BuilderTools = [
     category: "integration",
     properties: ["typescript"],
   },
+  {
+    title: "AlphaGrowth MCP",
+    icon: "/img/tools/alphagrowth.png",
+    description: "Remote MCP server that gives AI assistants read-only Cardano DeFi data: chain TVL and its history, fees and revenue by protocol, DEX volumes, and hourly yield and lending pool APYs on protocols such as Minswap, Liqwid and Indigo. Claude, ChatGPT, Cursor and other MCP clients connect with one URL and no API key.",
+    website: "https://alphagrowth.io/mcp-server",
+    docs: "https://github.com/alphagrowth/alphagrowth-mcp#readme",
+    repository: null,
+    category: "api",
+    properties: ["agentic"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
