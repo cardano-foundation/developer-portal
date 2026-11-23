@@ -18,8 +18,9 @@ use cardano/transaction.{Input, NoDatum, Output, OutputReference, Transaction}
 // beacon NFT, so a UTxO somebody else sends to the address is not mistaken for
 // it.
 //
-// This is the closed version. A donation may only add ADA: every other asset in
-// the pot stays exactly as it was. splitter_open.ak is the contract as first
+// This is the closed version. Neither a donation nor a split may add tokens to
+// the pot: a donation may only add ADA, and the continuing pot after a split
+// holds only the beacon and ADA. splitter_open.ak is the contract as first
 // written, and the Advanced lecture "Detecting vulnerabilities" walks from one
 // to the other.
 // #region splitter
@@ -62,6 +63,15 @@ validator splitter(beacon: AssetClass, benefactors: List<Address>) {
       Donate -> assets.match(new_pot.value, pot.value, >=)?
       // #endregion donate-closed
       Split -> {
+        // #region split-closed
+        // The continuing pot holds only the beacon and any remaining ADA.
+        expect
+          assets.match(
+            new_pot.value,
+            assets.from_asset(beacon.policy_id, beacon.name, 1),
+            >=,
+          )
+        // #endregion split-closed
         let n = list.length(benefactors)
         expect n > 0
         // Each share: every asset in the pot except the beacon, divided by n.
@@ -234,6 +244,21 @@ test donate_dust_ok() fail {
   )
   splitter.spend(beacon, benefactors, None, Donate, pot_ref, tx)
 }
+
+// #region attack-split-dust
+// A split that pays everyone and leaves five dust tokens in the new pot.
+test split_writes_dust_into_the_new_pot() fail {
+  let tx = spend_pot(
+    pot_holding(100_000_000),
+    [
+      output_at(pot_address, with_dust(pot_holding(0), 5)),
+      output_at(alice, assets.from_lovelace(50_000_000)),
+      output_at(bob, assets.from_lovelace(50_000_000)),
+    ],
+  )
+  splitter.spend(beacon, benefactors, None, Split, pot_ref, tx)
+}
+// #endregion attack-split-dust
 
 const dusty_pot: Assets = with_dust(pot_holding(100_000_000), 60)
 

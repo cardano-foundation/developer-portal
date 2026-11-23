@@ -41,8 +41,8 @@ holds. Two files:
   holding at least as much of every asset. Its last two tests are the attack: a donation of dust tokens,
   which **passes**, and a split of a pot holding 60 of them, whose memory cost is over the maximum a
   transaction may use.
-- `validators/splitter.ak`: the door closed. A donation may add ADA and nothing else, and the dust
-  donation test is marked `fail`.
+- `validators/splitter.ak`: the door closed. Neither a donation nor a split may add tokens to the
+  pot, and both dust-injection tests are marked `fail`.
 
 `splitter.ak` also holds the property from lecture 4, Higher assurance: every generated donation that
 adds a token is refused.

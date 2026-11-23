@@ -37,7 +37,7 @@ Then:
       /cardano-context
 2. Scaffold the project with my answers:
    npx cardano-init --name <project-name> --on-chain <on-chain> --off-chain <off-chain> --devnet <devnet>
-3. Build it (just build), run the example's tests (just test), and show me how to start it (just dev).
+3. Build it (just build), run the example's tests (just test), and show me how to start the local devnet (just -f devnet/Justfile dev).
 ```
 
 </details>
@@ -131,10 +131,9 @@ Then build and run the generated project:
 cd my-app
 just build   # compile the contract and off-chain code
 just test    # run the example's tests
-just dev     # start the local devnet and the app
 ```
 
-You'll need [Node.js](https://nodejs.org/) and [`just`](https://github.com/casey/just). See the [cardano-init docs on GitHub](https://github.com/input-output-hk/cardano-init#readme) for the full command reference and all available options.
+You'll need [Node.js](https://nodejs.org/) and [`just`](https://github.com/casey/just). To start a local devnet, run `just -f devnet/Justfile dev`. See the [cardano-init docs on GitHub](https://github.com/input-output-hk/cardano-init#readme) for the full command reference and all available options.
 
 ## Try it now
 

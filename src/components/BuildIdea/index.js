@@ -57,7 +57,7 @@ export default function BuildIdea({
           </ul>
           {sections && (
             <p className={styles.source}>
-              Not observed in production, per{" "}
+              Flagged as a gap in{" "}
               <InlineLink href={ALPHAGROWTH_REPORT}>
                 AlphaGrowth's ecosystem audit
               </InlineLink>{" "}

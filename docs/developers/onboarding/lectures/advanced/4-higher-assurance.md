@@ -32,7 +32,7 @@ A test that marks a refusal with `fail` is the first direction. A test that expe
 
 The [first design question](/docs/developers/onboarding/lectures/intermediate/handling-time#from-idea-to-architecture) already asked what a contract must guarantee. Turn each answer into a sentence that holds for every transaction, with no example in it. For the splitter:
 
-- A donation never adds a token to the pot. Only ADA.
+- Neither a donation nor a split ever adds a token to the pot. Only ADA.
 - A split pays every benefactor at least their share.
 - The beacon never leaves the pot.
 
@@ -115,7 +115,7 @@ Then two generators and the property, below the other tests:
 - `any_donation_with_tokens` combines two more with `fuzz.map2`: an amount of ADA and a list of one to three tokens, folded into one value. Every donation it makes holds at least one token, and that is all that is wrong with it.
 - The test is the dust attack from **[donate dust](/docs/developers/onboarding/lectures/advanced/detecting-vulnerabilities#donate-dust)** with the donation left open. `fail` on a property means every run has to be refused. A single accepted donation fails the test, and the runner prints that donation.
 
-Run `aiken check`. Seven passes, and the property reports `PASS [after 100 tests]`.
+Run `aiken check`. Eight passes, and the property reports `PASS [after 100 tests]`.
 
 #### Try a weaker fix
 
@@ -132,7 +132,7 @@ Run `aiken check`. `donate_dust_ok` still passes: the one attack you wrote down 
 
 The token in the counterexample can differ from one run to the next, because each run starts from a new random seed. The runner prints the seed under its results, and `aiken check --seed` with that number repeats the same run.
 
-Put `assets.match(new_pot.value, pot.value, >=)?` back and run `aiken check` again. Seven passes.
+Put `assets.match(new_pot.value, pot.value, >=)?` back and run `aiken check` again. Eight passes.
 
 ### The vault's address
 

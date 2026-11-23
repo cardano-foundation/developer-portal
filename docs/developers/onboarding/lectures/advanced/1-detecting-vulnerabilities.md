@@ -458,7 +458,21 @@ The pot has to decide which tokens it accepts. The benefactors are paid in ADA, 
   {extractRegion(SplitterClosed, "donate-closed")}
 </CodeBlock>
 
-`assets.match` requires every token in the two values to be exactly equal, and compares the ADA with the function you pass, here `>=`. Mark `donate_dust_ok` as `fail` and run `aiken check`. Six passes: the dust donation is refused. The split test still goes over the maximum, because it builds the dusty pot directly, and no donation can build that pot now.
+`assets.match` requires every token in the two values to be exactly equal, and compares the ADA with the function you pass, here `>=`.
+
+`Donate` is not the only action that writes the continuing pot: `Split` writes `new_pot` too, and right now it only checks that the beacon comes back, so an attacker can still drop dust into `new_pot` during a split. Add the same check at the top of the `Split` branch so the continuing pot holds only the beacon and ADA:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterClosed, "split-closed")}
+</CodeBlock>
+
+Mark `donate_dust_ok` as `fail`, and add a `fail` test checking that `Split` refuses dust in the new pot too:
+
+<CodeBlock language="aiken" title="validators/splitter.ak">
+  {extractRegion(SplitterClosed, "attack-split-dust")}
+</CodeBlock>
+
+Run `aiken check`. Seven passes: neither a donation nor a split can add dust to the pot. The split test still goes over the maximum, because it builds the dusty pot directly, and neither action can build that pot now.
 
 ### The vault's stake part
 
