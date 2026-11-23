@@ -125,7 +125,7 @@ cardano-init --name my-app --on-chain aiken --off-chain meshjs --devnet yaci
 
 Swap the tools to taste, and run it with `--help` to see every available on-chain language, off-chain SDK, devnet, and optional infrastructure (some, like Docker-based ones, have their own requirements).
 
-Then build and run the generated project:
+Then build and test the generated project:
 
 ```bash
 cd my-app

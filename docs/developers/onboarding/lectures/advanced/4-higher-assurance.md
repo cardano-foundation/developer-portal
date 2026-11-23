@@ -46,7 +46,7 @@ A generator only makes the values you describe. One that never builds a stake pa
 
 A property test also inherits two limits from unit tests:
 
-- **One transaction per run.** The dust attack was a sequence of donations. A property that every donation of a token is refused closes it, because the sequence never gets past its first step. A guarantee about the sequence itself, such as "the pot can always be split", needs tests that build a sequence. The `aiken/fuzz/scenario` module in the [fuzz library](https://github.com/aiken-lang/fuzz) generates whole sequences of transactions against a validator.
+- **One transaction per run.** The dust attack was a sequence of transactions adding tokens. A property that refuses every transaction that adds a token closes it, because the sequence never gets past its first step. A guarantee about the sequence itself, such as "the pot can always be split", needs tests that build a sequence. The `aiken/fuzz/scenario` module in the [fuzz library](https://github.com/aiken-lang/fuzz) generates whole sequences of transactions against a validator.
 - **The transaction is built by hand.** The ledger's own rules and your off-chain code are outside the test. That is the gap **[testing](/docs/developers/onboarding/lectures/intermediate/testing#the-level-these-two-cannot-reach)** left to integration tests.
 
 ## Audits

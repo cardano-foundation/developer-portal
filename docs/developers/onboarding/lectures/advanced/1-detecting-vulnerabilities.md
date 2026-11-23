@@ -460,7 +460,7 @@ The pot has to decide which tokens it accepts. The benefactors are paid in ADA, 
 
 `assets.match` requires every token in the two values to be exactly equal, and compares the ADA with the function you pass, here `>=`.
 
-`Donate` is not the only action that writes the continuing pot: `Split` writes `new_pot` too, and right now it only checks that the beacon comes back, so an attacker can still drop dust into `new_pot` during a split. Add the same check at the top of the `Split` branch so the continuing pot holds only the beacon and ADA:
+`Donate` is not the only transaction that returns a continuing pot. `Split` puts `new_pot` back at the script's address too, and the shared `assets.has_nft` check above `when` only verifies that the beacon is present, not that no other tokens came along with it. Without a check in `Split`, anyone can pay the benefactors and drop dust into `new_pot` in the same transaction. Add an `assets.match` check at the top of `Split` against just the beacon (with `>=` on lovelace, since the ADA is paid out):
 
 <CodeBlock language="aiken" title="validators/splitter.ak">
   {extractRegion(SplitterClosed, "split-closed")}
@@ -472,7 +472,7 @@ Mark `donate_dust_ok` as `fail`, and add a `fail` test checking that `Split` ref
   {extractRegion(SplitterClosed, "attack-split-dust")}
 </CodeBlock>
 
-Run `aiken check`. Seven passes: neither a donation nor a split can add dust to the pot. The split test still goes over the maximum, because it builds the dusty pot directly, and neither action can build that pot now.
+Run `aiken check`. Seven passes: neither a donation nor a split can add dust to the pot. `split_with_60_dust_tokens` still goes over the maximum, because it builds the dusty pot directly, and neither action can build that pot now.
 
 ### The vault's stake part
 

@@ -247,7 +247,7 @@ test donate_dust_ok() fail {
 
 // #region attack-split-dust
 // A split that pays everyone and leaves five dust tokens in the new pot.
-test split_writes_dust_into_the_new_pot() fail {
+test split_leaves_dust_in_the_new_pot() fail {
   let tx = spend_pot(
     pot_holding(100_000_000),
     [
