@@ -152,7 +152,7 @@ export default function ActionTabs() {
       >
         {action.disabled && (
           <p className={styles.disabledNote}>
-            Disabled in the current implementation. This is what CIP-113 specifies for it.
+            Disabled in the Cardano Foundation&apos;s deployments. This is what CIP-113 specifies for it.
           </p>
         )}
         <dl className={styles.actionFacts}>

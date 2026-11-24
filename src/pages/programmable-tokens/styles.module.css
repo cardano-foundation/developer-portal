@@ -1265,7 +1265,7 @@ html[data-theme="dark"] .sourceCard:hover {
   color: var(--site-color-text-muted);
 }
 
-/* The production module is navy in both themes, so it reads apart
+/* The CMTA reference card is navy in both themes, so it reads apart
    from the three sources around it. Doubled classes outrank the
    per-theme rules above regardless of file order. */
 .page .sourceCard.sourceCardDark {

@@ -85,10 +85,10 @@ const LAYERS = [
 const MODULES = [
   {
     name: "CMTA reference",
-    by: "FluidTokens + Cardano Foundation",
+    by: "Finest + Cardano Foundation",
     body: "Tokenized securities under the Swiss CMTA framework: transfer controls, denylisting, global pause, forced transfers and seizure, supply caps and role-based permissions.",
-    status: "Audited, production",
-    production: true,
+    status: "Audited, CMTA-recognized",
+    recognized: true,
     href: CMTA_REPO,
   },
   {
@@ -101,7 +101,7 @@ const MODULES = [
   {
     name: "Dummy",
     by: "Cardano Foundation",
-    body: "The smallest possible module: one credential gates every transfer. A starting point for your own.",
+    body: "The smallest possible module: it accepts any transfer that supplies a fixed redeemer value. A starting point for your own.",
     status: "Example, not audited",
     href: `${PLATFORM_REPO}/tree/main/src/modules/dummy`,
   },
@@ -310,7 +310,14 @@ export default function ProgrammableTokensPage() {
                       <ExtLink href={ONCHAIN_REPO} className={styles.inlineLink}>
                         reference implementation
                       </ExtLink>{" "}
-                      is audited and production-ready.
+                      is audited, and its{" "}
+                      <ExtLink
+                        href={`${ONCHAIN_REPO}/tree/main/documentation/audit`}
+                        className={styles.inlineLink}
+                      >
+                        audit reports
+                      </ExtLink>{" "}
+                      are public.
                     </p>
                   </div>
                 </div>
@@ -456,7 +463,7 @@ export default function ProgrammableTokensPage() {
                           <span
                             className={clsx(
                               "badge",
-                              row.production ? "badge--primary" : "badge--secondary",
+                              row.recognized ? "badge--primary" : "badge--secondary",
                             )}
                           >
                             {row.status}
@@ -555,7 +562,7 @@ export default function ProgrammableTokensPage() {
                 />
                 <SourceCard
                   title="CMTA reference"
-                  body="A production module for tokenized securities. Audited, and recognized by CMTA as a smart contract for tokenized shares."
+                  body="A module for tokenized securities. Audited, and recognized by CMTA as a smart contract for tokenized shares."
                   href={CMTA_REPO}
                   linkLabel="Open the repository"
                   dark
