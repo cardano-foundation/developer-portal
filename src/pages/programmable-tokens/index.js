@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { PageMetadata } from "@docusaurus/theme-common";
 import clsx from "clsx";
@@ -8,15 +7,15 @@ import ogCards from "@site/static/img/og/pages/manifest.json";
 import ExternalArrow from "@site/src/components/ExternalArrow";
 import PageCTA from "@site/src/components/PageCTA";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
-import AddressAnatomy from "./_components/AddressAnatomy";
 import home from "../styles.module.css";
 import styles from "./styles.module.css";
 
 const TITLE = "Programmable Tokens on Cardano";
 const DESCRIPTION =
-  "Programmable tokens are Cardano native tokens that change owner only when a script approves the transfer, as defined in CIP-113.";
+  "Programmable tokens are Cardano native tokens that change owner only when a smart contract approves the transfer, as defined in CIP-113.";
 
 const DOC_URL = "/docs/developers/curriculum/native-tokens/programmable-tokens";
+const OVERVIEW_URL = "https://cardano.org/programmable-tokens/";
 const CIP_URL = "https://cips.cardano.org/cip/CIP-0113";
 const CIP_SOURCE = "https://github.com/cardano-foundation/CIPs/tree/master/CIP-0113";
 const ONCHAIN_REPO = "https://github.com/cardano-foundation/cip113-programmable-tokens";
@@ -30,120 +29,45 @@ const CMTA_CERTIFICATION = "https://cmta.ch/certification/cmta-tokenized-shares-
 /* Each fact links to the source that states it. */
 const STATUS = [
   {
-    name: "In the CIPs repository",
-    body: "CIP-113 is merged, so the specification has one public home.",
+    name: "A published standard",
+    body: "CIP-113 is merged into the CIPs repository.",
     href: CIP_URL,
     linkLabel: "Read CIP-113",
   },
   {
     name: "Audited",
-    body: "The Cardano Foundation's reference contracts were professionally audited.",
+    body: "The reference contracts were professionally audited.",
     href: AUDIT_REPORTS,
     linkLabel: "Audit reports",
   },
   {
     name: "Recognized by CMTA",
-    body: "CMTA, the Swiss association that sets standards for tokenized securities, recognizes the reference module for tokenized shares.",
+    body: "The Swiss standards association for tokenized securities recognizes the reference module for tokenized shares.",
     href: `${CMTA_REPO}#cmta-recognition`,
     linkLabel: "The recognition",
   },
   {
     name: "No hard fork",
-    body: "Built on primitives the ledger already has, such as native tokens and stake credentials.",
+    body: "It runs on the ledger as it is today.",
     href: CIP_SOURCE,
     linkLabel: "The specification",
   },
 ];
 
-/* One transfer, as what each script enforces. The scripts do not call each
-   other: each requires the next to run in the same transaction, and the
-   ledger runs all of them. Source: CIP-0113, "Transfer" and "Architecture:
-   Delegation Pattern". */
-const CHECKS = [
-  {
-    name: "Custody",
-    body: "The token sits at one shared script address, so it cannot move without the checks below.",
-    by: "programmableLogicBase",
-    scope: "Standard",
-  },
-  {
-    name: "Action",
-    body: "The transaction declares a transfer, so the transfer checks have to run in the same transaction.",
-    by: "programmableLogicGlobal",
-    scope: "Standard",
-  },
-  {
-    name: "Ownership",
-    body: "The holder signed, and every output of the token stays at a smart wallet address.",
-    by: "transfer delegate",
-    scope: "Standard",
-  },
-  {
-    name: "Issuer's rules",
-    body: "The token's own transfer logic approves. In the freeze and seize module, neither side is on the denylist.",
-    by: "transfer_logic_script",
-    scope: "Module",
-    module: true,
-  },
-];
-
-const COMPARE = [
-  {
-    topic: "On a transfer",
-    native: "Moves freely between addresses. No script runs.",
-    programmable: "A script has to approve every change of owner.",
-  },
-  {
-    topic: "Where the rules live",
-    native: "In the minting policy, which covers mint and burn only.",
-    programmable: "In the token's transfer logic, listed in an on-chain registry.",
-  },
-  {
-    topic: "Freeze and seize",
-    native: "Not possible.",
-    programmable: "Possible when the token's third-party logic allows it.",
-  },
-  {
-    topic: "The holder's address",
-    native: "The wallet address.",
-    programmable:
-      "A smart wallet address, derived from the holder's stake credential. The holder still signs.",
-  },
-  {
-    topic: "Changing the rules",
-    native: "The minting policy is fixed.",
-    programmable:
-      "In the reference implementation the issuer can replace a token's logic in place. Addresses and policy IDs stay the same.",
-  },
-  {
-    topic: "Cost",
-    native: "The standard transaction fee.",
-    programmable:
-      "Script execution fees on every transfer. The shared checks run once per transaction, which keeps them low.",
-  },
-  {
-    topic: "Use it for",
-    native: "Tokens that need control only at mint and burn.",
-    programmable:
-      "Regulated stablecoins, tokenized securities and other assets with transfer restrictions.",
-  },
-];
-
-/* What exists today, and how far each one has been reviewed. The controls
-   are the ones each module's README lists as implemented. */
-const BUILDS = [
+/* What exists today. The controls are the ones each module's README lists
+   as implemented. */
+const MODULES = [
   {
     title: "Tokenized securities",
-    lead: "KYC, pause and forced transfers, audited.",
+    lead: "KYC checks, a global pause and forced transfers.",
     body: (
       <>
         <ExtLink href={CMTA_URL}>CMTA</ExtLink> is the Swiss association that sets standards for
-        issuing and trading securities as tokens. Its Expert Committee{" "}
+        issuing and trading securities as tokens. It{" "}
         <ExtLink href={`${CMTA_REPO}#cmta-recognition`}>recognized this module</ExtLink> for
-        tokenized shares, so an issuer can use it in place of CMTA&apos;s own reference contract when
-        applying for the{" "}
-        <ExtLink href={CMTA_CERTIFICATION}>CMTA Tokenized Shares certification mark</ExtLink>. The
-        recognition sets four conditions for each deployment, and the module is audited.
+        tokenized shares, so an issuer can use it when applying for the{" "}
+        <ExtLink href={CMTA_CERTIFICATION}>CMTA Tokenized Shares certification mark</ExtLink>,
+        under four conditions for each deployment.
       </>
     ),
     card: {
@@ -166,7 +90,7 @@ const BUILDS = [
   {
     title: "Regulated stablecoins",
     lead: "Freeze and seize on a native token.",
-    body: "An issuer can block a denylisted holder on every transfer, freeze a holder's balance, and seize tokens for legal or regulatory reasons. The Freeze and Seize module is a working example to start from.",
+    body: "An issuer can block a denylisted holder on every transfer, freeze a balance, and seize tokens for legal or regulatory reasons. This module is a working example to start from.",
     card: {
       name: "Freeze and Seize",
       by: "Cardano Foundation",
@@ -178,7 +102,89 @@ const BUILDS = [
   },
 ];
 
-const ROLES = [
+/* One transfer, as what each smart contract enforces. They do not call each
+   other: each requires the next to run in the same transaction, and the
+   ledger runs all of them. Source: CIP-0113, "Transfer" and "Architecture:
+   Delegation Pattern". */
+const CHECKS = [
+  {
+    name: "Custody",
+    body: "The token sits at one shared script address, so it cannot move without the checks below.",
+    by: "programmableLogicBase",
+    scope: "Standard",
+  },
+  {
+    name: "Action",
+    body: "The transaction declares a transfer, so the transfer checks have to run with it.",
+    by: "programmableLogicGlobal",
+    scope: "Standard",
+  },
+  {
+    name: "Ownership",
+    body: "The holder signed, and the token stays in custody at the holder's smart wallet address.",
+    by: "transfer delegate",
+    scope: "Standard",
+  },
+  {
+    name: "Issuer's rules",
+    body: "The token's own transfer logic approves, for example that neither side is on a denylist.",
+    by: "transfer_logic_script",
+    scope: "Module",
+    module: true,
+  },
+];
+
+const COMPARE = [
+  {
+    topic: "On a transfer",
+    native: "Moves freely between addresses. No smart contract runs.",
+    programmable: "A smart contract has to approve every change of owner.",
+  },
+  {
+    topic: "Freeze and seize",
+    native: "Not possible.",
+    programmable: "Possible when the token's module allows it.",
+  },
+  {
+    topic: "Who holds the keys",
+    native: "The holder.",
+    programmable: "Still the holder. The token sits at a smart wallet address derived from their key.",
+  },
+  {
+    topic: "Changing the rules",
+    native: "The minting policy is fixed.",
+    programmable: "The issuer can replace a token's logic. Addresses and policy IDs stay the same.",
+  },
+  {
+    topic: "Cost",
+    native: "The standard transaction fee.",
+    programmable: "Smart contract fees on every transfer, with the shared checks run once per transaction.",
+  },
+];
+
+/* What a reader should verify before relying on a given token. */
+const LIMITS = [
+  {
+    name: "Each token sets its own rules",
+    body: "Read a token's third-party logic before you integrate it. It decides what can happen to a balance without the holder's signature, and who can trigger it.",
+    href: `${CIP_SOURCE}#specification`,
+    linkLabel: "The specification",
+  },
+  {
+    name: "Rules can be replaced",
+    body: "An issuer can replace a token's logic, and an upgrade authority can update the shared contracts. Check who holds both.",
+    href: `${CIP_SOURCE}#protocol-upgradability`,
+    linkLabel: "Upgradability in the CIP",
+  },
+  {
+    name: "Audits have a scope",
+    body: "The audits cover the reference contracts and the CMTA reference. A module you write or adapt needs its own review.",
+    href: AUDIT_REPORTS,
+    linkLabel: "Audit reports",
+  },
+];
+
+const STARTS = [
   {
     name: "Try it on a testnet",
     body: "A frontend and backend to deploy, register, mint and transfer with the example modules.",
@@ -186,28 +192,22 @@ const ROLES = [
     linkLabel: "Reference platform",
   },
   {
-    name: "Issuers",
-    body: "Start from an audited module, or see what writing your own involves.",
-    href: CMTA_REPO,
-    linkLabel: "CMTA reference",
-  },
-  {
-    name: "Contract developers",
-    body: "The audited Aiken contracts, and how to write a module on top of them.",
+    name: "Write a module",
+    body: "The audited Aiken contracts, and how to build your own rule set on top of them.",
     href: `${ONCHAIN_DOCS}/09-DEVELOPING-MODULES.md`,
     linkLabel: "Writing a module",
   },
   {
-    name: "Wallets and dApps",
-    body: "How to show balances, find programmable tokens and build the transactions that move them.",
+    name: "Integrate as a wallet or dApp",
+    body: "Show balances, find programmable tokens and build the transactions that move them.",
     href: `${ONCHAIN_DOCS}/08-INTEGRATION-GUIDES.md`,
     linkLabel: "Integration guides",
   },
   {
-    name: "Risk and audit",
-    body: "Who can upgrade the protocol, what an issuer can change, and what never moves.",
-    href: `${CIP_SOURCE}#protocol-upgradability`,
-    linkLabel: "Upgradability in the CIP",
+    name: "Make the case",
+    body: "The business and regulatory context for issuers and institutions.",
+    href: OVERVIEW_URL,
+    linkLabel: "Programmable tokens on cardano.org",
   },
 ];
 
@@ -225,6 +225,22 @@ function ArrowLink({ href, children }) {
       {children}
       <ExternalArrow />
     </ExtLink>
+  );
+}
+
+function Pills({ items, three }) {
+  return (
+    <dl className={clsx(styles.statusRow, three && styles.statusRowThree)}>
+      {items.map(item => (
+        <div key={item.name}>
+          <dt>{item.name}</dt>
+          <dd>{item.body}</dd>
+          <dd>
+            <ArrowLink href={item.href}>{item.linkLabel}</ArrowLink>
+          </dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 
@@ -266,8 +282,7 @@ export default function ProgrammableTokensPage() {
               </div>
               <div className={clsx(home.heroRight, styles.heroStackedRight)}>
                 <p className={styles.heroLead}>
-                  Cardano native tokens that change owner only when a script approves the
-                  transfer.
+                  Cardano native tokens that change owner only when a smart contract approves.
                 </p>
                 <p className={home.heroSubtitle}>
                   For regulated stablecoins and tokenized securities that need transfer
@@ -288,61 +303,30 @@ export default function ProgrammableTokensPage() {
 
         <section className={styles.statusSection}>
           <div className="container">
-            <dl className={styles.statusRow}>
-              {STATUS.map(item => (
-                <div key={item.name}>
-                  <dt>{item.name}</dt>
-                  <dd>{item.body}</dd>
-                  <dd>
-                    <ArrowLink href={item.href}>{item.linkLabel}</ArrowLink>
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <Pills items={STATUS} />
           </div>
         </section>
 
         <section className={styles.section}>
           <div className="container">
             <div className={home.sectionHeader}>
-              <h2>What you can build</h2>
-              <p>Start from a module that exists today, or write your own.</p>
+              <h2>What exists today</h2>
+              <p>Two modules to start from. A module is the rule set of one token.</p>
             </div>
-            {BUILDS.map((build, index) => (
-              <div key={build.title} className={home.devPanel}>
+            {MODULES.map((module, index) => (
+              <div key={module.title} className={home.devPanel}>
                 <div className={home.devPanelCopy}>
                   <div className={home.devPanelHeader}>
-                    <h3>{build.title}</h3>
-                    <p>{build.lead}</p>
+                    <h3>{module.title}</h3>
+                    <p>{module.lead}</p>
                   </div>
-                  <p className={styles.panelBody}>{build.body}</p>
+                  <p className={styles.panelBody}>{module.body}</p>
                 </div>
                 <div className={clsx(home.devPanelArt, index % 2 === 0 && home.devPanelArtLead)}>
-                  <ModuleCard card={build.card} />
+                  <ModuleCard card={module.card} />
                 </div>
               </div>
             ))}
-            <div className={home.devPanel}>
-              <div className={home.devPanelCopy}>
-                <div className={home.devPanelHeader}>
-                  <h3>Holders keep their keys</h3>
-                  <p>Custody by script, ownership by stake credential.</p>
-                </div>
-                <p className={styles.panelBody}>
-                  Every token sits at one shared script, so its rules always run. The
-                  holder&apos;s stake credential still names the owner. A smart wallet address can
-                  be computed from any wallet address, and the holder signs every transfer.
-                </p>
-              </div>
-              <div className={clsx(home.devPanelArt, home.devPanelArtLead)}>
-                <AddressAnatomy />
-              </div>
-            </div>
-            <p className={styles.callout}>
-              <strong>Before you integrate a token, read its third-party script.</strong> It decides
-              what can happen to a holder&apos;s balance without their signature, and who can
-              trigger it. CIP-113 conformance alone answers neither question.
-            </p>
           </div>
         </section>
 
@@ -391,10 +375,6 @@ export default function ProgrammableTokensPage() {
                 <strong>A transfer is all or nothing.</strong> If one check fails, the whole
                 transaction is invalid and no token changes owner.
               </p>
-              <p className={styles.deeperRow}>
-                Source:{" "}
-                <ExtLink href={`${CIP_SOURCE}#transfer`}>the Transfer section of CIP-113</ExtLink>
-              </p>
             </div>
           </div>
         </section>
@@ -404,9 +384,8 @@ export default function ProgrammableTokensPage() {
             <div className={styles.panel}>
               <h3 className={styles.panelTitle}>Native token and programmable token</h3>
               <p className={styles.panelIntro}>
-                Once minted, a native token moves freely between addresses. A programmable token
-                is still a native token to the ledger, and a script has to approve every change
-                of owner.
+                A programmable token is still a native token to the ledger. These are the
+                differences that matter.
               </p>
               <div className={styles.tableWrap}>
                 <table className={clsx(styles.table, styles.compareTable)}>
@@ -434,6 +413,16 @@ export default function ProgrammableTokensPage() {
           </div>
         </section>
 
+        <section className={styles.section}>
+          <div className="container">
+            <div className={home.sectionHeader}>
+              <h2>Before you rely on a token</h2>
+              <p>The standard guarantees that a token&apos;s rules run. It does not choose them.</p>
+            </div>
+            <Pills items={LIMITS} three />
+          </div>
+        </section>
+
         <section className={clsx(styles.section, styles.anchorTarget)} id="start">
           <div className="container">
             <div className={styles.panel}>
@@ -441,7 +430,7 @@ export default function ProgrammableTokensPage() {
               <div className={styles.tableWrap}>
                 <table className={styles.table}>
                   <tbody>
-                    {ROLES.map(row => (
+                    {STARTS.map(row => (
                       <tr key={row.name}>
                         <td>{row.name}</td>
                         <td className={styles.tableBody}>{row.body}</td>
@@ -453,16 +442,10 @@ export default function ProgrammableTokensPage() {
                   </tbody>
                 </table>
               </div>
-              <p className={styles.deeperRow}>
-                Go deeper: <Link to={DOC_URL}>how it works, in the docs</Link>
-                {" · "}
-                <ExtLink href={`${ONCHAIN_DOCS}/02-ARCHITECTURE.md`}>architecture</ExtLink>
-                {" · "}
-                <ExtLink href={ONCHAIN_REPO}>on-chain contracts</ExtLink>
-              </p>
             </div>
           </div>
         </section>
+
         <PageCTA
           title="Build with programmable tokens"
           description="Try it on a testnet, or read how it works."

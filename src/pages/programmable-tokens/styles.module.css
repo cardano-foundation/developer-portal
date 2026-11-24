@@ -81,99 +81,6 @@ html[data-theme="dark"] .panel {
   margin: 0 0 1.5rem;
 }
 
-.deeperRow {
-  margin: 1rem 0 0;
-  font-size: 0.9rem;
-  color: var(--site-color-text-muted);
-}
-
-/* ------------------------------------------------------- widget shared */
-
-.widgetLabel {
-  display: block;
-  margin-bottom: 0.75rem;
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--site-color-text-muted);
-}
-
-/* ---------------------------------------------------- address anatomy */
-
-.anatomy {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  min-width: 0;
-  margin: 0;
-  padding: 1.5rem;
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: var(--site-radius-lg);
-}
-
-.anatomy .widgetLabel {
-  margin: 0;
-}
-
-.anatomyKicker {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.8rem;
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-.anatomyAddress {
-  display: block;
-  padding: 0;
-  border: 0;
-  background: none;
-  font-size: 0.8rem;
-  line-height: 1.7;
-  color: var(--site-color-text-muted);
-  overflow-wrap: anywhere;
-}
-
-/* The one highlight in the figure: the part both addresses share. */
-.anatomyStake {
-  padding: 0.1em 0;
-  border-radius: 2px;
-  background: color-mix(in srgb, var(--site-color-amber) 30%, transparent);
-  color: var(--ifm-font-color-base);
-}
-
-.anatomyLegend {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--ifm-toc-border-color);
-}
-
-.anatomyLegend dt {
-  font-size: 0.8rem;
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-.anatomyLegend dt .anatomyStake {
-  padding: 0.1em 0.3em;
-}
-
-.anatomyLegend dd {
-  margin: 0.15rem 0 0;
-  font-size: 0.8rem;
-  color: var(--site-color-text-muted);
-}
-
-.anatomyLegend code {
-  padding: 0;
-  border: 0;
-  background: none;
-  font-size: 0.78rem;
-  font-weight: var(--ifm-font-weight-normal);
-  color: var(--site-color-text-muted);
-}
-
 /* -------------------------------------------------------------- tables */
 
 .tableWrap {
@@ -338,6 +245,10 @@ html[data-theme="dark"] .heroLead {
   border-bottom: 1px solid var(--ifm-toc-border-color);
 }
 
+.statusRowThree {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .statusRow dt {
   margin-bottom: 0.35rem;
   font-size: 1.05rem;
@@ -405,13 +316,11 @@ html[data-theme="dark"] .heroLead {
   border-radius: var(--site-radius-lg);
 }
 
-html[data-theme="light"] .moduleCard,
-html[data-theme="light"] .anatomy {
+html[data-theme="light"] .moduleCard {
   background: var(--site-color-surface-chip);
 }
 
-html[data-theme="dark"] .moduleCard,
-html[data-theme="dark"] .anatomy {
+html[data-theme="dark"] .moduleCard {
   background: var(--site-color-card-surface);
 }
 
