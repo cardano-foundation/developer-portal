@@ -19,7 +19,7 @@ const CHECKS = [
   },
   {
     title: "The owner signed and the tokens stay in custody",
-    body: "Alice signed. Every Token output lands at a holder address under the same script: 40 for Bob, 60 back to Alice.",
+    body: "Alice signed. Every Token output lands at a smart wallet address: 40 for Bob, 60 back to Alice.",
     by: "transfer delegate",
   },
   {

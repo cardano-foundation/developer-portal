@@ -13,7 +13,7 @@ import styles from "./styles.module.css";
 
 const TITLE = "Programmable Tokens on Cardano";
 const DESCRIPTION =
-  "Programmable tokens are Cardano native tokens whose rules are checked on every transfer, mint and burn, as defined in CIP-113.";
+  "Programmable tokens are Cardano native tokens that change owner only when a script approves the transfer, as defined in CIP-113.";
 
 const DOC_URL = "/docs/developers/curriculum/native-tokens/programmable-tokens";
 const CIP_URL = "https://cips.cardano.org/cip/CIP-0113";
@@ -46,7 +46,7 @@ const STATUS = [
   },
   {
     name: "No hard fork",
-    body: "It runs on scripts and stake credentials the ledger supports today.",
+    body: "Built on primitives the ledger already has, such as native tokens and stake credentials.",
     href: CIP_SOURCE,
     linkLabel: "The specification",
   },
@@ -55,24 +55,24 @@ const STATUS = [
 const COMPARE = [
   {
     topic: "On a transfer",
-    native: "Ledger rules only. No script runs.",
-    programmable: "Ledger rules and the token's scripts, every time.",
+    native: "Moves freely between addresses. No script runs.",
+    programmable: "A script has to approve every change of owner.",
   },
   {
     topic: "Where the rules live",
-    native: "In the minting policy, at mint and burn.",
-    programmable: "In a module registered on-chain for the token.",
+    native: "In the minting policy, which covers mint and burn only.",
+    programmable: "In the token's transfer logic, listed in an on-chain registry.",
   },
   {
-    topic: "Acting without the holder",
+    topic: "Freeze and seize",
     native: "Not possible.",
-    programmable: "Whatever the module's third-party script allows, such as a freeze or a seizure.",
+    programmable: "Possible when the token's third-party logic allows it.",
   },
   {
     topic: "The holder's address",
     native: "The wallet address.",
     programmable:
-      "An address at the shared script that anyone can derive from the wallet address. The holder still signs.",
+      "A smart wallet address, derived from the holder's stake credential. The holder still signs.",
   },
   {
     topic: "Changing the rules",
@@ -83,12 +83,14 @@ const COMPARE = [
   {
     topic: "Cost",
     native: "The standard transaction fee.",
-    programmable: "Script execution on every movement, and the fees that come with it.",
+    programmable:
+      "Script execution fees on every transfer. The shared checks run once per transaction, which keeps them low.",
   },
   {
     topic: "Use it for",
     native: "Tokens that need control only at mint and burn.",
-    programmable: "Stablecoins, tokenized securities and other assets that need enforced rules.",
+    programmable:
+      "Regulated stablecoins, tokenized securities and other assets with transfer restrictions.",
   },
 ];
 
@@ -120,6 +122,12 @@ const MODULES = [
 
 const ROLES = [
   {
+    name: "Try it on a testnet",
+    body: "A frontend and backend to deploy, register, mint and transfer with the example modules.",
+    href: PLATFORM_REPO,
+    linkLabel: "Reference platform",
+  },
+  {
     name: "Issuers",
     body: "Start from an audited module, or see what writing your own involves.",
     href: CMTA_REPO,
@@ -142,12 +150,6 @@ const ROLES = [
     body: "Who can upgrade the protocol, what an issuer can change, and what never moves.",
     href: `${CIP_SOURCE}#protocol-upgradability`,
     linkLabel: "Upgradability in the CIP",
-  },
-  {
-    name: "Try it on a testnet",
-    body: "A frontend and backend to deploy, register, mint and transfer with the example modules.",
-    href: PLATFORM_REPO,
-    linkLabel: "Reference platform",
   },
 ];
 
@@ -174,6 +176,7 @@ export default function ProgrammableTokensPage() {
       <PageMetadata image={ogCards["programmable-tokens"]} />
       <main className={styles.page}>
         <section className={home.hero}>
+          <div className={styles.heroRings} aria-hidden="true" />
           <div className="container">
             <div className={clsx(home.heroContent, styles.heroContentStacked)}>
               <div className={home.heroLeft}>
@@ -181,25 +184,20 @@ export default function ProgrammableTokensPage() {
               </div>
               <div className={clsx(home.heroRight, styles.heroStackedRight)}>
                 <p className={styles.heroLead}>
-                  Cardano tokens that move only when their rules allow it.
+                  Cardano native tokens that change owner only when a script approves the
+                  transfer.
                 </p>
                 <p className={home.heroSubtitle}>
-                  A regular Cardano token can be sent to anyone at any time. A programmable token
-                  checks its issuer&apos;s rules on every transfer, so a stablecoin or a tokenized
-                  share can freeze an account, take tokens back or accept only verified holders.
-                  It is a Cardano standard,{" "}
-                  <ExtLink href={CIP_URL} className={styles.inlineLink}>
-                    CIP-113
-                  </ExtLink>
-                  , and it runs on the network as it is today.
+                  For regulated stablecoins and tokenized securities that need transfer
+                  restrictions such as freeze and seize, denylists and KYC checks.
                 </p>
                 <div className={home.heroActions}>
-                  <a className="button button--primary" href="#how">
-                    See a transfer checked
+                  <a className="button button--primary" href="#start">
+                    Start building
                   </a>
-                  <Link className="button button--outline button--primary" to={DOC_URL}>
-                    Read the docs
-                  </Link>
+                  <a className="button button--outline button--primary" href="#how">
+                    Try a transfer
+                  </a>
                 </div>
               </div>
             </div>
@@ -247,8 +245,9 @@ export default function ProgrammableTokensPage() {
             <div className={styles.panel}>
               <h3 className={styles.panelTitle}>Native token and programmable token</h3>
               <p className={styles.panelIntro}>
-                A native token is a regular Cardano token. A programmable token is one too, with
-                one difference: it can only move through its rules.
+                Once minted, a native token moves freely between addresses. A programmable token
+                is still a native token to the ledger, and a script has to approve every change
+                of owner.
               </p>
               <div className={styles.tableWrap}>
                 <table className={clsx(styles.table, styles.compareTable)}>
@@ -274,9 +273,9 @@ export default function ProgrammableTokensPage() {
               </div>
               <div className={styles.addressBlock}>
                 <p>
-                  The token address keeps the holder&apos;s stake credential and swaps the payment
-                  part for the shared script. That is why anyone can compute it, and why tokens can
-                  be sent to someone who has never used the standard.
+                  A smart wallet address keeps the holder&apos;s stake credential and swaps the
+                  payment credential for the shared script. It is deterministic, so anyone can
+                  compute it, and tokens can be sent to someone who has never used the standard.
                 </p>
                 <AddressAnatomy />
               </div>

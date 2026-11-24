@@ -36,7 +36,7 @@ Programmability has a cost, and it is the exact thing plain native tokens avoid.
 
 Every programmable token sits at one shared script address, `programmableLogicBase`. Moving it is a spend from that script, so the checks always run.
 
-Ownership comes from the other half of the address. A holder's token address uses `programmableLogicBase` as the payment credential and the holder's own stake credential as the stake part. Anyone can compute it from a wallet address, so tokens can be sent to someone who has never used the standard, and the holder still signs with their own key.
+Ownership comes from the other half of the address. A holder's smart wallet address uses `programmableLogicBase` as the payment credential and the holder's own stake credential as the stake part. Anyone can compute it from a wallet address, so tokens can be sent to someone who has never used the standard, and the holder still signs with their own key.
 
 The custody check that runs for each input does very little. The shared checks run once per transaction through a zero-amount withdrawal from a stake script (withdraw-zero), not once per input.
 
@@ -98,9 +98,9 @@ From the ledger's side, programmable tokens are ordinary native assets at a scri
 
 Wallets:
 
-- Show balances by querying the holder's token address.
+- Show balances by querying the holder's smart wallet address.
 - Identify programmable tokens by looking up their policy in the registry.
-- Build history from balance changes at the token address.
+- Build history from balance changes at the smart wallet address.
 - Optionally, build transfer transactions for native sends.
 
 dApps and DEXes, for each transaction:
@@ -110,7 +110,7 @@ dApps and DEXes, for each transaction:
 3. Withdraw 0 from `programmableLogicGlobal` and point each spend's redeemer at it.
 4. Withdraw 0 from the action's delegate, with its own redeemer.
 5. Withdraw 0 from each token's transfer logic.
-6. Send tokens only to derived token addresses.
+6. Send tokens only to derived smart wallet addresses.
 
 Steps 1 and 3 are the easy ones to miss, because neither shows up in a token's own configuration. The [integration guides](https://github.com/cardano-foundation/cip113-programmable-tokens/blob/main/documentation/08-INTEGRATION-GUIDES.md) and the [DeFi section of the CIP](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0113#implementing-programmable-tokens-in-defi-protocols) have the detail.
 

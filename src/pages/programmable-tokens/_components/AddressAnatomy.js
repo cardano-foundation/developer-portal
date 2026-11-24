@@ -42,7 +42,7 @@ export default function AddressAnatomy() {
       </figcaption>
 
       <Address label="Your wallet address" value={USER_ADDRESS} />
-      <Address label="Your programmable token address" value={TOKEN_ADDRESS} />
+      <Address label="Your smart wallet address" value={TOKEN_ADDRESS} />
 
       <dl className={styles.anatomyLegend}>
         <div>
@@ -57,7 +57,7 @@ export default function AddressAnatomy() {
             Payment credential <code>{short(BASE_HASH)}</code>
           </dt>
           <dd>
-            In the token address it is <code>programmableLogicBase</code>, the same script for
+            In the smart wallet address it is <code>programmableLogicBase</code>, the same script for
             every holder.
           </dd>
         </div>

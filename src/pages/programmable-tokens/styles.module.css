@@ -82,7 +82,6 @@ html[data-theme="dark"] .panel {
   color: var(--site-color-text-muted);
 }
 
-.inlineLink,
 .compareLink {
   color: inherit;
   text-decoration: underline;
@@ -90,7 +89,6 @@ html[data-theme="dark"] .panel {
   text-underline-offset: 3px;
 }
 
-.inlineLink:hover,
 .compareLink:hover {
   color: var(--ifm-color-primary);
   text-decoration-color: currentColor;
@@ -579,6 +577,31 @@ html .page .checkResultFail {
   align-items: center;
   gap: 0.5rem;
   font-weight: var(--ifm-font-weight-semibold);
+}
+
+/* The rings field shared with the Builder Tools and Agentic Commerce
+   heroes. */
+.heroRings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 1609 / 967;
+  background: url("/img/hero/tools-rings-light.webp") no-repeat center /
+    contain;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 50%);
+  mask-image: linear-gradient(to right, transparent, #000 50%);
+}
+
+html[data-theme="dark"] .heroRings {
+  background-image: url("/img/hero/tools-rings-dark.webp");
+}
+
+@media (max-width: 768px) {
+  .heroRings {
+    display: none;
+  }
 }
 
 .heroLead {
