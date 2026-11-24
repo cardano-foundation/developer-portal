@@ -1160,6 +1160,44 @@ html .page .utxoFrozen::after {
   white-space: nowrap;
 }
 
+/* On a phone each module is a stacked block, so the status stays on
+   screen without sideways scrolling. */
+@media (max-width: 768px) {
+  .table {
+    display: block;
+    min-width: 0;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody,
+  .table tbody tr,
+  .table tbody tr:nth-child(2n),
+  .table td {
+    display: block;
+  }
+
+  .table tbody tr,
+  .table tbody tr:nth-child(2n) {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--ifm-toc-border-color);
+  }
+
+  .table td,
+  .table td:first-child {
+    min-width: 0;
+    padding: 0 0 0.45rem;
+    border-bottom: 0;
+  }
+
+  .table td:last-child {
+    padding-bottom: 0;
+    white-space: normal;
+  }
+}
+
 .tableBody {
   color: var(--site-color-text-muted);
 }
