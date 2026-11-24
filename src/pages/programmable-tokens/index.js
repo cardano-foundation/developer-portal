@@ -46,12 +46,6 @@ const STATUS = [
     href: `${CMTA_REPO}#cmta-recognition`,
     linkLabel: "The recognition",
   },
-  {
-    name: "No hard fork",
-    body: "It runs on the ledger as it is today.",
-    href: CIP_SOURCE,
-    linkLabel: "The specification",
-  },
 ];
 
 /* What exists today. The controls are the ones each module's README lists
@@ -90,7 +84,7 @@ const MODULES = [
   {
     title: "Regulated stablecoins",
     lead: "Freeze and seize on a native token.",
-    body: "An issuer can block a denylisted holder on every transfer, freeze a balance, and seize tokens for legal or regulatory reasons. This module is a working example to start from.",
+    body: "An issuer can stop a denylisted holder from transferring, freeze a balance, and seize tokens for legal or regulatory reasons. This module is a working example to start from.",
     card: {
       name: "Freeze and Seize",
       by: "Cardano Foundation",
@@ -114,20 +108,20 @@ const CHECKS = [
     scope: "Standard",
   },
   {
-    name: "Action",
+    name: "Declared action",
     body: "The transaction declares a transfer, so the transfer checks have to run with it.",
     by: "programmableLogicGlobal",
     scope: "Standard",
   },
   {
     name: "Ownership",
-    body: "The holder signed, and the token stays in custody at the holder's smart wallet address.",
+    body: "The holder signed, and every output of the token stays at a smart wallet address.",
     by: "transfer delegate",
     scope: "Standard",
   },
   {
     name: "Issuer's rules",
-    body: "The token's own transfer logic approves, for example that neither side is on a denylist.",
+    body: "The token's own transfer logic approves, for example that a holder is not on a denylist.",
     by: "transfer_logic_script",
     scope: "Module",
     module: true,
@@ -153,12 +147,14 @@ const COMPARE = [
   {
     topic: "Changing the rules",
     native: "The minting policy is fixed.",
-    programmable: "The issuer can replace a token's logic. Addresses and policy IDs stay the same.",
+    programmable:
+      "In the reference implementation the issuer can replace a token's logic. Addresses and policy IDs stay the same.",
   },
   {
     topic: "Cost",
     native: "The standard transaction fee.",
-    programmable: "Smart contract fees on every transfer, with the shared checks run once per transaction.",
+    programmable:
+      "Smart contract fees on every transfer. Most checks run once per transaction, not once per input.",
   },
 ];
 
@@ -172,13 +168,13 @@ const LIMITS = [
   },
   {
     name: "Rules can be replaced",
-    body: "An issuer can replace a token's logic, and an upgrade authority can update the shared contracts. Check who holds both.",
-    href: `${CIP_SOURCE}#protocol-upgradability`,
-    linkLabel: "Upgradability in the CIP",
+    body: "In the reference implementation an issuer can replace a token's logic, and an upgrade authority can replace the shared dispatcher. Check who holds both.",
+    href: `${ONCHAIN_DOCS}/02-ARCHITECTURE.md`,
+    linkLabel: "Architecture",
   },
   {
     name: "Audits have a scope",
-    body: "The audits cover the reference contracts and the CMTA reference. A module you write or adapt needs its own review.",
+    body: "The reference contracts and the CMTA reference each have their own audit. A module you write or adapt needs its own review.",
     href: AUDIT_REPORTS,
     linkLabel: "Audit reports",
   },
@@ -204,8 +200,8 @@ const STARTS = [
     linkLabel: "Integration guides",
   },
   {
-    name: "Make the case",
-    body: "The business and regulatory context for issuers and institutions.",
+    name: "Regulatory context",
+    body: "The regulatory frameworks and the institutional case.",
     href: OVERVIEW_URL,
     linkLabel: "Programmable tokens on cardano.org",
   },
@@ -285,8 +281,8 @@ export default function ProgrammableTokensPage() {
                   Cardano native tokens that change owner only when a smart contract approves.
                 </p>
                 <p className={home.heroSubtitle}>
-                  For regulated stablecoins and tokenized securities that need transfer
-                  restrictions such as freeze and seize, denylists and KYC checks.
+                  For regulated stablecoins and tokenized securities that need issuer controls
+                  such as freeze and seize, denylists and KYC checks.
                 </p>
                 <div className={home.heroActions}>
                   <a className="button button--primary" href="#start">
@@ -303,7 +299,7 @@ export default function ProgrammableTokensPage() {
 
         <section className={styles.statusSection}>
           <div className="container">
-            <Pills items={STATUS} />
+            <Pills items={STATUS} three />
           </div>
         </section>
 
@@ -330,14 +326,46 @@ export default function ProgrammableTokensPage() {
           </div>
         </section>
 
+        <section className={styles.section}>
+          <div className="container">
+            <div className={home.sectionHeader}>
+              <h2>What changes from a native token</h2>
+              <p>A programmable token is still a native token to the ledger. These are the differences that matter.</p>
+            </div>
+            <div className={styles.panel}>
+              <div className={styles.tableWrap}>
+                <table className={clsx(styles.table, styles.compareTable)}>
+                  <thead>
+                    <tr>
+                      <th aria-label="Topic" />
+                      <th>Native token</th>
+                      <th>Programmable token</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {COMPARE.map(row => (
+                      <tr key={row.topic}>
+                        <td>{row.topic}</td>
+                        <td className={styles.tableBody} data-label="Native token">
+                          {row.native}
+                        </td>
+                        <td data-label="Programmable token">{row.programmable}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className={clsx(styles.section, styles.anchorTarget)} id="how">
           <div className="container">
+            <div className={home.sectionHeader}>
+              <h2>How a transfer is checked</h2>
+              <p>Four checks run in the same transaction. Three come from the standard. The fourth is the issuer&apos;s.</p>
+            </div>
             <div className={styles.panel}>
-              <h3 className={styles.panelTitle}>How a transfer is checked</h3>
-              <p className={styles.panelIntro}>
-                Four checks run in the same transaction. Three come from the standard and are
-                the same for every token. The fourth is the issuer&apos;s.
-              </p>
               <div className={styles.tableWrap}>
                 <table className={styles.table}>
                   <thead>
@@ -381,40 +409,6 @@ export default function ProgrammableTokensPage() {
 
         <section className={styles.section}>
           <div className="container">
-            <div className={styles.panel}>
-              <h3 className={styles.panelTitle}>Native token and programmable token</h3>
-              <p className={styles.panelIntro}>
-                A programmable token is still a native token to the ledger. These are the
-                differences that matter.
-              </p>
-              <div className={styles.tableWrap}>
-                <table className={clsx(styles.table, styles.compareTable)}>
-                  <thead>
-                    <tr>
-                      <th aria-label="Topic" />
-                      <th>Native token</th>
-                      <th>Programmable token</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {COMPARE.map(row => (
-                      <tr key={row.topic}>
-                        <td>{row.topic}</td>
-                        <td className={styles.tableBody} data-label="Native token">
-                          {row.native}
-                        </td>
-                        <td data-label="Programmable token">{row.programmable}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <div className="container">
             <div className={home.sectionHeader}>
               <h2>Before you rely on a token</h2>
               <p>The standard guarantees that a token&apos;s rules run. It does not choose them.</p>
@@ -425,8 +419,10 @@ export default function ProgrammableTokensPage() {
 
         <section className={clsx(styles.section, styles.anchorTarget)} id="start">
           <div className="container">
+            <div className={home.sectionHeader}>
+              <h2>Where to start</h2>
+            </div>
             <div className={styles.panel}>
-              <h3 className={styles.panelTitle}>Where to start</h3>
               <div className={styles.tableWrap}>
                 <table className={styles.table}>
                   <tbody>

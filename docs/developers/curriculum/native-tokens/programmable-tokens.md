@@ -36,7 +36,7 @@ Programmability has a cost, and it is the exact thing plain native tokens avoid.
 
 Every programmable token sits at one shared script address, `programmableLogicBase`. Moving it is a spend from that script, so the checks always run.
 
-Ownership comes from the other half of the address. A holder's smart wallet address uses `programmableLogicBase` as the payment credential and the holder's own stake credential as the stake part. Anyone can compute it from a wallet address, so tokens can be sent to someone who has never used the standard, and the holder still signs with their own key.
+Ownership comes from the other half of the address. A holder's smart wallet address uses `programmableLogicBase` as the payment credential and a credential of the holder in the stake part. Whether that is the holder's payment key or stake key is the token's convention. Given the convention, anyone can compute the address from a wallet address, so tokens can be sent to someone who has never used the standard, and the holder still signs with their own key.
 
 The custody check that runs for each input does very little. The shared checks run once per transaction through a zero-amount withdrawal from a stake script (withdraw-zero), not once per input.
 
@@ -54,14 +54,14 @@ A new token deploys none of the shared scripts. The wiring is read from the prot
 
 ## Actions
 
-Tokens enter through a mint. After that, every spend from the shared address declares one action, each with its own script and checks.
+Tokens enter through a mint. After that, every spend from the shared address declares one of three actions, each with its own delegate.
 
-| Action | Started by | Authorized by | What is checked |
+| Operation | Started by | Authorized by | What is checked |
 |---|---|---|---|
-| Mint | The issuer | The token's minting logic | Minted tokens land at `programmableLogicBase` addresses. The minting logic runs in the same transaction. The issuance policy is permanent, so the policy ID never changes. |
+| Mint (issuance) | The issuer | The token's minting logic | Minted tokens land at `programmableLogicBase` addresses. The minting logic runs in the same transaction. The issuance policy is permanent, so the policy ID never changes. |
 | Transfer | The holder | The holder's stake credential: a signature, or the holder's script runs | One registry proof per policy spent or minted. Every registered policy's transfer logic runs. Programmable value stays at `programmableLogicBase` addresses. |
 | Third party | Whoever the module allows, for example an issuer admin | The token's third-party logic, with no holder signature | Each input pairs with an output at the same address. Only the acted-on policy may change. Its total in custody never drops, except by a burn in the same transaction. This covers seizure, partial seizure and wipe. |
-| Unfracking | The holder | The holder's stake credential | One policy is moved out of a shared UTxO into its own, so a frozen token no longer blocks the others. Ownership does not change. It is disabled in the Cardano Foundation's deployments. |
+| Unfracking | The holder | The holder, and the token's unfracking logic. It is off unless the issuer opts in | One policy is moved out of a shared UTxO into its own, so a frozen token no longer blocks the others. Ownership does not change. The reference platform's deployment parameters disable it. |
 
 Before you integrate a token, read its third-party script. It decides what can happen to a holder's balance without their signature, and who can trigger it.
 
@@ -112,10 +112,10 @@ dApps and DEXes, for each transaction:
 5. Withdraw 0 from each token's transfer logic.
 6. Send tokens only to derived smart wallet addresses.
 
-Steps 1 and 3 are the easy ones to miss, because neither shows up in a token's own configuration. The [integration guides](https://github.com/cardano-foundation/cip113-programmable-tokens/blob/main/documentation/08-INTEGRATION-GUIDES.md) and the [DeFi section of the CIP](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0113#implementing-programmable-tokens-in-defi-protocols) have the detail.
+If a dApp script owns the tokens, add a zero withdrawal from that script as the owner's consent. Steps 1 and 3 are the easy ones to miss, because neither shows up in a token's own configuration. The [integration guides](https://github.com/cardano-foundation/cip113-programmable-tokens/blob/main/documentation/08-INTEGRATION-GUIDES.md) and the [DeFi section of the CIP](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0113#implementing-programmable-tokens-in-defi-protocols) have the detail.
 
 :::info Status
-CIP-113 is merged into the [CIPs repository](https://cips.cardano.org/cip/CIP-0113). The Cardano Foundation's reference implementation has been professionally audited, and its [audit reports](https://github.com/cardano-foundation/cip113-programmable-tokens/tree/main/documentation/audit) are public; read the architecture and integration guides and follow the contracts at the [cip113-programmable-tokens repository](https://github.com/cardano-foundation/cip113-programmable-tokens). For an audited module that CMTA has recognized, see the [CMTA reference](https://github.com/cardano-foundation/cpt-rwa-ch-cmta-reference) for tokenized securities. Example modules such as freeze and seize live in the [cip113-programmable-tokens-platform repository](https://github.com/cardano-foundation/cip113-programmable-tokens-platform). For an interactive walkthrough of a transfer and the four actions, see [Programmable Tokens](/programmable-tokens/).
+CIP-113 is merged into the [CIPs repository](https://cips.cardano.org/cip/CIP-0113). The Cardano Foundation's reference implementation has been professionally audited, and its [audit reports](https://github.com/cardano-foundation/cip113-programmable-tokens/tree/main/documentation/audit) are public; read the architecture and integration guides and follow the contracts at the [cip113-programmable-tokens repository](https://github.com/cardano-foundation/cip113-programmable-tokens). For an audited module that CMTA has recognized for tokenized shares, see the [CMTA reference](https://github.com/cardano-foundation/cpt-rwa-ch-cmta-reference). Example modules such as freeze and seize live in the [cip113-programmable-tokens-platform repository](https://github.com/cardano-foundation/cip113-programmable-tokens-platform). For an interactive walkthrough of a transfer and the four actions, see [Programmable Tokens](/programmable-tokens/).
 :::
 
 ## Next steps

@@ -63,22 +63,9 @@ html[data-theme="dark"] .panel {
   color: var(--site-color-card-text);
 }
 
-.panelTitle {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.75rem, 3.4vw, 3.25rem);
-  font-weight: var(--site-font-weight-heading);
-  letter-spacing: -0.02em;
-  line-height: 1.19;
-}
-
 .panelBody {
   margin: 0;
   max-width: 34rem;
-}
-
-.panelIntro {
-  max-width: 46rem;
-  margin: 0 0 1.5rem;
 }
 
 /* -------------------------------------------------------------- tables */
