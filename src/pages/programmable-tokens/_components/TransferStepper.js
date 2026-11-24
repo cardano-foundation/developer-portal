@@ -8,24 +8,24 @@ import styles from "../styles.module.css";
    "Transfer" and "Architecture: Delegation Pattern". */
 const CHECKS = [
   {
-    title: "No way around the checks",
-    body: "The token sits at one shared script address, so moving it always runs the checks below.",
+    title: "The token cannot skip its rules",
+    body: "It sits at one shared script address, so every movement runs the checks below.",
     by: "programmableLogicBase",
   },
   {
-    title: "The right checks run",
-    body: "The transaction declares a transfer, so the transfer checks must run in it too.",
+    title: "The transfer rules run",
+    body: "The transaction declares a transfer, so the transfer checks must run with it.",
     by: "programmableLogicGlobal",
   },
   {
-    title: "Owner signed, tokens stay in custody",
-    body: "Alice signed, and every Token output lands in a smart wallet: 40 for Bob, 60 back to Alice.",
+    title: "The owner signed and the tokens stay in custody",
+    body: "Alice signed. Every Token output lands at a holder address under the same script: 40 for Bob, 60 back to Alice.",
     by: "transfer delegate",
   },
   {
     title: "The issuer's rule",
-    body: "Whatever the token's module requires. In this example: Alice is not on the issuer's denylist.",
-    failBody: "In this example, Alice is on the issuer's denylist. This script fails.",
+    body: "Whatever the token's module requires. Here, Alice is not on the issuer's denylist.",
+    failBody: "Here, Alice is on the issuer's denylist, so this script fails.",
     by: "Token transfer logic",
   },
 ];

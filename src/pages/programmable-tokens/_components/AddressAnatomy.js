@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 import styles from "../styles.module.css";
 
 /* The worked example from CIP-0113 ("Address Derivation", preview), shown
@@ -13,55 +12,56 @@ const USER_ADDRESS =
 const TOKEN_ADDRESS =
   "addr_test1zreps2cq5daaw3hzq46untcp4vcnzgsn29xdx8589c9z50nn2r00tud22p3ylwhk4s85764ndh5zdpnmfmfqleagml4qe650tm";
 
+/* In bech32 the stake credential fills the same 45 characters of both
+   addresses, between the payment part and the 6-character checksum. */
+const STAKE_START = 57;
+const STAKE_END = 102;
+
 function short(hash) {
   return `${hash.slice(0, 8)}…${hash.slice(-6)}`;
+}
+
+function Address({ label, value }) {
+  return (
+    <div>
+      <span className={styles.anatomyKicker}>{label}</span>
+      <code className={styles.anatomyAddress}>
+        {value.slice(0, STAKE_START)}
+        <mark className={styles.anatomyStake}>{value.slice(STAKE_START, STAKE_END)}</mark>
+        {value.slice(STAKE_END)}
+      </code>
+    </div>
+  );
 }
 
 export default function AddressAnatomy() {
   return (
     <figure className={styles.anatomy}>
-      <figcaption className={styles.widgetLabel}>Address anatomy · preview</figcaption>
+      <figcaption className={styles.widgetLabel}>
+        Address anatomy · CIP-113 example on Preview
+      </figcaption>
 
-      <div>
-        <span className={styles.anatomyKicker}>Your wallet address</span>
-        <code className={styles.anatomyAddress}>{USER_ADDRESS}</code>
-        <div className={styles.anatomyKeys}>
-          <span className={clsx(styles.anatomyKey, styles.anatomyKeyOn)}>
-            staking key <code>{short(STAKE_KEY)}</code>
-          </span>
+      <Address label="Your wallet address" value={USER_ADDRESS} />
+      <Address label="Your programmable token address" value={TOKEN_ADDRESS} />
+
+      <dl className={styles.anatomyLegend}>
+        <div>
+          <dt>
+            <mark className={styles.anatomyStake}>Stake credential</mark>{" "}
+            <code>{short(STAKE_KEY)}</code>
+          </dt>
+          <dd>Your staking key. It is the same in both addresses, so you own and sign.</dd>
         </div>
-      </div>
-
-      <span className={styles.anatomyDown} aria-hidden="true">
-        ↓
-      </span>
-
-      <div className={styles.anatomyParts}>
-        <div className={clsx(styles.anatomyPart, styles.anatomyPartFixed)}>
-          <span className={styles.anatomyKicker}>Payment credential</span>
-          <code>{short(BASE_HASH)}</code>
-          <span className={styles.anatomyNote}>
-            <code>programmableLogicBase</code>, the same for every holder
-          </span>
+        <div>
+          <dt>
+            Payment credential <code>{short(BASE_HASH)}</code>
+          </dt>
+          <dd>
+            In the token address it is <code>programmableLogicBase</code>, the same script for
+            every holder.
+          </dd>
         </div>
-        <span className={styles.anatomyPlus} aria-hidden="true">
-          +
-        </span>
-        <div className={clsx(styles.anatomyPart, styles.anatomyPartOwner)}>
-          <span className={styles.anatomyKicker}>Stake credential</span>
-          <code>{short(STAKE_KEY)}</code>
-          <span className={styles.anatomyNote}>your staking key: you own and sign</span>
-        </div>
-      </div>
-
-      <span className={styles.anatomyDown} aria-hidden="true">
-        ↓
-      </span>
-
-      <div>
-        <span className={styles.anatomyKicker}>Your programmable token address</span>
-        <code className={styles.anatomyAddress}>{TOKEN_ADDRESS}</code>
-      </div>
+      </dl>
     </figure>
   );
 }
