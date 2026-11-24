@@ -1016,10 +1016,10 @@ html[data-theme="dark"] .tabOn {
 }
 
 .checkList li::before {
-  content: "✓";
+  content: "•";
   position: absolute;
-  left: 0.2rem;
-  color: var(--ifm-color-success);
+  left: 0.35rem;
+  color: var(--site-color-text-muted);
 }
 
 .flow {
