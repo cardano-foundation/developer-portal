@@ -341,6 +341,3 @@ html[data-theme="dark"] .moduleCard {
   font-size: 0.9rem;
 }
 
-.moduleCard li:last-child {
-  border-bottom: 1px solid var(--ifm-toc-border-color);
-}

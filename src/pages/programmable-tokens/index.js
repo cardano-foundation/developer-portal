@@ -77,9 +77,8 @@ const MODULES = [
         "Supply caps",
         "Role-based permissions",
       ],
-      href: CMTA_REPO,
-      linkLabel: "Open the repository",
     },
+    action: { href: CMTA_REPO, label: "Open the CMTA reference" },
   },
   {
     title: "Regulated stablecoins",
@@ -90,8 +89,10 @@ const MODULES = [
       by: "Cardano Foundation",
       status: "Example module",
       controls: ["Denylist checked on every transfer", "Freeze and unfreeze", "Seize"],
+    },
+    action: {
       href: `${PLATFORM_REPO}/tree/main/src/modules/freeze-and-seize`,
-      linkLabel: "Open the module",
+      label: "Open the Freeze and Seize module",
     },
   },
 ];
@@ -257,7 +258,6 @@ function ModuleCard({ card }) {
           <li key={control}>{control}</li>
         ))}
       </ul>
-      <ArrowLink href={card.href}>{card.linkLabel}</ArrowLink>
     </div>
   );
 }
@@ -317,6 +317,16 @@ export default function ProgrammableTokensPage() {
                     <p>{module.lead}</p>
                   </div>
                   <p className={styles.panelBody}>{module.body}</p>
+                  <div>
+                    <a
+                      className="button button--outline button--primary"
+                      href={module.action.href}
+                      {...EXTERNAL_LINK_PROPS}
+                    >
+                      {module.action.label}
+                      <ExternalArrow />
+                    </a>
+                  </div>
                 </div>
                 <div className={clsx(home.devPanelArt, index % 2 === 0 && home.devPanelArtLead)}>
                   <ModuleCard card={module.card} />
