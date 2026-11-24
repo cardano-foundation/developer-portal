@@ -4,8 +4,8 @@
  * settlement store all come from the package). It holds no keys and no funds
  * — it verifies payer-signed transactions and broadcasts them.
  *
- * At the hackathon, point FACILITATOR_URL at the hosted facilitator instead;
- * this file is the offline/dev fallback.
+ * The template points FACILITATOR_URL at the Cardano Foundation's hosted
+ * facilitator by default; this file is the offline/dev fallback.
  */
 import { config } from "dotenv";
 import express from "express";

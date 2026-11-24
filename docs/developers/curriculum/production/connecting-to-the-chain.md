@@ -11,7 +11,7 @@ You have used both workflows since Module 2, always through a **provider** ([Que
 
 If you have run web infrastructure, the categories map onto things you know:
 
-- A **query API** (Blockfrost, Koios, Maestro) is a managed database service, the Cardano equivalent of RDS or Supabase: trade some control for zero operations.
+- A **query API** (Blockfrost, Koios, Nexus) is a managed database service, the Cardano equivalent of RDS or Supabase: trade some control for zero operations.
 - **cardano-node** is running your own database server: full control, full operational commitment (storage, updates, monitoring).
 - **Ogmios** is a database driver: it translates the node's wire protocol into a developer-friendly interface, like `pg` for PostgreSQL.
 - **Indexers** are materialized views and read replicas: db-sync is a full materialized view of the chain; Kupo is a targeted one for the UTXOs you care about.
@@ -55,7 +55,7 @@ The landscape looks crowded until you sort it by what each thing conceptually is
 
 ### Query APIs
 
-**Blockfrost, Koios, Maestro.** A complete data service behind one HTTP API: someone else runs the node, the indexer, and the API layer, and you get a base URL and usually a key. They are operated commercially (Blockfrost, Maestro) or by a community cluster with no single operator (Koios, which you can also self-host). This is the category most applications start with, and many never need anything else. [Use a provider](/docs/developers/curriculum/production/use-a-provider) sets up all three with one skeleton, and [Builder Tools](/tools/?tags=api) has the rest, including narrower services built for one kind of data.
+**Blockfrost, Koios, Nexus.** A complete data service behind one HTTP API: someone else runs the node, the indexer, and the API layer, and you get a base URL and usually a key. They are operated commercially (Blockfrost, Nexus) or by a community cluster with no single operator (Koios, which you can also self-host). This is the category most applications start with, and many never need anything else. [Use a provider](/docs/developers/curriculum/production/use-a-provider) sets up all three with one skeleton, and [Builder Tools](/tools/?tags=api) has the rest, including narrower services built for one kind of data.
 
 ### Node interfaces
 
@@ -149,6 +149,6 @@ Most teams combine approaches: a hosted query API while developing, self-hosted 
 
 ## Next steps
 
-- [Use a provider](/docs/developers/curriculum/production/use-a-provider): set up Blockfrost, Koios, or Maestro, one skeleton for all three
+- [Use a provider](/docs/developers/curriculum/production/use-a-provider): set up Blockfrost, Koios, or Nexus, one skeleton for all three
 - [Self-hosting](/docs/developers/curriculum/production/self-hosting): run a data node, a Kupmios stack, or a full node, with Demeter as the managed variant
 - [Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics): the indexer shapes, and building an index of your own

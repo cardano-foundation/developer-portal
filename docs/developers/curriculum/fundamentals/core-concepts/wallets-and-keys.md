@@ -104,7 +104,7 @@ A wallet is software that stores your keys, scans the chain for UTXOs at your ad
 
 CIP-30 is the dApp connector standard. The wallet exposes an API; it signs only what the user approves and never exposes private keys, much like "Sign in with Google" hands an app a token, not your password.
 
-<Tabs>
+<Tabs groupId="sdk">
 <TabItem value="browser" label="Browser API" default>
 
 ```typescript
