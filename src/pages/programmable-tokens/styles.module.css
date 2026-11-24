@@ -71,6 +71,11 @@ html[data-theme="dark"] .panel {
   line-height: 1.19;
 }
 
+.panelBody {
+  margin: 0;
+  max-width: 34rem;
+}
+
 .panelIntro {
   max-width: 46rem;
   margin: 0 0 1.5rem;
@@ -80,18 +85,6 @@ html[data-theme="dark"] .panel {
   margin: 1rem 0 0;
   font-size: 0.9rem;
   color: var(--site-color-text-muted);
-}
-
-.compareLink {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
-  text-underline-offset: 3px;
-}
-
-.compareLink:hover {
-  color: var(--ifm-color-primary);
-  text-decoration-color: currentColor;
 }
 
 /* ------------------------------------------------------- widget shared */
@@ -179,285 +172,6 @@ html[data-theme="dark"] .panel {
   font-size: 0.78rem;
   font-weight: var(--ifm-font-weight-normal);
   color: var(--site-color-text-muted);
-}
-
-/* ------------------------------------------------------------- stepper */
-
-.stepper {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.stepperTop {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 2rem;
-}
-
-/* A plain checkbox restyled as a switch; the input stays in the tab
-   order and keeps its native semantics. */
-.switch {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.switch input {
-  position: absolute;
-  opacity: 0;
-  width: 2.4rem;
-  height: 1.35rem;
-  margin: 0;
-  cursor: pointer;
-}
-
-.switchTrack {
-  position: relative;
-  width: 2.4rem;
-  height: 1.35rem;
-  border-radius: var(--site-radius-pill);
-  background: var(--ifm-toc-border-color);
-  transition: background 0.2s ease;
-}
-
-.switchTrack::after {
-  content: "";
-  position: absolute;
-  top: 0.15rem;
-  left: 0.15rem;
-  width: 1.05rem;
-  height: 1.05rem;
-  border-radius: 50%;
-  background: var(--site-color-surface-chip);
-  box-shadow: 0 1px 3px rgb(var(--site-color-navy-rgb) / 0.3);
-  transition: transform 0.2s ease;
-}
-
-html[data-theme="dark"] .switchTrack::after {
-  background: var(--site-color-cream);
-}
-
-.exampleTag {
-  padding: 0.05rem 0.45rem;
-  border-radius: var(--site-radius-pill);
-  background: color-mix(in srgb, var(--site-color-amber) 22%, transparent);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.switch input:checked + .switchTrack {
-  background: var(--ifm-color-danger);
-}
-
-.switch input:checked + .switchTrack::after {
-  transform: translateX(1.05rem);
-}
-
-.switch input:focus-visible + .switchTrack {
-  outline: 2px solid var(--ifm-color-primary);
-  outline-offset: 2px;
-}
-
-/* Alice to Bob. The token advances one quarter of the track per check,
-   stops red where a check fails, and reaches Bob only when all pass. */
-.route {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 1rem;
-}
-
-.routeEnd {
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: var(--site-radius-pill);
-  font-family: var(--site-font-family-mono-code);
-  font-size: 0.85rem;
-  white-space: nowrap;
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.routeEndOn {
-  border-color: var(--site-color-amber);
-  background: color-mix(in srgb, var(--site-color-amber) 18%, transparent);
-}
-
-.routeTrack {
-  position: relative;
-  height: 2px;
-  background: repeating-linear-gradient(
-    to right,
-    var(--ifm-toc-border-color) 0 6px,
-    transparent 6px 12px
-  );
-}
-
-.routeToken {
-  position: absolute;
-  top: 50%;
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 50%;
-  background: var(--site-color-amber);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--site-color-amber) 28%, transparent);
-  transform: translate(-50%, -50%);
-  transition: left 0.6s ease, background 0.3s ease, box-shadow 0.3s ease;
-}
-
-html .page .routeTokenStopped {
-  background: var(--ifm-color-danger);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--ifm-color-danger) 25%, transparent);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .routeToken,
-.routeEnd {
-    transition: none;
-  }
-}
-
-/* Four checks in a row, each idle, active, passed or failed. */
-.checkRow {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: none;
-}
-
-.checkCard {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: 1.25rem;
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: var(--site-radius-lg);
-  transition: border-color 0.25s ease, background 0.25s ease;
-}
-
-.checkCard h4 {
-  margin: 0.4rem 0 0;
-  font-size: 1.1rem;
-}
-
-.checkBy {
-  margin-top: auto;
-  padding-top: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--site-color-text-muted);
-}
-
-.checkBy code {
-  font-size: 0.72rem;
-}
-
-.checkCard p {
-  margin: 0.35rem 0 0;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--site-color-text-muted);
-}
-
-.checkMark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: 50%;
-  font-family: var(--site-font-family-mono-code);
-  font-size: 0.85rem;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-}
-
-.checkActive {
-  border-color: var(--ifm-color-primary);
-  background: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
-}
-
-html[data-theme="dark"] .checkActive {
-  border-color: var(--site-color-cream);
-  background: rgb(var(--site-color-cream-rgb) / 0.06);
-}
-
-html .page .checkPass {
-  border-color: var(--ifm-color-success);
-  background: color-mix(in srgb, var(--ifm-color-success) 9%, transparent);
-}
-
-html .page .checkPass .checkMark {
-  border-color: var(--ifm-color-success);
-  background: var(--ifm-color-success);
-  color: var(--site-color-surface-chip);
-}
-
-html .page .checkFail {
-  border-color: var(--ifm-color-danger);
-  background: color-mix(in srgb, var(--ifm-color-danger) 10%, transparent);
-}
-
-html .page .checkFail .checkMark {
-  border-color: var(--ifm-color-danger);
-  background: var(--ifm-color-danger);
-  color: var(--site-color-surface-chip);
-}
-
-html[data-theme="dark"] .page .checkPass .checkMark,
-html[data-theme="dark"] .page .checkFail .checkMark {
-  color: var(--site-color-navy);
-}
-
-.checkResult {
-  margin: 0;
-  padding: 1rem 1.25rem;
-  border-left: 3px solid var(--ifm-toc-border-color);
-  border-radius: var(--site-radius-md);
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-/* Idle: the live region stays mounted, so the first verdict is announced,
-   but takes no space. */
-.checkResultEmpty {
-  padding: 0;
-  border: 0;
-}
-
-html .page .checkResultPass {
-  border-left-color: var(--ifm-color-success);
-  background: color-mix(in srgb, var(--ifm-color-success) 9%, transparent);
-}
-
-html .page .checkResultFail {
-  border-left-color: var(--ifm-color-danger);
-  background: color-mix(in srgb, var(--ifm-color-danger) 10%, transparent);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .checkCard,
-.checkMark {
-    transition: none;
-  }
-}
-
-@media (max-width: 996px) {
-  .checkRow {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 560px) {
-  .checkRow {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 /* -------------------------------------------------------------- tables */
@@ -549,14 +263,6 @@ html .page .checkResultFail {
 }
 
 .tableBody {
-  color: var(--site-color-text-muted);
-}
-
-.compareDetail {
-  display: block;
-  margin-top: 0.15rem;
-  font-size: 0.8rem;
-  font-weight: var(--ifm-font-weight-normal);
   color: var(--site-color-text-muted);
 }
 
@@ -687,21 +393,58 @@ html[data-theme="dark"] .heroLead {
   }
 }
 
-.addressBlock {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: 2rem 4rem;
-  align-items: start;
-  margin-top: 3rem;
+/* ----------------------------------------------------------- module card */
+
+.moduleCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: var(--site-radius-lg);
 }
 
-.addressBlock p {
+html[data-theme="light"] .moduleCard,
+html[data-theme="light"] .anatomy {
+  background: var(--site-color-surface-chip);
+}
+
+html[data-theme="dark"] .moduleCard,
+html[data-theme="dark"] .anatomy {
+  background: var(--site-color-card-surface);
+}
+
+.moduleCardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.moduleCardHead strong {
+  display: block;
+  font-size: 1.1rem;
+}
+
+.moduleCardHead div span {
+  font-size: 0.8rem;
+  color: var(--site-color-text-muted);
+}
+
+.moduleCard ul {
   margin: 0;
-  max-width: 30rem;
+  padding: 0;
+  list-style: none;
 }
 
-@media (max-width: 996px) {
-  .addressBlock {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.moduleCard li {
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--ifm-toc-border-color);
+  font-size: 0.9rem;
+}
+
+.moduleCard li:last-child {
+  border-bottom: 1px solid var(--ifm-toc-border-color);
 }

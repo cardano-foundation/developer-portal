@@ -1,13 +1,14 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import { PageMetadata } from "@docusaurus/theme-common";
 import clsx from "clsx";
 import ogCards from "@site/static/img/og/pages/manifest.json";
 import ExternalArrow from "@site/src/components/ExternalArrow";
+import PageCTA from "@site/src/components/PageCTA";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 import AddressAnatomy from "./_components/AddressAnatomy";
-import TransferStepper from "./_components/TransferStepper";
 import home from "../styles.module.css";
 import styles from "./styles.module.css";
 
@@ -23,6 +24,8 @@ const ONCHAIN_DOCS = `${ONCHAIN_REPO}/blob/main/documentation`;
 const AUDIT_REPORTS = `${ONCHAIN_REPO}/tree/main/documentation/audit`;
 const PLATFORM_REPO = "https://github.com/cardano-foundation/cip113-programmable-tokens-platform";
 const CMTA_REPO = "https://github.com/cardano-foundation/cpt-rwa-ch-cmta-reference";
+const CMTA_URL = "https://cmta.ch";
+const CMTA_CERTIFICATION = "https://cmta.ch/certification/cmta-tokenized-shares-certification";
 
 /* Each fact links to the source that states it. */
 const STATUS = [
@@ -40,7 +43,7 @@ const STATUS = [
   },
   {
     name: "Recognized by CMTA",
-    body: "The CMTA reference module is a recognized smart contract for tokenized shares.",
+    body: "CMTA, the Swiss association that sets standards for tokenized securities, recognizes the reference module for tokenized shares.",
     href: `${CMTA_REPO}#cmta-recognition`,
     linkLabel: "The recognition",
   },
@@ -49,6 +52,38 @@ const STATUS = [
     body: "Built on primitives the ledger already has, such as native tokens and stake credentials.",
     href: CIP_SOURCE,
     linkLabel: "The specification",
+  },
+];
+
+/* One transfer, as what each script enforces. The scripts do not call each
+   other: each requires the next to run in the same transaction, and the
+   ledger runs all of them. Source: CIP-0113, "Transfer" and "Architecture:
+   Delegation Pattern". */
+const CHECKS = [
+  {
+    name: "Custody",
+    body: "The token sits at one shared script address, so it cannot move without the checks below.",
+    by: "programmableLogicBase",
+    scope: "Standard",
+  },
+  {
+    name: "Action",
+    body: "The transaction declares a transfer, so the transfer checks have to run in the same transaction.",
+    by: "programmableLogicGlobal",
+    scope: "Standard",
+  },
+  {
+    name: "Ownership",
+    body: "The holder signed, and every output of the token stays at a smart wallet address.",
+    by: "transfer delegate",
+    scope: "Standard",
+  },
+  {
+    name: "Issuer's rules",
+    body: "The token's own transfer logic approves. In the freeze and seize module, neither side is on the denylist.",
+    by: "transfer_logic_script",
+    scope: "Module",
+    module: true,
   },
 ];
 
@@ -94,29 +129,52 @@ const COMPARE = [
   },
 ];
 
-/* What exists today, and how far each one has been reviewed. */
-const MODULES = [
+/* What exists today, and how far each one has been reviewed. The controls
+   are the ones each module's README lists as implemented. */
+const BUILDS = [
   {
-    name: "CMTA reference",
-    by: "Finest + Cardano Foundation",
-    body: "Tokenized securities under the Swiss CMTA framework: transfer controls, denylisting, global pause, forced transfers and seizure, supply caps and role-based permissions.",
-    status: "Audited, CMTA-recognized",
-    recognized: true,
-    href: CMTA_REPO,
+    title: "Tokenized securities",
+    lead: "KYC, pause and forced transfers, audited.",
+    body: (
+      <>
+        <ExtLink href={CMTA_URL}>CMTA</ExtLink> is the Swiss association that sets standards for
+        issuing and trading securities as tokens. Its Expert Committee{" "}
+        <ExtLink href={`${CMTA_REPO}#cmta-recognition`}>recognized this module</ExtLink> for
+        tokenized shares, so an issuer can use it in place of CMTA&apos;s own reference contract when
+        applying for the{" "}
+        <ExtLink href={CMTA_CERTIFICATION}>CMTA Tokenized Shares certification mark</ExtLink>. The
+        recognition sets four conditions for each deployment, and the module is audited.
+      </>
+    ),
+    card: {
+      name: "CMTA reference",
+      by: "Finest + Cardano Foundation",
+      status: "Audited, CMTA-recognized",
+      recognized: true,
+      controls: [
+        "KYC-gated transfers",
+        "Sanctions denylist",
+        "Global pause",
+        "Forced transfers",
+        "Supply caps",
+        "Role-based permissions",
+      ],
+      href: CMTA_REPO,
+      linkLabel: "Open the repository",
+    },
   },
   {
-    name: "Freeze and Seize",
-    by: "Cardano Foundation",
-    body: "A simplified stablecoin: denylist-aware transfers, freeze, unfreeze and seize.",
-    status: "Example, not audited",
-    href: `${PLATFORM_REPO}/tree/main/src/modules/freeze-and-seize`,
-  },
-  {
-    name: "Dummy",
-    by: "Cardano Foundation",
-    body: "The smallest possible module: it accepts any transfer that supplies a fixed redeemer value. A starting point for your own.",
-    status: "Example, not audited",
-    href: `${PLATFORM_REPO}/tree/main/src/modules/dummy`,
+    title: "Regulated stablecoins",
+    lead: "Freeze and seize on a native token.",
+    body: "An issuer can block a denylisted holder on every transfer, freeze a holder's balance, and seize tokens for legal or regulatory reasons. The Freeze and Seize module is a working example to start from.",
+    card: {
+      name: "Freeze and Seize",
+      by: "Cardano Foundation",
+      status: "Example module",
+      controls: ["Denylist checked on every transfer", "Freeze and unfreeze", "Seize"],
+      href: `${PLATFORM_REPO}/tree/main/src/modules/freeze-and-seize`,
+      linkLabel: "Open the module",
+    },
   },
 ];
 
@@ -170,7 +228,31 @@ function ArrowLink({ href, children }) {
   );
 }
 
+function ModuleCard({ card }) {
+  return (
+    <div className={styles.moduleCard}>
+      <div className={styles.moduleCardHead}>
+        <div>
+          <strong>{card.name}</strong>
+          <span>{card.by}</span>
+        </div>
+        <span className={clsx("badge", card.recognized ? "badge--primary" : "badge--secondary")}>
+          {card.status}
+        </span>
+      </div>
+      <ul>
+        {card.controls.map(control => (
+          <li key={control}>{control}</li>
+        ))}
+      </ul>
+      <ArrowLink href={card.href}>{card.linkLabel}</ArrowLink>
+    </div>
+  );
+}
+
 export default function ProgrammableTokensPage() {
+  const bandArt = useBaseUrl("img/talent/start-building-cubes.webp");
+
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <PageMetadata image={ogCards["programmable-tokens"]} />
@@ -196,7 +278,7 @@ export default function ProgrammableTokensPage() {
                     Start building
                   </a>
                   <a className="button button--outline button--primary" href="#how">
-                    Try a transfer
+                    How it works
                   </a>
                 </div>
               </div>
@@ -220,23 +302,100 @@ export default function ProgrammableTokensPage() {
           </div>
         </section>
 
-        <section className={clsx(styles.section, styles.anchorTarget)} id="how">
+        <section className={styles.section}>
           <div className="container">
             <div className={home.sectionHeader}>
-              <h2>Watch a transfer get checked</h2>
-              <p>
-                Alice sends 40 tokens to Bob, and four checks run. Put Alice on the denylist and
-                the transfer fails. The denylist is this token&apos;s rule. Other tokens set
-                their own.
+              <h2>What you can build</h2>
+              <p>Start from a module that exists today, or write your own.</p>
+            </div>
+            {BUILDS.map((build, index) => (
+              <div key={build.title} className={home.devPanel}>
+                <div className={home.devPanelCopy}>
+                  <div className={home.devPanelHeader}>
+                    <h3>{build.title}</h3>
+                    <p>{build.lead}</p>
+                  </div>
+                  <p className={styles.panelBody}>{build.body}</p>
+                </div>
+                <div className={clsx(home.devPanelArt, index % 2 === 0 && home.devPanelArtLead)}>
+                  <ModuleCard card={build.card} />
+                </div>
+              </div>
+            ))}
+            <div className={home.devPanel}>
+              <div className={home.devPanelCopy}>
+                <div className={home.devPanelHeader}>
+                  <h3>Holders keep their keys</h3>
+                  <p>Custody by script, ownership by stake credential.</p>
+                </div>
+                <p className={styles.panelBody}>
+                  Every token sits at one shared script, so its rules always run. The
+                  holder&apos;s stake credential still names the owner. A smart wallet address can
+                  be computed from any wallet address, and the holder signs every transfer.
+                </p>
+              </div>
+              <div className={clsx(home.devPanelArt, home.devPanelArtLead)}>
+                <AddressAnatomy />
+              </div>
+            </div>
+            <p className={styles.callout}>
+              <strong>Before you integrate a token, read its third-party script.</strong> It decides
+              what can happen to a holder&apos;s balance without their signature, and who can
+              trigger it. CIP-113 conformance alone answers neither question.
+            </p>
+          </div>
+        </section>
+
+        <section className={clsx(styles.section, styles.anchorTarget)} id="how">
+          <div className="container">
+            <div className={styles.panel}>
+              <h3 className={styles.panelTitle}>How a transfer is checked</h3>
+              <p className={styles.panelIntro}>
+                Four checks run in the same transaction. Three come from the standard and are
+                the same for every token. The fourth is the issuer&apos;s.
+              </p>
+              <div className={styles.tableWrap}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Check</th>
+                      <th>What it guarantees</th>
+                      <th>Enforced by</th>
+                      <th>Defined by</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {CHECKS.map(row => (
+                      <tr key={row.name}>
+                        <td>{row.name}</td>
+                        <td className={styles.tableBody}>{row.body}</td>
+                        <td>
+                          <code>{row.by}</code>
+                        </td>
+                        <td>
+                          <span
+                            className={clsx(
+                              "badge",
+                              row.module ? "badge--primary" : "badge--secondary",
+                            )}
+                          >
+                            {row.scope}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className={styles.callout}>
+                <strong>A transfer is all or nothing.</strong> If one check fails, the whole
+                transaction is invalid and no token changes owner.
+              </p>
+              <p className={styles.deeperRow}>
+                Source:{" "}
+                <ExtLink href={`${CIP_SOURCE}#transfer`}>the Transfer section of CIP-113</ExtLink>
               </p>
             </div>
-            <div className={styles.panel}>
-              <TransferStepper />
-            </div>
-            <p className={styles.deeperRow}>
-              Source:{" "}
-              <ExtLink href={`${CIP_SOURCE}#transfer`}>the Transfer section of CIP-113</ExtLink>
-            </p>
           </div>
         </section>
 
@@ -271,67 +430,6 @@ export default function ProgrammableTokensPage() {
                   </tbody>
                 </table>
               </div>
-              <div className={styles.addressBlock}>
-                <p>
-                  A smart wallet address keeps the holder&apos;s stake credential and swaps the
-                  payment credential for the shared script. It is deterministic, so anyone can
-                  compute it, and tokens can be sent to someone who has never used the standard.
-                </p>
-                <AddressAnatomy />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className={clsx(styles.section, styles.anchorTarget)} id="modules">
-          <div className="container">
-            <div className={styles.panel}>
-              <h3 className={styles.panelTitle}>Modules</h3>
-              <p className={styles.panelIntro}>
-                A module is a token&apos;s rule set: who can move it, who can act on it without
-                the holder, and who can mint and burn it. Start from one of these or write your
-                own. The CIP calls them substandards.
-              </p>
-              <div className={styles.tableWrap}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>Module</th>
-                      <th>What it does</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {MODULES.map(row => (
-                      <tr key={row.name}>
-                        <td>
-                          <ExtLink href={row.href} className={styles.compareLink}>
-                            {row.name}
-                          </ExtLink>
-                          <span className={styles.compareDetail}>{row.by}</span>
-                        </td>
-                        <td className={styles.tableBody}>{row.body}</td>
-                        <td>
-                          <span
-                            className={clsx(
-                              "badge",
-                              row.recognized ? "badge--primary" : "badge--secondary",
-                            )}
-                          >
-                            {row.status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className={styles.callout}>
-                <strong>Before you integrate a token, read its third-party script.</strong> It
-                decides what can happen to a holder&apos;s balance without their signature, and who
-                can trigger it. The standard allows anything from an issuer-only seizure to a
-                rebase anyone can run, so CIP-113 conformance alone answers neither question.
-              </p>
             </div>
           </div>
         </section>
@@ -365,6 +463,15 @@ export default function ProgrammableTokensPage() {
             </div>
           </div>
         </section>
+        <PageCTA
+          title="Build with programmable tokens"
+          description="Try it on a testnet, or read how it works."
+          buttons={[
+            { href: PLATFORM_REPO, label: "Reference platform" },
+            { href: DOC_URL, label: "Read the docs" },
+          ]}
+          art={bandArt}
+        />
       </main>
     </Layout>
   );
