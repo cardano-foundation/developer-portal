@@ -88,7 +88,6 @@ const MODULES = [
     ),
     card: {
       name: "CMTA reference",
-      by: "Finest and the Cardano Foundation",
       art: "img/hero/spheres.webp",
       controls: [
         "KYC-gated transfers",
@@ -107,7 +106,6 @@ const MODULES = [
     body: "The issuer keeps a denylist on chain. A holder on the list cannot transfer, and the issuer can seize that holder's tokens. The module is a working example to start from.",
     card: {
       name: "Freeze and Seize",
-      by: "Cardano Foundation",
       art: "img/home/rebrand/ecosystem-get-funded.webp",
       controls: ["Denylist checked on every transfer", "Freeze and unfreeze", "Seize"],
     },
@@ -328,10 +326,7 @@ function ModuleCard({ card }) {
         aria-hidden="true"
       />
       <div className={styles.moduleCardBody}>
-        <div className={styles.moduleCardHead}>
-          <strong>{card.name}</strong>
-          <span>{card.by}</span>
-        </div>
+        <strong className={styles.moduleCardName}>{card.name}</strong>
         <ul>
           {card.controls.map(control => (
             <li key={control}>
