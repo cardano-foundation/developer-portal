@@ -211,13 +211,10 @@ html[data-theme="dark"] .startCard {
 
 /* The rings field shared with the Builder Tools and Agentic Commerce
    heroes. */
-/* The art is sized by the hero's height, so on a narrower window it would
-   reach under the copy. Below 1400px it moves off the right edge instead,
-   and the hero clips it. */
 .heroRings {
   position: absolute;
   top: 0;
-  right: min(0px, calc((100vw - 1400px) * 0.6));
+  right: 0;
   height: 100%;
   aspect-ratio: 1609 / 967;
   background: url("/img/hero/tools-rings-light.webp") no-repeat center /
