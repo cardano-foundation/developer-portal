@@ -1131,6 +1131,15 @@ export const BuilderTools = [
     category: "integration",
     properties: ["typescript"],
   },
+  {
+    title: "Tatum",
+    description: "Hosted Rosetta API for Cardano mainnet and preprod. The public endpoints answer without an API key at 5 requests per minute for development and testing, and paid plans raise the limit.",
+    website: "https://tatum.io/chain/cardano",
+    docs: "https://docs.tatum.io/reference/rpc-cardano",
+    repository: null,
+    category: "api",
+    properties: ["rest"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
