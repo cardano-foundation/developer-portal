@@ -117,7 +117,7 @@ const PAGES = [
   { key: 'templates', eyebrow: 'TEMPLATES', title: 'Scaffold a wallet-connected dApp in one\u00A0command' },
   { key: 'contracts', eyebrow: 'CONTRACTS LIBRARY', title: 'Reference contracts, indexed by use\u00A0case' },
   { key: 'talent', eyebrow: 'TALENT POOL', title: 'Hackathons, jobs and grants for\u00A0builders' },
-  { key: 'programmable-tokens', eyebrow: 'PROGRAMMABLE TOKENS', title: 'Native tokens that enforce their own\u00A0rules' },
+  { key: 'programmable-tokens', eyebrow: 'PROGRAMMABLE TOKENS', title: 'Stablecoins and securities with transfer rules built\u00A0in' },
   { key: 'blog', eyebrow: '', title: 'Developer Blog' },
 ];
 const PAGES_OUT_DIR = path.join(ROOT, 'static', 'img', 'og', 'pages');
