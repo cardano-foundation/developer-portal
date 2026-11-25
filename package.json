@@ -36,6 +36,9 @@
     "satori": "^0.33.5",
     "sharp": "^0.35.5"
   },
+  "resolutions": {
+    "fflate": "0.7.5"
+  },
   "browserslist": {
     "production": [
       ">0.5%",
