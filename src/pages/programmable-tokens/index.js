@@ -113,7 +113,8 @@ const MODULES = [
       href: `${PLATFORM_REPO}/tree/main/src/modules/freeze-and-seize`,
       label: "Open the Freeze and Seize module",
     },
-  },  {
+  },
+  {
     title: "Your own rules",
     lead: "Write a module for any other asset.",
     body: "A module is up to four smart contracts, one each for minting, transfers, third-party actions and holders restructuring their own UTxOs. The token's registry entry names them, and the core smart contracts require the matching one to run with each action.",

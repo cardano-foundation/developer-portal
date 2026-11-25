@@ -418,19 +418,19 @@ html[data-theme="dark"] .moduleCard {
   border-radius: 50%;
   font-size: 0.7rem;
   line-height: 1;
-  color: #fff;
+  color: var(--ifm-color-white);
 }
 
 .tickBrand {
-  background: var(--site-color-blue, var(--ifm-color-primary));
+  background: var(--ifm-color-primary);
 }
 
 .tickNeutral {
-  background: rgb(20 22 31 / 0.7);
+  background: rgb(var(--site-color-navy-rgb) / 0.7);
 }
 
 html[data-theme="dark"] .tickNeutral {
-  background: rgb(255 255 255 / 0.25);
+  background: rgb(var(--site-color-cream-rgb) / 0.25);
 }
 
 .tickOff {
