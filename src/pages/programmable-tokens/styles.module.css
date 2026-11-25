@@ -160,14 +160,30 @@ html[data-theme="dark"] .panel {
   color: var(--site-color-text-muted);
 }
 
-.callout {
-  max-width: 52rem;
-  margin: 1.75rem 0 0;
-  padding: 1rem 1.25rem;
-  border-left: 3px solid var(--site-color-amber);
-  border-radius: var(--site-radius-md);
-  background: color-mix(in srgb, var(--site-color-amber) 9%, transparent);
+/* A note under a table: a small label in the portal's label type, then one
+   sentence. No box and no colour, so it reads as part of the table above. */
+.note {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: 0.25rem 1.5rem;
+  align-items: baseline;
+  max-width: 48rem;
+  margin: 1.5rem 0 0;
   font-size: 0.92rem;
+}
+
+.noteLabel {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--site-color-text-muted);
+}
+
+@media (max-width: 600px) {
+  .note {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ------------------------------------------------------ starting points */
@@ -205,7 +221,7 @@ html[data-theme="dark"] .heroRings {
 }
 
 .heroLead {
-  max-width: 26rem;
+  max-width: 31rem;
   margin: 0 0 1rem;
   font-size: clamp(1.35rem, 2.2vw, 1.75rem);
   line-height: 1.25;
@@ -224,16 +240,12 @@ html[data-theme="dark"] .heroLead {
 
 .statusRow {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
   margin: 0;
   padding: 2rem 0;
   border-top: 1px solid var(--ifm-toc-border-color);
   border-bottom: 1px solid var(--ifm-toc-border-color);
-}
-
-.statusRowThree {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .statusRow dt {
@@ -265,40 +277,11 @@ html[data-theme="dark"] .heroLead {
   }
 }
 
-/* ----------------------------------------------------------- comparison */
-
-.compareTable th:not(:first-child),
-.compareTable td:not(:first-child) {
-  width: 38%;
-}
-
-.compareTable td:last-child {
-  white-space: normal;
-}
-
-@media (max-width: 768px) {
-  .compareTable th:not(:first-child),
-.compareTable td:not(:first-child) {
-    width: auto;
-  }
-
-  .compareTable td[data-label]::before {
-    content: attr(data-label);
-    display: block;
-    font-size: 0.75rem;
-    font-weight: var(--ifm-font-weight-semibold);
-    color: var(--site-color-text-muted);
-  }
-}
-
 /* ----------------------------------------------------------- module card */
 
 .moduleCard {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
   width: 100%;
-  padding: 1.5rem;
+  overflow: hidden;
   border: 1px solid var(--ifm-toc-border-color);
   border-radius: var(--site-radius-lg);
 }
@@ -311,12 +294,19 @@ html[data-theme="dark"] .moduleCard {
   background: var(--site-color-card-surface);
 }
 
-.moduleCardHead {
+/* A band of brand art across the top of the card. */
+.moduleCardArt {
+  height: 7.5rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.moduleCardBody {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
 }
 
 .moduleCardHead strong {
@@ -324,7 +314,7 @@ html[data-theme="dark"] .moduleCard {
   font-size: 1.1rem;
 }
 
-.moduleCardHead div span {
+.moduleCardHead span {
   font-size: 0.8rem;
   color: var(--site-color-text-muted);
 }
@@ -336,8 +326,127 @@ html[data-theme="dark"] .moduleCard {
 }
 
 .moduleCard li {
-  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
   border-top: 1px solid var(--ifm-toc-border-color);
   font-size: 0.9rem;
 }
 
+.moduleCard li .tick {
+  flex: none;
+}
+
+/* The feature comparison from the Agentic Commerce page: a name and one
+   line per row, then a tick or a dot per column. */
+.tickTable {
+  display: table;
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.tickTable thead,
+.tickTable tr,
+.tickTable tbody tr:nth-child(2n) {
+  background: none;
+  border: 0;
+}
+
+.tickTable th,
+.tickTable td {
+  width: 11rem;
+  border: 0;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  background: none;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tickTable th {
+  padding: 0 0.75rem 0.6rem;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--site-color-text-muted);
+}
+
+.tickTable td {
+  padding: 0.9rem 0.75rem;
+}
+
+.tickTable th:first-child,
+.tickTable td:first-child {
+  width: auto;
+  padding-left: 0;
+  text-align: left;
+}
+
+.tickTable td:first-child {
+  font-size: 0.95rem;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.tickDetail {
+  display: block;
+  max-width: 34rem;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  font-weight: var(--ifm-font-weight-normal);
+  color: var(--site-color-text-muted);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: #fff;
+}
+
+.tickBrand {
+  background: var(--site-color-blue, var(--ifm-color-primary));
+}
+
+.tickNeutral {
+  background: rgb(20 22 31 / 0.7);
+}
+
+html[data-theme="dark"] .tickNeutral {
+  background: rgb(255 255 255 / 0.25);
+}
+
+.tickOff {
+  color: var(--site-color-text-muted);
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  .tickTable th,
+  .tickTable td {
+    width: 5.25rem;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+
+  .tickTable th {
+    white-space: normal;
+  }
+}
+
+/* -------------------------------------------------------------- code card */
+
+.editorCode {
+  white-space: pre;
+  font-size: 0.8rem;
+  scrollbar-width: none;
+}
+
+.editorCode::-webkit-scrollbar {
+  display: none;
+}

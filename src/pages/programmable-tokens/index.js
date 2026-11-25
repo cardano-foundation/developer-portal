@@ -12,12 +12,11 @@ import styles from "./styles.module.css";
 
 const TITLE = "Programmable Tokens on Cardano";
 const DESCRIPTION =
-  "Programmable tokens are Cardano native tokens that change owner only when a smart contract approves the transfer, as defined in CIP-113.";
+  "The programmable tokens standard is a modular framework for enforcing transfer rules on tokenized assets, for regulated stablecoins and tokenized securities on Cardano. Defined in CIP-113.";
 
 const DOC_URL = "/docs/developers/curriculum/native-tokens/programmable-tokens";
 const OVERVIEW_URL = "https://cardano.org/programmable-tokens/";
 const CIP_URL = "https://cips.cardano.org/cip/CIP-0113";
-const CIP_SOURCE = "https://github.com/cardano-foundation/CIPs/tree/master/CIP-0113";
 const ONCHAIN_REPO = "https://github.com/cardano-foundation/cip113-programmable-tokens";
 const ONCHAIN_DOCS = `${ONCHAIN_REPO}/blob/main/documentation`;
 const AUDIT_REPORTS = `${ONCHAIN_REPO}/tree/main/documentation/audit`;
@@ -48,17 +47,39 @@ const STATUS = [
   },
 ];
 
+/* The registry entry type, with the fields as in CIP-0113 ("RegistryNode
+   datum") and in lib/registry_node.ak of the reference contracts. The
+   comments are shortened. */
+const REGISTRY_LINES = [
+  "pub type RegistryNode {",
+  "  // The token's policy id",
+  "  key: ByteArray,",
+  "  // The next entry in the registry",
+  "  next: ByteArray,",
+  "  // Who can mint and burn",
+  "  minting_logic_script: Credential,",
+  "  // Which transfers pass",
+  "  transfer_logic_script: Credential,",
+  "  // Third-party actions, such as seizure",
+  "  third_party_logic_script: Credential,",
+  "  // Holders restructuring their own UTxOs",
+  "  unfracking_logic_script: Credential,",
+  "  // Optional state, such as a denylist",
+  "  global_state_cs: ByteArray,",
+  "}",
+];
+
 /* What exists today. The controls are the ones each module's README lists
    as implemented. */
 const MODULES = [
   {
     title: "Tokenized securities",
-    lead: "KYC checks, a global pause and forced transfers.",
+    lead: "Company shares issued as a native token.",
     body: (
       <>
         <ExtLink href={CMTA_URL}>CMTA</ExtLink> is the Swiss association that sets standards for
         issuing and trading securities as tokens. It{" "}
-        <ExtLink href={`${CMTA_REPO}#cmta-recognition`}>recognized this module</ExtLink> for
+        <ExtLink href={`${CMTA_REPO}#cmta-recognition`}>recognized this audited module</ExtLink> for
         tokenized shares, so an issuer can use it when applying for the{" "}
         <ExtLink href={CMTA_CERTIFICATION}>CMTA Tokenized Shares certification mark</ExtLink>,
         under four conditions for each deployment.
@@ -67,8 +88,7 @@ const MODULES = [
     card: {
       name: "CMTA reference",
       by: "Finest + Cardano Foundation",
-      status: "Audited, CMTA-recognized",
-      recognized: true,
+      art: "img/hero/spheres.webp",
       controls: [
         "KYC-gated transfers",
         "Sanctions denylist",
@@ -87,13 +107,22 @@ const MODULES = [
     card: {
       name: "Freeze and Seize",
       by: "Cardano Foundation",
-      status: "Example module",
+      art: "img/home/rebrand/ecosystem-get-funded.webp",
       controls: ["Denylist checked on every transfer", "Freeze and unfreeze", "Seize"],
     },
     action: {
       href: `${PLATFORM_REPO}/tree/main/src/modules/freeze-and-seize`,
       label: "Open the Freeze and Seize module",
     },
+  },  {
+    title: "Your own rules",
+    lead: "Rules for any other asset, in a module you write.",
+    body: "Securities and stablecoins are two use cases. Every programmable token has this entry in the registry, and four of its fields name the smart contracts with the token's rules. A module is those smart contracts. The core requires the matching one to run on every action.",
+    code: {
+      file: "registry_node.ak",
+      lines: REGISTRY_LINES,
+    },
+    action: { href: `${ONCHAIN_DOCS}/09-DEVELOPING-MODULES.md`, label: "Write a module" },
   },
 ];
 
@@ -129,55 +158,38 @@ const CHECKS = [
   },
 ];
 
+/* cols: [native token, programmable token]. The first three rows are what
+   stays the same, the last three what the standard adds. */
 const COMPARE = [
   {
-    topic: "On a transfer",
-    native: "Moves freely between addresses. No smart contract runs.",
-    programmable: "A smart contract has to approve every change of owner.",
+    feature: "Native asset",
+    detail: "The ledger tracks it under its own policy ID, like any Cardano token.",
+    cols: [true, true],
   },
   {
-    topic: "Freeze and seize",
-    native: "Not possible.",
-    programmable: "Possible when the token's module allows it.",
+    feature: "Self-custody",
+    detail: "No custodian holds the tokens. The holder's own key authorizes a transfer.",
+    cols: [true, true],
   },
   {
-    topic: "Who holds the keys",
-    native: "The holder.",
-    programmable: "Still the holder. The token sits at a smart wallet address derived from their key.",
+    feature: "Control at mint and burn",
+    detail: "The issuer's minting logic decides who can mint and burn.",
+    cols: [true, true],
   },
   {
-    topic: "Changing the rules",
-    native: "The minting policy is fixed.",
-    programmable:
-      "In the reference implementation the issuer can replace a token's logic. Addresses and policy IDs stay the same.",
+    feature: "Control on every transfer",
+    detail: "Each transfer has to pass the issuer's rules, such as denylists and KYC checks.",
+    cols: [false, true],
   },
   {
-    topic: "Cost",
-    native: "The standard transaction fee.",
-    programmable:
-      "Smart contract fees on every transfer. Most checks run once per transaction, not once per input.",
-  },
-];
-
-/* What a reader should verify before relying on a given token. */
-const LIMITS = [
-  {
-    name: "Each token sets its own rules",
-    body: "Read a token's third-party logic before you integrate it. It decides what can happen to a balance without the holder's signature, and who can trigger it.",
-    href: `${CIP_SOURCE}#specification`,
-    linkLabel: "The specification",
+    feature: "Freeze and seize",
+    detail: "The issuer can act on a balance without the holder, when the token's module allows it.",
+    cols: [false, true],
   },
   {
-    name: "Rules can be replaced",
-    body: "In the reference implementation an issuer can replace a token's logic, and an upgrade authority can replace the shared dispatcher. Check who holds both.",
-    href: `${ONCHAIN_DOCS}/02-ARCHITECTURE.md`,
-    linkLabel: "Architecture",
-  },
-  {
-    name: "Audits have a scope",
-    body: "The reference contracts and the CMTA reference each have their own audit. A module you write or adapt needs its own review.",
-    href: AUDIT_REPORTS,
-    linkLabel: "Audit reports",
+    feature: "Rules that can change",
+    detail: "In the reference implementation the issuer can replace a token's logic after issuance. Addresses and policy IDs stay the same.",
+    cols: [false, true],
   },
 ];
 
@@ -190,13 +202,13 @@ const STARTS = [
   },
   {
     name: "Write a module",
-    body: "The audited Aiken contracts, and how to build your own rule set on top of them.",
+    body: "The audited Aiken contracts, and how to build your own rule set on top of them. A module you write needs its own audit.",
     href: `${ONCHAIN_DOCS}/09-DEVELOPING-MODULES.md`,
     linkLabel: "Writing a module",
   },
   {
     name: "Integrate as a wallet or dApp",
-    body: "Show balances, find programmable tokens and build the transactions that move them.",
+    body: "Show balances, find programmable tokens and build the transactions that move them. Read each token's third-party logic first.",
     href: `${ONCHAIN_DOCS}/08-INTEGRATION-GUIDES.md`,
     linkLabel: "Integration guides",
   },
@@ -225,9 +237,9 @@ function ArrowLink({ href, children }) {
   );
 }
 
-function Pills({ items, three }) {
+function Pills({ items }) {
   return (
-    <dl className={clsx(styles.statusRow, three && styles.statusRowThree)}>
+    <dl className={styles.statusRow}>
       {items.map(item => (
         <div key={item.name}>
           <dt>{item.name}</dt>
@@ -241,23 +253,58 @@ function Pills({ items, three }) {
   );
 }
 
+function CodeCard({ code }) {
+  return (
+    <div className={home.devCodeCard}>
+      <div className={home.codeBlock}>
+        <div className={home.codeHeader}>
+          <span className={home.codeDot} />
+          <span className={home.codeDot} />
+          <span className={home.codeDot} />
+          <span className={home.codeTitle}>{code.file}</span>
+        </div>
+        <code className={styles.editorCode}>
+          {code.lines.map((line, index) => (
+            <span
+              key={index}
+              className={clsx(line.trim().startsWith("//") && home.codeComment)}
+            >
+              {line}
+              {"\n"}
+            </span>
+          ))}
+        </code>
+      </div>
+    </div>
+  );
+}
+
 function ModuleCard({ card }) {
+  const art = useBaseUrl(card.art);
+
   return (
     <div className={styles.moduleCard}>
-      <div className={styles.moduleCardHead}>
-        <div>
+      <div
+        className={styles.moduleCardArt}
+        style={{ backgroundImage: `url(${art})` }}
+        aria-hidden="true"
+      />
+      <div className={styles.moduleCardBody}>
+        <div className={styles.moduleCardHead}>
           <strong>{card.name}</strong>
           <span>{card.by}</span>
         </div>
-        <span className={clsx("badge", card.recognized ? "badge--primary" : "badge--secondary")}>
-          {card.status}
-        </span>
+        <ul>
+          {card.controls.map(control => (
+            <li key={control}>
+              <span className={clsx(styles.tick, styles.tickBrand)} aria-hidden="true">
+                ✓
+              </span>
+              {control}
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul>
-        {card.controls.map(control => (
-          <li key={control}>{control}</li>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -278,11 +325,12 @@ export default function ProgrammableTokensPage() {
               </div>
               <div className={clsx(home.heroRight, styles.heroStackedRight)}>
                 <p className={styles.heroLead}>
-                  Cardano native tokens that change owner only when a smart contract approves.
+                  Issue stablecoins and securities on Cardano with transfer rules built into the
+                  token.
                 </p>
                 <p className={home.heroSubtitle}>
-                  For regulated stablecoins and tokenized securities that need issuer controls
-                  such as freeze and seize, denylists and KYC checks.
+                  Smart contracts enforce the controls an issuer needs, such as denylists, KYC
+                  checks, and freeze and seize.
                 </p>
                 <div className={home.heroActions}>
                   <a className="button button--primary" href="#start">
@@ -299,15 +347,19 @@ export default function ProgrammableTokensPage() {
 
         <section className={styles.statusSection}>
           <div className="container">
-            <Pills items={STATUS} three />
+            <Pills items={STATUS} />
           </div>
         </section>
 
         <section className={styles.section}>
           <div className="container">
             <div className={home.sectionHeader}>
-              <h2>What exists today</h2>
-              <p>Two modules to start from. A module is the rule set of one token.</p>
+              <h2>Built from modules</h2>
+              <p>
+                The core smart contracts are the same for every token. Each token registers a
+                module: a separate set of smart contracts that holds the rules for its use case and
+                can be audited on its own.
+              </p>
             </div>
             {MODULES.map((module, index) => (
               <div key={module.title} className={home.devPanel}>
@@ -319,7 +371,7 @@ export default function ProgrammableTokensPage() {
                   <p className={styles.panelBody}>{module.body}</p>
                   <div>
                     <a
-                      className="button button--outline button--primary"
+                      className="button button--primary"
                       href={module.action.href}
                       {...EXTERNAL_LINK_PROPS}
                     >
@@ -329,7 +381,7 @@ export default function ProgrammableTokensPage() {
                   </div>
                 </div>
                 <div className={clsx(home.devPanelArt, index % 2 === 0 && home.devPanelArtLead)}>
-                  <ModuleCard card={module.card} />
+                  {module.card ? <ModuleCard card={module.card} /> : <CodeCard code={module.code} />}
                 </div>
               </div>
             ))}
@@ -340,26 +392,45 @@ export default function ProgrammableTokensPage() {
           <div className="container">
             <div className={home.sectionHeader}>
               <h2>What changes from a native token</h2>
-              <p>A programmable token is still a native token to the ledger. These are the differences that matter.</p>
+              <p>What stays the same, and what a programmable token adds.</p>
             </div>
             <div className={styles.panel}>
               <div className={styles.tableWrap}>
-                <table className={clsx(styles.table, styles.compareTable)}>
+                <table className={styles.tickTable}>
                   <thead>
                     <tr>
-                      <th aria-label="Topic" />
+                      <th aria-label="Feature" />
                       <th>Native token</th>
                       <th>Programmable token</th>
                     </tr>
                   </thead>
                   <tbody>
                     {COMPARE.map(row => (
-                      <tr key={row.topic}>
-                        <td>{row.topic}</td>
-                        <td className={styles.tableBody} data-label="Native token">
-                          {row.native}
+                      <tr key={row.feature}>
+                        <td>
+                          {row.feature}
+                          <span className={styles.tickDetail}>{row.detail}</span>
                         </td>
-                        <td data-label="Programmable token">{row.programmable}</td>
+                        {row.cols.map((on, index) => (
+                          <td key={index}>
+                            {on ? (
+                              <span
+                                className={clsx(
+                                  styles.tick,
+                                  index === 1 ? styles.tickBrand : styles.tickNeutral,
+                                )}
+                                role="img"
+                                aria-label="Yes"
+                              >
+                                ✓
+                              </span>
+                            ) : (
+                              <span className={styles.tickOff} role="img" aria-label="No">
+                                ·
+                              </span>
+                            )}
+                          </td>
+                        ))}
                       </tr>
                     ))}
                   </tbody>
@@ -409,21 +480,13 @@ export default function ProgrammableTokensPage() {
                   </tbody>
                 </table>
               </div>
-              <p className={styles.callout}>
-                <strong>A transfer is all or nothing.</strong> If one check fails, the whole
-                transaction is invalid and no token changes owner.
+              <p className={styles.note}>
+                <span className={styles.noteLabel}>All or nothing</span>
+                <span>
+                  If one check fails, the whole transaction is invalid and no token changes owner.
+                </span>
               </p>
             </div>
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <div className="container">
-            <div className={home.sectionHeader}>
-              <h2>Before you rely on a token</h2>
-              <p>The standard guarantees that a token&apos;s rules run. It does not choose them.</p>
-            </div>
-            <Pills items={LIMITS} three />
           </div>
         </section>
 
