@@ -235,10 +235,9 @@ html[data-theme="dark"] .heroRings {
 }
 
 .heroLead {
-  max-width: 31rem;
   margin: 0 0 1rem;
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-  line-height: 1.25;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  line-height: 1.3;
   color: var(--site-color-ink);
 }
 
