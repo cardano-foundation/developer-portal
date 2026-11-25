@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { PageMetadata } from "@docusaurus/theme-common";
 import clsx from "clsx";
@@ -35,13 +36,13 @@ const STATUS = [
   },
   {
     name: "Audited",
-    body: "The reference contracts were professionally audited.",
+    body: "The reference implementation has been security-audited, and the reports are public.",
     href: AUDIT_REPORTS,
     linkLabel: "Audit reports",
   },
   {
     name: "Recognized by CMTA",
-    body: "The Swiss standards association for tokenized securities recognizes the reference module for tokenized shares.",
+    body: "CMTA, the Swiss standards association for tokenized securities, recognizes the CMTA reference module for tokenized shares.",
     href: `${CMTA_REPO}#cmta-recognition`,
     linkLabel: "The recognition",
   },
@@ -52,7 +53,7 @@ const STATUS = [
    comments are shortened. */
 const REGISTRY_LINES = [
   "pub type RegistryNode {",
-  "  // The token's policy id",
+  "  // The token's policy ID",
   "  key: ByteArray,",
   "  // The next entry in the registry",
   "  next: ByteArray,",
@@ -80,14 +81,14 @@ const MODULES = [
         <ExtLink href={CMTA_URL}>CMTA</ExtLink> is the Swiss association that sets standards for
         issuing and trading securities as tokens. It{" "}
         <ExtLink href={`${CMTA_REPO}#cmta-recognition`}>recognized this audited module</ExtLink> for
-        tokenized shares, so an issuer can use it when applying for the{" "}
-        <ExtLink href={CMTA_CERTIFICATION}>CMTA Tokenized Shares certification mark</ExtLink>,
-        under four conditions for each deployment.
+        tokenized shares. An issuer can use it when applying for the{" "}
+        <ExtLink href={CMTA_CERTIFICATION}>CMTA Tokenized Shares certification mark</ExtLink>, and
+        the recognition sets four conditions for each deployment.
       </>
     ),
     card: {
       name: "CMTA reference",
-      by: "Finest + Cardano Foundation",
+      by: "Finest and the Cardano Foundation",
       art: "img/hero/spheres.webp",
       controls: [
         "KYC-gated transfers",
@@ -103,7 +104,7 @@ const MODULES = [
   {
     title: "Regulated stablecoins",
     lead: "Freeze and seize on a native token.",
-    body: "An issuer can stop a denylisted holder from transferring, freeze a balance, and seize tokens for legal or regulatory reasons. This module is a working example to start from.",
+    body: "The issuer keeps a denylist on chain. A holder on the list cannot transfer, and the issuer can seize that holder's tokens. The module is a working example to start from.",
     card: {
       name: "Freeze and Seize",
       by: "Cardano Foundation",
@@ -116,46 +117,57 @@ const MODULES = [
     },
   },  {
     title: "Your own rules",
-    lead: "Rules for any other asset, in a module you write.",
-    body: "Securities and stablecoins are two use cases. Every programmable token has this entry in the registry, and four of its fields name the smart contracts with the token's rules. A module is those smart contracts. The core requires the matching one to run on every action.",
+    lead: "Write a module for any other asset.",
+    body: "A module is up to four smart contracts, one each for minting, transfers, third-party actions and holders restructuring their own UTxOs. The token's registry entry names them, and the core smart contracts require the matching one to run with each action.",
     code: {
       file: "registry_node.ak",
       lines: REGISTRY_LINES,
     },
-    action: { href: `${ONCHAIN_DOCS}/09-DEVELOPING-MODULES.md`, label: "Write a module" },
+    action: { href: `${ONCHAIN_DOCS}/09-DEVELOPING-MODULES.md`, label: "Read the module guide" },
   },
 ];
 
-/* One transfer, as what each smart contract enforces. They do not call each
-   other: each requires the next to run in the same transaction, and the
-   ledger runs all of them. Source: CIP-0113, "Transfer" and "Architecture:
-   Delegation Pattern". */
-const CHECKS = [
+/* One transfer, as the three things it has to pass. The smart contracts do
+   not call each other: each requires the next to run in the same
+   transaction, and the ledger runs all of them. Source: CIP-0113, "Transfer"
+   and "Architecture: Delegation Pattern". */
+const TRANSFER_STEPS = [
   {
-    name: "Custody",
-    body: "The token sits at one shared script address, so it cannot move without the checks below.",
-    by: "programmableLogicBase",
-    scope: "Standard",
+    title: "The core smart contracts run",
+    body: "A holder's tokens sit at a smart wallet address, made of one smart contract shared by every holder and the holder's own key. Spending from that address requires the core smart contracts to run, so no transfer can bypass them.",
   },
   {
-    name: "Declared action",
-    body: "The transaction declares a transfer, so the transfer checks have to run with it.",
-    by: "programmableLogicGlobal",
-    scope: "Standard",
+    title: "The holder signed",
+    body: "The transaction carries the holder's signature, and every token output goes to a smart wallet address.",
   },
   {
-    name: "Ownership",
-    body: "The holder signed, and every output of the token stays at a smart wallet address.",
-    by: "transfer delegate",
-    scope: "Standard",
+    title: "The issuer's rules pass",
+    body: "The core smart contracts look up the token in the registry and require its transfer logic to run. A denylist check is one example.",
   },
-  {
-    name: "Issuer's rules",
-    body: "The token's own transfer logic approves, for example that a holder is not on a denylist.",
-    by: "transfer_logic_script",
-    scope: "Module",
-    module: true,
-  },
+];
+
+/* The parts of a transfer transaction, shortened from the "Transfer"
+   skeleton in 08-INTEGRATION-GUIDES.md of the reference contracts. It is an
+   outline, not code. */
+const TRANSFER_LINES = [
+  "// The sender's tokens",
+  "inputs:",
+  "  addr(programmable_logic_base, sender)",
+  "// The recipient's smart wallet address",
+  "outputs:",
+  "  addr(programmable_logic_base, recipient)",
+  "// Zero-ADA withdrawals run the checks",
+  "withdrawals:",
+  "  programmable_logic_global",
+  "  transfer",
+  "  transfer_logic_script",
+  "// Read, not spent",
+  "reference_inputs:",
+  "  protocol parameters",
+  "  the token's registry node",
+  "// The holder's key",
+  "signatories:",
+  "  sender",
 ];
 
 /* cols: [native token, programmable token]. The first three rows are what
@@ -168,27 +180,27 @@ const COMPARE = [
   },
   {
     feature: "Self-custody",
-    detail: "No custodian holds the tokens. The holder's own key authorizes a transfer.",
+    detail: "No custodian holds the tokens. A transfer needs the holder's own signature.",
     cols: [true, true],
   },
   {
     feature: "Control at mint and burn",
-    detail: "The issuer's minting logic decides who can mint and burn.",
+    detail: "The issuer decides who can mint and burn.",
     cols: [true, true],
   },
   {
-    feature: "Control on every transfer",
-    detail: "Each transfer has to pass the issuer's rules, such as denylists and KYC checks.",
+    feature: "Transfer restrictions",
+    detail: "Every transfer has to pass the issuer's rules, such as a denylist or a KYC check.",
     cols: [false, true],
   },
   {
     feature: "Freeze and seize",
-    detail: "The issuer can act on a balance without the holder, when the token's module allows it.",
+    detail: "If the token's module allows it, the issuer can block a holder's transfers or move their tokens without their signature.",
     cols: [false, true],
   },
   {
-    feature: "Rules that can change",
-    detail: "In the reference implementation the issuer can replace a token's logic after issuance. Addresses and policy IDs stay the same.",
+    feature: "Upgradeable rules",
+    detail: "In the reference implementation, the issuer can replace a token's rules after issuance. Addresses and policy IDs stay the same.",
     cols: [false, true],
   },
 ];
@@ -196,27 +208,31 @@ const COMPARE = [
 const STARTS = [
   {
     name: "Try it on a testnet",
-    body: "A frontend and backend to deploy, register, mint and transfer with the example modules.",
+    body: "The reference platform is a web app and backend for registering, minting and transferring tokens with the example modules.",
     href: PLATFORM_REPO,
     linkLabel: "Reference platform",
+    icon: "img/home/rebrand/icon-stake-pool.svg",
   },
   {
     name: "Write a module",
-    body: "The audited Aiken contracts, and how to build your own rule set on top of them. A module you write needs its own audit.",
+    body: "The module guide explains the interface and walks through two example modules. A module you write needs its own audit.",
     href: `${ONCHAIN_DOCS}/09-DEVELOPING-MODULES.md`,
-    linkLabel: "Writing a module",
+    linkLabel: "Module guide",
+    icon: "img/home/rebrand/icon-smart-contracts.svg",
   },
   {
-    name: "Integrate as a wallet or dApp",
-    body: "Show balances, find programmable tokens and build the transactions that move them. Read each token's third-party logic first.",
+    name: "Integrate a wallet or dApp",
+    body: "The integration guides cover balances, token discovery and transaction building. Check each token's third-party logic before you support it.",
     href: `${ONCHAIN_DOCS}/08-INTEGRATION-GUIDES.md`,
     linkLabel: "Integration guides",
+    icon: "img/home/rebrand/icon-native-tokens.svg",
   },
   {
-    name: "Regulatory context",
-    body: "The regulatory frameworks and the institutional case.",
+    name: "Review the regulatory context",
+    body: "The cardano.org overview covers the regulatory frameworks and the institutional case.",
     href: OVERVIEW_URL,
-    linkLabel: "Programmable tokens on cardano.org",
+    linkLabel: "On cardano.org",
+    icon: "img/home/rebrand/icon-governance.svg",
   },
 ];
 
@@ -253,6 +269,27 @@ function Pills({ items }) {
   );
 }
 
+/* Colours one line of a code card with the homepage's code colours: a comment
+   line, the keywords `pub` and `type`, type names, a name before a colon and
+   a name before a bracket. Enough for the two cards on this page. */
+const CODE_TOKEN = /\b(pub|type)\b|\b([A-Z][A-Za-z]+)\b|([a-z_]+)(?=:)|([a-z_]+)(?=\()/g;
+
+function codeTokens(line) {
+  if (line.trim().startsWith("//")) return [{ text: line, className: home.codeComment }];
+  const tokens = [];
+  let last = 0;
+  for (const match of line.matchAll(CODE_TOKEN)) {
+    if (match.index > last) tokens.push({ text: line.slice(last, match.index) });
+    tokens.push({
+      text: match[0],
+      className: match[1] ? home.codeKeyword : match[3] ? home.codeVariable : home.codeFunction,
+    });
+    last = match.index + match[0].length;
+  }
+  if (last < line.length) tokens.push({ text: line.slice(last) });
+  return tokens;
+}
+
 function CodeCard({ code }) {
   return (
     <div className={home.devCodeCard}>
@@ -265,13 +302,14 @@ function CodeCard({ code }) {
         </div>
         <code className={styles.editorCode}>
           {code.lines.map((line, index) => (
-            <span
-              key={index}
-              className={clsx(line.trim().startsWith("//") && home.codeComment)}
-            >
-              {line}
+            <React.Fragment key={index}>
+              {codeTokens(line).map((token, i) => (
+                <span key={i} className={token.className}>
+                  {token.text}
+                </span>
+              ))}
               {"\n"}
-            </span>
+            </React.Fragment>
           ))}
         </code>
       </div>
@@ -311,6 +349,7 @@ function ModuleCard({ card }) {
 
 export default function ProgrammableTokensPage() {
   const bandArt = useBaseUrl("img/talent/start-building-cubes.webp");
+  const baseUrl = useBaseUrl("/");
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
@@ -329,8 +368,8 @@ export default function ProgrammableTokensPage() {
                   token.
                 </p>
                 <p className={home.heroSubtitle}>
-                  Smart contracts enforce the controls an issuer needs, such as denylists, KYC
-                  checks, and freeze and seize.
+                  Every transfer is checked against the issuer&apos;s rules, such as a denylist or
+                  KYC status. Modules can add freeze and seize.
                 </p>
                 <div className={home.heroActions}>
                   <a className="button button--primary" href="#start">
@@ -356,9 +395,9 @@ export default function ProgrammableTokensPage() {
             <div className={home.sectionHeader}>
               <h2>Built from modules</h2>
               <p>
-                The core smart contracts are the same for every token. Each token registers a
-                module: a separate set of smart contracts that holds the rules for its use case and
-                can be audited on its own.
+                Every programmable token uses the same core smart contracts. Its rules come from a
+                module, a separate set of smart contracts written for one use case, which can be
+                audited on its own.
               </p>
             </div>
             {MODULES.map((module, index) => (
@@ -392,7 +431,10 @@ export default function ProgrammableTokensPage() {
           <div className="container">
             <div className={home.sectionHeader}>
               <h2>What changes from a native token</h2>
-              <p>What stays the same, and what a programmable token adds.</p>
+              <p>
+                A programmable token is still a native asset that the holder controls. What it adds
+                is issuer control after minting.
+              </p>
             </div>
             <div className={styles.panel}>
               <div className={styles.tableWrap}>
@@ -443,49 +485,38 @@ export default function ProgrammableTokensPage() {
         <section className={clsx(styles.section, styles.anchorTarget)} id="how">
           <div className="container">
             <div className={home.sectionHeader}>
-              <h2>How a transfer is checked</h2>
-              <p>Four checks run in the same transaction. Three come from the standard. The fourth is the issuer&apos;s.</p>
-            </div>
-            <div className={styles.panel}>
-              <div className={styles.tableWrap}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>Check</th>
-                      <th>What it guarantees</th>
-                      <th>Enforced by</th>
-                      <th>Defined by</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {CHECKS.map(row => (
-                      <tr key={row.name}>
-                        <td>{row.name}</td>
-                        <td className={styles.tableBody}>{row.body}</td>
-                        <td>
-                          <code>{row.by}</code>
-                        </td>
-                        <td>
-                          <span
-                            className={clsx(
-                              "badge",
-                              row.module ? "badge--primary" : "badge--secondary",
-                            )}
-                          >
-                            {row.scope}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className={styles.note}>
-                <span className={styles.noteLabel}>All or nothing</span>
-                <span>
-                  If one check fails, the whole transaction is invalid and no token changes owner.
-                </span>
+              <h2>How a transfer works</h2>
+              <p>
+                The holder signs one transaction. It is valid only if three conditions are met.
               </p>
+            </div>
+            <div className={home.devPanel}>
+              <div className={home.devPanelCopy}>
+                <ol className={styles.steps}>
+                  {TRANSFER_STEPS.map((step, index) => (
+                    <li key={step.title}>
+                      <span className={clsx(styles.tick, styles.tickBrand)} aria-hidden="true">
+                        {index + 1}
+                      </span>
+                      <div>
+                        <h3>{step.title}</h3>
+                        <p>{step.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <div>
+                  <Link
+                    className="button button--primary"
+                    to={`${DOC_URL}#how-custody-and-ownership-work`}
+                  >
+                    Read the full design
+                  </Link>
+                </div>
+              </div>
+              <div className={home.devPanelArt}>
+                <CodeCard code={{ file: "transfer transaction", lines: TRANSFER_LINES }} />
+              </div>
             </div>
           </div>
         </section>
@@ -495,32 +526,33 @@ export default function ProgrammableTokensPage() {
             <div className={home.sectionHeader}>
               <h2>Where to start</h2>
             </div>
-            <div className={styles.panel}>
-              <div className={styles.tableWrap}>
-                <table className={styles.table}>
-                  <tbody>
-                    {STARTS.map(row => (
-                      <tr key={row.name}>
-                        <td>{row.name}</td>
-                        <td className={styles.tableBody}>{row.body}</td>
-                        <td>
-                          <ArrowLink href={row.href}>{row.linkLabel}</ArrowLink>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+            <div className={styles.startGrid}>
+              {STARTS.map(row => (
+                <a
+                  key={row.name}
+                  className={styles.startCard}
+                  href={row.href}
+                  {...EXTERNAL_LINK_PROPS}
+                >
+                  <img src={baseUrl + row.icon} alt="" />
+                  <h3>{row.name}</h3>
+                  <p>{row.body}</p>
+                  <span className={styles.startLink}>
+                    {row.linkLabel}
+                    <ExternalArrow />
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </section>
 
         <PageCTA
           title="Build with programmable tokens"
-          description="Try it on a testnet, or read how it works."
+          description="Read the docs, then the standard itself."
           buttons={[
-            { href: PLATFORM_REPO, label: "Reference platform" },
             { href: DOC_URL, label: "Read the docs" },
+            { href: CIP_URL, label: "Read CIP-113" },
           ]}
           art={bandArt}
         />

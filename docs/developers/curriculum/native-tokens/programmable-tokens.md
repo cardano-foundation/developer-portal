@@ -5,7 +5,7 @@ sidebar_label: Programmable tokens
 description: Native tokens that run validation logic on every transfer, mint, and burn, enabling compliance rules like freeze, seize, and KYC-gating without a hard fork.
 ---
 
-A plain [native token](/docs/developers/curriculum/native-tokens/overview) has no built-in transfer logic. Once minted, it moves through ordinary transactions with no script execution, which is exactly what makes it cheap and safe, but it also means you cannot enforce rules on who holds it or how it moves. **Programmable tokens** ([CIP-113](https://cips.cardano.org/cip/CIP-0113)) add that missing layer: validation logic that runs on every transfer, mint, and burn.
+A plain [native token](/docs/developers/curriculum/native-tokens/overview) has no built-in transfer logic. Once minted, it moves through ordinary transactions with no script execution, which is exactly what makes it cheap and safe, but it also means you cannot enforce rules on who holds it or how it moves. **Programmable tokens** ([CIP-113](https://cips.cardano.org/cip/CIP-0113)) add that missing layer: validation logic that runs on every transfer, mint, and burn. This page explains the design. For the overview, the modules that exist today and where to start, see the [Programmable Tokens page](/programmable-tokens/).
 
 ## The idea
 
@@ -34,7 +34,7 @@ Programmability has a cost, and it is the exact thing plain native tokens avoid.
 
 ## How custody and ownership work
 
-Every programmable token sits at one shared script address, `programmableLogicBase`. Moving it is a spend from that script, so the checks always run.
+Every programmable token sits at one shared script address, `programmableLogicBase`. Moving it is a spend from that script, so the checks always run. This page uses the names from the CIP. The reference contracts write the same names in snake case, for example `programmable_logic_base`.
 
 Ownership comes from the other half of the address. A holder's smart wallet address uses `programmableLogicBase` as the payment credential and a credential of the holder in the stake part. Whether that is the holder's payment key or stake key is the token's convention. Given the convention, anyone can compute the address from a wallet address, so tokens can be sent to someone who has never used the standard, and the holder still signs with their own key.
 
@@ -78,14 +78,20 @@ For a trust assessment, the upgrade authority recorded in the protocol parameter
 A token is one registry node. Write the module, then register its scripts.
 
 ```aiken
-// One registry entry per token
-type RegistryNode {
-  key: ByteArray,  // policy ID
-  next: ByteArray, // next key
+pub type RegistryNode {
+  // The token's policy ID
+  key: ByteArray,
+  // The next entry in the registry
+  next: ByteArray,
+  // Who can mint and burn
   minting_logic_script: Credential,
+  // Which transfers pass
   transfer_logic_script: Credential,
+  // Third-party actions, such as seizure
   third_party_logic_script: Credential,
+  // Holders restructuring their own UTxOs
   unfracking_logic_script: Credential,
+  // Optional state, such as a denylist
   global_state_cs: ByteArray,
 }
 ```
@@ -115,7 +121,7 @@ dApps and DEXes, for each transaction:
 If a dApp script owns the tokens, add a zero withdrawal from that script as the owner's consent. Steps 1 and 3 are the easy ones to miss, because neither shows up in a token's own configuration. The [integration guides](https://github.com/cardano-foundation/cip113-programmable-tokens/blob/main/documentation/08-INTEGRATION-GUIDES.md) and the [DeFi section of the CIP](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0113#implementing-programmable-tokens-in-defi-protocols) have the detail.
 
 :::info Status
-CIP-113 is merged into the [CIPs repository](https://cips.cardano.org/cip/CIP-0113). The Cardano Foundation's reference implementation has been professionally audited, and its [audit reports](https://github.com/cardano-foundation/cip113-programmable-tokens/tree/main/documentation/audit) are public; read the architecture and integration guides and follow the contracts at the [cip113-programmable-tokens repository](https://github.com/cardano-foundation/cip113-programmable-tokens). For an audited module that CMTA has recognized for tokenized shares, see the [CMTA reference](https://github.com/cardano-foundation/cpt-rwa-ch-cmta-reference). Example modules such as freeze and seize live in the [cip113-programmable-tokens-platform repository](https://github.com/cardano-foundation/cip113-programmable-tokens-platform). For an interactive walkthrough of a transfer and the four actions, see [Programmable Tokens](/programmable-tokens/).
+CIP-113 is merged into the [CIPs repository](https://cips.cardano.org/cip/CIP-0113). The Cardano Foundation's reference implementation has been professionally audited, and its [audit reports](https://github.com/cardano-foundation/cip113-programmable-tokens/tree/main/documentation/audit) are public; read the architecture and integration guides and follow the contracts at the [cip113-programmable-tokens repository](https://github.com/cardano-foundation/cip113-programmable-tokens). For an audited module that CMTA has recognized for tokenized shares, see the [CMTA reference](https://github.com/cardano-foundation/cpt-rwa-ch-cmta-reference). Example modules such as freeze and seize live in the [cip113-programmable-tokens-platform repository](https://github.com/cardano-foundation/cip113-programmable-tokens-platform). For the overview, the modules that exist today and where to start, see the [Programmable Tokens page](/programmable-tokens/).
 :::
 
 ## Next steps
