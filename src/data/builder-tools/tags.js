@@ -77,6 +77,11 @@ export const Categories = {
     description: "Connectors and standardized integration interfaces.",
     prominent: false,
   },
+  payments: {
+    label: "Payments & Stablecoins",
+    description: "APIs and services for issuing stablecoins, moving money between bank accounts and the chain, and accepting payments.",
+    prominent: false,
+  },
   oracle: {
     label: "Oracles & Data Feeds",
     description: "On-chain price feeds and external data sources for smart contracts.",
