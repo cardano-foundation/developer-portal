@@ -7,7 +7,7 @@ description: Query human-readable metadata for Cardano native assets over the To
 
 The **Token Metadata Server** is the read API for token metadata. Wallets, explorers, and dApps query it to turn an on-chain asset ID into a human-readable name, ticker, decimals, and logo. API v2 serves both **CIP-26** (the off-chain [registry](/docs/developers/curriculum/native-tokens/metadata-registry)) and **CIP-68** (on-chain datum) metadata through one interface, so a caller does not need to know which standard a token uses.
 
-The API is at `https://tokens.cardano.org` and is subject to the [API Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/API_Terms_of_Use.md). Full OpenAPI specifications are at [tokens.cardano.org/apidocs](https://tokens.cardano.org/apidocs).
+The API is at `https://tokens.cardano.org` and is subject to the [API Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/API_Terms_of_Use.md). The registry's [own documentation](https://cardano-foundation.github.io/cf-token-metadata-registry/) is the full reference, and each host serves its OpenAPI specification at `/apidocs`.
 
 ## Network environments
 
@@ -28,23 +28,24 @@ The requests below call the mainnet 2.x host. To query preprod, use them with th
 
 ## Server 2.x migration
 
-The server is moving from version 1.7.0 to 2.x. Both versions serve the `/api/v2` endpoints on this page, and 2.x changes parts of the responses. Mainnet runs the two versions side by side so that you can test an integration before the switch:
+The server is moving from version 1.7.0 to 2.x. Both versions serve the `/api/v2` endpoints on this page, and 2.x changes parts of the responses. The older `/metadata` endpoints keep their paths and their response format. Mainnet runs the two versions side by side so that you can test an integration before the switch:
 
-- `https://tokens.cardano.org` stays on 1.7.0 for a grace period and then moves to 2.x. The date is in the [migration timeline](https://github.com/cardano-foundation/cf-token-metadata-registry/releases/tag/2.0.1#migration-timeline).
+- `https://tokens.cardano.org` stays on 1.7.0 for a grace period and then moves to 2.x. The date is in the note at the top of the [2.0.1 release notes](https://github.com/cardano-foundation/cf-token-metadata-registry/releases/tag/2.0.1).
 - `https://v2.tokens.cardano.org` runs 2.x until then.
 - Preprod runs 2.x only.
 
 This page documents the 2.x responses. Two changes can break a client written for 1.7.0:
 
-- `name` and `description` can be `null`. Server 1.7.0 answers `404` for a token without a name and a description. Server 2.x returns every indexed token and lists what is wrong with it in `validation_errors`. For the closest match to the 1.7.0 behavior, add `validation=MANDATORY_ONLY`.
-- The CIP-26 logo in the `metadata` block is base64. Server 1.7.0 returns it hex-encoded. CIP-68 logos are URIs and do not change.
+- `name` and `description` can be `null`. Server 1.7.0 answers `404` for a token without a name and a description. Server 2.x returns every indexed token, lists what is wrong with it in `validation_errors`, and sets `metadata.valid` to `true` only when that list is empty. Server 1.7.0 sets `valid` to `true` for any token with a name and a description. `validation=MANDATORY_ONLY` comes closest to the 1.7.0 behavior. It also hides some tokens that 1.7.0 returns, and a rich fungible token (label 444) can still have a `null` description, which CIP-68 allows.
+- The CIP-26 logo in the `metadata` block is base64. Server 1.7.0 returns it hex-encoded. A CIP-68 logo is not re-encoded. One that is not a URI is returned as written with a validation error, where 1.7.0 returns `null`.
 
-The [2.0.1 release notes](https://github.com/cardano-foundation/cf-token-metadata-registry/releases/tag/2.0.1#breaking-changes) describe both changes. Until the switch, `https://tokens.cardano.org` also differs from this page in these ways:
+The release notes describe both changes under Breaking Changes. Until the switch, `https://tokens.cardano.org` also differs from this page in these ways:
 
 - It returns no `type` and no `validation_errors`, adds a `metadata.empty` field, and ignores the `validation` parameter.
-- It sets `metadata.valid` to `true` whenever the token has a name and a description.
 - It answers `400` to a `property` or `properties` filter that leaves out `name` or `description`.
 - It answers `404` for CIP-68 rich fungible tokens (label 444) and for [programmable tokens](/docs/developers/curriculum/native-tokens/programmable-tokens) that have no CIP-26 or CIP-68 metadata.
+
+If you run the server yourself, follow the [2.0.2 release notes](https://github.com/cardano-foundation/cf-token-metadata-registry/releases/tag/2.0.2). The upgrade from 1.x needs a full resync from an empty database.
 
 ## How priority and fallback work
 
@@ -91,7 +92,9 @@ curl https://v2.tokens.cardano.org/api/v2/subjects/577f0b1342f8f8f4aed3388b80a85
 
 Here CIP-68 has priority, but because it carries no `url`, that one field is served from CIP-26.
 
-`type` is `NATIVE` or, for a [CIP-113 programmable token](/docs/developers/curriculum/native-tokens/programmable-tokens), `PROGRAMMABLE`. `validation_errors` lists what the server found wrong with the token's metadata, and `metadata.valid` is `true` only when the list is empty. Each entry names the `cip`, the `field_name`, its `field_category` (`MANDATORY` or `OPTIONAL`), a `code`, and an `error` message. `standards` is `null` unless you set `show_cips_details`.
+`type` is `NATIVE` or, for a [CIP-113 programmable token](/docs/developers/curriculum/native-tokens/programmable-tokens), `PROGRAMMABLE`. A programmable token also carries its script information under `extensions.cip113`. `standards` is `null` unless you set `show_cips_details`.
+
+`validation_errors` lists what the server found wrong with the token's metadata, and `metadata.valid` is `true` only when the list is empty. Under a `property` filter, both cover the requested fields only. Each entry names the `cip`, the `field_name`, its `field_category` (`MANDATORY` or `OPTIONAL`), a `code`, and an `error` message. The registry documents every code under [validation errors](https://cardano-foundation.github.io/cf-token-metadata-registry/concepts/validation-errors/).
 
 ### Fetch specific properties
 
@@ -117,7 +120,7 @@ curl "https://v2.tokens.cardano.org/api/v2/subjects/577f0b1342f8f8f4aed3388b80a8
 
 ## Fetch many subjects at once
 
-`POST /api/v2/subjects/query` returns metadata for multiple subjects in one call. It takes the same `query_priority`, `show_cips_details`, and `validation` parameters, plus a `subjects` array and an optional `properties` array in the body. A token that `validation` leaves out is missing from the response.
+`POST /api/v2/subjects/query` returns metadata for multiple subjects in one call. It takes the same `query_priority`, `show_cips_details`, and `validation` query parameters. The body holds a `subjects` array and an optional `properties` array. A token that `validation` leaves out is missing from the response.
 
 ```console
 curl -H 'Content-Type: application/json' \
