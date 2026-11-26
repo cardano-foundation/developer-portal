@@ -420,6 +420,19 @@ export default function ProgrammableTokensPage() {
                 </div>
               </div>
             ))}
+            <div className={styles.builtOn}>
+              <span className={styles.builtOnMark}>
+                <img src={baseUrl + "img/tools/brale.png"} alt="" />
+                Brale
+              </span>
+              <p className={styles.builtOnText}>
+                Brale's API issues fiat-backed USD stablecoins on Cardano mainnet and testnet. Its
+                Cardano support is built on CIP-113.
+              </p>
+              <Link className={styles.builtOnLink} to="/tools/brale">
+                Brale in Builder Tools
+              </Link>
+            </div>
           </div>
         </section>
 
