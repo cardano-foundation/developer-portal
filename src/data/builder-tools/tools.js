@@ -649,6 +649,20 @@ export const BuilderTools = [
     repository: "https://github.com/scalus3/scalus",
     category: "smart-contracts",
     properties: ["scala"],
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/scalus-playground.webp",
+        alt: "The Scalus Playground after a run: the Hello Cardano validator compiles in the browser, and a transaction is evaluated against it with two redeemers, one passing and one failing with its error message, each with its memory and CPU cost",
+      },
+      {
+        src: "/img/tools/screenshots/scalus-vscode-costs.webp",
+        alt: "An auction validator in VS Code with the Scalus extension: each line shows its CPU and memory cost and how often it ran, and the most expensive lines are highlighted",
+      },
+      {
+        src: "/img/tools/screenshots/scalus-vscode-uplc.webp",
+        alt: "A Scalus validator in VS Code next to the Untyped Plutus Core it compiles to, with the selected Scala code and its UPLC highlighted together",
+      },
+    ],
   },
   {
     title: "Lace Anatomy",
