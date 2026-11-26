@@ -458,3 +458,60 @@ html[data-theme="dark"] .tickNeutral {
 .editorCode::-webkit-scrollbar {
   display: none;
 }
+
+/* ---------------------------------------------------------- built on strip */
+
+/* One line under the module panels for a product that issues tokens with
+   the standard. Same frame as the Masumi strip on the Agentic Commerce
+   page. */
+.builtOn {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1.1rem 1.4rem;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: var(--site-radius-lg);
+}
+
+.builtOnMark {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-right: 1.5rem;
+  border-right: 1px solid var(--ifm-toc-border-color);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.builtOnMark img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.builtOnText {
+  flex: 1;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.builtOnLink {
+  flex: none;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .builtOn {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .builtOnMark {
+    padding-right: 0;
+    border-right: 0;
+  }
+}
