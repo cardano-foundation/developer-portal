@@ -38,7 +38,7 @@ Data flow: `contracts.js` (entries) -> `contracts.js` entry point (validate + so
 
 - **On-chain** is the language the validator is written in (Aiken, Scalus).
 - **Off-chain** is the SDK that builds and submits the transactions (MeshJS, Evolution, PyCardano,
-  CCL Java, Blaze). Each value is a named SDK, not a bare language: MeshJS, Evolution, and Blaze are all
+  CCL Java, Blaze, Scalus). Each value is a named SDK, not a bare language: MeshJS, Evolution, and Blaze are all
   TypeScript, so tag the SDK a contract actually uses, not the language.
 
 A chip means an implementation in that language exists at the linked source. It is not a claim that the
