@@ -156,6 +156,8 @@ This makes it easier for users and systems to interpret tokens consistently acro
 The Cardano Token Registry data is included **by default** when using [`cardano-graphql`](https://github.com/input-output-hk/cardano-graphql), so exchanges using it can access token metadata without additional integration.
 :::
 
+To query the hosted API, see the [Token Metadata Server](/docs/developers/curriculum/native-tokens/token-registry/metadata-server) page. The server is moving to version 2.x, which changes its responses. If you already integrate with it, read [Server 2.x migration](/docs/developers/curriculum/native-tokens/token-registry/metadata-server#server-2x-migration).
+
 You can also self-host the token registry using the official GitHub repository:
 
 🔗 [cf-token-metadata-registry – GitHub](https://github.com/cardano-foundation/cf-token-metadata-registry)
