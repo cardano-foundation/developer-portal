@@ -662,16 +662,16 @@ export default function X402Page() {
               </div>
               <div className={clsx(styles.facilitatorRow, styles.qsScope)}>
                 <QuickstartCard
-                  badge="Facilitator"
-                  text="Hosted by the Cardano Foundation, preprod"
+                  badge="Hosted facilitator"
+                  text="Preprod"
                   command={`FACILITATOR_URL=${FACILITATOR_PREPROD}`}
                   docHref={`${FACILITATOR_PREPROD}/supported`}
                   docLabel="What the preprod facilitator supports"
                   docExternal
                 />
                 <QuickstartCard
-                  badge="Facilitator"
-                  text="Hosted by the Cardano Foundation, mainnet"
+                  badge="Hosted facilitator"
+                  text="Mainnet"
                   command={`FACILITATOR_URL=${FACILITATOR_MAINNET}`}
                   docHref={`${FACILITATOR_MAINNET}/supported`}
                   docLabel="What the mainnet facilitator supports"
