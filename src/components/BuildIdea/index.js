@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 // The ecosystem audit the open-space badges cite. Every card that lists gaps
 // credits it with the report sections they come from.
 export const ALPHAGROWTH_REPORT =
-  "https://blue-careful-catshark-349.mypinata.cloud/ipfs/bafybeibw2hkvqy7bjb3j2rvirhexgf42prquwm4ci4qpcjk2zox7n3axpa";
+  "https://gateway.pinata.cloud/ipfs/bafybeibw2hkvqy7bjb3j2rvirhexgf42prquwm4ci4qpcjk2zox7n3axpa";
 
 function InlineLink({ href, children }) {
   return (

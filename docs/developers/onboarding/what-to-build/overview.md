@@ -11,7 +11,7 @@ import BuildIdea from '@site/src/components/BuildIdea';
 
 Cardano is a platform for building things people can **own, trust, and exchange** directly, without a bank, a platform, or a middleman sitting in between, taking a cut, and holding all the keys. You don't need to be a crypto expert to build something useful on it.
 
-The tools are ready; many of the products are not. [AlphaGrowth's ecosystem audit](https://blue-careful-catshark-349.mypinata.cloud/ipfs/bafybeibw2hkvqy7bjb3j2rvirhexgf42prquwm4ci4qpcjk2zox7n3axpa) (September 2026) scored Cardano against other chains across 25 categories, and the only one at or near its benchmark is smart contract languages, SDKs, and libraries. Each card below lists projects live today and, where the audit found one, the **open spaces**: gaps the audit flagged on Cardano.
+The tools are ready; many of the products are not. [AlphaGrowth's ecosystem audit](https://gateway.pinata.cloud/ipfs/bafybeibw2hkvqy7bjb3j2rvirhexgf42prquwm4ci4qpcjk2zox7n3axpa) (September 2026) scored Cardano against other chains across 25 categories, and the only one at or near its benchmark is smart contract languages, SDKs, and libraries. Each card below lists projects live today and, where the audit found one, the **open spaces**: gaps the audit flagged on Cardano.
 
 ## Payments and finance
 

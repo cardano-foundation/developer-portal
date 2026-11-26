@@ -16,7 +16,8 @@ import FetchLib from "!!raw-loader!@site/examples/onboarding/lectures/intermedia
 import MintLib from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/lib/mint.ts";
 import OfflineTests from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/vault.test.ts";
 import Minimal from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/app.tsx";
-import VercelFn from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/api/blockfrost/[...path].ts";
+import VercelFn from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/api/blockfrost.ts";
+import VercelJson from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/vercel.json";
 import TokenLib from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/lib/token.ts";
 import Tsconfig from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/tsconfig.json";
 
@@ -627,13 +628,19 @@ It depends on what the host runs. On anything with a **Node process**, a contain
 A redirect will not rescue the static case, because it passes the browser's headers along and cannot add your key. What has to stay true is the shape: the browser calls your own origin, and something you control attaches the key.
 :::
 
-**If you deploy it to Vercel**, that something is one file. Put it at `api/blockfrost/[...path].ts`, set `BLOCKFROST_API_KEY` in the project's environment variables, and change nothing else. Your page still calls `/api/blockfrost/…`, and Vercel routes it here instead of to Vite:
+**If you deploy it to Vercel**, that something is a function. Put it at `api/blockfrost.ts`, and set `BLOCKFROST_API_KEY` in the project's environment variables:
 
-<CodeBlock language="ts" title="api/blockfrost/[...path].ts">
+<CodeBlock language="ts" title="api/blockfrost.ts">
   {extractRegion(VercelFn, "file")}
 </CodeBlock>
 
-It is the same four decisions as the config. Returning `fetch(...)` straight out passes the status and body through untouched. The forwarding itself is portable, since it is plain `Request` in, `Response` out, but each host wants its own entry point: Netlify Edge Functions expect the file under `netlify/edge-functions/`, and Cloudflare Workers export `{ fetch }` and read secrets from an `env` argument rather than `process.env`.
+One file answers one path, so a rewrite in `vercel.json` sends every path under `/api/blockfrost/` to it, with the rest of the path in the `path` query parameter:
+
+<CodeBlock language="json" title="vercel.json">
+  {VercelJson}
+</CodeBlock>
+
+Your page still calls `/api/blockfrost/…`. The body is read with `arrayBuffer()` because a submitted transaction is binary, and reading it as text would corrupt it. The forwarding itself is portable, since it is plain `Request` in, `Response` out, but each host wants its own entry point: Netlify Edge Functions expect the file under `netlify/edge-functions/`, and Cloudflare Workers export `{ fetch }` and read secrets from an `env` argument rather than `process.env`.
 
 **And none of `src/lib/` changes here.** Until now a `MeshWallet` built from a seed phrase satisfied the `IWallet` argument your builders take. A browser wallet satisfies exactly the same one, which is why those builders were typed against the interface Mesh defines rather than against a particular wallet.
 

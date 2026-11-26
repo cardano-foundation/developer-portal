@@ -8,16 +8,21 @@ const DOCS = path.join(ROOT, "docs");
 const LLMS_FULL = path.join(BUILD, "llms-full.txt");
 
 const CODE_BLOCK =
-  /<CodeBlock\b([^>]*)>\s*\{\s*((?:extractRegion|validatorHash)\([^)]*\)|`(?:[^`\\]|\\.)*`)\s*\}\s*<\/CodeBlock>/g;
+  /<CodeBlock\b([^>]*)>\s*\{\s*((?:extractRegion|validatorHash|JSON\.stringify)\([^)]*\)|\w+|`(?:[^`\\]|\\.)*`)\s*\}\s*<\/CodeBlock>/g;
 const CALL =
   /^(extractRegion|validatorHash)\(\s*(\w+)\s*,\s*['"]([^'"]+)['"]\s*(?:,\s*(['"][^'"]+['"]|\[[^\]]*\])\s*)?\)$/;
+// `JSON.stringify(Costs.a.b, null, 2)` inside a <CodeBlock>.
+const JSON_CALL = /^JSON\.stringify\(\s*(\w+)((?:\.\w+)*)\s*,\s*null\s*,\s*(\d+)\s*\)$/;
+// `{costFigure(Costs, "a.b")}`, `{costSaving(…)}` or `{costLimit(…)}`, anywhere in the text.
+const FIGURE = /\{\s*(costFigure|costSaving|costLimit)\(\s*(\w+)\s*,([^)}]*)\)\s*\}/g;
 const IMPORT =
   /^\s*import\s+(\w+)\s+from\s+['"](?:!!raw-loader!)?([^'"]+)['"];?\s*$/gm;
 const INTERPOLATION = /\$\{([^}]*)\}/g;
 const QUOTED = /['"]([^'"]+)['"]/g;
 const ESCAPE = /\\(n|t|`|\$|\\)/g;
 const ESCAPED = { n: "\n", t: "\t", "`": "`", $: "$", "\\": "\\" };
-const UNEXPANDED = /\{\s*(?:extractRegion|validatorHash)\(/;
+const UNEXPANDED =
+  /\{\s*(?:extractRegion|validatorHash|costFigure|costSaving|costLimit)\(|<CodeBlock\b[^>]*>\s*\{/;
 
 const read = (file) =>
   fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
@@ -36,6 +41,12 @@ async function loadHelper(name) {
   const file = path.join(ROOT, "src/utils", `${name}.js`);
   const { default: helper } = await import(pathToFileURL(file).href);
   return helper;
+}
+
+async function loadCostHelpers() {
+  const file = path.join(ROOT, "src/utils/costFigure.js");
+  const { default: costFigure, costSaving, costLimit } = await import(pathToFileURL(file).href);
+  return { costFigure, costSaving, costLimit };
 }
 
 function importsOf(docFile, docText) {
@@ -66,7 +77,39 @@ function runCall(expression, imports, helpers, doc) {
   return helpers.extractRegion(read(file), key, omitted);
 }
 
+// The text of an imported file.
+function readImport(name, imports, doc) {
+  const file = imports.get(name);
+  if (!file || !fs.existsSync(file)) {
+    throw new Error(`${doc}: ${name} is not imported from a file`);
+  }
+  return read(file);
+}
+
+// `JSON.stringify(Costs.a.b, null, 2)`: part of an imported JSON file.
+function stringify(body, imports, doc) {
+  const call = JSON_CALL.exec(body);
+  if (!call) throw new Error(`${doc}: cannot expand "${body}"`);
+
+  const [, name, keys, indent] = call;
+  const value = keys
+    .split(".")
+    .filter(Boolean)
+    .reduce((node, key) => node?.[key], JSON.parse(readImport(name, imports, doc)));
+  if (value === undefined) throw new Error(`${doc}: nothing at ${name}${keys}`);
+  return JSON.stringify(value, null, Number(indent));
+}
+
+// `costFigure(Costs, "a.b")` and its siblings: a figure from an imported costs.json.
+function figure(helper, name, args, imports, helpers, doc) {
+  const costs = JSON.parse(readImport(name, imports, doc));
+  const quoted = [...args.matchAll(QUOTED)].map(([, value]) => value);
+  return helpers[helper](costs, ...quoted);
+}
+
 function evaluate(body, imports, helpers, doc) {
+  if (/^\w+$/.test(body)) return readImport(body, imports, doc).trim(); // a whole imported file
+  if (body.startsWith("JSON.")) return stringify(body, imports, doc);
   if (!body.startsWith("`")) return runCall(body, imports, helpers, doc);
 
   return body
@@ -97,15 +140,23 @@ function snippetsOf(docFile, helpers) {
   const doc = path.relative(ROOT, docFile);
   const imports = importsOf(docFile, docText);
 
-  return [...docText.matchAll(CODE_BLOCK)].map(([block, attributes, body]) => {
+  const blocks = [...docText.matchAll(CODE_BLOCK)].map(([block, attributes, body]) => {
     const code = evaluate(body, imports, helpers, doc);
     return { block, code, replacement: fenced(code, attributes) };
   });
+  const figures = [...docText.matchAll(FIGURE)].map(([block, helper, name, args]) => {
+    const code = figure(helper, name, args, imports, helpers, doc);
+    return { block, code, replacement: code };
+  });
+  return [...blocks, ...figures];
 }
 
+// The page's .md: at its source path, or where fix-llms-paths.js moved a numbered one.
 function pageOf(docFile) {
   const relative = path.relative(DOCS, docFile).replace(/\.mdx?$/, ".md");
-  return path.join(BUILD, "docs", relative);
+  const numbered = path.join(BUILD, "docs", relative);
+  const moved = path.join(BUILD, "docs", relative.replace(/(^|\/)\d+[-_.]+/g, "$1"));
+  return fs.existsSync(numbered) ? numbered : moved;
 }
 
 function sectionOf(fullText, pageText) {
@@ -136,6 +187,7 @@ async function main() {
   const helpers = {
     extractRegion: await loadHelper("extractRegion"),
     validatorHash: await loadHelper("validatorHash"),
+    ...(await loadCostHelpers()),
   };
 
   let fullText = read(LLMS_FULL);

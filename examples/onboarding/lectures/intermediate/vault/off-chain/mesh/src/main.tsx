@@ -15,7 +15,7 @@ import "./index.css";
 const NETWORK_ID = Number(import.meta.env.VITE_NETWORK_ID ?? "0");
 
 // No key here. The provider points at our own backend, which holds it: see
-// `api/blockfrost/[...path].ts`.
+// `api/blockfrost.ts`.
 const provider = new BlockfrostProvider("/api/blockfrost");
 const EXPLORER = "https://explorer.cardano.org/preview/transaction?id=";
 
