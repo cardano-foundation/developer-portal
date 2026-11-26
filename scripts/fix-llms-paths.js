@@ -11,8 +11,13 @@
 //
 // This script relocates those to the URL-aligned `build/docs/<slug>.md` and rewrites the
 // matching URLs inside `llms.txt` / `llms-full.txt`. Slug docs are discovered by scanning
-// frontmatter, so no path list needs maintaining. (Docs without `slug:` already emit at their
-// route, since the curriculum folders carry no number prefixes.)
+// frontmatter, so no path list needs maintaining.
+//
+// It also handles number prefixes. Docusaurus drops them from the URL
+// (`9-frontend-integration.md` is served at `/frontend-integration/`), but the plugin keeps
+// them in the file name. Such a file moves to the unnumbered path, but only when the page is
+// there: a doc whose `id:` keeps the number (the IoT workshops) keeps it in its URL too.
+// Pages are found as `<route>/index.html`, which relies on `trailingSlash: true`.
 //
 // Remove this script and its `build` step wiring once upstream honours routeBasePath + slug.
 // Tracking issue: https://github.com/cardano-foundation/developer-portal/issues/1791
@@ -47,6 +52,27 @@ function collectSlugs(dir, out = []) {
     }
   }
   return out;
+}
+
+// Every .md file under `dir`.
+function listMarkdown(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const abs = path.join(dir, entry.name);
+    if (entry.isDirectory()) return listMarkdown(abs);
+    return entry.name.endsWith('.md') ? [abs] : [];
+  });
+}
+
+const hasPage = (mdAbs) => fs.existsSync(path.join(mdAbs.replace(/\.md$/, ''), 'index.html'));
+const withoutNumbers = (rel) => rel.replace(/(^|\/)\d+[-_.]+/g, '$1');
+
+// [where the plugin wrote it, where its page is] for every numbered doc served without its
+// number. Read from the sources, so a rerun after the move finds the same pairs.
+function numberedDocs() {
+  return listMarkdown(DOCS_SRC)
+    .map((abs) => path.relative(DOCS_SRC, abs).split(path.sep).join('/'))
+    .map((rel) => [path.join(DOCS_BUILD, rel), path.join(DOCS_BUILD, withoutNumbers(rel))])
+    .filter(([from, to]) => from !== to && !hasPage(from) && hasPage(to));
 }
 
 function cleanupEmptyDirs(startAbs) {
@@ -104,9 +130,26 @@ function main() {
     for (const c of candidates) replacements.push(['/' + buildRel(c), '/' + buildRel(toAbs)]);
   }
 
+  for (const [fromAbs, toAbs] of numberedDocs()) {
+    if (fs.existsSync(fromAbs)) {
+      fs.mkdirSync(path.dirname(toAbs), { recursive: true });
+      fs.renameSync(fromAbs, toAbs);
+      cleanupEmptyDirs(path.dirname(fromAbs));
+      moved++;
+    }
+    replacements.push(['/' + buildRel(fromAbs), '/' + buildRel(toAbs)]);
+  }
+
+  // Any .md left without a page would make its "Copy page" button 404.
+  for (const file of listMarkdown(DOCS_BUILD)) {
+    if (file !== path.join(DOCS_BUILD, 'index.md') && !hasPage(file)) {
+      warn(`${buildRel(file)} has no page at its path, so "Copy page" would 404.`);
+    }
+  }
+
   rewriteLlmsUrls(replacements);
 
-  console.log(`[fix-llms-paths] Relocated ${moved} slug-affected .md file(s) and updated llms.txt`);
+  console.log(`[fix-llms-paths] Relocated ${moved} .md file(s) and updated llms.txt`);
   if (warnings.length) {
     console.warn(`[fix-llms-paths] ${warnings.length} warning(s):`);
     for (const w of warnings) console.warn(`  - ${w}`);

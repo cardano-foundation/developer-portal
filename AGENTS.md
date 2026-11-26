@@ -39,7 +39,7 @@ This file gives AI coding agents (and their operators) the context to contribute
 - `static/` — site-owned assets, grouped by consumer under `static/img/` (`home/`, `blog/`, `tools/`, `tool-icons/`, `brand/`, `og/`, …).
 - `examples/` — runnable, self-contained example projects (`templates/` holds the dApp starters). Not served by Docusaurus; see `examples/README.md`.
 - `plugins/` — custom Docusaurus plugins (`tools-routes`, `templates-routes`).
-- `scripts/` — build helpers wired into `yarn start`/`yarn build`: `generate-stats.js` (writes `static/stats.json`), `generate-og.js` (renders the social-preview cards for every doc, blog post, and site page into the gitignored `static/img/og/docs|blog|pages/`; the background frames in `static/img/og/_template/` are tracked), `fix-llms-paths.js` (path fixes for the generated llms.txt).
+- `scripts/` — build helpers wired into `yarn start`/`yarn build`: `generate-stats.js` (writes `static/stats.json`), `generate-og.js` (renders the social-preview cards for every doc, blog post, and site page into the gitignored `static/img/og/docs|blog|pages/`; the background frames in `static/img/og/_template/` are tracked), `fix-llms-paths.js` (moves each generated `.md` to its page's route and fixes the links in llms.txt), `fix-llms-snippets.js` (expands imported code and benchmark figures in that output).
 - Config: `docusaurus.config.js` (site), `sidebars.js` (navigation — hand-authored, see below), `netlify.toml` (redirects + security headers), `searchconfig.json` (Algolia crawler), `.nvmrc` (Node version — the source of truth).
 
 ---

@@ -1,0 +1,27 @@
+{
+  "name": "onboarding-validity-range-mesh",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Off-chain code for the linear vesting grant from the onboarding Design patterns section: the claim and clawback transactions, built with Mesh, and the benchmark that measures them.",
+  "scripts": {
+    "compile": "node src/compile.ts",
+    "pretest": "npm run compile",
+    "test": "node --test 'src/*.test.ts'",
+    "typecheck": "tsc",
+    "prebench": "npm run compile",
+    "bench": "node src/bench.ts"
+  },
+  "dependencies": {
+    "@meshsdk/core": "^1.9.1",
+    "@meshsdk/core-csl": "^1.9.1",
+    "@meshsdk/wallet": "^1.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "libsodium-wrappers-sumo": "^0.8.4"
+  }
+}
