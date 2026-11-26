@@ -35,7 +35,7 @@ The facilitator verifies and settles payments so neither seller nor buyer
 needs chain infrastructure beyond Blockfrost. It holds no keys and no funds.
 
 - **Hosted (default)**: the Cardano Foundation runs one on preprod at
-  `https://x402.preprod.dev.ecosyseng.cf-deployments.org`.
+  `https://x402.preprod.cardanofoundation.org`.
 - **Local / offline**: `npm run facilitator` — this repo includes a minimal
   one (`src/facilitator.ts`, ~100 lines) built on `@x402/cardano`'s own
   facilitator scheme; it needs only your `BLOCKFROST_PROJECT_ID`. Set
