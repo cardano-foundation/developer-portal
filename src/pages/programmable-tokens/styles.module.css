@@ -1,0 +1,460 @@
+
+
+/* Built on the homepage's visual system (hero band, devPanel, editor
+   card, sectionHeader), imported from src/pages/styles.module.css, in the
+   grammar of the x402 page. This file carries what is specific to this
+   page: the registry-chain hero art, the panels, and the four widgets.
+   Colours and radii come from tokens only; state colours use Infima's
+   success and danger, mixed for tints. */
+
+.page {
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.anchorTarget {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+/* PROGRAMMABLE is wider than the homepage's longest word (DEVELOPER),
+   so the shared 6.5em cap would split it. A smaller scale keeps it whole
+   and clear of the chain art; the 9em cap still wraps TOKENS below. */
+.page .heroTitleFit {
+  font-size: clamp(2.1rem, 5.6vw, 5.5rem);
+  max-width: 9em;
+  overflow-wrap: normal;
+}
+
+/* The art never clears a side-by-side lede, so the copy stays stacked at
+   every width, as on the x402 page. */
+@media screen and (min-width: 1900px) and (min-aspect-ratio: 16/9) {
+  .page .heroContentStacked {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .page .heroStackedRight {
+    flex: none;
+    align-self: flex-start;
+    max-width: 34rem;
+    margin: 1.5rem 0 0;
+  }
+}
+
+/* The devPanel surface without its two-column grid. */
+.panel {
+  padding: clamp(1.25rem, 4vw, 4rem) clamp(1.25rem, 5vw, 5rem);
+  border-radius: var(--site-radius-lg);
+}
+
+html[data-theme="light"] .panel {
+  background: var(--site-color-surface-chip);
+  box-shadow: 10px 13px 26px 6px rgb(var(--site-color-navy-rgb) / 0.08);
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .panel {
+  background: var(--site-color-card-surface);
+  border: 1px solid var(--site-color-card-border);
+  color: var(--site-color-card-text);
+}
+
+.panelBody {
+  margin: 0;
+  max-width: 34rem;
+}
+
+/* -------------------------------------------------------------- tables */
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+/* A numbered list beside the transaction outline. The number uses the tick
+   circle of the comparison table, so the page has one marker style. */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.steps .tick {
+  width: 26px;
+  height: 26px;
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.steps h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.steps p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--site-color-text-muted);
+}
+
+/* One card per reader: an icon from the homepage set, what the reader gets
+   and where the link goes. The whole card is the link. */
+.startGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.startCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: var(--site-radius-lg);
+  text-decoration: none !important;
+  transition: transform 0.2s ease;
+}
+
+html[data-theme="light"] .startCard {
+  background: var(--site-color-surface-chip);
+  box-shadow: 10px 13px 26px 6px rgb(var(--site-color-navy-rgb) / 0.08);
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .startCard {
+  background: var(--site-color-card-surface);
+  border: 1px solid var(--site-color-card-border);
+  color: var(--site-color-card-text);
+}
+
+.startCard:hover {
+  transform: translateY(-4px);
+}
+
+.startCard:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.startCard img {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.25rem;
+}
+
+.startCard h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.startCard p {
+  margin: 0 0 1.5rem;
+  font-size: 0.92rem;
+  color: var(--site-color-text-muted);
+}
+
+.startLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  font-size: 0.92rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--ifm-link-color);
+}
+
+@media (max-width: 1100px) {
+  .startGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .startGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .startCard {
+    transition: none;
+  }
+
+  .startCard:hover {
+    transform: none;
+  }
+}
+
+.sourceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+/* The rings field shared with the Builder Tools and Agentic Commerce
+   heroes. */
+.heroRings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 1609 / 967;
+  background: url("/img/hero/tools-rings-light.webp") no-repeat center /
+    contain;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 50%);
+  mask-image: linear-gradient(to right, transparent, #000 50%);
+}
+
+html[data-theme="dark"] .heroRings {
+  background-image: url("/img/hero/tools-rings-dark.webp");
+}
+
+@media (max-width: 768px) {
+  .heroRings {
+    display: none;
+  }
+}
+
+.heroLead {
+  margin: 0 0 1rem;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  line-height: 1.3;
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .heroLead {
+  color: var(--ifm-font-color-base);
+}
+
+/* --------------------------------------------------------------- status */
+
+.statusSection {
+  padding: 0 0 1rem;
+}
+
+.statusRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin: 0;
+  padding: 2rem 0;
+  border-top: 1px solid var(--ifm-toc-border-color);
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+}
+
+.statusRow dt {
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.statusRow dd {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--site-color-text-muted);
+}
+
+.statusRow dd:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 996px) {
+  .statusRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .statusRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ----------------------------------------------------------- module card */
+
+.moduleCard {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: var(--site-radius-lg);
+}
+
+html[data-theme="light"] .moduleCard {
+  background: var(--site-color-surface-chip);
+}
+
+html[data-theme="dark"] .moduleCard {
+  background: var(--site-color-card-surface);
+}
+
+/* A band of brand art across the top of the card. */
+.moduleCardArt {
+  height: 7.5rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.moduleCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.4rem 1.5rem 1rem;
+}
+
+.moduleCardName {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.moduleCard ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moduleCard li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--ifm-toc-border-color);
+  font-size: 0.9rem;
+}
+
+.moduleCard li .tick {
+  flex: none;
+}
+
+/* The feature comparison from the Agentic Commerce page: a name and one
+   line per row, then a tick or a dot per column. */
+.tickTable {
+  display: table;
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.tickTable thead,
+.tickTable tr,
+.tickTable tbody tr:nth-child(2n) {
+  background: none;
+  border: 0;
+}
+
+.tickTable th,
+.tickTable td {
+  width: 11rem;
+  border: 0;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  background: none;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tickTable th {
+  padding: 0 0.75rem 0.6rem;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--site-color-text-muted);
+}
+
+.tickTable td {
+  padding: 0.9rem 0.75rem;
+}
+
+.tickTable th:first-child,
+.tickTable td:first-child {
+  width: auto;
+  padding-left: 0;
+  text-align: left;
+}
+
+.tickTable td:first-child {
+  font-size: 0.95rem;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.tickDetail {
+  display: block;
+  max-width: 34rem;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  font-weight: var(--ifm-font-weight-normal);
+  color: var(--site-color-text-muted);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--ifm-color-white);
+}
+
+.tickBrand {
+  background: var(--ifm-color-primary);
+}
+
+.tickNeutral {
+  background: rgb(var(--site-color-navy-rgb) / 0.7);
+}
+
+html[data-theme="dark"] .tickNeutral {
+  background: rgb(var(--site-color-cream-rgb) / 0.25);
+}
+
+.tickOff {
+  color: var(--site-color-text-muted);
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  .tickTable th,
+.tickTable td {
+    width: 5.25rem;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+
+  .tickTable th {
+    white-space: normal;
+  }
+}
+
+/* -------------------------------------------------------------- code card */
+
+.editorCode {
+  white-space: pre;
+  font-size: 0.8rem;
+  scrollbar-width: none;
+}
+
+.editorCode::-webkit-scrollbar {
+  display: none;
+}
