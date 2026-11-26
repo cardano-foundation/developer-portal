@@ -24,6 +24,10 @@ const INSTALL_COMMAND = "npm install @x402/cardano";
 const FACILITATOR_PREPROD = "https://x402.preprod.dev.ecosyseng.cf-deployments.org";
 const FACILITATOR_MAINNET = "https://x402.mainnet.dev.ecosyseng.cf-deployments.org";
 
+const DOC_URL = "/docs/developers/curriculum/dapps/ai-agents/overview";
+const SCHEME_URL =
+  "https://github.com/x402-foundation/x402/blob/main/specs/schemes/exact/scheme_exact_cardano.md";
+
 /* The seller, tokenized by hand for the editor card (the homepage
    devCodeCard convention). Shape mirrors the official docs' Cardano
    setup at docs.x402.org/schemes/exact#cardano-setup, on preprod.
@@ -106,27 +110,47 @@ const SELLER_LINES = [
 const AREAS = [
   {
     title: "Spending control",
-    body: "Agents spend on someone's behalf. Budgets, limits and approvals enforced on chain keep a person in control.",
+    body: (
+      <>
+        An agent spends on someone&apos;s behalf. The{" "}
+        <Link to="/templates/x402-express/">Express starter</Link>&apos;s client already caps each
+        payment, and a budget held in a smart contract would enforce the limit on chain.
+      </>
+    ),
   },
   {
     title: "Usage-based pricing",
-    body: "Credits, subscriptions and metered sessions let agents pay for what they use, beyond a single request.",
+    body: "Cardano's x402 scheme charges an exact price per request. Prepaid credits and metered sessions are for the seller to build on top of it.",
   },
   {
     title: "Trust and reputation",
-    body: "Agents need to judge a service before they pay it. Reputation and proof of good work can build on Masumi's identity and on-chain history.",
+    body: "An agent needs to judge a service before it pays. Masumi's registry and on-chain identities record who an agent is, and reputation can be built from that history.",
   },
   {
     title: "Privacy",
-    body: "Agents act for people and businesses with details to protect. Build commerce that keeps those details private.",
+    body: (
+      <>
+        Agents act for people and businesses with details to protect. Cardano smart contracts can{" "}
+        <Link to="/docs/developers/curriculum/smart-contracts/advanced/zero-knowledge">
+          verify zero-knowledge proofs
+        </Link>
+        , so a buyer can prove a fact without revealing the data behind it.
+      </>
+    ),
   },
   {
     title: "Business operations",
-    body: "Agents that pay invoices, manage treasury and settle with suppliers.",
+    body: "Agents can pay invoices and settle with suppliers for a business, in ADA or in a stablecoin such as USDM.",
   },
   {
     title: "New sellers",
-    body: "Publishers, compute providers, devices and services on other networks can sell to agents per use.",
+    body: (
+      <>
+        Any service that answers over HTTP can sell to agents per use, such as articles or
+        compute. The <Link to="/templates/x402-next/">Next.js paywall</Link> is a starting point
+        for content.
+      </>
+    ),
   },
 ];
 
@@ -151,7 +175,7 @@ const CLAIMS = [
   {
     icon: "img/home/rebrand/icon-integrate-payments.svg",
     title: "Non-custodial facilitators",
-    body: "Because the wallet signs the whole transaction, there is nothing left for the facilitator to change and no signature of its own to add. It holds no keys and no funds, and it can only verify and relay. Anyone can run one: the template's facilitator is about 100 lines.",
+    body: "Because the wallet signs the whole transaction, there is nothing left for the facilitator to change and no signature of its own to add. It holds no keys and no funds, and it can only verify and relay. Anyone can run a facilitator, and both templates include one.",
   },
 ];
 
@@ -307,11 +331,12 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
   );
 }
 
-function TemplateCard({ title, body, href, linkLabel, external, dark }) {
+function TemplateCard({ title, lead, body, href, linkLabel, external, dark }) {
   const linkClass = clsx(styles.templateDoc, !external && styles.templateDocRight);
   return (
     <div className={clsx(styles.templateCard, dark && styles.templateCardDark)}>
-      <h4>{title}</h4>
+      <h3>{title}</h3>
+      <p className={styles.templateLead}>{lead}</p>
       <p>{body}</p>
       {external ? (
         <a href={href} {...EXTERNAL_LINK_PROPS} className={linkClass}>
@@ -344,10 +369,10 @@ export default function X402Page() {
                 <h1 className={home.heroTitle}>Agentic Commerce</h1>
               </div>
               <div className={clsx(home.heroRight, styles.heroStackedRight)}>
+                <p className={styles.heroLead}>Build internet-native payments on Cardano.</p>
                 <p className={home.heroSubtitle}>
                   x402 lets any service charge per request over plain HTTP, and lets agents pay
-                  without accounts or API keys. Build internet-native payments on Cardano, with
-                  everything you need on this page.
+                  without accounts or API keys.
                 </p>
                 <div className={home.heroActions}>
                   <a className="button button--primary" href="#start">
@@ -399,16 +424,16 @@ export default function X402Page() {
           <div className="container">
             <div className={home.sectionHeader}>
               <h2>Why Cardano</h2>
-              <p>
-                Four properties of Cardano&apos;s ledger that matter for agentic payments.
-              </p>
+              <p>Properties of Cardano that matter when an agent pays.</p>
             </div>
             <div className={styles.claimRow}>
               {CLAIMS.map(claim => (
                 <div key={claim.title} className={styles.claimCol}>
                   <img src={baseUrl + claim.icon} alt="" className={styles.claimIcon} />
-                  <h4>{claim.title}</h4>
-                  <p>{claim.body}</p>
+                  <div>
+                    <h3>{claim.title}</h3>
+                    <p>{claim.body}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -418,7 +443,7 @@ export default function X402Page() {
         <section className={styles.section}>
           <div className="container">
             <div className={styles.panel}>
-              <h3 className={styles.panelTitle}>x402 goes further on Cardano</h3>
+              <h2 className={styles.panelTitle}>x402 goes further on Cardano</h2>
               <p className={styles.panelIntro}>
                 Cardano&apos;s x402 scheme defines three transfer methods: a payment to an
                 address, a lock in{" "}
@@ -512,14 +537,14 @@ export default function X402Page() {
             <div className={home.sectionHeader}>
               <h2>Beyond the payment</h2>
               <p>
-                x402 handles the payment. Masumi adds agent identity, discovery and escrow. Build
-                on both for what agentic commerce needs next.
+                x402 handles the payment. Masumi adds agent identity, discovery and escrow. These
+                areas around them are open to build.
               </p>
             </div>
             <div className={styles.areaGrid}>
               {AREAS.map(area => (
                 <div key={area.title} className={styles.areaCard}>
-                  <h4>{area.title}</h4>
+                  <h3>{area.title}</h3>
                   <p>{area.body}</p>
                 </div>
               ))}
@@ -582,28 +607,32 @@ export default function X402Page() {
             </div>
 
             <div className={styles.templatesBlock}>
-              <h2 className={styles.plainHeading}>Pick your starting point</h2>
-              <p className={styles.sectionLead}>
-                Two templates to build from and one complete reference. Start from Express for a
-                headless agent behind an API, from Next.js when a person pays in the browser. Both
-                use TypeScript, the language of Cardano&apos;s x402 SDK.
-              </p>
+              <div className={home.sectionHeader}>
+                <h2>Pick your starting point</h2>
+                <p>
+                  Two templates to build from and one complete reference. Both templates use
+                  TypeScript, the language of Cardano&apos;s x402 SDK.
+                </p>
+              </div>
               <div className={styles.templateGrid}>
                 <TemplateCard
                   title="Express starter"
+                  lead="For an agent behind an API."
                   body="Client and server on the hosted facilitator, with a local one included for offline runs."
                   href="/templates/x402-express/"
                   linkLabel="View the template"
                 />
                 <TemplateCard
                   title="Next.js paywall"
+                  lead="For a person paying in the browser."
                   body="Payment-gated routes behind a CIP-30 browser wallet paywall."
                   href="/templates/x402-next/"
                   linkLabel="View the template"
                 />
                 <TemplateCard
                   title="The complete demo"
-                  body="A working app that runs the whole x402 flow and shows each step as a payment happens. Address payments and Masumi escrow, in ADA and USDM, with browser wallets."
+                  lead="For seeing every step of a payment."
+                  body="A working app that runs address payments and Masumi escrow, in ADA and USDM, with browser wallets."
                   href="https://github.com/cardano-foundation/x402-cardano-demo"
                   linkLabel="Open the repository"
                   external
@@ -637,22 +666,21 @@ export default function X402Page() {
                   text="Hosted by the Cardano Foundation, preprod"
                   command={`FACILITATOR_URL=${FACILITATOR_PREPROD}`}
                   docHref={`${FACILITATOR_PREPROD}/supported`}
-                  docLabel="What the facilitator supports"
+                  docLabel="What the preprod facilitator supports"
+                  docExternal
+                />
+                <QuickstartCard
+                  badge="Facilitator"
+                  text="Hosted by the Cardano Foundation, mainnet"
+                  command={`FACILITATOR_URL=${FACILITATOR_MAINNET}`}
+                  docHref={`${FACILITATOR_MAINNET}/supported`}
+                  docLabel="What the mainnet facilitator supports"
                   docExternal
                 />
               </div>
               <p className={styles.facilitatorNote}>
-                Mainnet: <code>{FACILITATOR_MAINNET}</code>. Every template can also run a local
-                facilitator.
-              </p>
-              <p className={styles.deeperRow}>
-                Go deeper:{" "}
-                <a
-                  href="https://github.com/x402-foundation/x402/blob/main/specs/schemes/exact/scheme_exact_cardano.md"
-                  {...EXTERNAL_LINK_PROPS}
-                >
-                  the exact scheme spec
-                </a>
+                The templates run on preprod, and their READMEs list what changes for mainnet.
+                Every template can also run a local facilitator.
               </p>
             </div>
           </div>
@@ -661,10 +689,10 @@ export default function X402Page() {
         <section className={clsx(styles.section, styles.anchorTarget)} id="agent">
           <div className="container">
             <div className={home.sectionHeader}>
-              <h2>Your agent already knows how</h2>
+              <h2>Your coding agent already knows how</h2>
               <p>
                 Cardano Dev Skills covers the Cardano side, Masumi Skills the agent layer. For
-                the x402 facts in one file, give your agent{" "}
+                the x402 facts in one file, give it{" "}
                 <a href={baseUrl + "x402/agent.md"}>agent.md</a>.
               </p>
             </div>
@@ -719,11 +747,11 @@ export default function X402Page() {
         </section>
 
         <PageCTA
-          title="Keep building on Cardano"
-          description="Guides, tutorials, and templates for everything else."
+          title="Build with x402 on Cardano"
+          description="Read the docs, then the scheme itself."
           buttons={[
-            { href: "/docs/developers/", label: "Get Started" },
-            { href: "/templates/", label: "Browse Templates" },
+            { href: DOC_URL, label: "Read the docs" },
+            { href: SCHEME_URL, label: "Read the Cardano scheme" },
           ]}
           art={bandArt}
         />
