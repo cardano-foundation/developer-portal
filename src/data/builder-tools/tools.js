@@ -1131,6 +1131,16 @@ export const BuilderTools = [
     category: "integration",
     properties: ["typescript"],
   },
+  {
+    title: "Brale",
+    icon: "/img/tools/brale.png",
+    description: "Hosted API for issuing fiat-backed USD stablecoins and moving money between bank accounts and stablecoins on Cardano mainnet and testnet. Its Cardano support is built on CIP-113 programmable tokens.",
+    website: "https://brale.xyz",
+    docs: "https://docs.brale.xyz/coverage/transfer-types",
+    repository: null,
+    category: "payments",
+    properties: ["rest"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
