@@ -38,9 +38,9 @@ standing approvals — every payment is one discrete signed tx.
 - The facilitator verifies and settles payments. It holds no keys and no
   funds; the client pays the network fee. The Cardano Foundation runs
   hosted facilitators for preprod
-  (https://x402.preprod.dev.ecosyseng.cf-deployments.org, the default in
+  (https://x402.preprod.cardanofoundation.org, the default in
   both templates) and mainnet
-  (https://x402.mainnet.dev.ecosyseng.cf-deployments.org). Each lists
+  (https://x402.mainnet.cardanofoundation.org). Each lists
   what it supports at `/supported`. The templates also ship a minimal
   local facilitator for offline work.
 
@@ -96,7 +96,7 @@ only, so the Cardano browser side ships inside the template
 
 `.env` for the Express starter (from `cp .env.example .env`):
 
-    FACILITATOR_URL=https://x402.preprod.dev.ecosyseng.cf-deployments.org   # or http://localhost:4022 for the local one
+    FACILITATOR_URL=https://x402.preprod.cardanofoundation.org   # or http://localhost:4022 for the local one
     SELLER_ADDRESS=addr_test1...            # receives the payment
     SELLER_PORT=4021
     MNEMONIC=...                            # from npm run wallet, funded

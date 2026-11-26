@@ -21,8 +21,8 @@ const INSTALL_COMMAND = "npm install @x402/cardano";
 
 /* The Cardano Foundation's hosted facilitators. The templates default to
    the preprod one in their .env.example. */
-const FACILITATOR_PREPROD = "https://x402.preprod.dev.ecosyseng.cf-deployments.org";
-const FACILITATOR_MAINNET = "https://x402.mainnet.dev.ecosyseng.cf-deployments.org";
+const FACILITATOR_PREPROD = "https://x402.preprod.cardanofoundation.org";
+const FACILITATOR_MAINNET = "https://x402.mainnet.cardanofoundation.org";
 
 /* The seller, tokenized by hand for the editor card (the homepage
    devCodeCard convention). Shape mirrors the official docs' Cardano
