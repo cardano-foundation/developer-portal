@@ -1131,6 +1131,16 @@ export const BuilderTools = [
     category: "integration",
     properties: ["typescript"],
   },
+  {
+    title: "Scalus Emulator",
+    icon: "/img/tools/scalus.png",
+    description: "In-memory Cardano node and Plutus script evaluator for JavaScript and TypeScript, published as the scalus npm package. It validates transactions against the Cardano ledger rules, runs Plutus V1 to V3 scripts with their execution costs, and works as a provider for MeshJS and Lucid Evolution.",
+    website: "https://scalus.org/",
+    docs: "https://scalus.org/docs/testing/js-emulator",
+    repository: "https://github.com/scalus3/scalus",
+    category: "testing",
+    properties: ["scala", "typescript", "javascript"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
