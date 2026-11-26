@@ -30,7 +30,7 @@ client-side.
      `/api/blockfrost` route, and a local facilitator, if you run one, uses
      it to submit.
 3. **Facilitator**: defaults to the Cardano Foundation's hosted one on
-   preprod (`https://x402.preprod.dev.ecosyseng.cf-deployments.org`).
+   preprod (`https://x402.preprod.cardanofoundation.org`).
    To run one locally, `npm run facilitator` in a second terminal and
    set `FACILITATOR_URL=http://localhost:4022`.
 4. **Run**: `npm run dev`, open <http://localhost:3002>, pay with a
