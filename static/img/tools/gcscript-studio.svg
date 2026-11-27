@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>GCScript Studio</title>
+  <rect width="64" height="64" rx="18" fill="#3b5ee5"/>
+  <path d="M32 26v10M16 42v-9h32v9M32 33v9" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="25" y="13" width="14" height="14" rx="4" fill="#fff"/>
+  <rect x="10" y="40" width="12" height="12" rx="3.5" fill="#fff"/>
+  <rect x="26" y="40" width="12" height="12" rx="3.5" fill="#fff"/>
+  <rect x="42" y="40" width="12" height="12" rx="3.5" fill="#fff"/>
+</svg>

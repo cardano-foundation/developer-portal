@@ -1145,4 +1145,86 @@ export const BuilderTools = [
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
   // ============================================================================
+  {
+    title: "@gamechanger-finance/gc",
+    description: "TypeScript library and CLI for building and validating GCScript DSL projects and generating HTML/JavaScript, React and Express dApps, reusable QR codes and links to connect with GameChanger Wallet/runners. Allow integrations without dependencies nor custom backends, bringing Cardano to websites, devices, screens and printed media with less development effort.",
+    icon: "/img/tools/gclib.png",
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/gclib-1.webp",
+        alt: "GC integration outputs and generated QR"
+      },
+      {
+        src: "/img/tools/screenshots/gclib-2.webp",
+        alt: "Generated Dandelion registration dApp"
+      },
+      {
+        src: "/img/tools/screenshots/gclib-3.webp",
+        alt: "Generated React Kitchen Sink integration"
+      }
+    ],
+    category: "wallet",
+    properties: [
+      "typescript",
+      "javascript"
+    ],
+    website: "https://gamechangerfinance.github.io/gamechanger.wallet/docs/gcscript/overview/",
+    repository: "https://github.com/GameChangerFinance/gamechanger",
+    docs: "https://gamechangerfinance.github.io/gamechanger.wallet/docs/transactions/quick-start"
+  },
+  {
+    title: "Unimatrix Sync",
+    icon: "/img/tools/unimatrix.svg",
+    description: "TypeScript library for decentralized, privacy-preserving Cardano transaction-witness sharing and pairing. Encrypted GunDB channels coordinate remote and deferred co-signing across browser dApps, Node services and wallets, with configurable relays and caller-supplied Cardano Serialization Library support.",
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/unimatrix-1.webp",
+        alt: "Unimatrix transaction witness exchange and wallet approval"
+      },
+      {
+        src: "/img/tools/screenshots/unimatrix-2.webp",
+        alt: "Unimatrix Node coordinating three transactions and wallet multisignature sharing"
+      },
+      {
+        src: "/img/tools/screenshots/unimatrix-3.webp",
+        alt: "Unimatrix Sync terminal logs showing transaction announcements, CBOR exchange and signer responses"
+      }
+    ],
+    category: "wallet",
+    properties: [
+      "typescript"
+    ],
+    website: "https://github.com/GameChangerFinance/unimatrix",
+    repository: "https://github.com/GameChangerFinance/unimatrix",
+    docs: "https://github.com/GameChangerFinance/unimatrix/blob/master/docs/README.md"
+  },
+  {
+    title: "GCScript Studio IDE",
+    description: "Browser IDE for GCScript DSL and ISL with code, node and block views, schema-driven completion and diagnostics, and multi-file builds. Generate HTML/JavaScript, React and Express dApps, QR and links for static integrations, share editable project links, embed editors in documentation, and run intents in GameChanger Wallet or an alternative runner.",
+    icon: "/img/tools/gcscript-studio.svg",
+    screenshots: [
+      {
+        src: "/img/tools/screenshots/gcscript-studio-1.webp",
+        alt: "Code, nodes, blocks and schema inspector"
+      }
+    ],
+    category: "dev-env",
+    properties: [
+      "typescript",
+      "javascript"
+    ],
+    website: "https://gamechangerfinance.github.io/gcscript-studio/",
+    repository: "https://github.com/GameChangerFinance/gcscript-studio",
+    docs: "https://gamechangerfinance.github.io/gamechanger.wallet/docs/gcscript/overview/"
+  },
+  {
+    title: "GCScript DSL Skill",
+    icon: "/img/tools/gclib.png",
+    description: "Agent/AI skill for coding and building GCScript DSL projects for Cardano and other ecosystems: schema-aware authoring, multi-file builds, HTML/JavaScript, React, Express, Python and even dependency-free UDC integrations for hardware, URL/QR static intents and wallet/runner result handling. Tooling ecosystem awareness and troubleshooting tips.",
+    category: "wallet",
+    properties: [],
+    website: "https://github.com/GameChangerFinance/gcscript-dsl-skill",
+    repository: "https://github.com/GameChangerFinance/gcscript-dsl-skill",
+    docs: "https://gamechangerfinance.github.io/gamechanger.wallet/docs/gcscript/overview/"
+  },
 ];
