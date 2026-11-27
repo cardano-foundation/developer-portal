@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <title>Unimatrix Sync</title>
+  <defs>
+    <linearGradient id="bolt" x1="330" y1="56" x2="170" y2="458" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF6A8"/>
+      <stop offset=".48" stop-color="#FFDB4D"/>
+      <stop offset="1" stop-color="#F3AA19"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="104" fill="#24333B"/>
+  <path d="M342 54 116 280h121l-67 178 226-226H275L342 54Z" fill="#FFE676" opacity=".5" filter="url(#glow)"/>
+  <path d="M342 54 116 280h121l-67 178 226-226H275L342 54Z" fill="url(#bolt)" stroke="#FFF4A4" stroke-width="5" stroke-linejoin="round"/>
+</svg>
